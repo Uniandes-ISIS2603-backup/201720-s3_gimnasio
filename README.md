@@ -29,3 +29,17 @@
     - [POST /objetivos](#POST-/objetivos)
     - [PUT /objetivos/{id}](#PUT-/objetivos/{id})
     - [DELETE /objetivos/{id}](#DELETE-/objetivos/{id})
+- [Recurso ejercicioHecho](#recurso-Estado)
+     GET /Estado/
+     GET /Estado/{fecha}
+     POST /Estado/
+     PUT /Estado/{fecha}
+     DELETE /Estado/{fecha}
+ - [Recurso ejercicioHecho](#recurso-Estado)
+   GET /Estado/{fecha}/Medida
+   GET /Estado/{fecha}/Medida/{parteDelCuerpo} 
+   POST /Estado/{fecha}/Medida
+   PUT /Estado/{fecha}/Medida/{parteDelCuerpo}
+   DELETE /Estado/{fecha}/Medida/{parteDelCuerpo}
+
+
