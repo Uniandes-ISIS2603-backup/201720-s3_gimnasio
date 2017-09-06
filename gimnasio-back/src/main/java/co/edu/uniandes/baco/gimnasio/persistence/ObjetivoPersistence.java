@@ -23,7 +23,6 @@ public class ObjetivoPersistence {
     private static final Logger LOGGER = Logger.getLogger(ObjetivoPersistence.class.getName());
     @PersistenceContext(unitName = "objetivoPU")
     protected EntityManager em;
-
     /**
      * Agrega un objetivo
      * 
