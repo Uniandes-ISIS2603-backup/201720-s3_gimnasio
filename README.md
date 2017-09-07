@@ -5,7 +5,7 @@
    - [GET /gimnasios/{id}](#get-gimnasiosid)
    - [POST /gimnasios](#post-gimnasios)
    - [PUT /gimnasios/{id}](#put-gimnasiosid)
-   - [DELETE /gimnasios/{id}](#delete-gimnasios{id})
+   - [DELETE /gimnasios/{id}](#delete-gimnasiosid)
 
 # Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
@@ -108,5 +108,3 @@ Código|Descripción|Cuerpo
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 ***
 [Volver arriba](#tabla-de-contenidos)
-
-
