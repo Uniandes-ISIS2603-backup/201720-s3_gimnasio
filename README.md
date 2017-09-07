@@ -5,7 +5,7 @@
    - [\[Recurso Gimnasio\]](#recurso-gimnasio)
      - [GET /gimnasio](#get-gimnasio)
      - [PUT /gimnasio](#put-gimnasio)
-       - [\[Recurso Entrenador\]](#re)curso-entrenador
+       - [\[Recurso Entrenador\]](#recurso-entrenador)
          - [GET /gimnasio/entrenadores](#get-entrenadores)
          - [GET /gimnasio/entrenadores/{id}](#get-entrenadoresid)
          - [POST /gimnasio/entrenadores](#post-entrenadores)
