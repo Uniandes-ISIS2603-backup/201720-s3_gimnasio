@@ -51,7 +51,7 @@ Código|Descripción|Cuerpo
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 500|Error interno|Mensaje de error
 ***
-#### GET /gimnasios/{id}
+### GET /gimnasios/{id}
 Retorna una colección de objetos Gimnasio en representación Detail.
 #### Parámetros
 Nombre|Ubicación|Descripción|Requerido|Esquema
@@ -65,7 +65,7 @@ Código|Descripción|Cuerpo
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 500|Error interno|Mensaje de error
 ***
-#### POST /gimnasios
+### POST /gimnasios
 Es el encargado de crear objetos Gimnasio.
 #### Parámetros
 Nombre|Ubicación|Descripción|Requerido|Esquema
@@ -79,7 +79,7 @@ Código|Descripción|Cuerpo
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 500|No se pudo crear el objeto Gimnasio|Mensaje de error
 ***
-#### PUT /gimnasios/{id}
+### PUT /gimnasios/{id}
 Es el encargado de actualizar objeto Gimnasio
 #### Parámetros
 Nombre|Ubicación|Descripción|Requerido|Esquema
@@ -94,7 +94,7 @@ Código|Descripción|Cuerpo
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 500|No se pudo actualizar el objeto Gimnasio|Mensaje de error
 ***
-#### DELETE /gimnasios/{id}
+### DELETE /gimnasios/{id}
 Elimina un objeto Gimnasio.
 #### Parámetros
 Nombre|Ubicación|Descripción|Requerido|Esquema
