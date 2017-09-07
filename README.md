@@ -2,11 +2,14 @@
 # Tabla de contenido
  - API
    - [Recurso Gimnasio](#recurso-gimnasio)
-     - [GET /gimnasios](#get-gimnasios)
-     - [GET /gimnasios/{id}](#get-gimnasiosid)
-     - [POST /gimnasios](#post-gimnasios)
-     - [PUT /gimnasios/{id}](#put-gimnasiosid)
-     - [DELETE /gimnasios/{id}](#delete-gimnasiosid)
+     - [GET /gimnasio](#get-gimnasio)
+     - [PUT /gimnasio](#put-gimnasio)
+     - [Recurso Entrenador](#recurso-entrenador)
+       - [GET /gimnasio/entrenadores](#get-entrenadores)
+       - [GET /gimnasio/entrenadores/{id}](#get-entrenadoresid)
+       - [POST /gimnasio/entrenadores](#post-entrenadores)
+       - [PUT /gimnasio/entrenadores/{id}](#put-entrenadoresid)
+       - [DELETE /gimnasio/entrenadores/{id}](#delete-entrenadoresid)
 
 # Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
@@ -25,82 +28,133 @@ Entidad principal que define el todo el gimnasio
    nombre : /tipoString/,
    duenio : /tipoString/,
    nit : /tipoLong/
-   clientes: [{ /Representación de [usuario](#recurso-usuario) en JSON minimum / }
+   clientes: [{ /Representación de usuario en JSON minimum / }
    .
    .
    ],
    entrenadores:[
-   {/Representación de [entrenador](#recurso-entrenador) en JSON minimum /}
+   {/Representación de entrenador en JSON minimum /}
    .
    .
    ],
    Maquinas:[
-   {/Representación de [maquina](#recurso-maquina) en JSON minimum/}
+   {/Representación de maquina en JSON minimum/}
    ]
 }
 ```
 ***
-### GET /gimnasios
-Retorna una colección de objetos Gimnasio en representación Detail.
+### GET /gimnasio
+Retorna una colección de objetos Gimnasio en representación Detallada.
 #### Parámetros
 N/A
 #### Respuesta
 Código|Descripción|Cuerpo
 :--|:--|:--
-200|OK|Colección de [representaciones Detail](#recurso-gimnasio)
+200|OK|Colección de [representaciones Detallada](#recurso-gimnasio)
 412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 500|Error interno|Mensaje de error
-***
-### GET /gimnasios/{id}
-Retorna una colección de objetos Gimnasio en representación Detail.
-#### Parámetros
-Nombre|Ubicación|Descripción|Requerido|Esquema
-:--|:--|:--|:--|:--
-id|Path|ID del objeto Gimnasio a consultar|Sí|Integer
-#### Respuesta
-Código|Descripción|Cuerpo
-:--|:--|:--
-200|OK|objeto Gimnasio en [representaciones Detail](#recurso-gimnasio)
-404|No existe un objeto Gimnasio con el ID solicitado|Mensaje de error
-405|method not allowed, no existe permiso para el recurso|Mensaje de error
-500|Error interno|Mensaje de error
-***
-### POST /gimnasios
-Es el encargado de crear objetos Gimnasio.
-#### Parámetros
-Nombre|Ubicación|Descripción|Requerido|Esquema
-:--|:--|:--|:--|:--
-body|body|objeto Gimnasio que será creado|Sí|[Representación Detail](#recurso-gimnasio)
-#### Respuesta
-Código|Descripción|Cuerpo
-:--|:--|:--
-201|El objeto Gimnasio ha sido creado|[Representación Detail](#recurso-gimnasio)
-412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
-405|method not allowed, no existe permiso para el recurso|Mensaje de error
-500|No se pudo crear el objeto Gimnasio|Mensaje de error
-***
-### PUT /gimnasios/{id}
+### PUT /gimnasio
 Es el encargado de actualizar objeto Gimnasio
 #### Parámetros
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
-id|Path|ID del objeto Gimnasio a actualizar|Sí|Integer
-body|body|objeto Gimnasio nuevo|Sí|[Representación Detail](#recurso-gimnasio)
+body|body|objeto Gimnasio nuevo|Sí|[Representación basica](#recurso-gimnasio)
 #### Respuesta
 Código|Descripción|Cuerpo
 :--|:--|:--
-201|El objeto Gimnasio actualizado|[Representación Detail](#recurso-gimnasio)
+201|El objeto Gimnasio actualizado|[Representación Detallada](#recurso-gimnasio)
 412|business exception, no se cumple con las reglas de negocio|Mensaje de error
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 500|No se pudo actualizar el objeto Gimnasio|Mensaje de error
 ***
-### DELETE /gimnasios/{id}
-Elimina un objeto Gimnasio.
+[Volver arriba](#tabla-de-contenidos)
+***
+# Recurso Entrenador
+Los entrenadores que se encuentran en el Entrenador
+
+## Representación Básica
+```javascript
+{
+  nombre : /tipoString/,
+  FechaNacimiento: /tipoString/,
+  cedula : /tipoLong/
+}
+```
+## Representación Detallada
+```javascript
+{
+  nombre : /tipoString/,
+  FechaNacimiento: /tipoString/,
+  cedula : /tipoLong/
+  usuarios: [{ /Representación de usuario 1 en JSON minimum / }
+  .
+  .
+  ]
+}
+```
+***
+### GET /entrenadores
+Retorna una colección de objetos Entrenador en representación Detallada.
+#### Parámetros
+N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [representaciones Detalladas](#recurso-entrenador)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### GET /entrenadores/{id}
+Retorna una colección de objetos Entrenador en representación Detallada.
 #### Parámetros
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
-id|Path|ID del objeto Gimnasio a eliminar|Sí|Integer
+id|Path|ID del objeto Entrenador a consultar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|objeto Entrenador en [representaciones Detalladas](#recurso-entrenador)
+404|No existe un objeto Entrenador con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### POST /entrenadores
+Es el encargado de crear objetos Entrenador.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|objeto Entrenador que será creado|Sí|[representación Detallada](#recurso-entrenador)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Entrenador ha sido creado|[representación Detallada](#recurso-entrenador)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo crear el objeto Entrenador|Mensaje de error
+***
+### PUT /entrenadores/{id}
+Es el encargado de actualizar objeto Entrenador
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Entrenador a actualizar|Sí|Integer
+body|body|objeto Entrenador nuevo|Sí|[representación Detallada](#recurso-entrenador)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Entrenador actualizado|[representación Detallada](#recurso-entrenador)
+412|business exception, no se cumple con las reglas de negocio|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo actualizar el objeto Entrenador|Mensaje de error
+***
+### DELETE /entrenadores/{id}
+Elimina un objeto Entrenador.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Entrenador a eliminar|Sí|Integer
 #### Respuesta
 Código|Descripción|Cuerpo
 :--|:--|:--
