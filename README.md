@@ -1,5 +1,5 @@
 
-# Tabla de contenido
+# Tabla de contenidos
  - API
    - [Recurso Gimnasio](#recurso-gimnasio)
      - [GET /gimnasio](#get-gimnasio)
