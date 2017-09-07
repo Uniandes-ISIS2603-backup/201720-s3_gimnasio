@@ -2,7 +2,7 @@
 # Tabla de contenidos
  -[Recurso Gimnasio](#recurso-gimnasio)
    - [GET /gimnasios](#get-/gimnasios)
-   - [GET /gimnasios/{id}](#get-/gimnasios/{id})
+ -[GET /gimnasios/{id}](#get-/gimnasios/{id})
    - [POST /gimnasios](#post-/gimnasios)
    - [PUT /gimnasios/{id}](#put-/gimnasios/{id})
    - [DELETE /gimnasios/{id}](#delete-/gimnasios/{id})
@@ -51,13 +51,13 @@ Código|Descripción|Cuerpo
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 500|Error interno|Mensaje de error
 ***
-# GET /gimnasios/{id}
+#### GET /gimnasios/{id}
 Retorna una colección de objetos Gimnasio en representación Detail.
 #### Parámetros
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
 id|Path|ID del objeto Gimnasio a consultar|Sí|Integer
-## Respuesta
+#### Respuesta
 Código|Descripción|Cuerpo
 :--|:--|:--
 200|OK|objeto Gimnasio en [representaciones Detail](#recurso-gimnasio)
