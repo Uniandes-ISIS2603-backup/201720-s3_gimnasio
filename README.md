@@ -1,7 +1,7 @@
 
 # Tabla de contenidos
  - API
-   - [Recurso Gimnasio](#recurso-gimnasio)
+   - [\[Recurso Gimnasio\]](#recurso-gimnasio)
      - [GET /gimnasio](#get-gimnasio)
      - [PUT /gimnasio](#put-gimnasio)
      - [Recurso Entrenador](#recurso-entrenador)
