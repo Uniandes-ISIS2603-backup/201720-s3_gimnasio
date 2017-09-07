@@ -1,10 +1,44 @@
-# Tabla de contenidos
-    - [GET /gimnasios](#GET-/gimnasios)
-    - [GET /gimnasios/{id}](#GET-/gimnasios/{id})
-    - [POST /gimnasios](#POST-/gimnasios)
-    - [PUT /gimnasios/{id}](#PUT-/gimnasios/{id})
-    - [DELETE /gimnasios/{id}](#DELETE-/gimnasios/{id})
 
+# Tabla de contenidos
+   -[Recurso Gimnasio](#recurso-gimnasio)
+      - [GET /gimnasios](#GET-/gimnasios)
+      - [GET /gimnasios/{id}](#GET-/gimnasios/{id})
+      - [POST /gimnasios](#POST-/gimnasios)
+      - [PUT /gimnasios/{id}](#PUT-/gimnasios/{id})
+      - [DELETE /gimnasios/{id}](#DELETE-/gimnasios/{id})
+
+## Recurso Gimnasio
+Entidad principal que define el todo el gimnasio	
+
+### Representación Básica
+```javascript
+{
+   nombre : /tipoString/,
+   duenio : /tipoString/,
+   nit : /tipoLong/
+}
+```
+### Representación Detallada
+```javascript
+{
+   nombre : /tipoString/,
+   duenio : /tipoString/,
+   nit : /tipoLong/
+   clientes: [{ /Representación de usuario 1 en JSON minimum / }
+   .
+   .
+   ],
+   entrenadores:[
+   {/Representación de entrenador 1 en JSON minimum /}
+   .
+   .
+   ],
+   Maquinas:[
+   {/Representación de maquina 1 en JSON minimum/}
+   ]
+}
+```
+***
 ***
 #### GET /gimnasios
 Retorna una colección de objetos Gimnasio en representación Detail.
@@ -75,3 +109,6 @@ Código|Descripción|Cuerpo
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 ***
 [Volver arriba](#tabla-de-contenidos)
+
+
+
