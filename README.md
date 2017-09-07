@@ -1,11 +1,11 @@
 
 # Tabla de contenidos
-   -[Recurso Gimnasio](#recurso-gimnasio)
-      - [GET /gimnasios](#GET-/gimnasios)
-      - [GET /gimnasios/{id}](#GET-/gimnasios/{id})
-      - [POST /gimnasios](#POST-/gimnasios)
-      - [PUT /gimnasios/{id}](#PUT-/gimnasios/{id})
-      - [DELETE /gimnasios/{id}](#DELETE-/gimnasios/{id})
+ -[Recurso Gimnasio](#recurso-gimnasio)
+   - [GET /gimnasios](#GET-/gimnasios)
+   - [GET /gimnasios/{id}](#GET-/gimnasios/{id})
+   - [POST /gimnasios](#POST-/gimnasios)
+   - [PUT /gimnasios/{id}](#PUT-/gimnasios/{id})
+   - [DELETE /gimnasios/{id}](#DELETE-/gimnasios/{id})
 
 ## Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
@@ -39,9 +39,6 @@ Entidad principal que define el todo el gimnasio
 }
 ```
 ***
-* * *
-*****
-- - -
 #### GET /gimnasios
 Retorna una colección de objetos Gimnasio en representación Detail.
 #### Parámetros
