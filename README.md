@@ -39,7 +39,9 @@ Entidad principal que define el todo el gimnasio
 }
 ```
 ***
-***
+* * *
+*****
+- - -
 #### GET /gimnasios
 Retorna una colección de objetos Gimnasio en representación Detail.
 #### Parámetros
@@ -109,6 +111,5 @@ Código|Descripción|Cuerpo
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 ***
 [Volver arriba](#tabla-de-contenidos)
-
 
 
