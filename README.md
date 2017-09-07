@@ -1,16 +1,16 @@
 
 # Tabla de contenidos
-
  - API
    - [\[Recurso Gimnasio\]](#recurso-gimnasio)
      - [GET /gimnasio](#get-gimnasio)
      - [PUT /gimnasio](#put-gimnasio)
-       - [\[Recurso Entrenador\]](#recurso-entrenador)
-         - [GET /gimnasio/entrenadores](#get-entrenadores)
-         - [GET /gimnasio/entrenadores/{id}](#get-entrenadoresid)
-         - [POST /gimnasio/entrenadores](#post-entrenadores)
-         - [PUT /gimnasio/entrenadores/{id}](#put-entrenadoresid)
-         - [DELETE /gimnasio/entrenadores/{id}](#delete-entrenadoresid)
+     - [\[Recurso Entrenador\]](#recurso-entrenador)
+       - [GET /gimnasio/entrenadores](#get-entrenadores)
+       - [GET /gimnasio/entrenadores/{id}](#get-entrenadoresid)
+       - [POST /gimnasio/entrenadores](#post-entrenadores)
+       - [PUT /gimnasio/entrenadores/{id}](#put-entrenadoresid)
+       - [DELETE /gimnasio/entrenadores/{id}](#delete-entrenadoresid)
+***
 # Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
 
