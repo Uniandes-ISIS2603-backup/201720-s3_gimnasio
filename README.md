@@ -1,11 +1,11 @@
 
 # Tabla de contenidos
  - [Recurso Gimnasio](#recurso-gimnasio)
-   - [GET /gimnasios](#get-\/gimnasios)
-   - [GET /gimnasios/{id}](#get-//gimnasios/{id})
-   - [POST /gimnasios](#post-/gimnasios)
-   - [PUT /gimnasios/{id}](#put-/gimnasios/{id})
-   - [DELETE /gimnasios/{id}](#delete-/gimnasios/{id})
+   - [GET /gimnasios](#get-gimnasios)
+   - [GET /gimnasios/{id}](#get-gimnasiosid)
+   - [POST /gimnasios](#post-gimnasios)
+   - [PUT /gimnasios/{id}](#put-gimnasiosid)
+   - [DELETE /gimnasios/{id}](#delete-gimnasios{id})
 
 # Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
