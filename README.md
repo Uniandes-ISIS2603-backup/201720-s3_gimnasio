@@ -1,11 +1,12 @@
 
-# Tabla de contenidos
- - [Recurso Gimnasio](#recurso-gimnasio)
-   - [GET /gimnasios](#get-gimnasios)
-   - [GET /gimnasios/{id}](#get-gimnasiosid)
-   - [POST /gimnasios](#post-gimnasios)
-   - [PUT /gimnasios/{id}](#put-gimnasiosid)
-   - [DELETE /gimnasios/{id}](#delete-gimnasiosid)
+# Tabla de contenido
+ - API
+   - [Recurso Gimnasio](#recurso-gimnasio)
+     - [GET /gimnasios](#get-gimnasios)
+     - [GET /gimnasios/{id}](#get-gimnasiosid)
+     - [POST /gimnasios](#post-gimnasios)
+     - [PUT /gimnasios/{id}](#put-gimnasiosid)
+     - [DELETE /gimnasios/{id}](#delete-gimnasiosid)
 
 # Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
@@ -24,17 +25,17 @@ Entidad principal que define el todo el gimnasio
    nombre : /tipoString/,
    duenio : /tipoString/,
    nit : /tipoLong/
-   clientes: [{ /Representación de usuario 1 en JSON minimum / }
+   clientes: [{ /Representación de [usuario](#recurso-usuario) en JSON minimum / }
    .
    .
    ],
    entrenadores:[
-   {/Representación de entrenador 1 en JSON minimum /}
+   {/Representación de [entrenador](#recurso-entrenador) en JSON minimum /}
    .
    .
    ],
    Maquinas:[
-   {/Representación de maquina 1 en JSON minimum/}
+   {/Representación de [maquina](#recurso-maquina) en JSON minimum/}
    ]
 }
 ```
