@@ -1,10 +1,11 @@
+
 # Tabla de contenidos
    -[Recurso Gimnasio](#recurso-gimnasio)
-***
-# Recurso Gimnasio
+
+## Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
 
-## Representación Básica
+### Representación Básica
 ```javascript
 {
    nombre : /tipoString/,
@@ -12,7 +13,7 @@ Entidad principal que define el todo el gimnasio
    nit : /tipoLong/
    }
 ```
-## Representación Detallada
+### Representación Detallada
 ```javascript
 {
    nombre : /tipoString/,
@@ -32,5 +33,3 @@ Entidad principal que define el todo el gimnasio
    ]
 }
 ```
-
-
