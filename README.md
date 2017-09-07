@@ -176,16 +176,6 @@ Código|Descripción|Cuerpo
 ***
 [Volver arriba](#tabla-de-contenidos)
 ***
-
-# Tabla de contenido
- - API
-   - [Recurso Usuario](#recurso-usuario)
-     - [GET /usuarios](#get-usuarios)
-     - [GET /usuarios/{id}](#get-usuariosid)
-     - [POST /usuarios](#post-usuarios)
-     - [PUT /usuarios/{id}](#put-usuariosid)
-     - [DELETE /usuarios/{id}](#delete-usuariosid)
-
 # Recurso Usuario
 Los usuarios del gimnasio
 
