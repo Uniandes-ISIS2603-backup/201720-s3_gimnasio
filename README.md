@@ -4,51 +4,60 @@
     - [\[Recurso Gimnasio\]](#recurso-gimnasio)
        - [GET /gimnasio](#get-gimnasio)
        - [PUT /gimnasio](#put-gimnasio)
-      - [\[Recurso Entrenador\]](#recurso-entrenador)
-         - [GET /gimnasio/entrenadores](#get-entrenadores)
-         - [GET /gimnasio/entrenadores/{id}](#get-entrenadoresid)
-         - [POST /gimnasio/entrenadores](#post-entrenadores)
-         - [PUT /gimnasio/entrenadores/{id}](#put-entrenadoresid)
-         - [DELETE /gimnasio/entrenadores/{id}](#delete-entrenadoresid)
-         - [\[Recurso Usuario\]](#recurso-usuario)
-            - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios](#get-usuarios)
-            - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id}](#get-usuariosid)
-            - [POST /gimnasio/entrenadores/{id_entrenador}/usuarios](#post-usuarios)
-            - [PUT /gimnasio/entrenadores/{id_entrenador}/usuarios/{id}](#put-usuariosid)
-            - [DELETE /gimnasio/entrenadores/{id_entrenador}/usuarios/{id}](#delete-usuariosid)
-            - [\[Recurso objetivos\]](#recurso-objetivo)
-               - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/objetivos](#get-objetivos)
-               - [GET/gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/objetivos/{id}](#get-objetivosid)
-            - [\[Recurso jornada\]](#recurso-jornada)
-               - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas](#get-jornadas)
-               - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/{id}](#get-jornadasid)
-               - [\[Recurso ejercicioHecho\]](#recurso-ejerciciohecho)
-                  - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos](#get-ejercicioshechos)
-                  - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#get-ejercicioshechosid)
-      - [\[Recurso Usuario\]](#recurso-usuario)
-         - [GET /gimnasio/usuarios](#get-usuarios)
-         - [GET /gimnasio/usuarios/{id}](#get-usuariosid)
-         - [POST /gimnasio/usuarios](#post-usuarios)
-         - [PUT /gimnasio/usuarios/{id}](#put-usuariosid)
-         - [DELETE /gimnasio/usuarios/{id}](#delete-usuariosid)
-         - [\[Recurso objetivos\]](#recurso-objetivo)
-            - [GET /gimnasio/usuarios/{id_usuario}/objetivos](#get-objetivos)
-            - [GET /gimnasio/usuarios/{id_usuario}/objetivos/{id}](#get-objetivosid)
-            - [POST /gimnasio/usuarios/{id_usuario}/objetivos](#post-objetivos)
-            - [PUT /gimnasio/usuarios/{id_usuario}/objetivos/{id}](#put-objetivosid)
-            - [DELETE /gimnasio/usuarios/{id_usuario}/objetivos/{id}](#delete-objetivosid)
-         - [\[Recurso jornada\]](#recurso-jornada)
-            - [GET /gimnasio/usuarios/{id_usuario}/jornadas](#get-jornadas)
-            - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id}](#get-jornadasid)
-            - [POST /gimnasio/usuarios/{id_usuario}/jornadas](#post-jornadas)
-            - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id}](#put-jornadasid)
-            - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id}](#delete-jornadasid)
-            - [\[Recurso ejercicioHecho\]](#recurso-ejerciciohecho)
-               - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos](#get-ejercicioshechos)
-               - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#get-ejercicioshechosid)
-               - [POST /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos](#post-ejercicioshechos)
-               - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#put-ejercicioshechosid)
-               - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#delete-ejercicioshechosid)
+       - [\[Recurso Entrenador\]](#recurso-entrenador)
+          - [GET /gimnasio/entrenadores](#get-entrenadores)
+          - [GET /gimnasio/entrenadores/{id}](#get-entrenadoresid)
+          - [POST /gimnasio/entrenadores](#post-entrenadores)
+          - [PUT /gimnasio/entrenadores/{id}](#put-entrenadoresid)
+          - [DELETE /gimnasio/entrenadores/{id}](#delete-entrenadoresid)
+          - [\[Recurso Usuario\]](#recurso-usuario)
+             - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios](#get-usuarios)
+             - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id}](#get-usuariosid)
+             - [POST /gimnasio/entrenadores/{id_entrenador}/usuarios](#post-usuarios)
+             - [PUT /gimnasio/entrenadores/{id_entrenador}/usuarios/{id}](#put-usuariosid)
+             - [DELETE /gimnasio/entrenadores/{id_entrenador}/usuarios/{id}](#delete-usuariosid)
+             - [\[Recurso objetivos\]](#recurso-objetivo)
+                - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/objetivos](#get-objetivos)
+                - [GET/gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/objetivos/{id}](#get-objetivosid)
+             - [\[Recurso jornada\]](#recurso-jornada)
+                - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas](#get-jornadas)
+                - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/{id}](#get-jornadasid)
+                - [\[Recurso ejercicioHecho\]](#recurso-ejerciciohecho)
+                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos](#get-ejercicioshechos)
+                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#get-ejercicioshechosid)
+             - [\[Recurso Estado\]](#recurso-estado)
+                - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados](#get-estados)
+                - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/{id}](#get-estadosid)
+       - [\[Recurso Usuario\]](#recurso-usuario)
+          - [GET /gimnasio/usuarios](#get-usuarios)
+          - [GET /gimnasio/usuarios/{id}](#get-usuariosid)
+          - [POST /gimnasio/usuarios](#post-usuarios)
+          - [PUT /gimnasio/usuarios/{id}](#put-usuariosid)
+          - [DELETE /gimnasio/usuarios/{id}](#delete-usuariosid)
+          - [\[Recurso objetivos\]](#recurso-objetivo)
+             - [GET /gimnasio/usuarios/{id_usuario}/objetivos](#get-objetivos)
+             - [GET /gimnasio/usuarios/{id_usuario}/objetivos/{id}](#get-objetivosid)
+             - [POST /gimnasio/usuarios/{id_usuario}/objetivos](#post-objetivos)
+             - [PUT /gimnasio/usuarios/{id_usuario}/objetivos/{id}](#put-objetivosid)
+             - [DELETE /gimnasio/usuarios/{id_usuario}/objetivos/{id}](#delete-objetivosid)
+          - [\[Recurso jornada\]](#recurso-jornada)
+             - [GET /gimnasio/usuarios/{id_usuario}/jornadas](#get-jornadas)
+             - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id}](#get-jornadasid)
+             - [POST /gimnasio/usuarios/{id_usuario}/jornadas](#post-jornadas)
+             - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id}](#put-jornadasid)
+             - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id}](#delete-jornadasid)
+             - [\[Recurso ejercicioHecho\]](#recurso-ejerciciohecho)
+                - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos](#get-ejercicioshechos)
+                - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#get-ejercicioshechosid)
+                - [POST /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos](#post-ejercicioshechos)
+                - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#put-ejercicioshechosid)
+                - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#delete-ejercicioshechosid)
+          - [\[Recurso Estado\]](#recurso-estado)
+             - [GET /gimnasio/usuarios/{id_usuario}/estados](#get-estados)
+             - [GET /gimnasio/usuarios/{id_usuario}/estados/{id}](#get-estadosid)
+             - [POST /gimnasio/usuarios/{id_usuario}/estados](#post-estados)
+             - [PUT /gimnasio/usuarios/{id_usuario}/estados/{id}](#put-estadosid)
+             - [DELETE /gimnasio/usuarios/{id_usuario}/estados/{id}](#delete-estadosid)
 # Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
 
@@ -569,6 +578,101 @@ Elimina un objeto EjercicioHecho.
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
 id|Path|ID del objeto EjercicioHecho a eliminar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+***
+[Volver arriba](#tabla-de-contenidos)
+***
+# Recurso Estado
+Los estados del gimnasio
+
+## Representación Básica
+```javascript
+{
+  nombre : /tipoString/,
+  FechaNacimiento: /tipoString/,
+  genero: /tipoBoolean/
+}
+```
+## Representación Detallada
+```javascript
+{
+   fecha: /tipolong/
+   peso : /tipoDouble/
+   PrecionSanguinia: /tipoDouble/
+   ritmoCardiaco: /tipoInteger/
+   Medida: [{/Reprecentacion de Medidas en Json minimun}  
+   .
+   .
+   ]
+}
+```
+***
+### GET /estados
+Retorna una colección de objetos Estado en Representación Detallada.
+#### Parámetros
+N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [representaciones Detalladas](#recurso-estado)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### GET /estados/{id}
+Retorna una colección de objetos Estado en Representación Detallada.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Estado a consultar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|objeto Estado en [representaciones Detalladas](#recurso-estado)
+404|No existe un objeto Estado con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### POST /estados
+Es el encargado de crear objetos Estado.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|objeto Estado que será creado|Sí|[Representación Detallada](#recurso-estado)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Estado ha sido creado|[Representación Detallada](#recurso-estado)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo crear el objeto Estado|Mensaje de error
+***
+### PUT /estados/{id}
+Es el encargado de actualizar objeto Estado
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Estado a actualizar|Sí|Integer
+body|body|objeto Estado nuevo|Sí|[Representación Detallada](#recurso-estado)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Estado actualizado|[Representación Detallada](#recurso-estado)
+412|business exception, no se cumple con las reglas de negocio|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo actualizar el objeto Estado|Mensaje de error
+***
+### DELETE /estados/{id}
+Elimina un objeto Estado.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Estado a eliminar|Sí|Integer
 #### Respuesta
 Código|Descripción|Cuerpo
 :--|:--|:--
