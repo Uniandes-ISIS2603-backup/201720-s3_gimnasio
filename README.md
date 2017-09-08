@@ -597,8 +597,7 @@ Código|Descripción|Cuerpo
 [Volver arriba](#tabla-de-contenidos)
 ***
 # Recurso Estado
-Los estados del gimnasio
-
+es el estado actual de las medidas físicas del usuario
 ## Representación Básica
 ```javascript
 {
@@ -692,8 +691,7 @@ Código|Descripción|Cuerpo
 [Volver arriba](#tabla-de-contenidos)
 ***
 # Recurso Medida
-Los medidas del gimnasio
-
+es la medida de una parte del cuerpo
 ## Representación Básica
 ```javascript
 {
