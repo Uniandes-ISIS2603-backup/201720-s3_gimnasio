@@ -89,10 +89,14 @@
                 - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#put-ejercicioshechosid)
                 - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#delete-ejercicioshechosid)
                 - [\[Recurso Ejercicio\]](#recurso-ejercicio)
-                   - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#get-ejercicio)
-                   - [POST /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#post-ejercicio)
-                   - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#put-ejercicio)
-                   - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#delete-ejercicio)
+                   - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/
+                     ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#get-ejercicio)
+                   - [POST /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/
+                     ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#post-ejercicio)
+                   - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/
+                     ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#put-ejercicio)
+                   - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/
+                     ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#delete-ejercicio)
           - [\[Recurso Estado\]](#recurso-estado)
              - [GET /gimnasio/usuarios/{id_usuario}/estados](#get-estados)
              - [GET /gimnasio/usuarios/{id_usuario}/estados/{id}](#get-estadosid)
