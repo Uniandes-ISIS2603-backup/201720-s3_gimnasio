@@ -23,14 +23,18 @@
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas](#get-jornadas)
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/{id}](#get-jornadasid)
                 - [\[Recurso ejercicioHecho\]](#recurso-ejerciciohecho)
-                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/{id_jornada}/ejercicioshechos](#get-ejercicioshechos)
-                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/{id_jornada}/ejercicioshechos/{id}](#get-ejercicioshechosid)
+                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/
+                     {id_jornada}/ejercicioshechos](#get-ejercicioshechos)
+                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/
+                     {id_jornada}/ejercicioshechos/{id}](#get-ejercicioshechosid)
              - [\[Recurso Estado\]](#recurso-estado)
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados](#get-estados)
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/{id}](#get-estadosid)
                 - [\[Recurso Medida\]](#recurso-medida)
-                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/{id_estado}/medidas](#get-medidas)
-                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/{id_estado}/medidas/{id}](#get-medidasid)
+                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/
+                     {id_estado}/medidas](#get-medidas)
+                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/
+                     {id_estado}/medidas/{id}](#get-medidasid)
              - [\[Recurso Rutina\]](#recurso-rutina)
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas](#get-rutinas)
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/{id}](#get-rutinasid)
@@ -38,11 +42,16 @@
                 - [PUT /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/{id}](#put-rutinasid)
                 - [DELETE /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/{id}](#delete-rutinasid)
                 - [\[Recurso EjercicioAsignado\]](#recurso-ejercicioasignado)
-                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/{id_rutina}/ejerciciosasignados](#get-ejerciciosasignados)
-                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/{id_rutina}/ejerciciosasignados/{id}](#get-ejerciciosasignadosid)
-                   - [POST /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/{id_rutina}/ejerciciosasignados](#post-ejerciciosasignados)
-                   - [PUT /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/{id_rutina}/ejerciciosasignados/{id}](#put-ejerciciosasignadosid)
-                   - [DELETE /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/{id_rutina}/ejerciciosasignados/{id}](#delete-ejerciciosasignadosid)
+                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                     {id_rutina}/ejerciciosasignados](#get-ejerciciosasignados)
+                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                     {id_rutina}/ejerciciosasignados/{id}](#get-ejerciciosasignadosid)
+                   - [POST /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                     {id_rutina}/ejerciciosasignados](#post-ejerciciosasignados)
+                   - [PUT /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                     {id_rutina}/ejerciciosasignados/{id}](#put-ejerciciosasignadosid)
+                   - [DELETE /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                     {id_rutina}/ejerciciosasignados/{id}](#delete-ejerciciosasignadosid)
        - [\[Recurso Usuario\]](#recurso-usuario)
           - [GET /gimnasio/usuarios](#get-usuarios)
           - [GET /gimnasio/usuarios/{id}](#get-usuariosid)
