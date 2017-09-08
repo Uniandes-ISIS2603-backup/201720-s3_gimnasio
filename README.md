@@ -22,6 +22,9 @@
             - [Recurso jornada](#recurso-jornada)
                - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas](#get-jornadas)
                - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/{id}](#get-jornadasid)
+               - [Recurso ejercicioHecho](#recurso-ejercicioHecho)
+                  - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos](#get-ejerciciosHechos)
+                  - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#get-ejerciciosHechosid)
       - [\[Recurso Usuario\]](#recurso-usuario)
          - [GET /gimnasio/usuarios](#get-usuarios)
          - [GET /gimnasio/usuarios/{id}](#get-usuariosid)
@@ -40,7 +43,12 @@
             - [POST /gimnasio/usuarios/{id_usuario}/jornadas](#post-jornadas)
             - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id}](#put-jornadasid)
             - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id}](#delete-jornadasid)
-***
+            - [Recurso ejercicioHecho](#recurso-ejercicioHecho)
+               - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos](#get-ejerciciosHechos)
+               - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#get-ejerciciosHechosid)
+               - [POST /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos](#post-ejerciciosHechos)
+               - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#put-ejerciciosHechosid)
+               - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#delete-ejerciciosHechosid)
 # Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
 
@@ -390,7 +398,7 @@ Código|Descripción|Cuerpo
 # Recurso Jornada
 es la rutina que hace el usuario, independientemente de lo que dice la rutina
 
-## Representación Minimum
+## Representación Minima
 ```javascript
 {
     fechaInicio: '' /*Tipo Long*/,
@@ -471,6 +479,96 @@ Elimina un objeto Jornada.
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
 id|Path|ID del objeto Jornada a eliminar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+***
+[Volver arriba](#tabla-de-contenidos)
+***
+# Recurso EjercicioHecho
+es el ejercicio que se hace con la serie
+
+## Representación Minimum
+```javascript
+{
+    fechaInicio: '' /*Tipo Long*/,
+    series: '' /*Tipo Integer*/
+}
+```
+
+#### Representación Detail
+```javascript
+{
+    fechaInicio: '' /*Tipo Long*/,
+    series: '' /*Tipo Integer*/
+    ejercicio: { /Representación de Ejercicios en JSON minimum / }
+}
+```
+***
+#### GET /ejerciciosHechos
+Retorna una colección de objetos EjercicioHecho en representación Detail.
+#### Parámetros
+N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [representaciones Detail](#recurso-ejerciciosHechos)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+#### GET /ejerciciosHechos/{id}
+Retorna una colección de objetos EjercicioHecho en representación Detail.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto EjercicioHecho a consultar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|objeto EjercicioHecho en [representaciones Detail](#recurso-ejercicioHecho)
+404|No existe un objeto EjercicioHecho con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+#### POST /ejerciciosHechos
+Es el encargado de crear objetos EjercicioHecho.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|objeto EjercicioHecho que será creado|Sí|[Representación Detail](#recurso-ejercicioHecho)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto EjercicioHecho ha sido creado|[Representación Detail](#recurso-ejercicioHecho)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo crear el objeto EjercicioHecho|Mensaje de error
+***
+#### PUT /ejerciciosHechos/{id}
+Es el encargado de actualizar objetos EjercicioHecho.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto EjercicioHecho a actualizar|Sí|Integer
+body|body|objeto EjercicioHecho nuevo|Sí|[Representación Detail](#recurso-ejercicioHecho)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto EjercicioHecho actualizado|[Representación Detail](#recurso-ejercicioHecho)
+412|business exception, no se cumple con las reglas de negocio|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo actualizar el objeto EjercicioHecho|Mensaje de error
+***
+#### DELETE /ejerciciosHechos/{id}
+Elimina un objeto EjercicioHecho.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto EjercicioHecho a eliminar|Sí|Integer
 #### Respuesta
 Código|Descripción|Cuerpo
 :--|:--|:--
