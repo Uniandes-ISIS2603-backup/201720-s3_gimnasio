@@ -19,6 +19,9 @@
             - [\[Recurso objetivos\]](#recurso-objetivo)
                - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/objetivos](#get-objetivos)
                - [GET/gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/objetivos/{id}](#get-objetivosid)
+            - [Recurso jornada](#recurso-jornada)
+               - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas](#get-jornadas)
+               - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/{id}](#get-jornadasid)
       - [\[Recurso Usuario\]](#recurso-usuario)
          - [GET /gimnasio/usuarios](#get-usuarios)
          - [GET /gimnasio/usuarios/{id}](#get-usuariosid)
@@ -31,6 +34,12 @@
             - [POST /gimnasio/usuarios/{id_usuario}/objetivos](#post-objetivos)
             - [PUT /gimnasio/usuarios/{id_usuario}/objetivos/{id}](#put-objetivosid)
             - [DELETE /gimnasio/usuarios/{id_usuario}/objetivos/{id}](#delete-objetivosid)
+         - [Recurso jornada](#recurso-jornada)
+            - [GET /gimnasio/usuarios/{id_usuario}/jornadas](#get-jornadas)
+            - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id}](#get-jornadasid)
+            - [POST /gimnasio/usuarios/{id_usuario}/jornadas](#post-jornadas)
+            - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id}](#put-jornadasid)
+            - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id}](#delete-jornadasid)
 ***
 # Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
@@ -369,6 +378,99 @@ Elimina un objeto Objetivo.
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
 id|Path|ID del objeto Objetivo a eliminar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+***
+[Volver arriba](#tabla-de-contenidos)
+***
+# Recurso Jornada
+es la rutina que hace el usuario, independientemente de lo que dice la rutina
+
+## Representación Minimum
+```javascript
+{
+    fechaInicio: '' /*Tipo Long*/,
+    fechaFin: '' /*Tipo Long*/
+}
+```
+
+## Representación Detail
+```javascript
+{
+    fechaInicio: '' /*Tipo Long*/,
+    fechaFin: '' /*Tipo Long*/
+    ejerciciosHechos:[
+    clientes: [
+    { /Representación de EjericiciosHechos 1 en JSON minimum / }
+    ]
+}
+```
+***
+### GET /jornadas
+Retorna una colección de objetos Jornada en representación Detail.
+#### Parámetros
+N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [representaciones Detail](#recurso-jornadas)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### GET /jornadas/{id}
+Retorna una colección de objetos Jornada en representación Detail.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Jornada a consultar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Objeto Jornada en [representaciones Detail](#recurso-jornada)
+404|No existe un objeto jornada con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### POST /jornadas
+Es el encargado de crear objetos Jornada.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|Objeto Jornada que será creado|Sí|[Representación Detail](#recurso-jornada)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Jornada ha sido creado|[Representación Detail](#recurso-jornada)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo crear el objeto Jornada|Mensaje de error
+***
+### PUT /jornadas/{id}
+Es el encargado de actualizar objetos Jornada.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Jornada a actualizar|Sí|Integer
+body|body|Objeto Jornada nuevo|Sí|[Representación Detail](#recurso-jornada)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Jornada actualizado|[Representación Detail](#recurso-jornada)
+412|business exception, no se cumple con las reglas de negocio|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo actualizar el objeto Jornada|Mensaje de error
+***
+### DELETE /jornadas/{id}
+Elimina un objeto Jornada.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Jornada a eliminar|Sí|Integer
 #### Respuesta
 Código|Descripción|Cuerpo
 :--|:--|:--
