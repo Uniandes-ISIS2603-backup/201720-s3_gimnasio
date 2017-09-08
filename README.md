@@ -900,7 +900,7 @@ Código|Descripción|Cuerpo
 [Volver arriba](#tabla-de-contenidos)
 ***
 # Recurso EjercicioAsignado
-son las ejerciciosAsignados que tiene un usuario que fueron consolidadas por un entrenador
+es el ejercicio que tiene la rutina y cuantas series se deberían hacer
 
 ## Representación Básica
 ```javascript
