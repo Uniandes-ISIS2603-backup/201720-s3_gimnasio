@@ -31,6 +31,12 @@
                 - [\[Recurso Medida\]](#recurso-medida)
                    - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/{id_estado}/medidas](#get-medidas)
                    - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/{id_estado}/medidas/{id}](#get-medidasid)
+             - [\[Recurso Rutina\]](#recurso-rutina)
+                - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas](#get-rutinas)
+                - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/{id}](#get-rutinasid)
+                - [POST /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas](#post-rutinas)
+                - [PUT /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/{id}](#put-rutinasid)
+                - [DELETE /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/{id}](#delete-rutinasid)
        - [\[Recurso Usuario\]](#recurso-usuario)
           - [GET /gimnasio/usuarios](#get-usuarios)
           - [GET /gimnasio/usuarios/{id}](#get-usuariosid)
@@ -67,6 +73,10 @@
                 - [POST /gimnasio/usuarios/{id_usuario}/estados/{id_estado}/medidas](#post-medidas)
                 - [PUT /gimnasio/usuarios/{id_usuario}/estados/{id_estado}/medidas/{id}](#put-medidasid)
                 - [DELETE /gimnasio/usuarios/{id_usuario}/estados/{id_estado}/medidas/{id}](#delete-medidasid)
+          - [\[Recurso Rutina\]](#recurso-rutina)
+             - [GET /gimnasio/usuarios/{id_usuario}/rutinas](#get-rutinas)
+             - [GET /gimnasio/usuarios/{id_usuario}/rutinas/{id}](#get-rutinasid)
+             - [DELETE /gimnasio/usuarios/{id_usuario}/rutinas/{id}](#delete-rutinasid)
 # Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
 
@@ -768,6 +778,109 @@ Elimina un objeto Medida.
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
 id|Path|ID del objeto Medida a eliminar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+***
+[Volver arriba](#tabla-de-contenidos)
+***
+
+# Tabla de contenido
+   - [\[Recurso Rutina\]](#recurso-rutina)
+     - [GET /rutinas](#get-rutinas)
+     - [GET /rutinas/{id}](#get-rutinasid)
+     - [POST /rutinas](#post-rutinas)
+     - [PUT /rutinas/{id}](#put-rutinasid)
+     - [DELETE /rutinas/{id}](#delete-rutinasid)
+
+# Recurso Rutina
+son las rutinas que tiene un usuario que fueron consolidadas por un entrenador
+
+## Representación Básica
+```javascript
+{
+  tipo: / tipoString /,
+  fechaInicio: / tipoDate /,
+  fechaFinal: / tipoDate /
+}
+```
+## Representación Detallada
+```javascript
+{
+  tipo: / tipoString /,
+  fechaInicio: / tipoDate /,
+  fechaFinal: / tipoDate /
+  EjercicioAsignado: [ {/ Representación de ejercicio asignado 1 en JSON mínimo /}
+  .
+  . 
+  ] 
+}
+```
+***
+### GET /rutinas
+Retorna una colección de objetos Rutina en Representación Detallada.
+#### Parámetros
+N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [representaciones Detalladas](#recurso-rutina)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### GET /rutinas/{id}
+Retorna una colección de objetos Rutina en Representación Detallada.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Rutina a consultar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|objeto Rutina en [representaciones Detalladas](#recurso-rutina)
+404|No existe un objeto Rutina con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### POST /rutinas
+Es el encargado de crear objetos Rutina.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|objeto Rutina que será creado|Sí|[Representación Detallada](#recurso-rutina)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Rutina ha sido creado|[Representación Detallada](#recurso-rutina)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo crear el objeto Rutina|Mensaje de error
+***
+### PUT /rutinas/{id}
+Es el encargado de actualizar objeto Rutina
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Rutina a actualizar|Sí|Integer
+body|body|objeto Rutina nuevo|Sí|[Representación Detallada](#recurso-rutina)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Rutina actualizado|[Representación Detallada](#recurso-rutina)
+412|business exception, no se cumple con las reglas de negocio|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo actualizar el objeto Rutina|Mensaje de error
+***
+### DELETE /rutinas/{id}
+Elimina un objeto Rutina.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Rutina a eliminar|Sí|Integer
 #### Respuesta
 Código|Descripción|Cuerpo
 :--|:--|:--
