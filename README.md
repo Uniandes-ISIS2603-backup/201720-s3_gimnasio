@@ -28,6 +28,9 @@
              - [\[Recurso Estado\]](#recurso-estado)
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados](#get-estados)
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/{id}](#get-estadosid)
+                - [\[Recurso Medida\]](#recurso-medida)
+                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/{id_estado}/medidas](#get-medidas)
+                   - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/{id_estado}/medidas/{id}](#get-medidasid)
        - [\[Recurso Usuario\]](#recurso-usuario)
           - [GET /gimnasio/usuarios](#get-usuarios)
           - [GET /gimnasio/usuarios/{id}](#get-usuariosid)
@@ -58,6 +61,12 @@
              - [POST /gimnasio/usuarios/{id_usuario}/estados](#post-estados)
              - [PUT /gimnasio/usuarios/{id_usuario}/estados/{id}](#put-estadosid)
              - [DELETE /gimnasio/usuarios/{id_usuario}/estados/{id}](#delete-estadosid)
+             - [\[Recurso Medida\]](#recurso-medida)
+                - [GET /gimnasio/usuarios/{id_usuario}/estados/{id_estado}/medidas](#get-medidas)
+                - [GET /gimnasio/usuarios/{id_usuario}/estados/{id_estado}/medidas/{id}](#get-medidasid)
+                - [POST /gimnasio/usuarios/{id_usuario}/estados/{id_estado}/medidas](#post-medidas)
+                - [PUT /gimnasio/usuarios/{id_usuario}/estados/{id_estado}/medidas/{id}](#put-medidasid)
+                - [DELETE /gimnasio/usuarios/{id_usuario}/estados/{id_estado}/medidas/{id}](#delete-medidasid)
 # Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
 
@@ -673,6 +682,94 @@ Elimina un objeto Estado.
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
 id|Path|ID del objeto Estado a eliminar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+***
+[Volver arriba](#tabla-de-contenidos)
+***
+# Recurso Medida
+Los medidas del gimnasio
+
+## Representación Básica
+```javascript
+{
+ Medida: /Tipo Doubel/
+ parteDelCuerpo : / Tipo String/
+}
+```
+## Representación Detallada
+```javascript
+{
+ Medida: /Tipo Doubel/
+ parteDelCuerpo : / Tipo String/
+}
+```
+***
+### GET /medidas
+Retorna una colección de objetos Medida en Representación Detallada.
+#### Parámetros
+N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [representaciones Detalladas](#recurso-medida)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### GET /medidas/{id}
+Retorna una colección de objetos Medida en Representación Detallada.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Medida a consultar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|objeto Medida en [representaciones Detalladas](#recurso-medida)
+404|No existe un objeto Medida con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### POST /medidas
+Es el encargado de crear objetos Medida.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|objeto Medida que será creado|Sí|[Representación Detallada](#recurso-medida)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Medida ha sido creado|[Representación Detallada](#recurso-medida)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo crear el objeto Medida|Mensaje de error
+***
+### PUT /medidas/{id}
+Es el encargado de actualizar objeto Medida
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Medida a actualizar|Sí|Integer
+body|body|objeto Medida nuevo|Sí|[Representación Detallada](#recurso-medida)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Medida actualizado|[Representación Detallada](#recurso-medida)
+412|business exception, no se cumple con las reglas de negocio|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo actualizar el objeto Medida|Mensaje de error
+***
+### DELETE /medidas/{id}
+Elimina un objeto Medida.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Medida a eliminar|Sí|Integer
 #### Respuesta
 Código|Descripción|Cuerpo
 :--|:--|:--
