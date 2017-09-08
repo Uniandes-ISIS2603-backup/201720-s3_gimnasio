@@ -27,6 +27,9 @@
                      {id_jornada}/ejercicioshechos](#get-ejercicioshechos)
                    - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/
                      {id_jornada}/ejercicioshechos/{id}](#get-ejercicioshechosid)
+                    - [\[Recurso Ejercicio\]](#recurso-ejercicio)
+                      - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/
+                        {id_jornada}/ejercicioshechos/{id_ejercicioHecho}/ejercicio](#get-ejercicio)
              - [\[Recurso Estado\]](#recurso-estado)
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados](#get-estados)
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/{id}](#get-estadosid)
@@ -52,6 +55,15 @@
                      {id_rutina}/ejerciciosasignados/{id}](#put-ejerciciosasignadosid)
                    - [DELETE /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
                      {id_rutina}/ejerciciosasignados/{id}](#delete-ejerciciosasignadosid)
+                    - [\[Recurso Ejercicio\]](#recurso-ejercicio)
+                      - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                        {id_rutina}/ejerciciosasignados/{id_ejercicioAsignado}/ejercicio](#get-ejercicio)
+                      - [POST /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                        {id_rutina}/ejerciciosasignados/{id_ejercicioAsignado}/ejercicio](#post-ejercicio)
+                      - [PUT /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                        {id_rutina}/ejerciciosasignados/{id_ejercicioAsignado}/ejercicio](#put-ejercicio)
+                      - [DELETE /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                        {id_rutina}/ejerciciosasignados/{id_ejercicioAsignado}/ejercicio](#delete-ejercicio)
        - [\[Recurso Usuario\]](#recurso-usuario)
           - [GET /gimnasio/usuarios](#get-usuarios)
           - [GET /gimnasio/usuarios/{id}](#get-usuariosid)
@@ -76,6 +88,11 @@
                 - [POST /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos](#post-ejercicioshechos)
                 - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#put-ejercicioshechosid)
                 - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#delete-ejercicioshechosid)
+                - [\[Recurso Ejercicio\]](#recurso-ejercicio)
+                   - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#get-ejercicio)
+                   - [POST /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#post-ejercicio)
+                   - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#put-ejercicio)
+                   - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#delete-ejercicio)
           - [\[Recurso Estado\]](#recurso-estado)
              - [GET /gimnasio/usuarios/{id_usuario}/estados](#get-estados)
              - [GET /gimnasio/usuarios/{id_usuario}/estados/{id}](#get-estadosid)
@@ -95,6 +112,10 @@
              - [\[Recurso /gimnasio/usuarios/{id_usuario}/rutinas/{id_rutina}/EjercicioAsignado\]](#recurso-ejercicioasignado)
                 - [GET /gimnasio/usuarios/{id_usuario}/rutinas/{id_rutina}/ejerciciosAsignados](#get-ejerciciosasignados)
                 - [GET /gimnasio/usuarios/{id_usuario}/rutinas/{id_rutina}/ejerciciosAsignados/{id}](#get-ejerciciosasignadosid)
+                - [\[Recurso Ejercicio\]](#recurso-ejercicio)
+                   - [GET /gimnasio/usuarios/{id_usuario}/rutinas/{id_rutina}/
+                     ejerciciosAsignados/{id_ejercicioAsignado}/ejercicio](#get-ejercicio)
+*** 
 # Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
 
@@ -980,6 +1001,81 @@ Elimina un objeto EjercicioAsignado.
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
 id|Path|ID del objeto EjercicioAsignado a eliminar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+***
+[Volver arriba](#tabla-de-contenidos)
+***
+# Recurso Ejercicio
+es la actividad física de como se debe hacer y el tipo
+
+## Representación Básica
+```javascript
+{
+  descripcion: '' /*Tipo String*/,
+  tipo: '' /*Tipo String*/
+}
+```
+## Representación Detallada
+```javascript
+{
+  descripcion: '' /*Tipo String*/,  
+  tipo: '' /*Tipo String*/,
+  maquinas:[{representacion de maquinas en JSON minimum}
+  .
+  .
+  ]
+}
+```
+***
+### GET /ejercicio
+Retorna una colección de objetos Ejercicio en Representación Detallada.
+#### Parámetros
+N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [representaciones Detalladas](#recurso-ejercicio)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### POST /ejercicio
+Es el encargado de crear objetos Ejercicio.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|objeto Ejercicio que será creado|Sí|[Representación Detallada](#recurso-ejercicio)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Ejercicio ha sido creado|[Representación Detallada](#recurso-ejercicio)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo crear el objeto Ejercicio|Mensaje de error
+***
+### PUT /ejercicio
+Es el encargado de actualizar objeto Ejercicio
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|objeto Ejercicio nuevo|Sí|[Representación Detallada](#recurso-ejercicio)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Ejercicio actualizado|[Representación Detallada](#recurso-ejercicio)
+412|business exception, no se cumple con las reglas de negocio|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo actualizar el objeto Ejercicio|Mensaje de error
+***
+### DELETE /ejercicio
+Elimina un objeto Ejercicio.
+#### Parámetros
+N/A
 #### Respuesta
 Código|Descripción|Cuerpo
 :--|:--|:--
