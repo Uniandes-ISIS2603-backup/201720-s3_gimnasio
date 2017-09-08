@@ -411,7 +411,7 @@ es la rutina que hace el usuario, independientemente de lo que dice la rutina
 {
     fechaInicio: '' /*Tipo Long*/,
     fechaFin: '' /*Tipo Long*/
-    ejerciciosHechos:[{ /Representación de EjericiciosHechos 1 en JSON minimum / }
+    ejerciciosHechos:[{ /Representación de EjericicioHecho en JSON minimum / }
     .
     .
     ]
@@ -504,7 +504,7 @@ es el ejercicio que se hace con la serie
 {
     fechaInicio: '' /*Tipo Long*/,
     series: '' /*Tipo Integer*/
-    ejercicio: { /Representación de Ejercicios en JSON minimum / }
+    ejercicio: { /Representación de Ejercicio en JSON minimum / }
 }
 ```
 ***
