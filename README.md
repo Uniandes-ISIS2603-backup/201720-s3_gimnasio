@@ -16,12 +16,21 @@
             - [POST /gimnasio/entrenadores/{id_entrenador}/usuarios](#post-usuarios)
             - [PUT /gimnasio/entrenadores/{id_entrenador}/usuarios/{id}](#put-usuariosid)
             - [DELETE /gimnasio/entrenadores/{id_entrenador}/usuarios/{id}](#delete-usuariosid)
+            - [\[Recurso objetivos\]](#recurso-objetivos)
+               - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/objetivos](#GET-objetivos)
+               - [GET/gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/objetivos/{id}](#GET-objetivosid)
       - [\[Recurso Usuario\]](#recurso-usuario)
          - [GET /gimnasio/usuarios](#get-usuarios)
          - [GET /gimnasio/usuarios/{id}](#get-usuariosid)
          - [POST /gimnasio/usuarios](#post-usuarios)
          - [PUT /gimnasio/usuarios/{id}](#put-usuariosid)
          - [DELETE /gimnasio/usuarios/{id}](#delete-usuariosid)
+         - [\[Recurso objetivos\]](#recurso-objetivos)
+            - [GET /gimnasio/usuarios/{id_usuario}/objetivos](#GET-objetivos)
+            - [GET /gimnasio/usuarios/{id_usuario}/objetivos/{id}](#GET-objetivosid)
+            - [POST /gimnasio/usuarios/{id_usuario}/objetivos](#POST-objetivos)
+            - [PUT /gimnasio/usuarios/{id_usuario}/objetivos/{id}](#PUT-objetivosid)
+            - [DELETE /gimnasio/usuarios/{id_usuario}/objetivos/{id}](#DELETE-objetivosid)
 ***
 # Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
@@ -271,6 +280,95 @@ Elimina un objeto Usuario.
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
 id|Path|ID del objeto Usuario a eliminar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+***
+[Volver arriba](#tabla-de-contenidos)
+***
+# Recurso Objetivo
+es el / los objetivos que tiene el usuario.
+
+## Representación Minimum
+```javascript
+{
+    tipo: '' /*Tipo String*/,
+    descripcion: '' /*Tipo String*/
+}
+```
+
+## Representación Detail
+```javascript
+{
+    tipo: '' /*Tipo String*/,
+    descripcion: '' /*Tipo String*/
+}
+```
+***
+### GET /objetivos
+Retorna una colección de objetos Objetivos en representación Detail.
+#### Parámetros
+N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [representaciones Detail](#recurso-objetivos)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### GET /objetivos/{id}
+Retorna una colección de objetos Objetivo en representación Detail.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Objetivo a consultar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Objeto Objetivo en [representaciones Detail](#recurso-objetivo)
+404|No existe un objeto objetivo con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### POST /objetivos
+Es el encargado de crear objetos Objetivo.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|Objeto Objetivo que será creado|Sí|[Representación Detail](#recurso-objetivo)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Objetivo ha sido creado|[Representación Detail](#recurso-objetivo)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo crear el objeto Objetivo|Mensaje de error
+***
+### PUT /objetivos/{id}
+Es el encargado de actualizar objetos Objetivo
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Objetivo a actualizar|Sí|Integer
+body|body|Objeto Objetivo nuevo|Sí|[Representación Detail](#recurso-objetivo)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Objetivo actualizado|[Representación Detail](#recurso-objetivo)
+412|business exception, no se cumple con las reglas de negocio|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo actualizar el objeto Objetivo|Mensaje de error
+***
+### DELETE /objetivos/{id}
+Elimina un objeto Objetivo.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Objetivo a eliminar|Sí|Integer
 #### Respuesta
 Código|Descripción|Cuerpo
 :--|:--|:--
