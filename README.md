@@ -403,9 +403,9 @@ es la rutina que hace el usuario, independientemente de lo que dice la rutina
 {
     fechaInicio: '' /*Tipo Long*/,
     fechaFin: '' /*Tipo Long*/
-    ejerciciosHechos:[
-    clientes: [
-    { /Representación de EjericiciosHechos 1 en JSON minimum / }
+    ejerciciosHechos:[{ /Representación de EjericiciosHechos 1 en JSON minimum / }
+    .
+    .
     ]
 }
 ```
