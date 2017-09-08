@@ -16,7 +16,7 @@
             - [POST /gimnasio/entrenadores/{id_entrenador}/usuarios](#post-usuarios)
             - [PUT /gimnasio/entrenadores/{id_entrenador}/usuarios/{id}](#put-usuariosid)
             - [DELETE /gimnasio/entrenadores/{id_entrenador}/usuarios/{id}](#delete-usuariosid)
-            - [\[Recurso objetivos\]](#recurso-objetivos)
+            - [\[Recurso objetivos\]](#recurso-objetivo)
                - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/objetivos](#GET-objetivos)
                - [GET/gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/objetivos/{id}](#GET-objetivosid)
       - [\[Recurso Usuario\]](#recurso-usuario)
