@@ -787,15 +787,6 @@ Código|Descripción|Cuerpo
 ***
 [Volver arriba](#tabla-de-contenidos)
 ***
-
-# Tabla de contenido
-   - [\[Recurso Rutina\]](#recurso-rutina)
-     - [GET /rutinas](#get-rutinas)
-     - [GET /rutinas/{id}](#get-rutinasid)
-     - [POST /rutinas](#post-rutinas)
-     - [PUT /rutinas/{id}](#put-rutinasid)
-     - [DELETE /rutinas/{id}](#delete-rutinasid)
-
 # Recurso Rutina
 son las rutinas que tiene un usuario que fueron consolidadas por un entrenador
 
