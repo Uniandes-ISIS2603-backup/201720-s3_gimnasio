@@ -10,6 +10,12 @@
           - [POST /maquinas](#post-maquinas)
           - [PUT /maquinas/{id}](#put-maquinasid)
           - [DELETE /maquinas/{id}](#delete-maquinasid)
+          - [\[Recurso TipoMedida\]](#recurso-tipomedida)
+             - [GET /maquinas/{id_maquina}/tiposmedidas](#get-tiposmedidas)
+             - [GET /maquinas/{id_maquina}/tiposmedidas/{id}](#get-tiposmedidasid)
+             - [POST /maquinas/{id_maquina}/tiposmedidas](#post-tiposmedidas)
+             - [PUT /maquinas/{id_maquina}/tiposmedidas/{id}](#put-tiposmedidasid)
+     - [DELETE /tiposmedidas/{id}](#delete-tiposmedidasid)
        - [\[Recurso Entrenador\]](#recurso-entrenador)
           - [GET /gimnasio/entrenadores](#get-entrenadores)
           - [GET /gimnasio/entrenadores/{id}](#get-entrenadoresid)
@@ -1200,6 +1206,92 @@ Elimina un objeto Maquina.
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
 id|Path|ID del objeto Maquina a eliminar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+***
+[Volver arriba](#tabla-de-contenidos)
+***
+# Recurso TipoMedida
+son el tipo de medida que la maquina puede registrar
+
+## Representación Básica
+```javascript
+{
+    medida: '' /*Tipo String*/
+}
+```
+## Representación Detallada
+```javascript
+{
+    medida: '' /*Tipo String*/
+}
+```
+***
+### GET /tiposmedidas
+Retorna una colección de objetos TipoMedida en Representación Detallada.
+#### Parámetros
+N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [representaciones Detalladas](#recurso-tipomedida)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### GET /tiposmedidas/{id}
+Retorna una colección de objetos TipoMedida en Representación Detallada.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto TipoMedida a consultar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|objeto TipoMedida en [representaciones Detalladas](#recurso-tipomedida)
+404|No existe un objeto TipoMedida con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### POST /tiposmedidas
+Es el encargado de crear objetos TipoMedida.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|objeto TipoMedida que será creado|Sí|[Representación Detallada](#recurso-tipomedida)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto TipoMedida ha sido creado|[Representación Detallada](#recurso-tipomedida)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo crear el objeto TipoMedida|Mensaje de error
+***
+### PUT /tiposmedidas/{id}
+Es el encargado de actualizar objeto TipoMedida
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto TipoMedida a actualizar|Sí|Integer
+body|body|objeto TipoMedida nuevo|Sí|[Representación Detallada](#recurso-tipomedida)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto TipoMedida actualizado|[Representación Detallada](#recurso-tipomedida)
+412|business exception, no se cumple con las reglas de negocio|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo actualizar el objeto TipoMedida|Mensaje de error
+***
+### DELETE /tiposmedidas/{id}
+Elimina un objeto TipoMedida.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto TipoMedida a eliminar|Sí|Integer
 #### Respuesta
 Código|Descripción|Cuerpo
 :--|:--|:--
