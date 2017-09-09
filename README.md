@@ -15,7 +15,13 @@
              - [GET /maquinas/{id_maquina}/tiposmedidas/{id}](#get-tiposmedidasid)
              - [POST /maquinas/{id_maquina}/tiposmedidas](#post-tiposmedidas)
              - [PUT /maquinas/{id_maquina}/tiposmedidas/{id}](#put-tiposmedidasid)
-     - [DELETE /tiposmedidas/{id}](#delete-tiposmedidasid)
+             - [DELETE /maquinas/{id_maquina}/tiposmedidas/{id}](#delete-tiposmedidasid)
+          - [\[Recurso MedidaUsuario\]](#recurso-medidausuario)
+             - [GET /maquinas/{id_maquina}/medidasusuarios](#get-medidasusuarios)
+             - [GET /maquinas/{id_maquina}/medidasusuarios/{id}](#get-medidasusuariosid)
+             - [POST /maquinas/{id_maquina}/medidasusuarios](#post-medidasusuarios)
+             - [PUT /maquinas/{id_maquina}/medidasusuarios/{id}](#put-medidasusuariosid)
+             - [DELETE /maquinas/{id_maquina}/medidasusuarios/{id}](#delete-medidasusuariosid)
        - [\[Recurso Entrenador\]](#recurso-entrenador)
           - [GET /gimnasio/entrenadores](#get-entrenadores)
           - [GET /gimnasio/entrenadores/{id}](#get-entrenadoresid)
@@ -47,6 +53,10 @@
                            {id_jornada}/ejercicioshechos/{id_ejercicioHecho}/maquinas](#get-maquinas)
                          - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/
                            {id_jornada}/ejercicioshechos/{id_ejercicioHecho}/maquinas/{id}](#get-maquinasid)
+                         - [\[Recurso MedidaUsuario\]](#recurso-medidausuario)
+                            - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/
+                              {id_jornada}/ejercicioshechos/{id_ejercicioHecho}/maquinas/
+                              {id_maquina}/medidasusuarios/mismedidas](#get-medidasusuariosmismedidas)
              - [\[Recurso Estado\]](#recurso-estado)
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados](#get-estados)
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/{id}](#get-estadosid)
@@ -117,15 +127,22 @@
                 - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#put-ejercicioshechosid)
                 - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#delete-ejercicioshechosid)
                 - [\[Recurso Ejercicio\]](#recurso-ejercicio)
-                   - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#get-ejercicio)
-                   - [POST /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#post-ejercicio)
-                   - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#put-ejercicio)
-                   - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#delete-ejercicio)
+                   - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/
+                     {id_ejercicioHecho}/ejercicio](#get-ejercicio)
+                   - [POST /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/
+                     {id_ejercicioHecho}/ejercicio](#post-ejercicio)
+                   - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/
+                     {id_ejercicioHecho}/ejercicio](#put-ejercicio)
+                   - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/
+                     {id_ejercicioHecho}/ejercicio](#delete-ejercicio)
                    - [\[Recurso Maquina\]](#recurso-maquina)
                       - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/
                         ejerciciosHechos/{id_ejercicioHecho}/ejercicio/maquinas](#get-maquinas)
                       - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/
                          ejerciciosHechos/{id_ejercicioHecho}/ejercicio/maquinas/{id}](#get-maquinasid)
+                      - [\[Recurso MedidaUsuario\]](#recurso-medidausuario)
+                         - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/
+                           {id_ejercicioHecho}/ejercicio/maquinas/{id_maquina}/medidasusuarios/mismedidas](#get-medidasusuariosmismedidas)
           - [\[Recurso Estado\]](#recurso-estado)
              - [GET /gimnasio/usuarios/{id_usuario}/estados](#get-estados)
              - [GET /gimnasio/usuarios/{id_usuario}/estados/{id}](#get-estadosid)
@@ -1298,5 +1315,107 @@ Código|Descripción|Cuerpo
 204|Objeto eliminado|N/A
 500|Error interno|Mensaje de error
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
+***
+[Volver arriba](#tabla-de-contenidos)
+***
+# Recurso MedidaUsuario
+es un registro de que usuarios usaron la maquina
+
+## Representación Básica
+```javascript
+{
+    fecha: '' /*Tipo Date*/
+}
+```
+## Representación Detallada
+```javascript
+{
+    fecha: '' /*Tipo Date*/
+    mediciones:
+      [
+	{/Representacion de TipoMedida en Json minimum/}
+      ]
+}
+```
+***
+### GET /medidasusuarios
+Retorna una colección de objetos MedidaUsuario en Representación Detallada.
+#### Parámetros
+N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [representaciones Detalladas](#recurso-medidausuario)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### GET /medidasusuarios/{id}
+Retorna una colección de objetos MedidaUsuario en Representación Detallada.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto MedidaUsuario a consultar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|objeto MedidaUsuario en [representaciones Detalladas](#recurso-medidausuario)
+404|No existe un objeto MedidaUsuario con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### POST /medidasusuarios
+Es el encargado de crear objetos MedidaUsuario.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|objeto MedidaUsuario que será creado|Sí|[Representación Detallada](#recurso-medidausuario)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto MedidaUsuario ha sido creado|[Representación Detallada](#recurso-medidausuario)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo crear el objeto MedidaUsuario|Mensaje de error
+***
+### PUT /medidasusuarios/{id}
+Es el encargado de actualizar objeto MedidaUsuario
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto MedidaUsuario a actualizar|Sí|Integer
+body|body|objeto MedidaUsuario nuevo|Sí|[Representación Detallada](#recurso-medidausuario)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto MedidaUsuario actualizado|[Representación Detallada](#recurso-medidausuario)
+412|business exception, no se cumple con las reglas de negocio|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo actualizar el objeto MedidaUsuario|Mensaje de error
+***
+### DELETE /medidasusuarios/{id}
+Elimina un objeto MedidaUsuario.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto MedidaUsuario a eliminar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+***
+### GET /medidasusuarios/mismedidas
+retorna el conjunto de medidas de un mismo  usuario
+#### Parámetros
+N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [representaciones Detalladas](#recurso-medidausuario)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
 ***
 [Volver arriba](#tabla-de-contenidos)
