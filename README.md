@@ -22,6 +22,12 @@
              - [POST /maquinas/{id_maquina}/medidasusuarios](#post-medidasusuarios)
              - [PUT /maquinas/{id_maquina}/medidasusuarios/{id}](#put-medidasusuariosid)
              - [DELETE /maquinas/{id_maquina}/medidasusuarios/{id}](#delete-medidasusuariosid)
+             - [\[Recurso Medicion\]](#recurso-medicion)
+                - [GET /maquinas/{id_maquina}/medidasusuarios/{id_medidausuario}/mediciones](#get-mediciones)
+                - [GET /maquinas/{id_maquina}/medidasusuarios/{id_medidausuario}/mediciones/{id}](#get-medicionesid)
+                - [POST /maquinas/{id_maquina}/medidasusuarios/{id_medidausuario}/mediciones](#post-mediciones)
+                - [PUT /maquinas/{id_maquina}/medidasusuarios/{id_medidausuario}/mediciones/{id}](#put-medicionesid)
+                - [DELETE /maquinas/{id_maquina}/medidasusuarios/{id_medidausuario}/mediciones/{id}](#delete-medicionesid)
        - [\[Recurso Entrenador\]](#recurso-entrenador)
           - [GET /gimnasio/entrenadores](#get-entrenadores)
           - [GET /gimnasio/entrenadores/{id}](#get-entrenadoresid)
@@ -1417,5 +1423,92 @@ Código|Descripción|Cuerpo
 412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
 405|method not allowed, no existe permiso para el recurso|Mensaje de error
 500|Error interno|Mensaje de error
+***
+[Volver arriba](#tabla-de-contenidos)
+***
+# Recurso Medicion
+es el dato de la medida arrojada de la maquina
+
+## Representación Básica
+```javascript
+{
+  medida: '' /*Tipo String*/
+}
+```
+## Representación Detallada
+```javascript
+{
+  medida: '' /*Tipo String*/
+  tipo: {/Representación de rutina 1 en JSON minimum /}
+}
+```
+***
+### GET /mediciones
+Retorna una colección de objetos Medicion en Representación Detallada.
+#### Parámetros
+N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [representaciones Detalladas](#recurso-medicion)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### GET /mediciones/{id}
+Retorna una colección de objetos Medicion en Representación Detallada.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Medicion a consultar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|objeto Medicion en [representaciones Detalladas](#recurso-medicion)
+404|No existe un objeto Medicion con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### POST /mediciones
+Es el encargado de crear objetos Medicion.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|objeto Medicion que será creado|Sí|[Representación Detallada](#recurso-medicion)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Medicion ha sido creado|[Representación Detallada](#recurso-medicion)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo crear el objeto Medicion|Mensaje de error
+***
+### PUT /mediciones/{id}
+Es el encargado de actualizar objeto Medicion
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Medicion a actualizar|Sí|Integer
+body|body|objeto Medicion nuevo|Sí|[Representación Detallada](#recurso-medicion)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Medicion actualizado|[Representación Detallada](#recurso-medicion)
+412|business exception, no se cumple con las reglas de negocio|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo actualizar el objeto Medicion|Mensaje de error
+***
+### DELETE /mediciones/{id}
+Elimina un objeto Medicion.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Medicion a eliminar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
 ***
 [Volver arriba](#tabla-de-contenidos)
