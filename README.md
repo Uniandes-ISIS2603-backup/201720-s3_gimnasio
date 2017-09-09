@@ -4,6 +4,12 @@
     - [\[Recurso Gimnasio\]](#recurso-gimnasio)
        - [GET /gimnasio](#get-gimnasio)
        - [PUT /gimnasio](#put-gimnasio)
+       - [\[Recurso Maquina\]](#recurso-maquina)
+          - [GET /maquinas](#get-maquinas)
+          - [GET /maquinas/{id}](#get-maquinasid)
+          - [POST /maquinas](#post-maquinas)
+          - [PUT /maquinas/{id}](#put-maquinasid)
+          - [DELETE /maquinas/{id}](#delete-maquinasid)
        - [\[Recurso Entrenador\]](#recurso-entrenador)
           - [GET /gimnasio/entrenadores](#get-entrenadores)
           - [GET /gimnasio/entrenadores/{id}](#get-entrenadoresid)
@@ -30,6 +36,11 @@
                     - [\[Recurso Ejercicio\]](#recurso-ejercicio)
                       - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/
                         {id_jornada}/ejercicioshechos/{id_ejercicioHecho}/ejercicio](#get-ejercicio)
+                      - [\[Recurso Maquina\]](#recurso-maquina)
+                         - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/
+                           {id_jornada}/ejercicioshechos/{id_ejercicioHecho}/maquinas](#get-maquinas)
+                         - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/jornadas/
+                           {id_jornada}/ejercicioshechos/{id_ejercicioHecho}/maquinas/{id}](#get-maquinasid)
              - [\[Recurso Estado\]](#recurso-estado)
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados](#get-estados)
                 - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/estados/{id}](#get-estadosid)
@@ -64,6 +75,17 @@
                         {id_rutina}/ejerciciosasignados/{id_ejercicioAsignado}/ejercicio](#put-ejercicio)
                       - [DELETE /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
                         {id_rutina}/ejerciciosasignados/{id_ejercicioAsignado}/ejercicio](#delete-ejercicio)
+                      - [\[Recurso Maquina\]](#recurso-maquina)
+                         - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                           {id_rutina}/ejerciciosasignados/{id_ejercicioAsignado}/ejercicio/maquinas](#get-maquinas)
+                         - [GET /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                           {id_rutina}/ejerciciosasignados/{id_ejercicioAsignado}/ejercicio/maquinas/{id}](#get-maquinasid)
+                         - [POST /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                           {id_rutina}/ejerciciosasignados/{id_ejercicioAsignado}/ejercicio/maquinas](#post-maquinas)
+                         - [PUT /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                           {id_rutina}/ejerciciosasignados/{id_ejercicioAsignado}/ejercicio/maquinas/{id}](#put-maquinasid)
+                         - [DELETE /gimnasio/entrenadores/{id_entrenador}/usuarios/{id_usuario}/rutinas/
+                           {id_rutina}/ejerciciosasignados/{id_ejercicioAsignado}/ejercicio/maquinas/{id}](#delete-maquinasid)
        - [\[Recurso Usuario\]](#recurso-usuario)
           - [GET /gimnasio/usuarios](#get-usuarios)
           - [GET /gimnasio/usuarios/{id}](#get-usuariosid)
@@ -89,14 +111,15 @@
                 - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#put-ejercicioshechosid)
                 - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id}](#delete-ejercicioshechosid)
                 - [\[Recurso Ejercicio\]](#recurso-ejercicio)
-                   - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/
-                     ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#get-ejercicio)
-                   - [POST /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/
-                     ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#post-ejercicio)
-                   - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/
-                     ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#put-ejercicio)
-                   - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/
-                     ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#delete-ejercicio)
+                   - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#get-ejercicio)
+                   - [POST /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#post-ejercicio)
+                   - [PUT /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#put-ejercicio)
+                   - [DELETE /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/ejerciciosHechos/{id_ejercicioHecho}/ejercicio](#delete-ejercicio)
+                   - [\[Recurso Maquina\]](#recurso-maquina)
+                      - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/
+                        ejerciciosHechos/{id_ejercicioHecho}/ejercicio/maquinas](#get-maquinas)
+                      - [GET /gimnasio/usuarios/{id_usuario}/jornadas/{id_jornada}/
+                         ejerciciosHechos/{id_ejercicioHecho}/ejercicio/maquinas/{id}](#get-maquinasid)
           - [\[Recurso Estado\]](#recurso-estado)
              - [GET /gimnasio/usuarios/{id_usuario}/estados](#get-estados)
              - [GET /gimnasio/usuarios/{id_usuario}/estados/{id}](#get-estadosid)
@@ -119,6 +142,11 @@
                 - [\[Recurso Ejercicio\]](#recurso-ejercicio)
                    - [GET /gimnasio/usuarios/{id_usuario}/rutinas/{id_rutina}/
                      ejerciciosAsignados/{id_ejercicioAsignado}/ejercicio](#get-ejercicio)
+                   - [\[Recurso Maquina\]](#recurso-maquina)
+                      - [GET /gimnasio/usuarios/{id_usuario}/rutinas/{id_rutina}/
+                        ejerciciosAsignados/{id_ejercicioAsignado}/ejercicio/maquinas](#get-maquinas)
+                      - [GET /gimnasio/usuarios/{id_usuario}/rutinas/{id_rutina}/
+                        ejerciciosAsignados/{id_ejercicioAsignado}/ejercicio/maquinas/{id}](#get-maquinasid)
 *** 
 # Recurso Gimnasio
 Entidad principal que define el todo el gimnasio	
@@ -1080,6 +1108,98 @@ Código|Descripción|Cuerpo
 Elimina un objeto Ejercicio.
 #### Parámetros
 N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+***
+[Volver arriba](#tabla-de-contenidos)
+***
+# Recurso Maquina
+la maquina con la que se hace el ejercicio
+
+## Representación Básica
+```javascript
+{
+    tipo: '' /*Tipo Long*/,
+    descripcion: '' /*Tipo String*/,
+}
+```
+## Representación Detallada
+```javascript
+{
+    id: '' /*Tipo Long*/,
+    name: '' /*Tipo String*/    
+    tiposMedida: [{representacion de medida en JSON minimum}
+    .
+    .
+    ]
+}
+```
+***
+### GET /maquinas
+Retorna una colección de objetos Maquina en Representación Detallada.
+#### Parámetros
+N/A
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [representaciones Detalladas](#recurso-maquina)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### GET /maquinas/{id}
+Retorna una colección de objetos Maquina en Representación Detallada.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Maquina a consultar|Sí|Integer
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|objeto Maquina en [representaciones Detalladas](#recurso-maquina)
+404|No existe un objeto Maquina con el ID solicitado|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|Error interno|Mensaje de error
+***
+### POST /maquinas
+Es el encargado de crear objetos Maquina.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|objeto Maquina que será creado|Sí|[Representación Detallada](#recurso-maquina)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Maquina ha sido creado|[Representación Detallada](#recurso-maquina)
+412|precondition failed, no se cumple la regla de negocio establecida|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo crear el objeto Maquina|Mensaje de error
+***
+### PUT /maquinas/{id}
+Es el encargado de actualizar objeto Maquina
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Maquina a actualizar|Sí|Integer
+body|body|objeto Maquina nuevo|Sí|[Representación Detallada](#recurso-maquina)
+#### Respuesta
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Maquina actualizado|[Representación Detallada](#recurso-maquina)
+412|business exception, no se cumple con las reglas de negocio|Mensaje de error
+405|method not allowed, no existe permiso para el recurso|Mensaje de error
+500|No se pudo actualizar el objeto Maquina|Mensaje de error
+***
+### DELETE /maquinas/{id}
+Elimina un objeto Maquina.
+#### Parámetros
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Maquina a eliminar|Sí|Integer
 #### Respuesta
 Código|Descripción|Cuerpo
 :--|:--|:--
