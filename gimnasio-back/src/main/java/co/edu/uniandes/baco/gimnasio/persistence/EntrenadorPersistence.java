@@ -18,7 +18,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class EntrenadorPersistence {
-    
+    @PersistenceContext(unitName = "entrenadorPU")
     protected EntityManager em;
     
     /**

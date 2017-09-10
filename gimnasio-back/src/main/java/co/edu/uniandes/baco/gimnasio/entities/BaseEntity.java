@@ -1,7 +1,7 @@
 /*
-MIT License
+The MIT License (MIT)
 
-Copyright (c) 2017 Universidad de los Andes - ISIS2603
+Copyright (c) 2015 Los Andes University
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,31 +20,28 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+ */
 package co.edu.uniandes.baco.gimnasio.entities;
-
 import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-
 /**
  * Generic entity with ID and name fields to inherit from.
+ * 
+ * This entity sets a standar of fields and functions all entities in a project should have.
+ * For example, all entities should be compared by ID when not null, otherwise use the object equals method.
  *
- * This entity sets a standar of fields and functions all entities in a project
- * should have. For example, all entities should be compared by ID when not
- * null, otherwise use the object equals method.
- *
- * @author ISIS2603
+ * @author jd.patino10
  */
 @MappedSuperclass
-public abstract class BaseEntity implements Serializable {
-
+public abstract class BaseEntity implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    
+   
+
     public Long getId() {
         return id;
     }
@@ -53,6 +50,11 @@ public abstract class BaseEntity implements Serializable {
         this.id = id;
     }
 
+   /**
+    * 
+    * @param obj
+    * @return retorna trur si los dos objetos (entities) tienen el mismo id
+    */
     @Override
     public boolean equals(Object obj) {
         if (this.getId() != null && ((BaseEntity) obj).getId() != null) {
@@ -61,6 +63,10 @@ public abstract class BaseEntity implements Serializable {
         return super.equals(obj);
     }
 
+    /**
+     * 
+     * @return el hashcode del id que define la entidad
+     */
     @Override
     public int hashCode() {
         if (this.getId() != null) {
