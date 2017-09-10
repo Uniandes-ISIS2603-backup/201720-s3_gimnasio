@@ -1,7 +1,7 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
-import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
-import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
+import co.edu.uniandes.baco.gimnasio.entities.JornadaEntity;
+import co.edu.uniandes.baco.gimnasio.persistence.JornadaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -30,17 +30,17 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  */
 @RunWith(Arquillian.class)
-public class ObjetivoPersistenceTest {
+public class JornadaPersistenceTest {
     @Inject
-    private ObjetivoPersistence objetivoPersistence;
+    private JornadaPersistence jornadaPersistence;
     
-    @PersistenceContext(unitName = "objetivoPU")
+    @PersistenceContext(unitName = "jornadaPU")
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
     
-    private final List<ObjetivoEntity> data = new ArrayList<>();
+    private final List<JornadaEntity> data = new ArrayList<>();
 
     /**
      *
@@ -52,8 +52,8 @@ public class ObjetivoPersistenceTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ObjetivoEntity.class.getPackage())
-                .addPackage(ObjetivoPersistence.class.getPackage())
+                .addPackage(JornadaEntity.class.getPackage())
+                .addPackage(JornadaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -87,7 +87,7 @@ public class ObjetivoPersistenceTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from ObjetivoEntity").executeUpdate();
+        em.createQuery("delete from JornadaEntity").executeUpdate();
     }
 
     /**
@@ -99,7 +99,7 @@ public class ObjetivoPersistenceTest {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            ObjetivoEntity entity = factory.manufacturePojo(ObjetivoEntity.class);
+            JornadaEntity entity = factory.manufacturePojo(JornadaEntity.class);
 
             em.persist(entity);
             data.add(entity);
@@ -112,17 +112,17 @@ public class ObjetivoPersistenceTest {
      *
      */
     @Test
-    public void createObjetivoTest() {
+    public void createJornadaTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        ObjetivoEntity newEntity = factory.manufacturePojo(ObjetivoEntity.class);
-        ObjetivoEntity result = objetivoPersistence.create(newEntity);
+        JornadaEntity newEntity = factory.manufacturePojo(JornadaEntity.class);
+        JornadaEntity result = jornadaPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        ObjetivoEntity entity = em.find(ObjetivoEntity.class, result.getId());
+        JornadaEntity entity = em.find(JornadaEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
-        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
+        Assert.assertEquals(newEntity.getFechaIni(), entity.getFechaIni());
+        Assert.assertEquals(newEntity.getFechaFIn(), entity.getFechaFIn());
     }
 
     /**
@@ -131,12 +131,12 @@ public class ObjetivoPersistenceTest {
      *
      */
     @Test
-    public void geObjetivosTest() {
-        List<ObjetivoEntity> list = objetivoPersistence.findAll();
+    public void geJornadasTest() {
+        List<JornadaEntity> list = jornadaPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (ObjetivoEntity ent : list) {
+        for (JornadaEntity ent : list) {
             boolean found = false;
-            for (ObjetivoEntity entity : data) {
+            for (JornadaEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -151,13 +151,13 @@ public class ObjetivoPersistenceTest {
      *
      */
     @Test
-    public void getObjetivoTest() {
-        ObjetivoEntity entity = data.get(0);
-        ObjetivoEntity newEntity = objetivoPersistence.find(entity.getId());
+    public void getJornadaTest() {
+        JornadaEntity entity = data.get(0);
+        JornadaEntity newEntity = jornadaPersistence.find(entity.getId());
         
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
-        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
+        Assert.assertEquals(newEntity.getFechaIni(), entity.getFechaIni());
+        Assert.assertEquals(newEntity.getFechaFIn(), entity.getFechaFIn());
     }
 
     /**
@@ -166,10 +166,10 @@ public class ObjetivoPersistenceTest {
      *
      */
     @Test
-    public void deleteObjetivoTest() {
-        ObjetivoEntity entity = data.get(0);
-        objetivoPersistence.delete(entity.getId());
-        ObjetivoEntity deleted = em.find(ObjetivoEntity.class, entity.getId());
+    public void deleteJornadaTest() {
+        JornadaEntity entity = data.get(0);
+        jornadaPersistence.delete(entity.getId());
+        JornadaEntity deleted = em.find(JornadaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
@@ -179,18 +179,18 @@ public class ObjetivoPersistenceTest {
      *
      */
     @Test
-    public void updateObjetivoTest() {
-        ObjetivoEntity entity = data.get(0);
+    public void updateJornadaTest() {
+        JornadaEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        ObjetivoEntity newEntity = factory.manufacturePojo(ObjetivoEntity.class);
+        JornadaEntity newEntity = factory.manufacturePojo(JornadaEntity.class);
 
         newEntity.setId(entity.getId());
 
-        objetivoPersistence.update(newEntity);
+        jornadaPersistence.update(newEntity);
 
-        ObjetivoEntity resp = em.find(ObjetivoEntity.class, entity.getId());
+        JornadaEntity resp = em.find(JornadaEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
-        Assert.assertEquals(newEntity.getTipo(), resp.getTipo());
+        Assert.assertEquals(newEntity.getFechaIni(), resp.getFechaIni());
+        Assert.assertEquals(newEntity.getFechaFIn(), resp.getFechaFIn());
     }
 }
