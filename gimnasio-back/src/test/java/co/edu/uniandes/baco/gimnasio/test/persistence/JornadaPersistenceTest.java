@@ -3,6 +3,7 @@ package co.edu.uniandes.baco.gimnasio.test.persistence;
 import co.edu.uniandes.baco.gimnasio.entities.JornadaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.JornadaPersistence;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -121,8 +122,9 @@ public class JornadaPersistenceTest {
 
         JornadaEntity entity = em.find(JornadaEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getFechaIni(), entity.getFechaIni());
-        Assert.assertEquals(newEntity.getFechaFIn(), entity.getFechaFIn());
+        Assert.assertEquals(newEntity.getFecha().getDate(), entity.getFecha().getDate());
+        Assert.assertTrue(compararHoras(newEntity.getHoraIni(), entity.getHoraIni()));
+        Assert.assertTrue(compararHoras(newEntity.getHoraFin(), entity.getHoraFin()));
     }
 
     /**
@@ -156,8 +158,9 @@ public class JornadaPersistenceTest {
         JornadaEntity newEntity = jornadaPersistence.find(entity.getId());
         
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getFechaIni(), entity.getFechaIni());
-        Assert.assertEquals(newEntity.getFechaFIn(), entity.getFechaFIn());
+        Assert.assertEquals(newEntity.getFecha().getDate(), entity.getFecha().getDate());
+        Assert.assertTrue(compararHoras(newEntity.getHoraIni(), entity.getHoraIni()));
+        Assert.assertTrue(compararHoras(newEntity.getHoraFin(), entity.getHoraFin()));
     }
 
     /**
@@ -180,17 +183,23 @@ public class JornadaPersistenceTest {
      */
     @Test
     public void updateJornadaTest() {
-        JornadaEntity entity = data.get(0);
+        JornadaEntity entitys = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         JornadaEntity newEntity = factory.manufacturePojo(JornadaEntity.class);
 
-        newEntity.setId(entity.getId());
+        newEntity.setId(entitys.getId());
 
         jornadaPersistence.update(newEntity);
 
-        JornadaEntity resp = em.find(JornadaEntity.class, entity.getId());
+        JornadaEntity entity = em.find(JornadaEntity.class, entitys.getId());
 
-        Assert.assertEquals(newEntity.getFechaIni(), resp.getFechaIni());
-        Assert.assertEquals(newEntity.getFechaFIn(), resp.getFechaFIn());
+        Assert.assertEquals(newEntity.getFecha().getDate(), entity.getFecha().getDate());
+        Assert.assertTrue(compararHoras(newEntity.getHoraIni(), entity.getHoraIni()));
+        Assert.assertTrue(compararHoras(newEntity.getHoraFin(), entity.getHoraFin()));
+    }
+    
+    
+    public final static boolean compararHoras(Date a,Date b){
+        return (a.getHours()*3600)+(a.getMinutes()*60)+a.getSeconds()==(b.getHours()*3600)+(b.getMinutes()*60)+b.getSeconds();
     }
 }
