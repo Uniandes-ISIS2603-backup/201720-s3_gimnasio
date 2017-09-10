@@ -36,7 +36,7 @@ public class ObjetivoPersistence {
      * @return un objetivo con los cambios aplicados.
      */
     public ObjetivoEntity update(ObjetivoEntity entity) {
-        LOGGER.log(Level.INFO, "Actualizando objetiivo con id={0}", entity.getId());
+        LOGGER.log(Level.INFO, "Actualizando objetivo con id={0}", entity.getId());
         return em.merge(entity);
     }
     /**
@@ -58,7 +58,7 @@ public class ObjetivoPersistence {
      * @return un objetivo.
      */
     public ObjetivoEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando Onjetivo con id={0}", id);
+        LOGGER.log(Level.INFO, "Consultando objetivo con id={0}", id);
         return em.find(ObjetivoEntity.class, id);
     }
     /**

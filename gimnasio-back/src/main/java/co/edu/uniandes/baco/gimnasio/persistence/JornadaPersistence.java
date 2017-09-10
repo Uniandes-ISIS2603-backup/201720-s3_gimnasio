@@ -14,38 +14,37 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class JornadaPersistence {
-    private final static Logger LOGGER=Logger.getLogger(JornadaPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(JornadaPersistence.class.getName());
     @PersistenceContext(unitName = "jornadaPU")
     protected EntityManager em;
-    
     /**
-     * Agrega una Jornada
+     * Agrega un jornada
      * 
-     * @param entity objeto Objetivo que se creará en la base de datos
+     * @param entity objeto Jornada que se creará en la base de datos
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
     public JornadaEntity create(JornadaEntity entity) {
-        LOGGER.info("Creando una Jornada nueva");
+        LOGGER.info("Creando un jornada nuevo");
         em.persist(entity);
         return entity;
     }
     /**
-     * Actualiza una Jornada.
+     * Actualiza un jornada.
      *
-     * @param entity: la Objetivo que viene con los nuevos cambios. Por ejemplo
+     * @param entity: la Jornada que viene con los nuevos cambios. Por ejemplo
      * el codigo pudo cambiar. En ese caso, se haria uso del método update.
-     * @return un objetivo con los cambios aplicados.
+     * @return un jornada con los cambios aplicados.
      */
     public JornadaEntity update(JornadaEntity entity) {
-        LOGGER.log(Level.INFO, "Actualizando Jornada con id={0}", entity.getId());
+        LOGGER.log(Level.INFO, "Actualizando jornada con id={0}", entity.getId());
         return em.merge(entity);
     }
     /**
      *
-     * Borra una Jornada de la base de datos recibiendo como argumento el id
-     * de el Objetivo
+     * Borra un jornada de la base de datos recibiendo como argumento el id
+     * de el Jornada
      *
-     * @param id: id correspondiente a la Objetivo a borrar.
+     * @param id: id correspondiente a la Jornada a borrar.
      */
     public void delete(Long id) {
         LOGGER.log(Level.INFO, "Borrando Jornada con id={0}", id);
@@ -53,24 +52,23 @@ public class JornadaPersistence {
         em.remove(entity);
     }
     /**
-     * Busca si hay alguna Jornada con el id que se envía de argumento
+     * Busca si hay algun jornada con el id que se envía de argumento
      *
-     * @param id: id correspondiente a la Objetivo buscada.
-     * @return un objetivo.
+     * @param id: id correspondiente a la Jornada buscada.
+     * @return un jornada.
      */
     public JornadaEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando Jornada con id={0}", id);
+        LOGGER.log(Level.INFO, "Consultando jornada con id={0}", id);
         return em.find(JornadaEntity.class, id);
     }
     /**
-     * Devuelve todas las Objetivos de la base de datos.
+     * Devuelve todas las Jornadas de la base de datos.
      *
-     * @return una lista con todas las Objetivoes que encuentre en la base de datos
+     * @return una lista con todas las Jornadaes que encuentre en la base de datos
      */
     public List<JornadaEntity> findAll() {
-        LOGGER.info("Consultando todas las jornadas");
+        LOGGER.info("Consultando todas los Jornadas");
         TypedQuery query = em.createQuery("select u from JornadaEntity u", JornadaEntity.class);
         return query.getResultList();
     }
-    
 }
