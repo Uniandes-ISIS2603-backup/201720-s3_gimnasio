@@ -23,7 +23,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class RutinaPersistence {
     private static final Logger LOGGER = Logger.getLogger(RutinaPersistence.class.getName());
-    @PersistenceContext(unitName = "rutinaPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     protected EntityManager em;
     /**
      * Agrega una Rutina
@@ -80,7 +80,7 @@ public class RutinaPersistence {
      */
     public List<RutinaEntity> findAll() {
         LOGGER.info("Consultando todas los Rutinas");
-        TypedQuery query = em.createQuery("select r from RutinaEntity r", RutinaEntity.class);
+        TypedQuery query = em.createQuery("select u from RutinaEntity u", RutinaEntity.class);
         return query.getResultList();
     }
 }
