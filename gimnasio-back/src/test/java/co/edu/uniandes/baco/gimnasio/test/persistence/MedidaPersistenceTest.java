@@ -6,18 +6,32 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 
+import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.MedidaPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
+import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
+import uk.co.jemos.podam.api.PodamFactory;
+import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
@@ -29,8 +43,56 @@ public class MedidaPersistenceTest {
     @Inject
     private MedidaPersistence medidaPersitence;
     
-    @PersistenceContext(unitName = "medidaPU")
+    @PersistenceContext(unitName = "gimnasioUP")
     private EntityManager em;
+    
+    @Inject
+    UserTransaction utx;
+    
+    private final List<MedidaEntity> data = new ArrayList<>();
+    
+        @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(MedidaEntity.class.getPackage())
+                .addPackage(MedidaPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
+    
+        @Before
+    @SuppressWarnings("CallToPrintStackTrace")
+    public void setUp() {
+        try {
+            utx.begin();
+            em.joinTransaction();
+            clearData();
+            insertData();
+            utx.commit();
+        } catch (IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | RollbackException | SystemException e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (IllegalStateException | SecurityException | SystemException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+    
+        private void clearData() {
+        em.createQuery("delete from MedidaEntity").executeUpdate();
+    }
+    
+        private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+            MedidaEntity entity = factory.manufacturePojo(MedidaEntity.class);
+
+            em.persist(entity);
+            data.add(entity);
+        }
+    }
+    
     
     public MedidaPersistenceTest() {
     }
@@ -43,9 +105,7 @@ public class MedidaPersistenceTest {
     public static void tearDownClass() {
     }
     
-    @Before
-    public void setUp() {
-    }
+  
     
     @After
     public void tearDown() {
@@ -55,32 +115,58 @@ public class MedidaPersistenceTest {
      * Test of crete method, of class MedidaPersistence.
      */
     @Test
-    public void testCrete() throws Exception {
-        fail();
-    }
+    public void createMedidaTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        MedidaEntity newEntity = factory.manufacturePojo(MedidaEntity.class);
+        MedidaEntity result = medidaPersitence.crete(newEntity);
 
+       Assert.assertNotNull(result);
+
+        MedidaEntity entity = em.find(MedidaEntity.class, result.getId());
+
+        Assert.assertEquals(newEntity.getMedida(), entity.getMedida());
+    }
+    
     /**
-     * Test of update method, of class MedidaPersistence.
+     * get estado
      */
     @Test
-    public void testUpdate() throws Exception {
-         fail();
+    public void getMedida()
+    {
+    MedidaEntity entity = data.get(0);
+    MedidaEntity newEntity = medidaPersitence.find(entity.getId());
+    Assert.assertNotNull(newEntity);
+    Assert.assertEquals(entity.getId(), newEntity.getId());
     }
-
+    
     /**
-     * Test of delete method, of class MedidaPersistence.
+     * actualiza un Medida
      */
     @Test
-    public void testDelete() throws Exception {
-         fail();
-    }
+    public void updateMedida()
+    {
+    MedidaEntity entity = data.get(0);
+    PodamFactory factory = new PodamFactoryImpl();
+    MedidaEntity newEntity = factory.manufacturePojo(MedidaEntity.class);
 
+    newEntity.setId(entity.getId());
+
+    medidaPersitence.update(newEntity);
+
+    MedidaEntity resp = em.find(MedidaEntity.class, entity.getId());
+
+    Assert.assertEquals(newEntity.getId(), resp.getId());  
+    }
     /**
-     * Test of find method, of class MedidaPersistence.
+     * borra una rutina 
      */
     @Test
-    public void testFind() throws Exception {
-         fail();
+    public void deleteEstado()
+    {
+    MedidaEntity entity = data.get(0);
+    medidaPersitence.delete(entity.getId());
+    MedidaEntity deleted = em.find(MedidaEntity.class, entity.getId());
+    Assert.assertNull(deleted);
     }
     
 }

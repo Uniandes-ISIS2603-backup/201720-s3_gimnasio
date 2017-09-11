@@ -55,10 +55,10 @@
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
-    <persistence-unit name="estadoPU" transaction-type="JTA">
+  <persistence-unit name="estadoPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <jta-data-source>java:app/jdbc/objetivo</jta-data-source>
-    <class>co.edu.uniandes.csw.company.entities.objetivoEntity</class>
+    <jta-data-source>java:app/jdbc/estado</jta-data-source>
+    <class>co.edu.uniandes.csw.company.entities.EstadoEntity</class>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
@@ -66,10 +66,10 @@
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
-    <persistence-unit name="medidaPU" transaction-type="JTA">
+  <persistence-unit name="medidaPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <jta-data-source>java:app/jdbc/objetivo</jta-data-source>
-    <class>co.edu.uniandes.csw.company.entities.objetivoEntity</class>
+    <jta-data-source>java:app/jdbc/medida</jta-data-source>
+    <class>co.edu.uniandes.csw.company.entities.MedidaEntity</class>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
@@ -77,4 +77,5 @@
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
+</persistence>
 </persistence>
