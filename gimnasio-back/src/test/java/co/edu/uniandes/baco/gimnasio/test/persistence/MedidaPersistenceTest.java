@@ -43,7 +43,7 @@ public class MedidaPersistenceTest {
     @Inject
     private MedidaPersistence medidaPersitence;
     
-    //@PersistenceContext(unitName = "gimnasioPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
     
     @Inject

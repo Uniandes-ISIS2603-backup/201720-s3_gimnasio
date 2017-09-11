@@ -3,11 +3,22 @@
   <persistence-unit name="gimnasioPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>java:app/jdbc/gimnasio</jta-data-source>
-   
     <class>co.edu.uniandes.csw.company.entities.objetivoEntity</class>
     <class>co.edu.uniandes.csw.company.entities.JornadaEntity</class>
     <class>co.edu.uniandes.csw.company.entities.EjercicioHechoEntity</class>
-    
+    <class>co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.EstadoEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.JornadaEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.MedicionEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.MedidaEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.MedidaUsuarioEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.RutinaEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.SeriesEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity</class>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
@@ -15,5 +26,4 @@
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
-</persistence>
 </persistence>

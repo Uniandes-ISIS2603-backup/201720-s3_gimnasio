@@ -44,7 +44,7 @@ public class EstadoPersistenceTest {
     @Inject
     private EstadoPersistence estadoPersistence;
     
-    //@PersistenceContext(unitName = "gimnasioPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
     
     @Inject

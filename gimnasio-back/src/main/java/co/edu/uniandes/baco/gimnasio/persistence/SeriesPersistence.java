@@ -22,7 +22,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class SeriesPersistence {
     private static final Logger LOGGER = Logger.getLogger(SeriesPersistence.class.getName());
-    //@PersistenceContext(unitName = "gimnasioPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     protected EntityManager em;
     /**
      * Agrega una Serie

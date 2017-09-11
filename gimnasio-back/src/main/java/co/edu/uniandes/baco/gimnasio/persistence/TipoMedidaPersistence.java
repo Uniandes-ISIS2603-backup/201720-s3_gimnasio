@@ -22,7 +22,7 @@ public class TipoMedidaPersistence
 {
     
     private static final Logger LOGGER = Logger.getLogger(TipoMedidaPersistence.class.getName());
-    //@PersistenceContext(unitName = "gimnasioPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     protected EntityManager em;
     
     /**

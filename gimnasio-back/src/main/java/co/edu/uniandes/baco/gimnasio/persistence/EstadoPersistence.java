@@ -20,7 +20,7 @@ public class EstadoPersistence {
     
     private static final Logger LOGGER = Logger.getLogger(EstadoPersistence.class.getName());
     
-   //@PersistenceContext(unitName = "gimnasioPU")
+   @PersistenceContext(unitName = "gimnasioPU")
    protected EntityManager em;
    
    // metodo para crear un nuevo estado

@@ -18,7 +18,7 @@ public class GimnasioPersistence {
 
     private static final Logger LOGGER = Logger.getLogger(GimnasioPersistence.class.getName());
     
-    //@PersistenceContext(unitName = "gimnasioPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     protected EntityManager em;
 
     /**
