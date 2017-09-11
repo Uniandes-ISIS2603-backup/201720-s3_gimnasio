@@ -15,7 +15,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class JornadaPersistence {
     private static final Logger LOGGER = Logger.getLogger(JornadaPersistence.class.getName());
-    @PersistenceContext(unitName = "jornadaPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     protected EntityManager em;
     /**
      * Agrega un jornada

@@ -34,7 +34,7 @@ public class ObjetivoPersistenceTest {
     @Inject
     private ObjetivoPersistence objetivoPersistence;
     
-    @PersistenceContext(unitName = "objetivoPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
 
     @Inject

@@ -35,7 +35,7 @@ public class JornadaPersistenceTest {
     @Inject
     private JornadaPersistence jornadaPersistence;
     
-    @PersistenceContext(unitName = "jornadaPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
 
     @Inject

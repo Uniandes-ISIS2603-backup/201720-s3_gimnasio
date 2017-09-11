@@ -19,7 +19,7 @@ public class MedidaPersistence {
     
      private static final Logger LOGGER = Logger.getLogger(MedidaPersistence.class.getName());
      
-     @PersistenceContext(unitName = "gimnasioUP")
+     //@PersistenceContext(unitName = "gimnasioPU")
      protected EntityManager em;
      
      

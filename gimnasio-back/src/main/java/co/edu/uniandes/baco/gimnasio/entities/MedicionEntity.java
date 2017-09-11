@@ -6,10 +6,12 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  * @author ce.robles
  **/
+@Entity
 public class MedicionEntity extends BaseEntity implements Serializable
 {
     

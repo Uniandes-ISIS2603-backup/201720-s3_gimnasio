@@ -34,7 +34,7 @@ public class EjercicioHechoPersistenceTest {
     @Inject
     private EjercicioHechoPersistence ejercicioHechoPersistence;
     
-    @PersistenceContext(unitName = "ejercicioHechoPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
 
     @Inject
