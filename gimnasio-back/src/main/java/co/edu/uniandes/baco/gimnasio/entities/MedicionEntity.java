@@ -10,6 +10,7 @@ import java.io.Serializable;
 /**
  * @author ce.robles
  **/
+
 public class MedicionEntity extends BaseEntity implements Serializable
 {
     
