@@ -26,6 +26,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -113,29 +114,60 @@ public class EstadoPersistenceTest {
     /**
      * Test of create method, of class EstadoPersistence.
      */
-    @Test
-    public void testCreate() throws Exception {
+  @Test
+    public void createEstadoTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        EstadoEntity newEntity = factory.manufacturePojo(EstadoEntity.class);
+        EstadoEntity result = estadoPersistence.create(newEntity);
+
+       Assert.assertNotNull(result);
+
+        EstadoEntity entity = em.find(EstadoEntity.class, result.getId());
+
+        Assert.assertEquals(newEntity.getId(), entity.getId());
     }
 
     /**
-     * Test of update method, of class EstadoPersistence.
+     * Test consultar un estado
      */
     @Test
-    public void testUpdate() throws Exception {
+    public void getEstado()
+    {
+    EstadoEntity entity = data.get(0);
+    EstadoEntity newEntity = estadoPersistence.find(entity.getId());
+    Assert.assertNotNull(newEntity);
+    Assert.assertEquals(entity.getId(), newEntity.getId());
     }
 
     /**
-     * Test of delete method, of class EstadoPersistence.
+     * Test update un estado
      */
-    @Test
-    public void testDelete() throws Exception {
+@Test
+    public void updateMedida()
+    {
+    EstadoEntity entity = data.get(0);
+    PodamFactory factory = new PodamFactoryImpl();
+    EstadoEntity newEntity = factory.manufacturePojo(EstadoEntity.class);
+
+    newEntity.setId(entity.getId());
+
+    estadoPersistence.update(newEntity);
+
+    EstadoEntity resp = em.find(EstadoEntity.class, entity.getId());
+
+    Assert.assertEquals(newEntity.getId(), resp.getId());  
     }
 
     /**
      * Test of find method, of class EstadoPersistence.
      */
     @Test
-    public void testFind() throws Exception {
+    public void deleteEstado()
+    {
+    EstadoEntity entity = data.get(0);
+    estadoPersistence.delete(entity.getId());
+    EstadoEntity deleted = em.find(EstadoEntity.class, entity.getId());
+    Assert.assertNull(deleted);
     }
     
 }

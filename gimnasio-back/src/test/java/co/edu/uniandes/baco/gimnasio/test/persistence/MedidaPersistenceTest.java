@@ -161,7 +161,7 @@ public class MedidaPersistenceTest {
      * borra una rutina 
      */
     @Test
-    public void deleteEstado()
+    public void deleteMedida()
     {
     MedidaEntity entity = data.get(0);
     medidaPersitence.delete(entity.getId());
