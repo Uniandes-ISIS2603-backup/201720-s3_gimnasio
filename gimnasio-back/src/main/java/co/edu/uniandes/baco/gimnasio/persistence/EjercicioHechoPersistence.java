@@ -15,7 +15,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class EjercicioHechoPersistence {
     private static final Logger LOGGER = Logger.getLogger(EjercicioHechoPersistence.class.getName());
-    @PersistenceContext(unitName = "ejercicioHechoPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     protected EntityManager em;
     /**
      * Agrega un ejercicioHecho

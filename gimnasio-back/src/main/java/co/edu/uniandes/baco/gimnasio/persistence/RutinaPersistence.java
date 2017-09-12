@@ -23,7 +23,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class RutinaPersistence {
     private static final Logger LOGGER = Logger.getLogger(RutinaPersistence.class.getName());
-    @PersistenceContext(unitName = "rutinaPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     protected EntityManager em;
     /**
      * Agrega una Rutina

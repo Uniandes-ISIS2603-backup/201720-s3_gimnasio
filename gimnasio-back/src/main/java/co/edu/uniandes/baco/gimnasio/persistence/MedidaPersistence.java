@@ -19,14 +19,14 @@ public class MedidaPersistence {
     
      private static final Logger LOGGER = Logger.getLogger(MedidaPersistence.class.getName());
      
-     @PersistenceContext(unitName = "medidaPU")
+     @PersistenceContext(unitName = "gimnasioPU")
      protected EntityManager em;
      
      
      // metodo para presistir una medida
      public MedidaEntity crete(MedidaEntity entity)
      {
-     LOGGER.info("Creando una medida nueva");  
+      LOGGER.info("Creando una medida nueva");  
       em.persist(entity);
       LOGGER.info("Creando una medida nueva");
       return entity;

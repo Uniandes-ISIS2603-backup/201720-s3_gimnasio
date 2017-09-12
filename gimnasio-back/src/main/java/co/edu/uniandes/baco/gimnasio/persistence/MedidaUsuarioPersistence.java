@@ -23,7 +23,7 @@ public class MedidaUsuarioPersistence
 {
     
     private static final Logger LOGGER = Logger.getLogger(MedidaUsuarioPersistence.class.getName());
-    @PersistenceContext(unitName = "medidaUsuarioPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     protected EntityManager em;
     
     /**
