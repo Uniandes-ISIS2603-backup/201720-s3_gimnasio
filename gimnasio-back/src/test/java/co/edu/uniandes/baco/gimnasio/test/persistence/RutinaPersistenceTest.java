@@ -6,9 +6,9 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.EjercicioHechoPersistence;
-import co.edu.uniandes.baco.gimnasio.persistence.UsuarioPersistence;
+import co.edu.uniandes.baco.gimnasio.persistence.RutinaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -36,9 +36,9 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author jp.romero12
  */
 @RunWith(Arquillian.class)
-public class UsuarioPersistenceTest {
+public class RutinaPersistenceTest {
     @Inject
-    private UsuarioPersistence usuarioPersistence;
+    private RutinaPersistence rutinaPersistence;
     
     @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
@@ -46,7 +46,7 @@ public class UsuarioPersistenceTest {
     @Inject
     UserTransaction utx;
     
-    private final List<UsuarioEntity> data = new ArrayList<>();
+    private final List<RutinaEntity> data = new ArrayList<>();
     
     /**
      *
@@ -58,8 +58,8 @@ public class UsuarioPersistenceTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(UsuarioEntity.class.getPackage())
-                .addPackage(UsuarioPersistence.class.getPackage())
+                .addPackage(RutinaEntity.class.getPackage())
+                .addPackage(RutinaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -93,7 +93,7 @@ public class UsuarioPersistenceTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from UsuarioEntity").executeUpdate();
+        em.createQuery("delete from RutinaEntity").executeUpdate();
     }
 
     /**
@@ -105,7 +105,7 @@ public class UsuarioPersistenceTest {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
+            RutinaEntity entity = factory.manufacturePojo(RutinaEntity.class);
 
             em.persist(entity);
             data.add(entity);
@@ -118,16 +118,16 @@ public class UsuarioPersistenceTest {
      *
      */
     @Test
-    public void createUsuarioTest() {
+    public void createRutinaTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
-        UsuarioEntity result = usuarioPersistence.create(newEntity);
+        RutinaEntity newEntity = factory.manufacturePojo(RutinaEntity.class);
+        RutinaEntity result = rutinaPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
+        RutinaEntity entity = em.find(RutinaEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getFechaDeNacimiento(), entity.getFechaDeNacimiento());
+        Assert.assertEquals(newEntity.getFechaInicio(), entity.getFechaInicio());
     }
 
     /**
@@ -136,12 +136,12 @@ public class UsuarioPersistenceTest {
      *
      */
     @Test
-    public void geUsuarioTest() {
-        List<UsuarioEntity> list = usuarioPersistence.findAll();
+    public void geRutinaTest() {
+        List<RutinaEntity> list = rutinaPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (UsuarioEntity ent : list) {
+        for (RutinaEntity ent : list) {
             boolean found = false;
-            for (UsuarioEntity entity : data) {
+            for (RutinaEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -156,12 +156,12 @@ public class UsuarioPersistenceTest {
      *
      */
     @Test
-    public void getUsuarioTest() {
-        UsuarioEntity entity = data.get(0);
-        UsuarioEntity newEntity = usuarioPersistence.find(entity.getId());
+    public void getRutinaTest() {
+        RutinaEntity entity = data.get(0);
+        RutinaEntity newEntity = rutinaPersistence.find(entity.getId());
         
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getFechaDeNacimiento(), entity.getFechaDeNacimiento());
+        Assert.assertEquals(newEntity.getFechaInicio(), entity.getFechaInicio());
     }
 
     /**
@@ -170,10 +170,10 @@ public class UsuarioPersistenceTest {
      *
      */
     @Test
-    public void deleteUsuarioTest() {
-        UsuarioEntity entity = data.get(0);
-        usuarioPersistence.delete(entity.getId());
-        UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
+    public void deleteRutinaTest() {
+        RutinaEntity entity = data.get(0);
+        rutinaPersistence.delete(entity.getId());
+        RutinaEntity deleted = em.find(RutinaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
@@ -184,17 +184,17 @@ public class UsuarioPersistenceTest {
      */
     @Test
     public void updateRutinaTest() {
-        UsuarioEntity entity = data.get(0);
+        RutinaEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
+        RutinaEntity newEntity = factory.manufacturePojo(RutinaEntity.class);
 
         newEntity.setId(entity.getId());
 
-        usuarioPersistence.update(newEntity);
+        rutinaPersistence.update(newEntity);
 
-        UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
+        RutinaEntity resp = em.find(RutinaEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getFechaDeNacimiento(), resp.getFechaDeNacimiento());
+        Assert.assertEquals(newEntity.getFechaInicio(), resp.getFechaInicio());
     }
     
 }
