@@ -9,20 +9,31 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 
 /**
- * @author ce.robles
+ * @author t.kavanagh
  **/
 @Entity
 public class TipoMedidaEntity extends BaseEntity implements Serializable
 {
     
-    private String medida;
+    private String descripcion;
+    private String unidad;
 
-    public String getMedida() {
-        return medida;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setMedida(String medida) {
-        this.medida = medida;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
+
+    public String getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(String unidad) {
+        this.unidad = unidad;
+    }
+
+ 
     
 }
