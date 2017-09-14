@@ -15,7 +15,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class ObjetivoPersistence {
     private static final Logger LOGGER = Logger.getLogger(ObjetivoPersistence.class.getName());
-    @PersistenceContext(unitName = "objetivoPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     protected EntityManager em;
     /**
      * Agrega un objetivo
