@@ -39,8 +39,8 @@ public class EntrenadorPersistence {
      */
     public EntrenadorEntity update(EntrenadorEntity entity)
     {
-        em.merge(entity);
-        return entity;
+        return em.merge(entity);
+        
     }
     
     /**
@@ -72,7 +72,7 @@ public class EntrenadorPersistence {
      * EntrenadorEntity;" - "SELECT * FROM table_codigo" en SQL.
      */
     public List<EntrenadorEntity> findAll() {
-        TypedQuery query = em.createQuery("select u from GimnasioEntity u", EntrenadorEntity.class);
+        TypedQuery query = em.createQuery("select u from EntrenadorEntity u", EntrenadorEntity.class);
         return query.getResultList();
     }
 }

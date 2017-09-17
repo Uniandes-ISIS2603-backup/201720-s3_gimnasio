@@ -80,7 +80,7 @@ public class RutinaPersistence {
      */
     public List<RutinaEntity> findAll() {
         LOGGER.info("Consultando todas los Rutinas");
-        TypedQuery query = em.createQuery("select r from RutinaEntity r", RutinaEntity.class);
+        TypedQuery query = em.createQuery("select u from RutinaEntity u", RutinaEntity.class);
         return query.getResultList();
     }
 }
