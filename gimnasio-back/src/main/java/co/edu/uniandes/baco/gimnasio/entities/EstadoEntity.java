@@ -16,10 +16,10 @@ import javax.persistence.Entity;
 @Entity
 public class EstadoEntity extends BaseEntity implements Serializable{
     
-    Date fecha; // atributo que modela la fecha de toma de datos
-    Double peso; // atributo que modela el peso
-    Double presionSanguinea; // atributo que modela la presion sanguienea
-    Integer ritmeoCardiaco; // atributo que modela el ritmo cardiaco
+   private Date fecha; // atributo que modela la fecha de toma de datos
+   private Double peso; // atributo que modela el peso
+   private Double presionSanguinea; // atributo que modela la presion sanguienea
+   private Integer ritmeoCardiaco; // atributo que modela el ritmo cardiaco
 
      // getter and setters
     public Date getFecha() {
@@ -49,7 +49,12 @@ public class EstadoEntity extends BaseEntity implements Serializable{
     public void setRitmeoCardiaco(Integer ritmeoCardiaco) {
         this.ritmeoCardiaco = ritmeoCardiaco;
     }
+    public Integer getRitmeoCardiaco()
+    {
+        return this.ritmeoCardiaco;
+    }
     
+   
     
     
 }

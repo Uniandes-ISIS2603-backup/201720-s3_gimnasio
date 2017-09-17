@@ -6,9 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.EstadoPersistence;
-import co.edu.uniandes.baco.gimnasio.persistence.MedidaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -159,7 +157,7 @@ public class EstadoPersistenceTest {
     }
 
     /**
-     * Test of find method, of class EstadoPersistence.
+     * Test of delete method, of class EstadoPersistence.
      */
     @Test
     public void deleteEstado()

@@ -27,8 +27,9 @@
         </dependency>
         <dependency>
             <groupId>co.edu.uniandes.baco</groupId>
-            <artifactId>gimnasio-back</artifactId>
+            <artifactId>gimnasio-logic</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 

@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
+import java.util.Date;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -49,6 +50,10 @@ public class EstadoPersistence {
    public EstadoEntity find(Long id)
    {
        return em.find(EstadoEntity.class, id);
+   }
+   public EstadoEntity findfecha(Date date)
+   {
+       return em.find(EstadoEntity.class, date);
    }
    
     
