@@ -19,18 +19,29 @@ public class ParteDelCuerpoPersitence {
 
         @PersistenceContext(unitName = "gimnasioPU")
     protected EntityManager em;
-        
+     /**
+      * metodo que persiste una parte del cuerpo
+      * @param entity
+      * @return la aprte dle cuerpo persistida
+      */
     public PartesDelCuerpoEntity create(PartesDelCuerpoEntity entity)
     {
         em.persist(entity);
         return entity;
     }
-    
+    /**
+     * metodo que actualiza una parte del cuerpo
+     * @param entity con al informacion a actulizar
+     * @return el entity que se actulizo
+     */
     public PartesDelCuerpoEntity update(PartesDelCuerpoEntity entity)
     {
         return em.merge(entity);
     }
-    
+    /**
+     * borra una parte del cuerpo
+     * @param id 
+     */
     public void delete(Long id)
     {
         PartesDelCuerpoEntity entity = em.find(PartesDelCuerpoEntity.class,id);
