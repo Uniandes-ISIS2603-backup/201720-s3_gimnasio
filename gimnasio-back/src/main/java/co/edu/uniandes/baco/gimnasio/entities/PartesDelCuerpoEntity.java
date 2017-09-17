@@ -12,21 +12,21 @@ import javax.persistence.Entity;
  *
  * @author js.palacios437
  */
+
 @Entity
-public class MedidaEntity extends BaseEntity implements Serializable{
+public class PartesDelCuerpoEntity extends BaseEntity implements Serializable{
     
-    Double medida; // atributo que modela una medida
-   
+    private String partedelcuerpo;
 
-    // getter and setters
-    public Double getMedida() {
-        return medida;
+    public String getPartedelcuerpo() {
+        return partedelcuerpo;
     }
 
-    public void setMedida(Double medida) {
-        this.medida = medida;
+    public void setPartedelcuerpo(String partedelcuerpo) {
+        this.partedelcuerpo = partedelcuerpo;
     }
-
-
+    
+    
+    
     
 }

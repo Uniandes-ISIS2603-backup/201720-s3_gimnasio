@@ -21,7 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package co.edu.uniandes.baco.gimnasio.dtos;
+package co.edu.uniandes.grupo.gimnasio.dtos;
+import co.edu.uniandes.grupo.gimnasio.dtos.GimnasioDTO;
 import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
 
 /**

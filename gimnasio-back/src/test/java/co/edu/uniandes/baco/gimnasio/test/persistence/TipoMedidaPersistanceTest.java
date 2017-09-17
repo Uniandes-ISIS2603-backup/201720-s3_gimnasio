@@ -121,8 +121,6 @@ public class TipoMedidaPersistanceTest
         Assert.assertNotNull(result);
 
         TipoMedidaEntity entity = em.find(TipoMedidaEntity.class, result.getId());
-
-        //Assert.assertEquals(newEntity.getMedida(), entity.getMedida());
     }
     
     /**
@@ -155,6 +153,7 @@ public class TipoMedidaPersistanceTest
         
         Assert.assertNotNull(newEntity);
         //Assert.assertEquals(newEntity.getMedida(), entity.getMedida());
+
     }
     
     /**
