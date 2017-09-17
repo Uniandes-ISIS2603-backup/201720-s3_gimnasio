@@ -5,9 +5,7 @@
  */
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
-import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
-import co.edu.uniandes.baco.gimnasio.persistence.EjercicioHechoPersistence;
 import co.edu.uniandes.baco.gimnasio.persistence.RutinaPersistence;
 import java.util.ArrayList;
 import java.util.List;
