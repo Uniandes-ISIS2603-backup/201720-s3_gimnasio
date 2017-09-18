@@ -4,10 +4,14 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.baco.gimnasio.resources;
+import co.edu.uniandes.baco.gimnasio.dtos.GimnasioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.*;
 import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.dtos.ParteDelCuerpoDTO;
+import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -47,7 +51,12 @@ public class ParteDelCuerpoResource {
         return new ParteDelCuerpoDTO(pcnew);
         
     }
-    
+    @GET
+  public List<ParteDelCuerpoDTO> getPartesDelCuerpo()throws BusinessLogicException
+   {
+     List<ParteDelCuerpoDTO> list = listEntitytoDetailDTO(cplogic.getPartesDelCuerpo());
+      return list;
+   }
     /**
      * da la parte del cuerpo segun su id
      * @param id  el id de lo que se queire busca
@@ -112,5 +121,11 @@ public class ParteDelCuerpoResource {
             throw new BusinessLogicException();
         }  
     }
-    
+       private List<ParteDelCuerpoDTO> listEntitytoDetailDTO(List<PartesDelCuerpoEntity> entityList) {
+        List<ParteDelCuerpoDTO> list = new ArrayList<>();
+        for(PartesDelCuerpoEntity entity : entityList) {
+            list.add(new ParteDelCuerpoDTO(entity));
+        }
+        return list;
+    }
 }

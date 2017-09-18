@@ -1,0 +1,174 @@
+{
+	"variables": [],
+	"info": {
+		"name": "curso-parcial",
+		"_postman_id": "bffe9beb-e091-a5c9-0db7-8b8c5a025496",
+		"description": "Colección de datos para los recursos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un curso primera vez",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/curso-web/api/cursos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Desarrollo\", \"codigo\":\"123\", \"creditos\":21}"
+				},
+				"description": "POST para cursos"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas los cursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/curso-web/api/cursos/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "GET cursos"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un curso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/curso-web/api/cursos/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"DesarrolloV2\", \"codigo\":\"123\", \"creditos\":16}"
+				},
+				"description": "PUT de cursos"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un curso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/curso-web/api/cursos/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get para un  curso"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un curso cambiando còdigo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No se puede cambiar el codigo del curso\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/curso-web/api/cursos/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"DesarrolloV3\", \"codigo\":\"78667\", \"creditos\":18}"
+				},
+				"description": "PUT de cursos"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un curso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/curso-web/api/cursos/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "DELETE cursos\n"
+			},
+			"response": []
+		}
+	]
+}

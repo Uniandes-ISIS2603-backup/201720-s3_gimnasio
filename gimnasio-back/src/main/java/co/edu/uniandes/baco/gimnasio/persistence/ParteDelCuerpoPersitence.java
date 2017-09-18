@@ -5,10 +5,13 @@
  */
 package co.edu.uniandes.baco.gimnasio.persistence;
 
+import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -51,4 +54,10 @@ public class ParteDelCuerpoPersitence {
     {
         return em.find(PartesDelCuerpoEntity.class,id);
     }
+    public List<PartesDelCuerpoEntity> findall()
+    {
+        TypedQuery query = em.createQuery("select u from PartesDelCuerpoEntity u", PartesDelCuerpoEntity.class);
+        return query.getResultList();
+    }
+    
 }
