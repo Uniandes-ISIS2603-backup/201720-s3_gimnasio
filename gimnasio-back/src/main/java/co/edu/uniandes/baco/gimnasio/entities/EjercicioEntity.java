@@ -25,7 +25,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
     private Integer repeticionesPorParticion;
     
     @OneToMany
-    private List<Objetivo> objetivos;
+    private List<ObjetivoEntity> objetivos;
      
     @OneToOne
     private Tipo tipo;
@@ -33,8 +33,8 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
     public Tipo getTipo(){return tipo;}
     public void setTipo(Tipo tipo){this.tipo = tipo;}
     
-    public List<Objetivo> getObjetivos() {return objetivos;}
-    public void setObjetivos(List<Objetivo> objetivos){this.objetivos = objetivos;}
+    public List<ObjetivoEntity> getObjetivos() {return objetivos;}
+    public void setObjetivos(List<ObjetivoEntity> objetivos){this.objetivos = objetivos;}
     
     public String getDescripcion() {return descripcion;}
     public void setDescripcion(String descripcion) { this.descripcion = descripcion;}
