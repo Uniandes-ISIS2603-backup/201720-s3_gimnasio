@@ -36,7 +36,8 @@ import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
 public class GimnasioDTO {
 
     private Long id;
-
+    private String descripcion;
+    private String uniadad;
     /**
      * Constructor por defecto
      */
