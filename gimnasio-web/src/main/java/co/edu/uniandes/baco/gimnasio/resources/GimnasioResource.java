@@ -116,7 +116,6 @@ public class GimnasioResource {
     @Path("{id: \\d+}")
     public GimnasioDetailDTO updateGimnasio(@PathParam("id") Long id, GimnasioDetailDTO gimnasio) throws BusinessLogicException, UnsupportedOperationException {
           throw new UnsupportedOperationException("Este servicio  no está implementado");
-      
     }
 
     /**

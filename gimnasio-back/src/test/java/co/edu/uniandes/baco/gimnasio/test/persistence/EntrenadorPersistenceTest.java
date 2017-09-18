@@ -181,6 +181,15 @@ public class EntrenadorPersistenceTest {
     Assert.assertNotNull(newEntity);
     Assert.assertEquals(entity.getName(), newEntity.getName());
     }
+    
+    @Test
+    public void testFindByDocumento() throws Exception
+    {
+    EntrenadorEntity entity = data.get(0);
+    EntrenadorEntity newEntity = persistence.findByDocumento(entity.getDocumento());
+    Assert.assertNotNull(newEntity);
+    Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
 
     /**
      * Test of findAll method, of class EntrenadorPersistence.
