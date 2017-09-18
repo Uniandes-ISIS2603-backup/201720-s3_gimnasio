@@ -64,6 +64,22 @@ public class EntrenadorPersistence {
         return em.find(EntrenadorEntity.class, id);
     }
     
+    public EntrenadorEntity findByDocumento(String doc)
+    {
+        TypedQuery querry = em.createQuery("Select e from EntrenadorEntity e where e.documento = :documento",EntrenadorEntity.class);
+        querry = querry.setParameter("documento", doc);
+        List<EntrenadorEntity> sameName = querry.getResultList();
+        EntrenadorEntity result = null; 
+        if (sameName == null ) {
+            result = null;
+        } else if (sameName.isEmpty()) {
+             result = null;
+        } else {
+            result =  sameName.get(0);
+        }
+        return result;
+    }
+    
     /**
      * Devuelve todas los EntrenadorEntity de la base de datos.
      *
