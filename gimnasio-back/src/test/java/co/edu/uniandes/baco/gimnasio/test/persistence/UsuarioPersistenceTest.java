@@ -125,7 +125,7 @@ public class UsuarioPersistenceTest {
 
         UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getFechaDeNacimiento(), entity.getFechaDeNacimiento());
+        Assert.assertEquals(newEntity.getFechaDeNacimiento().getDate(), entity.getFechaDeNacimiento().getDate());
     }
 
     /**
@@ -159,7 +159,7 @@ public class UsuarioPersistenceTest {
         UsuarioEntity newEntity = usuarioPersistence.find(entity.getId());
         
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getFechaDeNacimiento(), entity.getFechaDeNacimiento());
+        Assert.assertEquals(newEntity.getFechaDeNacimiento().getDate(), entity.getFechaDeNacimiento().getDate());
     }
 
     /**
@@ -192,7 +192,7 @@ public class UsuarioPersistenceTest {
 
         UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getFechaDeNacimiento(), resp.getFechaDeNacimiento());
+        Assert.assertEquals(newEntity.getFechaDeNacimiento().getDate(), resp.getFechaDeNacimiento().getDate());
     }
     
 }
