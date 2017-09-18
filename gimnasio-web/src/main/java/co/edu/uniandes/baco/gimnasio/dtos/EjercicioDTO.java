@@ -17,7 +17,6 @@ public class EjercicioDTO {
     public EjercicioDTO(){}
     
     public EjercicioDTO(EjercicioEntity entity){
-        this.tipo = entity.getTipo();
         this.descripcion = entity.getDescripcion();
         this.explicacion = entity.getExplicacion();
         this.duracion = entity.getDuracion();
@@ -28,7 +27,6 @@ public class EjercicioDTO {
     
     public EjercicioEntity toEntity(){
         EjercicioEntity ent=new EjercicioEntity();
-        ent.setTipo(tipo);
         ent.setDescripcion(descripcion);
         ent.setExplicacion(explicacion);
         ent.setDuracion(duracion);

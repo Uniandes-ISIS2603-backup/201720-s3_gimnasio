@@ -121,7 +121,6 @@ public class EjercicioPersistenceTest {
 
         EjercicioEntity entity = em.find(EjercicioEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
         Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         Assert.assertEquals(newEntity.getExplicacion(), entity.getExplicacion());
         Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());
@@ -162,7 +161,6 @@ public class EjercicioPersistenceTest {
         
         Assert.assertNotNull(newEntity);
         
-        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
         Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         Assert.assertEquals(newEntity.getExplicacion(), entity.getExplicacion());
         Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());
@@ -202,7 +200,6 @@ public class EjercicioPersistenceTest {
         EjercicioEntity resp = em.find(EjercicioEntity.class, entity.getId());
         entity=resp;
 
-        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
         Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         Assert.assertEquals(newEntity.getExplicacion(), entity.getExplicacion());
         Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());

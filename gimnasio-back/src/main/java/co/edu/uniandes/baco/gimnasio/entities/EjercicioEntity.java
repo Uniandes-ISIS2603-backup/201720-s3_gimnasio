@@ -6,8 +6,10 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -15,8 +17,6 @@ import javax.persistence.Entity;
  */
 @Entity
 public class EjercicioEntity extends BaseEntity implements Serializable{
-    private ArrayList<String> objetivos;
-    private String tipo;
     private String descripcion;
     private String explicacion;
     private Integer duracion;
@@ -24,67 +24,33 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
     private Integer tamanioParticiones;
     private Integer repeticionesPorParticion;
     
-    public ArrayList<String> getObjetivos() {
-        return objetivos;
-    }
+    @OneToMany
+    private List<Objetivo> objetivos;
+     
+    @OneToOne
+    private Tipo tipo;
 
-    public void setObjetivos(ArrayList<String> objetivos) {
-        this.objetivos = objetivos;
-    }
+    public Tipo getTipo(){return tipo;}
+    public void setTipo(Tipo tipo){this.tipo = tipo;}
+    
+    public List<Objetivo> getObjetivos() {return objetivos;}
+    public void setObjetivos(List<Objetivo> objetivos){this.objetivos = objetivos;}
+    
+    public String getDescripcion() {return descripcion;}
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion;}
 
-    public String getTipo() {
-        return tipo;
-    }
+    public String getExplicacion() {return explicacion; }
+    public void setExplicacion(String explicacion) {this.explicacion = explicacion;}
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+    public Integer getDuracion() {return duracion;}
+    public void setDuracion(Integer duracion) {this.duracion = duracion;} 
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public Integer getSeries() {return series;}
+    public void setSeries(Integer series){this.series = series;}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+    public Integer getTamanioParticiones() {return tamanioParticiones;}
+    public void setTamanioParticiones(Integer tamanioParticiones) {this.tamanioParticiones = tamanioParticiones;}
 
-    public String getExplicacion() {
-        return explicacion;
-    }
-
-    public void setExplicacion(String explicacion) {
-        this.explicacion = explicacion;
-    }
-
-    public Integer getDuracion() {
-        return duracion;
-    }
-
-    public void setDuracion(Integer duracion) {
-        this.duracion = duracion;
-    }
-
-    public Integer getSeries() {
-        return series;
-    }
-
-    public void setSeries(Integer series) {
-        this.series = series;
-    }
-
-    public Integer getTamanioParticiones() {
-        return tamanioParticiones;
-    }
-
-    public void setTamanioParticiones(Integer tamanioParticiones) {
-        this.tamanioParticiones = tamanioParticiones;
-    }
-
-    public Integer getRepeticionesPorParticion() {
-        return repeticionesPorParticion;
-    }
-
-    public void setRepeticionesPorParticion(Integer repeticionesPorParticion) {
-        this.repeticionesPorParticion = repeticionesPorParticion;
-    }
+    public Integer getRepeticionesPorParticion() {return repeticionesPorParticion;}
+    public void setRepeticionesPorParticion(Integer repeticionesPorParticion) {this.repeticionesPorParticion = repeticionesPorParticion;}
 }

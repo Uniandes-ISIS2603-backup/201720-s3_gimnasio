@@ -1,30 +1,34 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package co.edu.uniandes.baco.gimnasio.ejb;
 
-import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import co.edu.uniandes.baco.gimnasio.persistence.EjercicioPersistence;
+import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
 import java.util.List;
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ *
  * @author jc.bojaca
  */
-@Stateless
-public class EjercicioLogic {
+public class ObjetivoLogic {
     @Inject
-    EjercicioPersistence persistence;
+    ObjetivoPersistence persistence;
     
-    public EjercicioEntity create(EjercicioEntity entity) throws BusinessLogicException{
+    public ObjetivoEntity create(ObjetivoEntity entity) throws BusinessLogicException{
         if(persistence.find(entity.getId())!=null)throw new BusinessLogicException("ya existe un ejercicio con el id");
         return persistence.create(entity);
     }
     
-    public EjercicioEntity find(long id){
+    public ObjetivoEntity find(long id){
         return persistence.find(id);
     }
     
-    public EjercicioEntity update(EjercicioEntity entity) throws BusinessLogicException{
+    public ObjetivoEntity update(ObjetivoEntity entity) throws BusinessLogicException{
         if(persistence.find(entity.getId())==null)throw new BusinessLogicException("no exixte un ejercicio con el id");
         return persistence.update(entity);
     }
@@ -33,7 +37,7 @@ public class EjercicioLogic {
         persistence.delete(id);
     }
     
-    public List<EjercicioEntity> findAll(){
+    public List<ObjetivoEntity> findAll(){
         return persistence.findAll();
     }
 }
