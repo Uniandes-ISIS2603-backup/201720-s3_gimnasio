@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.baco.gimnasio.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
@@ -24,7 +19,7 @@ public class EjercicioPersistence {
     @PersistenceContext(unitName = "gimnasioPU")
     protected EntityManager em;
     /**
-     * Agrega un objetivo
+     * Agrega un ejercicio
      * 
      * @param entity objeto Ejercicio que se creará en la base de datos
      * @return devuelve la entidad creada con un id dado por la base de datos.
@@ -35,7 +30,7 @@ public class EjercicioPersistence {
         return entity;
     }
     /**
-     * Actualiza un objetivo.
+     * Actualiza un ejercicio.
      *
      * @param entity: la Ejercicio que viene con los nuevos cambios. Por ejemplo
      * el codigo pudo cambiar. En ese caso, se haria uso del método update.
@@ -47,7 +42,7 @@ public class EjercicioPersistence {
     }
     /**
      *
-     * Borra un objetivo de la base de datos recibiendo como argumento el id
+     * Borra un ejercicio de la base de datos recibiendo como argumento el id
      * de el Ejercicio
      *
      * @param id: id correspondiente a la Ejercicio a borrar.
@@ -58,7 +53,7 @@ public class EjercicioPersistence {
         em.remove(entity);
     }
     /**
-     * Busca si hay algun objetivo con el id que se envía de argumento
+     * Busca si hay algun ejercicio con el id que se envía de argumento
      *
      * @param id: id correspondiente a la Ejercicio buscada.
      * @return un objetivo.
@@ -68,7 +63,7 @@ public class EjercicioPersistence {
         return em.find(EjercicioEntity.class, id);
     }
     /**
-     * Devuelve todas las Ejercicios de la base de datos.
+     * Devuelve todas los Ejercicios de la base de datos.
      *
      * @return una lista con todas las Ejercicioes que encuentre en la base de datos
      */
