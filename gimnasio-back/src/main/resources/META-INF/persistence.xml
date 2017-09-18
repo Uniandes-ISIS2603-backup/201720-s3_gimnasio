@@ -17,7 +17,9 @@
     <class>co.edu.uniandes.baco.gimnasio.entities.SeriesEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity</class>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
