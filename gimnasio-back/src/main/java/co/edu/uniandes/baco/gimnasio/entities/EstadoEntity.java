@@ -8,6 +8,7 @@ package co.edu.uniandes.baco.gimnasio.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -16,6 +17,7 @@ import javax.persistence.Entity;
 @Entity
 public class EstadoEntity extends BaseEntity implements Serializable{
     
+   @Temporal(javax.persistence.TemporalType.DATE)
    private Date fecha; // atributo que modela la fecha de toma de datos
    private Double peso; // atributo que modela el peso
    private Double presionSanguinea; // atributo que modela la presion sanguienea

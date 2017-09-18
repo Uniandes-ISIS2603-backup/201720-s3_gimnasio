@@ -21,24 +21,40 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-/*
- * RestConfig.java
- * Configura el servicio JAX-RS.
- */
-package co.edu.uniandes.grupo.gimnasio.resources;
-
-import javax.ws.rs.core.Application;
-import javax.ws.rs.ApplicationPath;
+package co.edu.uniandes.baco.gimnasio.dtos;
+import co.edu.uniandes.baco.gimnasio.dtos.GimnasioDTO;
+import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
 
 /**
- * Clase que indica que este proyecto web ofrece servicios REST. Adicionalmente,
- * esta clase define el prefijo por defecto de las rutas a los recursos.
  *
- * (non-Javadoc)
- *
- * @see javax.ws.rs.core.Application
  * @author ISIS2603
  */
-@ApplicationPath("/api")
-public class RestConfig extends Application {
+public class GimnasioDetailDTO extends GimnasioDTO {
+
+    /**
+     * Constructor por defecto
+     */
+    public GimnasioDetailDTO() {
+    }
+
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param entity
+     */
+    public GimnasioDetailDTO(GimnasioEntity entity) {
+        super(entity);
+    }
+
+    /**
+     * Transformar un DTO a un Entity
+     *
+     * @return 
+     */
+    @Override
+    public GimnasioEntity toEntity() {
+        GimnasioEntity GimnasioE = super.toEntity();
+        return GimnasioE;
+    }
+
 }

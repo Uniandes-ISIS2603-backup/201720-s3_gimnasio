@@ -8,6 +8,7 @@ package co.edu.uniandes.baco.gimnasio.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import java.util.Date;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -23,6 +24,7 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
     /**
      * fecha de nacimiento del entrenador
      */
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaNacimiento;
     
     /**

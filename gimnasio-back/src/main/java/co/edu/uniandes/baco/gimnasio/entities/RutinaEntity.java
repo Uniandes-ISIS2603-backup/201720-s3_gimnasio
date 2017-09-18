@@ -7,6 +7,7 @@ package co.edu.uniandes.baco.gimnasio.entities;
 import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -16,7 +17,10 @@ import java.util.Date;
 public class RutinaEntity extends BaseEntity implements Serializable{
     
     private String tipo;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaInicio;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fenchaFinal;
 
     /**

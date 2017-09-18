@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.grupo.gimnasio.resources;
+package co.edu.uniandes.baco.gimnasio.resources;
 import co.edu.uniandes.baco.gimnasio.ejb.*;
 import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import co.edu.uniandes.grupo.gimnasio.dtos.ParteDelCuerpoDTO;
+import co.edu.uniandes.baco.gimnasio.dtos.ParteDelCuerpoDTO;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
