@@ -39,6 +39,6 @@ import javax.ws.rs.ApplicationPath;
  * @see javax.ws.rs.core.Application
  * @author ISIS2603
  */
-@ApplicationPath("/api")
+@ApplicationPath("api")
 public class RestConfig extends Application {
 }

@@ -8,8 +8,9 @@ package co.edu.uniandes.baco.gimnasio.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -27,7 +28,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
     @OneToMany
     private List<ObjetivoEntity> objetivos;
      
-    @OneToOne
+   @Enumerated(EnumType.STRING)
     private Tipo tipo;
 
     public Tipo getTipo(){return tipo;}
