@@ -7,6 +7,7 @@ package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.ParteDelCuerpoPersitence;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -36,6 +37,11 @@ public class ParteDelCuerpoLogic {
     public PartesDelCuerpoEntity find(Long id)
     {
         return persistence.find(id);
+    }
+    public List<PartesDelCuerpoEntity> getPartesDelCuerpo()
+    {
+      List<PartesDelCuerpoEntity> lista = persistence.findall();
+      return lista;
     }
     
 }
