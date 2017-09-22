@@ -20,7 +20,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class ParteDelCuerpoPersitence {
 
-        @PersistenceContext(unitName = "gimnasioPU")
+    @PersistenceContext(unitName = "gimnasioPU")
     protected EntityManager em;
      /**
       * metodo que persiste una parte del cuerpo

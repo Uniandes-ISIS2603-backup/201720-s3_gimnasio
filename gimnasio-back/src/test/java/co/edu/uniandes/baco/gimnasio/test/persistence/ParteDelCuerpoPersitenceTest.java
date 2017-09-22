@@ -5,9 +5,10 @@
  */
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
-
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.MedidaPersistence;
+import co.edu.uniandes.baco.gimnasio.persistence.ParteDelCuerpoPersitence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -29,6 +30,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -38,10 +40,9 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author js.palacios437
  */
 @RunWith(Arquillian.class)
-public class MedidaPersistenceTest {
-   
+public class ParteDelCuerpoPersitenceTest {
     @Inject
-    private MedidaPersistence medidaPersitence;
+    private ParteDelCuerpoPersitence pcpersitance;
     
     @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
@@ -49,17 +50,15 @@ public class MedidaPersistenceTest {
     @Inject
     UserTransaction utx;
     
-    private final List<MedidaEntity> data = new ArrayList<>();
-    
-        @Deployment
+       private final List<PartesDelCuerpoEntity> data = new ArrayList<>();
+    @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(MedidaEntity.class.getPackage())
-                .addPackage(MedidaPersistence.class.getPackage())
+                .addPackage(PartesDelCuerpoEntity.class.getPackage())
+                .addPackage(ParteDelCuerpoPersitence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
     @Before
     @SuppressWarnings("CallToPrintStackTrace")
     public void setUp() {
@@ -78,23 +77,79 @@ public class MedidaPersistenceTest {
             }
         }
     }
-    
-        private void clearData() {
-        em.createQuery("delete from MedidaEntity").executeUpdate();
+    private void clearData() {
+    em.createQuery("delete from PartesDelCuerpoEntity").executeUpdate();
     }
     
-        private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) {
-            MedidaEntity entity = factory.manufacturePojo(MedidaEntity.class);
+    private void insertData() {
+    PodamFactory factory = new PodamFactoryImpl();
+    for (int i = 0; i < 3; i++) {
+     PartesDelCuerpoEntity entity = factory.manufacturePojo(PartesDelCuerpoEntity.class);
 
             em.persist(entity);
             data.add(entity);
         }
     }
     
+        /**
+     * crear una nueva parte del cuerpo.
+     */
+    @Test
+    public void createParteDelCuerpoTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        PartesDelCuerpoEntity newEntity = factory.manufacturePojo(PartesDelCuerpoEntity.class);
+        PartesDelCuerpoEntity result = pcpersitance.create(newEntity);
+
+       Assert.assertNotNull(result);
+
+        PartesDelCuerpoEntity entity = em.find(PartesDelCuerpoEntity.class, result.getId());
+
+        Assert.assertEquals(newEntity.getPartedelcuerpo(), entity.getPartedelcuerpo());
+    }
     
-    public MedidaPersistenceTest() {
+    @Test
+    public void getParteDelCuerpo()
+    {
+    PartesDelCuerpoEntity entity = data.get(0);
+    PartesDelCuerpoEntity newEntity = pcpersitance.find(entity.getId());
+    Assert.assertNotNull(newEntity);
+    Assert.assertEquals(entity.getId(), newEntity.getId());
+    }
+    
+    /**
+    * actualiza un parte del cuerpo
+   */
+    @Test
+    public void updateParteDelCuerpo()
+    {
+    PartesDelCuerpoEntity entity = data.get(0);
+    PodamFactory factory = new PodamFactoryImpl();
+    PartesDelCuerpoEntity newEntity = factory.manufacturePojo(PartesDelCuerpoEntity.class);
+
+    newEntity.setId(entity.getId());
+
+    pcpersitance.update(newEntity);
+
+    MedidaEntity resp = em.find(MedidaEntity.class, entity.getId());
+
+    Assert.assertEquals(newEntity.getId(), resp.getId());  
+    }
+    
+    
+     /**
+     * borra una parte del cuerpo 
+     */
+    @Test
+    public void deleteMedida()
+    {
+    PartesDelCuerpoEntity entity = data.get(0);
+    pcpersitance.delete(entity.getId());
+    PartesDelCuerpoEntity deleted = em.find(PartesDelCuerpoEntity.class, entity.getId());
+    Assert.assertNull(deleted);
+    }
+    
+    
+    public ParteDelCuerpoPersitenceTest() {
     }
     
     @BeforeClass
@@ -105,68 +160,11 @@ public class MedidaPersistenceTest {
     public static void tearDownClass() {
     }
     
-  
+
     
     @After
     public void tearDown() {
     }
 
-    /**
-     * Test of crete method, of class MedidaPersistence.
-     */
-    @Test
-    public void createMedidaTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        MedidaEntity newEntity = factory.manufacturePojo(MedidaEntity.class);
-        MedidaEntity result = medidaPersitence.crete(newEntity);
-
-       Assert.assertNotNull(result);
-
-        MedidaEntity entity = em.find(MedidaEntity.class, result.getId());
-
-        Assert.assertEquals(newEntity.getMedida(), entity.getMedida());
-    }
-    
-    /**
-     * get estado
-     */
-    @Test
-    public void getMedida()
-    {
-    MedidaEntity entity = data.get(0);
-    MedidaEntity newEntity = medidaPersitence.find(entity.getId());
-    Assert.assertNotNull(newEntity);
-    Assert.assertEquals(entity.getId(), newEntity.getId());
-    }
-    
-    /**
-     * actualiza un Medida
-     */
-    @Test
-    public void updateMedida()
-    {
-    MedidaEntity entity = data.get(0);
-    PodamFactory factory = new PodamFactoryImpl();
-    MedidaEntity newEntity = factory.manufacturePojo(MedidaEntity.class);
-
-    newEntity.setId(entity.getId());
-
-    medidaPersitence.update(newEntity);
-
-    MedidaEntity resp = em.find(MedidaEntity.class, entity.getId());
-
-            Assert.assertEquals(newEntity.getId(), resp.getId());  
-    }
-    /**
-     * borra una rutina 
-     */
-    @Test
-    public void deleteMedida()
-    {
-    MedidaEntity entity = data.get(0);
-    medidaPersitence.delete(entity.getId());
-    MedidaEntity deleted = em.find(MedidaEntity.class, entity.getId());
-    Assert.assertNull(deleted);
-    }
-    
+  
 }
