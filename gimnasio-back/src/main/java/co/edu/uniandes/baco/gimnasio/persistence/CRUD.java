@@ -6,9 +6,6 @@
 package co.edu.uniandes.baco.gimnasio.persistence;
 
 import java.util.List;
-import javax.persistence.EntityExistsException;
-import javax.persistence.PersistenceException;
-import javax.persistence.TransactionRequiredException;
 
 /**
  *
@@ -16,9 +13,41 @@ import javax.persistence.TransactionRequiredException;
  * @param <T>
  */
 public interface CRUD<T>{
-	T create(T entity);
-	T find(Long id);
-        List<T> findAll();
-	T update(T entity);
-	void delete(Long id);
+    /**
+     * crea la entity y la persiste
+     * @param entity la entidad a crear
+     * @return el objeto creado y persistido
+     * @throws java.lang.Exception
+     */
+    T create(T entity)throws Exception;
+    
+    /**
+     * busca la entidad con el id(llave primaria dado)
+     * @param id el id de la entida a buscar
+     * @return la entidad buscada, null en caso de no encontrarla
+     * @throws java.lang.Exception
+     */
+    T find(Long id)throws Exception;
+    
+    /**
+     * retorna un listado con todas las entidades
+     * @return un listado con todas las entidades peristidas
+     * @throws java.lang.Exception
+     */
+    List<T> findAll()throws Exception;
+    
+    /**
+     * actualiza los tados asociados a una entidad
+     * @param entity la entidad (con el id) a actualizar
+     * @return la entidad actualizada
+     * @throws java.lang.Exception
+     */
+    T update(T entity)throws Exception;
+
+    /**
+     * elimina una enidad con el id dado
+     * @param id el id de la entida a eliminar
+     * @throws java.lang.Exception
+     */
+    void delete(Long id)throws Exception;
 }
