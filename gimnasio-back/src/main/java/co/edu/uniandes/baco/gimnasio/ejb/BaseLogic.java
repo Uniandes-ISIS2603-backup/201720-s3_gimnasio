@@ -26,7 +26,10 @@ public abstract class BaseLogic<T extends BaseEntity>{
     }
     
     public T find(long id){
-        return persistence.find(id);
+        T t= persistence.find(id);
+        if(t==null)
+            throw new WebApplicationException("El recurso con id=" + id + " no existe.", 404);
+        return t;
     }
     
     public T update(T entity) throws BusinessLogicException{
