@@ -28,7 +28,7 @@ public class MedidaLogic {
      * @return entity
      * @throws BusinessLogicException 
      */
-    public MedidaEntity createEstado(MedidaEntity entity) throws BusinessLogicException
+    public MedidaEntity create(MedidaEntity entity) throws BusinessLogicException
     {
         persitencia.crete(entity);
         return entity;
@@ -38,17 +38,17 @@ public class MedidaLogic {
      * @param entity
      * @return 
      */
-    public MedidaEntity updateEstado(MedidaEntity entity) throws BusinessLogicException
+    public MedidaEntity update(MedidaEntity entity) throws BusinessLogicException
     {
       return persitencia.update(entity);
     }
     
-    public MedidaEntity getEstado(Long id) throws BusinessLogicException
+    public MedidaEntity get(Long id) throws BusinessLogicException
     {
         return persitencia.find(id);
     }
     
-    public void deleteEstado(Long id) throws BusinessLogicException
+    public void delete(Long id) throws BusinessLogicException
     {
         MedidaEntity com = persitencia.find(id);
         if(com!=null)
