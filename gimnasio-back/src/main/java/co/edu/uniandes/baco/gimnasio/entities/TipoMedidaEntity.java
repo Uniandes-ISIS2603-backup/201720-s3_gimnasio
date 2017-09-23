@@ -31,7 +31,4 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable{
     public void setUnidad(String unidad) {
         this.unidad = unidad;
     }
-
- 
-    
 }

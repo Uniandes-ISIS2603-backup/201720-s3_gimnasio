@@ -13,6 +13,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -24,8 +25,9 @@ public class EstadoEntity extends BaseEntity implements Serializable{
    @Temporal(javax.persistence.TemporalType.DATE)
    private Date fecha; // atributo que modela la fecha de toma de datos
    
+   @PodamExclude
    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
-    List<MedidaEntity> medidas=new ArrayList<>();
+   List<MedidaEntity> medidas=new ArrayList<>();
 
     public List<MedidaEntity> getMedidas() {
         return medidas;

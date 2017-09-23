@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import java.util.List;
 import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -18,6 +19,7 @@ import javax.persistence.OneToMany;
 public class MaquinaEntity extends BaseEntity implements Serializable{
     private String descripcion;
     
+    @PodamExclude
     @OneToMany
     private List<TipoMedidaEntity> tipoMedida;
 
@@ -39,5 +41,4 @@ public class MaquinaEntity extends BaseEntity implements Serializable{
     public void setTiposMedidas(List<TipoMedidaEntity> foo){
         this.tipoMedida = foo;
     }
-    
 }

@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -35,7 +36,8 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
      */
     private String documento;
     
-    @ManyToMany 
+    @PodamExclude
+    @ManyToMany
     private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
     
    //--------------------------------------------------------------------------

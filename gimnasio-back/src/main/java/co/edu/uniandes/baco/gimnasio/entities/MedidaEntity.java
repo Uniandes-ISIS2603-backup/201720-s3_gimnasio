@@ -8,6 +8,7 @@ package co.edu.uniandes.baco.gimnasio.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -17,6 +18,7 @@ import javax.persistence.OneToOne;
 public class MedidaEntity extends BaseEntity implements Serializable{
     Double medida; // atributo que modela una medida
    
+    @PodamExclude
     @OneToOne
     PartesDelCuerpoEntity parte;
 

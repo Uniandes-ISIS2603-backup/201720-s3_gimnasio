@@ -77,7 +77,7 @@ public class GimnasioResource {
      * @throws BusinessLogicException
      */
     @POST
-    public GimnasioDetailDTO createGimnasio(GimnasioDetailDTO Gimnasio) throws BusinessLogicException {
+    public GimnasioDetailDTO createGimnasio(GimnasioDetailDTO Gimnasio) throws BusinessLogicException, Exception {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         GimnasioEntity GimnasioEntity = Gimnasio.toEntity();
         // Invoca la lógica para crear la Gimnasio nueva
@@ -94,7 +94,7 @@ public class GimnasioResource {
      * @throws BusinessLogicException
      */
     @GET
-    public List<GimnasioDetailDTO> getGimnasios() throws BusinessLogicException {
+    public List<GimnasioDetailDTO> getGimnasios() throws BusinessLogicException, Exception {
         return listEntity2DetailDTO(gimnasioLogic.getGimnasios());
     }
 

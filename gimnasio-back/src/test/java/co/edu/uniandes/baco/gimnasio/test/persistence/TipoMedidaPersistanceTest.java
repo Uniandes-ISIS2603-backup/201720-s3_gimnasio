@@ -92,7 +92,7 @@ public class TipoMedidaPersistanceTest
      */
     private void clearData() 
     {
-        em.createQuery("delete from MedicionEntity").executeUpdate();
+        em.createQuery("delete from TipoMedidaEntity").executeUpdate();
     }
 
     /**

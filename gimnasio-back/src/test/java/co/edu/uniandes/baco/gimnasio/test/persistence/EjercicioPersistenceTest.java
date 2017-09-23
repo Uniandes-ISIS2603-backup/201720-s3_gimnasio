@@ -4,8 +4,6 @@ import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.EjercicioPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -131,7 +129,7 @@ public class EjercicioPersistenceTest {
             Assert.assertEquals(newEntity.getTamanioParticiones(), entity.getTamanioParticiones());
             Assert.assertEquals(newEntity.getRepeticionesPorParticion(), entity.getRepeticionesPorParticion());
         } catch (Exception ex) {
-            Logger.getLogger(EjercicioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+            Assert.fail(ex.getMessage());
         }
     }
 
@@ -155,7 +153,7 @@ public class EjercicioPersistenceTest {
                 Assert.assertTrue(found);
             }
         } catch (Exception ex) {
-            Logger.getLogger(EjercicioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+            Assert.fail(ex.getMessage());
         }
     }
 
@@ -179,7 +177,7 @@ public class EjercicioPersistenceTest {
             Assert.assertEquals(newEntity.getTamanioParticiones(), entity.getTamanioParticiones());
             Assert.assertEquals(newEntity.getRepeticionesPorParticion(), entity.getRepeticionesPorParticion());
         } catch (Exception ex) {
-            Logger.getLogger(EjercicioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+            Assert.fail(ex.getMessage());
         }
     }
 
@@ -196,7 +194,7 @@ public class EjercicioPersistenceTest {
             EjercicioEntity deleted = em.find(EjercicioEntity.class, entity.getId());
             Assert.assertNull(deleted);
         } catch (Exception ex) {
-            Logger.getLogger(EjercicioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+            Assert.fail(ex.getMessage());
         }
     }
 
@@ -226,7 +224,7 @@ public class EjercicioPersistenceTest {
             Assert.assertEquals(newEntity.getTamanioParticiones(), entity.getTamanioParticiones());
             Assert.assertEquals(newEntity.getRepeticionesPorParticion(), entity.getRepeticionesPorParticion());
         } catch (Exception ex) {
-            Logger.getLogger(EjercicioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+            Assert.fail(ex.getMessage());
         }
     }
 }

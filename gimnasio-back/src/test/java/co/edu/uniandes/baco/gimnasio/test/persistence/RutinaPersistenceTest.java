@@ -170,7 +170,7 @@ public class RutinaPersistenceTest {
             RutinaEntity newEntity = rutinaPersistence.find(entity.getId());
             
             Assert.assertNotNull(newEntity);
-            Assert.assertEquals(newEntity.getFechaInicio(), entity.getFechaInicio());
+            Assert.assertEquals(newEntity.getFechaInicio().getDate(), entity.getFechaInicio().getDate());
         } catch (Exception ex) {
             Logger.getLogger(RutinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -211,7 +211,7 @@ public class RutinaPersistenceTest {
             
             RutinaEntity resp = em.find(RutinaEntity.class, entity.getId());
             
-            Assert.assertEquals(newEntity.getFechaInicio(), resp.getFechaInicio());
+            Assert.assertEquals(newEntity.getFechaInicio().getDate(), resp.getFechaInicio().getDate());
         } catch (Exception ex) {
             Logger.getLogger(RutinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
