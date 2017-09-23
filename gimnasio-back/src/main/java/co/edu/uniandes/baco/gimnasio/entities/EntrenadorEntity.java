@@ -6,8 +6,11 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -31,6 +34,9 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
      * documento del entrenador
      */
     private String documento;
+    
+    @ManyToMany 
+    private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
     
    //--------------------------------------------------------------------------
    //METODOS
@@ -58,6 +64,14 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
 
     public void setDocumento(String documento) {
         this.documento = documento;
+    }
+
+    public List<UsuarioEntity> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<UsuarioEntity> usuarios) {
+        this.usuarios = usuarios;
     }
     
     

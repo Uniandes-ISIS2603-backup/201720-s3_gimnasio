@@ -22,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -46,7 +47,7 @@ public class EntrenadorResource {
     
     @GET
     @Path("{id: \\d+}")
-    public EntrenadorDTO getpartedelcuerpo(@PathParam("id")Long id)throws BusinessLogicException
+    public EntrenadorDTO getEntrenador(@PathParam("id")Long id)throws BusinessLogicException
     {
         EntrenadorEntity en = entrenadorLogic.find(id);
         if(en!=null)
@@ -102,5 +103,17 @@ public class EntrenadorResource {
             throw new BusinessLogicException("no se pudo eliminaar ya que no existe");
         }  
     }
+    
+    @Path("{EntrenadorId: \\d+}/Usuarios")
+    public Class <EntrenadorUsuarioResource> getEntrenadorUsuarioResource (@PathParam("EntrenadorId") Long EntID){
+        EntrenadorEntity e = entrenadorLogic.find(EntID);
+        if (e == null)
+        {
+                        throw new WebApplicationException("El recurso /entrenadores/" + EntID + "/usuarios no existe.", 404);
+
+        }
+        return EntrenadorUsuarioResource.class;
+    }
+    
     
 }

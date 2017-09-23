@@ -7,7 +7,10 @@ package co.edu.uniandes.baco.gimnasio.entities;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -20,6 +23,9 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     private Boolean genero;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaDeNacimiento;
+    
+    @ManyToMany(mappedBy = "usuarios")
+    private List<EntrenadorEntity> entrenadores = new ArrayList();
 
     /**
      * @return the nombre
@@ -62,5 +68,15 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     public void setFechaDeNacimiento(Date fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
+
+    public List<EntrenadorEntity> getEntrenadores() {
+        return entrenadores;
+    }
+
+    public void setEntrenadores(List<EntrenadorEntity> entrenadores) {
+        this.entrenadores = entrenadores;
+    }
+    
+    
     
 }

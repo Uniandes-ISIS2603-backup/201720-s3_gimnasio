@@ -152,5 +152,6 @@ public class GimnasioResource {
         }
         return list;
     }
+    
 
 }
