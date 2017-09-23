@@ -1,6 +1,8 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author jc.bojaca
@@ -34,6 +36,22 @@ public class EjercicioDTO {
         ent.setTamanioParticiones(tamanioParticiones);
         ent.setRepeticionesPorParticion(repeticionesPorParticion);
         return ent;
+    }
+    
+    public final static List<EjercicioEntity> listEntity(List<EjercicioDTO> dtos){
+        List<EjercicioEntity> resp = new ArrayList<>();
+        dtos.forEach((dto) -> {
+            resp.add(dto.toEntity());
+        });
+        return resp;
+    }
+    
+    public final static List<EjercicioDTO> listDTO(List<EjercicioEntity> entity){
+        List<EjercicioDTO> resp=new ArrayList<>();
+        entity.forEach((ent) -> {
+            resp.add(new EjercicioDTO(ent));
+        });
+        return resp;
     }
 
     public String getTipo() {
