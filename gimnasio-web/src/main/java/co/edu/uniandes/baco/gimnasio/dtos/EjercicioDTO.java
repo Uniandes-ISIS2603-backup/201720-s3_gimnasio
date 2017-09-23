@@ -8,6 +8,7 @@ import java.util.List;
  * @author jc.bojaca
  */
 public class EjercicioDTO {
+    private Long id;
     private String tipo;
     private String descripcion;
     private String explicacion;
@@ -19,6 +20,7 @@ public class EjercicioDTO {
     public EjercicioDTO(){}
     
     public EjercicioDTO(EjercicioEntity entity){
+        this.id=entity.getId();
         this.descripcion = entity.getDescripcion();
         this.explicacion = entity.getExplicacion();
         this.duracion = entity.getDuracion();
@@ -54,6 +56,16 @@ public class EjercicioDTO {
         return resp;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    
+    
     public String getTipo() {
         return tipo;
     }
