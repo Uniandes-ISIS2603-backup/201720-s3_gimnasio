@@ -10,6 +10,8 @@ import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.MedidaPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -116,15 +118,19 @@ public class MedidaPersistenceTest {
      */
     @Test
     public void createMedidaTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        MedidaEntity newEntity = factory.manufacturePojo(MedidaEntity.class);
-        MedidaEntity result = medidaPersitence.crete(newEntity);
-
-       Assert.assertNotNull(result);
-
-        MedidaEntity entity = em.find(MedidaEntity.class, result.getId());
-
-        Assert.assertEquals(newEntity.getMedida(), entity.getMedida());
+        try {
+            PodamFactory factory = new PodamFactoryImpl();
+            MedidaEntity newEntity = factory.manufacturePojo(MedidaEntity.class);
+            MedidaEntity result = medidaPersitence.create(newEntity);
+            
+            Assert.assertNotNull(result);
+            
+            MedidaEntity entity = em.find(MedidaEntity.class, result.getId());
+            
+            Assert.assertEquals(newEntity.getMedida(), entity.getMedida());
+        } catch (Exception ex) {
+            Logger.getLogger(MedidaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**
@@ -133,10 +139,14 @@ public class MedidaPersistenceTest {
     @Test
     public void getMedida()
     {
-    MedidaEntity entity = data.get(0);
-    MedidaEntity newEntity = medidaPersitence.find(entity.getId());
-    Assert.assertNotNull(newEntity);
-    Assert.assertEquals(entity.getId(), newEntity.getId());
+        try {
+            MedidaEntity entity = data.get(0);
+            MedidaEntity newEntity = medidaPersitence.find(entity.getId());
+            Assert.assertNotNull(newEntity);
+            Assert.assertEquals(entity.getId(), newEntity.getId());
+        } catch (Exception ex) {
+            Logger.getLogger(MedidaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**
@@ -145,17 +155,21 @@ public class MedidaPersistenceTest {
     @Test
     public void updateMedida()
     {
-    MedidaEntity entity = data.get(0);
-    PodamFactory factory = new PodamFactoryImpl();
-    MedidaEntity newEntity = factory.manufacturePojo(MedidaEntity.class);
-
-    newEntity.setId(entity.getId());
-
-    medidaPersitence.update(newEntity);
-
-    MedidaEntity resp = em.find(MedidaEntity.class, entity.getId());
-
-            Assert.assertEquals(newEntity.getId(), resp.getId());  
+        try {
+            MedidaEntity entity = data.get(0);
+            PodamFactory factory = new PodamFactoryImpl();
+            MedidaEntity newEntity = factory.manufacturePojo(MedidaEntity.class);
+            
+            newEntity.setId(entity.getId());
+            
+            medidaPersitence.update(newEntity);
+            
+            MedidaEntity resp = em.find(MedidaEntity.class, entity.getId());
+              
+            Assert.assertEquals(newEntity.getId(), resp.getId());
+        } catch (Exception ex) {
+            Logger.getLogger(MedidaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     /**
      * borra una rutina 
@@ -163,10 +177,14 @@ public class MedidaPersistenceTest {
     @Test
     public void deleteMedida()
     {
-    MedidaEntity entity = data.get(0);
-    medidaPersitence.delete(entity.getId());
-    MedidaEntity deleted = em.find(MedidaEntity.class, entity.getId());
-    Assert.assertNull(deleted);
+        try {
+            MedidaEntity entity = data.get(0);
+            medidaPersitence.delete(entity.getId());
+            MedidaEntity deleted = em.find(MedidaEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        } catch (Exception ex) {
+            Logger.getLogger(MedidaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

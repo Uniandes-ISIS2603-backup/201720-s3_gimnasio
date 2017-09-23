@@ -7,10 +7,11 @@ package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
-import co.edu.uniandes.baco.gimnasio.persistence.MedidaPersistence;
 import co.edu.uniandes.baco.gimnasio.persistence.ParteDelCuerpoPersitence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -96,24 +97,32 @@ public class ParteDelCuerpoPersitenceTest {
      */
     @Test
     public void createParteDelCuerpoTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        PartesDelCuerpoEntity newEntity = factory.manufacturePojo(PartesDelCuerpoEntity.class);
-        PartesDelCuerpoEntity result = pcpersitance.create(newEntity);
-
-       Assert.assertNotNull(result);
-
-        PartesDelCuerpoEntity entity = em.find(PartesDelCuerpoEntity.class, result.getId());
-
-        Assert.assertEquals(newEntity.getPartedelcuerpo(), entity.getPartedelcuerpo());
+        try {
+            PodamFactory factory = new PodamFactoryImpl();
+            PartesDelCuerpoEntity newEntity = factory.manufacturePojo(PartesDelCuerpoEntity.class);
+            PartesDelCuerpoEntity result = pcpersitance.create(newEntity);
+            
+            Assert.assertNotNull(result);
+            
+            PartesDelCuerpoEntity entity = em.find(PartesDelCuerpoEntity.class, result.getId());
+            
+            Assert.assertEquals(newEntity.getPartedelcuerpo(), entity.getPartedelcuerpo());
+        } catch (Exception ex) {
+            Logger.getLogger(ParteDelCuerpoPersitenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Test
     public void getParteDelCuerpo()
     {
-    PartesDelCuerpoEntity entity = data.get(0);
-    PartesDelCuerpoEntity newEntity = pcpersitance.find(entity.getId());
-    Assert.assertNotNull(newEntity);
-    Assert.assertEquals(entity.getId(), newEntity.getId());
+        try {
+            PartesDelCuerpoEntity entity = data.get(0);
+            PartesDelCuerpoEntity newEntity = pcpersitance.find(entity.getId());
+            Assert.assertNotNull(newEntity);
+            Assert.assertEquals(entity.getId(), newEntity.getId());
+        } catch (Exception ex) {
+            Logger.getLogger(ParteDelCuerpoPersitenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**
@@ -122,17 +131,21 @@ public class ParteDelCuerpoPersitenceTest {
     @Test
     public void updateParteDelCuerpo()
     {
-    PartesDelCuerpoEntity entity = data.get(0);
-    PodamFactory factory = new PodamFactoryImpl();
-    PartesDelCuerpoEntity newEntity = factory.manufacturePojo(PartesDelCuerpoEntity.class);
-
-    newEntity.setId(entity.getId());
-
-    pcpersitance.update(newEntity);
-
-    MedidaEntity resp = em.find(MedidaEntity.class, entity.getId());
-
-    Assert.assertEquals(newEntity.getId(), resp.getId());  
+        try {
+            PartesDelCuerpoEntity entity = data.get(0);
+            PodamFactory factory = new PodamFactoryImpl();
+            PartesDelCuerpoEntity newEntity = factory.manufacturePojo(PartesDelCuerpoEntity.class);
+            
+            newEntity.setId(entity.getId());
+            
+            pcpersitance.update(newEntity);
+            
+            MedidaEntity resp = em.find(MedidaEntity.class, entity.getId());
+              
+            Assert.assertEquals(newEntity.getId(), resp.getId());
+        } catch (Exception ex) {
+            Logger.getLogger(ParteDelCuerpoPersitenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     
@@ -142,10 +155,14 @@ public class ParteDelCuerpoPersitenceTest {
     @Test
     public void deleteMedida()
     {
-    PartesDelCuerpoEntity entity = data.get(0);
-    pcpersitance.delete(entity.getId());
-    PartesDelCuerpoEntity deleted = em.find(PartesDelCuerpoEntity.class, entity.getId());
-    Assert.assertNull(deleted);
+        try {
+            PartesDelCuerpoEntity entity = data.get(0);
+            pcpersitance.delete(entity.getId());
+            PartesDelCuerpoEntity deleted = em.find(PartesDelCuerpoEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        } catch (Exception ex) {
+            Logger.getLogger(ParteDelCuerpoPersitenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

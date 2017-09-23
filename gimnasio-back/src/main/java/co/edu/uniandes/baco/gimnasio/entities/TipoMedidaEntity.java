@@ -12,8 +12,7 @@ import javax.persistence.Entity;
  * @author t.kavanagh
  **/
 @Entity
-public class TipoMedidaEntity extends BaseEntity implements Serializable
-{
+public class TipoMedidaEntity extends BaseEntity implements Serializable{
     private String descripcion;
     private String unidad;
 

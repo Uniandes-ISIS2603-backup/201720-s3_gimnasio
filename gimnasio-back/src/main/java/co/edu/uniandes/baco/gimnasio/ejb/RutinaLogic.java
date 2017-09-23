@@ -3,19 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.baco.gimnasio.persistence;
+package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
-import javax.ejb.Stateless;
 
 /**
  *
- * @author jp.romero12
+ * @author jc.bojaca
  */
-@Stateless
-public class RutinaPersistence extends BasePersistence<RutinaEntity>{
-
-    public RutinaPersistence() {
-        super(RutinaEntity.class);
-    }
+public class RutinaLogic extends BaseLogic<RutinaEntity>{
+    
 }

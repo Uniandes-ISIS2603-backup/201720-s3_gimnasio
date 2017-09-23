@@ -9,6 +9,8 @@ import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.RutinaPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -117,15 +119,19 @@ public class RutinaPersistenceTest {
      */
     @Test
     public void createRutinaTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        RutinaEntity newEntity = factory.manufacturePojo(RutinaEntity.class);
-        RutinaEntity result = rutinaPersistence.create(newEntity);
-
-        Assert.assertNotNull(result);
-
-        RutinaEntity entity = em.find(RutinaEntity.class, result.getId());
-
-        Assert.assertEquals(newEntity.getFechaInicio(), entity.getFechaInicio());
+        try {
+            PodamFactory factory = new PodamFactoryImpl();
+            RutinaEntity newEntity = factory.manufacturePojo(RutinaEntity.class);
+            RutinaEntity result = rutinaPersistence.create(newEntity);
+            
+            Assert.assertNotNull(result);
+            
+            RutinaEntity entity = em.find(RutinaEntity.class, result.getId());
+            
+            Assert.assertEquals(newEntity.getFechaInicio(), entity.getFechaInicio());
+        } catch (Exception ex) {
+            Logger.getLogger(RutinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -135,16 +141,20 @@ public class RutinaPersistenceTest {
      */
     @Test
     public void geRutinaTest() {
-        List<RutinaEntity> list = rutinaPersistence.findAll();
-        Assert.assertEquals(data.size(), list.size());
-        for (RutinaEntity ent : list) {
-            boolean found = false;
-            for (RutinaEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
+        try {
+            List<RutinaEntity> list = rutinaPersistence.findAll();
+            Assert.assertEquals(data.size(), list.size());
+            for (RutinaEntity ent : list) {
+                boolean found = false;
+                for (RutinaEntity entity : data) {
+                    if (ent.getId().equals(entity.getId())) {
+                        found = true;
+                    }
                 }
+                Assert.assertTrue(found);
             }
-            Assert.assertTrue(found);
+        } catch (Exception ex) {
+            Logger.getLogger(RutinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -155,11 +165,15 @@ public class RutinaPersistenceTest {
      */
     @Test
     public void getRutinaTest() {
-        RutinaEntity entity = data.get(0);
-        RutinaEntity newEntity = rutinaPersistence.find(entity.getId());
-        
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getFechaInicio(), entity.getFechaInicio());
+        try {
+            RutinaEntity entity = data.get(0);
+            RutinaEntity newEntity = rutinaPersistence.find(entity.getId());
+            
+            Assert.assertNotNull(newEntity);
+            Assert.assertEquals(newEntity.getFechaInicio(), entity.getFechaInicio());
+        } catch (Exception ex) {
+            Logger.getLogger(RutinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -169,10 +183,14 @@ public class RutinaPersistenceTest {
      */
     @Test
     public void deleteRutinaTest() {
-        RutinaEntity entity = data.get(0);
-        rutinaPersistence.delete(entity.getId());
-        RutinaEntity deleted = em.find(RutinaEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        try {
+            RutinaEntity entity = data.get(0);
+            rutinaPersistence.delete(entity.getId());
+            RutinaEntity deleted = em.find(RutinaEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        } catch (Exception ex) {
+            Logger.getLogger(RutinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -182,17 +200,21 @@ public class RutinaPersistenceTest {
      */
     @Test
     public void updateRutinaTest() {
-        RutinaEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        RutinaEntity newEntity = factory.manufacturePojo(RutinaEntity.class);
-
-        newEntity.setId(entity.getId());
-
-        rutinaPersistence.update(newEntity);
-
-        RutinaEntity resp = em.find(RutinaEntity.class, entity.getId());
-
-        Assert.assertEquals(newEntity.getFechaInicio(), resp.getFechaInicio());
+        try {
+            RutinaEntity entity = data.get(0);
+            PodamFactory factory = new PodamFactoryImpl();
+            RutinaEntity newEntity = factory.manufacturePojo(RutinaEntity.class);
+            
+            newEntity.setId(entity.getId());
+            
+            rutinaPersistence.update(newEntity);
+            
+            RutinaEntity resp = em.find(RutinaEntity.class, entity.getId());
+            
+            Assert.assertEquals(newEntity.getFechaInicio(), resp.getFechaInicio());
+        } catch (Exception ex) {
+            Logger.getLogger(RutinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

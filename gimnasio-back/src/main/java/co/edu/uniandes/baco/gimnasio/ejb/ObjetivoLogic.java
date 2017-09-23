@@ -17,12 +17,6 @@ import javax.ejb.Stateless;
 @Stateless
 public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
 
-    /**
-     *
-     * @param entity
-     * @return
-     * @throws BusinessLogicException
-     */
     @Override
     public ObjetivoEntity create(ObjetivoEntity entity)throws BusinessLogicException, Exception{
         if(null!=((ObjetivoPersistence)persistence).findByTipo(entity.getTipo()))

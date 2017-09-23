@@ -1,9 +1,7 @@
 package co.edu.uniandes.baco.gimnasio.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
-import static co.edu.uniandes.baco.gimnasio.persistence.BasePersistence.LOGGER;
 import java.util.List;
-import java.util.logging.Level;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 

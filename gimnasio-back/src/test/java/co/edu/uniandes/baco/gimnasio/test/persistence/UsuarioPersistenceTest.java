@@ -9,6 +9,8 @@ import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.UsuarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -117,15 +119,19 @@ public class UsuarioPersistenceTest {
      */
     @Test
     public void createUsuarioTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
-        UsuarioEntity result = usuarioPersistence.create(newEntity);
-
-        Assert.assertNotNull(result);
-
-        UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
-
-        Assert.assertEquals(newEntity.getFechaDeNacimiento().getDate(), entity.getFechaDeNacimiento().getDate());
+        try {
+            PodamFactory factory = new PodamFactoryImpl();
+            UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
+            UsuarioEntity result = usuarioPersistence.create(newEntity);
+            
+            Assert.assertNotNull(result);
+            
+            UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
+            
+            Assert.assertEquals(newEntity.getFechaDeNacimiento().getDate(), entity.getFechaDeNacimiento().getDate());
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -135,16 +141,20 @@ public class UsuarioPersistenceTest {
      */
     @Test
     public void geUsuarioTest() {
-        List<UsuarioEntity> list = usuarioPersistence.findAll();
-        Assert.assertEquals(data.size(), list.size());
-        for (UsuarioEntity ent : list) {
-            boolean found = false;
-            for (UsuarioEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
+        try {
+            List<UsuarioEntity> list = usuarioPersistence.findAll();
+            Assert.assertEquals(data.size(), list.size());
+            for (UsuarioEntity ent : list) {
+                boolean found = false;
+                for (UsuarioEntity entity : data) {
+                    if (ent.getId().equals(entity.getId())) {
+                        found = true;
+                    }
                 }
+                Assert.assertTrue(found);
             }
-            Assert.assertTrue(found);
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -155,11 +165,15 @@ public class UsuarioPersistenceTest {
      */
     @Test
     public void getUsuarioTest() {
-        UsuarioEntity entity = data.get(0);
-        UsuarioEntity newEntity = usuarioPersistence.find(entity.getId());
-        
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getFechaDeNacimiento().getDate(), entity.getFechaDeNacimiento().getDate());
+        try {
+            UsuarioEntity entity = data.get(0);
+            UsuarioEntity newEntity = usuarioPersistence.find(entity.getId());
+            
+            Assert.assertNotNull(newEntity);
+            Assert.assertEquals(newEntity.getFechaDeNacimiento().getDate(), entity.getFechaDeNacimiento().getDate());
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -169,10 +183,14 @@ public class UsuarioPersistenceTest {
      */
     @Test
     public void deleteUsuarioTest() {
-        UsuarioEntity entity = data.get(0);
-        usuarioPersistence.delete(entity.getId());
-        UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        try {
+            UsuarioEntity entity = data.get(0);
+            usuarioPersistence.delete(entity.getId());
+            UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -182,17 +200,21 @@ public class UsuarioPersistenceTest {
      */
     @Test
     public void updateRutinaTest() {
-        UsuarioEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
-
-        newEntity.setId(entity.getId());
-
-        usuarioPersistence.update(newEntity);
-
-        UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
-
-        Assert.assertEquals(newEntity.getFechaDeNacimiento().getDate(), resp.getFechaDeNacimiento().getDate());
+        try {
+            UsuarioEntity entity = data.get(0);
+            PodamFactory factory = new PodamFactoryImpl();
+            UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
+            
+            newEntity.setId(entity.getId());
+            
+            usuarioPersistence.update(newEntity);
+            
+            UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
+            
+            Assert.assertEquals(newEntity.getFechaDeNacimiento().getDate(), resp.getFechaDeNacimiento().getDate());
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

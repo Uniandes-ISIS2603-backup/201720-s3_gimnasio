@@ -27,7 +27,6 @@ import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.GimnasioPersistence;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -50,7 +49,7 @@ public class GimnasioLogic {
      * @return
      * @throws BusinessLogicException
      */
-    public GimnasioEntity createGimnasio(GimnasioEntity entity) throws BusinessLogicException {
+    public GimnasioEntity createGimnasio(GimnasioEntity entity) throws BusinessLogicException, Exception {
         LOGGER.info("Inicia proceso de creación de Gimnasio");
         // Invoca la persistencia para crear la Gimnasio
         persistence.create(entity);
@@ -64,7 +63,7 @@ public class GimnasioLogic {
      *
      * @return una lista de Gimnasioes.
      */
-    public List<GimnasioEntity> getGimnasios() {
+    public List<GimnasioEntity> getGimnasios() throws Exception {
         LOGGER.info("Inicia proceso de consultar todas las Gimnasioes");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
         List<GimnasioEntity> Gimnasios = persistence.findAll();

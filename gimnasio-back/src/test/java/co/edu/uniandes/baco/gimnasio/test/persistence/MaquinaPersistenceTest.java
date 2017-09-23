@@ -9,6 +9,8 @@ import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.MaquinaPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -114,13 +116,17 @@ public class MaquinaPersistenceTest
     @Test
     public void createMedidaUsuarioTest() 
     {
-        PodamFactory factory = new PodamFactoryImpl();
-        MaquinaEntity newEntity = factory.manufacturePojo(MaquinaEntity.class);
-        MaquinaEntity result = MaquinaPersistence.create(newEntity);
-
-        Assert.assertNotNull(result);
-
-        MaquinaEntity entity = em.find(MaquinaEntity.class, result.getId());
+        try {
+            PodamFactory factory = new PodamFactoryImpl();
+            MaquinaEntity newEntity = factory.manufacturePojo(MaquinaEntity.class);
+            MaquinaEntity result = MaquinaPersistence.create(newEntity);
+            
+            Assert.assertNotNull(result);
+            
+            MaquinaEntity entity = em.find(MaquinaEntity.class, result.getId());
+        } catch (Exception ex) {
+            Logger.getLogger(MaquinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }
@@ -131,16 +137,20 @@ public class MaquinaPersistenceTest
     @Test
     public void listaMedidaUsuarioTest() 
     {
-        List<MaquinaEntity> list = MaquinaPersistence.findAll();
-        Assert.assertEquals(data.size(), list.size());
-        
-        for(MaquinaEntity ent : list) {
-            boolean found = false;
-            for (MaquinaEntity entity : data)                 
-                if (ent.getId().equals(entity.getId())) 
-                    found = true;               
+        try {
+            List<MaquinaEntity> list = MaquinaPersistence.findAll();
+            Assert.assertEquals(data.size(), list.size());               
             
-            Assert.assertTrue(found);
+            for(MaquinaEntity ent : list) {
+                boolean found = false;
+                for (MaquinaEntity entity : data)
+                    if (ent.getId().equals(entity.getId()))
+                        found = true;
+                
+                Assert.assertTrue(found);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(MaquinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -150,10 +160,14 @@ public class MaquinaPersistenceTest
     @Test
     public void consultarMedidaUsuarioTest() 
     {
-        MaquinaEntity entity = data.get(0);
-        MaquinaEntity newEntity =  MaquinaPersistence.find(entity.getId());
-        
-        Assert.assertNotNull(newEntity);
+        try {
+            MaquinaEntity entity = data.get(0);
+            MaquinaEntity newEntity =  MaquinaPersistence.find(entity.getId());
+            
+            Assert.assertNotNull(newEntity);
+        } catch (Exception ex) {
+            Logger.getLogger(MaquinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
     
@@ -163,10 +177,14 @@ public class MaquinaPersistenceTest
     @Test
     public void deleteMaquinaEntityTest() 
     {
-        MaquinaEntity entity = data.get(0);
-        MaquinaPersistence.delete(entity.getId());
-        MaquinaEntity deleted = em.find(MaquinaEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        try {
+            MaquinaEntity entity = data.get(0);
+            MaquinaPersistence.delete(entity.getId());
+            MaquinaEntity deleted = em.find(MaquinaEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        } catch (Exception ex) {
+            Logger.getLogger(MaquinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /** 
@@ -174,15 +192,19 @@ public class MaquinaPersistenceTest
      */
      @Test
     public void updateMedidaUsuarioTest() {
-        MaquinaEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        MaquinaEntity newEntity = factory.manufacturePojo(MaquinaEntity.class);
-
-        newEntity.setId(entity.getId());
-
-        MaquinaPersistence.update(newEntity);
-
-        MaquinaEntity resp = em.find(MaquinaEntity.class, entity.getId());
+        try {
+            MaquinaEntity entity = data.get(0);
+            PodamFactory factory = new PodamFactoryImpl();
+            MaquinaEntity newEntity = factory.manufacturePojo(MaquinaEntity.class);
+            
+            newEntity.setId(entity.getId());
+            
+            MaquinaPersistence.update(newEntity);
+            
+            MaquinaEntity resp = em.find(MaquinaEntity.class, entity.getId());
+        } catch (Exception ex) {
+            Logger.getLogger(MaquinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
       
     }

@@ -9,6 +9,8 @@ import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.EstadoPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -114,15 +116,19 @@ public class EstadoPersistenceTest {
      */
   @Test
     public void createEstadoTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        EstadoEntity newEntity = factory.manufacturePojo(EstadoEntity.class);
-        EstadoEntity result = estadoPersistence.create(newEntity);
-
-       Assert.assertNotNull(result);
-
-        EstadoEntity entity = em.find(EstadoEntity.class, result.getId());
-
-        Assert.assertEquals(newEntity.getId(), entity.getId());
+        try {
+            PodamFactory factory = new PodamFactoryImpl();
+            EstadoEntity newEntity = factory.manufacturePojo(EstadoEntity.class);
+            EstadoEntity result = estadoPersistence.create(newEntity);
+            
+            Assert.assertNotNull(result);
+            
+            EstadoEntity entity = em.find(EstadoEntity.class, result.getId());
+            
+            Assert.assertEquals(newEntity.getId(), entity.getId());
+        } catch (Exception ex) {
+            Logger.getLogger(EstadoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -131,10 +137,14 @@ public class EstadoPersistenceTest {
     @Test
     public void getEstado()
     {
-    EstadoEntity entity = data.get(0);
-    EstadoEntity newEntity = estadoPersistence.find(entity.getId());
-    Assert.assertNotNull(newEntity);
-    Assert.assertEquals(entity.getId(), newEntity.getId());
+        try {
+            EstadoEntity entity = data.get(0);
+            EstadoEntity newEntity = estadoPersistence.find(entity.getId());
+            Assert.assertNotNull(newEntity);
+            Assert.assertEquals(entity.getId(), newEntity.getId());
+        } catch (Exception ex) {
+            Logger.getLogger(EstadoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -143,17 +153,21 @@ public class EstadoPersistenceTest {
 @Test
     public void updateMedida()
     {
-    EstadoEntity entity = data.get(0);
-    PodamFactory factory = new PodamFactoryImpl();
-    EstadoEntity newEntity = factory.manufacturePojo(EstadoEntity.class);
-
-    newEntity.setId(entity.getId());
-
-    estadoPersistence.update(newEntity);
-
-    EstadoEntity resp = em.find(EstadoEntity.class, entity.getId());
-
-    Assert.assertEquals(newEntity.getId(), resp.getId());  
+        try {
+            EstadoEntity entity = data.get(0);
+            PodamFactory factory = new PodamFactoryImpl();
+            EstadoEntity newEntity = factory.manufacturePojo(EstadoEntity.class);
+            
+            newEntity.setId(entity.getId());
+            
+            estadoPersistence.update(newEntity);
+            
+            EstadoEntity resp = em.find(EstadoEntity.class, entity.getId());
+              
+            Assert.assertEquals(newEntity.getId(), resp.getId());
+        } catch (Exception ex) {
+            Logger.getLogger(EstadoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -162,10 +176,14 @@ public class EstadoPersistenceTest {
     @Test
     public void deleteEstado()
     {
-    EstadoEntity entity = data.get(0);
-    estadoPersistence.delete(entity.getId());
-    EstadoEntity deleted = em.find(EstadoEntity.class, entity.getId());
-    Assert.assertNull(deleted);
+        try {
+            EstadoEntity entity = data.get(0);
+            estadoPersistence.delete(entity.getId());
+            EstadoEntity deleted = em.find(EstadoEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        } catch (Exception ex) {
+            Logger.getLogger(EstadoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

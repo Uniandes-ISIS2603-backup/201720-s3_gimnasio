@@ -18,35 +18,12 @@ import javax.inject.Inject;
  * @author m.sicard10
  */
 @Stateless
-public class EntrenadorLogic {
-    @Inject
-    private EntrenadorPersistence persistence;
+public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
     
-    public EntrenadorEntity createEntrenador(EntrenadorEntity entity) throws BusinessLogicException
+    public EntrenadorEntity createEntrenador(EntrenadorEntity entity) throws  Exception
     {
-        if(persistence.findByDocumento(entity.getDocumento())== null)
-        return persistence.create(entity);
-        else{
+        if(((EntrenadorPersistence)persistence).findByDocumento(entity.getDocumento())!= null)
             throw new BusinessLogicException("ya exixte un entrenador con ese");
-        }
-    }
-    
-    public EntrenadorEntity find(long id){
-        return persistence.find(id);
-    }
-    
-    public EntrenadorEntity update(EntrenadorEntity entity) throws BusinessLogicException{
-        if(persistence.find(entity.getId())==null)throw new BusinessLogicException("no exixte un entrenador con el id");
-        return persistence.update(entity);
-    }
-    
-    public void remove(long id){
-        persistence.delete(id);
-    }
-    
-    public List<EntrenadorEntity> getentrenadores()
-    {
-        return persistence.findAll();
-    }
-    
+        return super.create(entity);
+    }    
 }

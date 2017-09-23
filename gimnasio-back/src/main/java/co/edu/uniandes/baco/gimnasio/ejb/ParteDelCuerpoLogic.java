@@ -6,42 +6,13 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
-import co.edu.uniandes.baco.gimnasio.persistence.ParteDelCuerpoPersitence;
-import java.util.List;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
+
 
 /**
  *
  * @author js.palacios437
  */
 @Stateless
-public class ParteDelCuerpoLogic {
-    @Inject
-    ParteDelCuerpoPersitence persistence;
-    
-    public PartesDelCuerpoEntity createParteDelCuerpo(PartesDelCuerpoEntity entity)
-    {
-        persistence.create(entity);
-        return entity;
-    }
-    
-    public PartesDelCuerpoEntity updateParteDelCuerpo(PartesDelCuerpoEntity entity)
-    {
-        return persistence.update(entity);
-    }
-    public void delete(Long id)
-    {
-        persistence.delete(id);
-    }
-    public PartesDelCuerpoEntity find(Long id)
-    {
-        return persistence.find(id);
-    }
-    public List<PartesDelCuerpoEntity> getPartesDelCuerpo()
-    {
-      List<PartesDelCuerpoEntity> lista = persistence.findall();
-      return lista;
-    }
-    
+public class ParteDelCuerpoLogic extends BaseLogic<PartesDelCuerpoEntity>{
 }
