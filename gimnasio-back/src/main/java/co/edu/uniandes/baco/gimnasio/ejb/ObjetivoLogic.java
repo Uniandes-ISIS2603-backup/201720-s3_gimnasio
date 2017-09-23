@@ -6,6 +6,8 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
 import javax.ejb.Stateless;
 
 /**
@@ -14,4 +16,18 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
+
+    /**
+     *
+     * @param entity
+     * @return
+     * @throws BusinessLogicException
+     */
+    @Override
+    public ObjetivoEntity create(ObjetivoEntity entity)throws BusinessLogicException, Exception{
+        if(null!=((ObjetivoPersistence)persistence).findByTipo(entity.getTipo()))
+            throw new BusinessLogicException("ya esiste un objetivo con ese tipo");
+        return super.create(entity); 
+    }
+    
 }

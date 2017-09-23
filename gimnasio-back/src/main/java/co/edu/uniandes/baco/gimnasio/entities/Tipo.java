@@ -16,5 +16,6 @@ public enum Tipo implements Serializable{
     anearobicos,
     flexibilidad,
     equilibrio,
-    relajacion
+    relajacion,
+    no_pertenece
 }

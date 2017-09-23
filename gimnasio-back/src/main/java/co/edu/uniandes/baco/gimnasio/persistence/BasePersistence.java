@@ -17,7 +17,7 @@ import javax.persistence.TypedQuery;
  * @param <T>
  */
 public abstract class BasePersistence<T extends BaseEntity> implements CRUD<T> {
-    private transient final Class entityClass;
+    protected final transient Class entityClass;
     protected static Logger LOGGER;
     
     @PersistenceContext(unitName = "gimnasioPU")
@@ -29,7 +29,7 @@ public abstract class BasePersistence<T extends BaseEntity> implements CRUD<T> {
     }
     
     @Override
-    public T create(final T entity){
+    public T create(final T entity)throws Exception{
         LOGGER.log(Level.INFO, "Creando un {0} nuevo", entityClass.getSimpleName());
         manager.persist(entity);
         manager.flush();
@@ -37,13 +37,13 @@ public abstract class BasePersistence<T extends BaseEntity> implements CRUD<T> {
     }
 
     @Override
-    public T find(final Long id){
+    public T find(final Long id)throws Exception{
         LOGGER.log(Level.INFO, "Consultando {0} con id={1}", new Object[]{entityClass.getSimpleName(), id});
         return (T) manager.find(entityClass, id);
     }
     
     @Override
-    public List<T> findAll(){
+    public List<T> findAll()throws Exception{
         LOGGER.log(Level.INFO, "Consultando todas los {0}s", entityClass.getSimpleName());
         @SuppressWarnings("JPQLValidation")
         TypedQuery query = manager.createQuery("select u from "+entityClass.getName()+" u", entityClass);
@@ -51,7 +51,7 @@ public abstract class BasePersistence<T extends BaseEntity> implements CRUD<T> {
     }
 
     @Override
-    public T update(final T entity) {
+    public T update(final T entity)throws Exception{
         LOGGER.log(Level.INFO, "Actualizando {0} con id={1}", new Object[]{entityClass.getSimpleName(), entity.getId()});
         T uptades=manager.merge(entity);
         manager.flush();
@@ -59,7 +59,7 @@ public abstract class BasePersistence<T extends BaseEntity> implements CRUD<T> {
     }
 
     @Override
-    public void delete(Long id){
+    public void delete(Long id)throws Exception{
         LOGGER.log(Level.INFO, "Borrando {0} con id={1}", new Object[]{entityClass.getSimpleName(), id});
         T entity=find(id);
         manager.remove(entity);

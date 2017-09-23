@@ -1,6 +1,7 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.Tipo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class EjercicioDTO {
     
     public EjercicioDTO(EjercicioEntity entity){
         this.id=entity.getId();
+        this.tipo=entity.getTipo().name();
         this.descripcion = entity.getDescripcion();
         this.explicacion = entity.getExplicacion();
         this.duracion = entity.getDuracion();
@@ -37,6 +39,11 @@ public class EjercicioDTO {
         ent.setSeries(series);
         ent.setTamanioParticiones(tamanioParticiones);
         ent.setRepeticionesPorParticion(repeticionesPorParticion);
+        try{
+            ent.setTipo(Tipo.valueOf(tipo));
+        }catch(java.lang.IllegalArgumentException e){
+            ent.setTipo(null);
+        }
         return ent;
     }
     

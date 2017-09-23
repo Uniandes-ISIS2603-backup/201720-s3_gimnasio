@@ -4,6 +4,8 @@ import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.EjercicioPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -113,20 +115,24 @@ public class EjercicioPersistenceTest {
      */
     @Test
     public void createEjercicioTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        EjercicioEntity newEntity = factory.manufacturePojo(EjercicioEntity.class);
-        EjercicioEntity result = ejercicioPersistence.create(newEntity);
-
-        Assert.assertNotNull(result);
-
-        EjercicioEntity entity = em.find(EjercicioEntity.class, result.getId());
-
-        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
-        Assert.assertEquals(newEntity.getExplicacion(), entity.getExplicacion());
-        Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());
-        Assert.assertEquals(newEntity.getSeries(), entity.getSeries());
-        Assert.assertEquals(newEntity.getTamanioParticiones(), entity.getTamanioParticiones());
-        Assert.assertEquals(newEntity.getRepeticionesPorParticion(), entity.getRepeticionesPorParticion());
+        try {
+            PodamFactory factory = new PodamFactoryImpl();
+            EjercicioEntity newEntity = factory.manufacturePojo(EjercicioEntity.class);
+            EjercicioEntity result = ejercicioPersistence.create(newEntity);
+            
+            Assert.assertNotNull(result);
+            
+            EjercicioEntity entity = em.find(EjercicioEntity.class, result.getId());
+            
+            Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
+            Assert.assertEquals(newEntity.getExplicacion(), entity.getExplicacion());
+            Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());
+            Assert.assertEquals(newEntity.getSeries(), entity.getSeries());
+            Assert.assertEquals(newEntity.getTamanioParticiones(), entity.getTamanioParticiones());
+            Assert.assertEquals(newEntity.getRepeticionesPorParticion(), entity.getRepeticionesPorParticion());
+        } catch (Exception ex) {
+            Logger.getLogger(EjercicioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -136,16 +142,20 @@ public class EjercicioPersistenceTest {
      */
     @Test
     public void geEjerciciosTest() {
-        List<EjercicioEntity> list = ejercicioPersistence.findAll();
-        Assert.assertEquals(data.size(), list.size());
-        for (EjercicioEntity ent : list) {
-            boolean found = false;
-            for (EjercicioEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
+        try {
+            List<EjercicioEntity> list = ejercicioPersistence.findAll();
+            Assert.assertEquals(data.size(), list.size());
+            for (EjercicioEntity ent : list) {
+                boolean found = false;
+                for (EjercicioEntity entity : data) {
+                    if (ent.getId().equals(entity.getId())) {
+                        found = true;
+                    }
                 }
+                Assert.assertTrue(found);
             }
-            Assert.assertTrue(found);
+        } catch (Exception ex) {
+            Logger.getLogger(EjercicioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -156,17 +166,21 @@ public class EjercicioPersistenceTest {
      */
     @Test
     public void getEjercicioTest() {
-        EjercicioEntity entity = data.get(0);
-        EjercicioEntity newEntity = ejercicioPersistence.find(entity.getId());
-        
-        Assert.assertNotNull(newEntity);
-        
-        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
-        Assert.assertEquals(newEntity.getExplicacion(), entity.getExplicacion());
-        Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());
-        Assert.assertEquals(newEntity.getSeries(), entity.getSeries());
-        Assert.assertEquals(newEntity.getTamanioParticiones(), entity.getTamanioParticiones());
-        Assert.assertEquals(newEntity.getRepeticionesPorParticion(), entity.getRepeticionesPorParticion());
+        try {
+            EjercicioEntity entity = data.get(0);
+            EjercicioEntity newEntity = ejercicioPersistence.find(entity.getId());
+            
+            Assert.assertNotNull(newEntity);
+            
+            Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
+            Assert.assertEquals(newEntity.getExplicacion(), entity.getExplicacion());
+            Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());
+            Assert.assertEquals(newEntity.getSeries(), entity.getSeries());
+            Assert.assertEquals(newEntity.getTamanioParticiones(), entity.getTamanioParticiones());
+            Assert.assertEquals(newEntity.getRepeticionesPorParticion(), entity.getRepeticionesPorParticion());
+        } catch (Exception ex) {
+            Logger.getLogger(EjercicioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -176,10 +190,14 @@ public class EjercicioPersistenceTest {
      */
     @Test
     public void deleteEjercicioTest() {
-        EjercicioEntity entity = data.get(0);
-        ejercicioPersistence.delete(entity.getId());
-        EjercicioEntity deleted = em.find(EjercicioEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        try {
+            EjercicioEntity entity = data.get(0);
+            ejercicioPersistence.delete(entity.getId());
+            EjercicioEntity deleted = em.find(EjercicioEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        } catch (Exception ex) {
+            Logger.getLogger(EjercicioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -189,22 +207,26 @@ public class EjercicioPersistenceTest {
      */
     @Test
     public void updateEjercicioTest() {
-        EjercicioEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        EjercicioEntity newEntity = factory.manufacturePojo(EjercicioEntity.class);
-
-        newEntity.setId(entity.getId());
-
-        ejercicioPersistence.update(newEntity);
-
-        EjercicioEntity resp = em.find(EjercicioEntity.class, entity.getId());
-        entity=resp;
-
-        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
-        Assert.assertEquals(newEntity.getExplicacion(), entity.getExplicacion());
-        Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());
-        Assert.assertEquals(newEntity.getSeries(), entity.getSeries());
-        Assert.assertEquals(newEntity.getTamanioParticiones(), entity.getTamanioParticiones());
-        Assert.assertEquals(newEntity.getRepeticionesPorParticion(), entity.getRepeticionesPorParticion());
+        try {
+            EjercicioEntity entity = data.get(0);
+            PodamFactory factory = new PodamFactoryImpl();
+            EjercicioEntity newEntity = factory.manufacturePojo(EjercicioEntity.class);
+            
+            newEntity.setId(entity.getId());
+            
+            ejercicioPersistence.update(newEntity);
+            
+            EjercicioEntity resp = em.find(EjercicioEntity.class, entity.getId());
+            entity=resp;
+            
+            Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
+            Assert.assertEquals(newEntity.getExplicacion(), entity.getExplicacion());
+            Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());
+            Assert.assertEquals(newEntity.getSeries(), entity.getSeries());
+            Assert.assertEquals(newEntity.getTamanioParticiones(), entity.getTamanioParticiones());
+            Assert.assertEquals(newEntity.getRepeticionesPorParticion(), entity.getRepeticionesPorParticion());
+        } catch (Exception ex) {
+            Logger.getLogger(EjercicioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

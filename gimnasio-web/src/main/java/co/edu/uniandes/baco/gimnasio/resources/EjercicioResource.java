@@ -19,7 +19,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -34,24 +33,24 @@ public class EjercicioResource{
     private EjercicioLogic logic;
     
     @POST
-    public EjercicioDTO post(EjercicioDTO nuevo) throws BusinessLogicException{
+    public EjercicioDTO post(EjercicioDTO nuevo) throws BusinessLogicException, Exception{
         return new EjercicioDTO(logic.create(nuevo.toEntity()));
     }
     
     @GET
-    public List<EjercicioDTO> getAll(){
+    public List<EjercicioDTO> getAll() throws Exception{
         return EjercicioDTO.listDTO(logic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public EjercicioDTO get(@PathParam("id") long id){
+    public EjercicioDTO get(@PathParam("id") long id) throws Exception{
         return new EjercicioDTO(logic.find(id));
     }
     
     @PUT
     @Path("{id: \\d+}")
-    public EjercicioDTO put(@PathParam("id")long id, EjercicioDTO nuevo) throws BusinessLogicException{
+    public EjercicioDTO put(@PathParam("id")long id, EjercicioDTO nuevo) throws BusinessLogicException, Exception{
         EjercicioEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new EjercicioDTO(logic.update(entity));
@@ -59,7 +58,7 @@ public class EjercicioResource{
     
     @DELETE
     @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id){
+    public void delete(@PathParam("id") long id) throws Exception{
         logic.remove(id);
     }
 }
