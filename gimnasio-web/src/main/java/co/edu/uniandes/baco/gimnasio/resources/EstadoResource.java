@@ -41,18 +41,18 @@ public class EstadoResource {
  private  EstadoLogic estadologic;
  
      @POST
-    public EstadoDTO creat(EstadoDTO entity) throws BusinessLogicException
+    public EstadoDTO creat(EstadoDTO entity) throws Exception
     {
         EstadoEntity estadoentity = entity.toEntity();
-        EstadoEntity pcnew = estadologic.createEstado(estadoentity);
+        EstadoEntity pcnew = estadologic.create(estadoentity);
         return new EstadoDTO(pcnew);    
     }
 
     @GET
     @Path("{id: \\d+}")
-    public EstadoDTO getEstado(@PathParam("id")Long id)throws BusinessLogicException
+    public EstadoDTO getEstado(@PathParam("id")Long id)throws Exception
     {
-        EstadoEntity en = estadologic.getEstado(id);
+        EstadoEntity en = estadologic.find(id);
         if(en!=null)
         {
            return new EstadoDTO(en);
@@ -65,13 +65,13 @@ public class EstadoResource {
     }
         @PUT
     @Path("{id: \\d+}") 
-    public  EstadoDTO updateEstado(@PathParam("id") Long id,EstadoDTO estado)throws BusinessLogicException
+    public  EstadoDTO updateEstado(@PathParam("id") Long id,EstadoDTO estado)throws Exception
     {
-        EstadoEntity ent = estadologic.getEstado(id);
+        EstadoEntity ent = estadologic.find(id);
         if(ent!=null)
         {
           EstadoEntity en = estado.toEntity();
-          ent = estadologic.updateEstado(en);
+          ent = estadologic.update(en);
           return new EstadoDTO(en);
         }
         else
@@ -81,13 +81,13 @@ public class EstadoResource {
     }
         @DELETE
     @Path("{id: \\d+}") 
-    public void deleteEstado(@PathParam("id")Long id)throws BusinessLogicException
+    public void deleteEstado(@PathParam("id")Long id)throws Exception
     {
-              EstadoEntity ent = estadologic.getEstado(id);
+              EstadoEntity ent = estadologic.find(id);
         if(ent!=null)
         {
           
-          estadologic.deleteEstado(id);
+          estadologic.remove(id);
           
         }
         else

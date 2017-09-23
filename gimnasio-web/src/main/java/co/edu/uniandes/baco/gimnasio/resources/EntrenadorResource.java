@@ -38,7 +38,7 @@ public class EntrenadorResource {
     
     
     @POST
-    public EntrenadorDTO create(EntrenadorDTO p) throws BusinessLogicException
+    public EntrenadorDTO create(EntrenadorDTO p) throws Exception
     {
         EntrenadorEntity pcentity = p.toEntity();
         EntrenadorEntity pnew = entrenadorLogic.createEntrenador(pcentity);
@@ -47,7 +47,7 @@ public class EntrenadorResource {
     
     @GET
     @Path("{id: \\d+}")
-    public EntrenadorDTO getEntrenador(@PathParam("id")Long id)throws BusinessLogicException
+    public EntrenadorDTO getEntrenador(@PathParam("id")Long id)throws Exception
     {
         EntrenadorEntity en = entrenadorLogic.find(id);
         if(en!=null)
@@ -61,13 +61,13 @@ public class EntrenadorResource {
     }
     
     @GET
-    public List<EntrenadorDetailDTO> getEntrenadores() throws BusinessLogicException {
-        return listEntity2DetailDTO(entrenadorLogic.getentrenadores());
+    public List<EntrenadorDetailDTO> getEntrenadores() throws Exception {
+        return listEntity2DetailDTO(entrenadorLogic.findAll());
     }
     
     @PUT
     @Path("{id: \\d+}") 
-    public EntrenadorDetailDTO update(@PathParam("id")Long id, EntrenadorDetailDTO e) throws BusinessLogicException
+    public EntrenadorDetailDTO update(@PathParam("id")Long id, EntrenadorDetailDTO e) throws Exception
     {
         EntrenadorEntity ent = entrenadorLogic.find(id);
           if(ent!= null) {
@@ -89,7 +89,7 @@ public class EntrenadorResource {
     
      @DELETE
     @Path("{id: \\d+}") 
-    public void deleteEntreador(@PathParam("id")Long id)throws BusinessLogicException
+    public void deleteEntreador(@PathParam("id")Long id)throws Exception
     {
               EntrenadorEntity ent = entrenadorLogic.find(id);
         if(ent!=null)
@@ -105,7 +105,7 @@ public class EntrenadorResource {
     }
     
     @Path("{EntrenadorId: \\d+}/Usuarios")
-    public Class <EntrenadorUsuarioResource> getEntrenadorUsuarioResource (@PathParam("EntrenadorId") Long EntID){
+    public Class <EntrenadorUsuarioResource> getEntrenadorUsuarioResource (@PathParam("EntrenadorId") Long EntID) throws Exception{
         EntrenadorEntity e = entrenadorLogic.find(EntID);
         if (e == null)
         {

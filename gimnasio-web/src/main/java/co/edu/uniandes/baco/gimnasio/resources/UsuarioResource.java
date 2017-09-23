@@ -48,21 +48,21 @@ public class UsuarioResource {
      */
     
     @POST
-    public UsuarioDTO create(UsuarioDTO p)throws BusinessLogicException
+    public UsuarioDTO create(UsuarioDTO p)throws Exception
     {
         UsuarioEntity pcentity = p.toEntity();
-        UsuarioEntity pnew = usuarioLogic.createUsuario(pcentity);
+        UsuarioEntity pnew = usuarioLogic.create(pcentity);
         return new UsuarioDTO(pnew);
     }
     
     @GET
-    public List<UsuarioDetailDTO> getEntrenadores() throws BusinessLogicException {
-        return listEntity2DetailDTO(usuarioLogic.findall());
+    public List<UsuarioDetailDTO> getEntrenadores() throws Exception {
+        return listEntity2DetailDTO(usuarioLogic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public UsuarioDTO getUsuario(@PathParam("id")Long id) throws BusinessLogicException
+    public UsuarioDTO getUsuario(@PathParam("id")Long id) throws Exception
     {
         UsuarioEntity en = usuarioLogic.find(id);
         if(en!=null)
@@ -77,7 +77,7 @@ public class UsuarioResource {
     
     @DELETE
     @Path("{id: \\d+}") 
-    public void deleteUsuario(@PathParam("id")Long id)throws BusinessLogicException
+    public void deleteUsuario(@PathParam("id")Long id)throws Exception
     {
               UsuarioEntity ent = usuarioLogic.find(id);
         if(ent!=null)

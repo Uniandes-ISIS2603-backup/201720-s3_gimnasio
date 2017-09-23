@@ -15,9 +15,6 @@ import java.util.Date;
 public class EstadoDetailDTO extends EstadoDTO{
     
     private Date fecha;
-    private Double peso;
-    private Double presionSan;
-    private Integer ritmocardiaco;
     
     public EstadoDetailDTO()
     {
@@ -28,8 +25,6 @@ public class EstadoDetailDTO extends EstadoDTO{
     {
         super(entity);
         this.fecha = entity.getFecha();
-        this.peso = entity.getPeso();
-        this.presionSan = entity.getPresionSanguinea();
        // this.ritmocardiaco = entity.getRitmeoCardiaco();
         
     }
