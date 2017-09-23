@@ -6,8 +6,13 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 import javax.persistence.Entity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -15,6 +20,13 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class RutinaEntity extends BaseEntity implements Serializable{
+    @PodamExclude
+    @ManyToOne
+    UsuarioEntity usuario;
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "rutina")
+    List<EjercicioEntity> ejercicios=new ArrayList<>();
     
     private String tipo;
     
@@ -23,6 +35,21 @@ public class RutinaEntity extends BaseEntity implements Serializable{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fenchaFinal;
 
+    public List<EjercicioEntity> getEjercicios() {
+        return ejercicios;
+    }
+
+    public void setEjercicios(List<EjercicioEntity> ejercicios) {
+        this.ejercicios = ejercicios;
+    }
+    
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
     /**
      * @return the tipo
      */

@@ -7,9 +7,8 @@ package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import java.util.List;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -18,11 +17,20 @@ import javax.persistence.ManyToMany;
 @Entity
 public class MaquinaEntity extends BaseEntity implements Serializable{
     private String descripcion;
-    @ManyToMany(mappedBy = "maquinas")
+    
+    @OneToMany
     private List<TipoMedidaEntity> tipoMedida;
 
     public String getDescripcion() {
         return descripcion;
+    }
+
+    public List<TipoMedidaEntity> getTipoMedida() {
+        return tipoMedida;
+    }
+
+    public void setTipoMedida(List<TipoMedidaEntity> tipoMedida) {
+        this.tipoMedida = tipoMedida;
     }
 
     public void setDescripcion(String descripcion) {

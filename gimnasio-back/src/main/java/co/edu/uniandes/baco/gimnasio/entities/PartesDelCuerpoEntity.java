@@ -17,7 +17,16 @@ import javax.persistence.Entity;
 public class PartesDelCuerpoEntity extends BaseEntity implements Serializable{
     
     private String partedelcuerpo;
+    private String unidadMedida;
 
+    public String getUnidadMedida() {
+        return unidadMedida;
+    }
+
+    public void setUnidadMedida(String unidadMedida) {
+        this.unidadMedida = unidadMedida;
+    }
+    
     public String getPartedelcuerpo() {
         return partedelcuerpo;
     }

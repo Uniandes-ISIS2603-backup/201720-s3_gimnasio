@@ -6,7 +6,6 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import java.util.ArrayList;
 import java.util.List;
 

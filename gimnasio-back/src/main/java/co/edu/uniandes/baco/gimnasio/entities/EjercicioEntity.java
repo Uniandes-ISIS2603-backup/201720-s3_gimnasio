@@ -6,12 +6,14 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -29,12 +31,48 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
     private Integer repeticionesPorParticion;
     
     @PodamExclude
+    @ManyToOne
+    private RutinaEntity rutina;
+    
+    @PodamExclude
     @OneToMany(cascade = CascadeType.REFRESH, fetch= FetchType.EAGER)
-    private List<ObjetivoEntity> objetivos;
+    private List<ObjetivoEntity> objetivos=new ArrayList<>();
+    
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.REFRESH, fetch= FetchType.EAGER)
+    private List<PartesDelCuerpoEntity> partesDelCuerpo=new ArrayList<>();
+    
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.REFRESH, fetch= FetchType.EAGER)
+    private List<MaquinaEntity> maquinas=new ArrayList<>();
      
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
 
+    public List<MaquinaEntity> getMaquinas() {
+        return maquinas;
+    }
+
+    public void setMaquinas(List<MaquinaEntity> maquinas) {
+        this.maquinas = maquinas;
+    }
+
+    public RutinaEntity getRutina() {
+        return rutina;
+    }
+
+    public void setRutina(RutinaEntity rutina) {
+        this.rutina = rutina;
+    }
+
+    public List<PartesDelCuerpoEntity> getPartesDelCuerpo() {
+        return partesDelCuerpo;
+    }
+
+    public void setPartesDelCuerpo(List<PartesDelCuerpoEntity> partesDelCuerpo) {
+        this.partesDelCuerpo = partesDelCuerpo;
+    }
+    
     public Tipo getTipo(){return tipo;}
     public void setTipo(Tipo tipo){this.tipo = tipo;}
     

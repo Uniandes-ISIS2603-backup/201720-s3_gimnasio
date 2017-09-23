@@ -47,7 +47,8 @@ public class GimnasioEntity extends BaseEntity implements Serializable {
     * nit de la empresa
     */
    private long nit;
-
+   
+   
    //--------------------------------------------------------------------------
    //METODOS
    //--------------------------------------------------------------------------

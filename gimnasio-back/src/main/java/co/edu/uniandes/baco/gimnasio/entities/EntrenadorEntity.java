@@ -73,9 +73,4 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
     public void setUsuarios(List<UsuarioEntity> usuarios) {
         this.usuarios = usuarios;
     }
-    
-    
-    
-    
-    
 }
