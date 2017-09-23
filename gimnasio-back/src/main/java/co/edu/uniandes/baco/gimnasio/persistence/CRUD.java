@@ -6,10 +6,6 @@
 package co.edu.uniandes.baco.gimnasio.persistence;
 
 import java.util.List;
-import javax.persistence.EntityExistsException;
-import javax.persistence.PersistenceException;
-import javax.persistence.TransactionRequiredException;
-
 /**
  *
  * @author jc.bojaca

@@ -7,10 +7,13 @@ package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -25,7 +28,8 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
     private Integer tamanioParticiones;
     private Integer repeticionesPorParticion;
     
-    @OneToMany
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.REFRESH, fetch= FetchType.EAGER)
     private List<ObjetivoEntity> objetivos;
      
     @Enumerated(EnumType.STRING)
