@@ -8,8 +8,9 @@ package co.edu.uniandes.baco.gimnasio.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -25,16 +26,16 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
     private Integer repeticionesPorParticion;
     
     @OneToMany
-    private List<Objetivo> objetivos;
+    private List<ObjetivoEntity> objetivos;
      
-    @OneToOne
+    @Enumerated(EnumType.STRING)
     private Tipo tipo;
 
     public Tipo getTipo(){return tipo;}
     public void setTipo(Tipo tipo){this.tipo = tipo;}
     
-    public List<Objetivo> getObjetivos() {return objetivos;}
-    public void setObjetivos(List<Objetivo> objetivos){this.objetivos = objetivos;}
+    public List<ObjetivoEntity> getObjetivos() {return objetivos;}
+    public void setObjetivos(List<ObjetivoEntity> objetivos){this.objetivos = objetivos;}
     
     public String getDescripcion() {return descripcion;}
     public void setDescripcion(String descripcion) { this.descripcion = descripcion;}

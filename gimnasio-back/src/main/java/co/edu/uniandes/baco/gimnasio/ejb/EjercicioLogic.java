@@ -16,7 +16,6 @@ public class EjercicioLogic {
     EjercicioPersistence persistence;
     
     public EjercicioEntity create(EjercicioEntity entity) throws BusinessLogicException{
-        if(persistence.find(entity.getId())!=null)throw new BusinessLogicException("ya existe un ejercicio con el id");
         return persistence.create(entity);
     }
     
