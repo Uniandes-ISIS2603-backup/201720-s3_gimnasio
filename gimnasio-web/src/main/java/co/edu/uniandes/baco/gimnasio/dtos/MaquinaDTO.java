@@ -12,12 +12,25 @@ package co.edu.uniandes.baco.gimnasio.dtos;
 
 
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MaquinaDTO {
 
+    public MaquinaDTO() {
+        //es necesario
+    }
+
     public static List<MaquinaDTO> findall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public static final List<MaquinaDTO> listDTO(List<MaquinaEntity> entity){
+        List<MaquinaDTO> resp=new ArrayList<>();
+        for(MaquinaEntity ent:entity){
+            resp.add(new MaquinaDTO(ent));
+        }
+        return resp;
     }
 
     private long id;

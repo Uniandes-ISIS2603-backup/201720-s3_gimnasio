@@ -10,12 +10,12 @@
     <class>co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.MedidaEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity</class>
-    <class>co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.RutinaEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.ParteDelCuerpoEntity</class>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>

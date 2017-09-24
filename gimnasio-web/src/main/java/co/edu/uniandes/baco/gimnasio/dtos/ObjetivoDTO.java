@@ -8,7 +8,6 @@ package co.edu.uniandes.baco.gimnasio.dtos;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  *
  * @author jc.bojaca
@@ -17,6 +16,10 @@ public class ObjetivoDTO {
     private long id;
     private String tipo;
     private String descripcion;
+
+    public ObjetivoDTO() {
+        //que bobada si el fallo es este
+    }
     
     public ObjetivoDTO(ObjetivoEntity objetivo){
         this.id=objetivo.getId();
@@ -37,14 +40,6 @@ public class ObjetivoDTO {
 
     public void setId(long id) {
         this.id = id;
-    }
-    
-     public static final List<ObjetivoEntity> listEntity(List<ObjetivoDTO> dtos){
-        List<ObjetivoEntity> resp = new ArrayList<>();
-        for(ObjetivoDTO dto:dtos){
-            resp.add(dto.toEntity());
-        }
-        return resp;
     }
     
     public static final List<ObjetivoDTO> listDTO(List<ObjetivoEntity> entity){

@@ -12,6 +12,12 @@ import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
  * @author t.kavanagh
  */
 public class MaquinaDetailDTO extends MaquinaDTO{
+
+    public MaquinaDetailDTO() {
+        super();
+    }
+    
+    
     
     public MaquinaDetailDTO(MaquinaEntity foo) {
         super(foo);

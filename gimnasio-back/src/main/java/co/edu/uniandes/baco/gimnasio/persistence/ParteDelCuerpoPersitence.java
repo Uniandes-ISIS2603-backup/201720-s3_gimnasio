@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.baco.gimnasio.persistence;
 
-import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ParteDelCuerpoEntity;
 import javax.ejb.Stateless;
 
 /**
@@ -13,9 +13,9 @@ import javax.ejb.Stateless;
  * @author js.palacios437
  */
 @Stateless
-public class ParteDelCuerpoPersitence extends BasePersistence<PartesDelCuerpoEntity>{
+public class ParteDelCuerpoPersitence extends BasePersistence<ParteDelCuerpoEntity>{
 
     public ParteDelCuerpoPersitence() {
-        super(PartesDelCuerpoEntity.class);
+        super(ParteDelCuerpoEntity.class);
     }
 }

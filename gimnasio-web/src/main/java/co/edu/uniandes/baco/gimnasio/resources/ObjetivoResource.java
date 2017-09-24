@@ -26,7 +26,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author jc.bojaca
  */
-@Path("/objetivos")
+@Path("objetivos")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ObjetivoResource{

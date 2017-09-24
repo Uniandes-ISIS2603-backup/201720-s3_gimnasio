@@ -6,7 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.resources;
 import co.edu.uniandes.baco.gimnasio.dtos.GimnasioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.*;
-import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ParteDelCuerpoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.dtos.ParteDelCuerpoDTO;
 import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
@@ -47,8 +47,8 @@ public class ParteDelCuerpoResource {
     @POST
     public ParteDelCuerpoDTO creat(ParteDelCuerpoDTO Pcuer) throws BusinessLogicException
     {
-        PartesDelCuerpoEntity pcentity = Pcuer.toEntity();
-        PartesDelCuerpoEntity pcnew = cplogic.create(pcentity);
+        ParteDelCuerpoEntity pcentity = Pcuer.toEntity();
+        ParteDelCuerpoEntity pcnew = cplogic.create(pcentity);
         return new ParteDelCuerpoDTO(pcnew);
         
     }
@@ -68,7 +68,7 @@ public class ParteDelCuerpoResource {
     @Path("{id: \\d+}")
     public ParteDelCuerpoDTO getpartedelcuerpo(@PathParam("id")Long id)throws BusinessLogicException
     {
-        PartesDelCuerpoEntity en = cplogic.find(id);
+        ParteDelCuerpoEntity en = cplogic.find(id);
         if(en!=null)
         {
            return new ParteDelCuerpoDTO(en);
@@ -89,10 +89,10 @@ public class ParteDelCuerpoResource {
     @Path("{id: \\d+}") 
     public  ParteDelCuerpoDTO upDateParteDelCuerpo(@PathParam("id") Long id,ParteDelCuerpoDTO partedelcuerpo)throws BusinessLogicException
     {
-        PartesDelCuerpoEntity ent = cplogic.find(id);
+        ParteDelCuerpoEntity ent = cplogic.find(id);
         if(ent!=null)
         {
-          PartesDelCuerpoEntity en = partedelcuerpo.toEntity();
+          ParteDelCuerpoEntity en = partedelcuerpo.toEntity();
           ent = cplogic.update(en);
                   
           return new ParteDelCuerpoDTO(en);
@@ -111,7 +111,7 @@ public class ParteDelCuerpoResource {
     @Path("{id: \\d+}") 
     public void deletepartedelcuerpo(@PathParam("id")Long id)throws BusinessLogicException
     {
-        PartesDelCuerpoEntity ent = cplogic.find(id);
+        ParteDelCuerpoEntity ent = cplogic.find(id);
         if(ent!=null)
         {
           
@@ -123,9 +123,9 @@ public class ParteDelCuerpoResource {
             throw new BusinessLogicException();
         }  
     }
-       private List<ParteDelCuerpoDTO> listEntitytoDetailDTO(List<PartesDelCuerpoEntity> entityList) {
+       private List<ParteDelCuerpoDTO> listEntitytoDetailDTO(List<ParteDelCuerpoEntity> entityList) {
         List<ParteDelCuerpoDTO> list = new ArrayList<>();
-        for(PartesDelCuerpoEntity entity : entityList) {
+        for(ParteDelCuerpoEntity entity : entityList) {
             list.add(new ParteDelCuerpoDTO(entity));
         }
         return list;

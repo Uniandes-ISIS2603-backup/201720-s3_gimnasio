@@ -6,7 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ParteDelCuerpoEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.ParteDelCuerpoPersitence;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,12 +52,12 @@ public class ParteDelCuerpoPersitenceTest {
     @Inject
     UserTransaction utx;
 
-    private final List<PartesDelCuerpoEntity> data = new ArrayList<>();
+    private final List<ParteDelCuerpoEntity> data = new ArrayList<>();
 
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(PartesDelCuerpoEntity.class.getPackage())
+                .addPackage(ParteDelCuerpoEntity.class.getPackage())
                 .addPackage(ParteDelCuerpoPersitence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
@@ -89,7 +89,7 @@ public class ParteDelCuerpoPersitenceTest {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            PartesDelCuerpoEntity entity = factory.manufacturePojo(PartesDelCuerpoEntity.class);
+            ParteDelCuerpoEntity entity = factory.manufacturePojo(ParteDelCuerpoEntity.class);
 
             em.persist(entity);
             data.add(entity);
@@ -103,12 +103,12 @@ public class ParteDelCuerpoPersitenceTest {
     public void createParteDelCuerpoTest() {
         try {
             PodamFactory factory = new PodamFactoryImpl();
-            PartesDelCuerpoEntity newEntity = factory.manufacturePojo(PartesDelCuerpoEntity.class);
-            PartesDelCuerpoEntity result = pcpersitance.create(newEntity);
+            ParteDelCuerpoEntity newEntity = factory.manufacturePojo(ParteDelCuerpoEntity.class);
+            ParteDelCuerpoEntity result = pcpersitance.create(newEntity);
 
             Assert.assertNotNull(result);
 
-            PartesDelCuerpoEntity entity = em.find(PartesDelCuerpoEntity.class, result.getId());
+            ParteDelCuerpoEntity entity = em.find(ParteDelCuerpoEntity.class, result.getId());
 
             Assert.assertEquals(newEntity.getPartedelcuerpo(), entity.getPartedelcuerpo());
         } catch (Exception ex) {
@@ -118,8 +118,8 @@ public class ParteDelCuerpoPersitenceTest {
 
     @Test
     public void getParteDelCuerpo() {
-        PartesDelCuerpoEntity entity = data.get(0);
-        PartesDelCuerpoEntity newEntity = pcpersitance.find(entity.getId());
+        ParteDelCuerpoEntity entity = data.get(0);
+        ParteDelCuerpoEntity newEntity = pcpersitance.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
 
@@ -131,9 +131,9 @@ public class ParteDelCuerpoPersitenceTest {
     @Test
     public void updateParteDelCuerpo() {
         try {
-            PartesDelCuerpoEntity entity = data.get(0);
+            ParteDelCuerpoEntity entity = data.get(0);
             PodamFactory factory = new PodamFactoryImpl();
-            PartesDelCuerpoEntity newEntity = factory.manufacturePojo(PartesDelCuerpoEntity.class);
+            ParteDelCuerpoEntity newEntity = factory.manufacturePojo(ParteDelCuerpoEntity.class);
 
             newEntity.setId(entity.getId());
 
@@ -153,9 +153,9 @@ public class ParteDelCuerpoPersitenceTest {
     @Test
     public void deleteMedida() {
         try {
-            PartesDelCuerpoEntity entity = data.get(0);
+            ParteDelCuerpoEntity entity = data.get(0);
             pcpersitance.delete(entity.getId());
-            PartesDelCuerpoEntity deleted = em.find(PartesDelCuerpoEntity.class, entity.getId());
+            ParteDelCuerpoEntity deleted = em.find(ParteDelCuerpoEntity.class, entity.getId());
             Assert.assertNull(deleted);
         } catch (Exception ex) {
             Logger.getLogger(ParteDelCuerpoPersitenceTest.class.getName()).log(Level.SEVERE, null, ex);

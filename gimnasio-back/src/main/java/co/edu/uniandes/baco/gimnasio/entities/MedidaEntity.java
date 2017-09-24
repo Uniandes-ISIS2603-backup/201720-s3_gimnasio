@@ -27,7 +27,7 @@ public class MedidaEntity extends BaseEntity implements Serializable{
     private EstadoEntity estado;
     @PodamExclude
     @ManyToOne
-    private PartesDelCuerpoEntity parte;
+    private ParteDelCuerpoEntity parte;
 
     public EstadoEntity getEstado() {
         return estado;
@@ -37,11 +37,11 @@ public class MedidaEntity extends BaseEntity implements Serializable{
         this.estado = estado;
     }
 
-    public PartesDelCuerpoEntity getParte() {
+    public ParteDelCuerpoEntity getParte() {
         return parte;
     }
 
-    public void setParte(PartesDelCuerpoEntity parte) {
+    public void setParte(ParteDelCuerpoEntity parte) {
         this.parte = parte;
     }
     

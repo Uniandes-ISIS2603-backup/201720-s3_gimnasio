@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author jc.bojaca
  */
-@Path("/ejercicios")
+@Path("ejercicios")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EjercicioResource{
@@ -55,10 +55,26 @@ public class EjercicioResource{
         logic.remove(id);
     }
     
+    
     @Path("{idEjercicio: \\d+}/objetivos")
     public Class<EjercicioObjetivoResource> getEjercicio_objetivoResource(@PathParam("idEjercicio") Long id) throws BusinessLogicException{
         if (logic.find(id) == null)
             throw new WebApplicationException("El ejercicio no existe", 404);
         return EjercicioObjetivoResource.class;
+    }
+    
+    
+    @Path("{idEjercicio: \\d+}/maquinas")
+    public Class<EjercicioMaquinaResource> getEjercicio_MaquinaResource(@PathParam("idEjercicio") Long id) throws BusinessLogicException{
+        if (logic.find(id) == null)
+            throw new WebApplicationException("El ejercicio no existe", 404);
+        return EjercicioMaquinaResource.class;
+    }
+    
+    @Path("{idEjercicio: \\d+}/partesDelCuerpo")
+    public Class<EjercicioParteDelCuerpoResource> getEjercicioParteDelCuerpoResource(@PathParam("idEjercicio") Long id) throws BusinessLogicException{
+        if (logic.find(id) == null)
+            throw new WebApplicationException("El ejercicio no existe", 404);
+        return EjercicioParteDelCuerpoResource.class;
     }
 }

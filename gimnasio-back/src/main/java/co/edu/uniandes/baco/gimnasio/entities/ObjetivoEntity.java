@@ -37,12 +37,9 @@ public class ObjetivoEntity extends BaseEntity implements Serializable{
     
     @Override
     public boolean equals(Object obj) {
-        if(!super.equals(obj))
-            return false;
         if (this.getClass() != obj.getClass())
             return false;
-        ObjetivoEntity aux=(ObjetivoEntity)obj;
-        return tipo.equals(aux.tipo) && descripcion.equals(aux.descripcion);
+        return super.equals(obj);
      }
 
     @Override

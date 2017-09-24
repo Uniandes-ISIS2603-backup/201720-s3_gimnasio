@@ -9,7 +9,7 @@ import co.edu.uniandes.baco.gimnasio.dtos.MedidaDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.ParteDelCuerpoDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.MedidaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ParteDelCuerpoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;

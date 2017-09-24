@@ -40,11 +40,11 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
     private List<ObjetivoEntity> objetivos=new ArrayList<>();
     
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH, fetch= FetchType.EAGER,orphanRemoval = true)
-    private List<PartesDelCuerpoEntity> partesDelCuerpo=new ArrayList<>();
+    @OneToMany(cascade = CascadeType.REFRESH, fetch= FetchType.EAGER, orphanRemoval = true)
+    private List<ParteDelCuerpoEntity> partesDelCuerpo=new ArrayList<>();
     
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH, fetch= FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REFRESH,orphanRemoval = true, fetch= FetchType.LAZY)
     private List<MaquinaEntity> maquinas=new ArrayList<>();
      
     @Enumerated(EnumType.STRING)
@@ -66,11 +66,11 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
         this.rutina = rutina;
     }
 
-    public List<PartesDelCuerpoEntity> getPartesDelCuerpo() {
+    public List<ParteDelCuerpoEntity> getPartesDelCuerpo() {
         return partesDelCuerpo;
     }
 
-    public void setPartesDelCuerpo(List<PartesDelCuerpoEntity> partesDelCuerpo) {
+    public void setPartesDelCuerpo(List<ParteDelCuerpoEntity> partesDelCuerpo) {
         this.partesDelCuerpo = partesDelCuerpo;
     }
     
@@ -100,14 +100,9 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
 
     @Override
     public boolean equals(Object obj) {
-        if(!super.equals(obj))
-            return false;
         if (this.getClass() != obj.getClass())
             return false;
-        EjercicioEntity aux=(EjercicioEntity)obj;
-        boolean con1=descripcion.equals(aux.descripcion) && explicacion.equals(aux.explicacion)&& tamanioParticiones.equals(aux.tamanioParticiones);
-        boolean con2=duracion.equals(aux.duracion) && repeticionesPorParticion.equals(aux.repeticionesPorParticion);
-        return con1&&con2;
+        return super.equals(obj);
     }
 
     @Override
