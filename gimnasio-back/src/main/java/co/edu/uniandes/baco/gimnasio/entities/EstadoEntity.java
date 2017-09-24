@@ -9,13 +9,10 @@ import java.io.Serializable;
 
 import java.util.Date;
 import java.util.List;
-
-
-
-
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import uk.co.jemos.podam.common.PodamExclude;
 
 
 /**
@@ -31,6 +28,8 @@ public class EstadoEntity extends BaseEntity implements Serializable{
    private Double peso; // atributo que modela el peso
    private Double presionSanguinea; // atributo que modela la presion sanguienea
    private Integer ritmeoCardiaco; // atributo que modela el ritmo cardiaco
+   
+   @PodamExclude
    @OneToMany(mappedBy = "estado")
    private List<MedidaEntity> medidas;
 

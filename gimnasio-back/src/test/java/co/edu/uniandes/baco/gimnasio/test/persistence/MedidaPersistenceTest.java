@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
-
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.MedidaPersistence;
 import java.util.ArrayList;
@@ -41,19 +40,19 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class MedidaPersistenceTest {
-   
+
     @Inject
     private MedidaPersistence medidaPersitence;
-    
+
     @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
-    
+
     @Inject
     UserTransaction utx;
-    
+
     private final List<MedidaEntity> data = new ArrayList<>();
-    
-        @Deployment
+
+    @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(MedidaEntity.class.getPackage())
@@ -61,7 +60,7 @@ public class MedidaPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     @Before
     @SuppressWarnings("CallToPrintStackTrace")
     public void setUp() {
@@ -80,12 +79,12 @@ public class MedidaPersistenceTest {
             }
         }
     }
-    
-        private void clearData() {
+
+    private void clearData() {
         em.createQuery("delete from MedidaEntity").executeUpdate();
     }
-    
-        private void insertData() {
+
+    private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             MedidaEntity entity = factory.manufacturePojo(MedidaEntity.class);
@@ -94,21 +93,18 @@ public class MedidaPersistenceTest {
             data.add(entity);
         }
     }
-    
-    
+
     public MedidaPersistenceTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
-  
-    
+
     @After
     public void tearDown() {
     }
@@ -122,61 +118,55 @@ public class MedidaPersistenceTest {
             PodamFactory factory = new PodamFactoryImpl();
             MedidaEntity newEntity = factory.manufacturePojo(MedidaEntity.class);
             MedidaEntity result = medidaPersitence.create(newEntity);
-            
+
             Assert.assertNotNull(result);
-            
+
             MedidaEntity entity = em.find(MedidaEntity.class, result.getId());
-            
+
             Assert.assertEquals(newEntity.getMedida(), entity.getMedida());
         } catch (Exception ex) {
             Logger.getLogger(MedidaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      * get estado
      */
     @Test
-    public void getMedida()
-    {
-        try {
-            MedidaEntity entity = data.get(0);
-            MedidaEntity newEntity = medidaPersitence.find(entity.getId());
-            Assert.assertNotNull(newEntity);
-            Assert.assertEquals(entity.getId(), newEntity.getId());
-        } catch (Exception ex) {
-            Logger.getLogger(MedidaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void getMedida() {
+        MedidaEntity entity = data.get(0);
+        MedidaEntity newEntity = medidaPersitence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getId(), newEntity.getId());
     }
-    
+
     /**
      * actualiza un Medida
      */
     @Test
-    public void updateMedida()
-    {
+    public void updateMedida() {
         try {
             MedidaEntity entity = data.get(0);
             PodamFactory factory = new PodamFactoryImpl();
             MedidaEntity newEntity = factory.manufacturePojo(MedidaEntity.class);
-            
+
             newEntity.setId(entity.getId());
-            
+
             medidaPersitence.update(newEntity);
-            
+
             MedidaEntity resp = em.find(MedidaEntity.class, entity.getId());
-              
+
             Assert.assertEquals(newEntity.getId(), resp.getId());
         } catch (Exception ex) {
             Logger.getLogger(MedidaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
-     * borra una rutina 
+     * borra una rutina
      */
     @Test
-    public void deleteMedida()
-    {
+    public void deleteMedida() {
         try {
             MedidaEntity entity = data.get(0);
             medidaPersitence.delete(entity.getId());
@@ -186,5 +176,5 @@ public class MedidaPersistenceTest {
             Logger.getLogger(MedidaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

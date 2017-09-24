@@ -2,9 +2,9 @@ package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.Tipo;
+import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 /**
  * @author jc.bojaca
@@ -30,7 +30,7 @@ public class EjercicioDTO {
         this.repeticionesPorParticion = entity.getRepeticionesPorParticion();
     }
     
-    public EjercicioEntity toEntity(){
+    public EjercicioEntity toEntity() throws BusinessLogicException{
         EjercicioEntity ent=new EjercicioEntity();
         ent.setDescripcion(descripcion);
         ent.setExplicacion(explicacion);
@@ -41,12 +41,12 @@ public class EjercicioDTO {
         try{
             ent.setTipo(Tipo.valueOf(tipo));
         }catch(java.lang.IllegalArgumentException e){
-            ent.setTipo(null);
+            throw new BusinessLogicException("no se puede agregar un objeto sin categoria(existe: no_pertenece)");
         }
         return ent;
     }
     
-    public static final List<EjercicioEntity> listEntity(List<EjercicioDTO> dtos){
+    public static final List<EjercicioEntity> listEntity(List<EjercicioDTO> dtos) throws BusinessLogicException{
         List<EjercicioEntity> resp = new ArrayList<>();
         for(EjercicioDTO dto:dtos){
             resp.add(dto.toEntity());

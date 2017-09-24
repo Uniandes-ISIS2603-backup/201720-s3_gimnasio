@@ -29,9 +29,9 @@ public class EjercicioDetailDTO extends EjercicioDTO{
 
     public static final List<EjercicioDetailDTO> listDetailDTO(List<EjercicioEntity> entity){
         List<EjercicioDetailDTO> resp=new ArrayList<>();
-        entity.forEach((ent) -> {
-            resp.add(new EjercicioDetailDTO(ent));
-        });
+        for(EjercicioEntity ent:entity){
+            resp.add(new EjercicioDetailDTO((ent)));
+        }
         return resp;
     }
     

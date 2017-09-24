@@ -8,6 +8,7 @@ package co.edu.uniandes.baco.gimnasio.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -99,8 +100,25 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
 
     @Override
     public boolean equals(Object obj) {
-        if(!super.equals(obj))return false;
+        if(!super.equals(obj))
+            return false;
+        if (this.getClass() != obj.getClass())
+            return false;
         EjercicioEntity aux=(EjercicioEntity)obj;
-        return descripcion.equals(aux.descripcion) && explicacion.equals(aux.explicacion) && series.equals(aux.series) && tamanioParticiones.equals(aux.tamanioParticiones) && duracion.equals(aux.duracion) && repeticionesPorParticion.equals(aux.repeticionesPorParticion);
+        boolean con1=descripcion.equals(aux.descripcion) && explicacion.equals(aux.explicacion)&& tamanioParticiones.equals(aux.tamanioParticiones);
+        boolean con2=duracion.equals(aux.duracion) && repeticionesPorParticion.equals(aux.repeticionesPorParticion);
+        return con1&&con2;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.descripcion);
+        hash = 97 * hash + Objects.hashCode(this.explicacion);
+        hash = 97 * hash + Objects.hashCode(this.duracion);
+        hash = 97 * hash + Objects.hashCode(this.series);
+        hash = 97 * hash + Objects.hashCode(this.tamanioParticiones);
+        hash = 97 * hash + Objects.hashCode(this.repeticionesPorParticion);
+        return hash;
     }
 }

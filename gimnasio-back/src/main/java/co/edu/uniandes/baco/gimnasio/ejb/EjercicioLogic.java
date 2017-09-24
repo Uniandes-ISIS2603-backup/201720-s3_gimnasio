@@ -16,14 +16,6 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
     @Inject
     ObjetivoLogic objetivoLogic;
     
-    @Override
-    public EjercicioEntity create(EjercicioEntity entity) throws BusinessLogicException{
-        if (entity.getTipo() == null) {
-            throw new BusinessLogicException("no se puede agregar un objeto sin categoria(existe: no_pertenece)");
-        }
-        return super.create(entity);        
-    }
-    
     public List<ObjetivoEntity> findAllObjetivos(Long id){
         return persistence.find(id).getObjetivos();        
     }
