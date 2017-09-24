@@ -5,8 +5,8 @@ import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.EntrenadorPersistence;
 import java.util.List;
-import java.util.logging.Level;
 import javax.ejb.Stateless;
+import javax.ws.rs.WebApplicationException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,8 +22,7 @@ import javax.ejb.Stateless;
 public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
     
     @Override
-    public EntrenadorEntity create(EntrenadorEntity entity) throws  Exception
-    {
+    public EntrenadorEntity create(EntrenadorEntity entity) throws WebApplicationException,BusinessLogicException{
         if(((EntrenadorPersistence)persistence).findByDocumento(entity.getDocumento())!= null)
             throw new BusinessLogicException("ya exixte un entrenador con ese");
         return super.create(entity);

@@ -8,14 +8,9 @@ package co.edu.uniandes.baco.gimnasio.ejb;
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import co.edu.uniandes.baco.gimnasio.persistence.EstadoPersistence;
-import java.util.Date;
 import java.util.List;
-import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.TypedQuery;
 
 import javax.ejb.Stateless;
 
@@ -27,8 +22,6 @@ import javax.ejb.Stateless;
 @Stateless
 
 public class EstadoLogic extends BaseLogic<EstadoEntity>{
-    
-
     @Inject
     private MedidaLogic medidalogic;
 
