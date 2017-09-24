@@ -47,14 +47,14 @@ public class ParteDelCuerpoResource {
     public ParteDelCuerpoDTO creat(ParteDelCuerpoDTO Pcuer) throws Exception
     {
         PartesDelCuerpoEntity pcentity = Pcuer.toEntity();
-        PartesDelCuerpoEntity pcnew = cplogic.createParteDelCuerpo(pcentity);
+        PartesDelCuerpoEntity pcnew = cplogic.create(pcentity);
         return new ParteDelCuerpoDTO(pcnew);
         
     }
     @GET
   public List<ParteDelCuerpoDTO> getPartesDelCuerpo()throws Exception
    {
-     List<ParteDelCuerpoDTO> list = listEntitytoDetailDTO(cplogic.getPartesDelCuerpo());
+     List<ParteDelCuerpoDTO> list = listEntitytoDetailDTO(cplogic.findAll());
       return list;
    }
     /**
@@ -92,7 +92,8 @@ public class ParteDelCuerpoResource {
         if(ent!=null)
         {
           PartesDelCuerpoEntity en = partedelcuerpo.toEntity();
-          ent = cplogic.updateParteDelCuerpo(en);
+          ent = cplogic.update(en);
+                  
           return new ParteDelCuerpoDTO(en);
         }
         else
@@ -109,11 +110,11 @@ public class ParteDelCuerpoResource {
     @Path("{id: \\d+}") 
     public void deletepartedelcuerpo(@PathParam("id")Long id)throws Exception
     {
-              PartesDelCuerpoEntity ent = cplogic.find(id);
+        PartesDelCuerpoEntity ent = cplogic.find(id);
         if(ent!=null)
         {
           
-          cplogic.delete(id);
+          cplogic.remove(id);
           
         }
         else

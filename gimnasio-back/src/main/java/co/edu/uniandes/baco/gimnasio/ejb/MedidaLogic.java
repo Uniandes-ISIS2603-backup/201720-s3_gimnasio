@@ -25,50 +25,7 @@ import javax.ejb.Stateless;
 
 @Stateless
 
-public class MedidaLogic {
+public class MedidaLogic extends BaseLogic<MedidaEntity>{
+
     
-    @Inject
-    MedidaPersistence persitencia;
-    
-    
-    
-        /**
-     * crear un nuevo estado 
-     * @param entity
-     * @return entity
-     * @throws BusinessLogicException 
-     */
-    public MedidaEntity createMedida(MedidaEntity entity) throws Exception
-    {
-      
-       
-        persitencia.create(entity);
-        return entity;
-    }
-        /**
-     * actualiza un estado 
-     * @param entity
-     * @return 
-     */
-    public MedidaEntity updateMedida(MedidaEntity entity) throws BusinessLogicException, Exception
-    {
-      return persitencia.update(entity);
-    }
-    
-    public MedidaEntity getMedida(Long id) throws BusinessLogicException, Exception
-    {
-        return persitencia.find(id);
-    }
-    
-    public void deleteMedida(Long id) throws BusinessLogicException, Exception
-    {
-        MedidaEntity com = persitencia.find(id);
-        if(com!=null)
-        persitencia.delete(id);
-    }
-    public List<MedidaEntity> getMedida() throws Exception
-    {
-      List<MedidaEntity> lista = persitencia.findAll();
-      return lista;
-    }
 }

@@ -41,7 +41,7 @@ public class MedidaResource {
     public MedidaDTO creat(MedidaDTO medidaDto) throws Exception
     {
         MedidaEntity pcentity = medidaDto.toEntity();
-        MedidaEntity pcnew = medidalogic.createMedida(pcentity);
+        MedidaEntity pcnew = medidalogic.create(pcentity);
         return new MedidaDTO(pcnew);
         
     }
@@ -50,7 +50,7 @@ public class MedidaResource {
     @Path("{id: \\d+}")
     public MedidaDTO getMedida(@PathParam("id")Long id)throws Exception
     {
-        MedidaEntity en = medidalogic.getMedida(id);
+        MedidaEntity en = medidalogic.find(id);
         if(en!=null)
         {
            return new MedidaDTO(en);
@@ -64,11 +64,11 @@ public class MedidaResource {
     @Path("{id: \\d+}") 
     public  MedidaDTO updateMedida(@PathParam("id") Long id,MedidaDTO medida)throws Exception
     {
-        MedidaEntity ent = medidalogic.getMedida(id);
+        MedidaEntity ent = medidalogic.find(id);
         if(ent!=null)
         {
           MedidaEntity en = medida.toEntity();
-          ent = medidalogic.updateMedida(en);
+          ent = medidalogic.update(en);
           return new MedidaDTO(en);
         }
         else
@@ -80,11 +80,11 @@ public class MedidaResource {
     @Path("{id: \\d+}") 
     public void deleteMedida(@PathParam("id")Long id)throws Exception
     {
-      MedidaEntity ent = medidalogic.getMedida(id);
+      MedidaEntity ent = medidalogic.find(id);
         if(ent!=null)
         {
           
-          medidalogic.deleteMedida(id);
+          medidalogic.remove(id);
           
         }
         else

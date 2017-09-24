@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.baco.gimnasio.ejb;
 
+import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -17,33 +18,7 @@ import java.util.List;
  */
 @Stateless
 
-public class ParteDelCuerpoLogic {
-    @Inject
-    ParteDelCuerpoPersitence persistence;
-    
-    public PartesDelCuerpoEntity createParteDelCuerpo(PartesDelCuerpoEntity entity) throws Exception
-    {
-        persistence.create(entity);
-        return entity;
-    }
+public class ParteDelCuerpoLogic extends BaseLogic<PartesDelCuerpoEntity>{
 
-    public PartesDelCuerpoEntity updateParteDelCuerpo(PartesDelCuerpoEntity entity) throws Exception
-    {
-        return persistence.update(entity);
-    }
-    public void delete(Long id) throws Exception
-    {
-        persistence.delete(id);
-    }
-    public PartesDelCuerpoEntity find(Long id) throws Exception
-    {
-        return persistence.find(id);
-    }
-    public List<PartesDelCuerpoEntity> getPartesDelCuerpo() throws Exception
-    {
-      List<PartesDelCuerpoEntity> lista = persistence.findAll();
-      return lista;
-    }
-    
 
 }

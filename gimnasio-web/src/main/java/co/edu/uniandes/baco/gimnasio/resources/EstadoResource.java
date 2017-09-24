@@ -44,7 +44,7 @@ public class EstadoResource {
     public EstadoDTO creat(EstadoDTO entity) throws Exception
     {
         EstadoEntity estadoentity = entity.toEntity();
-        EstadoEntity pcnew = estadologic.createEstado(estadoentity);
+        EstadoEntity pcnew = estadologic.create(estadoentity);
         return new EstadoDTO(pcnew);    
     }
 
@@ -52,7 +52,7 @@ public class EstadoResource {
     @Path("{id: \\d+}")
     public EstadoDTO getEstado(@PathParam("id")Long id)throws Exception
     {
-        EstadoEntity en = estadologic.getEstado(id);
+        EstadoEntity en = estadologic.find(id);
         if(en!=null)
         {
            return new EstadoDTO(en);
@@ -67,11 +67,11 @@ public class EstadoResource {
     @Path("{id: \\d+}") 
     public  EstadoDTO updateEstado(@PathParam("id") Long id,EstadoDTO estado)throws Exception
     {
-        EstadoEntity ent = estadologic.getEstado(id);
+        EstadoEntity ent = estadologic.find(id);
         if(ent!=null)
         {
           EstadoEntity en = estado.toEntity();
-          ent = estadologic.updateEstado(en);
+          ent = estadologic.update(en);
           return new EstadoDTO(en);
         }
         else
@@ -79,21 +79,29 @@ public class EstadoResource {
             throw new BusinessLogicException();
         }
     }
-        @DELETE
+     @DELETE
     @Path("{id: \\d+}") 
     public void deleteEstado(@PathParam("id")Long id)throws Exception
     {
-              EstadoEntity ent = estadologic.getEstado(id);
+              EstadoEntity ent = estadologic.find(id);
         if(ent!=null)
         {
           
-          estadologic.deleteEstado(id);
+          estadologic.remove(id);
           
         }
         else
         {
             throw new BusinessLogicException();
         }  
+    }
+        @Path("{EstadoId: \\d+}/books")
+    public Class<EstadoMedidaResource> getEditorialBooksResource(@PathParam("EstadoId") Long EstadoId) throws Exception {
+        EstadoEntity entity = estadologic.find(EstadoId);
+        if (entity == null) {
+            throw new Exception("noe xiste el estado");
+        }
+        return EstadoMedidaResource.class;
     }
 
 }
