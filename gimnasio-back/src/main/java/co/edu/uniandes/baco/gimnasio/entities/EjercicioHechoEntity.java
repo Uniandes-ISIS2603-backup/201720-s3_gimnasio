@@ -18,7 +18,7 @@ import javax.persistence.Temporal;
 public class EjercicioHechoEntity extends BaseEntity implements Serializable
 {
   @Temporal(javax.persistence.TemporalType.DATE)
-  private Date fechaInicio;  
+  private Date fecha;  
   
   private Integer seriesReales;
 
@@ -34,11 +34,11 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable
 
   public Date getFechaInicio() 
   {
-      return fechaInicio;
+      return fecha;
   }
-  public void setFechaInicio(Date fechaInicio) 
+  public void setFechaInicio(Date fecha) 
   {
-      this.fechaInicio = fechaInicio;
+      this.fecha = fecha;
   }
   
 }
