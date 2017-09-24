@@ -13,6 +13,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -25,6 +26,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaDeNacimiento;
     
+    @PodamExclude
     @ManyToMany(mappedBy = "usuarios")
     private List<EntrenadorEntity> entrenadores = new ArrayList();
 

@@ -6,7 +6,9 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
 /**
  * @author t.kavanagh
@@ -15,6 +17,9 @@ import javax.persistence.Entity;
 public class TipoMedidaEntity extends BaseEntity implements Serializable{
     private String descripcion;
     private String unidad;
+    
+    @ManyToMany
+    private List<MaquinaEntity> maquinas;
 
     public String getDescripcion() {
         return descripcion;

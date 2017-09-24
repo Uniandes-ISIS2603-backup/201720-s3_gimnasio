@@ -5,6 +5,7 @@ import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.EntrenadorPersistence;
 import java.util.List;
+import java.util.logging.Level;
 import javax.ejb.Stateless;
 
 /*
@@ -32,7 +33,7 @@ public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
     {
         return find(id).getUsuarios();
     }
-    
+
     public UsuarioEntity addUsuarioDeail(Long entrenadorId, Long usuarioId) throws BusinessLogicException, Exception {
         EntrenadorEntity ent = find(entrenadorId);
         UsuarioEntity us = new UsuarioEntity();

@@ -186,7 +186,7 @@ public class EjercicioHechoTest
             EjercicioHechoEntity newEntity = ejercicioHechoPersistence.find(entity.getId());
             
             Assert.assertNotNull(newEntity);
-            Assert.assertEquals(newEntity.getFechaInicio(), entity.getFechaInicio());
+            Assert.assertEquals(newEntity.getFechaInicio().getDate(), entity.getFechaInicio().getDate());
             Assert.assertEquals(newEntity.getSeriesReales(), entity.getSeriesReales());
         } catch (Exception ex) {
             Logger.getLogger(ObjetivoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -232,7 +232,7 @@ public class EjercicioHechoTest
 
         EjercicioHechoEntity resp = em.find(EjercicioHechoEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getFechaInicio(), resp.getFechaInicio());
+        Assert.assertEquals(newEntity.getFechaInicio().getDate(), resp.getFechaInicio().getDate());
         Assert.assertEquals(newEntity.getSeriesReales(), resp.getSeriesReales());
     }
     

@@ -26,7 +26,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author t.kavanagh
  */
-@Path("/maquinas")
+@Path("maquinas")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class MaquinaResource{
