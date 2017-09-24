@@ -7,7 +7,6 @@ package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
 import java.util.Date;
-import javax.persistence.Temporal;
 
 /**
  *

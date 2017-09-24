@@ -13,7 +13,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -42,13 +41,13 @@ public class Ejercicio_ObjetivoResource {
 
     @POST
     @Path("{id: \\d+}")
-    public ObjetivoDTO addBooks(@PathParam("idEjercicio") Long idEjericio,@PathParam("id") Long id) throws Exception {
+    public ObjetivoDTO createObjetivo(@PathParam("idEjercicio") Long idEjericio,@PathParam("id") Long id) throws Exception {
         return new ObjetivoDTO(logic.createObjetivo(idEjericio, id));
     }
 
     @DELETE
     @Path("{id: \\d+}")
-    public void removeBooks(@PathParam("idEjercicio") Long idEjercicio, @PathParam("id") Long id) throws Exception {
+    public void removeObjetivo(@PathParam("idEjercicio") Long idEjercicio, @PathParam("id") Long id) throws Exception {
         logic.removeObejtivo(idEjercicio, id);
     }
     

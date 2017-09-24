@@ -14,12 +14,14 @@ import java.util.List;
  * @author jc.bojaca
  */
 public class ObjetivoDTO {
-    String tipo;
-    String descripcion;
+    private long id;
+    private String tipo;
+    private String descripcion;
 
     public ObjetivoDTO() {}
     
     public ObjetivoDTO(ObjetivoEntity objetivo){
+        this.id=objetivo.getId();
         this.tipo=objetivo.getTipo();
         this.descripcion=objetivo.getDescripcion();
     }
@@ -29,6 +31,14 @@ public class ObjetivoDTO {
         ent.setTipo(tipo);
         ent.setDescripcion(descripcion);
         return ent;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
     
      public final static List<ObjetivoEntity> listEntity(List<ObjetivoDTO> dtos){

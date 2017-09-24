@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.EjercicioDTO;
+import co.edu.uniandes.baco.gimnasio.dtos.EjercicioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.EjercicioLogic;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
@@ -30,14 +31,14 @@ public class EjercicioResource{
     }
     
     @GET
-    public List<EjercicioDTO> getAll() throws Exception{
-        return EjercicioDTO.listDTO(logic.findAll());
+    public List<EjercicioDetailDTO> getAll() throws Exception{
+        return EjercicioDetailDTO.listDetailDTO(logic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public EjercicioDTO get(@PathParam("id") long id) throws Exception{
-        return new EjercicioDTO(logic.find(id));
+    public EjercicioDetailDTO get(@PathParam("id") long id) throws Exception{
+        return new EjercicioDetailDTO(logic.find(id));
     }
     
     @PUT

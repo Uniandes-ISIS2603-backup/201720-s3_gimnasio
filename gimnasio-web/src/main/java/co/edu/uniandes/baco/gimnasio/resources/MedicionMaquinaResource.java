@@ -26,7 +26,7 @@ import javax.ws.rs.core.MediaType;
  * @author ce.robles
  */
 //TODO Arreglar el path.
-@Path("/aquiVaUnPath")
+@Path("/aquiVaUnPath2")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class MedicionMaquinaResource 
