@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.MaquinaDTO;
+import co.edu.uniandes.baco.gimnasio.dtos.MaquinaDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.MaquinaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
@@ -19,7 +20,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -39,14 +39,14 @@ public class MaquinaResource{
     }
     
     @GET
-    public List<MaquinaDTO> getAll(){
-        return MaquinaDTO.findall();
+    public List<MaquinaDetailDTO> getAll() throws BusinessLogicException{
+        return MaquinaDetailDTO.listDetailDTO(logic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public MaquinaDTO get(@PathParam("id") long id) throws BusinessLogicException{
-        return new MaquinaDTO(logic.find(id));
+    public MaquinaDetailDTO get(@PathParam("id") long id) throws BusinessLogicException{
+        return new MaquinaDetailDTO(logic.find(id));
     }
     
     @PUT

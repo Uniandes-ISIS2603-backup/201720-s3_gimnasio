@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.MaquinaDTO;
+import co.edu.uniandes.baco.gimnasio.dtos.MaquinaDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.EjercicioLogic;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.List;
@@ -30,8 +31,8 @@ public class EjercicioMaquinaResource {
     private EjercicioLogic logic;
     
     @GET
-    public List<MaquinaDTO> findAllObejtivos(@PathParam("idEjercicio") Long id) throws BusinessLogicException {
-        return MaquinaDTO.listDTO(logic.findAllMaquinas(id));
+    public List<MaquinaDetailDTO> findAllObejtivos(@PathParam("idEjercicio") Long id) throws BusinessLogicException {
+          return MaquinaDetailDTO.listDetailDTO(logic.findAllMaquinas(id));
     }
 
     @GET

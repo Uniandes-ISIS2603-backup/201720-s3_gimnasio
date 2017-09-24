@@ -16,6 +16,12 @@ import java.util.List;
 
 public class TipoMedidaDTO {
 
+    public TipoMedidaDTO() {
+        //javaxs
+    }
+    
+    
+
     public static List<TipoMedidaDTO> findall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

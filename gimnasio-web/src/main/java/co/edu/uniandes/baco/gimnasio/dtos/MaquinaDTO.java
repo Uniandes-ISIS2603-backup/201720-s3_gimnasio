@@ -9,33 +9,29 @@ package co.edu.uniandes.baco.gimnasio.dtos;
  *
  * @author t.kavanagh
  */
-
-
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MaquinaDTO {
-
-    public MaquinaDTO() {
-        //es necesario
-    }
-
-    public static List<MaquinaDTO> findall() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    public static final List<MaquinaDTO> listDTO(List<MaquinaEntity> entity){
-        List<MaquinaDTO> resp=new ArrayList<>();
-        for(MaquinaEntity ent:entity){
-            resp.add(new MaquinaDTO(ent));
-        }
-        return resp;
-    }
-
     private long id;
     private String descripcion;
 
+    public MaquinaDTO() {
+        //javax necesita un constructor vacio
+    }
+    
+    public MaquinaDTO(MaquinaEntity foo) {
+        if(foo!=null){
+            id = foo.getId();
+            descripcion = foo.getDescripcion();
+
+        }
+    }
+    
+    public MaquinaEntity toEntity() {
+        MaquinaEntity entity = new MaquinaEntity();
+        entity.setDescripcion(this.descripcion);
+        return entity;
+    }
 
     public String getDescripcion() {
         return descripcion;
@@ -44,24 +40,7 @@ public class MaquinaDTO {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    /**
-     * Constructor por defecto
-     */
-    public MaquinaDTO(MaquinaEntity foo) {
-        if(foo!=null){
-            id = foo.getId();
-            descripcion = foo.getDescripcion();
-
-        }
-    }
-
-
-
-
-    /**
-     * @return the id
-     */
+    
     public Long getId() {
         return id;
     }
@@ -72,17 +51,4 @@ public class MaquinaDTO {
     public void setId(Long id) {
         this.id = id;
     }
-
-    /**
-     * Convertir DTO a Entity
-     *
-     * @return Un Entity con los valores del DTO
-     */
-    public MaquinaEntity toEntity() {
-        MaquinaEntity entity = new MaquinaEntity();
-        entity.setDescripcion(this.descripcion);
-        entity.setId(this.id);
-        return entity;
-    }
-    
 }
