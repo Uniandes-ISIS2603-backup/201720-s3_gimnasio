@@ -6,7 +6,17 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
+
+import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
+import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import co.edu.uniandes.baco.gimnasio.persistence.MedidaPersistence;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.persistence.OneToOne;
+
+import javax.ejb.Stateless;
+
 
 /**
  *
@@ -14,5 +24,8 @@ import javax.ejb.Stateless;
  */
 
 @Stateless
+
 public class MedidaLogic extends BaseLogic<MedidaEntity>{
+
+    
 }

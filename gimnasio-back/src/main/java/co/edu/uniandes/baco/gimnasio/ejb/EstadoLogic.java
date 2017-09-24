@@ -6,13 +6,63 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
+
+import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
+import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import co.edu.uniandes.baco.gimnasio.persistence.EstadoPersistence;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.persistence.TypedQuery;
+
+import javax.ejb.Stateless;
+
 
 /**
  *
  * @author js.palacios437
  */
 @Stateless
+
 public class EstadoLogic extends BaseLogic<EstadoEntity>{
     
+
+    @Inject
+    private MedidaLogic medidalogic;
+
+
+    public MedidaEntity addMedida(Long idmedida,Long idEstado)throws BusinessLogicException, Exception
+    {
+        EstadoEntity estado = this.find(idEstado);
+        MedidaEntity medida = medidalogic.find(idmedida);
+        medida.setEstado(estado);
+        return medida;
+    }
+    public void removeMedida(Long idmedida, Long idEstado) throws BusinessLogicException, Exception
+    {
+    EstadoEntity editorialEntity = this.find(idEstado);
+    MedidaEntity medida = medidalogic.find(idmedida);
+    medida.setEstado(null);
+    editorialEntity.getMedidas().remove(medida);
+    }
+    public List<MedidaEntity> medidas(Long idEstado) throws BusinessLogicException, Exception
+    {
+        return find(idEstado).getMedidas();
+    }
+    
+    public MedidaEntity getMedida(Long idMedida,Long idEstado) throws BusinessLogicException, Exception
+    {
+        List<MedidaEntity> medidas = find(idEstado).getMedidas();
+        MedidaEntity medida = medidalogic.find(idMedida);
+        int index = medidas.indexOf(medida);
+        if (index >= 0) {
+            return medidas.get(index);
+        }
+         throw new BusinessLogicException("la medida no existe");
+    }
+
+
 }
+

@@ -79,7 +79,7 @@ public class EstadoResource {
             throw new BusinessLogicException();
         }
     }
-        @DELETE
+     @DELETE
     @Path("{id: \\d+}") 
     public void deleteEstado(@PathParam("id")Long id)throws Exception
     {
@@ -94,6 +94,14 @@ public class EstadoResource {
         {
             throw new BusinessLogicException();
         }  
+    }
+        @Path("{EstadoId: \\d+}/books")
+    public Class<EstadoMedidaResource> getEditorialBooksResource(@PathParam("EstadoId") Long EstadoId) throws Exception {
+        EstadoEntity entity = estadologic.find(EstadoId);
+        if (entity == null) {
+            throw new Exception("noe xiste el estado");
+        }
+        return EstadoMedidaResource.class;
     }
 
 }

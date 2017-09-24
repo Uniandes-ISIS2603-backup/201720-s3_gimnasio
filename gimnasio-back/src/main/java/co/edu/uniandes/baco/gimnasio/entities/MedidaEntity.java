@@ -7,8 +7,10 @@ package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import uk.co.jemos.podam.common.PodamExclude;
+
+import javax.persistence.ManyToOne;
+
+
 
 /**
  *
@@ -16,13 +18,22 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class MedidaEntity extends BaseEntity implements Serializable{
-    Double medida; // atributo que modela una medida
-   
-    @PodamExclude
-    @OneToOne
-    PartesDelCuerpoEntity parte;
 
-    // getter and setters
+    
+    Double medida;  // atributo que modela una medida
+    @ManyToOne
+    private EstadoEntity estado;
+    @ManyToOne
+    private PartesDelCuerpoEntity parte;
+
+    public EstadoEntity getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoEntity estado) {
+        this.estado = estado;
+    }
+
     public PartesDelCuerpoEntity getParte() {
         return parte;
     }
@@ -30,7 +41,6 @@ public class MedidaEntity extends BaseEntity implements Serializable{
     public void setParte(PartesDelCuerpoEntity parte) {
         this.parte = parte;
     }
-    
     
     public Double getMedida() {
         return medida;

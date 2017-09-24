@@ -93,6 +93,7 @@ public class ParteDelCuerpoResource {
         {
           PartesDelCuerpoEntity en = partedelcuerpo.toEntity();
           ent = cplogic.update(en);
+                  
           return new ParteDelCuerpoDTO(en);
         }
         else
@@ -109,7 +110,7 @@ public class ParteDelCuerpoResource {
     @Path("{id: \\d+}") 
     public void deletepartedelcuerpo(@PathParam("id")Long id)throws Exception
     {
-              PartesDelCuerpoEntity ent = cplogic.find(id);
+        PartesDelCuerpoEntity ent = cplogic.find(id);
         if(ent!=null)
         {
           
