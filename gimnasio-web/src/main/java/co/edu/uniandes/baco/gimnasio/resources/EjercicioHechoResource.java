@@ -19,6 +19,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -35,25 +36,24 @@ public class EjercicioHechoResource
     private EjercicioHechoLogic logic;
     
     @POST
-    public EjercicioHechoDTO post(EjercicioHechoDTO nuevo) throws BusinessLogicException, Exception{
+    public EjercicioHechoDTO post(EjercicioHechoDTO nuevo) throws WebApplicationException, BusinessLogicException{
         return new EjercicioHechoDTO(logic.create(nuevo.toEntity()));
     }
     
     @GET
-    public List<EjercicioHechoDTO> getAll() throws Exception
-    {
+    public List<EjercicioHechoDTO> getAll() throws WebApplicationException, BusinessLogicException {
         return EjercicioHechoDTO.listDTO(logic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public EjercicioHechoDTO get(@PathParam("id") long id) throws Exception{
+    public EjercicioHechoDTO get(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
         return new EjercicioHechoDTO(logic.find(id));
     }
     
     @PUT
     @Path("{id: \\d+}")
-    public EjercicioHechoDTO put(@PathParam("id")long id, EjercicioHechoDTO nuevo) throws BusinessLogicException, Exception{
+    public EjercicioHechoDTO put(@PathParam("id")long id, EjercicioHechoDTO nuevo) throws WebApplicationException, BusinessLogicException {
         EjercicioHechoEntity entity = nuevo.toEntity();
         entity.setId(id);
         return new EjercicioHechoDTO(logic.update(entity));
@@ -61,7 +61,7 @@ public class EjercicioHechoResource
     
     @DELETE
     @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws Exception{
+    public void delete(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
         logic.remove(id);
     }
 }

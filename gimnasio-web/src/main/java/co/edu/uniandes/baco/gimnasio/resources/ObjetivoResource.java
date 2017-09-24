@@ -39,13 +39,13 @@ public class ObjetivoResource{
     }
     
     @GET
-    public List<ObjetivoDTO> getAll() throws Exception{
+    public List<ObjetivoDTO> getAll() throws WebApplicationException, BusinessLogicException{
         return ObjetivoDTO.listDTO(logic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public ObjetivoDTO get(@PathParam("id") long id) throws Exception{
+    public ObjetivoDTO get(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
         return new ObjetivoDTO(logic.find(id));
     }
     
@@ -59,7 +59,7 @@ public class ObjetivoResource{
     
     @DELETE
     @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws Exception{
+    public void delete(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
         logic.remove(id);
     }
 }

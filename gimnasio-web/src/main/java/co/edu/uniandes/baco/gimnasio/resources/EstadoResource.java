@@ -7,14 +7,9 @@ package co.edu.uniandes.baco.gimnasio.resources;
 
 
 import co.edu.uniandes.baco.gimnasio.dtos.EstadoDTO;
-import co.edu.uniandes.baco.gimnasio.dtos.ParteDelCuerpoDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.EstadoLogic;
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity;
-
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -25,6 +20,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -41,7 +37,7 @@ public class EstadoResource {
  private  EstadoLogic estadologic;
  
      @POST
-    public EstadoDTO creat(EstadoDTO entity) throws Exception
+    public EstadoDTO creat(EstadoDTO entity) throws WebApplicationException, BusinessLogicException
     {
         EstadoEntity estadoentity = entity.toEntity();
         EstadoEntity pcnew = estadologic.create(estadoentity);
@@ -50,7 +46,7 @@ public class EstadoResource {
 
     @GET
     @Path("{id: \\d+}")
-    public EstadoDTO getEstado(@PathParam("id")Long id)throws Exception
+    public EstadoDTO getEstado(@PathParam("id")Long id)throws WebApplicationException, BusinessLogicException
     {
         EstadoEntity en = estadologic.find(id);
         if(en!=null)
@@ -65,7 +61,7 @@ public class EstadoResource {
     }
         @PUT
     @Path("{id: \\d+}") 
-    public  EstadoDTO updateEstado(@PathParam("id") Long id,EstadoDTO estado)throws Exception
+    public  EstadoDTO updateEstado(@PathParam("id") Long id,EstadoDTO estado)throws WebApplicationException, BusinessLogicException
     {
         EstadoEntity ent = estadologic.find(id);
         if(ent!=null)
@@ -81,7 +77,7 @@ public class EstadoResource {
     }
      @DELETE
     @Path("{id: \\d+}") 
-    public void deleteEstado(@PathParam("id")Long id)throws Exception
+    public void deleteEstado(@PathParam("id")Long id)throws WebApplicationException, BusinessLogicException
     {
               EstadoEntity ent = estadologic.find(id);
         if(ent!=null)
@@ -96,10 +92,10 @@ public class EstadoResource {
         }  
     }
         @Path("{EstadoId: \\d+}/books")
-    public Class<EstadoMedidaResource> getEditorialBooksResource(@PathParam("EstadoId") Long EstadoId) throws Exception {
+    public Class<EstadoMedidaResource> getEditorialBooksResource(@PathParam("EstadoId") Long EstadoId) throws WebApplicationException, BusinessLogicException {
         EstadoEntity entity = estadologic.find(EstadoId);
         if (entity == null) {
-            throw new Exception("noe xiste el estado");
+            throw new WebApplicationException("noe xiste el estado",404);
         }
         return EstadoMedidaResource.class;
     }

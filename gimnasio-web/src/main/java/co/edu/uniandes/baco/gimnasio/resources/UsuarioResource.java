@@ -102,7 +102,7 @@ public class UsuarioResource {
     }
     
     @Path("{usuarioId: \\d+}/entrenadores")
-    public Class<UsuarioEntrenadorResource> getEntrenadorUsuarioResource(@PathParam("usuarioId") Long usuarioID) throws Exception
+    public Class<UsuarioEntrenadorResource> getEntrenadorUsuarioResource(@PathParam("usuarioId") Long usuarioID) throws WebApplicationException, BusinessLogicException
     {
         UsuarioEntity e  = usuarioLogic.find(usuarioID);
         if(e == null)

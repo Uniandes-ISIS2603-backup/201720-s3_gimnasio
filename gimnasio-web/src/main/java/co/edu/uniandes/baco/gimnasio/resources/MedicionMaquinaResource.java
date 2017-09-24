@@ -19,6 +19,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -40,14 +41,14 @@ public class MedicionMaquinaResource
     }
     
     @GET
-    public List<MedicionMaquinaDTO> getAll() throws Exception
+    public List<MedicionMaquinaDTO> getAll()throws BusinessLogicException , WebApplicationException
     {
         return MedicionMaquinaDTO.listDTO(logic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public MedicionMaquinaDTO get(@PathParam("id") long id) throws Exception{
+    public MedicionMaquinaDTO get(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
         return new MedicionMaquinaDTO(logic.find(id));
     }
     
@@ -61,7 +62,7 @@ public class MedicionMaquinaResource
     
     @DELETE
     @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws Exception{
+    public void delete(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
         logic.remove(id);
     }
 }

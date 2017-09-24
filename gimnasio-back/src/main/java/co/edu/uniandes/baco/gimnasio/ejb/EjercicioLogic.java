@@ -44,7 +44,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
         return aux;
     }
     
-    public void removeObejtivo(Long idEjercicio, Long id) throws Exception{
+    public void removeObejtivo(Long idEjercicio, Long id) throws WebApplicationException, BusinessLogicException{
         ObjetivoEntity aux = new ObjetivoEntity();
         aux.setId(id);
         List<ObjetivoEntity> list=find(idEjercicio).getObjetivos();

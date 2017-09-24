@@ -22,6 +22,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -40,11 +41,11 @@ public class ParteDelCuerpoResource {
      * metodo post para crear una nueva medida de cuenpo
      * @param Pcuer el DTO de la parte del cuerpo
      * @return retorna el DTO con la parte del cuerpo creada
-     * @throws Exception 
+     * @throws WebApplicationException, BusinessLogicException 
      */
 
     @POST
-    public ParteDelCuerpoDTO creat(ParteDelCuerpoDTO Pcuer) throws Exception
+    public ParteDelCuerpoDTO creat(ParteDelCuerpoDTO Pcuer) throws WebApplicationException, BusinessLogicException
     {
         PartesDelCuerpoEntity pcentity = Pcuer.toEntity();
         PartesDelCuerpoEntity pcnew = cplogic.create(pcentity);
@@ -52,7 +53,7 @@ public class ParteDelCuerpoResource {
         
     }
     @GET
-  public List<ParteDelCuerpoDTO> getPartesDelCuerpo()throws Exception
+  public List<ParteDelCuerpoDTO> getPartesDelCuerpo()throws WebApplicationException, BusinessLogicException
    {
      List<ParteDelCuerpoDTO> list = listEntitytoDetailDTO(cplogic.findAll());
       return list;
@@ -61,11 +62,11 @@ public class ParteDelCuerpoResource {
      * da la parte del cuerpo segun su id
      * @param id  el id de lo que se queire busca
      * @return la aprte del cuerpo encontrada
-     * @throws Exception cuando no se encuentra la parte del cuerpo
+     * @throws WebApplicationException, BusinessLogicException cuando no se encuentra la parte del cuerpo
      */
     @GET
     @Path("{id: \\d+}")
-    public ParteDelCuerpoDTO getpartedelcuerpo(@PathParam("id")Long id)throws Exception
+    public ParteDelCuerpoDTO getpartedelcuerpo(@PathParam("id")Long id)throws WebApplicationException, BusinessLogicException
     {
         PartesDelCuerpoEntity en = cplogic.find(id);
         if(en!=null)
@@ -82,11 +83,11 @@ public class ParteDelCuerpoResource {
      * @param id de la parte de cuerpo a buscar
      * @param partedelcuerpo la nueva infomacion de la parte del cuerpo
      * @return el DTO resultante del emrgue
-     * @throws Exception  cuando la parte del cuerpo no existe
+     * @throws WebApplicationException, BusinessLogicException  cuando la parte del cuerpo no existe
      */
     @PUT
     @Path("{id: \\d+}") 
-    public  ParteDelCuerpoDTO upDateParteDelCuerpo(@PathParam("id") Long id,ParteDelCuerpoDTO partedelcuerpo)throws Exception
+    public  ParteDelCuerpoDTO upDateParteDelCuerpo(@PathParam("id") Long id,ParteDelCuerpoDTO partedelcuerpo)throws WebApplicationException, BusinessLogicException
     {
         PartesDelCuerpoEntity ent = cplogic.find(id);
         if(ent!=null)
@@ -104,11 +105,11 @@ public class ParteDelCuerpoResource {
     /**
      * metodo que borra una aprte del cuerpo
      * @param id el id de la parte del cuerpo a borrar
-     * @throws Exception si no existe esa parte de l cuerpo
+     * @throws WebApplicationException, BusinessLogicException si no existe esa parte de l cuerpo
      */
     @DELETE
     @Path("{id: \\d+}") 
-    public void deletepartedelcuerpo(@PathParam("id")Long id)throws Exception
+    public void deletepartedelcuerpo(@PathParam("id")Long id)throws WebApplicationException, BusinessLogicException
     {
         PartesDelCuerpoEntity ent = cplogic.find(id);
         if(ent!=null)

@@ -31,19 +31,19 @@ public class EjercicioResource{
     }
     
     @GET
-    public List<EjercicioDetailDTO> getAll() throws Exception{
+    public List<EjercicioDetailDTO> getAll() throws WebApplicationException, BusinessLogicException {
         return EjercicioDetailDTO.listDetailDTO(logic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public EjercicioDetailDTO get(@PathParam("id") long id) throws Exception{
+    public EjercicioDetailDTO get(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException {
         return new EjercicioDetailDTO(logic.find(id));
     }
     
     @PUT
     @Path("{id: \\d+}")
-    public EjercicioDTO put(@PathParam("id")long id, EjercicioDTO nuevo) throws Exception{
+    public EjercicioDTO put(@PathParam("id")long id, EjercicioDTO nuevo) throws WebApplicationException, BusinessLogicException {
         EjercicioEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new EjercicioDTO(logic.update(entity));
@@ -51,12 +51,12 @@ public class EjercicioResource{
     
     @DELETE
     @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws Exception{
+    public void delete(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
         logic.remove(id);
     }
     
     @Path("{idEjercicio: \\d+}/objetivos")
-    public Class<Ejercicio_ObjetivoResource> getEjercicio_objetivoResource(@PathParam("idEjercicio") Long id) throws Exception{
+    public Class<Ejercicio_ObjetivoResource> getEjercicio_objetivoResource(@PathParam("idEjercicio") Long id) throws WebApplicationException, BusinessLogicException{
         if (logic.find(id) == null)throw new WebApplicationException("El ejercicio no existe", 404);
         return Ejercicio_ObjetivoResource.class;
     }
