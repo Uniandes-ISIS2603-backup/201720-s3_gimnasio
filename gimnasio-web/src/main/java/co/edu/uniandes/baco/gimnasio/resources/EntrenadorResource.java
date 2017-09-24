@@ -104,8 +104,8 @@ public class EntrenadorResource {
         }  
     }
     
-    @Path("{EntrenadorId: \\d+}/Usuarios")
-    public Class <EntrenadorUsuarioResource> getEntrenadorUsuarioResource (@PathParam("EntrenadorId") Long EntID){
+    @Path("{EntrenadorId: \\d+}/usuarios")
+    public Class <EntrenadorUsuarioResource> getEntrenadorUsuarioResource (@PathParam("EntrenadorId") Long EntID) throws BusinessLogicException{
         EntrenadorEntity e = entrenadorLogic.find(EntID);
         if (e == null)
         {

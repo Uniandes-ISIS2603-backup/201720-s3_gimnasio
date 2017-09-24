@@ -4,6 +4,8 @@ import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -113,16 +115,20 @@ public class ObjetivoPersistenceTest {
      */
     @Test
     public void createObjetivoTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        ObjetivoEntity newEntity = factory.manufacturePojo(ObjetivoEntity.class);
-        ObjetivoEntity result = objetivoPersistence.create(newEntity);
-
-        Assert.assertNotNull(result);
-
-        ObjetivoEntity entity = em.find(ObjetivoEntity.class, result.getId());
-
-        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
-        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
+        try {
+            PodamFactory factory = new PodamFactoryImpl();
+            ObjetivoEntity newEntity = factory.manufacturePojo(ObjetivoEntity.class);
+            ObjetivoEntity result = objetivoPersistence.create(newEntity);
+            
+            Assert.assertNotNull(result);
+            
+            ObjetivoEntity entity = em.find(ObjetivoEntity.class, result.getId());
+            
+            Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
+            Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
+        } catch (Exception ex) {
+            Logger.getLogger(ObjetivoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -132,16 +138,20 @@ public class ObjetivoPersistenceTest {
      */
     @Test
     public void geObjetivosTest() {
-        List<ObjetivoEntity> list = objetivoPersistence.findAll();
-        Assert.assertEquals(data.size(), list.size());
-        for (ObjetivoEntity ent : list) {
-            boolean found = false;
-            for (ObjetivoEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
+        try {
+            List<ObjetivoEntity> list = objetivoPersistence.findAll();
+            Assert.assertEquals(data.size(), list.size());
+            for (ObjetivoEntity ent : list) {
+                boolean found = false;
+                for (ObjetivoEntity entity : data) {
+                    if (ent.getId().equals(entity.getId())) {
+                        found = true;
+                    }
                 }
+                Assert.assertTrue(found);
             }
-            Assert.assertTrue(found);
+        } catch (Exception ex) {
+            Logger.getLogger(ObjetivoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -152,12 +162,16 @@ public class ObjetivoPersistenceTest {
      */
     @Test
     public void getObjetivoTest() {
-        ObjetivoEntity entity = data.get(0);
-        ObjetivoEntity newEntity = objetivoPersistence.find(entity.getId());
-        
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
-        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
+        try {
+            ObjetivoEntity entity = data.get(0);
+            ObjetivoEntity newEntity = objetivoPersistence.find(entity.getId());
+            
+            Assert.assertNotNull(newEntity);
+            Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
+            Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
+        } catch (Exception ex) {
+            Logger.getLogger(ObjetivoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -167,10 +181,14 @@ public class ObjetivoPersistenceTest {
      */
     @Test
     public void deleteObjetivoTest() {
-        ObjetivoEntity entity = data.get(0);
-        objetivoPersistence.delete(entity.getId());
-        ObjetivoEntity deleted = em.find(ObjetivoEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        try {
+            ObjetivoEntity entity = data.get(0);
+            objetivoPersistence.delete(entity.getId());
+            ObjetivoEntity deleted = em.find(ObjetivoEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        } catch (Exception ex) {
+            Logger.getLogger(ObjetivoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -186,7 +204,11 @@ public class ObjetivoPersistenceTest {
 
         newEntity.setId(entity.getId());
 
-        objetivoPersistence.update(newEntity);
+        try {
+            objetivoPersistence.update(newEntity);
+        } catch (Exception ex) {
+            Logger.getLogger(ObjetivoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         ObjetivoEntity resp = em.find(ObjetivoEntity.class, entity.getId());
 

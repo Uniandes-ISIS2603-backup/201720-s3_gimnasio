@@ -11,18 +11,18 @@ package co.edu.uniandes.baco.gimnasio.dtos;
  */
 
 
-import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import java.util.List;
 
-public class TipoMedidaDTO {
+public class MaquinaDTO {
 
-    public static List<TipoMedidaDTO> findall() {
+    public static List<MaquinaDTO> findall() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private Long id;
+    private long id;
     private String descripcion;
-    private String unidad;
+
 
     public String getDescripcion() {
         return descripcion;
@@ -32,22 +32,14 @@ public class TipoMedidaDTO {
         this.descripcion = descripcion;
     }
 
-    public String getUnidad() {
-        return unidad;
-    }
-
-    public void setUnidad(String unidad) {
-        this.unidad = unidad;
-    }
-
     /**
      * Constructor por defecto
      */
-    public TipoMedidaDTO(TipoMedidaEntity foo) {
+    public MaquinaDTO(MaquinaEntity foo) {
         if(foo!=null){
             id = foo.getId();
             descripcion = foo.getDescripcion();
-            unidad = foo.getUnidad();
+
         }
     }
 
@@ -73,10 +65,9 @@ public class TipoMedidaDTO {
      *
      * @return Un Entity con los valores del DTO
      */
-    public TipoMedidaEntity toEntity() {
-        TipoMedidaEntity entity = new TipoMedidaEntity();
+    public MaquinaEntity toEntity() {
+        MaquinaEntity entity = new MaquinaEntity();
         entity.setDescripcion(this.descripcion);
-        entity.setUnidad(this.unidad);
         entity.setId(this.id);
         return entity;
     }

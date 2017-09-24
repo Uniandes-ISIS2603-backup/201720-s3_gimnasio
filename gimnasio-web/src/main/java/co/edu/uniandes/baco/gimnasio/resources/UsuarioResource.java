@@ -21,6 +21,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -98,6 +99,17 @@ public class UsuarioResource {
             list.add(new UsuarioDetailDTO(entity));
         }
         return list;
+    }
+    
+    @Path("{usuarioId: \\d+}/entrenadores")
+    public Class<UsuarioEntrenadorResource> getEntrenadorUsuarioResource(@PathParam("usuarioId") Long usuarioID)
+    {
+        UsuarioEntity e  = usuarioLogic.find(usuarioID);
+        if(e == null)
+        {
+            throw new WebApplicationException("El usuario no existe", 404);
+        }
+        return UsuarioEntrenadorResource.class;
     }
     
     

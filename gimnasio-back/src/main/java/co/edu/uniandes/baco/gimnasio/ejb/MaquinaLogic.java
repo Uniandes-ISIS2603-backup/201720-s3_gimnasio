@@ -5,9 +5,9 @@
  */
 package co.edu.uniandes.baco.gimnasio.ejb;
 
-import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import co.edu.uniandes.baco.gimnasio.persistence.TipoMedidaPersistence;
+import co.edu.uniandes.baco.gimnasio.persistence.MaquinaPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -17,23 +17,23 @@ import javax.inject.Inject;
  * @author t.kavanagh
  */
 @Stateless
-public class TipoMedidaLogic {
+public class MaquinaLogic {
      @Inject
-     TipoMedidaPersistence persistence;
+     MaquinaPersistence persistence;
      
-     public TipoMedidaEntity createTipoMedida(TipoMedidaEntity e) throws BusinessLogicException
+     public MaquinaEntity createMaquina(MaquinaEntity e) throws BusinessLogicException
      {
           return persistence.create(e);
      }
      
-     public TipoMedidaEntity find (long id)
+     public MaquinaEntity find (long id)
      {
          return persistence.find(id);
      }
      
-     public TipoMedidaEntity update (TipoMedidaEntity e) throws BusinessLogicException
+     public MaquinaEntity update (MaquinaEntity e) throws BusinessLogicException
      {
-          if(persistence.find(e.getId())==null)throw new BusinessLogicException("no exixte un TipoMedida con el id");
+          if(persistence.find(e.getId())==null)throw new BusinessLogicException("no exixte un Maquina con el id");
           return persistence.update(e);
      }
      
@@ -42,7 +42,7 @@ public class TipoMedidaLogic {
          persistence.delete(id);
      }
      
-     public List<TipoMedidaEntity> findall()
+     public List<MaquinaEntity> findall()
      {
          return persistence.findAll();
      }

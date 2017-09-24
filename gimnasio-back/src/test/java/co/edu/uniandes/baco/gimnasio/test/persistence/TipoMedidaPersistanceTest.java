@@ -31,7 +31,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author ce.robles
+ * @author t.kavanagh
  */
 @RunWith(Arquillian.class)
 public class TipoMedidaPersistanceTest 
