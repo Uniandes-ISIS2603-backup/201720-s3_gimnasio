@@ -36,15 +36,15 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
     private RutinaEntity rutina;
     
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH, fetch= FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REFRESH , orphanRemoval = true, fetch= FetchType.LAZY)
     private List<ObjetivoEntity> objetivos=new ArrayList<>();
     
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH, fetch= FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REFRESH, fetch= FetchType.LAZY, orphanRemoval = true)
     private List<ParteDelCuerpoEntity> partesDelCuerpo=new ArrayList<>();
     
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH,orphanRemoval = true, fetch= FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.REFRESH,orphanRemoval = true, fetch= FetchType.EAGER)
     private List<MaquinaEntity> maquinas=new ArrayList<>();
      
     @Enumerated(EnumType.STRING)

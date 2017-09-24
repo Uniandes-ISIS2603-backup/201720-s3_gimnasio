@@ -83,7 +83,7 @@ public class ParteDelCuerpoPersitenceTest {
     }
 
     private void clearData() {
-        em.createQuery("delete from PartesDelCuerpoEntity").executeUpdate();
+        em.createQuery("delete from ParteDelCuerpoEntity").executeUpdate();
     }
 
     private void insertData() {
