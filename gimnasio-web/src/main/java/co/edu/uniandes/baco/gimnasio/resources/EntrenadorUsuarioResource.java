@@ -28,7 +28,8 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EntrenadorUsuarioResource {
-    @Inject private EntrenadorLogic entrenadorLogic;
+    @Inject 
+    private EntrenadorLogic entrenadorLogic;
      
     private List<UsuarioDetailDTO> usuarioListEntity2DTO(List<UsuarioEntity> entityList) {
         List<UsuarioDetailDTO> list = new ArrayList<>();
@@ -53,13 +54,14 @@ public class EntrenadorUsuarioResource {
     
     @POST
     @Path("{usuarioId: \\d+}")
-    public UsuarioDetailDTO addUsuario(@PathParam("EntrenadorId") Long entrenadorId, @PathParam("usuariosId") Long usuarioId) throws BusinessLogicException{
-        return new UsuarioDetailDTO(entrenadorLogic.addUsuarioDeail(entrenadorId, usuarioId));
+    public UsuarioDetailDTO addUsuario(@PathParam("EntrenadorId") Long entrenadorId, @PathParam("usuarioId") Long usuarioId) throws BusinessLogicException{
+        UsuarioEntity a = entrenadorLogic.addUsuarioDeail(entrenadorId, usuarioId);
+        return new UsuarioDetailDTO(a);
     }
     
     @DELETE
     @Path("{usuarioID: \\d+}")
-    public void removeAuthors(@PathParam("EntrenadorId") Long EntrenadorId, @PathParam("usuarioID") Long usuarioId) throws BusinessLogicException{
+    public void removeUsuario(@PathParam("EntrenadorId") Long EntrenadorId, @PathParam("usuarioID") Long usuarioId) throws BusinessLogicException{
         entrenadorLogic.removeUsuario(EntrenadorId, usuarioId);
     }
 }

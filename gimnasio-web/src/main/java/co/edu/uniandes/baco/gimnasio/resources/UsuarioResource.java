@@ -18,6 +18,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -101,6 +102,26 @@ public class UsuarioResource {
         return list;
     }
     
+    @PUT
+    @Path("{id: \\d+}") 
+    public UsuarioDetailDTO update(@PathParam("id")Long id, UsuarioDetailDTO e) throws BusinessLogicException
+    {
+        UsuarioEntity ent = usuarioLogic.find(id);
+          if(ent!= null) {
+          UsuarioEntity en = e.toEntity();
+          ent = usuarioLogic.update(en);
+          return new UsuarioDetailDTO(ent);  
+          }else {
+                   throw new BusinessLogicException("error");
+               }
+    }
+    
+    /**
+     *
+     * @param usuarioID
+     * @return
+     * @throws BusinessLogicException
+     */
     @Path("{usuarioId: \\d+}/entrenadores")
     public Class<UsuarioEntrenadorResource> getEntrenadorUsuarioResource(@PathParam("usuarioId") Long usuarioID) throws BusinessLogicException
     {

@@ -38,7 +38,7 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
     private String documento;
     
     @PodamExclude
-    @ManyToMany
+    @ManyToMany 
     private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
     
    //--------------------------------------------------------------------------
