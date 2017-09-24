@@ -11,16 +11,8 @@ import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.List;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-
 /**
  *
  * @author jc.bojaca
@@ -50,7 +42,7 @@ public class EjercicioResource{
     
     @PUT
     @Path("{id: \\d+}")
-    public EjercicioDTO put(@PathParam("id")long id, EjercicioDTO nuevo) throws BusinessLogicException, Exception{
+    public EjercicioDTO put(@PathParam("id")long id, EjercicioDTO nuevo) throws Exception{
         EjercicioEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new EjercicioDTO(logic.update(entity));
@@ -60,5 +52,11 @@ public class EjercicioResource{
     @Path("{id: \\d+}")
     public void delete(@PathParam("id") long id) throws Exception{
         logic.remove(id);
+    }
+    
+    @Path("{idEjercicio: \\d+}/objetivos")
+    public Class<Ejercicio_ObjetivoResource> getEjercicio_objetivoResource(@PathParam("idEjercicio") Long id) throws Exception{
+        if (logic.find(id) == null)throw new WebApplicationException("El ejercicio no existe", 404);
+        return Ejercicio_ObjetivoResource.class;
     }
 }
