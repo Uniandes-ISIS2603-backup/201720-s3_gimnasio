@@ -44,7 +44,7 @@ public class EstadoResource {
     public EstadoDTO creat(EstadoDTO entity) throws Exception
     {
         EstadoEntity estadoentity = entity.toEntity();
-        EstadoEntity pcnew = estadologic.create(estadoentity);
+        EstadoEntity pcnew = estadologic.createEstado(estadoentity);
         return new EstadoDTO(pcnew);    
     }
 
@@ -52,7 +52,7 @@ public class EstadoResource {
     @Path("{id: \\d+}")
     public EstadoDTO getEstado(@PathParam("id")Long id)throws Exception
     {
-        EstadoEntity en = estadologic.find(id);
+        EstadoEntity en = estadologic.getEstado(id);
         if(en!=null)
         {
            return new EstadoDTO(en);
@@ -67,11 +67,11 @@ public class EstadoResource {
     @Path("{id: \\d+}") 
     public  EstadoDTO updateEstado(@PathParam("id") Long id,EstadoDTO estado)throws Exception
     {
-        EstadoEntity ent = estadologic.find(id);
+        EstadoEntity ent = estadologic.getEstado(id);
         if(ent!=null)
         {
           EstadoEntity en = estado.toEntity();
-          ent = estadologic.update(en);
+          ent = estadologic.updateEstado(en);
           return new EstadoDTO(en);
         }
         else
@@ -83,11 +83,11 @@ public class EstadoResource {
     @Path("{id: \\d+}") 
     public void deleteEstado(@PathParam("id")Long id)throws Exception
     {
-              EstadoEntity ent = estadologic.find(id);
+              EstadoEntity ent = estadologic.getEstado(id);
         if(ent!=null)
         {
           
-          estadologic.remove(id);
+          estadologic.deleteEstado(id);
           
         }
         else
