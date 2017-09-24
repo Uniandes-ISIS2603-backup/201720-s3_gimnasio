@@ -11,10 +11,7 @@ import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.List;
 import javax.inject.Inject;
-
 import javax.ejb.Stateless;
-import javax.ws.rs.WebApplicationException;
-
 
 /**
  *

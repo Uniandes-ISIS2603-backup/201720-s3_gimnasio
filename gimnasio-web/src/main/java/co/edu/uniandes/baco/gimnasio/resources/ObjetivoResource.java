@@ -59,7 +59,7 @@ public class ObjetivoResource{
     
     @DELETE
     @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
+    public void delete(@PathParam("id") long id) throws BusinessLogicException{
         logic.remove(id);
     }
 }

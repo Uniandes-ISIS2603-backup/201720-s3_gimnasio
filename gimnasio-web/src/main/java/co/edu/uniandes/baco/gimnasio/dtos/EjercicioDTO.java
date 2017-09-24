@@ -48,20 +48,16 @@ public class EjercicioDTO {
     
     public static final List<EjercicioEntity> listEntity(List<EjercicioDTO> dtos){
         List<EjercicioEntity> resp = new ArrayList<>();
-        dtos.forEach((dto) -> {
+        for(EjercicioDTO dto:dtos){
             resp.add(dto.toEntity());
-        });
+        }
         return resp;
     }
     
     public static final List<EjercicioDTO> listDTO(List<EjercicioEntity> entity){
         List<EjercicioDTO> resp=new ArrayList<>();
-        entity.forEach(new Consumer<EjercicioEntity>() {
-            @Override
-            public void accept(EjercicioEntity ent) {
-                resp.add(new EjercicioDTO(ent));
-            }
-        });
+        for(EjercicioEntity aux:entity)
+                resp.add(new EjercicioDTO(aux));
         return resp;
     }
 

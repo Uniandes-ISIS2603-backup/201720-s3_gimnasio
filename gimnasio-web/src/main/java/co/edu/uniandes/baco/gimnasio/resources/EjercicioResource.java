@@ -56,8 +56,9 @@ public class EjercicioResource{
     }
     
     @Path("{idEjercicio: \\d+}/objetivos")
-    public Class<Ejercicio_ObjetivoResource> getEjercicio_objetivoResource(@PathParam("idEjercicio") Long id) throws BusinessLogicException{
-        if (logic.find(id) == null)throw new WebApplicationException("El ejercicio no existe", 404);
-        return Ejercicio_ObjetivoResource.class;
+    public Class<EjercicioObjetivoResource> getEjercicio_objetivoResource(@PathParam("idEjercicio") Long id) throws BusinessLogicException{
+        if (logic.find(id) == null)
+            throw new WebApplicationException("El ejercicio no existe", 404);
+        return EjercicioObjetivoResource.class;
     }
 }

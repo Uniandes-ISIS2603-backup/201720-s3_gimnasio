@@ -33,13 +33,15 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
         aux.setId(id);
         List<ObjetivoEntity> list=find(idEjercicio).getObjetivos();
         int ind=list.indexOf(aux);
-        if(ind<0)throw new NoExisteException(id);
+        if(ind<0)
+            throw new NoExisteException(id);
         return list.get(ind);
     }
     
     public ObjetivoEntity createObjetivo(Long idEjercicio, Long id) throws BusinessLogicException{
         ObjetivoEntity aux = objetivoLogic.find(id);
-        if(aux==null)throw new  NoExisteException(id);
+        if(aux==null)
+            throw new  NoExisteException(id);
         find(idEjercicio).getObjetivos().add(aux);
         return aux;
     }
@@ -49,7 +51,8 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
         aux.setId(id);
         List<ObjetivoEntity> list=find(idEjercicio).getObjetivos();
         int ind=list.indexOf(aux);
-        if(ind<0)throw new NoExisteException(id);
+        if(ind<0)
+            throw new NoExisteException(id);
         list.remove(aux);
     }
 }

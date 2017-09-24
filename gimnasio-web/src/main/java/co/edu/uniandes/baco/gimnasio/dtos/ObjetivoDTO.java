@@ -17,8 +17,6 @@ public class ObjetivoDTO {
     private long id;
     private String tipo;
     private String descripcion;
-
-    public ObjetivoDTO() {}
     
     public ObjetivoDTO(ObjetivoEntity objetivo){
         this.id=objetivo.getId();
@@ -41,19 +39,19 @@ public class ObjetivoDTO {
         this.id = id;
     }
     
-     public final static List<ObjetivoEntity> listEntity(List<ObjetivoDTO> dtos){
+     public static final List<ObjetivoEntity> listEntity(List<ObjetivoDTO> dtos){
         List<ObjetivoEntity> resp = new ArrayList<>();
-        dtos.forEach((dto) -> {
+        for(ObjetivoDTO dto:dtos){
             resp.add(dto.toEntity());
-        });
+        }
         return resp;
     }
     
-    public final static List<ObjetivoDTO> listDTO(List<ObjetivoEntity> entity){
+    public static final List<ObjetivoDTO> listDTO(List<ObjetivoEntity> entity){
         List<ObjetivoDTO> resp=new ArrayList<>();
-        entity.forEach((ent) -> {
+        for(ObjetivoEntity ent:entity){
             resp.add(new ObjetivoDTO(ent));
-        });
+        }
         return resp;
     }
     

@@ -15,7 +15,6 @@ public class ObjetivoPersistence extends BasePersistence<ObjetivoEntity>{
     }    
     
     public ObjetivoEntity findByTipo(String name){
-        @SuppressWarnings("JPQLValidation")
         TypedQuery query = manager.createQuery("select u from "+entityClass.getName()+" u where u.tipo = :name", entityClass);
         query.setParameter("name", name);
         List<ObjetivoEntity> ans =query.getResultList();
@@ -23,5 +22,4 @@ public class ObjetivoPersistence extends BasePersistence<ObjetivoEntity>{
             return null;
         return ans.get(0);
     }
-   
 }
