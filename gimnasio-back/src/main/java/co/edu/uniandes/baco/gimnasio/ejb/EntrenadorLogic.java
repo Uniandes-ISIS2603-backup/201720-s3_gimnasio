@@ -22,13 +22,13 @@ import javax.ws.rs.WebApplicationException;
 public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
     
     @Override
-    public EntrenadorEntity create(EntrenadorEntity entity) throws WebApplicationException,BusinessLogicException{
+    public EntrenadorEntity create(EntrenadorEntity entity) throws BusinessLogicException{
         if(((EntrenadorPersistence)persistence).findByDocumento(entity.getDocumento())!= null)
             throw new BusinessLogicException("ya exixte un entrenador con ese");
         return super.create(entity);
     }
     
-    public List<UsuarioEntity> listUsuario(long id) throws BusinessLogicException, Exception
+    public List<UsuarioEntity> listUsuario(long id) throws WebApplicationException, BusinessLogicException 
     {
         return find(id).getUsuarios();
     }
@@ -41,7 +41,7 @@ public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
         return getusuario(entrenadorId, usuarioId);
     }
 
-     public UsuarioEntity getusuario(Long entrenadorId, Long usuarioId) throws BusinessLogicException, Exception {
+     public UsuarioEntity getusuario(Long entrenadorId, Long usuarioId) throws WebApplicationException, BusinessLogicException {
         List<UsuarioEntity> list = find(entrenadorId).getUsuarios();
         UsuarioEntity usuarioEntity = new UsuarioEntity();
         usuarioEntity.setId(usuarioId);
@@ -52,7 +52,7 @@ public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
         return null;
     }
 
-    public void removeUsuario(Long EntrenadorId, Long usuarioId) throws BusinessLogicException, Exception {
+    public void removeUsuario(Long EntrenadorId, Long usuarioId) throws WebApplicationException, BusinessLogicException  {
         EntrenadorEntity e = find(EntrenadorId);
         UsuarioEntity us = new UsuarioEntity();
         us.setId(usuarioId);

@@ -18,7 +18,7 @@ public class ObjetivoEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @ManyToMany
-    List<UsuarioEntity> usuarios=new ArrayList<>();
+    private List<UsuarioEntity> usuarios=new ArrayList<>();
 
     public List<UsuarioEntity> getUsuarios() {
         return usuarios;

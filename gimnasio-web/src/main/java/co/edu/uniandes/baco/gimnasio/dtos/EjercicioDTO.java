@@ -4,6 +4,7 @@ import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.Tipo;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @author jc.bojaca
@@ -17,8 +18,6 @@ public class EjercicioDTO {
     private Integer series;
     private Integer tamanioParticiones;
     private Integer repeticionesPorParticion;
-    
-    public EjercicioDTO(){}
     
     public EjercicioDTO(EjercicioEntity entity){
         this.id=entity.getId();
@@ -47,7 +46,7 @@ public class EjercicioDTO {
         return ent;
     }
     
-    public final static List<EjercicioEntity> listEntity(List<EjercicioDTO> dtos){
+    public static final List<EjercicioEntity> listEntity(List<EjercicioDTO> dtos){
         List<EjercicioEntity> resp = new ArrayList<>();
         dtos.forEach((dto) -> {
             resp.add(dto.toEntity());
@@ -55,10 +54,13 @@ public class EjercicioDTO {
         return resp;
     }
     
-    public final static List<EjercicioDTO> listDTO(List<EjercicioEntity> entity){
+    public static final List<EjercicioDTO> listDTO(List<EjercicioEntity> entity){
         List<EjercicioDTO> resp=new ArrayList<>();
-        entity.forEach((ent) -> {
-            resp.add(new EjercicioDTO(ent));
+        entity.forEach(new Consumer<EjercicioEntity>() {
+            @Override
+            public void accept(EjercicioEntity ent) {
+                resp.add(new EjercicioDTO(ent));
+            }
         });
         return resp;
     }

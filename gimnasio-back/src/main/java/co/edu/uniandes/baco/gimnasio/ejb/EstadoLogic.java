@@ -13,6 +13,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import javax.ejb.Stateless;
+import javax.ws.rs.WebApplicationException;
 
 
 /**
@@ -26,26 +27,26 @@ public class EstadoLogic extends BaseLogic<EstadoEntity>{
     private MedidaLogic medidalogic;
 
 
-    public MedidaEntity addMedida(Long idmedida,Long idEstado)throws BusinessLogicException, Exception
+    public MedidaEntity addMedida(Long idmedida,Long idEstado) throws WebApplicationException, BusinessLogicException
     {
         EstadoEntity estado = this.find(idEstado);
         MedidaEntity medida = medidalogic.find(idmedida);
         medida.setEstado(estado);
         return medida;
     }
-    public void removeMedida(Long idmedida, Long idEstado) throws BusinessLogicException, Exception
+    public void removeMedida(Long idmedida, Long idEstado) throws WebApplicationException, BusinessLogicException
     {
     EstadoEntity editorialEntity = this.find(idEstado);
     MedidaEntity medida = medidalogic.find(idmedida);
     medida.setEstado(null);
     editorialEntity.getMedidas().remove(medida);
     }
-    public List<MedidaEntity> medidas(Long idEstado) throws BusinessLogicException, Exception
+    public List<MedidaEntity> medidas(Long idEstado) throws WebApplicationException, BusinessLogicException 
     {
         return find(idEstado).getMedidas();
     }
     
-    public MedidaEntity getMedida(Long idMedida,Long idEstado) throws BusinessLogicException, Exception
+    public MedidaEntity getMedida(Long idMedida,Long idEstado) throws WebApplicationException, BusinessLogicException 
     {
         List<MedidaEntity> medidas = find(idEstado).getMedidas();
         MedidaEntity medida = medidalogic.find(idMedida);

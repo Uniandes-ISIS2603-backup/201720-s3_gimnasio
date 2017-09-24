@@ -26,7 +26,7 @@ public class RutinaEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @OneToMany(mappedBy = "rutina")
-    List<EjercicioEntity> ejercicios=new ArrayList<>();
+    private List<EjercicioEntity> ejercicios=new ArrayList<>();
     
     private String tipo;
     

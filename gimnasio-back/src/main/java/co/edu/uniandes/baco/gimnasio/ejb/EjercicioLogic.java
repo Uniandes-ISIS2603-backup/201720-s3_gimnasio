@@ -17,18 +17,18 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
     ObjetivoLogic objetivoLogic;
     
     @Override
-    public EjercicioEntity create(EjercicioEntity entity) throws WebApplicationException,BusinessLogicException {
+    public EjercicioEntity create(EjercicioEntity entity) throws BusinessLogicException{
         if (entity.getTipo() == null) {
             throw new BusinessLogicException("no se puede agregar un objeto sin categoria(existe: no_pertenece)");
         }
         return super.create(entity);        
     }
     
-    public List<ObjetivoEntity> findAllObjetivos(Long id) throws Exception {
+    public List<ObjetivoEntity> findAllObjetivos(Long id){
         return persistence.find(id).getObjetivos();        
     }
     
-    public ObjetivoEntity findObjetivo(Long idEjercicio, Long id) throws Exception {
+    public ObjetivoEntity findObjetivo(Long idEjercicio, Long id) throws WebApplicationException, BusinessLogicException{
         ObjetivoEntity aux = new ObjetivoEntity();
         aux.setId(id);
         List<ObjetivoEntity> list=find(idEjercicio).getObjetivos();
@@ -37,7 +37,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
         return list.get(ind);
     }
     
-    public ObjetivoEntity createObjetivo(Long idEjercicio, Long id) throws Exception{
+    public ObjetivoEntity createObjetivo(Long idEjercicio, Long id) throws WebApplicationException, BusinessLogicException{
         ObjetivoEntity aux = objetivoLogic.find(id);
         if(aux==null)throw new WebApplicationException("El recurso con id=" + id + " no existe.", 404);
         find(idEjercicio).getObjetivos().add(aux);

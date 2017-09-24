@@ -17,8 +17,6 @@ import java.util.List;
 public class EjercicioDetailDTO extends EjercicioDTO{
     private List<ObjetivoDTO> objetivos;
 
-    public EjercicioDetailDTO() {}
-
     public EjercicioDetailDTO(EjercicioEntity entity) {
         super(entity);
         if (entity.getObjetivos() != null){
@@ -29,7 +27,7 @@ public class EjercicioDetailDTO extends EjercicioDTO{
         }
     }
 
-    public final static List<EjercicioDetailDTO> listDetailDTO(List<EjercicioEntity> entity){
+    public static final List<EjercicioDetailDTO> listDetailDTO(List<EjercicioEntity> entity){
         List<EjercicioDetailDTO> resp=new ArrayList<>();
         entity.forEach((ent) -> {
             resp.add(new EjercicioDetailDTO(ent));
