@@ -9,7 +9,6 @@ import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
 import javax.ejb.Stateless;
-import javax.ws.rs.WebApplicationException;
 
 /**
  *

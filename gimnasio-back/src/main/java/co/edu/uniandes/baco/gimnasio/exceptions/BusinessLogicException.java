@@ -33,6 +33,7 @@ import javax.ejb.ApplicationException;
 public class BusinessLogicException extends Exception {
 
     public BusinessLogicException() {
+        //este es el basico constructor de la exepcion
     }
 
     /**

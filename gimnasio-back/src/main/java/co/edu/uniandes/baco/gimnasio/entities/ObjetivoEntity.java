@@ -32,5 +32,12 @@ public class ObjetivoEntity extends BaseEntity implements Serializable{
     public void setTipo(String tipo) {this.tipo = tipo;}
 
     public String getDescripcion() {return descripcion;}
-    public void setDescripcion(String descripcion){this.descripcion = descripcion;} 
+    public void setDescripcion(String descripcion){this.descripcion = descripcion;}
+    
+    @Override
+    public boolean equals(Object obj) {
+        if(!super.equals(obj))return false;
+        ObjetivoEntity aux=(ObjetivoEntity)obj;
+        return tipo.equals(aux.tipo) && descripcion.equals(aux.descripcion);
+     }
 }

@@ -19,7 +19,8 @@ public class ObjetivoPersistence extends BasePersistence<ObjetivoEntity>{
         TypedQuery query = manager.createQuery("select u from "+entityClass.getName()+" u where u.tipo = :name", entityClass);
         query.setParameter("name", name);
         List<ObjetivoEntity> ans =query.getResultList();
-        if(ans.isEmpty())return null;
+        if(ans.isEmpty())
+            return null;
         return ans.get(0);
     }
    

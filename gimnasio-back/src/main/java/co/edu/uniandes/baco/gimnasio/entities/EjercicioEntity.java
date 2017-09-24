@@ -96,4 +96,11 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
 
     public Integer getRepeticionesPorParticion() {return repeticionesPorParticion;}
     public void setRepeticionesPorParticion(Integer repeticionesPorParticion) {this.repeticionesPorParticion = repeticionesPorParticion;}
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!super.equals(obj))return false;
+        EjercicioEntity aux=(EjercicioEntity)obj;
+        return descripcion.equals(aux.descripcion) && explicacion.equals(aux.explicacion) && series.equals(aux.series) && tamanioParticiones.equals(aux.tamanioParticiones) && duracion.equals(aux.duracion) && repeticionesPorParticion.equals(aux.repeticionesPorParticion);
+    }
 }
