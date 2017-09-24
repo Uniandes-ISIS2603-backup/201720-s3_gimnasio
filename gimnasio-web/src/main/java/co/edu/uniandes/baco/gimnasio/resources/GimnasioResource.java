@@ -77,7 +77,7 @@ public class GimnasioResource {
      * @throws BusinessLogicException
      */
     @POST
-    public GimnasioDetailDTO createGimnasio(GimnasioDetailDTO Gimnasio) throws BusinessLogicException, Exception {
+    public GimnasioDetailDTO createGimnasio(GimnasioDetailDTO Gimnasio) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         GimnasioEntity GimnasioEntity = Gimnasio.toEntity();
         // Invoca la lógica para crear la Gimnasio nueva
@@ -94,7 +94,7 @@ public class GimnasioResource {
      * @throws BusinessLogicException
      */
     @GET
-    public List<GimnasioDetailDTO> getGimnasios() throws BusinessLogicException, Exception {
+    public List<GimnasioDetailDTO> getGimnasios() throws BusinessLogicException {
         return listEntity2DetailDTO(gimnasioLogic.getGimnasios());
     }
 
@@ -114,7 +114,7 @@ public class GimnasioResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public GimnasioDetailDTO updateGimnasio(@PathParam("id") Long id, GimnasioDetailDTO gimnasio) throws BusinessLogicException, UnsupportedOperationException {
+    public GimnasioDetailDTO updateGimnasio(@PathParam("id") Long id, GimnasioDetailDTO gimnasio) throws BusinessLogicException {
           throw new UnsupportedOperationException("Este servicio  no está implementado");
     }
 

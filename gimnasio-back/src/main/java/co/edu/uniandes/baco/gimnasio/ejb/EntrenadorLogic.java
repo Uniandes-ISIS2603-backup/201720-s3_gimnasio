@@ -6,7 +6,6 @@ import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.EntrenadorPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.ws.rs.WebApplicationException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -28,12 +27,12 @@ public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
         return super.create(entity);
     }
     
-    public List<UsuarioEntity> listUsuario(long id) throws WebApplicationException, BusinessLogicException 
+    public List<UsuarioEntity> listUsuario(long id) throws BusinessLogicException 
     {
         return find(id).getUsuarios();
     }
 
-    public UsuarioEntity addUsuarioDeail(Long entrenadorId, Long usuarioId) throws BusinessLogicException, Exception {
+    public UsuarioEntity addUsuarioDeail(Long entrenadorId, Long usuarioId) throws BusinessLogicException{
         EntrenadorEntity ent = find(entrenadorId);
         UsuarioEntity us = new UsuarioEntity();
         us.setId(usuarioId);
@@ -41,7 +40,7 @@ public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
         return getusuario(entrenadorId, usuarioId);
     }
 
-     public UsuarioEntity getusuario(Long entrenadorId, Long usuarioId) throws WebApplicationException, BusinessLogicException {
+     public UsuarioEntity getusuario(Long entrenadorId, Long usuarioId) throws BusinessLogicException {
         List<UsuarioEntity> list = find(entrenadorId).getUsuarios();
         UsuarioEntity usuarioEntity = new UsuarioEntity();
         usuarioEntity.setId(usuarioId);
@@ -52,7 +51,7 @@ public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
         return null;
     }
 
-    public void removeUsuario(Long EntrenadorId, Long usuarioId) throws WebApplicationException, BusinessLogicException  {
+    public void removeUsuario(Long EntrenadorId, Long usuarioId) throws BusinessLogicException  {
         EntrenadorEntity e = find(EntrenadorId);
         UsuarioEntity us = new UsuarioEntity();
         us.setId(usuarioId);

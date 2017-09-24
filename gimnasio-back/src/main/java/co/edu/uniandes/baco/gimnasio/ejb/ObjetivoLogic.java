@@ -19,7 +19,7 @@ import javax.ws.rs.WebApplicationException;
 public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
 
     @Override
-    public ObjetivoEntity create(ObjetivoEntity entity)throws WebApplicationException,BusinessLogicException{
+    public ObjetivoEntity create(ObjetivoEntity entity)throws BusinessLogicException{
         if(null!=((ObjetivoPersistence)persistence).findByTipo(entity.getTipo()))
             throw new BusinessLogicException("ya esiste un objetivo con ese tipo");
         return super.create(entity); 

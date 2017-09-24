@@ -34,7 +34,7 @@ public class TipoMedidaResource{
     private TipoMedidaLogic logic;
     
     @POST
-    public TipoMedidaDTO post(TipoMedidaDTO nuevo) throws WebApplicationException, BusinessLogicException{
+    public TipoMedidaDTO post(TipoMedidaDTO nuevo) throws BusinessLogicException{
         return new TipoMedidaDTO(logic.create(nuevo.toEntity()));
     }
     
@@ -45,13 +45,13 @@ public class TipoMedidaResource{
     
     @GET
     @Path("{id: \\d+}")
-    public TipoMedidaDTO get(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
+    public TipoMedidaDTO get(@PathParam("id") long id) throws BusinessLogicException{
         return new TipoMedidaDTO(logic.find(id));
     }
     
     @PUT
     @Path("{id: \\d+}")
-    public TipoMedidaDTO put(@PathParam("id")long id, TipoMedidaDTO nuevo) throws WebApplicationException, BusinessLogicException{
+    public TipoMedidaDTO put(@PathParam("id")long id, TipoMedidaDTO nuevo) throws BusinessLogicException{
         TipoMedidaEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new TipoMedidaDTO(logic.update(entity));
@@ -59,7 +59,7 @@ public class TipoMedidaResource{
     
     @DELETE
     @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
+    public void delete(@PathParam("id") long id) throws BusinessLogicException{
         logic.remove(id);
     }
 }

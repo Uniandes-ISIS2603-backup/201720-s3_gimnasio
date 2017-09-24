@@ -34,7 +34,7 @@ public class MaquinaResource{
     private MaquinaLogic logic;
     
     @POST
-    public MaquinaDTO post(MaquinaDTO nuevo) throws WebApplicationException, BusinessLogicException{
+    public MaquinaDTO post(MaquinaDTO nuevo) throws BusinessLogicException{
         return new MaquinaDTO(logic.create(nuevo.toEntity()));
     }
     
@@ -45,13 +45,13 @@ public class MaquinaResource{
     
     @GET
     @Path("{id: \\d+}")
-    public MaquinaDTO get(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
+    public MaquinaDTO get(@PathParam("id") long id) throws BusinessLogicException{
         return new MaquinaDTO(logic.find(id));
     }
     
     @PUT
     @Path("{id: \\d+}")
-    public MaquinaDTO put(@PathParam("id")long id, MaquinaDTO nuevo) throws WebApplicationException, BusinessLogicException{
+    public MaquinaDTO put(@PathParam("id")long id, MaquinaDTO nuevo) throws BusinessLogicException{
         MaquinaEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new MaquinaDTO(logic.update(entity));
@@ -59,7 +59,7 @@ public class MaquinaResource{
     
     @DELETE
     @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
+    public void delete(@PathParam("id") long id) throws BusinessLogicException{
         logic.remove(id);
     }
 }

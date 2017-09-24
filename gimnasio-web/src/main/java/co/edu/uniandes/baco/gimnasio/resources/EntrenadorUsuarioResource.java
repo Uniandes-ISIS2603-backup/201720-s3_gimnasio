@@ -47,19 +47,19 @@ public class EntrenadorUsuarioResource {
     }
     
     @GET
-    public List<UsuarioDetailDTO> listusuarios(@PathParam("EntrenadorId") Long id) throws BusinessLogicException, Exception {
+    public List<UsuarioDetailDTO> listusuarios(@PathParam("EntrenadorId") Long id) throws BusinessLogicException {
         return usuarioListEntity2DTO(entrenadorLogic.listUsuario(id));
     }
     
     @POST
     @Path("{usuarioId: \\d+}")
-    public UsuarioDetailDTO addUsuario(@PathParam("EntrenadorId") Long entrenadorId, @PathParam("usuariosId") Long usuarioId) throws BusinessLogicException, Exception {
+    public UsuarioDetailDTO addUsuario(@PathParam("EntrenadorId") Long entrenadorId, @PathParam("usuariosId") Long usuarioId) throws BusinessLogicException{
         return new UsuarioDetailDTO(entrenadorLogic.addUsuarioDeail(entrenadorId, usuarioId));
     }
     
     @DELETE
     @Path("{usuarioID: \\d+}")
-    public void removeAuthors(@PathParam("EntrenadorId") Long EntrenadorId, @PathParam("usuarioID") Long usuarioId) throws BusinessLogicException, Exception {
+    public void removeAuthors(@PathParam("EntrenadorId") Long EntrenadorId, @PathParam("usuarioID") Long usuarioId) throws BusinessLogicException{
         entrenadorLogic.removeUsuario(EntrenadorId, usuarioId);
     }
 }

@@ -37,7 +37,7 @@ public class EstadoResource {
  private  EstadoLogic estadologic;
  
      @POST
-    public EstadoDTO creat(EstadoDTO entity) throws WebApplicationException, BusinessLogicException
+    public EstadoDTO creat(EstadoDTO entity) throws BusinessLogicException
     {
         EstadoEntity estadoentity = entity.toEntity();
         EstadoEntity pcnew = estadologic.create(estadoentity);
@@ -46,7 +46,7 @@ public class EstadoResource {
 
     @GET
     @Path("{id: \\d+}")
-    public EstadoDTO getEstado(@PathParam("id")Long id)throws WebApplicationException, BusinessLogicException
+    public EstadoDTO getEstado(@PathParam("id")Long id)throws BusinessLogicException
     {
         EstadoEntity en = estadologic.find(id);
         if(en!=null)
@@ -61,7 +61,7 @@ public class EstadoResource {
     }
         @PUT
     @Path("{id: \\d+}") 
-    public  EstadoDTO updateEstado(@PathParam("id") Long id,EstadoDTO estado)throws WebApplicationException, BusinessLogicException
+    public  EstadoDTO updateEstado(@PathParam("id") Long id,EstadoDTO estado)throws BusinessLogicException
     {
         EstadoEntity ent = estadologic.find(id);
         if(ent!=null)
@@ -77,7 +77,7 @@ public class EstadoResource {
     }
      @DELETE
     @Path("{id: \\d+}") 
-    public void deleteEstado(@PathParam("id")Long id)throws WebApplicationException, BusinessLogicException
+    public void deleteEstado(@PathParam("id")Long id)throws BusinessLogicException
     {
               EstadoEntity ent = estadologic.find(id);
         if(ent!=null)
@@ -92,7 +92,7 @@ public class EstadoResource {
         }  
     }
         @Path("{EstadoId: \\d+}/books")
-    public Class<EstadoMedidaResource> getEditorialBooksResource(@PathParam("EstadoId") Long EstadoId) throws WebApplicationException, BusinessLogicException {
+    public Class<EstadoMedidaResource> getEditorialBooksResource(@PathParam("EstadoId") Long EstadoId) throws BusinessLogicException {
         EstadoEntity entity = estadologic.find(EstadoId);
         if (entity == null) {
             throw new WebApplicationException("noe xiste el estado",404);

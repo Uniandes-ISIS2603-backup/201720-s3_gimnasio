@@ -21,30 +21,30 @@ public abstract class BaseLogic<T extends BaseEntity>{
     @Inject
     protected BasePersistence<T> persistence;
 
-     public T create(T entity)throws WebApplicationException,BusinessLogicException{
+     public T create(T entity)throws BusinessLogicException{
         return persistence.create(entity);
     }
     
-    public T find(long id)throws WebApplicationException,BusinessLogicException{
+    public T find(long id)throws BusinessLogicException{
         T t= persistence.find(id);
         if(t==null)
             throw new WebApplicationException("El recurso con id=" + id + " no existe.", 404);
         return t;
     }
     
-    public T update(T entity) throws WebApplicationException,BusinessLogicException{
+    public T update(T entity) throws BusinessLogicException{
         if(persistence.find(entity.getId())==null)
              throw new WebApplicationException("El recurso con id=" + entity.getId() + " no existe.", 404);
         return persistence.update(entity);
     }
     
-    public void remove(long id)throws WebApplicationException,BusinessLogicException{
+    public void remove(long id)throws BusinessLogicException{
          if(persistence.find(id)==null)
              throw new WebApplicationException("El recurso con id=" + id + " no existe.", 404);
         persistence.delete(id);
     }
     
-    public List<T> findAll()throws WebApplicationException,BusinessLogicException{
+    public List<T> findAll()throws BusinessLogicException{
         return persistence.findAll();
     }
 }

@@ -36,25 +36,25 @@ public class MedicionMaquinaResource
     private MedicionMaquinaLogic logic;
     
     @POST
-    public MedicionMaquinaDTO post(MedicionMaquinaDTO nuevo) throws BusinessLogicException, Exception{
+    public MedicionMaquinaDTO post(MedicionMaquinaDTO nuevo) throws BusinessLogicException{
         return new MedicionMaquinaDTO(logic.create(nuevo.toEntity()));
     }
     
     @GET
-    public List<MedicionMaquinaDTO> getAll()throws BusinessLogicException , WebApplicationException
+    public List<MedicionMaquinaDTO> getAll()throws BusinessLogicException
     {
         return MedicionMaquinaDTO.listDTO(logic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public MedicionMaquinaDTO get(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
+    public MedicionMaquinaDTO get(@PathParam("id") long id) throws BusinessLogicException{
         return new MedicionMaquinaDTO(logic.find(id));
     }
     
     @PUT
     @Path("{id: \\d+}")
-    public MedicionMaquinaDTO put(@PathParam("id")long id, MedicionMaquinaDTO nuevo) throws BusinessLogicException, Exception{
+    public MedicionMaquinaDTO put(@PathParam("id")long id, MedicionMaquinaDTO nuevo) throws BusinessLogicException{
         MedicionMaquinaEntity entity = nuevo.toEntity();
         entity.setId(id);
         return new MedicionMaquinaDTO(logic.update(entity));
@@ -62,7 +62,7 @@ public class MedicionMaquinaResource
     
     @DELETE
     @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
+    public void delete(@PathParam("id") long id) throws BusinessLogicException{
         logic.remove(id);
     }
 }

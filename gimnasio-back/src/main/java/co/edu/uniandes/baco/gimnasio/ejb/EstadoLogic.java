@@ -27,26 +27,26 @@ public class EstadoLogic extends BaseLogic<EstadoEntity>{
     private MedidaLogic medidalogic;
 
 
-    public MedidaEntity addMedida(Long idmedida,Long idEstado) throws WebApplicationException, BusinessLogicException
+    public MedidaEntity addMedida(Long idmedida,Long idEstado) throws BusinessLogicException
     {
         EstadoEntity estado = this.find(idEstado);
         MedidaEntity medida = medidalogic.find(idmedida);
         medida.setEstado(estado);
         return medida;
     }
-    public void removeMedida(Long idmedida, Long idEstado) throws WebApplicationException, BusinessLogicException
+    public void removeMedida(Long idmedida, Long idEstado) throws BusinessLogicException
     {
     EstadoEntity editorialEntity = this.find(idEstado);
     MedidaEntity medida = medidalogic.find(idmedida);
     medida.setEstado(null);
     editorialEntity.getMedidas().remove(medida);
     }
-    public List<MedidaEntity> medidas(Long idEstado) throws WebApplicationException, BusinessLogicException 
+    public List<MedidaEntity> medidas(Long idEstado) throws BusinessLogicException 
     {
         return find(idEstado).getMedidas();
     }
     
-    public MedidaEntity getMedida(Long idMedida,Long idEstado) throws WebApplicationException, BusinessLogicException 
+    public MedidaEntity getMedida(Long idMedida,Long idEstado) throws BusinessLogicException 
     {
         List<MedidaEntity> medidas = find(idEstado).getMedidas();
         MedidaEntity medida = medidalogic.find(idMedida);

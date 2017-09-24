@@ -52,24 +52,24 @@ private List<MedidaDTO> medidaListEntity2DTO(List<MedidaEntity> list)
     }
    
     @GET
-    public List<MedidaDTO> listBooks(@PathParam("Estadoid") Long Estadoid) throws BusinessLogicException, Exception {
+    public List<MedidaDTO> listBooks(@PathParam("Estadoid") Long Estadoid) throws BusinessLogicException {
         return medidaListEntity2DTO(estadologic.medidas(Estadoid));
     }
     
    @GET
     @Path("{medidaId: \\d+}")
-    public MedidaDTO getMedidas(@PathParam("Estadoid") Long estadoId, @PathParam("medidaId") Long medidasId) throws BusinessLogicException, Exception {
+    public MedidaDTO getMedidas(@PathParam("Estadoid") Long estadoId, @PathParam("medidaId") Long medidasId) throws BusinessLogicException {
         return new MedidaDTO(estadologic.getMedida(medidasId, estadoId));
     }
     
     @POST
     @Path("{medidaId: \\d+}")
-    public MedidaDTO addBooks(@PathParam("Estadoid") Long Estadoid, @PathParam("medidaId") Long medidaId) throws BusinessLogicException, Exception {
+    public MedidaDTO addBooks(@PathParam("Estadoid") Long Estadoid, @PathParam("medidaId") Long medidaId) throws BusinessLogicException {
         return new MedidaDTO(estadologic.addMedida(medidaId, Estadoid));
     }
     @DELETE
     @Path("{medidaId: \\d+}")
-    public void removeBooks(@PathParam("Estadoid") Long Estadoid, @PathParam("medidaId") Long medidaId) throws BusinessLogicException, Exception {
+    public void removeBooks(@PathParam("Estadoid") Long Estadoid, @PathParam("medidaId") Long medidaId) throws BusinessLogicException{
         estadologic.removeMedida(medidaId, Estadoid);
     }   
 

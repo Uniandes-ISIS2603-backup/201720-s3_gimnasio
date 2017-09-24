@@ -34,24 +34,24 @@ public class ObjetivoResource{
     private ObjetivoLogic logic;
     
     @POST
-    public ObjetivoDTO post(ObjetivoDTO nuevo) throws BusinessLogicException, Exception{
+    public ObjetivoDTO post(ObjetivoDTO nuevo) throws BusinessLogicException{
         return new ObjetivoDTO(logic.create(nuevo.toEntity()));
     }
     
     @GET
-    public List<ObjetivoDTO> getAll() throws WebApplicationException, BusinessLogicException{
+    public List<ObjetivoDTO> getAll() throws BusinessLogicException{
         return ObjetivoDTO.listDTO(logic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public ObjetivoDTO get(@PathParam("id") long id) throws WebApplicationException, BusinessLogicException{
+    public ObjetivoDTO get(@PathParam("id") long id) throws BusinessLogicException{
         return new ObjetivoDTO(logic.find(id));
     }
     
     @PUT
     @Path("{id: \\d+}")
-    public ObjetivoDTO put(@PathParam("id")long id, ObjetivoDTO nuevo) throws BusinessLogicException, Exception{
+    public ObjetivoDTO put(@PathParam("id")long id, ObjetivoDTO nuevo) throws BusinessLogicException{
         ObjetivoEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new ObjetivoDTO(logic.update(entity));

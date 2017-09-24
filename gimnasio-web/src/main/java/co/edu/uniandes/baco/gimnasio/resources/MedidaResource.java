@@ -39,7 +39,7 @@ public class MedidaResource {
    private MedidaLogic medidalogic;
    
     @POST
-    public MedidaDTO creat(MedidaDTO medidaDto) throws WebApplicationException, BusinessLogicException
+    public MedidaDTO creat(MedidaDTO medidaDto) throws BusinessLogicException
     {
         MedidaEntity pcentity = medidaDto.toEntity();
         MedidaEntity pcnew = medidalogic.create(pcentity);
@@ -49,7 +49,7 @@ public class MedidaResource {
     
     @GET
     @Path("{id: \\d+}")
-    public MedidaDTO getMedida(@PathParam("id")Long id)throws WebApplicationException, BusinessLogicException
+    public MedidaDTO getMedida(@PathParam("id")Long id)throws BusinessLogicException
     {
         MedidaEntity en = medidalogic.find(id);
         if(en!=null)
@@ -63,7 +63,7 @@ public class MedidaResource {
     }
         @PUT
     @Path("{id: \\d+}") 
-    public  MedidaDTO updateMedida(@PathParam("id") Long id,MedidaDTO medida)throws WebApplicationException, BusinessLogicException
+    public  MedidaDTO updateMedida(@PathParam("id") Long id,MedidaDTO medida)throws BusinessLogicException
     {
         MedidaEntity ent = medidalogic.find(id);
         if(ent!=null)
@@ -79,7 +79,7 @@ public class MedidaResource {
        }
         @DELETE
     @Path("{id: \\d+}") 
-    public void deleteMedida(@PathParam("id")Long id)throws WebApplicationException, BusinessLogicException
+    public void deleteMedida(@PathParam("id")Long id)throws BusinessLogicException
     {
       MedidaEntity ent = medidalogic.find(id);
         if(ent!=null)

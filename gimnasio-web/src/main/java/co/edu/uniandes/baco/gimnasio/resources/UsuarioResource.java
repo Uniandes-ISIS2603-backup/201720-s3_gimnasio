@@ -49,7 +49,7 @@ public class UsuarioResource {
      */
     
     @POST
-    public UsuarioDTO create(UsuarioDTO p)throws BusinessLogicException, Exception
+    public UsuarioDTO create(UsuarioDTO p)throws BusinessLogicException
     {
         UsuarioEntity pcentity = p.toEntity();
         UsuarioEntity pnew = usuarioLogic.create(pcentity);
@@ -57,13 +57,13 @@ public class UsuarioResource {
     }
     
     @GET
-    public List<UsuarioDetailDTO> getEntrenadores() throws BusinessLogicException, Exception {
+    public List<UsuarioDetailDTO> getEntrenadores() throws BusinessLogicException {
         return listEntity2DetailDTO(usuarioLogic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public UsuarioDTO getUsuario(@PathParam("id")Long id) throws BusinessLogicException, Exception
+    public UsuarioDTO getUsuario(@PathParam("id")Long id) throws BusinessLogicException
     {
         UsuarioEntity en = usuarioLogic.find(id);
         if(en!=null)
@@ -78,7 +78,7 @@ public class UsuarioResource {
     
     @DELETE
     @Path("{id: \\d+}") 
-    public void deleteUsuario(@PathParam("id")Long id)throws BusinessLogicException, Exception
+    public void deleteUsuario(@PathParam("id")Long id)throws BusinessLogicException
     {
               UsuarioEntity ent = usuarioLogic.find(id);
         if(ent!=null)
@@ -102,7 +102,7 @@ public class UsuarioResource {
     }
     
     @Path("{usuarioId: \\d+}/entrenadores")
-    public Class<UsuarioEntrenadorResource> getEntrenadorUsuarioResource(@PathParam("usuarioId") Long usuarioID) throws WebApplicationException, BusinessLogicException
+    public Class<UsuarioEntrenadorResource> getEntrenadorUsuarioResource(@PathParam("usuarioId") Long usuarioID) throws BusinessLogicException
     {
         UsuarioEntity e  = usuarioLogic.find(usuarioID);
         if(e == null)
