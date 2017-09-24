@@ -21,6 +21,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -48,7 +49,7 @@ public class UsuarioResource {
      */
     
     @POST
-    public UsuarioDTO create(UsuarioDTO p)throws Exception
+    public UsuarioDTO create(UsuarioDTO p)throws BusinessLogicException, Exception
     {
         UsuarioEntity pcentity = p.toEntity();
         UsuarioEntity pnew = usuarioLogic.create(pcentity);
@@ -56,13 +57,13 @@ public class UsuarioResource {
     }
     
     @GET
-    public List<UsuarioDetailDTO> getEntrenadores() throws Exception {
+    public List<UsuarioDetailDTO> getEntrenadores() throws BusinessLogicException, Exception {
         return listEntity2DetailDTO(usuarioLogic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public UsuarioDTO getUsuario(@PathParam("id")Long id) throws Exception
+    public UsuarioDTO getUsuario(@PathParam("id")Long id) throws BusinessLogicException, Exception
     {
         UsuarioEntity en = usuarioLogic.find(id);
         if(en!=null)
@@ -77,7 +78,7 @@ public class UsuarioResource {
     
     @DELETE
     @Path("{id: \\d+}") 
-    public void deleteUsuario(@PathParam("id")Long id)throws Exception
+    public void deleteUsuario(@PathParam("id")Long id)throws BusinessLogicException, Exception
     {
               UsuarioEntity ent = usuarioLogic.find(id);
         if(ent!=null)
@@ -98,6 +99,17 @@ public class UsuarioResource {
             list.add(new UsuarioDetailDTO(entity));
         }
         return list;
+    }
+    
+    @Path("{usuarioId: \\d+}/entrenadores")
+    public Class<UsuarioEntrenadorResource> getEntrenadorUsuarioResource(@PathParam("usuarioId") Long usuarioID) throws Exception
+    {
+        UsuarioEntity e  = usuarioLogic.find(usuarioID);
+        if(e == null)
+        {
+            throw new WebApplicationException("El usuario no existe", 404);
+        }
+        return UsuarioEntrenadorResource.class;
     }
     
     

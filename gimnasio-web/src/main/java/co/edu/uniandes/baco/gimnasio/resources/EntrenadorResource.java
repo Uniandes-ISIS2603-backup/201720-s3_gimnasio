@@ -41,7 +41,7 @@ public class EntrenadorResource {
     public EntrenadorDTO create(EntrenadorDTO p) throws Exception
     {
         EntrenadorEntity pcentity = p.toEntity();
-        EntrenadorEntity pnew = entrenadorLogic.createEntrenador(pcentity);
+        EntrenadorEntity pnew = entrenadorLogic.create(pcentity);
         return new EntrenadorDTO(pnew);
     }
     
