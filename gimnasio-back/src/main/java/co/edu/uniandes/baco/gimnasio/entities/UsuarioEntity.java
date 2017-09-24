@@ -10,11 +10,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
-import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -27,46 +25,9 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaDeNacimiento;
     
-    @PodamExclude
     @ManyToMany(mappedBy = "usuarios")
     private List<EntrenadorEntity> entrenadores = new ArrayList();
-    
-    @PodamExclude
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
-    List<EstadoEntity> estados=new ArrayList<>();
-    
-    @PodamExclude
-    @OneToMany(mappedBy = "usuario",fetch = FetchType.LAZY, orphanRemoval = true)
-    List<RutinaEntity> rutinas=new ArrayList<>();
-    
-    @PodamExclude
-    @ManyToMany(mappedBy= "usuarios")
-    private List<ObjetivoEntity> objetivos=new ArrayList<>();
 
-    public List<ObjetivoEntity> getObjetivos() {
-        return objetivos;
-    }
-
-    public void setObjetivos(List<ObjetivoEntity> objetivos) {
-        this.objetivos = objetivos;
-    }
-    
-    public List<EstadoEntity> getEstados() {
-        return estados;
-    }
-
-    public void setEstados(List<EstadoEntity> estados) {
-        this.estados = estados;
-    }
-
-    public List<RutinaEntity> getRutinas() {
-        return rutinas;
-    }
-
-    public void setRutinas(List<RutinaEntity> rutinas) {
-        this.rutinas = rutinas;
-    }
-    
     /**
      * @return the nombre
      */

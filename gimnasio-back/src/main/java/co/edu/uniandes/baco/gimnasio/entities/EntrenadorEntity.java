@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.persistence.Entity;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;

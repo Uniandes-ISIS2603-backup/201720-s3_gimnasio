@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
+import java.util.List;
 import javax.ejb.Stateless;
 
 
@@ -15,4 +16,8 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class UsuarioLogic extends BaseLogic<UsuarioEntity>{
+
+    public List<UsuarioEntity> findalA() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
