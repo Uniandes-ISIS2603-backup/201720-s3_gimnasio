@@ -36,7 +36,7 @@ import javax.inject.Inject;
  * @author ISIS2603
  */
 @Stateless
-public class GimnasioLogic {
+public class GimnasioLogic extends BaseLogic <GimnasioEntity>{
 
     private static final Logger LOGGER = Logger.getLogger(GimnasioLogic.class.getName());
 

@@ -45,6 +45,10 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RutinaEntity> rutinas=new ArrayList<>();
 
+    @PodamExclude
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EstadoEntity> estados=new ArrayList<>();
+    
     public List<RutinaEntity> getRutinas() {
         return rutinas;
     }
@@ -86,6 +90,14 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
      */
     public Date getFechaDeNacimiento() {
         return fechaDeNacimiento;
+    }
+
+    public List<EstadoEntity> getEstados() {
+        return estados;
+    }
+
+    public void setEstados(List<EstadoEntity> estados) {
+        this.estados = estados;
     }
 
     /**

@@ -36,13 +36,9 @@ public class EntrenadorResource {
     @Inject
     EntrenadorLogic entrenadorLogic;
     
-    
-    @POST
-    public EntrenadorDTO create(EntrenadorDTO p) throws BusinessLogicException
-    {
-        EntrenadorEntity pcentity = p.toEntity();
-        EntrenadorEntity pnew = entrenadorLogic.create(pcentity);
-        return new EntrenadorDTO(pnew);
+    @GET
+    public List<EntrenadorDetailDTO> getEntrenadores() throws BusinessLogicException {
+        return listEntity2DetailDTO(entrenadorLogic.findAll());
     }
     
     @GET
@@ -60,9 +56,12 @@ public class EntrenadorResource {
         }
     }
     
-    @GET
-    public List<EntrenadorDetailDTO> getEntrenadores() throws BusinessLogicException {
-        return listEntity2DetailDTO(entrenadorLogic.findAll());
+    @POST
+    public EntrenadorDTO create(EntrenadorDTO p) throws BusinessLogicException
+    {
+        EntrenadorEntity pcentity = p.toEntity();
+        EntrenadorEntity pnew = entrenadorLogic.create(pcentity);
+        return new EntrenadorDTO(pnew);
     }
     
     @PUT
@@ -79,15 +78,7 @@ public class EntrenadorResource {
                }
     }
     
-    private List<EntrenadorDetailDTO> listEntity2DetailDTO(List<EntrenadorEntity> entityList) {
-        List<EntrenadorDetailDTO> list = new ArrayList<>();
-        for (EntrenadorEntity entity : entityList) {
-            list.add(new EntrenadorDetailDTO(entity));
-        }
-        return list;
-    }
-    
-     @DELETE
+    @DELETE
     @Path("{id: \\d+}") 
     public void deleteEntreador(@PathParam("id")Long id)throws BusinessLogicException
     {
@@ -103,6 +94,16 @@ public class EntrenadorResource {
             throw new BusinessLogicException("no se pudo eliminaar ya que no existe");
         }  
     }
+    
+    private List<EntrenadorDetailDTO> listEntity2DetailDTO(List<EntrenadorEntity> entityList) {
+        List<EntrenadorDetailDTO> list = new ArrayList<>();
+        for (EntrenadorEntity entity : entityList) {
+            list.add(new EntrenadorDetailDTO(entity));
+        }
+        return list;
+    }
+    
+     
     
     @Path("{EntrenadorId: \\d+}/usuarios")
     public Class <EntrenadorUsuarioResource> getEntrenadorUsuarioResource (@PathParam("EntrenadorId") Long EntID) throws BusinessLogicException{

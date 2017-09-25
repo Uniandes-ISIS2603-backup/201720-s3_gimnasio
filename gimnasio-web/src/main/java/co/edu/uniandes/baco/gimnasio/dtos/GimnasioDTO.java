@@ -38,6 +38,10 @@ public class GimnasioDTO {
     private Long id;
     private String descripcion;
     private String uniadad;
+    private long nit;
+   private String duenio;
+   private String name;
+
     /**
      * Constructor por defecto
      */
@@ -52,6 +56,9 @@ public class GimnasioDTO {
      */
     public GimnasioDTO(GimnasioEntity Gimnasio) {
         this.id = Gimnasio.getId();
+        this.duenio = Gimnasio.getDuenio();
+        this.name = Gimnasio.getName();
+        this.nit = Gimnasio.getNit();
     }
 
     /**
@@ -76,7 +83,52 @@ public class GimnasioDTO {
     public GimnasioEntity toEntity() {
         GimnasioEntity entity = new GimnasioEntity();
         entity.setId(this.id);
+        entity.setDuenio(duenio);
+        entity.setName(name);
+        entity.setNit(nit);
         return entity;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getUniadad() {
+        return uniadad;
+    }
+
+    public void setUniadad(String uniadad) {
+        this.uniadad = uniadad;
+    }
+
+    public long getNit() {
+        return nit;
+    }
+
+    public void setNit(long nit) {
+        this.nit = nit;
+    }
+
+    public String getDuenio() {
+        return duenio;
+    }
+
+    public void setDuenio(String duenio) {
+        this.duenio = duenio;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
     
 }
