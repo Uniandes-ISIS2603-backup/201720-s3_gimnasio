@@ -9,7 +9,9 @@ import java.io.Serializable;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -30,7 +32,9 @@ public class EstadoEntity extends BaseEntity implements Serializable{
    private Integer ritmeoCardiaco; // atributo que modela el ritmo cardiaco
    
    @PodamExclude
-   @OneToMany(mappedBy = "estado")
+   
+
+   @OneToMany(mappedBy = "estado",cascade = CascadeType.REFRESH , orphanRemoval = true, fetch= FetchType.LAZY )
    private List<MedidaEntity> medidas;
 
     public List<MedidaEntity> getMedidas() {
