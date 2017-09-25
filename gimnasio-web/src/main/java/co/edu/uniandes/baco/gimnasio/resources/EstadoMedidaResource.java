@@ -7,6 +7,7 @@ package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.MedidaDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.EstadoLogic;
+import co.edu.uniandes.baco.gimnasio.ejb.MedidaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -32,7 +33,8 @@ public class EstadoMedidaResource {
 
 @Inject
 private EstadoLogic estadologic;
-
+@Inject
+private MedidaLogic melogic;
 private List<MedidaDTO> medidaListEntity2DTO(List<MedidaEntity> list)
 {
     List<MedidaDTO> lts = new ArrayList<>();
@@ -53,24 +55,26 @@ private List<MedidaDTO> medidaListEntity2DTO(List<MedidaEntity> list)
    
     @GET
     public List<MedidaDTO> listmedidas(@PathParam("Estadoid") Long Estadoid) throws BusinessLogicException {
-        return medidaListEntity2DTO(estadologic.medidas(Estadoid));
+        
+        return medidaListEntity2DTO(melogic.findAll(Estadoid));
     }
     
    @GET
     @Path("{medidaId: \\d+}")
     public MedidaDTO getMedidas(@PathParam("Estadoid") Long estadoId, @PathParam("medidaId") Long medidasId) throws BusinessLogicException {
-        return new MedidaDTO(estadologic.getMedida(medidasId, estadoId));
+        return new MedidaDTO(melogic.find(estadoId, medidasId));
     }
     
+    @PUT  
+    public MedidaDTO updateMedida(@PathParam("Estadoid") Long estadoId,MedidaEntity  entity )throws BusinessLogicException
+    {
+        return new MedidaDTO(melogic.update(estadoId, entity));
+    }
     @POST
     public MedidaDTO addBooks(@PathParam("Estadoid") Long Estadoid,MedidaDTO medida) throws BusinessLogicException {
-        return new MedidaDTO(estadologic.create(Estadoid, medida.toEntity()));
+        return new MedidaDTO(melogic.create(Estadoid,medida.toEntity()));
     }
-    @POST
-    @Path("{medidaId: \\d+}")
-    public MedidaDTO addBooks(@PathParam("Estadoid") Long Estadoid, @PathParam("medidaId") Long medidaId) throws BusinessLogicException {
-        return new MedidaDTO(estadologic.addMedida(medidaId, Estadoid));
-    }
+
     @DELETE
     @Path("{medidaId: \\d+}")
     public void removeBooks(@PathParam("Estadoid") Long Estadoid, @PathParam("medidaId") Long medidaId) throws BusinessLogicException{

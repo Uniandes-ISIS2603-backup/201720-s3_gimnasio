@@ -99,6 +99,7 @@ public class GimnasioResource {
         return listEntity2DetailDTO(gimnasioLogic.getGimnasios());
     }
 
+
    
     /**
      * PUT http://localhost:8080/gimnasio-web/api/gimnasios/1 Ejemplo

@@ -29,26 +29,24 @@ import javax.ws.rs.core.MediaType;
  * @author js.palacios437
  */
 
-@Path("Estado")
-@Produces("application/json")
-@Consumes("application/json")
-@Stateless
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class EstadoResource {
     
  @Inject
  private  EstadoLogic estadologic;
  
      @POST
-    public EstadoDTO creat(EstadoDTO entity) throws BusinessLogicException
+    public EstadoDetailDTO creat(EstadoDetailDTO entity) throws BusinessLogicException
     {
         EstadoEntity estadoentity = entity.toEntity();
         EstadoEntity pcnew = estadologic.create(estadoentity);
-        return new EstadoDTO(pcnew);    
+        return new EstadoDetailDTO(pcnew);    
     }
 
     @GET
     @Path("{id: \\d+}")
-    public EstadoDTO getEstado(@PathParam("id")Long id)throws BusinessLogicException
+    public EstadoDetailDTO getEstado(@PathParam("id")Long id)throws BusinessLogicException
     {
         EstadoEntity en = estadologic.find(id);
         if(en!=null)
@@ -63,7 +61,7 @@ public class EstadoResource {
     }
         @PUT
     @Path("{id: \\d+}") 
-    public  EstadoDTO updateEstado(@PathParam("id") Long id,EstadoDTO estado)throws BusinessLogicException
+    public  EstadoDetailDTO updateEstado(@PathParam("id") Long id,EstadoDetailDTO estado)throws BusinessLogicException
     {
         EstadoEntity ent = estadologic.find(id);
         if(ent!=null)

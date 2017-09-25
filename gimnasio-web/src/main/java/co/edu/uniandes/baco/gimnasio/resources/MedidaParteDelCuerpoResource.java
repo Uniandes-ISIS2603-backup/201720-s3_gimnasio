@@ -40,7 +40,7 @@ public class MedidaParteDelCuerpoResource {
   public ParteDelCuerpoDTO addPC(@PathParam("Medidaid") Long Medidaid,@PathParam("idpc")Long idpc) throws BusinessLogicException
   {
      
-      return new ParteDelCuerpoDTO(logic.addPartedelcuerpo(idpc, Medidaid));
+     return new ParteDelCuerpoDTO();
       
   }
   

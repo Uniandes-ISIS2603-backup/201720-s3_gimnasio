@@ -140,7 +140,7 @@ public class UsuarioResource {
             throw new WebApplicationException("El ejercicio no existe", 404);
         return RutinaResource.class;
     }
-    @Path("{idUsuario: \\d+}/Estado")
+    @Path("{idUsuario: \\d+}/estado")
     public Class<UsuarioEstadoResource> getEstadoResource(@PathParam("idUsuario") Long usid) throws BusinessLogicException{
          if (logic.find(usid) == null)
               throw new WebApplicationException("El estado no existe", 404);

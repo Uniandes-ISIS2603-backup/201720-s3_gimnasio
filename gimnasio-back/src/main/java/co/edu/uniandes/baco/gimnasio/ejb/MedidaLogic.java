@@ -5,9 +5,12 @@
  */
 package co.edu.uniandes.baco.gimnasio.ejb;
 
+import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ParteDelCuerpoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -21,22 +24,37 @@ import javax.inject.Inject;
 
 public class MedidaLogic extends BaseLogic<MedidaEntity>{
 
-    @Inject
-    private ParteDelCuerpoLogic pclogic;
-    
-    public ParteDelCuerpoEntity addPartedelcuerpo(Long pcid,Long idMedida)throws BusinessLogicException
+    @Inject 
+    private EstadoLogic elogic;
+   
+        public MedidaEntity create(Long idEstado,MedidaEntity entity) throws BusinessLogicException {
+        EstadoEntity estado=elogic.find(idEstado);
+        entity.setEstado(estado);
+        return create(entity);
+    }
+    public List<MedidaEntity> findAll(Long Idestado) throws BusinessLogicException
     {
-        MedidaEntity medida = this.find(idMedida);
-        ParteDelCuerpoEntity pc = pclogic.find(pcid);
-        if(pc!=null)
-        {
-           medida.setParte(pc);
-        }
-        else
-        {
-            throw new BusinessLogicException("no existe esa parte del cuerpo");
-        }
-        return pc;
+         return elogic.find(Idestado).getMedidas();
     }
     
+    
+        public MedidaEntity find(Long idEstado,Long id) throws BusinessLogicException 
+    {
+       MedidaEntity ent=new MedidaEntity();
+       ent.setId(id);
+       List<MedidaEntity> list=elogic.find(id).getMedidas();
+        int ind=list.indexOf(ent);
+        if(ind<0)
+            throw new NoExisteException(id);
+        return list.get(ind);
+    }
+        
+             public MedidaEntity update(Long idEstado,MedidaEntity entity) throws BusinessLogicException {
+        MedidaEntity old=find(entity.getId());
+        if(!old.getEstado().getId().equals(idEstado))
+            throw new NoExisteException(idEstado);
+        
+        entity.setEstado(old.getEstado());
+        return persistence.update(entity);
+    }       
 }
