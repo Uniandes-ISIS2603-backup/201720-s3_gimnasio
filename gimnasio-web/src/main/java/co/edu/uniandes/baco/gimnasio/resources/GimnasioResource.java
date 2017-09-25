@@ -55,7 +55,7 @@ import javax.ws.rs.WebApplicationException;
  * @author ISIS2603
  *
  */
-@Path("gimnasios")
+@Path("gimnasio")
 @Produces("application/json")
 @Consumes("application/json")
 @Stateless
