@@ -6,7 +6,9 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.ParteDelCuerpoEntity;
+import co.edu.uniandes.baco.gimnasio.persistence.ParteDelCuerpoPersitence;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
@@ -16,5 +18,11 @@ import javax.ejb.Stateless;
 
 public class ParteDelCuerpoLogic extends BaseLogic<ParteDelCuerpoEntity>{
 
+    @Inject
+    protected ParteDelCuerpoPersitence pc;
+   public ParteDelCuerpoEntity findName(String name)
+    {
+        return pc.findName(name);
+    }
 
 }

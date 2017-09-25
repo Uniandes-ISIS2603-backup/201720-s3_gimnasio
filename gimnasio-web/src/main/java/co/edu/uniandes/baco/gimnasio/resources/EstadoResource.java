@@ -92,7 +92,7 @@ public class EstadoResource {
         }  
     }
         @Path("{EstadoId: \\d+}/books")
-    public Class<EstadoMedidaResource> getEditorialBooksResource(@PathParam("EstadoId") Long EstadoId) throws BusinessLogicException {
+    public Class<EstadoMedidaResource> getEstadoMedida(@PathParam("EstadoId") Long EstadoId) throws BusinessLogicException {
         EstadoEntity entity = estadologic.find(EstadoId);
         if (entity == null) {
             throw new WebApplicationException("noe xiste el estado",404);

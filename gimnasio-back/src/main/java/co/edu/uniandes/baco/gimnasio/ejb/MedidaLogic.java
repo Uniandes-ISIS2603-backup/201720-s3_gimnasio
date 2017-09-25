@@ -6,7 +6,10 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ParteDelCuerpoEntity;
+import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 
 /**
@@ -18,5 +21,22 @@ import javax.ejb.Stateless;
 
 public class MedidaLogic extends BaseLogic<MedidaEntity>{
 
+    @Inject
+    private ParteDelCuerpoLogic pclogic;
+    
+    public ParteDelCuerpoEntity addPartedelcuerpo(String name,Long idMedida)throws BusinessLogicException
+    {
+        MedidaEntity medida = this.find(idMedida);
+        ParteDelCuerpoEntity pc = pclogic.findName(name);
+        if(pc!=null)
+        {
+           medida.setParte(pc);
+        }
+        else
+        {
+            throw new BusinessLogicException("no existe esa parte del cuerpo");
+        }
+        return pc;
+    }
     
 }

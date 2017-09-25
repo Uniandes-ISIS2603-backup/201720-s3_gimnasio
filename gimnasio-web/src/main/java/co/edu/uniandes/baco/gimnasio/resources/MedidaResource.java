@@ -61,7 +61,7 @@ public class MedidaResource {
              throw new BusinessLogicException(); 
         }
     }
-        @PUT
+
     @Path("{id: \\d+}") 
     public  MedidaDTO updateMedida(@PathParam("id") Long id,MedidaDTO medida)throws BusinessLogicException
     {
@@ -94,5 +94,12 @@ public class MedidaResource {
         }  
     }
 
-    
+    @Path("{Medidaid: \\d+}/ParteDelCuerpo")
+    public Class<MedidaParteDelCuerpoResource> getMedidaParteDelCuerpo(@PathParam("Medidaid") Long Medidaid) throws BusinessLogicException {
+        MedidaEntity entity = medidalogic.find(Medidaid);
+        if (entity == null) {
+            throw new WebApplicationException("noe xiste el estado",404);
+        }
+        return MedidaParteDelCuerpoResource.class;
+    }
 }

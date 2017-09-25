@@ -52,7 +52,7 @@ private List<MedidaDTO> medidaListEntity2DTO(List<MedidaEntity> list)
     }
    
     @GET
-    public List<MedidaDTO> listBooks(@PathParam("Estadoid") Long Estadoid) throws BusinessLogicException {
+    public List<MedidaDTO> listmedidas(@PathParam("Estadoid") Long Estadoid) throws BusinessLogicException {
         return medidaListEntity2DTO(estadologic.medidas(Estadoid));
     }
     
