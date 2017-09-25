@@ -24,7 +24,11 @@ SOFTWARE.
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -48,6 +52,23 @@ public class GimnasioEntity extends BaseEntity implements Serializable {
     */
    private long nit;
    
+   
+    @PodamExclude
+    @OneToMany(mappedBy = "gimnasio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MaquinaEntity> maquinas;
+
+    @PodamExclude
+    @OneToMany(mappedBy = "gimnasio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EntrenadorEntity> entrenadores;
+
+    @PodamExclude
+    @OneToMany(mappedBy = "gimnasio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ParteDelCuerpoEntity> partesDelCuerpo;
+
+    @PodamExclude
+    @OneToMany(mappedBy = "gimnasio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UsuarioEntity> usuarios;
+
    
    //--------------------------------------------------------------------------
    //METODOS
@@ -76,5 +97,40 @@ public class GimnasioEntity extends BaseEntity implements Serializable {
     public void setNit(long nit) {
         this.nit = nit;
     }
+
+    
+    public List<MaquinaEntity> getMaquinas() {
+        return maquinas;
+    }
+
+    public void setMaquinas(List<MaquinaEntity> maquinas) {
+        this.maquinas = maquinas;
+    }
+
+    public List<EntrenadorEntity> getEntrenadores() {
+        return entrenadores;
+    }
+
+    public void setEntrenadores(List<EntrenadorEntity> entrenadores) {
+        this.entrenadores = entrenadores;
+    }
+
+    public List<UsuarioEntity> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<UsuarioEntity> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public List<ParteDelCuerpoEntity> getPartesDelCuerpo() {
+        return partesDelCuerpo;
+    }
+
+    public void setPartesDelCuerpo(List<ParteDelCuerpoEntity> partesDelCuerpo) {
+        this.partesDelCuerpo = partesDelCuerpo;
+    }
+    
+    
    
 }
