@@ -37,7 +37,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     private GimnasioEntity gimnasio;
     
     @PodamExclude
-    @OneToMany(mappedBy = "usuario", orphanRemoval = true, cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RutinaEntity> rutinas=new ArrayList<>();
 
     public List<RutinaEntity> getRutinas() {

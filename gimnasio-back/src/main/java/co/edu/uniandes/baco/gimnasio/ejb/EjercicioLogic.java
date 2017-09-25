@@ -52,20 +52,17 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
         entity.setMaquinas(old.getMaquinas());
         return persistence.update(entity);
     }
-    
-    
 
     public EjercicioEntity create(long idRutina,EjercicioEntity entity) throws BusinessLogicException {
-        EjercicioEntity ent=create(entity);
         RutinaEntity rutina=logic.find(idRutina);
-        ent.setRutina(rutina);
-        rutina.getEjercicios().add(ent);
-        return ent;
+        entity.setRutina(rutina);
+        return create(entity);
     }
 
     public void remove(long idRutina,long id) throws BusinessLogicException {
-        EjercicioEntity ent=find(id);
+        EjercicioEntity ent=find(idRutina,id);
         logic.find(idRutina).getEjercicios().remove(ent);
+        remove(id);
     }
     //------------
     //objetivos

@@ -44,15 +44,15 @@ public class RutinaLogic extends BaseLogic<RutinaEntity>{
     }
     
     public RutinaEntity create(long idUsuario,RutinaEntity entity) throws BusinessLogicException {
-        RutinaEntity ent=create(entity);
         UsuarioEntity Usuario=logic.find(idUsuario);
-        ent.setUsuario(Usuario);
-        Usuario.getRutinas().add(ent);
-        return ent;
+        entity.setUsuario(Usuario);
+        return create(entity);
     }
 
     public void remove(long idUsuario,long id) throws BusinessLogicException {
-        RutinaEntity ent=find(id);
+        RutinaEntity ent=find(idUsuario,id);
         logic.find(idUsuario).getRutinas().remove(ent);
+        remove(id);
+        
     }
 }

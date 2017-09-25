@@ -25,4 +25,14 @@ import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
     {
         return find(id).getEntrenadores();
     }
+
+    @Override
+    public UsuarioEntity update(UsuarioEntity entity) throws BusinessLogicException {
+        UsuarioEntity ent=find(entity.getId());
+        entity.setEntrenadores(ent.getEntrenadores());
+        entity.setRutinas(ent.getRutinas());
+        return super.update(entity); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
  }

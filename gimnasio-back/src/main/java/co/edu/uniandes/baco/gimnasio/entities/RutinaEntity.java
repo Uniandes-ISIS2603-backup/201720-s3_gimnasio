@@ -26,7 +26,7 @@ public class RutinaEntity extends BaseEntity implements Serializable{
     UsuarioEntity usuario;
     
     @PodamExclude
-    @OneToMany(mappedBy = "rutina", orphanRemoval = true, cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "rutina", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<EjercicioEntity> ejercicios=new ArrayList<>();
     
     @Temporal(javax.persistence.TemporalType.DATE)

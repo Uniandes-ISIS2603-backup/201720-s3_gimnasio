@@ -109,6 +109,7 @@ public class UsuarioResource {
         UsuarioEntity ent = logic.find(id);
           if(ent!= null) {
           UsuarioEntity en = e.toEntity();
+          en.setId(id);
           ent = logic.update(en);
           return new UsuarioDetailDTO(ent);  
           }else {
