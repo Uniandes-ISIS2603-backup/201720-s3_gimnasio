@@ -8,6 +8,7 @@ package co.edu.uniandes.baco.gimnasio.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import java.util.List;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -22,6 +23,9 @@ public class MaquinaEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToMany
     private List<TipoMedidaEntity> tipoMedida;
+        @PodamExclude
+        @ManyToOne
+    private GimnasioEntity gimnasio;
 
     public String getDescripcion() {
         return descripcion;

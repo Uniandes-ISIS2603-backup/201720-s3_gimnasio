@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -29,6 +30,10 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToMany(mappedBy = "usuarios")
     private List<EntrenadorEntity> entrenadores = new ArrayList();
+    
+        @PodamExclude
+        @ManyToOne
+    private GimnasioEntity gimnasio;
 
     /**
      * @return the nombre

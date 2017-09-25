@@ -25,6 +25,7 @@ package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.ejb.GimnasioLogic;
 import co.edu.uniandes.baco.gimnasio.dtos.GimnasioDetailDTO;
+import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
 import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.GimnasioPersistence;
@@ -151,6 +152,11 @@ public class GimnasioResource {
             list.add(new GimnasioDetailDTO(entity));
         }
         return list;
+    }
+    
+    @Path("/entrenadores")
+    public Class <EntrenadorResource> getEntrenador (@PathParam("EntrenadorId") Long EntID) throws BusinessLogicException{
+        return EntrenadorResource.class;
     }
     
 

@@ -62,6 +62,7 @@ public class MedidaResource {
         }
     }
 
+    @PUT
     @Path("{id: \\d+}") 
     public  MedidaDTO updateMedida(@PathParam("id") Long id,MedidaDTO medida)throws BusinessLogicException
     {
