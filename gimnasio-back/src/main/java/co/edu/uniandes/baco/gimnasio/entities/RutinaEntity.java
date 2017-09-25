@@ -28,8 +28,6 @@ public class RutinaEntity extends BaseEntity implements Serializable{
     @OneToMany(mappedBy = "rutina")
     private List<EjercicioEntity> ejercicios=new ArrayList<>();
     
-    private String tipo;
-    
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaInicio;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -49,19 +47,6 @@ public class RutinaEntity extends BaseEntity implements Serializable{
 
     public void setUsuario(UsuarioEntity usuario) {
         this.usuario = usuario;
-    }
-    /**
-     * @return the tipo
-     */
-    public String getTipo() {
-        return tipo;
-    }
-
-    /**
-     * @param tipo the tipo to set
-     */
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     /**

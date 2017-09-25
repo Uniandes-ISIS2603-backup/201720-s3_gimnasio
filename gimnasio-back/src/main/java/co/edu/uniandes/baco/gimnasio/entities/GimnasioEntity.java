@@ -52,7 +52,6 @@ public class GimnasioEntity extends BaseEntity implements Serializable {
     */
    private long nit;
    
-   
     @PodamExclude
     @OneToMany(mappedBy = "gimnasio", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MaquinaEntity> maquinas;
