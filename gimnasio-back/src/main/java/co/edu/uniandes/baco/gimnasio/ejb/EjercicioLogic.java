@@ -16,20 +16,48 @@ import javax.inject.Inject;
 @Stateless
 public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
     @Inject
-    ObjetivoLogic objetivoLogic;
+    private ObjetivoLogic objetivoLogic;
     
     @Inject
-    ParteDelCuerpoLogic parteDelCuerpoLogic;
+    private ParteDelCuerpoLogic parteDelCuerpoLogic;
     
     @Inject
-    MaquinaLogic maquinaLogic;
+    private MaquinaLogic maquinaLogic;
     
-    public List<ObjetivoEntity> findAllObjetivos(Long id){
-        return persistence.find(id).getObjetivos();        
+    @Inject
+    private RutinaLogic logic;
+
+    public List<EjercicioEntity> findAll(long idRutina) throws BusinessLogicException {
+        return logic.find(idRutina).getEjercicios();
+    }
+    
+    public EjercicioEntity find(long idRutina,long id) throws BusinessLogicException {
+       EjercicioEntity ent=new EjercicioEntity();
+       ent.setId(id);
+       List<EjercicioEntity> list=logic.find(idRutina).getEjercicios();
+        int ind=list.indexOf(ent);
+        if(ind<0)
+            throw new NoExisteException(id);
+        return list.get(ind);
+    }
+
+    public EjercicioEntity create(long idRutina,EjercicioEntity entity) throws BusinessLogicException {
+        EjercicioEntity ent=create(entity);
+        logic.find(idRutina).getEjercicios().add(ent);
+        return ent;
+    }
+
+    public void remove(long idRutina,long id) throws BusinessLogicException {
+        EjercicioEntity ent=find(id);
+        logic.find(idRutina).getEjercicios().remove(ent);
     }
     //------------
     //objetivos
     //------------
+    public List<ObjetivoEntity> findAllObjetivos(Long id){
+        return persistence.find(id).getObjetivos();        
+    }
+    
     public ObjetivoEntity findObjetivo(Long idEjercicio, Long id) throws BusinessLogicException{
         ObjetivoEntity aux = new ObjetivoEntity();
         aux.setId(id);
