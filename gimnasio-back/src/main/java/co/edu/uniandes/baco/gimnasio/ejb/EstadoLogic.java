@@ -8,6 +8,7 @@ package co.edu.uniandes.baco.gimnasio.ejb;
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.List;
 import javax.inject.Inject;
@@ -30,6 +31,12 @@ public class EstadoLogic extends BaseLogic<EstadoEntity>{
         MedidaEntity medida = medidalogic.find(idmedida);
         medida.setEstado(estado);
         return medida;
+    }
+        public MedidaEntity create(Long EstadoId,MedidaEntity entity) throws BusinessLogicException {
+        EstadoEntity estadi= this.find(EstadoId);
+        estadi.getMedidas().add(entity);
+        entity.setEstado(estadi);
+        return medidalogic.create(entity);
     }
     public void removeMedida(Long idmedida, Long idEstado) throws BusinessLogicException
     {

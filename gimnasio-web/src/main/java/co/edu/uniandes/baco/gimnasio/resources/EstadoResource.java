@@ -7,6 +7,7 @@ package co.edu.uniandes.baco.gimnasio.resources;
 
 
 import co.edu.uniandes.baco.gimnasio.dtos.EstadoDTO;
+import co.edu.uniandes.baco.gimnasio.dtos.EstadoDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.EstadoLogic;
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
@@ -28,8 +29,10 @@ import javax.ws.rs.core.MediaType;
  * @author js.palacios437
  */
 
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@Path("Estado")
+@Produces("application/json")
+@Consumes("application/json")
+@Stateless
 public class EstadoResource {
     
  @Inject
@@ -50,7 +53,7 @@ public class EstadoResource {
         EstadoEntity en = estadologic.find(id);
         if(en!=null)
         {
-           return new EstadoDTO(en);
+           return new EstadoDetailDTO(en);
         }
         else
         {
@@ -67,7 +70,7 @@ public class EstadoResource {
         {
           EstadoEntity en = estado.toEntity();
           ent = estadologic.update(en);
-          return new EstadoDTO(en);
+          return new EstadoDetailDTO(en);
         }
         else
         {
@@ -90,7 +93,7 @@ public class EstadoResource {
             throw new BusinessLogicException();
         }  
     }
-        @Path("{EstadoId: \\d+}/Medida")
+    @Path("{EstadoId: \\d+}/Medida")
     public Class<EstadoMedidaResource> getEstadoMedida(@PathParam("EstadoId") Long EstadoId) throws BusinessLogicException {
         EstadoEntity entity = estadologic.find(EstadoId);
         if (entity == null) {

@@ -63,6 +63,10 @@ private List<MedidaDTO> medidaListEntity2DTO(List<MedidaEntity> list)
     }
     
     @POST
+    public MedidaDTO addBooks(@PathParam("Estadoid") Long Estadoid,MedidaDTO medida) throws BusinessLogicException {
+        return new MedidaDTO(estadologic.create(Estadoid, medida.toEntity()));
+    }
+    @POST
     @Path("{medidaId: \\d+}")
     public MedidaDTO addBooks(@PathParam("Estadoid") Long Estadoid, @PathParam("medidaId") Long medidaId) throws BusinessLogicException {
         return new MedidaDTO(estadologic.addMedida(medidaId, Estadoid));
