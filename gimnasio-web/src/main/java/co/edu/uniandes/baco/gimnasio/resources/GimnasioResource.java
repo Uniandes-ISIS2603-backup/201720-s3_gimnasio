@@ -120,7 +120,7 @@ public class GimnasioResource {
     }
 
     /**
-     * DELETE http://localhost:8080/gimnasio-web/api/gimnasios/{id}
+     * DELETE http://localhost:8080/gimnasio-web/api/gimnasio/{id}
      *
      * @param id corresponde a la Gimnasio a borrar.
      * @throws BusinessLogicException
@@ -131,8 +131,16 @@ public class GimnasioResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteGimnasio(@PathParam("id") Long id) throws BusinessLogicException {
-         throw new UnsupportedOperationException("Este servicio no está implementado");
+    public void deleteGimnasio(@PathParam("id") Long id) throws BusinessLogicException { 
+        GimnasioEntity e = gimnasioLogic.find(id);
+         if(e != null)
+         {
+             gimnasioLogic.remove(id);
+         }
+         else
+         {
+                     throw new BusinessLogicException("no se pudo eliminaar ya que no existe");
+         }
     }
 
     /**
@@ -154,9 +162,22 @@ public class GimnasioResource {
         return list;
     }
     
-    @Path("/entrenadores")
+    @Path("{id: \\d+}/entrenadores")
     public Class <EntrenadorResource> getEntrenador (@PathParam("EntrenadorId") Long EntID) throws BusinessLogicException{
         return EntrenadorResource.class;
+    }
+    
+    @Path("{id: \\d+}/maquinas")
+    public Class <MaquinaResource> getMaquinas (@PathParam("EntrenadorId") Long EntID) throws BusinessLogicException{
+        return MaquinaResource.class;
+    }
+    @Path("{id: \\d+}/usuarios")
+    public Class <UsuarioResource> getUsuarios (@PathParam("EntrenadorId") Long EntID) throws BusinessLogicException{
+        return UsuarioResource.class;
+    }
+    @Path("{id: \\d+}/ParteDelCuerpo")
+    public Class <ParteDelCuerpoResource> getParteDelCuerpo (@PathParam("EntrenadorId") Long EntID) throws BusinessLogicException{
+        return ParteDelCuerpoResource.class;
     }
     
 

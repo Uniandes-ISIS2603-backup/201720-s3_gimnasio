@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -54,19 +55,19 @@ public class GimnasioEntity extends BaseEntity implements Serializable {
    
     @PodamExclude
     @OneToMany(mappedBy = "gimnasio", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MaquinaEntity> maquinas;
+    private List<MaquinaEntity> maquinas = new ArrayList<>();
 
     @PodamExclude
     @OneToMany(mappedBy = "gimnasio", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<EntrenadorEntity> entrenadores;
+    private List<EntrenadorEntity> entrenadores= new ArrayList<>();
 
     @PodamExclude
     @OneToMany(mappedBy = "gimnasio", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ParteDelCuerpoEntity> partesDelCuerpo;
+    private List<ParteDelCuerpoEntity> partesDelCuerpo= new ArrayList<>();
 
     @PodamExclude
     @OneToMany(mappedBy = "gimnasio", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<UsuarioEntity> usuarios;
+    private List<UsuarioEntity> usuarios= new ArrayList<>();
 
    
    //--------------------------------------------------------------------------
