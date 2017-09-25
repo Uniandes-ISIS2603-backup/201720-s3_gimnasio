@@ -22,13 +22,12 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.WebApplicationException;
 
 /**
  *
  * @author js.palacios437
  */
-@Path("ParteDelCuerpo")
+@Path("partesDelCuerpo")
 @Produces("application/json")
 @Consumes("application/json")
 @Stateless

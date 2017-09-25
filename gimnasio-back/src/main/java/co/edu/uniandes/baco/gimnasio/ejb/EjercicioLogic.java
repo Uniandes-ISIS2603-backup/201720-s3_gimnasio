@@ -4,6 +4,7 @@ import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ParteDelCuerpoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import java.util.List;
@@ -41,9 +42,23 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
         return list.get(ind);
     }
 
+    @Override
+    public EjercicioEntity update(EjercicioEntity entity) throws BusinessLogicException {
+        EjercicioEntity old=find(entity.getId());
+        entity.setRutina(old.getRutina());
+        entity.setObjetivos(old.getObjetivos());
+        entity.setPartesDelCuerpo(old.getPartesDelCuerpo());
+        entity.setMaquinas(old.getMaquinas());
+        return persistence.update(entity);
+    }
+    
+    
+
     public EjercicioEntity create(long idRutina,EjercicioEntity entity) throws BusinessLogicException {
         EjercicioEntity ent=create(entity);
-        logic.find(idRutina).getEjercicios().add(ent);
+        RutinaEntity rutina=logic.find(idRutina);
+        ent.setRutina(rutina);
+        rutina.getEjercicios().add(ent);
         return ent;
     }
 

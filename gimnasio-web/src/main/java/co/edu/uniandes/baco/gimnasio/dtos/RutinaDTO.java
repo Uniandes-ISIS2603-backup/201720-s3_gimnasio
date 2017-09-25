@@ -22,6 +22,7 @@ public class RutinaDTO {
     }
     
     public RutinaDTO(RutinaEntity entity){
+        id=entity.getId();
         fechaInicio=entity.getFechaInicio();
         fechaFinal=entity.getFenchaFinal();
     }

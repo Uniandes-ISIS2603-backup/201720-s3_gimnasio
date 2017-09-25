@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -25,7 +26,7 @@ public class RutinaEntity extends BaseEntity implements Serializable{
     UsuarioEntity usuario;
     
     @PodamExclude
-    @OneToMany(mappedBy = "rutina")
+    @OneToMany(mappedBy = "rutina", orphanRemoval = true, cascade = CascadeType.REFRESH)
     private List<EjercicioEntity> ejercicios=new ArrayList<>();
     
     @Temporal(javax.persistence.TemporalType.DATE)
