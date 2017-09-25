@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -31,6 +32,10 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToMany(mappedBy = "usuarios")
     private List<EntrenadorEntity> entrenadores = new ArrayList();
+    
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.REFRESH , orphanRemoval = true, fetch= FetchType.LAZY)
+    private List<ObjetivoEntity> objetivos=new ArrayList<>();
     
     @PodamExclude
     @ManyToOne
@@ -109,4 +114,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     public void setEntrenadores(List<EntrenadorEntity> entrenadores) {
         this.entrenadores = entrenadores;
     }
+    
+     public List<ObjetivoEntity> getObjetivos() {return objetivos;}
+     public void setObjetivos(List<ObjetivoEntity> objetivos){this.objetivos = objetivos;}
 }
