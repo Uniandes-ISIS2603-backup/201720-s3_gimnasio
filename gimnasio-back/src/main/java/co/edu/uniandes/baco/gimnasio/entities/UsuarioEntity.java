@@ -13,6 +13,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -31,9 +32,21 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     @ManyToMany(mappedBy = "usuarios")
     private List<EntrenadorEntity> entrenadores = new ArrayList();
     
-        @PodamExclude
-        @ManyToOne
+    @PodamExclude
+    @ManyToOne
     private GimnasioEntity gimnasio;
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "usuario", orphanRemoval = true, cascade = CascadeType.REFRESH)
+    private List<RutinaEntity> rutinas=new ArrayList<>();
+
+    public List<RutinaEntity> getRutinas() {
+        return rutinas;
+    }
+
+    public void setRutinas(List<RutinaEntity> rutinas) {
+        this.rutinas = rutinas;
+    }
 
     /**
      * @return the nombre
@@ -84,7 +97,4 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     public void setEntrenadores(List<EntrenadorEntity> entrenadores) {
         this.entrenadores = entrenadores;
     }
-    
-    
-    
 }

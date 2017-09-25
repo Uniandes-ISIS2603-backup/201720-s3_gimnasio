@@ -42,9 +42,10 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
         return list.get(ind);
     }
 
-    @Override
-    public EjercicioEntity update(EjercicioEntity entity) throws BusinessLogicException {
+    public EjercicioEntity update(Long idRutina, EjercicioEntity entity) throws BusinessLogicException {
         EjercicioEntity old=find(entity.getId());
+        if(!old.getRutina().getId().equals(idRutina))
+            throw new NoExisteException(idRutina);
         entity.setRutina(old.getRutina());
         entity.setObjetivos(old.getObjetivos());
         entity.setPartesDelCuerpo(old.getPartesDelCuerpo());

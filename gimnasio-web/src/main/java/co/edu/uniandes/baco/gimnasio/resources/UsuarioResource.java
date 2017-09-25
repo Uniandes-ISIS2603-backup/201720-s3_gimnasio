@@ -38,7 +38,7 @@ public class UsuarioResource {
     //Atributos
     //--------------------
     @Inject
-    UsuarioLogic usuarioLogic;
+    UsuarioLogic logic;
     
     //--------------------
     //metodos
@@ -53,23 +53,23 @@ public class UsuarioResource {
     public UsuarioDTO create(UsuarioDTO p)throws BusinessLogicException
     {
         UsuarioEntity pcentity = p.toEntity();
-        UsuarioEntity pnew = usuarioLogic.create(pcentity);
+        UsuarioEntity pnew = logic.create(pcentity);
         return new UsuarioDTO(pnew);
     }
     
     @GET
     public List<UsuarioDetailDTO> getEntrenadores() throws BusinessLogicException {
-        return listEntity2DetailDTO(usuarioLogic.findAll());
+        return listEntity2DetailDTO(logic.findAll());
     }
     
     @GET
     @Path("{id: \\d+}")
-    public UsuarioDTO getUsuario(@PathParam("id")Long id) throws BusinessLogicException
+    public UsuarioDetailDTO getUsuario(@PathParam("id")Long id) throws BusinessLogicException
     {
-        UsuarioEntity en = usuarioLogic.find(id);
+        UsuarioEntity en = logic.find(id);
         if(en!=null)
         {
-           return new UsuarioDTO(en);
+           return new UsuarioDetailDTO(en);
         }
         else
         {
@@ -81,11 +81,11 @@ public class UsuarioResource {
     @Path("{id: \\d+}") 
     public void deleteUsuario(@PathParam("id")Long id)throws BusinessLogicException
     {
-              UsuarioEntity ent = usuarioLogic.find(id);
+              UsuarioEntity ent = logic.find(id);
         if(ent!=null)
         {
           
-          usuarioLogic.remove(id);
+          logic.remove(id);
           
         }
         else
@@ -106,10 +106,10 @@ public class UsuarioResource {
     @Path("{id: \\d+}") 
     public UsuarioDetailDTO update(@PathParam("id")Long id, UsuarioDetailDTO e) throws BusinessLogicException
     {
-        UsuarioEntity ent = usuarioLogic.find(id);
+        UsuarioEntity ent = logic.find(id);
           if(ent!= null) {
           UsuarioEntity en = e.toEntity();
-          ent = usuarioLogic.update(en);
+          ent = logic.update(en);
           return new UsuarioDetailDTO(ent);  
           }else {
                    throw new BusinessLogicException("error");
@@ -125,7 +125,7 @@ public class UsuarioResource {
     @Path("{usuarioId: \\d+}/entrenadores")
     public Class<UsuarioEntrenadorResource> getEntrenadorUsuarioResource(@PathParam("usuarioId") Long usuarioID) throws BusinessLogicException
     {
-        UsuarioEntity e  = usuarioLogic.find(usuarioID);
+        UsuarioEntity e  = logic.find(usuarioID);
         if(e == null)
         {
             throw new WebApplicationException("El usuario no existe", 404);
@@ -133,6 +133,10 @@ public class UsuarioResource {
         return UsuarioEntrenadorResource.class;
     }
     
-    
-    
+    @Path("{idUsuario: \\d+}/rutinas")
+    public Class<RutinaResource> getEjercicioResource(@PathParam("idUsuario") Long id) throws BusinessLogicException{
+        if (logic.find(id) == null)
+            throw new WebApplicationException("El ejercicio no existe", 404);
+        return RutinaResource.class;
+    }
 }

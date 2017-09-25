@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
+import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     *relacion con todos los entrenadores de un usuario
     */
     private List<EntrenadorDTO> entrenadores;
+    private List<RutinaDTO> rutinas;
     
     //--------------
     //Metodos
@@ -34,6 +36,14 @@ public class UsuarioDetailDTO extends UsuarioDTO{
             for(EntrenadorEntity e: u.getEntrenadores())
             {
                 entrenadores.add(new EntrenadorDTO(e));
+            }
+        }
+        if (u != null)
+        {
+            rutinas = new ArrayList<>();
+            for(RutinaEntity e2: u.getRutinas())
+            {
+                rutinas.add(new RutinaDTO(e2));
             }
         }
     }
@@ -54,6 +64,14 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         return e;
     }
 
+    public List<RutinaDTO> getRutinas() {
+        return rutinas;
+    }
+
+    public void setRutinas(List<RutinaDTO> rutinas) {
+        this.rutinas = rutinas;
+    }
+    
     public List<EntrenadorDTO> getEntrenadores() {
         return entrenadores;
     }
@@ -61,10 +79,4 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     public void setEntrenadores(List<EntrenadorDTO> entrenadores) {
         this.entrenadores = entrenadores;
     }
-    
-    
-    
-    
-    
-    
 }

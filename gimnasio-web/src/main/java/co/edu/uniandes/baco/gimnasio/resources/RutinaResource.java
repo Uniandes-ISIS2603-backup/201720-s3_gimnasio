@@ -27,7 +27,6 @@ import javax.ws.rs.core.MediaType;
  *
  * @author jc.bojaca
  */
-@Path("rutinas")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class RutinaResource {
@@ -35,38 +34,38 @@ public class RutinaResource {
     private RutinaLogic logic;
     
     @POST
-    public RutinaDTO post(RutinaDTO nuevo) throws BusinessLogicException{
-        return new RutinaDTO(logic.create(nuevo.toEntity()));
+    public RutinaDTO post(@PathParam("idUsuario") Long idUsuario,RutinaDTO nuevo) throws BusinessLogicException{
+        return new RutinaDTO(logic.create(idUsuario,nuevo.toEntity()));
     }
     
     @GET
-    public List<RutinaDetailDTO> getAll() throws BusinessLogicException {
-        return RutinaDetailDTO.listDetailDTO(logic.findAll());
+    public List<RutinaDetailDTO> getAll(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
+        return RutinaDetailDTO.listDetailDTO(logic.findAll(idUsuario));
     }
     
     @GET
     @Path("{id: \\d+}")
-    public RutinaDetailDTO get(@PathParam("id") long id) throws BusinessLogicException {
-        return new RutinaDetailDTO(logic.find(id));
+    public RutinaDetailDTO get(@PathParam("idUsuario") Long idUsuario,@PathParam("id") long id) throws BusinessLogicException {
+        return new RutinaDetailDTO(logic.find(idUsuario,id));
     }
     
     @PUT
     @Path("{id: \\d+}")
-    public RutinaDTO put(@PathParam("id")long id, RutinaDTO nuevo) throws BusinessLogicException {
+    public RutinaDTO put(@PathParam("idUsuario") Long idUsuario,@PathParam("id")long id, RutinaDTO nuevo) throws BusinessLogicException {
         RutinaEntity entity=nuevo.toEntity();
         entity.setId(id);
-        return new RutinaDTO(logic.update(entity));
+        return new RutinaDTO(logic.update(idUsuario,entity));
     }
     
     @DELETE
     @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws BusinessLogicException{
-        logic.remove(id);
+    public void delete(@PathParam("idUsuario") Long idUsuario,@PathParam("id") long id) throws BusinessLogicException{
+        logic.remove(idUsuario,id);
     }
     
     @Path("{idRutina: \\d+}/ejercicios")
-    public Class<EjercicioResource> getEjercicioResource(@PathParam("idRutina") Long id) throws BusinessLogicException{
-        if (logic.find(id) == null)
+    public Class<EjercicioResource> getEjercicioResource(@PathParam("idUsuario") Long idUsuario,@PathParam("idRutina") Long id) throws BusinessLogicException{
+        if (logic.find(idUsuario,id) == null)
             throw new WebApplicationException("El ejercicio no existe", 404);
         return EjercicioResource.class;
     }

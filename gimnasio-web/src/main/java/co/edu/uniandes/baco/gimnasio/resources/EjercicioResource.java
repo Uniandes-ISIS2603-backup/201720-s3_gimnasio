@@ -42,10 +42,10 @@ public class EjercicioResource{
     
     @PUT
     @Path("{id: \\d+}")
-    public EjercicioDTO put(@PathParam("id")long id, EjercicioDTO nuevo) throws BusinessLogicException {
+    public EjercicioDTO put(@PathParam("idRutina")Long idRutina,@PathParam("id")long id, EjercicioDTO nuevo) throws BusinessLogicException {
         EjercicioEntity entity=nuevo.toEntity();
         entity.setId(id);
-        return new EjercicioDTO(logic.update(entity));
+        return new EjercicioDTO(logic.update(idRutina,entity));
     }
     
     @DELETE
