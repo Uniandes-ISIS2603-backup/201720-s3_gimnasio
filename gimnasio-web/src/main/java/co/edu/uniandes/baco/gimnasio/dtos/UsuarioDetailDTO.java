@@ -21,7 +21,6 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     */
     private List<EntrenadorDTO> entrenadores;
     private List<RutinaDTO> rutinas;
-    private List<EstadoDTO> estados;
     
     //--------------
     //Metodos
@@ -45,14 +44,6 @@ public class UsuarioDetailDTO extends UsuarioDTO{
             for(RutinaEntity e2: u.getRutinas())
             {
                 rutinas.add(new RutinaDTO(e2));
-            }
-        }
-        if (u != null)
-        {
-            estados = new ArrayList<>();
-            for(EstadoEntity e3: u.getEstados())
-            {
-                estados.add (new EstadoDTO(e3))
             }
         }
     }
@@ -87,15 +78,5 @@ public class UsuarioDetailDTO extends UsuarioDTO{
 
     public void setEntrenadores(List<EntrenadorDTO> entrenadores) {
         this.entrenadores = entrenadores;
-    }
-    
-    public list<EstadoDTO> getEstados()
-    {
-        return estados;
-    }
-    
-    public void setEstados(List<EstadoDTO> estados)
-    {
-        this.estados = estados;
     }
 }
