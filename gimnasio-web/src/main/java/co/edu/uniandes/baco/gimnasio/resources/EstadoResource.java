@@ -21,16 +21,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
  * @author js.palacios437
  */
 
-@Path("Estado")
-@Produces("application/json")
-@Consumes("application/json")
-@Stateless
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class EstadoResource {
     
  @Inject
@@ -91,7 +90,7 @@ public class EstadoResource {
             throw new BusinessLogicException();
         }  
     }
-        @Path("{EstadoId: \\d+}/books")
+        @Path("{EstadoId: \\d+}/Medida")
     public Class<EstadoMedidaResource> getEstadoMedida(@PathParam("EstadoId") Long EstadoId) throws BusinessLogicException {
         EstadoEntity entity = estadologic.find(EstadoId);
         if (entity == null) {
@@ -100,4 +99,5 @@ public class EstadoResource {
         return EstadoMedidaResource.class;
     }
 
+    
 }
