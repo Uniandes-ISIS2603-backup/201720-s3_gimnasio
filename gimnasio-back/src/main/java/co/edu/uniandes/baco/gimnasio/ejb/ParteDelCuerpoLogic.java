@@ -20,9 +20,6 @@ public class ParteDelCuerpoLogic extends BaseLogic<ParteDelCuerpoEntity>{
 
     @Inject
     protected ParteDelCuerpoPersitence pc;
-   public ParteDelCuerpoEntity findName(String name)
-    {
-        return pc.findName(name);
-    }
+
 
 }

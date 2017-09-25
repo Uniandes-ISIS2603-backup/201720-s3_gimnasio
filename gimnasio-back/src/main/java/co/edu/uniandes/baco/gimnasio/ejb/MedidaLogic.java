@@ -24,10 +24,10 @@ public class MedidaLogic extends BaseLogic<MedidaEntity>{
     @Inject
     private ParteDelCuerpoLogic pclogic;
     
-    public ParteDelCuerpoEntity addPartedelcuerpo(String name,Long idMedida)throws BusinessLogicException
+    public ParteDelCuerpoEntity addPartedelcuerpo(Long pcid,Long idMedida)throws BusinessLogicException
     {
         MedidaEntity medida = this.find(idMedida);
-        ParteDelCuerpoEntity pc = pclogic.findName(name);
+        ParteDelCuerpoEntity pc = pclogic.find(pcid);
         if(pc!=null)
         {
            medida.setParte(pc);

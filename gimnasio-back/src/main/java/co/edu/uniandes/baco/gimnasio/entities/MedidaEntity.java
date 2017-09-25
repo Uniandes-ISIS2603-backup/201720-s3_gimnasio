@@ -6,7 +6,9 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -26,7 +28,7 @@ public class MedidaEntity extends BaseEntity implements Serializable{
     @ManyToOne
     private EstadoEntity estado;
     @PodamExclude
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH ,  fetch= FetchType.LAZY)
     private ParteDelCuerpoEntity parte;
 
     public EstadoEntity getEstado() {

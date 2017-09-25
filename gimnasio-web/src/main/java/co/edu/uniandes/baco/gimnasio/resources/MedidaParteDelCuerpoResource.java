@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -35,11 +36,12 @@ public class MedidaParteDelCuerpoResource {
   }
  
   @POST
-  public ParteDelCuerpoDTO addPC(@PathParam("Medidaid") Long Medidaid,ParteDelCuerpoDTO entity) throws BusinessLogicException
+  @Path("{idpc: \\d+}")
+  public ParteDelCuerpoDTO addPC(@PathParam("Medidaid") Long Medidaid,@PathParam("idpc")Long idpc) throws BusinessLogicException
   {
-      ParteDelCuerpoEntity pc = entity.toEntity();
-      String name = pc.getPartedelcuerpo();
-      return new ParteDelCuerpoDTO(logic.addPartedelcuerpo(name, Medidaid));
+     
+      return new ParteDelCuerpoDTO(logic.addPartedelcuerpo(idpc, Medidaid));
+      
   }
   
 }
