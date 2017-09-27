@@ -22,12 +22,12 @@ import javax.ejb.Stateless;
 @Stateless
 
 public class EstadoLogic extends BaseLogic<EstadoEntity>{
-    @Inject
-    private MedidaLogic medidalogic;
-    @Inject 
-    private UsuarioLogic ulogic;
+    //@Inject
+    //private MedidaLogic medidalogic;
+    //@Inject 
+    //private UsuarioLogic ulogic;
 
-
+/*
     public MedidaEntity create(Long EstadoId,MedidaEntity entity) throws BusinessLogicException {
     EstadoEntity estadi= persistence.find(EstadoId);
     estadi.getMedidas().add(entity);
@@ -41,6 +41,7 @@ public class EstadoLogic extends BaseLogic<EstadoEntity>{
     medida.setEstado(null);
     editorialEntity.getMedidas().remove(medida);
     }
+    */
     public List<MedidaEntity> medidas(Long idEstado) throws BusinessLogicException 
     {
         return persistence.find(idEstado).getMedidas();
@@ -48,6 +49,7 @@ public class EstadoLogic extends BaseLogic<EstadoEntity>{
     
     ///
     ///
+    /*
     public EstadoEntity find(Long idUsuario,Long id) throws BusinessLogicException 
     {
        EstadoEntity ent=new EstadoEntity();
@@ -69,7 +71,8 @@ public class EstadoLogic extends BaseLogic<EstadoEntity>{
         entity.setUsuario(old.getUsuario());
         entity.setUsuario(old.getUsuario());
         return persistence.update(entity);
-    }    
+    }   
+        */
 
 }
 
