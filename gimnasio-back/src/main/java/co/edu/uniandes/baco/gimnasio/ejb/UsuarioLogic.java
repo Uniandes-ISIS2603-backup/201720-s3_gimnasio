@@ -20,8 +20,8 @@ import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
  @Stateless
  public class UsuarioLogic extends BaseLogic<UsuarioEntity> {
 
-     @Inject
-     private EstadoLogic elogic;
+    // @Inject
+    // private EstadoLogic elogic;
     public List<EntrenadorEntity> listEntrenador(long id) throws BusinessLogicException
     {
         return find(id).getEntrenadores();
@@ -43,7 +43,7 @@ import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
        List<EstadoEntity> lista = this.find(usuarioid).getEstados();
        return lista;
     }
-    
+   /* 
     public EstadoEntity addEstado(Long id,Long EstadoId) throws BusinessLogicException
     {
         UsuarioEntity usuario = this.find(id);
@@ -61,5 +61,6 @@ import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
         }
          throw new BusinessLogicException("el estado no existe");
     }
+*/
     
  }
