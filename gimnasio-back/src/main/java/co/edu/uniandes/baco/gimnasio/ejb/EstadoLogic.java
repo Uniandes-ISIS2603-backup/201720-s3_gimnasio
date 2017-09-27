@@ -6,9 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
-
-import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
-
+import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import java.util.List;
@@ -16,60 +14,48 @@ import javax.inject.Inject;
 import javax.ejb.Stateless;
 
 /**
- *
  * @author js.palacios437
  */
 @Stateless
 
 public class EstadoLogic extends BaseLogic<EstadoEntity>{
     @Inject
-    private MedidaLogic medidalogic;
-    @Inject 
-    private UsuarioLogic ulogic;
-
-
-    public MedidaEntity create(Long EstadoId,MedidaEntity entity) throws BusinessLogicException {
-    EstadoEntity estadi= persistence.find(EstadoId);
-    estadi.getMedidas().add(entity);
-    entity.setEstado(estadi);
-    return medidalogic.create(entity);
-    }
-    public void removeMedida(Long idmedida, Long idEstado) throws BusinessLogicException
-    {
-    EstadoEntity editorialEntity = persistence.find(idEstado);
-    MedidaEntity medida = medidalogic.find(idmedida);
-    medida.setEstado(null);
-    editorialEntity.getMedidas().remove(medida);
-    }
-    public List<MedidaEntity> medidas(Long idEstado) throws BusinessLogicException 
-    {
-        return persistence.find(idEstado).getMedidas();
+    UsuarioLogic logic;
+    
+    public List<EstadoEntity> findAll(long idUsuario) throws BusinessLogicException {
+        return logic.find(idUsuario).getEstados();
     }
     
-    ///
-    ///
-    public EstadoEntity find(Long idUsuario,Long id) throws BusinessLogicException 
-    {
+    public EstadoEntity find(long idUsuario,long id) throws BusinessLogicException {
        EstadoEntity ent=new EstadoEntity();
        ent.setId(id);
-       List<EstadoEntity> list=ulogic.find(id).getEstados();
+       List<EstadoEntity> list=logic.find(idUsuario).getEstados();
         int ind=list.indexOf(ent);
         if(ind<0)
             throw new NoExisteException(id);
         return list.get(ind);
     }
-        public List<EstadoEntity> findAll(long idUsuario) throws BusinessLogicException {
-        return ulogic.find(idUsuario).getEstados();
-    }
-     
-        public EstadoEntity update(Long idUsuario,EstadoEntity entity) throws BusinessLogicException {
+
+    public EstadoEntity update(Long idUsuario,EstadoEntity entity) throws BusinessLogicException {
         EstadoEntity old=find(entity.getId());
         if(!old.getUsuario().getId().equals(idUsuario))
             throw new NoExisteException(idUsuario);
         entity.setUsuario(old.getUsuario());
-        entity.setUsuario(old.getUsuario());
+        entity.setMedidas(old.getMedidas());
         return persistence.update(entity);
-    }    
+    }
+    
+    public EstadoEntity create(long idUsuario,EstadoEntity entity) throws BusinessLogicException {
+        UsuarioEntity Usuario=logic.find(idUsuario);
+        entity.setUsuario(Usuario);
+        return create(entity);
+    }
 
+    public void remove(long idUsuario,long id) throws BusinessLogicException {
+        EstadoEntity ent=find(idUsuario,id);
+        logic.find(idUsuario).getRutinas().remove(ent);
+        remove(id);
+        
+    }
 }
 

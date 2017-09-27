@@ -49,6 +49,6 @@ public class EjercicioParteDelCuerpoResource {
     @DELETE
     @Path("{id: \\d+}")
     public void removeParteDelCuerpo(@PathParam("idEjercicio") Long idEjercicio, @PathParam("id") Long id) throws BusinessLogicException {
-        logic.removeObejtivo(idEjercicio, id);
+        logic.removeParteDelCuerpo(idEjercicio, id);
     }
 }

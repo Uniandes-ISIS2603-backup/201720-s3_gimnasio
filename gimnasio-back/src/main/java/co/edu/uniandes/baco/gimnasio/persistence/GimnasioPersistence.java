@@ -10,8 +10,8 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GimnasioPersistence extends BasePersistence<GimnasioEntity>{
+    
     public GimnasioPersistence() {
         super(GimnasioEntity.class);
     }
-
 }

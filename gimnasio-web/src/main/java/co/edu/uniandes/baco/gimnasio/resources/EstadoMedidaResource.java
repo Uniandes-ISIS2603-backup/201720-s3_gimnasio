@@ -75,10 +75,11 @@ private List<MedidaDTO> medidaListEntity2DTO(List<MedidaEntity> list)
         return new MedidaDTO(melogic.create(Estadoid,medida.toEntity()));
     }
 
-    @DELETE
+    /**@DELETE
     @Path("{medidaId: \\d+}")
     public void removeBooks(@PathParam("Estadoid") Long Estadoid, @PathParam("medidaId") Long medidaId) throws BusinessLogicException{
         estadologic.removeMedida(medidaId, Estadoid);
-    }   
+    }  
+    * **/
 
 }

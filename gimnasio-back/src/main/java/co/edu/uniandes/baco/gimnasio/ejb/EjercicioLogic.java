@@ -1,10 +1,7 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
-import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ParteDelCuerpoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import java.util.List;
@@ -17,25 +14,19 @@ import javax.inject.Inject;
 @Stateless
 public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
     @Inject
-    private ObjetivoLogic objetivoLogic;
-    
-    @Inject
     private ParteDelCuerpoLogic parteDelCuerpoLogic;
     
     @Inject
-    private MaquinaLogic maquinaLogic;
-    
-    @Inject
-    private RutinaLogic logic;
+    private RutinaLogic rutinaLogic;
 
     public List<EjercicioEntity> findAll(long idRutina) throws BusinessLogicException {
-        return logic.find(idRutina).getEjercicios();
+        return rutinaLogic.find(idRutina).getEjercicios();
     }
     
     public EjercicioEntity find(long idRutina,long id) throws BusinessLogicException {
        EjercicioEntity ent=new EjercicioEntity();
        ent.setId(id);
-       List<EjercicioEntity> list=logic.find(idRutina).getEjercicios();
+       List<EjercicioEntity> list=rutinaLogic.find(idRutina).getEjercicios();
         int ind=list.indexOf(ent);
         if(ind<0)
             throw new NoExisteException(id);
@@ -54,83 +45,14 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
     }
 
     public EjercicioEntity create(long idRutina,EjercicioEntity entity) throws BusinessLogicException {
-        RutinaEntity rutina=logic.find(idRutina);
-        entity.setRutina(rutina);
+        entity.setRutina(rutinaLogic.find(idRutina));
         return create(entity);
     }
 
     public void remove(long idRutina,long id) throws BusinessLogicException {
         EjercicioEntity ent=find(idRutina,id);
-        logic.find(idRutina).getEjercicios().remove(ent);
+        rutinaLogic.find(idRutina).getEjercicios().remove(ent);
         remove(id);
-    }
-    //------------
-    //objetivos
-    //------------
-    public List<ObjetivoEntity> findAllObjetivos(Long id){
-        return persistence.find(id).getObjetivos();        
-    }
-    
-    public ObjetivoEntity findObjetivo(Long idEjercicio, Long id) throws BusinessLogicException{
-        ObjetivoEntity aux = new ObjetivoEntity();
-        aux.setId(id);
-        List<ObjetivoEntity> list=find(idEjercicio).getObjetivos();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        return list.get(ind);
-    }
-    
-    public ObjetivoEntity createObjetivo(Long idEjercicio, Long id) throws BusinessLogicException{
-        ObjetivoEntity aux = objetivoLogic.find(id);
-        if(aux==null)
-            throw new  NoExisteException(id);
-        find(idEjercicio).getObjetivos().add(aux);
-        return aux;
-    }
-    
-    public void removeObejtivo(Long idEjercicio, Long id) throws BusinessLogicException{
-        ObjetivoEntity aux = new ObjetivoEntity();
-        aux.setId(id);
-        List<ObjetivoEntity> list=find(idEjercicio).getObjetivos();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        list.remove(aux);
-    }
-    //------------
-    //maquinas
-    //------------
-     public List<MaquinaEntity> findAllMaquinas(Long id){
-        return persistence.find(id).getMaquinas();        
-    }
-    
-    public MaquinaEntity findMaquina(Long idEjercicio, Long id) throws BusinessLogicException{
-        MaquinaEntity aux = new MaquinaEntity();
-        aux.setId(id);
-        List<MaquinaEntity> list=find(idEjercicio).getMaquinas();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        return list.get(ind);
-    }
-    
-    public MaquinaEntity createMaquina(Long idEjercicio, Long id) throws BusinessLogicException{
-        MaquinaEntity aux = maquinaLogic.find(id);
-        if(aux==null)
-            throw new  NoExisteException(id);
-        find(idEjercicio).getMaquinas().add(aux);
-        return aux;
-    }
-    
-    public void removeMaquina(Long idEjercicio, Long id) throws BusinessLogicException{
-        MaquinaEntity aux = new MaquinaEntity();
-        aux.setId(id);
-        List<MaquinaEntity> list=find(idEjercicio).getMaquinas();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        list.remove(aux);
     }
     //------------
     //partesDelcuerpo

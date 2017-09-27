@@ -5,13 +5,9 @@
   */
  package co.edu.uniandes.baco.gimnasio.ejb;
  
-import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
-import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
  import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
  import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
- import java.util.List;
  import javax.ejb.Stateless;
- import javax.inject.Inject;
  
  /**
   *
@@ -19,14 +15,7 @@ import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
   */
  @Stateless
  public class UsuarioLogic extends BaseLogic<UsuarioEntity> {
-
-     @Inject
-     private EstadoLogic elogic;
-    public List<EntrenadorEntity> listEntrenador(long id) throws BusinessLogicException
-    {
-        return find(id).getEntrenadores();
-    }
-
+     
     @Override
     public UsuarioEntity update(UsuarioEntity entity) throws BusinessLogicException {
         UsuarioEntity ent=find(entity.getId());
@@ -34,7 +23,14 @@ import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
         entity.setRutinas(ent.getRutinas());
         return super.update(entity); //To change body of generated methods, choose Tools | Templates.
     }
-    
+     /**
+     @Inject
+     private EstadoLogic elogic;
+    public List<EntrenadorEntity> listEntrenador(long id) throws BusinessLogicException
+    {
+        return find(id).getEntrenadores();
+    }
+
     //
     //Estado
     //
@@ -43,7 +39,6 @@ import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
        List<EstadoEntity> lista = this.find(usuarioid).getEstados();
        return lista;
     }
-    
     public EstadoEntity addEstado(Long id,Long EstadoId) throws BusinessLogicException
     {
         UsuarioEntity usuario = this.find(id);
@@ -61,5 +56,5 @@ import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
         }
          throw new BusinessLogicException("el estado no existe");
     }
-    
+    **/
  }

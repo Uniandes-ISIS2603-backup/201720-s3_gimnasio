@@ -7,7 +7,7 @@ package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.MaquinaDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.MaquinaDetailDTO;
-import co.edu.uniandes.baco.gimnasio.ejb.EjercicioLogic;
+import co.edu.uniandes.baco.gimnasio.ejb.MaquinaLogic;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.List;
 import javax.inject.Inject;
@@ -28,7 +28,7 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class EjercicioMaquinaResource {
     @Inject
-    private EjercicioLogic logic;
+    private MaquinaLogic logic;
     
     @GET
     public List<MaquinaDetailDTO> findAllObejtivos(@PathParam("idEjercicio") Long id) throws BusinessLogicException {
@@ -50,6 +50,6 @@ public class EjercicioMaquinaResource {
     @DELETE
     @Path("{id: \\d+}")
     public void removeMaquina(@PathParam("idEjercicio") Long idEjercicio, @PathParam("id") Long id) throws BusinessLogicException {
-        logic.removeObejtivo(idEjercicio, id);
+        logic.removeMaquina(idEjercicio, id);
     }
 }

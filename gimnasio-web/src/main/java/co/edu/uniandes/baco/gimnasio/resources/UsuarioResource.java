@@ -141,9 +141,9 @@ public class UsuarioResource {
         return RutinaResource.class;
     }
     @Path("{idUsuario: \\d+}/estado")
-    public Class<UsuarioEstadoResource> getEstadoResource(@PathParam("idUsuario") Long usid) throws BusinessLogicException{
+    public Class<EstadoResource> getEstadoResource(@PathParam("idUsuario") Long usid) throws BusinessLogicException{
          if (logic.find(usid) == null)
               throw new WebApplicationException("El estado no existe", 404);
-        return UsuarioEstadoResource.class;
+        return EstadoResource.class;
     }
 }

@@ -18,9 +18,10 @@ public class ParteDelCuerpoPersitence extends BasePersistence<ParteDelCuerpoEnti
     public ParteDelCuerpoPersitence() {
         super(ParteDelCuerpoEntity.class);
     }
+    
+    
     public ParteDelCuerpoEntity findName(String name)
     {
         return manager.find(ParteDelCuerpoEntity.class, name);
     }
-    
 }

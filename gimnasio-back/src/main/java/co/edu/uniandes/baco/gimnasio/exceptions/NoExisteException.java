@@ -21,4 +21,7 @@ public class NoExisteException extends WebApplicationException{
         super("El recurso con id=" + id + " no existe.", 404);
     }
     
+    public NoExisteException(Long id,Long id2){
+        super("El subrecurso con id=" + id2 + " no existe en el recurso"+id+".", 404);
+    }
 }

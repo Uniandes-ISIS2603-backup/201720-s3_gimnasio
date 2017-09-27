@@ -23,6 +23,4 @@ public class EstadoPersistence extends BasePersistence<EstadoEntity>{
        //creo que esta mal
        return manager.find(EstadoEntity.class, date);
    }
-   
-    
 }

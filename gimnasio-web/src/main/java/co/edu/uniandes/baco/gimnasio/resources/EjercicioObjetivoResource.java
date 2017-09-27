@@ -7,6 +7,7 @@ package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.EjercicioLogic;
+import co.edu.uniandes.baco.gimnasio.ejb.ObjetivoLogic;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.List;
 import javax.inject.Inject;
@@ -27,7 +28,7 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class EjercicioObjetivoResource {
     @Inject
-    private EjercicioLogic logic;
+    private ObjetivoLogic logic;
     
     @GET
     public List<ObjetivoDTO> findAllObejtivos(@PathParam("idEjercicio") Long id) throws BusinessLogicException {
