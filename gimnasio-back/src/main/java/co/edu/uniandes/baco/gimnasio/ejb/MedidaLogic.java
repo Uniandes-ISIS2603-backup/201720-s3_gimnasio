@@ -24,9 +24,9 @@ import javax.inject.Inject;
 
 public class MedidaLogic extends BaseLogic<MedidaEntity>{
 
-    @Inject 
-    private EstadoLogic elogic;
-   
+   // @Inject 
+    //private EstadoLogic elogic;
+   /*
         public MedidaEntity create(Long idEstado,MedidaEntity entity) throws BusinessLogicException {
         EstadoEntity estado=elogic.find(idEstado);
         entity.setEstado(estado);
@@ -48,6 +48,7 @@ public class MedidaLogic extends BaseLogic<MedidaEntity>{
             throw new NoExisteException(id);
         return list.get(ind);
     }
+*/
         
              public MedidaEntity update(Long idEstado,MedidaEntity entity) throws BusinessLogicException {
         MedidaEntity old=find(entity.getId());
