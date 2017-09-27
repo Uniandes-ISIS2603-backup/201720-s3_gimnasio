@@ -52,6 +52,7 @@ private UsuarioLogic logic;
         public List<EstadoDTO> listmedidas(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
         return estadoListEntity2DTO(logic.findAllEstado(idUsuario));
     }
+        /*
      @GET
     @Path("{EstadoId: \\d+}")
     public EstadoDTO getMedidas(@PathParam("idUsuario") Long idUsuario, @PathParam("EstadoId") Long EstadoId) throws BusinessLogicException {
@@ -62,4 +63,5 @@ private UsuarioLogic logic;
     public EstadoDTO addBooks(@PathParam("idUsuario") Long idUsuario, @PathParam("EstadoId") Long EstadoId) throws BusinessLogicException {
         return new EstadoDTO(logic.addEstado(idUsuario, EstadoId));
     }
+    */
 }
