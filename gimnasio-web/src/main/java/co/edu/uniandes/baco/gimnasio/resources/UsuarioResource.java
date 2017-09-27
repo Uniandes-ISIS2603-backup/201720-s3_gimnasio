@@ -58,7 +58,7 @@ public class UsuarioResource {
     }
     
     @GET
-    public List<UsuarioDetailDTO> getEntrenadores() throws BusinessLogicException {
+    public List<UsuarioDetailDTO> getUsuarios() throws BusinessLogicException {
         return listEntity2DetailDTO(logic.findAll());
     }
     

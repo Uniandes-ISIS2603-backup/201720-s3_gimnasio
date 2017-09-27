@@ -117,4 +117,14 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     
      public List<ObjetivoEntity> getObjetivos() {return objetivos;}
      public void setObjetivos(List<ObjetivoEntity> objetivos){this.objetivos = objetivos;}
+
+    public GimnasioEntity getGimnasio() {
+        return gimnasio;
+    }
+
+    public void setGimnasio(GimnasioEntity gimnasio) {
+        this.gimnasio = gimnasio;
+    }
+     
+    
 }

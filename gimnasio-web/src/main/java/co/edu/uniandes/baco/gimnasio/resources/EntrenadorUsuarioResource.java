@@ -5,8 +5,13 @@
  */
 package co.edu.uniandes.baco.gimnasio.resources;
 
+import co.edu.uniandes.baco.gimnasio.dtos.RutinaDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.EntrenadorLogic;
+import co.edu.uniandes.baco.gimnasio.ejb.EstadoLogic;
+import co.edu.uniandes.baco.gimnasio.ejb.RutinaLogic;
+import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -30,6 +35,9 @@ import javax.ws.rs.core.MediaType;
 public class EntrenadorUsuarioResource {
     @Inject 
     private EntrenadorLogic entrenadorLogic;
+    
+    @Inject
+    private  RutinaLogic rutinalogic;
      
     private List<UsuarioDetailDTO> usuarioListEntity2DTO(List<UsuarioEntity> entityList) {
         List<UsuarioDetailDTO> list = new ArrayList<>();
@@ -64,4 +72,25 @@ public class EntrenadorUsuarioResource {
     public void removeUsuario(@PathParam("EntrenadorId") Long EntrenadorId, @PathParam("usuarioID") Long usuarioId) throws BusinessLogicException{
         entrenadorLogic.removeUsuario(EntrenadorId, usuarioId);
     }
+    
+    @GET
+    @Path("{usuarioID: \\d+}")
+    public UsuarioDetailDTO getUsuario(@PathParam("EntrenadorId") Long EntrenadorId, @PathParam("usuarioID") Long usuarioId) throws BusinessLogicException{
+       UsuarioDetailDTO a = new UsuarioDetailDTO( entrenadorLogic.BuscarUsuario(EntrenadorId, usuarioId));
+    return a;
+    }
+    
+    @Path("{idUsuario: \\d+}/rutinas")
+    public Class<RutinaResource> irRutinas(@PathParam("EntrenadorId") Long entrenadorId, @PathParam("idUsuario") Long usuarioId)throws BusinessLogicException
+    {
+        List<UsuarioEntity> a = entrenadorLogic.find(entrenadorId).getUsuarios();
+        for (UsuarioEntity usuarioEntity : a) {
+            if (usuarioEntity.getId() == usuarioId)
+            {
+                return RutinaResource.class;
+            }
+        }
+        return null;
+    }
+
 }

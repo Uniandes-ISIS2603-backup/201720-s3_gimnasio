@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     */
     private List<EntrenadorDTO> entrenadores;
     private List<RutinaDTO> rutinas;
+    private List<EstadoDTO> estados;
     
     //--------------
     //Metodos
@@ -46,6 +48,14 @@ public class UsuarioDetailDTO extends UsuarioDTO{
                 rutinas.add(new RutinaDTO(e2));
             }
         }
+        if(u != null)
+        {
+            estados = new ArrayList<>();
+            for(EstadoEntity e2: u.getEstados())
+            {
+                estados.add(new EstadoDTO(e2));
+            }
+        }
     }
     
     @Override
@@ -60,6 +70,15 @@ public class UsuarioDetailDTO extends UsuarioDTO{
                 entE.add(d.toEntity());
             }
             e.setEntrenadores(entE);
+        }
+        if (estados != null)
+        {
+            List<EstadoEntity> entE = new ArrayList<>();
+            for(EstadoDTO d:estados)
+            {
+                entE.add(d.toEntity());
+            }
+            e.setEstados(entE);
         }
         return e;
     }
@@ -79,4 +98,13 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     public void setEntrenadores(List<EntrenadorDTO> entrenadores) {
         this.entrenadores = entrenadores;
     }
+
+    public List<EstadoDTO> getEstados() {
+        return estados;
+    }
+
+    public void setEstados(List<EstadoDTO> estados) {
+        this.estados = estados;
+    }
+    
 }

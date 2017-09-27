@@ -1,6 +1,8 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.EntrenadorPersistence;
@@ -57,4 +59,28 @@ public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
         us.setId(usuarioId);
         e.getUsuarios().remove(us);
     }
+
+    public void addRutinaAUsuario(Long entrenadorId, Long usuarioId, RutinaEntity estadoentity) throws BusinessLogicException {
+           List<UsuarioEntity> list = find(entrenadorId).getUsuarios();
+           for (UsuarioEntity u: list) {
+            if (u.getId() == usuarioId)
+            {
+                u.getRutinas().add(estadoentity);
+                return;
+            }
+            throw new BusinessLogicException(" el id del usuario no existe o no lo tiene el entrenador");
+        }
+    }
+
+    public UsuarioEntity BuscarUsuario(Long entrenadorId, Long usuarioId) throws BusinessLogicException {
+        List<UsuarioEntity> list = find(entrenadorId).getUsuarios();
+           for (UsuarioEntity u: list) {
+            if (u.getId() == usuarioId)
+            {
+                return u;
+            }
+    }
+           throw new BusinessLogicException("no se encontro el usuario");
+    }
+
 }
