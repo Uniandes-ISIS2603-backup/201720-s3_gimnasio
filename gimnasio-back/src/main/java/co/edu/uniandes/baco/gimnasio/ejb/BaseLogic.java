@@ -25,7 +25,7 @@ public abstract class BaseLogic<T extends BaseEntity>{
         return persistence.create(entity);
     }
     
-    public T find(long id)throws BusinessLogicException{
+    public T find(Long id)throws BusinessLogicException{
         T t= persistence.find(id);
         if(t==null)
             throw new NoExisteException(id);
@@ -38,7 +38,7 @@ public abstract class BaseLogic<T extends BaseEntity>{
         return persistence.update(entity);
     }
     
-    public void remove(long id)throws BusinessLogicException{
+    public void remove(Long id)throws BusinessLogicException{
          if(persistence.find(id)==null)
              throw new NoExisteException(id);
         persistence.delete(id);

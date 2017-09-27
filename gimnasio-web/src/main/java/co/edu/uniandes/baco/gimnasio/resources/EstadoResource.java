@@ -7,6 +7,7 @@ package co.edu.uniandes.baco.gimnasio.resources;
 
 
 import co.edu.uniandes.baco.gimnasio.dtos.EstadoDTO;
+import co.edu.uniandes.baco.gimnasio.dtos.EstadoDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.EstadoLogic;
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
@@ -36,21 +37,21 @@ public class EstadoResource {
  private  EstadoLogic estadologic;
  
      @POST
-    public EstadoDTO creat(EstadoDTO entity) throws BusinessLogicException
+    public EstadoDetailDTO creat(EstadoDetailDTO entity) throws BusinessLogicException
     {
         EstadoEntity estadoentity = entity.toEntity();
         EstadoEntity pcnew = estadologic.create(estadoentity);
-        return new EstadoDTO(pcnew);    
+        return new EstadoDetailDTO(pcnew);    
     }
 
     @GET
     @Path("{id: \\d+}")
-    public EstadoDTO getEstado(@PathParam("id")Long id)throws BusinessLogicException
+    public EstadoDetailDTO getEstado(@PathParam("id")Long id)throws BusinessLogicException
     {
         EstadoEntity en = estadologic.find(id);
         if(en!=null)
         {
-           return new EstadoDTO(en);
+           return new EstadoDetailDTO(en);
         }
         else
         {
@@ -60,14 +61,14 @@ public class EstadoResource {
     }
         @PUT
     @Path("{id: \\d+}") 
-    public  EstadoDTO updateEstado(@PathParam("id") Long id,EstadoDTO estado)throws BusinessLogicException
+    public  EstadoDetailDTO updateEstado(@PathParam("id") Long id,EstadoDetailDTO estado)throws BusinessLogicException
     {
         EstadoEntity ent = estadologic.find(id);
         if(ent!=null)
         {
           EstadoEntity en = estado.toEntity();
           ent = estadologic.update(en);
-          return new EstadoDTO(en);
+          return new EstadoDetailDTO(en);
         }
         else
         {
@@ -90,7 +91,7 @@ public class EstadoResource {
             throw new BusinessLogicException();
         }  
     }
-        @Path("{EstadoId: \\d+}/Medida")
+    @Path("{EstadoId: \\d+}/Medida")
     public Class<EstadoMedidaResource> getEstadoMedida(@PathParam("EstadoId") Long EstadoId) throws BusinessLogicException {
         EstadoEntity entity = estadologic.find(EstadoId);
         if (entity == null) {
