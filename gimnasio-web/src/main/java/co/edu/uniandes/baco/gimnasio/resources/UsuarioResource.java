@@ -123,6 +123,7 @@ public class UsuarioResource {
      * @return
      * @throws BusinessLogicException
      */
+    /**
     @Path("{usuarioId: \\d+}/entrenadores")
     public Class<UsuarioEntrenadorResource> getEntrenadorUsuarioResource(@PathParam("usuarioId") Long usuarioID) throws BusinessLogicException
     {
@@ -133,7 +134,7 @@ public class UsuarioResource {
         }
         return UsuarioEntrenadorResource.class;
     }
-    
+    **/
     @Path("{idUsuario: \\d+}/rutinas")
     public Class<RutinaResource> getEjercicioResource(@PathParam("idUsuario") Long id) throws BusinessLogicException{
         if (logic.find(id) == null)
