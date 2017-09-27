@@ -52,33 +52,38 @@ private List<MedidaDTO> medidaListEntity2DTO(List<MedidaEntity> list)
         }
         return list;
     }
-   
+   /*
     @GET
     public List<MedidaDTO> listmedidas(@PathParam("Estadoid") Long Estadoid) throws BusinessLogicException {
         
         return medidaListEntity2DTO(melogic.findAll(Estadoid));
     }
-    
+    */
+    /*
    @GET
     @Path("{medidaId: \\d+}")
     public MedidaDTO getMedidas(@PathParam("Estadoid") Long estadoId, @PathParam("medidaId") Long medidasId) throws BusinessLogicException {
         return new MedidaDTO(melogic.find(estadoId, medidasId));
     }
+    */
     
     @PUT  
     public MedidaDTO updateMedida(@PathParam("Estadoid") Long estadoId,MedidaEntity  entity )throws BusinessLogicException
     {
         return new MedidaDTO(melogic.update(estadoId, entity));
     }
+    /*
     @POST
     public MedidaDTO addBooks(@PathParam("Estadoid") Long Estadoid,MedidaDTO medida) throws BusinessLogicException {
         return new MedidaDTO(melogic.create(Estadoid,medida.toEntity()));
     }
-
+*/
+/*
     @DELETE
     @Path("{medidaId: \\d+}")
     public void removeBooks(@PathParam("Estadoid") Long Estadoid, @PathParam("medidaId") Long medidaId) throws BusinessLogicException{
         estadologic.removeMedida(medidaId, Estadoid);
     }   
+*/
 
 }
