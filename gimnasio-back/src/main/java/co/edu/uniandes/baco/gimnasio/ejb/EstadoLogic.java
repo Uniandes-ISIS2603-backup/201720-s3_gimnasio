@@ -42,7 +42,7 @@ public class EstadoLogic extends BaseLogic<EstadoEntity>{
             throw new NoExisteException(idUsuario);
         entity.setUsuario(old.getUsuario());
         entity.setMedidas(old.getMedidas());
-        return persistence.update(entity);
+        return update(entity);
     }
     
     public EstadoEntity create(long idUsuario,EstadoEntity entity) throws BusinessLogicException {
@@ -53,9 +53,8 @@ public class EstadoLogic extends BaseLogic<EstadoEntity>{
 
     public void remove(long idUsuario,long id) throws BusinessLogicException {
         EstadoEntity ent=find(idUsuario,id);
-        logic.find(idUsuario).getRutinas().remove(ent);
+        logic.find(idUsuario).getEstados().remove(ent);
         remove(id);
-        
     }
 }
 

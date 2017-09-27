@@ -53,6 +53,5 @@ public class RutinaLogic extends BaseLogic<RutinaEntity>{
         RutinaEntity ent=find(idUsuario,id);
         logic.find(idUsuario).getRutinas().remove(ent);
         remove(id);
-        
     }
 }

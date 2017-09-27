@@ -20,16 +20,16 @@ import javax.inject.Inject;
 public abstract class BaseLogic<T extends BaseEntity>{
     @Inject
     protected BasePersistence<T> persistence;
-
-     public T create(T entity)throws BusinessLogicException{
-        return persistence.create(entity);
-    }
     
-    public T find(Long id)throws BusinessLogicException{
+     public T find(Long id)throws BusinessLogicException{
         T t= persistence.find(id);
         if(t==null)
             throw new NoExisteException(id);
         return t;
+    }
+    
+     public T create(T entity)throws BusinessLogicException{
+        return persistence.create(entity);
     }
     
     public T update(T entity) throws BusinessLogicException{

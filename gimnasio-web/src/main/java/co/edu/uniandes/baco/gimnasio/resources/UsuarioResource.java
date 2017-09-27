@@ -123,7 +123,7 @@ public class UsuarioResource {
      * @return
      * @throws BusinessLogicException
      */
-    /**
+    
     @Path("{usuarioId: \\d+}/entrenadores")
     public Class<UsuarioEntrenadorResource> getEntrenadorUsuarioResource(@PathParam("usuarioId") Long usuarioID) throws BusinessLogicException
     {
@@ -134,14 +134,14 @@ public class UsuarioResource {
         }
         return UsuarioEntrenadorResource.class;
     }
-    **/
+    
     @Path("{idUsuario: \\d+}/rutinas")
     public Class<RutinaResource> getEjercicioResource(@PathParam("idUsuario") Long id) throws BusinessLogicException{
         if (logic.find(id) == null)
             throw new WebApplicationException("El ejercicio no existe", 404);
         return RutinaResource.class;
     }
-    @Path("{idUsuario: \\d+}/estado")
+    @Path("{idUsuario: \\d+}/estados")
     public Class<EstadoResource> getEstadoResource(@PathParam("idUsuario") Long usid) throws BusinessLogicException{
          if (logic.find(usid) == null)
               throw new WebApplicationException("El estado no existe", 404);

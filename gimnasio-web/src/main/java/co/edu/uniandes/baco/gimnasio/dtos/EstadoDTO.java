@@ -6,24 +6,39 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
+import java.util.Date;
 
 /**
  *
  * @author js.palacios437
  */
 public class EstadoDTO {
-    
+
     private Long id;
-    
-    
-    public EstadoDTO()
-    {
-        
+    private Date fecha;
+
+    public EstadoDTO() {
+        //nada
+    }
+
+    public EstadoDTO(EstadoEntity entity) {
+        this.id = entity.getId();
+         this.fecha = entity.getFecha();
     }
     
-    public EstadoDTO(EstadoEntity entity)
-    {
-        this.id= entity.getId();
+    public EstadoEntity toEntity() {
+        EstadoEntity ent = new EstadoEntity();
+        ent.setId(this.id);
+        ent.setFecha(fecha);
+        return ent;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public Long getId() {
@@ -32,12 +47,5 @@ public class EstadoDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-    
-    public EstadoEntity toEntity()
-    {
-        EstadoEntity ent = new EstadoEntity();
-        ent.setId(this.id);
-        return ent;
-    }
+    }  
 }

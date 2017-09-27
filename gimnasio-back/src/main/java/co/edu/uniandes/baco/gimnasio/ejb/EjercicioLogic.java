@@ -41,7 +41,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
         entity.setObjetivos(old.getObjetivos());
         entity.setPartesDelCuerpo(old.getPartesDelCuerpo());
         entity.setMaquinas(old.getMaquinas());
-        return persistence.update(entity);
+        return update(entity);
     }
 
     public EjercicioEntity create(long idRutina,EjercicioEntity entity) throws BusinessLogicException {

@@ -6,30 +6,63 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
-import java.util.Date;
+import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author js.palacios437
  */
 public class EstadoDetailDTO extends EstadoDTO{
+     private List<MedidaDTO> medidas;
     
-    private Date fecha;
-   private Double peso; // atributo que modela el peso
-   private Double presionSanguinea; // atributo que modela la presion sanguienea
-   private Integer ritmeoCardiaco; // atributo que modela el ritmo cardiaco
-    public EstadoDetailDTO()
-    {
-        
+    public EstadoDetailDTO(){
+        super();
     }
     
-    public EstadoDetailDTO(EstadoEntity entity)
+     public EstadoDetailDTO(EstadoEntity entity)
     {
         super(entity);
-        this.fecha = entity.getFecha();
-        this.peso = entity.getPeso();
-       this.ritmeoCardiaco = entity.getRitmeoCardiaco();
-       this.presionSanguinea = entity.getPresionSanguinea();
-        
+        if (entity != null)
+        {
+            medidas = new ArrayList<>();
+            for(MedidaEntity e: entity.getMedidas())
+            {
+                medidas.add(new MedidaDTO(e));
+            }
+        }
+    }
+
+    public static List<EstadoDetailDTO> listDetailDTO(List<EstadoEntity> entity) {
+       List<EstadoDetailDTO> resp=new ArrayList<>();
+        for(EstadoEntity ent:entity){
+            resp.add(new EstadoDetailDTO(ent));
+        }
+        return resp;
+    }
+    
+    @Override
+    public EstadoEntity toEntity()
+    {
+        EstadoEntity e = super.toEntity();
+        if (medidas != null)
+        {
+            List<MedidaEntity> entE = new ArrayList<>();
+            for(MedidaDTO d:medidas)
+            {
+                entE.add(d.toEntity());
+            }
+            e.setMedidas(entE);
+        }
+        return e;
+    }
+
+    public List<MedidaDTO> getMedidas() {
+        return medidas;
+    }
+
+    public void setMedidas(List<MedidaDTO> medidas) {
+        this.medidas = medidas;
     }
 }
