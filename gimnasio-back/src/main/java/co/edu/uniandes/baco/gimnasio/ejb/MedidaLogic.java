@@ -22,14 +22,29 @@ import javax.inject.Inject;
 @Stateless
 
 public class MedidaLogic extends BaseLogic<MedidaEntity> {
+    /**
+     * inject de la logica de estado
+     */
     @Inject
     private EstadoLogic elogic;
+    /**
+    * inject de la logica de medida
+    */
     @Inject
     private TipoMedidaLogic tipoMedidaLogic;
-
+    /**
+     * metodo que crea o asocia una medida a un estado
+     * @param idEstado id del estado
+     * @param entity la medida a asociar
+     * @param idTipoMedida el tipod e medida de la medida
+     * @return la medida creada
+     * @throws BusinessLogicException si estado no existe 
+     */
     public MedidaEntity create(Long idEstado, MedidaEntity entity,Long idTipoMedida) throws BusinessLogicException {
         EstadoEntity estado = elogic.find(idEstado);
         TipoMedidaEntity parte = tipoMedidaLogic.find(idTipoMedida);
+        if(parte==null)
+            throw new NoExisteException(idTipoMedida);
         if(parte.isAutomatico())
             throw new BusinessLogicException("no se puede asociar una medidcion manual a una medida automatica");
         entity.setEstado(estado);
@@ -37,11 +52,22 @@ public class MedidaLogic extends BaseLogic<MedidaEntity> {
         entity.setParte(parte);
         return est;
     }
-
+    /**
+     * metodo que encuentra todas las medidas de un etado
+     * @param Idestado id del estado
+     * @return lista de medidas del estado
+     * @throws BusinessLogicException si el estado no existe
+     */
     public List<MedidaEntity> findAll(Long Idestado) throws BusinessLogicException {
         return elogic.find(Idestado).getMedidas();
     }
-
+    /**
+     * metodo que encuentra una medida en especifico
+     * @param idEstado id del estado
+     * @param id de la medida
+     * @return la medida
+     * @throws BusinessLogicException si ele stado o la medida no existen 
+     */
     public MedidaEntity find(Long idEstado, Long id) throws BusinessLogicException {
         MedidaEntity ent = new MedidaEntity();
         ent.setId(id);
@@ -52,7 +78,13 @@ public class MedidaLogic extends BaseLogic<MedidaEntity> {
         }
         return list.get(ind);
     }
-
+    /**
+     * metodo para actulizar una medida
+     * @param idEstado id del estado
+     * @param entity medida actulizar
+     * @return la medida actulizada
+     * @throws BusinessLogicException si el estado o la medida noe xisten 
+     */
     public MedidaEntity update(Long idEstado, MedidaEntity entity) throws BusinessLogicException {
         MedidaEntity old = find(entity.getId());
         if (!old.getEstado().getId().equals(idEstado)) {
@@ -61,7 +93,12 @@ public class MedidaLogic extends BaseLogic<MedidaEntity> {
         entity.setEstado(old.getEstado());
         return persistence.update(entity);
     }
-    
+    /**
+     * metodo que elimina una medida de un estado
+     * @param idEstado id del estado
+     * @param id de la medida
+     * @throws BusinessLogicException si el estado o la medida no existe 
+     */
      public void remove(long idEstado,long id) throws BusinessLogicException {
         MedidaEntity ent=find(idEstado,id);
         elogic.find(idEstado).getMedidas().remove(ent);

@@ -22,13 +22,28 @@ public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
     //-----------------------------
     //EJERCICIO
     //-----------------------------
+    
+    /**
+     * injecion de la logica de ejercicio
+     */
     @Inject
     private EjercicioLogic ejercicioLogic;
-    
+    /**
+     * metodo que encuentra todas las maquinas de un ejercicioi
+     * @param id del ejercicio
+     * @return lista con las maquinas de este
+     * @throws BusinessLogicException  si el ejercicio no existe
+     */
      public List<MaquinaEntity> findAllMaquinas(Long id) throws BusinessLogicException{
         return ejercicioLogic.find(id).getMaquinas();        
     }
-    
+    /**
+     * metodo para encontrar una mquina especifica
+     * @param idEjercicio id del ejercicio
+     * @param id de la maquina
+     * @return la maquina 
+     * @throws BusinessLogicException si el ejercicio o la maquina no existe 
+     */
     public MaquinaEntity findMaquina(Long idEjercicio, Long id) throws BusinessLogicException{
         MaquinaEntity aux = new MaquinaEntity();
         aux.setId(id);
@@ -38,7 +53,13 @@ public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
             throw new NoExisteException(id);
         return list.get(ind);
     }
-    
+    /**
+     * metodo para crear o asociasr una maquina a un ejercicio
+     * @param idEjercicio id del ejercicio
+     * @param id de la maquina
+     * @return la maquian creada o asociada
+     * @throws BusinessLogicException si la maquina no existe 
+     */
     public MaquinaEntity createMaquina(Long idEjercicio, Long id) throws BusinessLogicException{
         MaquinaEntity aux = find(id);
         if(aux==null)
@@ -46,7 +67,12 @@ public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
         ejercicioLogic.find(idEjercicio).getMaquinas().add(aux);
         return aux;
     }
-    
+    /**
+     * metodo que elimina una maquina de un ejercicio
+     * @param idEjercicio id del ejercicio
+     * @param id de la maquina
+     * @throws BusinessLogicException si la maquina o el ejercicio no existen
+     */
     public void removeMaquina(Long idEjercicio, Long id) throws BusinessLogicException{
         MaquinaEntity aux = new MaquinaEntity();
         aux.setId(id);
