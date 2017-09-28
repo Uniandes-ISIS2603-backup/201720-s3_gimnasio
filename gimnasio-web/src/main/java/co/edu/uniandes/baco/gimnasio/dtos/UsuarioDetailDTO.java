@@ -7,6 +7,8 @@ package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     private List<EntrenadorDTO> entrenadores;
     private List<RutinaDTO> rutinas;
     private List<EstadoDTO> estados;
+    private List<ObjetivoDTO>objetivos;
     
     //--------------
     //Metodos
@@ -38,21 +41,20 @@ public class UsuarioDetailDTO extends UsuarioDTO{
             {
                 entrenadores.add(new EntrenadorDTO(e));
             }
-        }
-        if (u != null)
-        {
-            entrenadores = new ArrayList<>();
-            for(EntrenadorEntity e: u.getEntrenadores())
-            {
-                entrenadores.add(new EntrenadorDTO(e));
-            }
-        }
-        if (u != null)
-        {
             estados = new ArrayList<>();
             for(EstadoEntity e2: u.getEstados())
             {
                 estados.add(new EstadoDTO(e2));
+            }
+            rutinas = new ArrayList<>();
+            for(RutinaEntity e2: u.getRutinas())
+            {
+                rutinas.add(new RutinaDTO(e2));
+            }
+            objetivos = new ArrayList<>();
+            for(ObjetivoEntity e2: u.getObjetivos())
+            {
+                objetivos.add(new ObjetivoDTO(e2));
             }
         }
     }
@@ -80,6 +82,16 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     public void setEntrenadores(List<EntrenadorDTO> entrenadores) {
         this.entrenadores = entrenadores;
     }
+
+    public List<ObjetivoDTO> getObjetivos() {
+        return objetivos;
+    }
+
+    public void setObjetivos(List<ObjetivoDTO> objetivos) {
+        this.objetivos = objetivos;
+    }
+    
+    
     
     public static final List<UsuarioDetailDTO> listDetailDTO(List<UsuarioEntity> entity){
         List<UsuarioDetailDTO> resp=new ArrayList<>();

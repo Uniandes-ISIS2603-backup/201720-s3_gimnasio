@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.baco.gimnasio.entities;
+
 import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,19 +21,19 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author jp.romero12
  */
 @Entity
-public class RutinaEntity extends BaseEntity implements Serializable{
-    @PodamExclude
-    @ManyToOne
-    UsuarioEntity usuario;
-    
-    @PodamExclude
-    @OneToMany(mappedBy = "rutina", orphanRemoval = true, cascade = CascadeType.ALL)
-    private List<EjercicioEntity> ejercicios=new ArrayList<>();
-    
+public class RutinaEntity extends BaseEntity implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaInicio;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fenchaFinal;
+    
+    @PodamExclude
+    @ManyToOne
+    UsuarioEntity usuario;
+
+    @PodamExclude
+    @OneToMany(mappedBy = "rutina", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<EjercicioEntity> ejercicios = new ArrayList<>();
 
     public List<EjercicioEntity> getEjercicios() {
         return ejercicios;
@@ -41,7 +42,7 @@ public class RutinaEntity extends BaseEntity implements Serializable{
     public void setEjercicios(List<EjercicioEntity> ejercicios) {
         this.ejercicios = ejercicios;
     }
-    
+
     public UsuarioEntity getUsuario() {
         return usuario;
     }
@@ -77,5 +78,4 @@ public class RutinaEntity extends BaseEntity implements Serializable{
     public void setFenchaFinal(Date fenchaFinal) {
         this.fenchaFinal = fenchaFinal;
     }
-    
 }

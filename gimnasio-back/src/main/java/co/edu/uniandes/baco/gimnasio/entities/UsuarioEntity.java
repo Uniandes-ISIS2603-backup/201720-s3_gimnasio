@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import javax.persistence.Entity;
@@ -22,28 +17,29 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author jp.romero12
  */
 @Entity
-public class UsuarioEntity extends BaseEntity implements Serializable{
+public class UsuarioEntity extends BaseEntity implements Serializable {
+
     private String nombre;
     private Boolean genero;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaDeNacimiento;
-    
+
     @PodamExclude
     @ManyToMany(mappedBy = "usuarios")
     private List<EntrenadorEntity> entrenadores = new ArrayList();
-    
+
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH , orphanRemoval = true, fetch= FetchType.LAZY)
-    private List<ObjetivoEntity> objetivos=new ArrayList<>();
-    
-    @PodamExclude
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RutinaEntity> rutinas=new ArrayList<>();
+    @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<ObjetivoEntity> objetivos = new ArrayList<>();
 
     @PodamExclude
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<EstadoEntity> estados=new ArrayList<>();
-    
+    private List<RutinaEntity> rutinas = new ArrayList<>();
+
+    @PodamExclude
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EstadoEntity> estados = new ArrayList<>();
+
     public List<RutinaEntity> getRutinas() {
         return rutinas;
     }
@@ -109,7 +105,12 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     public void setEntrenadores(List<EntrenadorEntity> entrenadores) {
         this.entrenadores = entrenadores;
     }
-    
-     public List<ObjetivoEntity> getObjetivos() {return objetivos;}
-     public void setObjetivos(List<ObjetivoEntity> objetivos){this.objetivos = objetivos;}
+
+    public List<ObjetivoEntity> getObjetivos() {
+        return objetivos;
+    }
+
+    public void setObjetivos(List<ObjetivoEntity> objetivos) {
+        this.objetivos = objetivos;
+    }
 }

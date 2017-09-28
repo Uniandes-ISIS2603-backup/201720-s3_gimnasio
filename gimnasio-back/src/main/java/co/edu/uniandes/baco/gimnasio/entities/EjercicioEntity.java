@@ -19,13 +19,20 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class EjercicioEntity extends BaseEntity implements Serializable {
+    //--------------------------------------------
+    // DATOS BASE
+    //--------------------------------------------
     private String descripcion;
     private String explicacion;
     private Integer duracion;
     private Integer series;
     private Integer tamanioParticiones;
     private Integer repeticionesPorParticion;
-
+    @Enumerated(EnumType.STRING)
+    private Tipo tipo;
+    //--------------------------------------------
+    // DATOS ENTITY
+    //--------------------------------------------
     @PodamExclude
     @ManyToOne
     private RutinaEntity rutina;
@@ -35,16 +42,11 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     private List<ObjetivoEntity> objetivos = new ArrayList<>();
 
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<ParteDelCuerpoEntity> partesDelCuerpo = new ArrayList<>();
-
-    @PodamExclude
     @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<MaquinaEntity> maquinas = new ArrayList<>();
-
-    @Enumerated(EnumType.STRING)
-    private Tipo tipo;
-
+    //--------------------------------------------
+    // GETS & SETS
+    //--------------------------------------------
     public List<MaquinaEntity> getMaquinas() {
         return maquinas;
     }
@@ -59,14 +61,6 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
 
     public void setRutina(RutinaEntity rutina) {
         this.rutina = rutina;
-    }
-
-    public List<ParteDelCuerpoEntity> getPartesDelCuerpo() {
-        return partesDelCuerpo;
-    }
-
-    public void setPartesDelCuerpo(List<ParteDelCuerpoEntity> partesDelCuerpo) {
-        this.partesDelCuerpo = partesDelCuerpo;
     }
 
     public Tipo getTipo() {
@@ -132,7 +126,9 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     public void setRepeticionesPorParticion(Integer repeticionesPorParticion) {
         this.repeticionesPorParticion = repeticionesPorParticion;
     }
-
+    //--------------------------------------------
+    // METODOS
+    //--------------------------------------------
     @Override
     public boolean equals(Object obj) {
         if (obj != null && this.getClass() != obj.getClass()) {

@@ -63,8 +63,8 @@ public class RutinaResource {
         logic.remove(idUsuario,id);
     }
     
-    @Path("{idEstado: \\d+}/ejercicios")
-    public Class<EjercicioResource> getEjercicioResource(@PathParam("idUsuario") Long idUsuario,@PathParam("idEstado") Long id) throws BusinessLogicException{
+    @Path("{idRutina: \\d+}/ejercicios")
+    public Class<EjercicioResource> getEjercicioResource(@PathParam("idUsuario") Long idUsuario,@PathParam("idRutina") Long id) throws BusinessLogicException{
         if (logic.find(idUsuario,id) == null)
             throw new WebApplicationException("El ejercicio no existe", 404);
         return EjercicioResource.class;

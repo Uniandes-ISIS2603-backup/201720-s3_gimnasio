@@ -10,7 +10,6 @@ import co.edu.uniandes.baco.gimnasio.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.UsuarioLogic;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -138,5 +137,11 @@ public class UsuarioResource {
          if (logic.find(usid) == null)
               throw new WebApplicationException("El estado no existe", 404);
         return EstadoResource.class;
+    }
+    @Path("{idUsuario: \\d+}/objetivos")
+    public Class<UsuarioObjetivoResource> getUsuarioObjetivoResource(@PathParam("idUsuario") Long usid) throws BusinessLogicException{
+         if (logic.find(usid) == null)
+              throw new WebApplicationException("El estado no existe", 404);
+        return UsuarioObjetivoResource.class;
     }
 }

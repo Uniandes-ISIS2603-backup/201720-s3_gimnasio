@@ -69,11 +69,4 @@ public class EjercicioResource{
             throw new WebApplicationException("El ejercicio no existe", 404);
         return EjercicioMaquinaResource.class;
     }
-    
-    @Path("{idEjercicio: \\d+}/partesDelCuerpo")
-    public Class<EjercicioParteDelCuerpoResource> getEjercicioParteDelCuerpoResource(@PathParam("idEjercicio") Long id) throws BusinessLogicException{
-        if (logic.find(id) == null)
-            throw new WebApplicationException("El ejercicio no existe", 404);
-        return EjercicioParteDelCuerpoResource.class;
-    }
 }

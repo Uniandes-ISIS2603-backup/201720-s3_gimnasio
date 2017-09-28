@@ -11,36 +11,58 @@ import uk.co.jemos.podam.common.PodamExclude;
 /**
  * @author jc.bojaca
  */
-
 @Entity
-public class ObjetivoEntity extends BaseEntity implements Serializable{
+public class ObjetivoEntity extends BaseEntity implements Serializable {
+    //--------------------------------------------
+    // DATOS BASE
+    //--------------------------------------------
+
     String tipo;
     String descripcion;
-    
+    //--------------------------------------------
+    // DATOS ENTITY
+    //--------------------------------------------
     @PodamExclude
     @ManyToMany
-    private List<UsuarioEntity> usuarios=new ArrayList<>();
+    private List<UsuarioEntity> usuarios = new ArrayList<>();
 
+    //--------------------------------------------
+    // GETS & SETS
+    //--------------------------------------------
     public List<UsuarioEntity> getUsuarios() {
         return usuarios;
     }
 
     public void setUsuarios(List<UsuarioEntity> usuarios) {
         this.usuarios = usuarios;
-    } 
-    
-    public String getTipo() {return tipo;}
-    public void setTipo(String tipo) {this.tipo = tipo;}
+    }
 
-    public String getDescripcion() {return descripcion;}
-    public void setDescripcion(String descripcion){this.descripcion = descripcion;}
-    
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    //--------------------------------------------
+    // METODOS
+    //--------------------------------------------
+
     @Override
     public boolean equals(Object obj) {
-        if (obj!=null && this.getClass() != obj.getClass())
+        if (obj != null && this.getClass() != obj.getClass()) {
             return false;
+        }
         return super.equals(obj);
-     }
+    }
 
     @Override
     public int hashCode() {

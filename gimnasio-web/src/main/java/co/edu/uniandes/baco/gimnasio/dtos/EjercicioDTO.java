@@ -8,6 +8,10 @@ import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
  * @author jc.bojaca
  */
 public class EjercicioDTO {
+
+    //--------------------------------------------
+    // DATOS BASE
+    //--------------------------------------------
     private Long id;
     private String tipo;
     private String descripcion;
@@ -17,13 +21,16 @@ public class EjercicioDTO {
     private Integer tamanioParticiones;
     private Integer repeticionesPorParticion;
 
+    //--------------------------------------------
+    // CONSTRUCTOR & TOENTITY
+    //--------------------------------------------
     public EjercicioDTO() {
-        //para que funcione el dto
+        //JAVAX
     }
-    
-    public EjercicioDTO(EjercicioEntity entity){
-        this.id=entity.getId();
-        this.tipo=entity.getTipo().name();
+
+    public EjercicioDTO(EjercicioEntity entity) {
+        this.id = entity.getId();
+        this.tipo = entity.getTipo().name();
         this.descripcion = entity.getDescripcion();
         this.explicacion = entity.getExplicacion();
         this.duracion = entity.getDuracion();
@@ -31,23 +38,26 @@ public class EjercicioDTO {
         this.tamanioParticiones = entity.getTamanioParticiones();
         this.repeticionesPorParticion = entity.getRepeticionesPorParticion();
     }
-    
-    public EjercicioEntity toEntity() throws BusinessLogicException{
-        EjercicioEntity ent=new EjercicioEntity();
+
+    public EjercicioEntity toEntity() throws BusinessLogicException {
+        EjercicioEntity ent = new EjercicioEntity();
         ent.setDescripcion(descripcion);
         ent.setExplicacion(explicacion);
         ent.setDuracion(duracion);
         ent.setSeries(series);
         ent.setTamanioParticiones(tamanioParticiones);
         ent.setRepeticionesPorParticion(repeticionesPorParticion);
-        try{
+        try {
             ent.setTipo(Tipo.valueOf(tipo));
-        }catch(java.lang.IllegalArgumentException e){
-            throw new BusinessLogicException("no se puede agregar un objeto sin categoria(existe: no_pertenece)",e);
+        } catch (java.lang.IllegalArgumentException e) {
+            throw new BusinessLogicException("no se puede agregar un objeto sin categoria(existe: no_pertenece)", e);
         }
         return ent;
     }
 
+    //--------------------------------------------
+    // GETS & SETS
+    //--------------------------------------------
     public Long getId() {
         return id;
     }
@@ -55,7 +65,7 @@ public class EjercicioDTO {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public String getTipo() {
         return tipo;
     }

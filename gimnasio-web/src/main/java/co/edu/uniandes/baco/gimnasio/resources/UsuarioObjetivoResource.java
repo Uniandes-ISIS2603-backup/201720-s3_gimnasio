@@ -21,34 +21,34 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author jc.bojaca
+ * @author camilo
  */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class EjercicioObjetivoResource {
+public class UsuarioObjetivoResource {
     @Inject
     private ObjetivoLogic logic;
     
     @GET
-    public List<ObjetivoDTO> findAllObejtivos(@PathParam("idEjercicio") Long id) throws BusinessLogicException {
-        return ObjetivoDTO.listDTO(logic.findAllObjetivosEjercicio(id));
+    public List<ObjetivoDTO> findAllObejtivos(@PathParam("idUsuario") Long id) throws BusinessLogicException {
+        return ObjetivoDTO.listDTO(logic.findAllObjetivosUsuario(id));
     }
 
     @GET
     @Path("{id: \\d+}")
-    public ObjetivoDTO findObjetivo(@PathParam("idEjercicio") Long idEjercicio, @PathParam("id") Long id) throws BusinessLogicException {
-        return new ObjetivoDTO(logic.findObjetivoEjercicio(idEjercicio, id));
+    public ObjetivoDTO findObjetivo(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id) throws BusinessLogicException {
+        return new ObjetivoDTO(logic.findObjetivoUsuario(idUsuario, id));
     }
 
     @POST
     @Path("{id: \\d+}")
-    public ObjetivoDTO createObjetivo(@PathParam("idEjercicio") Long idEjericio,@PathParam("id") Long id) throws BusinessLogicException {
-        return new ObjetivoDTO(logic.createObjetivoEjercicio(idEjericio, id));
+    public ObjetivoDTO createObjetivo(@PathParam("idUsuario") Long idUsuario,@PathParam("id") Long id) throws BusinessLogicException {
+        return new ObjetivoDTO(logic.createObjetivoUsuario(idUsuario, id));
     }
 
     @DELETE
     @Path("{id: \\d+}")
-    public void removeObjetivo(@PathParam("idEjercicio") Long idEjercicio, @PathParam("id") Long id) throws BusinessLogicException {
-        logic.removeObejtivoEjercicio(idEjercicio, id);
+    public void removeObjetivo(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id) throws BusinessLogicException {
+        logic.removeObejtivoUsuario(idUsuario, id);
     }
 }
