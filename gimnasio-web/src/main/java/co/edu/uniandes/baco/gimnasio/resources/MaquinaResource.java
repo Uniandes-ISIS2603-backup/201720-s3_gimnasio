@@ -20,6 +20,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -61,5 +62,12 @@ public class MaquinaResource{
     @Path("{id: \\d+}")
     public void delete(@PathParam("id") long id) throws BusinessLogicException{
         logic.remove(id);
+    }
+    
+    @Path("{idMaquina: \\d+}/tipoMedidas")
+    public Class<MaquinaTipoMediaResource> getEjercicioResource(@PathParam("idMaquina") Long idMaquina,@PathParam("idRutina") Long id) throws BusinessLogicException{
+        if (logic.find(idMaquina) == null)
+            throw new WebApplicationException("El ejercicio no existe", 404);
+        return MaquinaTipoMediaResource.class;
     }
 }
