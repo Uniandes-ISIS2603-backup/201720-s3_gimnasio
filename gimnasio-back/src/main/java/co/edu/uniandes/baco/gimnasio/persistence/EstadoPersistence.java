@@ -18,9 +18,4 @@ public class EstadoPersistence extends BasePersistence<EstadoEntity>{
         super(EstadoEntity.class);
     }
    
-   public EstadoEntity findfecha(Date date)
-   {
-       //creo que esta mal
-       return manager.find(EstadoEntity.class, date);
-   }
 }

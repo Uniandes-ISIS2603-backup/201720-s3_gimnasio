@@ -19,13 +19,28 @@ import javax.ejb.Stateless;
 @Stateless
 
 public class EstadoLogic extends BaseLogic<EstadoEntity>{
+    /**
+     * injecion de la logica de usuario
+     */
     @Inject
     UsuarioLogic logic;
     
+    /**
+     * metodo que encuentra todos los estados de un usuario
+     * @param idUsuario id del usuario
+     * @return los estados del usuario
+     * @throws BusinessLogicException  si el usuario no existe
+     */
     public List<EstadoEntity> findAll(long idUsuario) throws BusinessLogicException {
         return logic.find(idUsuario).getEstados();
     }
-    
+    /**
+     * metodo que encuentra un estado 
+     * @param idUsuario id del usuario
+     * @param id del estado
+     * @return el estado
+     * @throws BusinessLogicException si el estado o el usuario no existen 
+     */
     public EstadoEntity find(long idUsuario,long id) throws BusinessLogicException {
        EstadoEntity ent=new EstadoEntity();
        ent.setId(id);
@@ -35,7 +50,13 @@ public class EstadoLogic extends BaseLogic<EstadoEntity>{
             throw new NoExisteException(id);
         return list.get(ind);
     }
-
+    /**
+     * metodo que actuliza un estado de un usuario
+     * @param idUsuario id del usuario
+     * @param entity estado a actulizar
+     * @return el estado actuilzado
+     * @throws BusinessLogicException si el usuario o el estado no existen 
+     */
     public EstadoEntity update(Long idUsuario,EstadoEntity entity) throws BusinessLogicException {
         EstadoEntity old=find(entity.getId());
         if(!old.getUsuario().getId().equals(idUsuario))
@@ -44,13 +65,24 @@ public class EstadoLogic extends BaseLogic<EstadoEntity>{
         entity.setMedidas(old.getMedidas());
         return update(entity);
     }
-    
+    /**
+     * metodo que crea un estado 
+     * @param idUsuario id del usuario
+     * @param entity estado a crear
+     * @return el estado creado
+     * @throws BusinessLogicException si el usuario no existe 
+     */
     public EstadoEntity create(long idUsuario,EstadoEntity entity) throws BusinessLogicException {
         UsuarioEntity Usuario=logic.find(idUsuario);
         entity.setUsuario(Usuario);
         return create(entity);
     }
-
+    /**
+     * metodo que elimina un estado de un usuario
+     * @param idUsuario id del usuario
+     * @param id id del estado
+     * @throws BusinessLogicException si el estado o el usuariuo no existen 
+     */
     public void remove(long idUsuario,long id) throws BusinessLogicException {
         EstadoEntity ent=find(idUsuario,id);
         logic.find(idUsuario).getEstados().remove(ent);

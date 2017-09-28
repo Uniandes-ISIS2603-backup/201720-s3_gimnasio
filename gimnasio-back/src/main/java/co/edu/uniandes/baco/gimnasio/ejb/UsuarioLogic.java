@@ -14,7 +14,12 @@
   */
  @Stateless
  public class UsuarioLogic extends BaseLogic<UsuarioEntity> {
-     
+    /***
+     * Metodo update de un usuario
+     * @param entity resive el usuario actulizado
+     * @return la entity actulizada
+     * @throws BusinessLogicException 
+     */
     @Override
     public UsuarioEntity update(UsuarioEntity entity) throws BusinessLogicException {
         UsuarioEntity ent=find(entity.getId());
