@@ -61,7 +61,6 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
             throw new NoExisteException(id);
         list.remove(aux);
     }
-    
     //-----------------------------------
     // USUSARIO
     //-----------------------------------
