@@ -21,7 +21,6 @@ import javax.inject.Inject;
 @Stateless
 
 public class MedidaLogic extends BaseLogic<MedidaEntity> {
-
     @Inject
     private EstadoLogic elogic;
 

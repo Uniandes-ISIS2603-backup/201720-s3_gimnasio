@@ -77,7 +77,7 @@ public class GimnasioResource {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         GimnasioEntity GimnasioEntity = Gimnasio.toEntity();
         // Invoca la lógica para crear la Gimnasio nueva
-        GimnasioEntity nuevoGimnasio = gimnasioLogic.createGimnasio(GimnasioEntity);
+        GimnasioEntity nuevoGimnasio = gimnasioLogic.create(GimnasioEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new GimnasioDTO(nuevoGimnasio);
     }
@@ -91,7 +91,7 @@ public class GimnasioResource {
      */
     @GET
     public List<GimnasioDTO> getGimnasios() throws BusinessLogicException {
-        return GimnasioDTO.listDTO(gimnasioLogic.getGimnasios());
+        return GimnasioDTO.listDTO(gimnasioLogic.findAll());
     }
 
 
@@ -162,19 +162,4 @@ public class GimnasioResource {
     public Class <EntrenadorResource> getEntrenador (@PathParam("EntrenadorId") Long EntID) throws BusinessLogicException{
         return EntrenadorResource.class;
     }
-    
-    @Path("{id: \\d+}/maquinas")
-    public Class <MaquinaResource> getMaquinas (@PathParam("EntrenadorId") Long EntID) throws BusinessLogicException{
-        return MaquinaResource.class;
-    }
-    @Path("{id: \\d+}/usuarios")
-    public Class <UsuarioResource> getUsuarios (@PathParam("EntrenadorId") Long EntID) throws BusinessLogicException{
-        return UsuarioResource.class;
-    }
-    @Path("{id: \\d+}/ParteDelCuerpo")
-    public Class <ParteDelCuerpoResource> getParteDelCuerpo (@PathParam("EntrenadorId") Long EntID) throws BusinessLogicException{
-        return ParteDelCuerpoResource.class;
-    }
-    
-
 }

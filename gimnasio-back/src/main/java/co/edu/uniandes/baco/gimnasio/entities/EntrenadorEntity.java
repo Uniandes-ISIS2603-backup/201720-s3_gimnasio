@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
@@ -21,29 +16,30 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class EntrenadorEntity extends BaseEntity implements Serializable {
+
     /**
      * nombre de el entrenador
      */
     private String name;
-    
+
     /**
      * fecha de nacimiento del entrenador
      */
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaNacimiento;
-    
+
     /**
      * documento del entrenador
      */
     private String documento;
-    
+
     @PodamExclude
-    @ManyToMany (cascade = CascadeType.REFRESH)
+    @ManyToMany(cascade = CascadeType.REFRESH)
     private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
-   //--------------------------------------------------------------------------
-   //METODOS
-   //--------------------------------------------------------------------------
-    
+    //--------------------------------------------------------------------------
+    //METODOS
+    //--------------------------------------------------------------------------
+
     public String getName() {
         return name;
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
@@ -23,30 +18,30 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author jc.bojaca
  */
 @Entity
-public class EjercicioEntity extends BaseEntity implements Serializable{
+public class EjercicioEntity extends BaseEntity implements Serializable {
     private String descripcion;
     private String explicacion;
     private Integer duracion;
     private Integer series;
     private Integer tamanioParticiones;
     private Integer repeticionesPorParticion;
-    
+
     @PodamExclude
     @ManyToOne
     private RutinaEntity rutina;
-    
+
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH , orphanRemoval = true, fetch= FetchType.LAZY)
-    private List<ObjetivoEntity> objetivos=new ArrayList<>();
-    
+    @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<ObjetivoEntity> objetivos = new ArrayList<>();
+
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH, fetch= FetchType.LAZY, orphanRemoval = true)
-    private List<ParteDelCuerpoEntity> partesDelCuerpo=new ArrayList<>();
-    
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<ParteDelCuerpoEntity> partesDelCuerpo = new ArrayList<>();
+
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH,orphanRemoval = true, fetch= FetchType.EAGER)
-    private List<MaquinaEntity> maquinas=new ArrayList<>();
-     
+    @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<MaquinaEntity> maquinas = new ArrayList<>();
+
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
 
@@ -73,35 +68,76 @@ public class EjercicioEntity extends BaseEntity implements Serializable{
     public void setPartesDelCuerpo(List<ParteDelCuerpoEntity> partesDelCuerpo) {
         this.partesDelCuerpo = partesDelCuerpo;
     }
-    
-    public Tipo getTipo(){return tipo;}
-    public void setTipo(Tipo tipo){this.tipo = tipo;}
-    
-    public List<ObjetivoEntity> getObjetivos() {return objetivos;}
-    public void setObjetivos(List<ObjetivoEntity> objetivos){this.objetivos = objetivos;}
-    
-    public String getDescripcion() {return descripcion;}
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion;}
 
-    public String getExplicacion() {return explicacion; }
-    public void setExplicacion(String explicacion) {this.explicacion = explicacion;}
+    public Tipo getTipo() {
+        return tipo;
+    }
 
-    public Integer getDuracion() {return duracion;}
-    public void setDuracion(Integer duracion) {this.duracion = duracion;} 
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
 
-    public Integer getSeries() {return series;}
-    public void setSeries(Integer series){this.series = series;}
+    public List<ObjetivoEntity> getObjetivos() {
+        return objetivos;
+    }
 
-    public Integer getTamanioParticiones() {return tamanioParticiones;}
-    public void setTamanioParticiones(Integer tamanioParticiones) {this.tamanioParticiones = tamanioParticiones;}
+    public void setObjetivos(List<ObjetivoEntity> objetivos) {
+        this.objetivos = objetivos;
+    }
 
-    public Integer getRepeticionesPorParticion() {return repeticionesPorParticion;}
-    public void setRepeticionesPorParticion(Integer repeticionesPorParticion) {this.repeticionesPorParticion = repeticionesPorParticion;}
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getExplicacion() {
+        return explicacion;
+    }
+
+    public void setExplicacion(String explicacion) {
+        this.explicacion = explicacion;
+    }
+
+    public Integer getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(Integer duracion) {
+        this.duracion = duracion;
+    }
+
+    public Integer getSeries() {
+        return series;
+    }
+
+    public void setSeries(Integer series) {
+        this.series = series;
+    }
+
+    public Integer getTamanioParticiones() {
+        return tamanioParticiones;
+    }
+
+    public void setTamanioParticiones(Integer tamanioParticiones) {
+        this.tamanioParticiones = tamanioParticiones;
+    }
+
+    public Integer getRepeticionesPorParticion() {
+        return repeticionesPorParticion;
+    }
+
+    public void setRepeticionesPorParticion(Integer repeticionesPorParticion) {
+        this.repeticionesPorParticion = repeticionesPorParticion;
+    }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj!=null && this.getClass() != obj.getClass())
+        if (obj != null && this.getClass() != obj.getClass()) {
             return false;
+        }
         return super.equals(obj);
     }
 

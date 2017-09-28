@@ -7,11 +7,8 @@ package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.EstadoDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.EstadoDetailDTO;
-import co.edu.uniandes.baco.gimnasio.dtos.MedidaDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.EstadoLogic;
-import co.edu.uniandes.baco.gimnasio.ejb.MedidaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.List;
 import javax.inject.Inject;
@@ -34,38 +31,42 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class EstadoResource {
     @Inject
-    private MedidaLogic Medidalogic;
-
+    private EstadoLogic logic;
+    
     @POST
-    public MedidaDTO post(@PathParam("idUsuario") Long idUsuario,MedidaDTO nuevo) throws BusinessLogicException{
-        return new MedidaDTO(Medidalogic.create(idUsuario,nuevo.toEntity()));
+    public EstadoDTO post(@PathParam("idUsuario") Long idUsuario,EstadoDTO nuevo) throws BusinessLogicException{
+        return new EstadoDTO(logic.create(idUsuario,nuevo.toEntity()));
     }
     
     @GET
-    public List<MedidaDTO> getAll(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
-        return MedidaDTO.listDetailDTO(Medidalogic.findAll(idUsuario));
+    public List<EstadoDetailDTO> getAll(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
+        return EstadoDetailDTO.listDetailDTO(logic.findAll(idUsuario));
     }
     
     @GET
     @Path("{id: \\d+}")
-    public MedidaDTO get(@PathParam("idUsuario") Long idUsuario,@PathParam("id") long id) throws BusinessLogicException {
-        return new MedidaDTO(Medidalogic.find(idUsuario,id));
+    public EstadoDetailDTO get(@PathParam("idUsuario") Long idUsuario,@PathParam("id") long id) throws BusinessLogicException {
+        return new EstadoDetailDTO(logic.find(idUsuario,id));
     }
     
     @PUT
     @Path("{id: \\d+}")
-    public MedidaDTO put(@PathParam("idUsuario") Long idUsuario,@PathParam("id")long id, MedidaDTO nuevo) throws BusinessLogicException {
-        MedidaEntity entity=nuevo.toEntity();
+    public EstadoDTO put(@PathParam("idUsuario") Long idUsuario,@PathParam("id")long id, EstadoDTO nuevo) throws BusinessLogicException {
+        EstadoEntity entity=nuevo.toEntity();
         entity.setId(id);
-        return new MedidaDTO(Medidalogic.update(idUsuario,entity));
+        return new EstadoDTO(logic.update(idUsuario,entity));
     }
-
-    @Path("{MedidaId: \\d+}/medidas")
-    public Class<MedidaResource> getMedidaMedida(@PathParam("MedidaId") Long MedidaId) throws BusinessLogicException {
-        MedidaEntity entity = Medidalogic.find(MedidaId);
-        if (entity == null) {
-            throw new WebApplicationException("noe xiste el Medida", 404);
-        }
+    
+    @DELETE
+    @Path("{id: \\d+}")
+    public void delete(@PathParam("idUsuario") Long idUsuario,@PathParam("id") long id) throws BusinessLogicException{
+        logic.remove(idUsuario,id);
+    }
+    
+    @Path("{idEstado: \\d+}/medidas")
+    public Class<MedidaResource> getMedidasResource(@PathParam("idUsuario") Long idUsuario,@PathParam("idEstado") Long id) throws BusinessLogicException{
+        if (logic.find(idUsuario,id) == null)
+            throw new WebApplicationException("El ejercicio no existe", 404);
         return MedidaResource.class;
     }
 }

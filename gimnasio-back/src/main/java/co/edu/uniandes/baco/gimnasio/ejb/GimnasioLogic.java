@@ -24,12 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
-import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import co.edu.uniandes.baco.gimnasio.persistence.GimnasioPersistence;
-import java.util.List;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 
 /**
  *
@@ -37,40 +32,4 @@ import javax.inject.Inject;
  */
 @Stateless
 public class GimnasioLogic extends BaseLogic <GimnasioEntity>{
-
-    private static final Logger LOGGER = Logger.getLogger(GimnasioLogic.class.getName());
-
-    @Inject
-    private GimnasioPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
-    /**
-     *
-     * @param entity
-     * @return
-     * @throws BusinessLogicException
-     */
-    public GimnasioEntity createGimnasio(GimnasioEntity entity) throws BusinessLogicException{
-        LOGGER.info("Inicia proceso de creación de Gimnasio");
-        // Invoca la persistencia para crear la Gimnasio
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de Gimnasio");
-        return entity;
-    }
-
-    /**
-     * 
-     * Obtener todas las Gimnasioes existentes en la base de datos.
-     *
-     * @return una lista de Gimnasioes.
-     * @throws co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException
-     */
-    public List<GimnasioEntity> getGimnasios() throws BusinessLogicException{
-        LOGGER.info("Inicia proceso de consultar todas las Gimnasioes");
-        // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
-        List<GimnasioEntity> Gimnasios = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas las Gimnasioes");
-        return Gimnasios;
-    }
-
-
 }
