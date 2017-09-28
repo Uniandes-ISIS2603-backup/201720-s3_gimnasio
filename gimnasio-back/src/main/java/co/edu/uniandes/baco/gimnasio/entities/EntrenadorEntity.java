@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -41,10 +40,6 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToMany (cascade = CascadeType.REFRESH)
     private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
-    
-    @PodamExclude
-    @ManyToOne
-    private GimnasioEntity gimnasio;
    //--------------------------------------------------------------------------
    //METODOS
    //--------------------------------------------------------------------------

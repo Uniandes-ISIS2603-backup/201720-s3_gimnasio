@@ -10,7 +10,6 @@
  import javax.ejb.Stateless;
  
  /**
-  *
   * @author m.sicard10
   */
  @Stateless
@@ -21,40 +20,6 @@
         UsuarioEntity ent=find(entity.getId());
         entity.setEntrenadores(ent.getEntrenadores());
         entity.setRutinas(ent.getRutinas());
-        return super.update(entity); //To change body of generated methods, choose Tools | Templates.
+        return super.update(entity); 
     }
-     /**
-     @Inject
-     private EstadoLogic elogic;
-    public List<EntrenadorEntity> listEntrenador(long id) throws BusinessLogicException
-    {
-        return find(id).getEntrenadores();
-    }
-
-    //
-    //Estado
-    //
-    public List<EstadoEntity> findAllEstado(Long usuarioid) throws BusinessLogicException
-    {
-       List<EstadoEntity> lista = this.find(usuarioid).getEstados();
-       return lista;
-    }
-    public EstadoEntity addEstado(Long id,Long EstadoId) throws BusinessLogicException
-    {
-        UsuarioEntity usuario = this.find(id);
-        EstadoEntity estado = elogic.find(EstadoId);
-        estado.setUsuario(usuario);
-        return estado;
-    }
-    public EstadoEntity getestado(Long id,Long EstadoId) throws BusinessLogicException 
-    {
-        List<EstadoEntity> estados = this.find(id).getEstados();
-        EstadoEntity estado = elogic.find(EstadoId);
-        int index = estados.indexOf(estado);
-        if (index >= 0) {
-            return estados.get(index);
-        }
-         throw new BusinessLogicException("el estado no existe");
-    }
-    **/
  }

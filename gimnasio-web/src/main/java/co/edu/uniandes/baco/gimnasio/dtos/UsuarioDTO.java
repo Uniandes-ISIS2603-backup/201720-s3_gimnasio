@@ -47,8 +47,6 @@ public class UsuarioDTO {
         nuevo.setFechaDeNacimiento(fechaDeNacimiento);
         nuevo.setGenero(genero);
         nuevo.setNombre(nombre);
-        nuevo.setId(id);
-        
         return nuevo;
     }
 

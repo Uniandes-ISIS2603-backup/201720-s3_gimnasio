@@ -45,7 +45,5 @@ public class RutinaDetailDTO extends RutinaDTO{
 
     public void setEjericcios(List<EjercicioDTO> ejericcios) {
         this.ejericcios = ejericcios;
-    }
-    
-    
+    } 
 }

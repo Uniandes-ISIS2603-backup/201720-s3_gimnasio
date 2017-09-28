@@ -23,18 +23,14 @@ SOFTWARE.
  */
 package co.edu.uniandes.baco.gimnasio.resources;
 
+import co.edu.uniandes.baco.gimnasio.dtos.GimnasioDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.GimnasioLogic;
-import co.edu.uniandes.baco.gimnasio.dtos.GimnasioDetailDTO;
-import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
 import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import co.edu.uniandes.baco.gimnasio.persistence.GimnasioPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -44,7 +40,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 
 /**
  * Clase que implementa el recurso REST correspondiente a "Gimnasios".
@@ -78,13 +73,13 @@ public class GimnasioResource {
      * @throws BusinessLogicException
      */
     @POST
-    public GimnasioDetailDTO createGimnasio(GimnasioDetailDTO Gimnasio) throws BusinessLogicException {
+    public GimnasioDTO createGimnasio(GimnasioDTO Gimnasio) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         GimnasioEntity GimnasioEntity = Gimnasio.toEntity();
         // Invoca la lógica para crear la Gimnasio nueva
         GimnasioEntity nuevoGimnasio = gimnasioLogic.createGimnasio(GimnasioEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        return new GimnasioDetailDTO(nuevoGimnasio);
+        return new GimnasioDTO(nuevoGimnasio);
     }
 
     /**
@@ -95,8 +90,8 @@ public class GimnasioResource {
      * @throws BusinessLogicException
      */
     @GET
-    public List<GimnasioDetailDTO> getGimnasios() throws BusinessLogicException {
-        return listEntity2DetailDTO(gimnasioLogic.getGimnasios());
+    public List<GimnasioDTO> getGimnasios() throws BusinessLogicException {
+        return GimnasioDTO.listDTO(gimnasioLogic.getGimnasios());
     }
 
 
@@ -116,7 +111,7 @@ public class GimnasioResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public GimnasioDetailDTO updateGimnasio(@PathParam("id") Long id, GimnasioDetailDTO gimnasio) throws BusinessLogicException {
+    public GimnasioDTO updateGimnasio(@PathParam("id") Long id, GimnasioDTO gimnasio) throws BusinessLogicException {
           throw new UnsupportedOperationException("Este servicio  no está implementado");
     }
 
@@ -155,10 +150,10 @@ public class GimnasioResource {
      * que vamos a convertir a DTO.
      * @return la lista de Gimnasioes en forma DTO (json)
      */
-    private List<GimnasioDetailDTO> listEntity2DetailDTO(List<GimnasioEntity> entityList) {
-        List<GimnasioDetailDTO> list = new ArrayList<>();
+    private List<GimnasioDTO> listEntity2DetailDTO(List<GimnasioEntity> entityList) {
+        List<GimnasioDTO> list = new ArrayList<>();
         for (GimnasioEntity entity : entityList) {
-            list.add(new GimnasioDetailDTO(entity));
+            list.add(new GimnasioDTO(entity));
         }
         return list;
     }

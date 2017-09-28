@@ -23,10 +23,6 @@ public class MaquinaEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToMany
     private List<TipoMedidaEntity> tipoMedida;
-        @PodamExclude
-        @ManyToOne
-    private GimnasioEntity gimnasio;
-
     public String getDescripcion() {
         return descripcion;
     }

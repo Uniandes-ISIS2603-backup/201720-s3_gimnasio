@@ -4,12 +4,10 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.baco.gimnasio.resources;
-import co.edu.uniandes.baco.gimnasio.dtos.GimnasioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.*;
 import co.edu.uniandes.baco.gimnasio.entities.ParteDelCuerpoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.dtos.ParteDelCuerpoDTO;
-import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;

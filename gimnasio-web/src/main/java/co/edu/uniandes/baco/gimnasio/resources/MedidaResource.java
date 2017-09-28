@@ -6,13 +6,9 @@
 package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.MedidaDTO;
-import co.edu.uniandes.baco.gimnasio.dtos.ParteDelCuerpoDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.MedidaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.ParteDelCuerpoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -36,13 +32,13 @@ import javax.ws.rs.WebApplicationException;
 public class MedidaResource {
     
    @Inject
-   private MedidaLogic medidalogic;
+   private MedidaLogic logic;
    
     @POST
     public MedidaDTO creat(MedidaDTO medidaDto) throws BusinessLogicException
     {
         MedidaEntity pcentity = medidaDto.toEntity();
-        MedidaEntity pcnew = medidalogic.create(pcentity);
+        MedidaEntity pcnew = logic.create(pcentity);
         return new MedidaDTO(pcnew);
         
     }
@@ -51,7 +47,7 @@ public class MedidaResource {
     @Path("{id: \\d+}")
     public MedidaDTO getMedida(@PathParam("id")Long id)throws BusinessLogicException
     {
-        MedidaEntity en = medidalogic.find(id);
+        MedidaEntity en = logic.find(id);
         if(en!=null)
         {
            return new MedidaDTO(en);
@@ -66,11 +62,11 @@ public class MedidaResource {
     @Path("{id: \\d+}") 
     public  MedidaDTO updateMedida(@PathParam("id") Long id,MedidaDTO medida)throws BusinessLogicException
     {
-        MedidaEntity ent = medidalogic.find(id);
+        MedidaEntity ent = logic.find(id);
         if(ent!=null)
         {
           MedidaEntity en = medida.toEntity();
-          ent = medidalogic.update(en);
+          ent = logic.update(en);
           return new MedidaDTO(en);
         }
         else
@@ -82,11 +78,11 @@ public class MedidaResource {
     @Path("{id: \\d+}") 
     public void deleteMedida(@PathParam("id")Long id)throws BusinessLogicException
     {
-      MedidaEntity ent = medidalogic.find(id);
+      MedidaEntity ent = logic.find(id);
         if(ent!=null)
         {
           
-          medidalogic.remove(id);
+          logic.remove(id);
           
         }
         else
@@ -97,7 +93,7 @@ public class MedidaResource {
 
     @Path("{Medidaid: \\d+}/ParteDelCuerpo")
     public Class<MedidaParteDelCuerpoResource> getMedidaParteDelCuerpo(@PathParam("Medidaid") Long Medidaid) throws BusinessLogicException {
-        MedidaEntity entity = medidalogic.find(Medidaid);
+        MedidaEntity entity = logic.find(Medidaid);
         if (entity == null) {
             throw new WebApplicationException("noe xiste el estado",404);
         }

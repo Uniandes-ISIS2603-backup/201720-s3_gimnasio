@@ -59,7 +59,7 @@ public class UsuarioResource {
     
     @GET
     public List<UsuarioDetailDTO> getEntrenadores() throws BusinessLogicException {
-        return listEntity2DetailDTO(logic.findAll());
+        return UsuarioDetailDTO.listDetailDTO(logic.findAll());
     }
     
     @GET
@@ -92,14 +92,6 @@ public class UsuarioResource {
         {
             throw new BusinessLogicException("no se pudo eliminaar ya que no existe");
         }  
-    }
-    
-    private List<UsuarioDetailDTO> listEntity2DetailDTO(List<UsuarioEntity> entityList) {
-        List<UsuarioDetailDTO> list = new ArrayList<>();
-        for (UsuarioEntity entity : entityList) {
-            list.add(new UsuarioDetailDTO(entity));
-        }
-        return list;
     }
     
     @PUT

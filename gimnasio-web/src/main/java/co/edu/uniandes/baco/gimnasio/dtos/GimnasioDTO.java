@@ -25,6 +25,9 @@ package co.edu.uniandes.baco.gimnasio.dtos;
 
 
 import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * GimnasioDTO Objeto de transferencia de datos de Gimnasioes. Los DTO
@@ -129,6 +132,11 @@ public class GimnasioDTO {
         this.name = name;
     }
     
-    
-    
+     public static final List<GimnasioDTO> listDTO(List<GimnasioEntity> entity){
+        List<GimnasioDTO> resp=new ArrayList<>();
+        for(GimnasioEntity ent:entity){
+            resp.add(new GimnasioDTO(ent));
+        }
+        return resp;
+    }  
 }

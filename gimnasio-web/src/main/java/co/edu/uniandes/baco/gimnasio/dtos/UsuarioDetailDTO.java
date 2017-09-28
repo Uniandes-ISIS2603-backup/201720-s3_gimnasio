@@ -6,7 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
-import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     */
     private List<EntrenadorDTO> entrenadores;
     private List<RutinaDTO> rutinas;
+    private List<EstadoDTO> estados;
     
     //--------------
     //Metodos
@@ -40,30 +41,30 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         }
         if (u != null)
         {
-            rutinas = new ArrayList<>();
-            for(RutinaEntity e2: u.getRutinas())
+            entrenadores = new ArrayList<>();
+            for(EntrenadorEntity e: u.getEntrenadores())
             {
-                rutinas.add(new RutinaDTO(e2));
+                entrenadores.add(new EntrenadorDTO(e));
             }
         }
-    }
-    
-    @Override
-    public UsuarioEntity toEntity()
-    {
-        UsuarioEntity e = super.toEntity();
-        if (entrenadores != null)
+        if (u != null)
         {
-            List<EntrenadorEntity> entE = new ArrayList<>();
-            for(EntrenadorDTO d:entrenadores)
+            estados = new ArrayList<>();
+            for(EstadoEntity e2: u.getEstados())
             {
-                entE.add(d.toEntity());
+                estados.add(new EstadoDTO(e2));
             }
-            e.setEntrenadores(entE);
         }
-        return e;
     }
 
+    public List<EstadoDTO> getEstados() {
+        return estados;
+    }
+
+    public void setEstados(List<EstadoDTO> estados) {
+        this.estados = estados;
+    }
+    
     public List<RutinaDTO> getRutinas() {
         return rutinas;
     }
@@ -78,5 +79,13 @@ public class UsuarioDetailDTO extends UsuarioDTO{
 
     public void setEntrenadores(List<EntrenadorDTO> entrenadores) {
         this.entrenadores = entrenadores;
+    }
+    
+    public static final List<UsuarioDetailDTO> listDetailDTO(List<UsuarioEntity> entity){
+        List<UsuarioDetailDTO> resp=new ArrayList<>();
+        for(UsuarioEntity ent:entity){
+            resp.add(new UsuarioDetailDTO(ent));
+        }
+        return resp;
     }
 }

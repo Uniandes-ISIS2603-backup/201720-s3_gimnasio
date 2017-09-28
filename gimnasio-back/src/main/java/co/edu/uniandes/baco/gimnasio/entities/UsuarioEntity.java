@@ -13,7 +13,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -36,10 +35,6 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToMany(cascade = CascadeType.REFRESH , orphanRemoval = true, fetch= FetchType.LAZY)
     private List<ObjetivoEntity> objetivos=new ArrayList<>();
-    
-    @PodamExclude
-    @ManyToOne
-    private GimnasioEntity gimnasio;
     
     @PodamExclude
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)

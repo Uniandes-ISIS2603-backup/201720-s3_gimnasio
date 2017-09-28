@@ -7,6 +7,8 @@ package co.edu.uniandes.baco.gimnasio.dtos;
 
 
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -49,6 +51,13 @@ public class MedidaDTO {
 
     public void setMedida(Double medida) {
         this.medida = medida;
-    }
+    } 
     
+    public static final List<MedidaDTO> listDetailDTO(List<MedidaEntity> entity){
+        List<MedidaDTO> resp=new ArrayList<>();
+        for(MedidaEntity ent:entity){
+            resp.add(new MedidaDTO(ent));
+        }
+        return resp;
+    }
 }

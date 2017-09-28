@@ -24,7 +24,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class EstadoEntity extends BaseEntity implements Serializable{
     
    @Temporal(javax.persistence.TemporalType.DATE)
-   private Date fecha; // atributo que modela la fecha de toma de datos
+   private Date fecha;
    
    @PodamExclude
    @OneToMany(mappedBy = "estado",cascade = CascadeType.REFRESH , orphanRemoval = true, fetch= FetchType.LAZY )
@@ -48,7 +48,7 @@ public class EstadoEntity extends BaseEntity implements Serializable{
     public void setMedidas(List<MedidaEntity> medidas) {
         this.medidas = medidas;
     }
-     // getter and setters
+    
     public Date getFecha() {
         return fecha;
     }
