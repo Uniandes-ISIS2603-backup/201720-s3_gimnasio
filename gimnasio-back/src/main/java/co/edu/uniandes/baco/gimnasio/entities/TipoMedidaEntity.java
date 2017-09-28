@@ -10,13 +10,13 @@ import javax.persistence.Entity;
 public class TipoMedidaEntity extends BaseEntity implements Serializable{
     private String descripcion;
     private String unidad;
-    private Boolean automatico;
+    private boolean automatico;
 
-    public Boolean getAutomatico() {
+    public boolean isAutomatico() {
         return automatico;
     }
 
-    public void setAutomatico(Boolean automatico) {
+    public void setAutomatico(boolean automatico) {
         this.automatico = automatico;
     }
     

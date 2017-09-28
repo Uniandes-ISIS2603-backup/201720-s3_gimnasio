@@ -38,8 +38,8 @@ public class TipoMedidaResource{
     }
     
     @GET
-    public List<TipoMedidaDTO> getAll(){
-        return TipoMedidaDTO.findall();
+    public List<TipoMedidaDTO> getAll() throws BusinessLogicException{
+        return TipoMedidaDTO.listDTO(logic.findAll());
     }
     
     @GET

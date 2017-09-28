@@ -7,6 +7,7 @@ package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import java.util.List;
@@ -23,11 +24,18 @@ import javax.inject.Inject;
 public class MedidaLogic extends BaseLogic<MedidaEntity> {
     @Inject
     private EstadoLogic elogic;
+    @Inject
+    private TipoMedidaLogic tipoMedidaLogic;
 
-    public MedidaEntity create(Long idEstado, MedidaEntity entity) throws BusinessLogicException {
+    public MedidaEntity create(Long idEstado, MedidaEntity entity,Long idTipoMedida) throws BusinessLogicException {
         EstadoEntity estado = elogic.find(idEstado);
+        TipoMedidaEntity parte = tipoMedidaLogic.find(idTipoMedida);
+        if(parte.isAutomatico())
+            throw new BusinessLogicException("no se puede asociar una medidcion manual a una medida automatica");
         entity.setEstado(estado);
-        return create(entity);
+        MedidaEntity est=create(entity);
+        entity.setParte(parte);
+        return est;
     }
 
     public List<MedidaEntity> findAll(Long Idestado) throws BusinessLogicException {
@@ -52,5 +60,11 @@ public class MedidaLogic extends BaseLogic<MedidaEntity> {
         }
         entity.setEstado(old.getEstado());
         return persistence.update(entity);
+    }
+    
+     public void remove(long idEstado,long id) throws BusinessLogicException {
+        MedidaEntity ent=find(idEstado,id);
+        elogic.find(idEstado).getMedidas().remove(ent);
+        remove(id);
     }
 }

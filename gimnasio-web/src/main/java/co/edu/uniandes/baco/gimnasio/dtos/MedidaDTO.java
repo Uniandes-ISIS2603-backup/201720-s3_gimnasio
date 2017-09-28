@@ -7,15 +7,12 @@ package co.edu.uniandes.baco.gimnasio.dtos;
 
 
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author js.palacios437
  */
 public class MedidaDTO {
-    
     private Long id;
     private Double medida;
     public MedidaDTO()
@@ -23,8 +20,7 @@ public class MedidaDTO {
         
     }
     
-    public MedidaDTO(MedidaEntity entity)
-    {
+    public MedidaDTO(MedidaEntity entity){
         this.id = entity.getId();
         this.medida = entity.getMedida();
     }
@@ -36,7 +32,7 @@ public class MedidaDTO {
         ent.setMedida(this.medida);
         return ent;
     }
-
+    
     public Long getId() {
         return id;
     }
@@ -52,12 +48,4 @@ public class MedidaDTO {
     public void setMedida(Double medida) {
         this.medida = medida;
     } 
-    
-    public static final List<MedidaDTO> listDetailDTO(List<MedidaEntity> entity){
-        List<MedidaDTO> resp=new ArrayList<>();
-        for(MedidaEntity ent:entity){
-            resp.add(new MedidaDTO(ent));
-        }
-        return resp;
-    }
 }

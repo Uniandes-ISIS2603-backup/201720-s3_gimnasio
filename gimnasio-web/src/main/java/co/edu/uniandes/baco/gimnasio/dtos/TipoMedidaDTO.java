@@ -10,26 +10,56 @@ package co.edu.uniandes.baco.gimnasio.dtos;
  * @author t.kavanagh
  */
 
-
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TipoMedidaDTO {
+    private Long id;
+    private String descripcion;
+    private String unidad;
+    private boolean automatico;
 
     public TipoMedidaDTO() {
         //javaxs
     }
     
+    /**
+     * Constructor por defecto
+     */
+    public TipoMedidaDTO(TipoMedidaEntity foo) {      
+        if(foo!=null){
+            id = foo.getId();
+            descripcion = foo.getDescripcion();
+            unidad = foo.getUnidad();
+            automatico=foo.isAutomatico();
+        }
+    }
     
-
-    public static List<TipoMedidaDTO> findall() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public TipoMedidaEntity toEntity() {
+        TipoMedidaEntity entity = new TipoMedidaEntity();
+        entity.setDescripcion(this.descripcion);
+        entity.setUnidad(this.unidad);
+        entity.setAutomatico(this.isAutomatico());
+        return entity;
+    }
+    
+    public static final List<TipoMedidaDTO> listDTO(List<TipoMedidaEntity> entity) {
+        List<TipoMedidaDTO> resp = new ArrayList<>();
+        for (TipoMedidaEntity ent : entity) {
+            resp.add(new TipoMedidaDTO(ent));
+        }
+        return resp;
     }
 
-    private Long id;
-    private String descripcion;
-    private String unidad;
+    public boolean isAutomatico() {
+        return automatico;
+    }
 
+    public void setAutomatico(boolean automatico) {
+        this.automatico = automatico;
+    }
+    
     public String getDescripcion() {
         return descripcion;
     }
@@ -47,20 +77,6 @@ public class TipoMedidaDTO {
     }
 
     /**
-     * Constructor por defecto
-     */
-    public TipoMedidaDTO(TipoMedidaEntity foo) {
-        if(foo!=null){
-            id = foo.getId();
-            descripcion = foo.getDescripcion();
-            unidad = foo.getUnidad();
-        }
-    }
-
-
-
-
-    /**
      * @return the id
      */
     public Long getId() {
@@ -73,18 +89,4 @@ public class TipoMedidaDTO {
     public void setId(Long id) {
         this.id = id;
     }
-
-    /**
-     * Convertir DTO a Entity
-     *
-     * @return Un Entity con los valores del DTO
-     */
-    public TipoMedidaEntity toEntity() {
-        TipoMedidaEntity entity = new TipoMedidaEntity();
-        entity.setDescripcion(this.descripcion);
-        entity.setUnidad(this.unidad);
-        entity.setId(this.id);
-        return entity;
-    }
-    
 }

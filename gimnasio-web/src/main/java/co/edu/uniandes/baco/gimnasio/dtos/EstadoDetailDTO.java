@@ -15,7 +15,7 @@ import java.util.List;
  * @author js.palacios437
  */
 public class EstadoDetailDTO extends EstadoDTO{
-     private List<MedidaDTO> medidas;
+     private List<MedidaDetailDTO> medidas;
     
     public EstadoDetailDTO(){
         super();
@@ -29,7 +29,7 @@ public class EstadoDetailDTO extends EstadoDTO{
             medidas = new ArrayList<>();
             for(MedidaEntity e: entity.getMedidas())
             {
-                medidas.add(new MedidaDTO(e));
+                medidas.add(new MedidaDetailDTO(e));
             }
         }
     }
@@ -49,7 +49,7 @@ public class EstadoDetailDTO extends EstadoDTO{
         if (medidas != null)
         {
             List<MedidaEntity> entE = new ArrayList<>();
-            for(MedidaDTO d:medidas)
+            for(MedidaDetailDTO d:medidas)
             {
                 entE.add(d.toEntity());
             }
@@ -58,11 +58,11 @@ public class EstadoDetailDTO extends EstadoDTO{
         return e;
     }
 
-    public List<MedidaDTO> getMedidas() {
+    public List<MedidaDetailDTO> getMedidas() {
         return medidas;
     }
 
-    public void setMedidas(List<MedidaDTO> medidas) {
+    public void setMedidas(List<MedidaDetailDTO> medidas) {
         this.medidas = medidas;
     }
 }
