@@ -1,6 +1,7 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.EjercicioPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +93,8 @@ public class EjercicioPersistenceTest {
         EjercicioEntity newEntity = factory.manufacturePojo(EjercicioEntity.class);
         EjercicioEntity newEntity2 = factory.manufacturePojo(EjercicioEntity.class);
         assertTrue(newEntity.equals(newEntity));
+        TipoMedidaEntity tipo=factory.manufacturePojo(TipoMedidaEntity.class);
+        assertFalse(newEntity.equals(tipo));
         assertEquals(newEntity.equals(newEntity2), newEntity.getId().equals(newEntity2.getId()));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
         assertEquals((newEntity.hashCode() == newEntity2.hashCode()), newEntity.getId().equals(newEntity2.getId()));

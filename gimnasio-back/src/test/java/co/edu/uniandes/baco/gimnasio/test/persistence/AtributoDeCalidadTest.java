@@ -6,6 +6,8 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
+import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
+import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.AtributoDeCalidadPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,6 +100,8 @@ public class AtributoDeCalidadTest {
         PodamFactory factory = new PodamFactoryImpl();
         AtributoDeCalidadEntity newEntity = factory.manufacturePojo(AtributoDeCalidadEntity.class);
         AtributoDeCalidadEntity newEntity2 = factory.manufacturePojo(AtributoDeCalidadEntity.class);
+        TipoMedidaEntity tipo=factory.manufacturePojo(TipoMedidaEntity.class);
+        assertFalse(newEntity.equals(tipo));
         assertTrue(newEntity.equals(newEntity));
         assertEquals(newEntity.equals(newEntity2),newEntity.getId().equals(newEntity2.getId()));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
