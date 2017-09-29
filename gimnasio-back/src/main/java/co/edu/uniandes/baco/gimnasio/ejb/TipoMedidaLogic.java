@@ -46,7 +46,15 @@ public class TipoMedidaLogic extends BaseLogic<TipoMedidaEntity>{
         logic.find(idMaquina).getTipoMedida().add(aux);
         return aux;
     }
-    
+    public List<TipoMedidaEntity> createlist(List<TipoMedidaEntity> list) throws BusinessLogicException
+    {
+     
+        for(int i =0;i<list.size();i++)
+       {
+           create(list.get(i));
+        }
+        return list;
+    }
     public void removeTipoMedidaMaquina(Long idMaquina, Long id) throws BusinessLogicException{
         TipoMedidaEntity aux = new TipoMedidaEntity();
         aux.setId(id);

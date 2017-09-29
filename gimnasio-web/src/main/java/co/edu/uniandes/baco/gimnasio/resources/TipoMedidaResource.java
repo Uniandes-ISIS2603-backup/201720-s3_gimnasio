@@ -9,6 +9,7 @@ import co.edu.uniandes.baco.gimnasio.dtos.TipoMedidaDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.TipoMedidaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -32,11 +33,40 @@ public class TipoMedidaResource{
     @Inject
     private TipoMedidaLogic logic;
     
-    @POST
-    public TipoMedidaDTO post(TipoMedidaDTO nuevo) throws BusinessLogicException{
-        return new TipoMedidaDTO(logic.create(nuevo.toEntity()));
+        private List<TipoMedidaDTO> medidaListEntity2DTO(List<TipoMedidaEntity> entityList) {
+        List<TipoMedidaDTO> list = new ArrayList<>();
+        for (TipoMedidaEntity entity : entityList) {
+            list.add(new TipoMedidaDTO(entity));
+        }
+        return list;
     }
-    
+
+    /**
+     * Convierte una lista de BookDetailDTO a una lista de BookEntity.
+     *
+     * @param dtos Lista de BookDetailDTO a convertir.
+     * @return Lista de BookEntity convertida.
+     * 
+     */
+    private List<TipoMedidaEntity> medidaListDTO2Entity(List<TipoMedidaDTO> dtos) {
+        List<TipoMedidaEntity> list = new ArrayList<>();
+        for (TipoMedidaDTO dto : dtos) {
+            list.add(dto.toEntity());
+        }
+        return list;
+    }
+   // @POST
+   // public TipoMedidaDTO post(TipoMedidaDTO nuevo) throws BusinessLogicException{
+    //    return new TipoMedidaDTO(logic.create(nuevo.toEntity()));
+   // }
+    @POST
+    public List<TipoMedidaDTO> postlista(List<TipoMedidaDTO> listdto) throws BusinessLogicException
+     {
+         
+         List<TipoMedidaEntity> ll =logic.createlist(medidaListDTO2Entity(listdto));
+         return medidaListEntity2DTO(ll);
+     
+     }
     @GET
     public List<TipoMedidaDTO> getAll() throws BusinessLogicException{
         return TipoMedidaDTO.listDTO(logic.findAll());

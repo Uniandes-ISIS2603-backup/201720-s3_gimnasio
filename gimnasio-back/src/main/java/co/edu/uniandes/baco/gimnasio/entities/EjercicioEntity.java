@@ -22,25 +22,53 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
+    /**
+     * atributo descripcion
+     */
     private String descripcion;
+    /**
+     * atributo explicacion
+     */
     private String explicacion;
+    /**
+     * atributo duracion
+     */
     private Integer duracion;
+    /**
+     * atributo series
+     */
     private Integer series;
+    /**
+     * atributos tamañoPrticnes
+     */
     private Integer tamanioParticiones;
+    /**
+     * atributo repeticones
+     */
     private Integer repeticionesPorParticion;
+    /**
+     * atributo tipo
+     */
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
     //--------------------------------------------
     // DATOS ENTITY
     //--------------------------------------------
+    /**
+     * atibuto de rutina a la que pertenese
+     */
     @PodamExclude
     @ManyToOne
     private RutinaEntity rutina;
-
+    /**
+     * lista de objetivos del ejercicio
+     */
     @PodamExclude
     @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ObjetivoEntity> objetivos = new ArrayList<>();
-
+    /**
+     * lista de maquians del ejercicio
+     */
     @PodamExclude
     @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<MaquinaEntity> maquinas = new ArrayList<>();

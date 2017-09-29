@@ -16,11 +16,18 @@ public class NoExisteException extends WebApplicationException{
     public NoExisteException() {
         //constructor base
     }
-    
+    /**
+     * contrutiror con un id
+     * @param id 
+     */
     public NoExisteException(Long id){
         super("El recurso con id=" + id + " no existe.", 404);
     }
-    
+    /**
+     * contructor con 2 ids padre e hijo
+     * @param id
+     * @param id2 
+     */
     public NoExisteException(Long id,Long id2){
         super("El subrecurso con id=" + id2 + " no existe en el recurso"+id+".", 404);
     }
