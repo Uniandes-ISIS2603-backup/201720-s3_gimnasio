@@ -13,26 +13,40 @@ import java.util.Date;
  * @author js.palacios437
  */
 public class EstadoDTO {
-
+    /**
+     * atributo id
+     */
     private Long id;
+        /**
+     * atributo fecha
+     */
     private Date fecha;
-
+    
+    /**
+     * contructor vacio
+     */
     public EstadoDTO() {
         //nada
     }
-
+    /**
+     * contructor de la clase
+     * @param entity 
+     */
     public EstadoDTO(EstadoEntity entity) {
         this.id = entity.getId();
          this.fecha = entity.getFecha();
     }
-    
+    /**
+     * convierte un dto a entity
+     * @return 
+     */
     public EstadoEntity toEntity() {
         EstadoEntity ent = new EstadoEntity();
         ent.setId(this.id);
         ent.setFecha(fecha);
         return ent;
     }
-
+///Getter and setters//
     public Date getFecha() {
         return fecha;
     }

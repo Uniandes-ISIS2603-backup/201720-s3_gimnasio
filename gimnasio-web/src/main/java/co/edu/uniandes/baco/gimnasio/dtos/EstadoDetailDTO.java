@@ -41,7 +41,10 @@ public class EstadoDetailDTO extends EstadoDTO{
         }
         return resp;
     }
-    
+         /**
+     * convierte un dto a entity
+     * @return 
+     */
     @Override
     public EstadoEntity toEntity()
     {

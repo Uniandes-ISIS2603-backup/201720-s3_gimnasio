@@ -29,7 +29,10 @@ public class AtributoDeCalidadDTO {
         this.regresion=entity.getRegresion();
         this.id=entity.getId();
     }
-    
+     /**
+     * convierte un dto a entity
+     * @return 
+     */
     public AtributoDeCalidadEntity toEntity(){
         AtributoDeCalidadEntity aux=new AtributoDeCalidadEntity();
         aux.setRegresion(regresion);

@@ -26,7 +26,10 @@ public class MaquinaDTO {
 
         }
     }
-    
+     /**
+     * convierte un dto a entity
+     * @return 
+     */
     public MaquinaEntity toEntity() {
         MaquinaEntity entity = new MaquinaEntity();
         entity.setDescripcion(this.descripcion);

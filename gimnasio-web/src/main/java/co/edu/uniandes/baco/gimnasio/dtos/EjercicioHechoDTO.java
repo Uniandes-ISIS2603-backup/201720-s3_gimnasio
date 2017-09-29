@@ -26,7 +26,10 @@ public class EjercicioHechoDTO
         this.fecha = entity.getFechaInicio();
         this.seriesReales = entity.getSeriesReales();
     }
-    
+    /**
+     * convierte un dto a entity
+     * @return 
+     */
     public EjercicioHechoEntity toEntity()
     {
         EjercicioHechoEntity ent= new EjercicioHechoEntity();
