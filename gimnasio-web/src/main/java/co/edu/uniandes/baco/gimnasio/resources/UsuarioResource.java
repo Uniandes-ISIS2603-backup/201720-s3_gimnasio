@@ -5,11 +5,14 @@
  */
 package co.edu.uniandes.baco.gimnasio.resources;
 
+import co.edu.uniandes.baco.gimnasio.dtos.EntrenadorDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.UsuarioDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.UsuarioLogic;
+import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -113,18 +116,24 @@ public class UsuarioResource {
      * @return
      * @throws BusinessLogicException
      */
-    
+    @GET
     @Path("{usuarioId: \\d+}/entrenadores")
-    public Class<UsuarioEntrenadorResource> getEntrenadorUsuarioResource(@PathParam("usuarioId") Long usuarioID) throws BusinessLogicException
+    public List<EntrenadorDTO> getEntrenadorUsuarioResource(@PathParam("usuarioId") Long usuarioID) throws BusinessLogicException
     {
-        UsuarioEntity e  = logic.find(usuarioID);
-        if(e == null)
-        {
-            throw new WebApplicationException("El usuario no existe", 404);
-        }
-        return UsuarioEntrenadorResource.class;
+       List<EntrenadorEntity> a;
+        a = logic.find(usuarioID).getEntrenadores();
+        return EntrenadorListEntity2DTOSimple(a);
     }
     
+    private List<EntrenadorDTO> EntrenadorListEntity2DTOSimple(List<EntrenadorEntity> entityList) {
+        List<EntrenadorDTO> list = new ArrayList<>();
+        for (EntrenadorEntity entity : entityList) {
+            list.add(new EntrenadorDTO(entity));
+        }
+        return list;
+    }
+    
+    @GET
     @Path("{idUsuario: \\d+}/rutinas")
     public Class<RutinaResource> getEjercicioResource(@PathParam("idUsuario") Long id) throws BusinessLogicException{
         if (logic.find(id) == null)
