@@ -46,10 +46,11 @@ public class ObjetivoDetailDTO extends ObjetivoDTO{
              }
          }
     }
+    
     public static final List<ObjetivoDetailDTO> listDetailDTO(List<ObjetivoEntity> entity) {
         List<ObjetivoDetailDTO> resp = new ArrayList<>();
         for (ObjetivoEntity ent : entity) {
-            resp.add(new ObjetivoDetailDTO((ent)));
+            resp.add(new ObjetivoDetailDTO(ent));
         }
         return resp;
     }

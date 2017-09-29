@@ -1,0 +1,538 @@
+{
+	"variables": [],
+	"info": {
+		"name": "maquina",
+		"_postman_id": "61ba54fd-c7bc-0210-185a-dfffad58de92",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Agregar maquinas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]=responseCode.code == 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/maquinas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":1,\"descripcion\":\"unavailable\"},\n{\"id\":2,\"descripcion\":\"Cervus canadensis\"},\n{\"id\":3,\"descripcion\":\"Toxostoma curvirostre\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar maquinas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]=responseCode.code == 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/maquinas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":1,\"descripcion\":\"unavailable\"},\n{\"id\":2,\"descripcion\":\"Cervus canadensis\"},\n{\"id\":3,\"descripcion\":\"Toxostoma curvirostre\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get maquina",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]=responseCode.code == 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/maquinas/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":1,\"descripcion\":\"unavailable\"},\n{\"id\":2,\"descripcion\":\"Cervus canadensis\"},\n{\"id\":3,\"descripcion\":\"Toxostoma curvirostre\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get maquina error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"]=responseCode.code == 412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/maquinas/99999",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":1,\"descripcion\":\"unavailable\"},\n{\"id\":2,\"descripcion\":\"Cervus canadensis\"},\n{\"id\":3,\"descripcion\":\"Toxostoma curvirostre\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete maquina ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]=responseCode.code == 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/maquinas/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete maquina  error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"]=responseCode.code == 412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/maquinas/99999",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "put maquina",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]=responseCode.code == 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/maquinas/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":1,\"descripcion\":\"nueva descripcion\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "put maquina error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"]=responseCode.code == 412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/tipoMedida/",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":1,\"descripcion\":\"unavailable\",\"unidad\":\"mt\",\"automatico\":\"true\"},\n{\"id\":2,\"descripcion\":\"Cervus canadensis\",\"unidad\":\"mt\",\"automatico\":\"true\"},\n{\"id\":3,\"descripcion\":\"Toxostoma curvirostre\",\"unidad\":\"mt\",\"automatico\":\"true\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "put  tipo medida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]=responseCode.code == 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/tipoMedida/",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":1,\"descripcion\":\"unavailable\",\"unidad\":\"mt\",\"automatico\":\"true\"},\n{\"id\":2,\"descripcion\":\"Cervus canadensis\",\"unidad\":\"mt\",\"automatico\":\"true\"},\n{\"id\":3,\"descripcion\":\"Toxostoma curvirostre\",\"unidad\":\"mt\",\"automatico\":\"true\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get  tipo medida error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"]=responseCode.code == 412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/tipoMedida/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":1,\"descripcion\":\"unavailable\",\"unidad\":\"mt\",\"automatico\":\"true\"},\n{\"id\":2,\"descripcion\":\"Cervus canadensis\",\"unidad\":\"mt\",\"automatico\":\"true\"},\n{\"id\":3,\"descripcion\":\"Toxostoma curvirostre\",\"unidad\":\"mt\",\"automatico\":\"true\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "put tipo medida ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]=responseCode.code == 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/tipoMedida/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":1,\"descripcion\":\"unavailable\",\"unidad\":\"mt/3\",\"automatico\":\"true\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "put tipo medida error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"]=responseCode.code == 412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/tipoMedida/99999",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":1,\"descripcion\":\"unavailable\",\"unidad\":420,\"automatico\":\"true\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete tipo medida ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]=responseCode.code == 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/tipoMedida/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":1,\"descripcion\":\"unavailable\",\"unidad\":420,\"automatico\":\"true\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete tipo medida error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"]=responseCode.code == 412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/tipoMedida/999999",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":1,\"descripcion\":\"unavailable\",\"unidad\":420,\"automatico\":\"true\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar tipo medida a maquina",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]=responseCode.code == 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/maquinas/1/tipomedida/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get  tipo medida de maquina",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]=responseCode.code == 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/maquinas/1/tipomedida/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete tipo medida de maquina",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]=responseCode.code == 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/maquinas/1/tipomedida/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":1,\"descripcion\":\"unavailable\",\"unidad\":420,\"automatico\":\"true\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

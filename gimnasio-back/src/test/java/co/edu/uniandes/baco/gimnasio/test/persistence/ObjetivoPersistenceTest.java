@@ -1,6 +1,7 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,10 +92,21 @@ public class ObjetivoPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         ObjetivoEntity newEntity = factory.manufacturePojo(ObjetivoEntity.class);
         ObjetivoEntity newEntity2 = factory.manufacturePojo(ObjetivoEntity.class);
+        TipoMedidaEntity tipo=factory.manufacturePojo(TipoMedidaEntity.class);
+        assertFalse(newEntity.equals(tipo));
         assertTrue(newEntity.equals(newEntity));
         assertEquals(newEntity.equals(newEntity2), newEntity.getId().equals(newEntity2.getId()));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
         assertEquals((newEntity.hashCode() == newEntity2.hashCode()), newEntity.getId().equals(newEntity2.getId()));
+    }
+    
+    @Test
+    public void findByTipo(){
+        ObjetivoEntity entity = data.get(0);
+        ObjetivoEntity newEntity = persistence.findByTipo(entity.getTipo());
+        assertNotNull(newEntity);
+        assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
+        assertEquals(newEntity.getTipo(), entity.getTipo());
     }
 
     @Test
