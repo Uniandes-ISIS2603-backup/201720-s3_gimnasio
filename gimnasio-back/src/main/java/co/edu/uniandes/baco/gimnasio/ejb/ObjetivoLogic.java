@@ -114,15 +114,15 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
     }
     /**
      * metodo apra encontrar un objetivo en un usuario
-     * @param idEjercicio id del ejercicio
+     * @param idUsuario id del ejercicio
      * @param id del objetivo
      * @return el objetivo deseado
      * @throws BusinessLogicException si el usuario o el objetivo no existen 
      */
-    public ObjetivoEntity findObjetivoUsuario(Long idEjercicio, Long id) throws BusinessLogicException{
+    public ObjetivoEntity findObjetivoUsuario(Long idUsuario, Long id) throws BusinessLogicException{
         ObjetivoEntity aux = new ObjetivoEntity();
         aux.setId(id);
-        List<ObjetivoEntity> list=usuarioLogic.find(idEjercicio).getObjetivos();
+        List<ObjetivoEntity> list=usuarioLogic.find(idUsuario).getObjetivos();
         int ind=list.indexOf(aux);
         if(ind<0)
             throw new NoExisteException(id);
@@ -130,28 +130,28 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
     }
     /**
      * metodo que asocia un objetico a un usuario 
-     * @param idEjercicio del usuario
+     * @param idUsuario del usuario
      * @param id id del objetivo
      * @return el objetivo creado
      * @throws BusinessLogicException si el usuario o objetivo no existe 
      */
-    public ObjetivoEntity createObjetivoUsuario(Long idEjercicio, Long id) throws BusinessLogicException{
+    public ObjetivoEntity createObjetivoUsuario(Long idUsuario, Long id) throws BusinessLogicException{
         ObjetivoEntity aux = find(id);
         if(aux==null)
             throw new  NoExisteException(id);
-        usuarioLogic.find(idEjercicio).getObjetivos().add(aux);
+        usuarioLogic.find(idUsuario).getObjetivos().add(aux);
         return aux;
     }
     /**
      *  metodo para eliminar un objetivo a un usuario
-     * @param idEjercicio del Usuario
+     * @param idUsuario del Usuario
      * @param id del objetivo
      * @throws BusinessLogicException si el usuario o el objetivo no existen 
      */
-    public void removeObejtivoUsuario(Long idEjercicio, Long id) throws BusinessLogicException{
+    public void removeObejtivoUsuario(Long idUsuario, Long id) throws BusinessLogicException{
         ObjetivoEntity aux = new ObjetivoEntity();
         aux.setId(id);
-        List<ObjetivoEntity> list=usuarioLogic.find(idEjercicio).getObjetivos();
+        List<ObjetivoEntity> list=usuarioLogic.find(idUsuario).getObjetivos();
         int ind=list.indexOf(aux);
         if(ind<0)
             throw new NoExisteException(id);

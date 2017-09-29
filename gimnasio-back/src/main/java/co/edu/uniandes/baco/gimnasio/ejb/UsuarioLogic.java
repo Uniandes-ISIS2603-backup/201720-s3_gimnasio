@@ -5,9 +5,13 @@
   */
  package co.edu.uniandes.baco.gimnasio.ejb;
  
+import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
  import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
  import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
+import java.util.List;
  import javax.ejb.Stateless;
+import javax.inject.Inject;
  
  /**
   * @author m.sicard10

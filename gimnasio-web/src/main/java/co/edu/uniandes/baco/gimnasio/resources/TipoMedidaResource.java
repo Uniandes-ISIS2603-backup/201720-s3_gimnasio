@@ -29,11 +29,12 @@ import javax.ws.rs.core.MediaType;
 @Path("tipoMedidas")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class TipoMedidaResource{
+public class TipoMedidaResource {
+
     @Inject
     private TipoMedidaLogic logic;
-    
-        private List<TipoMedidaDTO> medidaListEntity2DTO(List<TipoMedidaEntity> entityList) {
+
+    private List<TipoMedidaDTO> medidaListEntity2DTO(List<TipoMedidaEntity> entityList) {
         List<TipoMedidaDTO> list = new ArrayList<>();
         for (TipoMedidaEntity entity : entityList) {
             list.add(new TipoMedidaDTO(entity));
@@ -46,7 +47,7 @@ public class TipoMedidaResource{
      *
      * @param dtos Lista de BookDetailDTO a convertir.
      * @return Lista de BookEntity convertida.
-     * 
+     *
      */
     private List<TipoMedidaEntity> medidaListDTO2Entity(List<TipoMedidaDTO> dtos) {
         List<TipoMedidaEntity> list = new ArrayList<>();
@@ -55,40 +56,41 @@ public class TipoMedidaResource{
         }
         return list;
     }
-   // @POST
-   // public TipoMedidaDTO post(TipoMedidaDTO nuevo) throws BusinessLogicException{
-    //    return new TipoMedidaDTO(logic.create(nuevo.toEntity()));
-   // }
+
     @POST
-    public List<TipoMedidaDTO> postlista(List<TipoMedidaDTO> listdto) throws BusinessLogicException
-     {
-         
-         List<TipoMedidaEntity> ll =logic.createlist(medidaListDTO2Entity(listdto));
-         return medidaListEntity2DTO(ll);
-     
-     }
+    public TipoMedidaDTO post(TipoMedidaDTO nuevo) throws BusinessLogicException {
+        return new TipoMedidaDTO(logic.create(nuevo.toEntity()));
+    }
+
+    @POST
+    @Path("addList")
+    public List<TipoMedidaDTO> postList(List<TipoMedidaDTO> listdto) throws BusinessLogicException {
+        List<TipoMedidaEntity> ll = logic.createList(medidaListDTO2Entity(listdto));
+        return medidaListEntity2DTO(ll);
+    }
+
     @GET
-    public List<TipoMedidaDTO> getAll() throws BusinessLogicException{
+    public List<TipoMedidaDTO> getAll() throws BusinessLogicException {
         return TipoMedidaDTO.listDTO(logic.findAll());
     }
-    
+
     @GET
     @Path("{id: \\d+}")
-    public TipoMedidaDTO get(@PathParam("id") long id) throws BusinessLogicException{
+    public TipoMedidaDTO get(@PathParam("id") long id) throws BusinessLogicException {
         return new TipoMedidaDTO(logic.find(id));
     }
-    
+
     @PUT
     @Path("{id: \\d+}")
-    public TipoMedidaDTO put(@PathParam("id")long id, TipoMedidaDTO nuevo) throws BusinessLogicException{
-        TipoMedidaEntity entity=nuevo.toEntity();
+    public TipoMedidaDTO put(@PathParam("id") long id, TipoMedidaDTO nuevo) throws BusinessLogicException {
+        TipoMedidaEntity entity = nuevo.toEntity();
         entity.setId(id);
         return new TipoMedidaDTO(logic.update(entity));
     }
-    
+
     @DELETE
     @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws BusinessLogicException{
+    public void delete(@PathParam("id") long id) throws BusinessLogicException {
         logic.remove(id);
     }
 }
