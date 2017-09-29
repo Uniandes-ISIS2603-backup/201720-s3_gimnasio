@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
@@ -30,6 +31,11 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
             throw new BusinessLogicException("ya existe un objetivo con ese tipo");
         return super.create(entity); 
     }
+    
+    public List<UsuarioEntity> findAllUsuarios(Long id) throws BusinessLogicException{
+        return find(id).getUsuarios();
+    }
+    
     //-----------------------------------
     // EJERCICIO
     //-----------------------------------
@@ -136,11 +142,11 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
      * @throws BusinessLogicException si el usuario o objetivo no existe 
      */
     public ObjetivoEntity createObjetivoUsuario(Long idUsuario, Long id) throws BusinessLogicException{
-        ObjetivoEntity aux = find(id);
-        if(aux==null)
-            throw new  NoExisteException(id);
-        usuarioLogic.find(idUsuario).getObjetivos().add(aux);
-        return aux;
+        ObjetivoEntity objetivoEntity = find(id);
+        UsuarioEntity usuarioEntity = new UsuarioEntity();
+        usuarioEntity.setId(idUsuario);
+        objetivoEntity.getUsuarios().add(usuarioEntity);
+        return objetivoEntity;
     }
     /**
      *  metodo para eliminar un objetivo a un usuario
@@ -149,12 +155,9 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
      * @throws BusinessLogicException si el usuario o el objetivo no existen 
      */
     public void removeObejtivoUsuario(Long idUsuario, Long id) throws BusinessLogicException{
-        ObjetivoEntity aux = new ObjetivoEntity();
-        aux.setId(id);
-        List<ObjetivoEntity> list=usuarioLogic.find(idUsuario).getObjetivos();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        list.remove(aux);
+        ObjetivoEntity entity = find(id);
+        UsuarioEntity usuarioEntity = new UsuarioEntity();
+        usuarioEntity.setId(idUsuario);
+        entity.getUsuarios().remove(usuarioEntity);
     }
 }

@@ -17,5 +17,5 @@ public class UsuarioPersistence extends BasePersistence<UsuarioEntity>{
     
     public UsuarioPersistence() {
         super(UsuarioEntity.class);
-    }   
+    }  
 }

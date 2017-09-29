@@ -6,6 +6,8 @@
 package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDTO;
+import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDetailDTO;
+import co.edu.uniandes.baco.gimnasio.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.ObjetivoLogic;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
@@ -38,8 +40,8 @@ public class ObjetivoResource{
     }
     
     @GET
-    public List<ObjetivoDTO> getAll() throws BusinessLogicException{
-        return ObjetivoDTO.listDTO(logic.findAll());
+    public List<ObjetivoDetailDTO> getAll() throws BusinessLogicException{
+        return ObjetivoDetailDTO.listDetailDTO(logic.findAll());
     }
     
     @GET
@@ -60,5 +62,11 @@ public class ObjetivoResource{
     @Path("{id: \\d+}")
     public void delete(@PathParam("id") long id) throws BusinessLogicException{
         logic.remove(id);
+    }
+    
+    @GET
+    @Path("{id: \\d+}/usuarios")
+    public List<UsuarioDetailDTO> findUsuariosObjetivos(@PathParam("id") long id) throws BusinessLogicException{
+        return UsuarioDetailDTO.listDetailDTO(logic.findAllUsuarios(id));
     }
 }

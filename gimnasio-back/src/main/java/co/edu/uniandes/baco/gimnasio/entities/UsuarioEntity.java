@@ -29,7 +29,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
     private List<EntrenadorEntity> entrenadores = new ArrayList();
 
     @PodamExclude
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "usuarios")
     private List<ObjetivoEntity> objetivos = new ArrayList<>();
 
     @PodamExclude

@@ -36,15 +36,6 @@ public class ObjetivoDTO {
         ent.setDescripcion(descripcion);
         return ent;
     }
-
-    public static final List<ObjetivoDTO> listDTO(List<ObjetivoEntity> entity) {
-        List<ObjetivoDTO> resp = new ArrayList<>();
-        for (ObjetivoEntity ent : entity) {
-            resp.add(new ObjetivoDTO(ent));
-        }
-        return resp;
-    }
-
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------

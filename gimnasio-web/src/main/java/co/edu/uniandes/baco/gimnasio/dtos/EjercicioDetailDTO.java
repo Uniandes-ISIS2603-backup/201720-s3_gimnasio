@@ -16,7 +16,7 @@ public class EjercicioDetailDTO extends EjercicioDTO {
     // DATOS ENTITY
     //--------------------------------------------
     private List<ObjetivoDTO> objetivos;
-    private List<MaquinaDTO> maquinas = new ArrayList<>();
+    private List<MaquinaDTO> maquinas;
 
     //--------------------------------------------
     // CONSTRUCTOR & LIST

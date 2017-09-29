@@ -107,7 +107,6 @@ public class UsuarioResource {
                    throw new BusinessLogicException("error");
                }
     }
-    
     /**
      *
      * @param usuarioID

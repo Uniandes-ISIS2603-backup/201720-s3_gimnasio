@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDTO;
+import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.ObjetivoLogic;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.List;
@@ -30,14 +31,14 @@ public class EjercicioObjetivoResource {
     private ObjetivoLogic logic;
     
     @GET
-    public List<ObjetivoDTO> findAllObejtivos(@PathParam("idEjercicio") Long id) throws BusinessLogicException {
-        return ObjetivoDTO.listDTO(logic.findAllObjetivosEjercicio(id));
+    public List<ObjetivoDetailDTO> findAllObejtivos(@PathParam("idEjercicio") Long id) throws BusinessLogicException {
+        return ObjetivoDetailDTO.listDetailDTO(logic.findAllObjetivosEjercicio(id));
     }
 
     @GET
     @Path("{id: \\d+}")
-    public ObjetivoDTO findObjetivo(@PathParam("idEjercicio") Long idEjercicio, @PathParam("id") Long id) throws BusinessLogicException {
-        return new ObjetivoDTO(logic.findObjetivoEjercicio(idEjercicio, id));
+    public ObjetivoDetailDTO findObjetivo(@PathParam("idEjercicio") Long idEjercicio, @PathParam("id") Long id) throws BusinessLogicException {
+        return new ObjetivoDetailDTO(logic.findObjetivoEjercicio(idEjercicio, id));
     }
 
     @POST
