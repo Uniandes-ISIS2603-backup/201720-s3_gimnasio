@@ -98,14 +98,28 @@ public class EntrenadorUsuarioResource {
     public void removeUsuario(@PathParam("EntrenadorId") Long EntrenadorId, @PathParam("usuarioID") Long usuarioId) throws BusinessLogicException{
         entrenadorLogic.removeUsuario(EntrenadorId, usuarioId);
     }
-    
+    /**
+     *  da un usuario dado por parametro
+     *  http://localhost:8080/gimnasio-web/api/entrenadores/{idEntrenador}/usuarios/{idUsuario}
+     * @param EntrenadorId
+     * @param usuarioId
+     * @return
+     * @throws BusinessLogicException 
+     */
     @GET
     @Path("{usuarioID: \\d+}")
     public UsuarioDetailDTO getUsuario(@PathParam("EntrenadorId") Long EntrenadorId, @PathParam("usuarioID") Long usuarioId)throws BusinessLogicException
     {
         return new UsuarioDetailDTO(entrenadorLogic.getusuario(EntrenadorId, usuarioId));
     }
-    
+    /**
+     * redirecciona a las rutinas del usuario
+     * http://localhost:8080/gimnasio-web/api/entrenadores/{idEntrenador}/usuarios/{idUsuario}/rutinas
+     * @param EntrenadorId
+     * @param usuarioId
+     * @return
+     * @throws BusinessLogicException 
+     */
     @Path("{idUsuario: \\d+}/rutinas")
     public Class<RutinaResource> irRutina(@PathParam("EntrenadorId") Long EntrenadorId, @PathParam("idUsuario") Long usuarioId) throws BusinessLogicException {
         if(entrenadorLogic.getusuario(EntrenadorId, usuarioId) != null)
@@ -113,7 +127,14 @@ public class EntrenadorUsuarioResource {
         else 
             throw new BusinessLogicException("no usuario deberia existir");
     }
-    
+    /**
+     * redicecciona a los estados del usuario
+     * http://localhost:8080/gimnasio-web/api/entrenadores/{idEntrenador}/usuarios/{idUsuario}/estados
+     * @param EntrenadorId
+     * @param usuarioId
+     * @return
+     * @throws BusinessLogicException 
+     */
     @Path("{idUsuario: \\d+}/estados")
     public Class<EstadoResource> irEstado(@PathParam("EntrenadorId") Long EntrenadorId, @PathParam("idUsuario") Long usuarioId) throws BusinessLogicException {
         if(entrenadorLogic.getusuario(EntrenadorId, usuarioId) != null)
@@ -121,7 +142,14 @@ public class EntrenadorUsuarioResource {
         else 
             throw new BusinessLogicException("no usuario deberia existir");
     }
-    
+    /**
+     * redirecciona a los objetivos de un usuario
+     * http://localhost:8080/gimnasio-web/api/entrenadores/{idEntrenador}/usuarios/{idUsuario}/objetivos
+     * @param EntrenadorId
+     * @param usuarioId
+     * @return
+     * @throws BusinessLogicException 
+     */
     @Path("{idUsuario: \\d+}/objetivos")
     public Class<ObjetivoResource> irObjetivos(@PathParam("EntrenadorId") Long EntrenadorId, @PathParam("idUsuario") Long usuarioId) throws BusinessLogicException {
         if(entrenadorLogic.getusuario(EntrenadorId, usuarioId) != null)

@@ -67,7 +67,9 @@ public class EntrenadorDetailDTO extends EntrenadorDTO{
         }
         return e;
     }
-
+    //----------------------------------------------------------
+    //gets and sets
+    //----------------------------------------------------------
     public List<UsuarioDTO> getUsusrios() {
         return ususrios;
     }

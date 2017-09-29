@@ -31,10 +31,16 @@ public class EntrenadorDTO  {
      */
     private String documento;
 
+    /**
+     * constructor vacio
+     */
     public EntrenadorDTO() {
-       
+       //Empty constructor
     }
-
+    /**
+     * metodo que genera un dto de un entity (Constructor)
+     * @param entity 
+     */
     public  EntrenadorDTO(EntrenadorEntity entity) {
         this.id = entity.getId();
         this.fechaNacimiento = entity.getFechaNacimiento();
@@ -42,7 +48,10 @@ public class EntrenadorDTO  {
         this.name = entity.getName();
         
     }
-    
+    /**
+     * genera una entidad de tipo entrenador
+     * @return entrenador
+     */
     public EntrenadorEntity toEntity()
     {
         EntrenadorEntity ent = new EntrenadorEntity();
@@ -53,6 +62,9 @@ public class EntrenadorDTO  {
         return ent;
     }
 
+    //----------------------------------------------------------
+    //gets and sets
+    //----------------------------------------------------------
     public String getName() {
         return name;
     }
