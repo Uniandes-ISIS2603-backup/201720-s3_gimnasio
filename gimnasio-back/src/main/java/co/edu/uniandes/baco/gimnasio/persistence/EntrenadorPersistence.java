@@ -14,7 +14,11 @@ public class EntrenadorPersistence extends BasePersistence<EntrenadorEntity>{
     public EntrenadorPersistence() {
         super(EntrenadorEntity.class);
     }
-    
+    /**
+     * metodo que encuentra un entrenador por documento
+     * @param doc el documento 
+     * @return el entrenador
+     */
     public EntrenadorEntity findByDocumento(String doc)
     {
         TypedQuery querry = manager.createQuery("Select e from EntrenadorEntity e where e.documento = :documento",EntrenadorEntity.class);
