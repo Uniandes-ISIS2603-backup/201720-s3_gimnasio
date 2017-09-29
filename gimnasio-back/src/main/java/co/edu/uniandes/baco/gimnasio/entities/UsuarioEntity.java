@@ -20,7 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class UsuarioEntity extends BaseEntity implements Serializable {
 
     private String nombre;
-    private Boolean genero;
+    private boolean genero;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaDeNacimiento;
 

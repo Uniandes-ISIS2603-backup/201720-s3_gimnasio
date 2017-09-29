@@ -34,7 +34,7 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
     private String documento;
 
     @PodamExclude
-    @ManyToMany(cascade = CascadeType.REFRESH)
+    @ManyToMany
     private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
     //--------------------------------------------------------------------------
     //METODOS

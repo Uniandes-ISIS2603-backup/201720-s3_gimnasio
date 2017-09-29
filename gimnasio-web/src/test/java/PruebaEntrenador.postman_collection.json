@@ -1,0 +1,507 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebaEntrenador",
+		"_postman_id": "26f286e6-b0dd-3650-ff55-ae2faffcebc6",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all entrenadores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "obtiene todos los entrenadores"
+			},
+			"response": []
+		},
+		{
+			"name": "borraEntrenador2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 204\"]= responseCode.code === 204"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores/8",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "borraEntrenador1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 204\"]= responseCode.code === 204"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores/7",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getEntrenador3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores/3",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"type\": \"entrenadorDetailDTO\",\n        \"documento\": \"123456\",\n        \"fechaNacimiento\": \"2017-03-28T00:00:00-05:00\",\n        \"id\": 9,\n        \"name\": \"Mateo\",\n        \"ususrios\": []\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getEntrenador2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores/2",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"type\": \"entrenadorDetailDTO\",\n        \"documento\": \"123456\",\n        \"fechaNacimiento\": \"2017-03-28T00:00:00-05:00\",\n        \"id\": 9,\n        \"name\": \"Mateo\",\n        \"ususrios\": []\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getEntrenador1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"type\": \"entrenadorDetailDTO\",\n        \"documento\": \"123456\",\n        \"fechaNacimiento\": \"2017-03-28T00:00:00-05:00\",\n        \"id\": 9,\n        \"name\": \"Mateo\",\n        \"ususrios\": []\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getUsuariosFromEntrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores/1/usuarios",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"type\": \"entrenadorDetailDTO\",\n        \"documento\": \"123456\",\n        \"fechaNacimiento\": \"2017-03-28T00:00:00-05:00\",\n        \"id\": 9,\n        \"name\": \"Mateo\",\n        \"ususrios\": []\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "post entrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Hola\",\n\t\"documento\": \"2013-10-21T13:28:06.419Z\",\n\t\"fechaNacimiento\":\"2013-10-21T13:28:06.419Z\"\n\t\n}"
+				},
+				"description": "Es necesario borrar todos los entrenadores antes de hacer el post"
+			},
+			"response": []
+		},
+		{
+			"name": "post entrenador 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Hola\",\n\t\"documento\": \"kjhlhgglkg\",\n\t\"fechaNacimiento\":\"2013-10-21T13:28:06.419Z\"\n\t\n}"
+				},
+				"description": "Es necesario borrar todos los entrenadores antes de hacer el post"
+			},
+			"response": []
+		},
+		{
+			"name": "postUsuariosToEntrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores/1/usuarios/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getUsuariosToEntrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores/1/usuarios/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getRutinasFromUsuariosToEntrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores/1/usuarios/1/rutinas",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getEstadosFromUsuariosToEntrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores/1/usuarios/1/estados",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getobjetivosFromUsuariosToEntrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores/1/usuarios/1/objetivos",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ModificaEntrenador2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores/9",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"type\": \"entrenadorDetailDTO\",\n        \"documento\": \"123456\",\n        \"fechaNacimiento\": \"2017-03-28T00:00:00-05:00\",\n        \"id\": 9,\n        \"name\": \"Mateo\",\n        \"ususrios\": []\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ModificaEntrenador1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/gimnasio-web/api/entrenadores/10",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"type\": \"entrenadorDetailDTO\",\n        \"documento\": \"PT56 9444 5274 7597 0900 1170 8\",\n        \"fechaNacimiento\": \"2017-03-28T00:00:00-05:00\",\n        \"id\": 1,\n        \"name\": \"Mateo\",\n        \"ususrios\": []\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
