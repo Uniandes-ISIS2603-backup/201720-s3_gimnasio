@@ -21,6 +21,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -46,8 +47,8 @@ public class ObjetivoResource{
     
     @GET
     @Path("{id: \\d+}")
-    public ObjetivoDTO get(@PathParam("id") long id) throws BusinessLogicException{
-        return new ObjetivoDTO(logic.find(id));
+    public ObjetivoDetailDTO get(@PathParam("id") long id) throws BusinessLogicException{
+        return new ObjetivoDetailDTO(logic.find(id));
     }
     
     @PUT
@@ -68,5 +69,13 @@ public class ObjetivoResource{
     @Path("{id: \\d+}/usuarios")
     public List<UsuarioDetailDTO> findUsuariosObjetivos(@PathParam("id") long id) throws BusinessLogicException{
         return UsuarioDetailDTO.listDetailDTO(logic.findAllUsuarios(id));
+    }
+    
+    
+    @Path("{idObjetivo: \\d+}/atributosDeCalidad")
+    public Class<AtributoDeCalidadResource> getEjercicioResource(@PathParam("idObjetivo") Long id) throws BusinessLogicException{
+        if (logic.find(id) == null)
+            throw new WebApplicationException("El ejercicio no existe", 404);
+        return AtributoDeCalidadResource.class;
     }
 }

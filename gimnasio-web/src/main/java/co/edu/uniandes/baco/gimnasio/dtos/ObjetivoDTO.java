@@ -18,7 +18,7 @@ public class ObjetivoDTO {
     private String descripcion;
 
     //--------------------------------------------
-    // CONSTRUCTOR & TOENTITY & LIST
+    // CONSTRUCTOR & TOENTITY 
     //--------------------------------------------
     public ObjetivoDTO() {
         //JAVAX

@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -16,15 +19,30 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
-
+    /**
+     * la palabra que define el objetivo
+     */
     String tipo;
+    /**
+     * descripcion detallada del objetivo
+     */
     String descripcion;
     //--------------------------------------------
     // DATOS ENTITY
     //--------------------------------------------
+    
+    /**
+     * lista de usuarios que buscan ese objetivo
+     */
     @PodamExclude
     @ManyToMany
     private List<UsuarioEntity> usuarios = new ArrayList<>();
+     /**
+     * lista de objetivos del ejercicio
+     */
+    @PodamExclude
+    @OneToMany(mappedBy = "objetivo",cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<AtributoDeCalidadEntity> atributos = new ArrayList<>();
 
     //--------------------------------------------
     // GETS & SETS
@@ -51,6 +69,14 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public List<AtributoDeCalidadEntity> getAtributos() {
+        return atributos;
+    }
+
+    public void setAtributos(List<AtributoDeCalidadEntity> atributos) {
+        this.atributos = atributos;
     }
     //--------------------------------------------
     // METODOS
