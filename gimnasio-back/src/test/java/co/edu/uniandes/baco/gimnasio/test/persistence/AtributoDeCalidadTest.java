@@ -5,13 +5,10 @@
  */
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
-
 import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.AtributoDeCalidadPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,7 +22,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,196 +34,126 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author ce.robles
  */
 @RunWith(Arquillian.class)
-public class AtributoDeCalidadTest 
-{
+public class AtributoDeCalidadTest {
+
     @Inject
-    private AtributoDeCalidadPersistence atributoDeCalidadPeristence;
-    
+    private AtributoDeCalidadPersistence peristence;
+
     @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
-    
+
     private final List<AtributoDeCalidadEntity> data = new ArrayList<>();
-    
-    /**
-     *
-     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Employee, el descriptor de la
-     * base de datos y el archivo beans.xml para resolver la inyección de
-     * dependencias.
-     */
+
     @Deployment
-    public static JavaArchive createDeployment() 
-    {
+    public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(AtributoDeCalidadEntity.class.getPackage())
                 .addPackage(AtributoDeCalidadPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    /**
-     * Configuración inicial de la prueba.
-     *
-     *
-     */
+
     @Before
     @SuppressWarnings("CallToPrintStackTrace")
-    public void setUp() 
-    {
-        try 
-        {
+    public void setUp() {
+        try {
             utx.begin();
             em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
-        } 
-        catch (IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | RollbackException | SystemException e) 
-        {
+        } catch (IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | RollbackException | SystemException e) {
             e.printStackTrace();
-            
-            try 
-            {
+
+            try {
                 utx.rollback();
-            } 
-            catch (IllegalStateException | SecurityException | SystemException e1) 
-            {
+            } catch (IllegalStateException | SecurityException | SystemException e1) {
                 e1.printStackTrace();
             }
         }
     }
 
-    /**
-     * Limpia las tablas que están implicadas en la prueba.
-     *
-     *
-     */
-    private void clearData() 
-    {
+    private void clearData() {
         em.createQuery("delete from AtributoDeCalidadEntity").executeUpdate();
     }
-    
-    /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las
-     * pruebas.
-     *
-     *
-     */
-    private void insertData() 
-    {
+
+    private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) 
-        {
+        for (int i = 0; i < 3; i++) {
             AtributoDeCalidadEntity entity = factory.manufacturePojo(AtributoDeCalidadEntity.class);
 
             em.persist(entity);
             data.add(entity);
         }
     }
-    /**
-     * Prueba para crear un Employee.
-     *
-     *
-     */
+
+    //--------------------------------------
+    // TEST
+    //--------------------------------------
     @Test
-    public void createObjetivoTest() 
-    {
-        try {
-            PodamFactory factory = new PodamFactoryImpl();
-            AtributoDeCalidadEntity newEntity = factory.manufacturePojo(AtributoDeCalidadEntity.class);
-            AtributoDeCalidadEntity result = atributoDeCalidadPeristence.create(newEntity);
-            
-            Assert.assertNotNull(result);
-            
-            AtributoDeCalidadEntity entity = em.find(AtributoDeCalidadEntity.class, result.getId());
-            
-            Assert.assertEquals(newEntity.getRegresion(), entity.getRegresion());
-        } catch (Exception ex) {
-            Logger.getLogger(ObjetivoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void equalsHasTest(){
+        PodamFactory factory = new PodamFactoryImpl();
+        AtributoDeCalidadEntity newEntity = factory.manufacturePojo(AtributoDeCalidadEntity.class);
+        AtributoDeCalidadEntity newEntity2 = factory.manufacturePojo(AtributoDeCalidadEntity.class);
+        assertTrue(newEntity.equals(newEntity));
+        assertEquals(newEntity.equals(newEntity2),newEntity.getId().equals(newEntity2.getId()));
+        assertEquals(newEntity.hashCode(), newEntity.hashCode());
+        assertEquals((newEntity.hashCode()==newEntity2.hashCode()),newEntity.getId().equals(newEntity2.getId()));
+    }
+    
+    
+    @Test
+    public void createObjetivoTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        AtributoDeCalidadEntity newEntity = factory.manufacturePojo(AtributoDeCalidadEntity.class);
+        AtributoDeCalidadEntity result = peristence.create(newEntity);
+        assertNotNull(result);
+        AtributoDeCalidadEntity entity = em.find(AtributoDeCalidadEntity.class, result.getId());
+        assertEquals(newEntity.getRegresion(), entity.getRegresion());
     }
 
-    /**
-     * Prueba para consultar la lista de Employees.
-     *
-     *
-     */
     @Test
     public void geObjetivosTest() {
-        try {
-            List<AtributoDeCalidadEntity> list = atributoDeCalidadPeristence.findAll();
-            Assert.assertEquals(data.size(), list.size());
-            for (AtributoDeCalidadEntity ent : list) {
-                boolean found = false;
-                for (AtributoDeCalidadEntity entity : data) {
-                    if (ent.getId().equals(entity.getId())) {
-                        found = true;
-                    }
+        List<AtributoDeCalidadEntity> list = peristence.findAll();
+        assertEquals(data.size(), list.size());
+        for (AtributoDeCalidadEntity ent : list) {
+            boolean found = false;
+            for (AtributoDeCalidadEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
                 }
-                Assert.assertTrue(found);
             }
-        } catch (Exception ex) {
-            Logger.getLogger(ObjetivoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(found);
         }
     }
 
-    /**
-     * Prueba para consultar un Employee.
-     *
-     *
-     */
     @Test
-    public void getObjetivoTest() 
-    {
-        try {
-            AtributoDeCalidadEntity entity = data.get(0);
-            AtributoDeCalidadEntity newEntity = atributoDeCalidadPeristence.find(entity.getId());
-            
-            Assert.assertNotNull(newEntity);
-            Assert.assertEquals(newEntity.getRegresion(), entity.getRegresion());
-        } catch (Exception ex) {
-            Logger.getLogger(ObjetivoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void getObjetivoTest() {
+        AtributoDeCalidadEntity entity = data.get(0);
+        AtributoDeCalidadEntity newEntity = peristence.find(entity.getId());
+        assertNotNull(newEntity);
+        assertEquals(newEntity.getRegresion(), entity.getRegresion());
     }
 
-    /**
-     * Prueba para eliminar un Employee.
-     *
-     *
-     */
     @Test
     public void deleteObjetivoTest() {
-        try {
-            AtributoDeCalidadEntity entity = data.get(0);
-            atributoDeCalidadPeristence.delete(entity.getId());
-            AtributoDeCalidadEntity deleted = em.find(AtributoDeCalidadEntity.class, entity.getId());
-            Assert.assertNull(deleted);
-        } catch (Exception ex) {
-            Logger.getLogger(ObjetivoPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        AtributoDeCalidadEntity entity = data.get(0);
+        peristence.delete(entity.getId());
+        AtributoDeCalidadEntity deleted = em.find(AtributoDeCalidadEntity.class, entity.getId());
+        assertNull(deleted);
     }
 
-    /**
-     * Prueba para actualizar un Employee.
-     *
-     *
-     */
     @Test
-    public void updateObjetivoTest() 
-    {
+    public void updateObjetivoTest() {
         AtributoDeCalidadEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         AtributoDeCalidadEntity newEntity = factory.manufacturePojo(AtributoDeCalidadEntity.class);
-
         newEntity.setId(entity.getId());
-        atributoDeCalidadPeristence.update(newEntity);
-        
-        
+        peristence.update(newEntity);
         AtributoDeCalidadEntity resp = em.find(AtributoDeCalidadEntity.class, entity.getId());
-
-        Assert.assertEquals(newEntity.getRegresion(), resp.getRegresion());
+        assertEquals(newEntity.getRegresion(), resp.getRegresion());
     }
-    
 }
