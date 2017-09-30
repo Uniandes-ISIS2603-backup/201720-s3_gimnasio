@@ -6,11 +6,16 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
+import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import co.edu.uniandes.baco.gimnasio.persistence.EjercicioHechoPersistence;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author jc.bojaca
  */
-public class EjercicioHechoLogic extends BaseLogic<EjercicioHechoEntity>{
+@Stateless
+public class EjercicioHechoLogic extends BaseLogic<EjercicioHechoEntity>
+{
     
 }

@@ -27,7 +27,8 @@ import javax.ws.rs.core.MediaType;
  * @author ce.robles
  */
 //TODO Arreglar el path.
-@Path("/aquiVaUnPath")
+//Usuario/{id}/rutina/{id}/ejercicio/{id}
+@Path("ejercicioHecho")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EjercicioHechoResource 
@@ -63,5 +64,15 @@ public class EjercicioHechoResource
     @Path("{id: \\d+}")
     public void delete(@PathParam("id") long id) throws BusinessLogicException{
         logic.remove(id);
+    }
+    
+    @Path("{MedicionId: \\d+}/medicion")
+    public Class <MedicionMaquinaResource> getMedicionMaquinaResourceResource (@PathParam("MedicionId") Long id) throws BusinessLogicException
+    {
+        EjercicioHechoEntity e = logic.find(id);       
+        if (e == null)
+            throw new WebApplicationException("El recurso no existe", 404);
+        
+        return MedicionMaquinaResource.class;
     }
 }

@@ -27,7 +27,7 @@ import javax.ws.rs.core.MediaType;
  * @author ce.robles
  */
 //TODO Arreglar el path.
-@Path("/aquiVaUnPath2")
+@Path("medicion")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class MedicionMaquinaResource 
@@ -64,5 +64,5 @@ public class MedicionMaquinaResource
     @Path("{id: \\d+}")
     public void delete(@PathParam("id") long id) throws BusinessLogicException{
         logic.remove(id);
-    }
+    } 
 }

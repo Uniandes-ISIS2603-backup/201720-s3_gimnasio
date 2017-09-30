@@ -6,11 +6,13 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author jc.bojaca
  */
+@Stateless
 public class MedicionMaquinaLogic extends BaseLogic<MedicionMaquinaEntity>{
     
 }
