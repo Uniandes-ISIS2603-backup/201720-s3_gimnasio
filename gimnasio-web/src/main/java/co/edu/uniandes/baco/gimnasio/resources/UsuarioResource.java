@@ -164,7 +164,6 @@ public class UsuarioResource {
      * @return la rutina
      * @throws BusinessLogicException 
      */
-    @GET
     @Path("{idUsuario: \\d+}/rutinas")
     public Class<RutinaResource> getEjercicioResource(@PathParam("idUsuario") Long id) throws BusinessLogicException{
         if (logic.find(id) == null)
