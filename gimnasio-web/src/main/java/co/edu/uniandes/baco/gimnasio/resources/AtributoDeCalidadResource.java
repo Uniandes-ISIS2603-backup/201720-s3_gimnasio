@@ -8,6 +8,7 @@ package co.edu.uniandes.baco.gimnasio.resources;
 import co.edu.uniandes.baco.gimnasio.dtos.AtributoDeCalidadDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.AtributoDeCalidadDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.AtributoDeCalidadLogic;
+import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.List;
 import javax.inject.Inject;
@@ -51,7 +52,9 @@ public class AtributoDeCalidadResource {
     @PUT
     @Path("{id: \\d+}")
     public AtributoDeCalidadDTO put(@PathParam("idObjetivo") Long idObjetivo,@PathParam("id")long id, AtributoDeCalidadDTO nuevo) throws BusinessLogicException {
-        return new AtributoDeCalidadDTO(logic.update(idObjetivo,nuevo.toEntity()));
+        AtributoDeCalidadEntity entity=nuevo.toEntity();
+        entity.setId(id);
+        return new AtributoDeCalidadDTO(logic.update(idObjetivo,entity));
     }
     
     @DELETE

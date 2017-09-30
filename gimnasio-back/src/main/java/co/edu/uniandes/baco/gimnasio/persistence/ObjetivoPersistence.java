@@ -1,6 +1,7 @@
 package co.edu.uniandes.baco.gimnasio.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
@@ -23,7 +24,7 @@ public class ObjetivoPersistence extends BasePersistence<ObjetivoEntity>{
         query.setParameter("name", name);
         List<ObjetivoEntity> ans =query.getResultList();
         if(ans.isEmpty())
-            return null;
+            throw new NoExisteException((long)0);
         return ans.get(0);
     }
 }
