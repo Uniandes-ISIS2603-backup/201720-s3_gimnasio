@@ -23,27 +23,54 @@ import javax.ws.rs.Produces;
 @Produces("application/json")
 @Consumes("application/json")
 public class MedidaResource {
-
+    /**
+     * injeccion de la logica de medida
+     */
     @Inject
     private MedidaLogic logic;
-
+    /**
+    * metodo que crea una medida 
+    * @param idEstado del estado
+    * @param id del tipo de medida
+    * @param nuevo el entity
+    * @return la medida creada
+    * @throws BusinessLogicException 
+    */
     @POST
     @Path("{id: \\d+}")
     public MedidaDTO post(@PathParam("idEstado") Long idEstado,@PathParam("id") Long id, MedidaDTO nuevo) throws BusinessLogicException {
         return new MedidaDTO(logic.create(idEstado,nuevo.toEntity(),id));
     }
-
+    /**
+     * metodo para obtener todo las medidas de une stado
+     * @param isEstado del estado
+     * @return lista con las medidas
+     * @throws BusinessLogicException 
+     */
     @GET
     public List<MedidaDetailDTO> getAll(@PathParam("idEstado") Long isEstado) throws BusinessLogicException {
         return MedidaDetailDTO.listDTO(logic.findAll(isEstado));
     }
-
+    /**
+     * metodo que retorna una medida especifica
+     * @param idEstado del estado
+     * @param id de la medida
+     * @return la medida
+     * @throws BusinessLogicException 
+     */
     @GET
     @Path("{id: \\d+}")
     public MedidaDetailDTO get(@PathParam("idEstado") Long idEstado, @PathParam("id") long id) throws BusinessLogicException {
         return new MedidaDetailDTO(logic.find(idEstado, id));
     }
-
+    /**
+     * metodo que actuliza une stado
+     * @param idEstado del estado
+     * @param id de la medida
+     * @param nuevo medida
+     * @return la medida actulziada
+     * @throws BusinessLogicException 
+     */
     @PUT
     @Path("{id: \\d+}")
     public MedidaDTO put(@PathParam("idEstado") Long idEstado, @PathParam("id") long id, MedidaDTO nuevo) throws BusinessLogicException {
@@ -51,7 +78,12 @@ public class MedidaResource {
         entity.setId(id);
         return new MedidaDTO(logic.update(idEstado, entity));
     }
-    
+    /**
+     * metodo que elemina una medida
+     * @param idEstado del estado
+     * @param id de la medida
+     * @throws BusinessLogicException 
+     */
     @DELETE
     @Path("{id: \\d+}")
     public void delete(@PathParam("idEstado") Long idEstado,@PathParam("id") long id) throws BusinessLogicException{

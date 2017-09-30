@@ -15,11 +15,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TipoMedidaDTO {
+    /**
+     * atributo id
+     */
     private Long id;
+    /**
+     * atributo descripcion
+     */
     private String descripcion;
+    /**
+     * atributo unidad
+     */
     private String unidad;
+    /**
+     * atributo automatico
+     */
     private boolean automatico;
 
+    /**
+     * contruictor vacio
+     */  
     public TipoMedidaDTO() {
         //javaxs
     }
@@ -35,7 +50,10 @@ public class TipoMedidaDTO {
             automatico=foo.isAutomatico();
         }
     }
-    
+    /**
+     * metodo que convierte un dto a entity
+     * @return 
+     */
     public TipoMedidaEntity toEntity() {
         TipoMedidaEntity entity = new TipoMedidaEntity();
         entity.setDescripcion(this.descripcion);
@@ -51,7 +69,7 @@ public class TipoMedidaDTO {
         }
         return resp;
     }
-
+   ///getters and setters//
     public boolean isAutomatico() {
         return automatico;
     }

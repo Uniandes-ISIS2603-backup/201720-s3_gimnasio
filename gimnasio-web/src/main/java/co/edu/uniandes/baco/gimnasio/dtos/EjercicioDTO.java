@@ -38,7 +38,10 @@ public class EjercicioDTO {
         this.tamanioParticiones = entity.getTamanioParticiones();
         this.repeticionesPorParticion = entity.getRepeticionesPorParticion();
     }
-
+     /**
+     * convierte un dto a entity
+     * @return 
+     */
     public EjercicioEntity toEntity() throws BusinessLogicException {
         EjercicioEntity ent = new EjercicioEntity();
         ent.setDescripcion(descripcion);

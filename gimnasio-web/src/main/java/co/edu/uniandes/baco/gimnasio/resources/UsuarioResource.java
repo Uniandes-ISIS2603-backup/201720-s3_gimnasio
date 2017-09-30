@@ -39,6 +39,9 @@ public class UsuarioResource {
     //--------------------
     //Atributos
     //--------------------
+    /**
+     * injeccion de la logica de usuario
+     */
     @Inject
     UsuarioLogic logic;
     
@@ -47,8 +50,8 @@ public class UsuarioResource {
     //--------------------
 
     /**
-     *
-     * @return
+     *metodo para crear un usuario
+     * @return el usuario creado
      */
     
     @POST
@@ -58,12 +61,21 @@ public class UsuarioResource {
         UsuarioEntity pnew = logic.create(pcentity);
         return new UsuarioDTO(pnew);
     }
-    
+    /**
+     * metodo para obtener el usuario de un entrenado
+     * @return los usuario solicitado
+     * @throws BusinessLogicException 
+     */
     @GET
     public List<UsuarioDetailDTO> getEntrenadores() throws BusinessLogicException {
         return UsuarioDetailDTO.listDetailDTO(logic.findAll());
     }
-    
+    /**
+     * metodo para encontrar un usuario especifico
+     * @param id del usuario
+     * @return el usuario solicitad
+     * @throws BusinessLogicException si el usuario no existe
+     */
     @GET
     @Path("{id: \\d+}")
     public UsuarioDetailDTO getUsuario(@PathParam("id")Long id) throws BusinessLogicException
@@ -78,7 +90,11 @@ public class UsuarioResource {
              throw new BusinessLogicException("el usuario no existe"); 
         }
     }
-    
+    /**
+     * metodo que elimina un usuario
+     * @param id el id del usuario
+     * @throws BusinessLogicException si el usuario no existe
+     */
     @DELETE
     @Path("{id: \\d+}") 
     public void deleteUsuario(@PathParam("id")Long id)throws BusinessLogicException
@@ -95,7 +111,13 @@ public class UsuarioResource {
             throw new BusinessLogicException("no se pudo eliminaar ya que no existe");
         }  
     }
-    
+    /**
+     * metodo para actulzias un usuario
+     * @param id el id del usuari
+     * @param e detalle del usuario
+     * @return retorna un detail del usuario
+     * @throws BusinessLogicException 
+     */
     @PUT
     @Path("{id: \\d+}") 
     public UsuarioDetailDTO update(@PathParam("id")Long id, UsuarioDetailDTO e) throws BusinessLogicException
@@ -111,10 +133,10 @@ public class UsuarioResource {
                }
     }
     /**
-     *
-     * @param usuarioID
-     * @return
-     * @throws BusinessLogicException
+     *metodo que debuelve un entrenado
+     * @param usuarioID ddel usuario
+     * @return el entrenador
+     * @throws BusinessLogicException si el usuario o el entrenador no existen
      */
     @GET
     @Path("{usuarioId: \\d+}/entrenadores")
@@ -124,7 +146,11 @@ public class UsuarioResource {
         a = logic.find(usuarioID).getEntrenadores();
         return EntrenadorListEntity2DTOSimple(a);
     }
-    
+    /**
+     * metodo que  convierte una lista de entrenadore a dto
+     * @param entityList lista de entity
+     * @return lsita de dtos
+     */
     private List<EntrenadorDTO> EntrenadorListEntity2DTOSimple(List<EntrenadorEntity> entityList) {
         List<EntrenadorDTO> list = new ArrayList<>();
         for (EntrenadorEntity entity : entityList) {
@@ -132,7 +158,12 @@ public class UsuarioResource {
         }
         return list;
     }
-    
+    /**
+     * metodo que regresa los servicio de una rutina
+     * @param id del usuario
+     * @return la rutina
+     * @throws BusinessLogicException 
+     */
     @GET
     @Path("{idUsuario: \\d+}/rutinas")
     public Class<RutinaResource> getEjercicioResource(@PathParam("idUsuario") Long id) throws BusinessLogicException{
@@ -140,12 +171,24 @@ public class UsuarioResource {
             throw new WebApplicationException("El ejercicio no existe", 404);
         return RutinaResource.class;
     }
+    /**
+     * metodo que retorna los servicios de estado
+     * @param usid id del usuari
+     * @return la clase encargada de lso servicio
+     * @throws BusinessLogicException 
+     */
     @Path("{idUsuario: \\d+}/estados")
     public Class<EstadoResource> getEstadoResource(@PathParam("idUsuario") Long usid) throws BusinessLogicException{
          if (logic.find(usid) == null)
               throw new WebApplicationException("El estado no existe", 404);
         return EstadoResource.class;
     }
+    /**
+     * metodo que devuelve los servicio de objetivos
+     * @param usid id del usuari
+     * @return la clase encargada
+     * @throws BusinessLogicException 
+     */
     @Path("{idUsuario: \\d+}/objetivos")
     public Class<UsuarioObjetivoResource> getUsuarioObjetivoResource(@PathParam("idUsuario") Long usid) throws BusinessLogicException{
          if (logic.find(usid) == null)

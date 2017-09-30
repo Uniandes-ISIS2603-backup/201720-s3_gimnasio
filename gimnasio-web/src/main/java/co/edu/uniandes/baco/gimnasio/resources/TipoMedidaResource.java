@@ -30,10 +30,16 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class TipoMedidaResource {
-
+   /**
+    * injecion de la logica de tipo medida
+    */
     @Inject
     private TipoMedidaLogic logic;
-
+    /**
+     * convierte una lista de entitys a dtos
+     * @param entityList
+     * @return lsita de dtos
+     */
     private List<TipoMedidaDTO> medidaListEntity2DTO(List<TipoMedidaEntity> entityList) {
         List<TipoMedidaDTO> list = new ArrayList<>();
         for (TipoMedidaEntity entity : entityList) {
@@ -43,11 +49,9 @@ public class TipoMedidaResource {
     }
 
     /**
-     * Convierte una lista de BookDetailDTO a una lista de BookEntity.
-     *
-     * @param dtos Lista de BookDetailDTO a convertir.
-     * @return Lista de BookEntity convertida.
-     *
+     * Convierte una lista de  dto a entity
+     * @param dtos 
+     * @return Lista de entitys
      */
     private List<TipoMedidaEntity> medidaListDTO2Entity(List<TipoMedidaDTO> dtos) {
         List<TipoMedidaEntity> list = new ArrayList<>();
@@ -56,30 +60,55 @@ public class TipoMedidaResource {
         }
         return list;
     }
-
+    /**
+     * metodo que crear un tipo de medida
+     * @param nuevo
+     * @return
+     * @throws BusinessLogicException 
+     */
     @POST
     public TipoMedidaDTO post(TipoMedidaDTO nuevo) throws BusinessLogicException {
         return new TipoMedidaDTO(logic.create(nuevo.toEntity()));
     }
-
+    /**
+     * metodo de post que agrega carga masiva de estados
+     * @param listdto lsita de dtos
+     * @return la lsita agregada
+     * @throws BusinessLogicException 
+     */
     @POST
     @Path("addList")
     public List<TipoMedidaDTO> postList(List<TipoMedidaDTO> listdto) throws BusinessLogicException {
         List<TipoMedidaEntity> ll = logic.createList(medidaListDTO2Entity(listdto));
         return medidaListEntity2DTO(ll);
     }
-
+    /**
+     * metodo para obtener todos los tipos de medida
+     * @return
+     * @throws BusinessLogicException 
+     */
     @GET
     public List<TipoMedidaDTO> getAll() throws BusinessLogicException {
         return TipoMedidaDTO.listDTO(logic.findAll());
     }
-
+    /**
+     * obtiene un tipo de medida especific
+     * @param id el del tipod e mdeida
+     * @return el tipo de medida
+     * @throws BusinessLogicException 
+     */
     @GET
     @Path("{id: \\d+}")
     public TipoMedidaDTO get(@PathParam("id") long id) throws BusinessLogicException {
         return new TipoMedidaDTO(logic.find(id));
     }
-
+    /**
+     * metodo que actuliza un tipo de mdeida
+     * @param id de la medida
+     * @param nuevo la medida  a actulizar
+     * @return el tipo de medida actulizado
+     * @throws BusinessLogicException 
+     */
     @PUT
     @Path("{id: \\d+}")
     public TipoMedidaDTO put(@PathParam("id") long id, TipoMedidaDTO nuevo) throws BusinessLogicException {
@@ -87,7 +116,11 @@ public class TipoMedidaResource {
         entity.setId(id);
         return new TipoMedidaDTO(logic.update(entity));
     }
-
+   /**
+    * metodo que elimina un tipo de medida
+    * @param id de la medida
+    * @throws BusinessLogicException 
+    */
     @DELETE
     @Path("{id: \\d+}")
     public void delete(@PathParam("id") long id) throws BusinessLogicException {
