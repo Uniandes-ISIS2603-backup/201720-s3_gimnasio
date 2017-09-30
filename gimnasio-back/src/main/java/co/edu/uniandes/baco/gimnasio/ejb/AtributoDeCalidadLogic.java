@@ -48,12 +48,12 @@ public class AtributoDeCalidadLogic extends BaseLogic<AtributoDeCalidadEntity>{
     }
     /**
      * metodo que encuentra todos los atribtos de calidad de un obetivo
-     * @param Idestado id del objetivo
+     * @param idObjetivo id del objetivo
      * @return lista de atributos de calidad del objetivo
      * @throws BusinessLogicException si el objetivo no existe
      */
-    public List<AtributoDeCalidadEntity> findAll(Long Idestado) throws BusinessLogicException {
-        return objetivoLogic.find(Idestado).getAtributos();
+    public List<AtributoDeCalidadEntity> findAll(Long idObjetivo) throws BusinessLogicException {
+        return objetivoLogic.find(idObjetivo).getAtributos();
     }
     /**
      * metodo que encuentra un atributo de calidad de un objetivo especifico
@@ -65,7 +65,7 @@ public class AtributoDeCalidadLogic extends BaseLogic<AtributoDeCalidadEntity>{
     public AtributoDeCalidadEntity find(Long idObjetivo, Long id) throws BusinessLogicException {
         AtributoDeCalidadEntity ent = new AtributoDeCalidadEntity();
         ent.setId(id);
-        List<AtributoDeCalidadEntity> list = objetivoLogic.find(id).getAtributos();
+        List<AtributoDeCalidadEntity> list = objetivoLogic.find(idObjetivo).getAtributos();
         int ind = list.indexOf(ent);
         if (ind < 0) {
             throw new NoExisteException(id);

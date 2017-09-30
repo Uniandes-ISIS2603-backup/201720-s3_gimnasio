@@ -17,10 +17,6 @@ delete from TipoMedidaEntity;
 delete from EntrenadorEntity;
 delete from UsuarioEntity;
 
-
-
-
-
 insert into EntrenadorEntity (id, name, fechaNacimiento, documento) values (1, 'Howard', '3/28/2017', 'PT56 9444 5274 7597 0900 1170 8');
 insert into EntrenadorEntity (id, name, fechaNacimiento, documento) values (2, 'Brendon', '10/9/2016', 'FR17 1250 1257 37ON Z1SY EEHQ V28');
 insert into EntrenadorEntity (id, name, fechaNacimiento, documento) values (3, 'Thekla', '11/17/2016', 'LB12 4684 FRED PGBB AQ87 AHN1 ADED');
@@ -53,3 +49,15 @@ insert into MaquinaEntity (id, descripcion) values (7, 'Odyssey');
 insert into MaquinaEntity (id, descripcion) values (8, 'GranTurismo');
 insert into MaquinaEntity (id, descripcion) values (9, 'TrailBlazer');
 insert into MaquinaEntity (id, descripcion) values (10, 'E-350 Super Duty');
+
+insert into RutinaEntity (id, fechaInicio, fenchaFinal) values (1, '1/12/2017', '12/11/2016');
+insert into RutinaEntity (id, fechaInicio, fenchaFinal) values (2, '7/29/2017', '12/29/2016');
+insert into RutinaEntity (id, fechaInicio, fenchaFinal) values (3, '11/24/2016', '11/29/2016');
+insert into RutinaEntity (id, fechaInicio, fenchaFinal) values (4, '6/24/2017', '5/13/2017');
+insert into RutinaEntity (id, fechaInicio, fenchaFinal) values (5, '5/8/2017', '5/5/2017');
+insert into RutinaEntity (id, fechaInicio, fenchaFinal) values (6, '3/27/2017', '5/16/2017');
+insert into RutinaEntity (id, fechaInicio, fenchaFinal) values (7, '2/5/2017', '3/6/2017');
+insert into RutinaEntity (id, fechaInicio, fenchaFinal) values (8, '11/15/2016', '10/15/2016');
+insert into RutinaEntity (id, fechaInicio, fenchaFinal) values (9, '6/14/2017', '1/13/2017');
+insert into RutinaEntity (id, fechaInicio, fenchaFinal) values (10, '3/20/2017', '9/21/2017');
+
