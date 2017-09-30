@@ -24,7 +24,7 @@ public class ObjetivoPersistence extends BasePersistence<ObjetivoEntity>{
         query.setParameter("name", name);
         List<ObjetivoEntity> ans =query.getResultList();
         if(ans.isEmpty())
-            throw new NoExisteException((long)0);
+            return null;
         return ans.get(0);
     }
 }

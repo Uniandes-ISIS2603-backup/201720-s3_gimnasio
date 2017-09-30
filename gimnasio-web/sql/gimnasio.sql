@@ -5,21 +5,21 @@ delete from EJERCICIOENTITY_OBJETIVOENTITY;
 delete from OBJETIVOENTITY_USUARIOENTITY;
 delete from GimnasioEntity;
 delete from AtributoDeCalidadEntity;
+ALTER TABLE AtributoDeCalidadEntity ALTER COLUMN Id RESTART WITH 1;
 delete from EjercicioEntity;
+ALTER TABLE EjercicioEntity ALTER COLUMN Id RESTART WITH 1;
 delete from EjercicioHechoEntity;
 delete from EstadoEntity;
 delete from MaquinaEntity;
 delete from MedicionMAquinaEntity;
 delete from MedidaEntity;
 delete from ObjetivoEntity;
+ALTER TABLE ObjetivoEntity ALTER COLUMN Id RESTART WITH 1;
 delete from RutinaEntity;
 delete from TipoMedidaEntity;
+ALTER TABLE TipoMedidaEntity ALTER COLUMN Id RESTART WITH 1;
 delete from EntrenadorEntity;
 delete from UsuarioEntity;
-
-
-
-
 
 insert into EntrenadorEntity (id, name, fechaNacimiento, documento) values (1, 'Howard', '3/28/2017', 'PT56 9444 5274 7597 0900 1170 8');
 insert into EntrenadorEntity (id, name, fechaNacimiento, documento) values (2, 'Brendon', '10/9/2016', 'FR17 1250 1257 37ON Z1SY EEHQ V28');
@@ -53,3 +53,18 @@ insert into MaquinaEntity (id, descripcion) values (7, 'Odyssey');
 insert into MaquinaEntity (id, descripcion) values (8, 'GranTurismo');
 insert into MaquinaEntity (id, descripcion) values (9, 'TrailBlazer');
 insert into MaquinaEntity (id, descripcion) values (10, 'E-350 Super Duty');
+
+insert into RutinaEntity (id,fechainicio,fenchafinal,usuario_id) values (1,'11/18/2016','11/18/2017',1);
+
+insert into TipoMedidaEntity (descripcion,unidad,automatico) values ('brazo','cm',0);
+insert into TipoMedidaEntity (descripcion,unidad,automatico) values ('abdomen','cm',0);
+insert into TipoMedidaEntity (descripcion,unidad,automatico) values ('piernas','cm',0);
+insert into TipoMedidaEntity (descripcion,unidad,automatico) values ('peso','kg',0);
+insert into TipoMedidaEntity (descripcion,unidad,automatico) values ('presionSanginea','mmHg',0);
+
+insert into ObjetivoEntity (descripcion,tipo) values ('bajar el peso','pérdida de peso');
+insert into ObjetivoEntity (descripcion,tipo) values ('aumnetar la musculatura','tonificacion');
+insert into ObjetivoEntity (descripcion,tipo) values ('mejorar la velocidad','atletismo');
+
+insert into AtributoDeCalidadEntity (regresion,objetivo_id,tipomedida_id)values(1,1,1);
+insert into AtributoDeCalidadEntity (regresion,objetivo_id,tipomedida_id)values(1,1,2);
