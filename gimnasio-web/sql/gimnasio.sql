@@ -55,6 +55,15 @@ insert into MaquinaEntity (id, descripcion) values (9, 'TrailBlazer');
 insert into MaquinaEntity (id, descripcion) values (10, 'E-350 Super Duty');
 
 insert into RutinaEntity (id,fechainicio,fenchafinal,usuario_id) values (1,'11/18/2016','11/18/2017',1);
+insert into RutinaEntity (id,fechainicio,fenchafinal) values (2,'11/18/2016','11/18/2017');
+insert into RutinaEntity (id,fechainicio,fenchafinal) values (3,'11/18/2016','11/18/2017');
+insert into RutinaEntity (id,fechainicio,fenchafinal) values (4,'11/18/2016','11/18/2017');
+insert into RutinaEntity (id,fechainicio,fenchafinal) values (5,'11/18/2016','11/18/2017');
+insert into RutinaEntity (id,fechainicio,fenchafinal) values (6,'11/18/2016','11/18/2017');
+insert into RutinaEntity (id,fechainicio,fenchafinal) values (7,'11/18/2016','11/18/2017');
+insert into RutinaEntity (id,fechainicio,fenchafinal) values (8,'11/18/2016','11/18/2017');
+insert into RutinaEntity (id,fechainicio,fenchafinal) values (9,'11/18/2016','11/18/2017');
+insert into RutinaEntity (id,fechainicio,fenchafinal) values (10,'11/18/2016','11/18/2017');
 
 insert into TipoMedidaEntity (descripcion,unidad,automatico) values ('brazo','cm',0);
 insert into TipoMedidaEntity (descripcion,unidad,automatico) values ('abdomen','cm',0);
