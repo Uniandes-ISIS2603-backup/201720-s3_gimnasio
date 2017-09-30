@@ -103,7 +103,8 @@ public class ObjetivoPersistenceTest {
     @Test
     public void findByTipo(){
         ObjetivoEntity entity = data.get(0);
-        ObjetivoEntity newEntity = persistence.findByTipo(entity.getTipo());  
+        ObjetivoEntity newEntity = persistence.findByTipo(entity.getTipo());
+        assertNull(persistence.findByTipo(""));
         assertNotNull(newEntity);
         assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         assertEquals(newEntity.getTipo(), entity.getTipo());

@@ -19,6 +19,18 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
+     /**
+     * inject de la clase logic usuario
+     */
+    @Inject
+    private UsuarioLogic usuarioLogic;
+    
+    /**
+     * inject de la clase logica de ejercicios
+     */
+    @Inject
+    private EjercicioLogic ejercicioLogic;
+    
     /**
      * metodo para crear un objetivo
      * @param entity el objetivo a crear
@@ -39,13 +51,6 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
     //-----------------------------------
     // EJERCICIO
     //-----------------------------------
-    
-    /**
-     * inject de la clase logica de ejercicios
-     */
-    @Inject
-    private EjercicioLogic ejercicioLogic;
-    
     /**
      * Metodo apra encontrar todo lso objetivos 
      * @param id del ejercicio
@@ -103,12 +108,6 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
     //-----------------------------------
     // USUSARIO
     //-----------------------------------
-    
-    /**
-     * inject de la clase logic usuario
-     */
-    @Inject
-    private UsuarioLogic usuarioLogic;
     /**
      * metodo apra encontrar todos los usuarios
      * @param id del usuario a buscar
