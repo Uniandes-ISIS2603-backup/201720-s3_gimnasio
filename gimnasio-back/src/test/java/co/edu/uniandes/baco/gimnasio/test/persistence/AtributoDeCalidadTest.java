@@ -100,7 +100,9 @@ public class AtributoDeCalidadTest {
         PodamFactory factory = new PodamFactoryImpl();
         AtributoDeCalidadEntity newEntity = factory.manufacturePojo(AtributoDeCalidadEntity.class);
         AtributoDeCalidadEntity newEntity2 = factory.manufacturePojo(AtributoDeCalidadEntity.class);
-        TipoMedidaEntity tipo=factory.manufacturePojo(TipoMedidaEntity.class);
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(TipoMedidaEntity.class);
+        assertFalse(newEntity.equals(tipo));
+        tipo=null;
         assertFalse(newEntity.equals(tipo));
         assertTrue(newEntity.equals(newEntity));
         assertEquals(newEntity.equals(newEntity2),newEntity.getId().equals(newEntity2.getId()));
