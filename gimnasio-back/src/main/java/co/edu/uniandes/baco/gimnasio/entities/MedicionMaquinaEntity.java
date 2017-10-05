@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 
 /**
@@ -14,9 +15,15 @@ import javax.persistence.Entity;
  */
 @Entity
 public class MedicionMaquinaEntity extends BaseEntity implements Serializable
-{    
+{    //--------------------------------------------
+    // DATOS BASE
+    //--------------------------------------------
     private Double medicionManquina;
-
+    
+    //--------------------------------------------
+    // GETS & SETS
+    //--------------------------------------------
+    
     public Double getMedicionManquina() 
     {
         return medicionManquina;
@@ -25,5 +32,22 @@ public class MedicionMaquinaEntity extends BaseEntity implements Serializable
     public void setMedicionManquina(Double medicionManquina)
     {
         this.medicionManquina = medicionManquina;
+    }
+    //--------------------------------------------
+    // METODOS
+    //--------------------------------------------
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && this.getClass() != obj.getClass()) {
+            return false;
+        }
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = super.hashCode();
+        hash = 83 * hash + Objects.hashCode(this.medicionManquina);
+        return hash;
     }
 }

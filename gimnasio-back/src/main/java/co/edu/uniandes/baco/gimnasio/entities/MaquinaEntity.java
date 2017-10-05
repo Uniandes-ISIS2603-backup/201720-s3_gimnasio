@@ -33,7 +33,7 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
     @OneToMany
     private List<TipoMedidaEntity> tipoMedida;
     
-     //--------------------------------------------
+    //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
 
@@ -53,7 +53,7 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
         this.tipoMedida = tipoMedida;
     }
 
-   //--------------------------------------------
+    //--------------------------------------------
     // METODOS
     //--------------------------------------------
     @Override
