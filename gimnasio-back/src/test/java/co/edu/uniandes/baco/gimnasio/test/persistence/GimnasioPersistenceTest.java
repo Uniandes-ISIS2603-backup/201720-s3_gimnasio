@@ -1,105 +1,61 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
+import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.GimnasioPersistence;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.runner.RunWith;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.junit.Assert;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-/**
- *
- * @author m.sicard10
- */
 @RunWith(Arquillian.class)
 public class GimnasioPersistenceTest {
-    
-        /**
-     * Inyección de la dependencia a la clase EntrenadorPersistence cuyos métodos
-     * se van a probar.
-     */
     @Inject
-    private GimnasioPersistence persistence;
+    private GimnasioPersistence GimnasioPersistence;
 
-    /**
-     * Contexto de Persistencia que se va a utilizar para acceder a la Base de
-     * datos por fuera de los métodos que se están probando.
-     */
     @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
 
-    /**
-     * Variable para martcar las transacciones del em anterior cuando se
-     * crean/borran datos para las pruebas.
-     */
     @Inject
     UserTransaction utx;
     
-      /**
-     *
-     */
-    private List<GimnasioEntity> data = new ArrayList<GimnasioEntity>();
-    
-     @Deployment
+    private final PodamFactory factory = new PodamFactoryImpl();
+
+    private final List<GimnasioEntity> data = new ArrayList<>();
+
+    @Deployment
     public static JavaArchive createDeployment() {
-        JavaArchive a = ShrinkWrap.create(JavaArchive.class)
+        return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(GimnasioEntity.class.getPackage())
                 .addPackage(GimnasioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-        return a;
-    }
-    
-        private void clearData() {
-        em.createQuery("delete from GimnasioEntity").executeUpdate();
     }
 
-    
-
-    private void insertData() {
-        PodamFactory factory;
-        factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) {
-            GimnasioEntity entity = factory.manufacturePojo(GimnasioEntity.class);
-
-            em.persist(entity);
-            data.add(entity);
-        }
-    }
-    
-    public GimnasioPersistenceTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
+    @SuppressWarnings("CallToPrintStackTrace")
     public void setUp() {
         try {
             utx.begin();
@@ -107,91 +63,111 @@ public class GimnasioPersistenceTest {
             clearData();
             insertData();
             utx.commit();
-        } catch (Exception e) {
+        } catch (IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | RollbackException | SystemException e) {
             e.printStackTrace();
             try {
                 utx.rollback();
-            } catch (Exception e1) {
+            } catch (IllegalStateException | SecurityException | SystemException e1) {
                 e1.printStackTrace();
             }
         }
     }
-    
-    @After
-    public void tearDown() {
+
+    private void clearData() {
+        em.createQuery("delete from GimnasioEntity").executeUpdate();
     }
 
-    /**
-     * Test of create method, of class GimnasioPersistence.
-     */
-    @Test
-    public void testCreate() throws Exception {
-    PodamFactory factory = new PodamFactoryImpl();
-    GimnasioEntity newEntity = factory.manufacturePojo(GimnasioEntity.class);
-    GimnasioEntity result = persistence.create(newEntity);
-
-    Assert.assertNotNull(result);
-    GimnasioEntity entity = em.find(GimnasioEntity.class, result.getId());
-    Assert.assertNotNull(entity);
-    Assert.assertEquals(newEntity.getName(), entity.getName());
-    }
-
-    /**
-     * Test of update method, of class GimnasioPersistence.
-     */
-    @Test
-    public void testUpdate() throws Exception {
-    GimnasioEntity entity = data.get(0);
-    PodamFactory factory = new PodamFactoryImpl();
-    GimnasioEntity newEntity = factory.manufacturePojo(GimnasioEntity.class);
-
-    newEntity.setId(entity.getId());
-
-    persistence.update(newEntity);
-
-    GimnasioEntity resp = em.find(GimnasioEntity.class, entity.getId());
-
-    Assert.assertEquals(newEntity.getName(), resp.getName()); entity = data.get(0);
-    }
-
-    /**
-     * Test of delete method, of class GimnasioPersistence.
-     */
-    @Test
-    public void testDelete() throws Exception {
-    GimnasioEntity entity = data.get(0);
-    persistence.delete(entity.getId());
-    GimnasioEntity deleted = em.find(GimnasioEntity.class, entity.getId());
-    Assert.assertNull(deleted);
-    }
-
-    /**
-     * Test of find method, of class GimnasioPersistence.
-     */
-    @Test
-    public void testFind() throws Exception {
-    GimnasioEntity entity = data.get(0);
-    GimnasioEntity newEntity = persistence.find(entity.getId());
-    Assert.assertNotNull(newEntity);
-    Assert.assertEquals(entity.getName(), newEntity.getName());
-    }
-
-    /**
-     * Test of findAll method, of class GimnasioPersistence.
-     */
-    @Test
-    public void testFindAll() throws Exception {
-                List<GimnasioEntity> list = persistence.findAll();
-    Assert.assertEquals(data.size(), list.size());
-    for (GimnasioEntity ent : list) {
-        boolean found = false;
-        for (GimnasioEntity entity : data) {
-            if (ent.getId().equals(entity.getId())) {
-                found = true;
-            }
+    private void insertData() {
+        for (int i = 0; i < 3; i++) {
+            GimnasioEntity entity = create();
+            em.persist(entity);
+            data.add(entity);
         }
-        Assert.assertTrue(found);
     }
+
+    //--------------------------------------
+    // TEST
+    //--------------------------------------
+    
+    @Test
+    public void equalsHasTest() {
+        GimnasioEntity newEntity = create();
+        assertTrue(newEntity.equals(newEntity));
+        assertEquals(newEntity.hashCode(), newEntity.hashCode());
+        
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
+        assertFalse(newEntity.equals(tipo));
+        tipo=null;
+        assertFalse(newEntity.equals(tipo));
+        
+        GimnasioEntity newEntity2 = create();
+        newEntity2.setId(newEntity.getId());
+        assertTrue(newEntity.equals(newEntity2));
+        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
+        
+        newEntity2.setId(newEntity.getId()+1);
+        assertFalse(newEntity.equals(newEntity2));
+        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
     }
     
+    @Test
+    public void createGimnasioTest() {
+        GimnasioEntity newEntity = create();
+        GimnasioEntity result = GimnasioPersistence.create(newEntity);
+        assertNotNull(result);
+        GimnasioEntity entity = em.find(GimnasioEntity.class, result.getId());
+        assertEqualsObject(newEntity, entity);
+    }
+
+    @Test
+    public void geGimnasiosTest() {
+        List<GimnasioEntity> list = GimnasioPersistence.findAll();
+        assertEquals(data.size(), list.size());
+        for (GimnasioEntity ent : list) {
+            boolean found = false;
+            for (GimnasioEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            assertTrue(found);
+        }
+    }
+
+    @Test
+    public void getGimnasioTest() {
+        GimnasioEntity entity = data.get(0);
+        GimnasioEntity newEntity = GimnasioPersistence.find(entity.getId());
+        assertNotNull(newEntity);
+        assertEqualsObject(newEntity, entity);
+    }
+
+    @Test
+    public void deleteGimnasioTest() {
+        GimnasioEntity entity = data.get(0);
+        GimnasioPersistence.delete(entity.getId());
+        GimnasioEntity deleted = em.find(GimnasioEntity.class, entity.getId());
+        assertNull(deleted);
+    }
+
+    @Test
+    public void updateGimnasioTest() {
+        GimnasioEntity entity = data.get(0);
+        GimnasioEntity newEntity = create();
+        newEntity.setId(entity.getId());
+        GimnasioPersistence.update(newEntity);
+        
+        GimnasioEntity resp = em.find(GimnasioEntity.class, entity.getId());
+        assertEqualsObject(newEntity, resp);
+    }
+    
+    private void assertEqualsObject(GimnasioEntity a,GimnasioEntity b){
+        assertEquals(a.getDuenio(),b.getDuenio());
+        assertEquals(a.getName(), b.getName());
+        assertEquals(a.getNit(), b.getNit());
+    }
+    
+    private GimnasioEntity create(){
+        return factory.manufacturePojo(GimnasioEntity.class);
+    }
 }

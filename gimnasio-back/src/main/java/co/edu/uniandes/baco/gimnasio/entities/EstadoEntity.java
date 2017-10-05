@@ -72,7 +72,7 @@ public class EstadoEntity extends BaseEntity implements Serializable {
         this.fecha = fecha;
     }
     
-     //--------------------------------------------
+    //--------------------------------------------
     // METODOS
     //--------------------------------------------
     @Override
