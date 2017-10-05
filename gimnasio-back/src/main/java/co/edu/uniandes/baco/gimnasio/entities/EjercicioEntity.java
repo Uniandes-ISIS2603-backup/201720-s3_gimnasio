@@ -61,7 +61,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
      */
     @PodamExclude
     @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<ObjetivoEntity> objetivos = new ArrayList<>();
+    private List<ObjetivoEntity> objetivosEjercicio = new ArrayList<>();
     /**
      * lista de maquians del ejercicio
      */
@@ -71,6 +71,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
+
     public String getExplicacion() {
         return explicacion;
     }
@@ -127,12 +128,12 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
         this.rutina = rutina;
     }
 
-    public List<ObjetivoEntity> getObjetivos() {
-        return objetivos;
+    public List<ObjetivoEntity> getObjetivosEjercicio() {
+        return objetivosEjercicio;
     }
 
-    public void setObjetivos(List<ObjetivoEntity> objetivos) {
-        this.objetivos = objetivos;
+    public void setObjetivosEjercicio(List<ObjetivoEntity> objetivosEjercicio) {
+        this.objetivosEjercicio = objetivosEjercicio;
     }
 
     public List<MaquinaEntity> getMaquinas() {
@@ -142,6 +143,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     public void setMaquinas(List<MaquinaEntity> maquinas) {
         this.maquinas = maquinas;
     }
+   
     //--------------------------------------------
     // METODOS
     //--------------------------------------------

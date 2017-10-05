@@ -51,7 +51,7 @@ public EjercicioEntity find(long idRutina, long id) throws BusinessLogicExceptio
             throw new NoExisteException(idRutina);
         }
         entity.setRutina(old.getRutina());
-        entity.setObjetivos(old.getObjetivos());
+        entity.setObjetivosEjercicio(old.getObjetivosEjercicio());
         entity.setMaquinas(old.getMaquinas());
         return update(entity);
     }

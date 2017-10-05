@@ -144,8 +144,7 @@ public class EjercicioPersistenceTest {
         assertTrue(newEntity.equals(newEntity));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
         
-        //tipo diferente y nulo
-        BaseEntity tipo=(BaseEntity)create();
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
         assertFalse(newEntity.equals(tipo));
         tipo=null;
         assertFalse(newEntity.equals(tipo));
@@ -172,10 +171,10 @@ public class EjercicioPersistenceTest {
             maquinas.add(factory.manufacturePojo(MaquinaEntity.class));
         
         newEntity.setRutina(rutina);
-        newEntity.setObjetivos(objetivos);
+        newEntity.setObjetivosEjercicio(objetivos);
         newEntity.setMaquinas(maquinas);
         assertEquals(newEntity.getRutina(), rutina);
-        assertEquals(newEntity.getObjetivos(),objetivos);
+        assertEquals(newEntity.getObjetivosEjercicio(),objetivos);
         assertEquals(newEntity.getMaquinas(), maquinas);
     }
     

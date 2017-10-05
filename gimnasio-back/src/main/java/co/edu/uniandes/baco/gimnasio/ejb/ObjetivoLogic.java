@@ -58,7 +58,7 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
      * @throws BusinessLogicException si no eciste el jercicio
      */
     public List<ObjetivoEntity> findAllObjetivosEjercicio(Long id) throws BusinessLogicException{
-        return ejercicioLogic.find(id).getObjetivos();        
+        return ejercicioLogic.find(id).getObjetivosEjercicio();        
     }
     /**
      * metodo apra encontrar un objetivo de un ejercicio
@@ -70,7 +70,7 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
     public ObjetivoEntity findObjetivoEjercicio(Long idEjercicio, Long id) throws BusinessLogicException{
         ObjetivoEntity aux = new ObjetivoEntity();
         aux.setId(id);
-        List<ObjetivoEntity> list=ejercicioLogic.find(idEjercicio).getObjetivos();
+        List<ObjetivoEntity> list=ejercicioLogic.find(idEjercicio).getObjetivosEjercicio();
         int ind=list.indexOf(aux);
         if(ind<0)
             throw new NoExisteException(id);
@@ -87,7 +87,7 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
         ObjetivoEntity aux = find(id);
         if(aux==null)
             throw new  NoExisteException(id);
-        ejercicioLogic.find(idEjercicio).getObjetivos().add(aux);
+        ejercicioLogic.find(idEjercicio).getObjetivosEjercicio().add(aux);
         return aux;
     }
     /**
@@ -99,7 +99,7 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
     public void removeObejtivoEjercicio(Long idEjercicio, Long id) throws BusinessLogicException{
         ObjetivoEntity aux = new ObjetivoEntity();
         aux.setId(id);
-        List<ObjetivoEntity> list=ejercicioLogic.find(idEjercicio).getObjetivos();
+        List<ObjetivoEntity> list=ejercicioLogic.find(idEjercicio).getObjetivosEjercicio();
         int ind=list.indexOf(aux);
         if(ind<0)
             throw new NoExisteException(id);
