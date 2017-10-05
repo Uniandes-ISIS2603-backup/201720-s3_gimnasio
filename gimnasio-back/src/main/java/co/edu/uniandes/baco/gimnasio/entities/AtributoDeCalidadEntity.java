@@ -33,6 +33,7 @@ public class AtributoDeCalidadEntity extends BaseEntity {
     @PodamExclude
     @OneToOne(cascade = CascadeType.REFRESH)
     private TipoMedidaEntity tipoMedida;
+    
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------

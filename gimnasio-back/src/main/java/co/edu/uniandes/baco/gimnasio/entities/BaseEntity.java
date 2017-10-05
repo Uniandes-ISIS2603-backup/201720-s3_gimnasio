@@ -56,10 +56,6 @@ public abstract class BaseEntity implements Serializable {
     @Override
     public int hashCode() {
         if (getId() != null) {
-            Logger.getLogger(id+"");
-            Logger.getLogger(getId()+"");
-            Logger.getLogger(getId().hashCode()+"");
-            Logger.getLogger(id.hashCode()+"");
             return getId().hashCode();
         }
         return super.hashCode();
