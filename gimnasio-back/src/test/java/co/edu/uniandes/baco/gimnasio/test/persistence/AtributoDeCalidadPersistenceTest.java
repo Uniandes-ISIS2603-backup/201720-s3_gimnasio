@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
-import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
+import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.AtributoDeCalidadPersistence;
 import java.util.ArrayList;
@@ -31,21 +27,18 @@ import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-/**
- *
- * @author ce.robles
- */
 @RunWith(Arquillian.class)
-public class AtributoDeCalidadTest {
-
+public class AtributoDeCalidadPersistenceTest {
     @Inject
-    private AtributoDeCalidadPersistence peristence;
+    private AtributoDeCalidadPersistence AtributoDeCalidadPersistence;
 
     @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
+    
+    private final PodamFactory factory = new PodamFactoryImpl();
 
     private final List<AtributoDeCalidadEntity> data = new ArrayList<>();
 
@@ -69,7 +62,6 @@ public class AtributoDeCalidadTest {
             utx.commit();
         } catch (IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | RollbackException | SystemException e) {
             e.printStackTrace();
-
             try {
                 utx.rollback();
             } catch (IllegalStateException | SecurityException | SystemException e1) {
@@ -83,10 +75,8 @@ public class AtributoDeCalidadTest {
     }
 
     private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            AtributoDeCalidadEntity entity = factory.manufacturePojo(AtributoDeCalidadEntity.class);
-
+            AtributoDeCalidadEntity entity = create();
             em.persist(entity);
             data.add(entity);
         }
@@ -95,35 +85,38 @@ public class AtributoDeCalidadTest {
     //--------------------------------------
     // TEST
     //--------------------------------------
+    
     @Test
-    public void equalsHasTest(){
-        PodamFactory factory = new PodamFactoryImpl();
-        AtributoDeCalidadEntity newEntity = factory.manufacturePojo(AtributoDeCalidadEntity.class);
-        AtributoDeCalidadEntity newEntity2 = factory.manufacturePojo(AtributoDeCalidadEntity.class);
-        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(TipoMedidaEntity.class);
-        assertFalse(newEntity.equals(tipo));
-        tipo=null;
-        assertFalse(newEntity.equals(tipo));
+    public void equalsHasTest() {
+        AtributoDeCalidadEntity newEntity = create();
         assertTrue(newEntity.equals(newEntity));
-        assertEquals(newEntity.equals(newEntity2),newEntity.getId().equals(newEntity2.getId()));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
-        assertEquals((newEntity.hashCode()==newEntity2.hashCode()),newEntity.getId().equals(newEntity2.getId()));
+        
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
+        assertFalse(newEntity.equals(tipo));
+        
+        AtributoDeCalidadEntity newEntity2 = create();
+        newEntity2.setId(newEntity.getId());
+        assertTrue(newEntity.equals(newEntity2));
+        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
+        
+        newEntity2.setId(newEntity.getId()+1);
+        assertFalse(newEntity.equals(newEntity2));
+        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
     }
     
-    
     @Test
-    public void createObjetivoTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        AtributoDeCalidadEntity newEntity = factory.manufacturePojo(AtributoDeCalidadEntity.class);
-        AtributoDeCalidadEntity result = peristence.create(newEntity);
+    public void createAtributoDeCalidadTest() {
+        AtributoDeCalidadEntity newEntity = create();
+        AtributoDeCalidadEntity result = AtributoDeCalidadPersistence.create(newEntity);
         assertNotNull(result);
         AtributoDeCalidadEntity entity = em.find(AtributoDeCalidadEntity.class, result.getId());
-        assertEquals(newEntity.getRegresion(), entity.getRegresion());
+        assertEqualsObject(newEntity, entity);
     }
 
     @Test
-    public void geObjetivosTest() {
-        List<AtributoDeCalidadEntity> list = peristence.findAll();
+    public void geAtributoDeCalidadsTest() {
+        List<AtributoDeCalidadEntity> list = AtributoDeCalidadPersistence.findAll();
         assertEquals(data.size(), list.size());
         for (AtributoDeCalidadEntity ent : list) {
             boolean found = false;
@@ -137,29 +130,49 @@ public class AtributoDeCalidadTest {
     }
 
     @Test
-    public void getObjetivoTest() {
+    public void getAtributoDeCalidadTest() {
         AtributoDeCalidadEntity entity = data.get(0);
-        AtributoDeCalidadEntity newEntity = peristence.find(entity.getId());
+        AtributoDeCalidadEntity newEntity = AtributoDeCalidadPersistence.find(entity.getId());
         assertNotNull(newEntity);
-        assertEquals(newEntity.getRegresion(), entity.getRegresion());
+        assertEqualsObject(newEntity, entity);
     }
 
     @Test
-    public void deleteObjetivoTest() {
+    public void deleteAtributoDeCalidadTest() {
         AtributoDeCalidadEntity entity = data.get(0);
-        peristence.delete(entity.getId());
+        AtributoDeCalidadPersistence.delete(entity.getId());
         AtributoDeCalidadEntity deleted = em.find(AtributoDeCalidadEntity.class, entity.getId());
         assertNull(deleted);
     }
 
     @Test
-    public void updateObjetivoTest() {
+    public void updateAtributoDeCalidadTest() {
         AtributoDeCalidadEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        AtributoDeCalidadEntity newEntity = factory.manufacturePojo(AtributoDeCalidadEntity.class);
+        AtributoDeCalidadEntity newEntity = create();
         newEntity.setId(entity.getId());
-        peristence.update(newEntity);
+        AtributoDeCalidadPersistence.update(newEntity);
+        
         AtributoDeCalidadEntity resp = em.find(AtributoDeCalidadEntity.class, entity.getId());
-        assertEquals(newEntity.getRegresion(), resp.getRegresion());
+        assertEqualsObject(newEntity, resp);
+    }
+    
+    @Test
+    public void subEnititysTest(){
+        AtributoDeCalidadEntity newEntity = create();
+        ObjetivoEntity objetivo=factory.manufacturePojo(ObjetivoEntity.class);
+        TipoMedidaEntity tipoMedidaEntity=factory.manufacturePojo(TipoMedidaEntity.class);
+        
+        newEntity.setTipoMedida(tipoMedidaEntity);
+        newEntity.setObjetivo(objetivo);
+        assertEquals(newEntity.getTipoMedida(),tipoMedidaEntity);
+        assertEquals(newEntity.getObjetivo(),objetivo);
+    }
+    
+    private void assertEqualsObject(AtributoDeCalidadEntity a,AtributoDeCalidadEntity b){
+        assertEquals(a.getRegresion(),b.getRegresion());
+    }
+    
+    private AtributoDeCalidadEntity create(){
+        return factory.manufacturePojo(AtributoDeCalidadEntity.class);
     }
 }

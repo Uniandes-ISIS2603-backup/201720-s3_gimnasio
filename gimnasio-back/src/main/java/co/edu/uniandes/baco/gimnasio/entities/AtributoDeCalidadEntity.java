@@ -26,7 +26,7 @@ public class AtributoDeCalidadEntity extends BaseEntity {
      */
     @PodamExclude
     @ManyToOne
-    private ObjetivoEntity objetivo;
+        private ObjetivoEntity objetivo;
     /**
      * atributo que mide
      */
