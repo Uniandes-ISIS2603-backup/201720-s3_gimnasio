@@ -23,27 +23,27 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     // DATOS BASE
     //--------------------------------------------
     /**
-     * atributo explicacion
+     * la definicion especifica del ejercicio
      */
     private String explicacion;
     /**
-     * atributo duracion
+     * la duracion en minutos del ejercicio
      */
     private Integer duracion;
     /**
-     * atributo series
+     * la cantidad de series asignadas para el ejercicio
      */
     private Integer series;
     /**
-     * atributos tamañoPrticnes
+     * el atributo que define la regularidad con la que hay que hacer el ejercicio en dias {1="diariamente" , 7="semanalmente")
      */
     private Integer tamanioParticiones;
     /**
-     * atributo repeticones
+     * atributo que define la cantidad de veces que hay que hacer el ejercicio por particion {con el atributo de tamanioParticiones define la frecuencia del ejercicio}
      */
     private Integer repeticionesPorParticion;
     /**
-     * atributo tipo
+     * el tipo de ejercicio al que pertenece
      */
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
@@ -51,19 +51,19 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     // DATOS ENTITY
     //--------------------------------------------
     /**
-     * atibuto de rutina a la que pertenese
+     * atibuto de rutina a la que pertenece
      */
     @PodamExclude
     @ManyToOne
     private RutinaEntity rutina;
     /**
-     * lista de objetivos del ejercicio
+     * lista de objetivos a los que el ejercicio esta orientado
      */
     @PodamExclude
     @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ObjetivoEntity> objetivosEjercicio = new ArrayList<>();
     /**
-     * lista de maquians del ejercicio
+     * lista de maquinas usadas en ele ejercicio 
      */
     @PodamExclude
     @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.EAGER)

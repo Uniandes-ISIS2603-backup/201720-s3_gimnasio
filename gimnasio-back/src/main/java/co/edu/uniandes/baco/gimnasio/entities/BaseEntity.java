@@ -45,7 +45,7 @@ public abstract class BaseEntity implements Serializable {
         if (this.getId() != null && mc.getId() != null) {
             return this.getId().equals(((BaseEntity) obj).getId());
         }
-        return super.equals(obj);
+        return false;
     }
 
     /**

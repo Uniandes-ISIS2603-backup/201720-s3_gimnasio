@@ -88,6 +88,25 @@ public class EjercicioPersistenceTest {
     //--------------------------------------
     
     @Test
+    public void equalsHasTest() {
+        EjercicioEntity newEntity = create();
+        assertTrue(newEntity.equals(newEntity));
+        assertEquals(newEntity.hashCode(), newEntity.hashCode());
+        
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
+        assertFalse(newEntity.equals(tipo));
+        
+        EjercicioEntity newEntity2 = create();
+        newEntity2.setId(newEntity.getId());
+        assertTrue(newEntity.equals(newEntity2));
+        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
+        
+        newEntity2.setId(newEntity.getId()+1);
+        assertFalse(newEntity.equals(newEntity2));
+        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
+    }
+    
+    @Test
     public void createEjercicioTest() {
         EjercicioEntity newEntity = create();
         EjercicioEntity result = ejercicioPersistence.create(newEntity);
@@ -136,27 +155,6 @@ public class EjercicioPersistenceTest {
         
         EjercicioEntity resp = em.find(EjercicioEntity.class, entity.getId());
         assertEqualsObject(newEntity, resp);
-    }
-    
-    @Test
-    public void equalsHasTest() {
-        EjercicioEntity newEntity = create();
-        assertTrue(newEntity.equals(newEntity));
-        assertEquals(newEntity.hashCode(), newEntity.hashCode());
-        
-        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
-        assertFalse(newEntity.equals(tipo));
-        tipo=null;
-        assertFalse(newEntity.equals(tipo));
-        
-        EjercicioEntity newEntity2 = create();
-        newEntity2.setId(newEntity.getId());
-        assertTrue(newEntity.equals(newEntity2));
-        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
-        
-        newEntity2.setId(newEntity.getId()+1);
-        assertFalse(newEntity.equals(newEntity2));
-        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
     }
     
     @Test
