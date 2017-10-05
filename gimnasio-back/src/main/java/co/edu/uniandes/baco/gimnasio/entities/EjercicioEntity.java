@@ -154,7 +154,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = super.hashCode();
         hash = 97 * hash + Objects.hashCode(this.explicacion);
         hash = 97 * hash + Objects.hashCode(this.duracion);
         hash = 97 * hash + Objects.hashCode(this.series);

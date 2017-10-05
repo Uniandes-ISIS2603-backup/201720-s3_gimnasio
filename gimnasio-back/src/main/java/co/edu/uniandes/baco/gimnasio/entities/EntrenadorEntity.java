@@ -43,7 +43,7 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
      */
     @PodamExclude
     @ManyToMany
-    private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
+    private List<UsuarioEntity> usuarios = new ArrayList<>();
     
      //--------------------------------------------
     // GETS & SETS
@@ -94,7 +94,7 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = super.hashCode();
         hash = 53 * hash + Objects.hashCode(this.nombre);
         hash = 53 * hash + Objects.hashCode(this.fechaNacimiento);
         hash = 53 * hash + Objects.hashCode(this.documento);

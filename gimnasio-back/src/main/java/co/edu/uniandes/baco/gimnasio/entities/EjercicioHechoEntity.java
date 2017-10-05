@@ -59,7 +59,7 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = super.hashCode();
         hash = 53 * hash + Objects.hashCode(this.fechaInicio);
         hash = 53 * hash + Objects.hashCode(this.seriesReales);
         return hash;

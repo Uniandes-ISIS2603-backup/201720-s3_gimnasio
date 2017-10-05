@@ -74,7 +74,7 @@ public class AtributoDeCalidadEntity extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = super.hashCode();
         hash = 53 * hash + this.regresion;
         return hash;
     }
