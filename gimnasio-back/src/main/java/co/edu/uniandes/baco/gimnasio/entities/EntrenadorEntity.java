@@ -39,13 +39,13 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
     // DATOS ENTITY
     //--------------------------------------------
     /**
-     * 
+     * los usuarios que tienen asignado el entrenador
      */
     @PodamExclude
     @ManyToMany
     private List<UsuarioEntity> usuarios = new ArrayList<>();
     
-     //--------------------------------------------
+    //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
 
