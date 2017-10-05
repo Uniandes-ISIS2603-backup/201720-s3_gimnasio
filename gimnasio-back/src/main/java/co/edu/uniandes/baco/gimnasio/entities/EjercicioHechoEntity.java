@@ -26,6 +26,7 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
      * numero de series realizadas
      */
     private Integer seriesReales;
+    
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
