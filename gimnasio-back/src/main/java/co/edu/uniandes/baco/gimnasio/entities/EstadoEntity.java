@@ -86,11 +86,10 @@ public class EstadoEntity extends BaseEntity implements Serializable {
     @Override
     public int hashCode() {
         int hash = super.hashCode();
-        hash = 59 * hash + Objects.hashCode(this.fecha);
-        hash = 59 * hash + Objects.hashCode(this.medidas);
-        hash = 59 * hash + Objects.hashCode(this.usuario);
+        hash = 29 * hash + Objects.hashCode(this.fecha);
+        hash = 29 * hash + Objects.hashCode(this.medidas);
+        hash = 29 * hash + Objects.hashCode(this.usuario);
         return hash;
     }
-    
-    
+
 }

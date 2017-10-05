@@ -102,7 +102,6 @@ public class EntrenadorPersistenceTest {
         EntrenadorEntity newEntity2 = create();
         newEntity2.setId(newEntity.getId());
         assertTrue(newEntity.equals(newEntity2));
-        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
         
         newEntity2.setId(newEntity.getId()+1);
         assertFalse(newEntity.equals(newEntity2));

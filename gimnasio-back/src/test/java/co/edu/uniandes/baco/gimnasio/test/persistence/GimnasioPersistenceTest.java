@@ -2,12 +2,8 @@ package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
-import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.GimnasioPersistence;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -103,8 +99,7 @@ public class GimnasioPersistenceTest {
         GimnasioEntity newEntity2 = create();
         newEntity2.setId(newEntity.getId());
         assertTrue(newEntity.equals(newEntity2));
-        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
-        
+      
         newEntity2.setId(newEntity.getId()+1);
         assertFalse(newEntity.equals(newEntity2));
         assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
