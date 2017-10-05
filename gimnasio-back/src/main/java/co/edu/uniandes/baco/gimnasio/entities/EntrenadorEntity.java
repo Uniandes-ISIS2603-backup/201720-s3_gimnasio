@@ -98,7 +98,6 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
         hash = 53 * hash + Objects.hashCode(this.nombre);
         hash = 53 * hash + Objects.hashCode(this.fechaNacimiento);
         hash = 53 * hash + Objects.hashCode(this.documento);
-        hash = 53 * hash + Objects.hashCode(this.usuarios);
         return hash;
     }
 }

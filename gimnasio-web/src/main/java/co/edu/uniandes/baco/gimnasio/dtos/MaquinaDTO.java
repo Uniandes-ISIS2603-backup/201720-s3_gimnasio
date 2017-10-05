@@ -22,7 +22,7 @@ public class MaquinaDTO {
     public MaquinaDTO(MaquinaEntity foo) {
         if(foo!=null){
             id = foo.getId();
-            descripcion = foo.getDescripcion();
+            descripcion = foo.getInformacion();
 
         }
     }
@@ -32,7 +32,7 @@ public class MaquinaDTO {
      */
     public MaquinaEntity toEntity() {
         MaquinaEntity entity = new MaquinaEntity();
-        entity.setDescripcion(this.descripcion);
+        entity.setInformacion(this.descripcion);
         return entity;
     }
 

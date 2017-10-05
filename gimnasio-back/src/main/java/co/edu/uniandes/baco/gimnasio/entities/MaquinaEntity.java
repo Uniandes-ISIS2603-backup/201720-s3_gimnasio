@@ -3,6 +3,7 @@ package co.edu.uniandes.baco.gimnasio.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -12,14 +13,36 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class MaquinaEntity extends BaseEntity implements Serializable {
-    private String descripcion;
-
+    //--------------------------------------------
+    // DATOS BASE
+    //--------------------------------------------
+    
+    /**
+     * informacion de la maquina
+     */
+    private String informacion;
+    
+    //--------------------------------------------
+    // DATOS Entity
+    //--------------------------------------------
+    
+    /**
+     * tipos de medida que puede tomar la maquina al ser usada
+     */
     @PodamExclude
     @OneToMany
     private List<TipoMedidaEntity> tipoMedida;
+    
+     //--------------------------------------------
+    // GETS & SETS
+    //--------------------------------------------
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getInformacion() {
+        return informacion;
+    }
+
+    public void setInformacion(String informacion) {
+        this.informacion = informacion;
     }
 
     public List<TipoMedidaEntity> getTipoMedida() {
@@ -30,11 +53,21 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
         this.tipoMedida = tipoMedida;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+   //--------------------------------------------
+    // METODOS
+    //--------------------------------------------
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && this.getClass() != obj.getClass()) {
+            return false;
+        }
+        return super.equals(obj);
     }
 
-    public void setTiposMedidas(List<TipoMedidaEntity> foo) {
-        this.tipoMedida = foo;
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.informacion);
+        return hash;
     }
 }

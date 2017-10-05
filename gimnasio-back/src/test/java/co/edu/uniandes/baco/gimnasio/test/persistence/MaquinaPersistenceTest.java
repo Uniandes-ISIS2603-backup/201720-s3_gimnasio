@@ -1,16 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
+import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.MaquinaPersistence;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,20 +24,15 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-/**
- *
- * @author t.kavanagh
- */
 @RunWith(Arquillian.class)
-public class MaquinaPersistenceTest 
-{
+public class MaquinaPersistenceTest {
     @Inject
     private MaquinaPersistence MaquinaPersistence;
 
@@ -46,28 +41,20 @@ public class MaquinaPersistenceTest
 
     @Inject
     UserTransaction utx;
-
-    private final List<MaquinaEntity> data = new ArrayList<>();    
     
-    /**
-     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de maquina, el descriptor de la
-     * base de datos y el archivo beans.xml para resolver la inyección de
-     * dependencias.
-     */
+    private final PodamFactory factory = new PodamFactoryImpl();
+
+    private final List<MaquinaEntity> data = new ArrayList<>();
+
     @Deployment
-    public static JavaArchive createDeployment()
-    {
+    public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(MaquinaEntity.class.getPackage())
                 .addPackage(MaquinaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
-    /**
-     * Configuracion inicial de la prueba.
-     */
+
     @Before
     @SuppressWarnings("CallToPrintStackTrace")
     public void setUp() {
@@ -87,125 +74,110 @@ public class MaquinaPersistenceTest
         }
     }
 
-    /**
-     * Limpia las tablas implicadas en la prueba.
-     */
-    private void clearData() 
-    {
+    private void clearData() {
         em.createQuery("delete from MaquinaEntity").executeUpdate();
     }
 
-    /**
-     * Inserta los datos iniciales para el funcionamiento de la prueba.
-     */
-    private void insertData() 
-    {
-        PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) 
-        {
-            MaquinaEntity entity = factory.manufacturePojo(MaquinaEntity.class);
-
+    private void insertData() {
+        for (int i = 0; i < 3; i++) {
+            MaquinaEntity entity = create();
             em.persist(entity);
             data.add(entity);
-        }    
-    }
-    
-    /**
-     * Prueba para crear una maquina.
-     */
-    @Test
-    public void createMedidaUsuarioTest() 
-    {
-        try {
-            PodamFactory factory = new PodamFactoryImpl();
-            MaquinaEntity newEntity = factory.manufacturePojo(MaquinaEntity.class);
-            MaquinaEntity result = MaquinaPersistence.create(newEntity);
-            
-            Assert.assertNotNull(result);
-            
-            MaquinaEntity entity = em.find(MaquinaEntity.class, result.getId());
-        } catch (Exception ex) {
-            Logger.getLogger(MaquinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 
-
+    //--------------------------------------
+    // TEST
+    //--------------------------------------
+    
+    @Test
+    public void equalsHasTest() {
+        MaquinaEntity newEntity = create();
+        assertTrue(newEntity.equals(newEntity));
+        assertEquals(newEntity.hashCode(), newEntity.hashCode());
+        
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
+        assertFalse(newEntity.equals(tipo));
+        tipo=null;
+        assertFalse(newEntity.equals(tipo));
+        
+        MaquinaEntity newEntity2 = create();
+        newEntity2.setId(newEntity.getId());
+        assertTrue(newEntity.equals(newEntity2));
+        
+        newEntity2.setId(newEntity.getId()+1);
+        assertFalse(newEntity.equals(newEntity2));
+        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
     }
     
-    /**
-     * Prueba para consultar la lista de maquinaes.
-     */
     @Test
-    public void listaMedidaUsuarioTest() 
-    {
-        try {
-            List<MaquinaEntity> list = MaquinaPersistence.findAll();
-            Assert.assertEquals(data.size(), list.size());               
-            
-            for(MaquinaEntity ent : list) {
-                boolean found = false;
-                for (MaquinaEntity entity : data)
-                    if (ent.getId().equals(entity.getId()))
-                        found = true;
-                
-                Assert.assertTrue(found);
+    public void createMaquinaTest() {
+        MaquinaEntity newEntity = create();
+        MaquinaEntity result = MaquinaPersistence.create(newEntity);
+        assertNotNull(result);
+        MaquinaEntity entity = em.find(MaquinaEntity.class, result.getId());
+        assertEqualsObject(newEntity, entity);
+    }
+
+    @Test
+    public void geMaquinasTest() {
+        List<MaquinaEntity> list = MaquinaPersistence.findAll();
+        assertEquals(data.size(), list.size());
+        for (MaquinaEntity ent : list) {
+            boolean found = false;
+            for (MaquinaEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
             }
-        } catch (Exception ex) {
-            Logger.getLogger(MaquinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(found);
         }
     }
-    
-    /**
-     * Prueba para consultar una maquina.
-     */
-    @Test
-    public void consultarMedidaUsuarioTest() 
-    {
-        try {
-            MaquinaEntity entity = data.get(0);
-            MaquinaEntity newEntity =  MaquinaPersistence.find(entity.getId());
-            
-            Assert.assertNotNull(newEntity);
-        } catch (Exception ex) {
-            Logger.getLogger(MaquinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-    }
-    
-    /**
-     * Prueba para eliminar una maquina.
-     */
     @Test
-    public void deleteMaquinaEntityTest() 
-    {
-        try {
-            MaquinaEntity entity = data.get(0);
-            MaquinaPersistence.delete(entity.getId());
-            MaquinaEntity deleted = em.find(MaquinaEntity.class, entity.getId());
-            Assert.assertNull(deleted);
-        } catch (Exception ex) {
-            Logger.getLogger(MaquinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void getMaquinaTest() {
+        MaquinaEntity entity = data.get(0);
+        MaquinaEntity newEntity = MaquinaPersistence.find(entity.getId());
+        assertNotNull(newEntity);
+        assertEqualsObject(newEntity, entity);
+    }
+
+    @Test
+    public void deleteMaquinaTest() {
+        MaquinaEntity entity = data.get(0);
+        MaquinaPersistence.delete(entity.getId());
+        MaquinaEntity deleted = em.find(MaquinaEntity.class, entity.getId());
+        assertNull(deleted);
+    }
+
+    @Test
+    public void updateMaquinaTest() {
+        MaquinaEntity entity = data.get(0);
+        MaquinaEntity newEntity = create();
+        newEntity.setId(entity.getId());
+        MaquinaPersistence.update(newEntity);
+        
+        MaquinaEntity resp = em.find(MaquinaEntity.class, entity.getId());
+        assertEqualsObject(newEntity, resp);
     }
     
-    /** 
-     * Prueba para actualizar una maquina.
-     */
-     @Test
-    public void updateMedidaUsuarioTest() {
-        try {
-            MaquinaEntity entity = data.get(0);
-            PodamFactory factory = new PodamFactoryImpl();
-            MaquinaEntity newEntity = factory.manufacturePojo(MaquinaEntity.class);
-            
-            newEntity.setId(entity.getId());
-            
-            MaquinaPersistence.update(newEntity);
-            
-            MaquinaEntity resp = em.find(MaquinaEntity.class, entity.getId());
-        } catch (Exception ex) {
-            Logger.getLogger(MaquinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-      
+    @Test
+    public void subEnititysTest(){
+        MaquinaEntity newEntity = create();
+     
+         List<TipoMedidaEntity> medidas=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            medidas.add(factory.manufacturePojo(TipoMedidaEntity.class));
+        
+        newEntity.setTipoMedida(medidas);
+        assertEquals(newEntity.getTipoMedida(), medidas);
+    }
+    
+    private void assertEqualsObject(MaquinaEntity a,MaquinaEntity b){
+        assertEquals(a.getInformacion(), b.getInformacion());
+    }
+    
+    private MaquinaEntity create(){
+        return factory.manufacturePojo(MaquinaEntity.class);
     }
 }
