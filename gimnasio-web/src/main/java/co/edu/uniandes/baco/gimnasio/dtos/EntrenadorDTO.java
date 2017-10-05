@@ -45,7 +45,7 @@ public class EntrenadorDTO  {
         this.id = entity.getId();
         this.fechaNacimiento = entity.getFechaNacimiento();
         this.documento = entity.getDocumento();
-        this.name = entity.getName();
+        this.name = entity.getNombre();
         
     }
     /**
@@ -57,7 +57,7 @@ public class EntrenadorDTO  {
         EntrenadorEntity ent = new EntrenadorEntity();
         ent.setId(this.id);
         ent.setDocumento(this.documento);
-        ent.setName(this.name);
+        ent.setNombre(this.name);
         ent.setFechaNacimiento(this.fechaNacimiento);
         return ent;
     }

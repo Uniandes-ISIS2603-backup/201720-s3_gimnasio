@@ -1,7 +1,13 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
+import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.EntrenadorPersistence;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -17,19 +23,15 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-/**
- *
- */
 @RunWith(Arquillian.class)
 public class EntrenadorPersistenceTest {
-
     @Inject
     private EntrenadorPersistence EntrenadorPersistence;
 
@@ -38,16 +40,11 @@ public class EntrenadorPersistenceTest {
 
     @Inject
     UserTransaction utx;
+    
+    private final PodamFactory factory = new PodamFactoryImpl();
 
     private final List<EntrenadorEntity> data = new ArrayList<>();
 
-    /**
-     *
-     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Employee, el descriptor de la
-     * base de datos y el archivo beans.xml para resolver la inyección de
-     * dependencias.
-     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -57,11 +54,6 @@ public class EntrenadorPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
 
-    /**
-     * Configuración inicial de la prueba.
-     *
-     *
-     */
     @Before
     @SuppressWarnings("CallToPrintStackTrace")
     public void setUp() {
@@ -81,62 +73,56 @@ public class EntrenadorPersistenceTest {
         }
     }
 
-    /**
-     * Limpia las tablas que están implicadas en la prueba.
-     *
-     *
-     */
     private void clearData() {
         em.createQuery("delete from EntrenadorEntity").executeUpdate();
     }
 
-    /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las
-     * pruebas.
-     *
-     *
-     */
     private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            EntrenadorEntity entity = factory.manufacturePojo(EntrenadorEntity.class);
-
+            EntrenadorEntity entity = create();
             em.persist(entity);
             data.add(entity);
         }
     }
 
-    /**
-     * Prueba para crear un Employee.
-     *
-     *
-     */
+    //--------------------------------------
+    // TEST
+    //--------------------------------------
+    
     @Test
-    public void createEntrenadorTest() throws Exception {
-
-        PodamFactory factory = new PodamFactoryImpl();
-        EntrenadorEntity newEntity = factory.manufacturePojo(EntrenadorEntity.class);
+    public void equalsHasTest() {
+        EntrenadorEntity newEntity = create();
+        assertTrue(newEntity.equals(newEntity));
+        assertEquals(newEntity.hashCode(), newEntity.hashCode());
+        
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
+        assertFalse(newEntity.equals(tipo));
+        tipo=null;
+        assertFalse(newEntity.equals(tipo));
+        
+        EntrenadorEntity newEntity2 = create();
+        newEntity2.setId(newEntity.getId());
+        assertTrue(newEntity.equals(newEntity2));
+        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
+        
+        newEntity2.setId(newEntity.getId()+1);
+        assertFalse(newEntity.equals(newEntity2));
+        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
+    }
+    
+    @Test
+    public void createEntrenadorTest() {
+        EntrenadorEntity newEntity = create();
         EntrenadorEntity result = EntrenadorPersistence.create(newEntity);
-
-        Assert.assertNotNull(result);
-
+        assertNotNull(result);
         EntrenadorEntity entity = em.find(EntrenadorEntity.class, result.getId());
-
-        Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getDocumento(), entity.getDocumento());
-        Assert.assertEquals(newEntity.getFechaNacimiento().getDate(), entity.getFechaNacimiento().getDate());
-
+        assertEqualsObject(newEntity, entity);
     }
 
-    /**
-     * Prueba para consultar la lista de Employees.
-     *
-     *
-     */
     @Test
-    public void geEntrenadorsTest() throws Exception {
+    public void geEntrenadorsTest() {
         List<EntrenadorEntity> list = EntrenadorPersistence.findAll();
-        Assert.assertEquals(data.size(), list.size());
+        assertEquals(data.size(), list.size());
         for (EntrenadorEntity ent : list) {
             boolean found = false;
             for (EntrenadorEntity entity : data) {
@@ -144,64 +130,56 @@ public class EntrenadorPersistenceTest {
                     found = true;
                 }
             }
-            Assert.assertTrue(found);
-
+            assertTrue(found);
         }
     }
 
-    /**
-     * Prueba para consultar un Employee.
-     *
-     *
-     */
     @Test
-    public void getEntrenadorTest() throws Exception {
-
+    public void getEntrenadorTest() {
         EntrenadorEntity entity = data.get(0);
         EntrenadorEntity newEntity = EntrenadorPersistence.find(entity.getId());
-
-        Assert.assertNotNull(newEntity);
-
-        Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getDocumento(), entity.getDocumento());
-        Assert.assertEquals(newEntity.getFechaNacimiento().getDate(), entity.getFechaNacimiento().getDate());
-
+        assertNotNull(newEntity);
+        assertEqualsObject(newEntity, entity);
     }
 
-    /**
-     * Prueba para eliminar un Employee.
-     *
-     *
-     */
     @Test
-    public void deleteEntrenadorTest() throws Exception {
-
+    public void deleteEntrenadorTest() {
         EntrenadorEntity entity = data.get(0);
         EntrenadorPersistence.delete(entity.getId());
         EntrenadorEntity deleted = em.find(EntrenadorEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        assertNull(deleted);
     }
 
-    /**
-     * Prueba para actualizar un Employee.
-     *
-     *
-     */
     @Test
-    public void updateEntrenadorTest() throws Exception {
+    public void updateEntrenadorTest() {
         EntrenadorEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        EntrenadorEntity newEntity = factory.manufacturePojo(EntrenadorEntity.class);
-
+        EntrenadorEntity newEntity = create();
         newEntity.setId(entity.getId());
-
         EntrenadorPersistence.update(newEntity);
-
+        
         EntrenadorEntity resp = em.find(EntrenadorEntity.class, entity.getId());
-        entity = resp;
-
-        Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getDocumento(), entity.getDocumento());
-        Assert.assertEquals(newEntity.getFechaNacimiento().getDate(), entity.getFechaNacimiento().getDate());
+        assertEqualsObject(newEntity, resp);
+    }
+    
+    @Test
+    public void subEnititysTest(){
+        EntrenadorEntity newEntity = create();
+         List<UsuarioEntity> usuarios=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            usuarios.add(factory.manufacturePojo(UsuarioEntity.class));
+        
+        newEntity.setUsuarios(usuarios);
+        assertEquals(newEntity.getUsuarios(), usuarios);
+    }
+    
+    private void assertEqualsObject(EntrenadorEntity a,EntrenadorEntity b){
+        DateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+        assertEquals(format.format(a.getFechaNacimiento()),format.format(b.getFechaNacimiento()));
+        assertEquals(a.getDocumento(),b.getDocumento());
+        assertEquals(a.getNombre(), b.getNombre());
+    }
+    
+    private EntrenadorEntity create(){
+        return factory.manufacturePojo(EntrenadorEntity.class);
     }
 }

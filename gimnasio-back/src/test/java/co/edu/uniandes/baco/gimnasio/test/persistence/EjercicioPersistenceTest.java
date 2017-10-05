@@ -95,6 +95,8 @@ public class EjercicioPersistenceTest {
         
         BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
         assertFalse(newEntity.equals(tipo));
+        tipo=null;
+        assertFalse(newEntity.equals(tipo));
         
         EjercicioEntity newEntity2 = create();
         newEntity2.setId(newEntity.getId());

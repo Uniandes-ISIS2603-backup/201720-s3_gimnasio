@@ -1,7 +1,6 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
-import java.util.logging.Logger;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;

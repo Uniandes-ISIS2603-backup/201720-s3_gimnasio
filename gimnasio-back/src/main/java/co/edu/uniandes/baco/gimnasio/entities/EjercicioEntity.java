@@ -64,6 +64,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<MaquinaEntity> maquinas = new ArrayList<>();
+    
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------

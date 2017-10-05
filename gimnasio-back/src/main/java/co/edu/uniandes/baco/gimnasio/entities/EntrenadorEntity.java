@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.persistence.Entity;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
+import java.util.Objects;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -16,11 +16,13 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class EntrenadorEntity extends BaseEntity implements Serializable {
-
+    //--------------------------------------------
+    // DATOS BASE
+    //--------------------------------------------
     /**
      * nombre de el entrenador
      */
-    private String name;
+    private String nombre;
 
     /**
      * fecha de nacimiento del entrenador
@@ -32,20 +34,27 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
      * documento del entrenador
      */
     private String documento;
-
+    
+    //--------------------------------------------
+    // DATOS ENTITY
+    //--------------------------------------------
+    /**
+     * 
+     */
     @PodamExclude
     @ManyToMany
     private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
-    //--------------------------------------------------------------------------
-    //METODOS
-    //--------------------------------------------------------------------------
+    
+     //--------------------------------------------
+    // GETS & SETS
+    //--------------------------------------------
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Date getFechaNacimiento() {
@@ -70,5 +79,26 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
 
     public void setUsuarios(List<UsuarioEntity> usuarios) {
         this.usuarios = usuarios;
+    }
+
+    //--------------------------------------------
+    // METODOS
+    //--------------------------------------------
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && this.getClass() != obj.getClass()) {
+            return false;
+        }
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.nombre);
+        hash = 53 * hash + Objects.hashCode(this.fechaNacimiento);
+        hash = 53 * hash + Objects.hashCode(this.documento);
+        hash = 53 * hash + Objects.hashCode(this.usuarios);
+        return hash;
     }
 }
