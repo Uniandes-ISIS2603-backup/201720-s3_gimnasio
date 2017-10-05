@@ -14,7 +14,6 @@ public class EjercicioDTO {
     //--------------------------------------------
     private Long id;
     private String tipo;
-    private String descripcion;
     private String explicacion;
     private Integer duracion;
     private Integer series;
@@ -31,7 +30,6 @@ public class EjercicioDTO {
     public EjercicioDTO(EjercicioEntity entity) {
         this.id = entity.getId();
         this.tipo = entity.getTipo().name();
-        this.descripcion = entity.getDescripcion();
         this.explicacion = entity.getExplicacion();
         this.duracion = entity.getDuracion();
         this.series = entity.getSeries();
@@ -44,7 +42,6 @@ public class EjercicioDTO {
      */
     public EjercicioEntity toEntity() throws BusinessLogicException {
         EjercicioEntity ent = new EjercicioEntity();
-        ent.setDescripcion(descripcion);
         ent.setExplicacion(explicacion);
         ent.setDuracion(duracion);
         ent.setSeries(series);
@@ -75,22 +72,6 @@ public class EjercicioDTO {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getExplicacion() {
-        return explicacion;
-    }
-
-    public void setExplicacion(String explicacion) {
-        this.explicacion = explicacion;
     }
 
     public Integer getDuracion() {

@@ -27,9 +27,9 @@ public class EjercicioDetailDTO extends EjercicioDTO {
 
     public EjercicioDetailDTO(EjercicioEntity entity) {
         super(entity);
-        if (entity.getObjetivos() != null) {
+        if (entity.getObjetivosEjercicio()!= null) {
             this.objetivos = new ArrayList<>();
-            for (ObjetivoEntity aux : entity.getObjetivos()) {
+            for (ObjetivoEntity aux : entity.getObjetivosEjercicio()) {
                 objetivos.add(new ObjetivoDTO(aux));
             }
         }
