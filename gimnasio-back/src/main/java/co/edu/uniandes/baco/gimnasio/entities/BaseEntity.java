@@ -1,6 +1,7 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,8 +55,12 @@ public abstract class BaseEntity implements Serializable {
      */
     @Override
     public int hashCode() {
-        if (this.getId() != null) {
-            return this.getId().hashCode();
+        if (getId() != null) {
+            Logger.getLogger(id+"");
+            Logger.getLogger(getId()+"");
+            Logger.getLogger(getId().hashCode()+"");
+            Logger.getLogger(id.hashCode()+"");
+            return getId().hashCode();
         }
         return super.hashCode();
     }
