@@ -180,12 +180,12 @@ public class EjercicioPersistenceTest {
     }
     
     private void assertEqualsObject(EjercicioEntity a,EjercicioEntity b){
-        assertEquals(a.getDescripcion(), b.getDescripcion());
         assertEquals(a.getExplicacion(), b.getExplicacion());
         assertEquals(a.getDuracion(), b.getDuracion());
         assertEquals(a.getSeries(), b.getSeries());
         assertEquals(a.getTamanioParticiones(), b.getTamanioParticiones());
         assertEquals(a.getRepeticionesPorParticion(), b.getRepeticionesPorParticion());
+        assertEquals(a.getTipo(), b.getTipo());
     }
     
     private EjercicioEntity create(){

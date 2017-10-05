@@ -23,10 +23,6 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     // DATOS BASE
     //--------------------------------------------
     /**
-     * atributo descripcion
-     */
-    private String descripcion;
-    /**
      * atributo explicacion
      */
     private String explicacion;
@@ -75,46 +71,6 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
-    public List<MaquinaEntity> getMaquinas() {
-        return maquinas;
-    }
-
-    public void setMaquinas(List<MaquinaEntity> maquinas) {
-        this.maquinas = maquinas;
-    }
-
-    public RutinaEntity getRutina() {
-        return rutina;
-    }
-
-    public void setRutina(RutinaEntity rutina) {
-        this.rutina = rutina;
-    }
-
-    public Tipo getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
-    }
-
-    public List<ObjetivoEntity> getObjetivos() {
-        return objetivos;
-    }
-
-    public void setObjetivos(List<ObjetivoEntity> objetivos) {
-        this.objetivos = objetivos;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getExplicacion() {
         return explicacion;
     }
@@ -154,6 +110,38 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     public void setRepeticionesPorParticion(Integer repeticionesPorParticion) {
         this.repeticionesPorParticion = repeticionesPorParticion;
     }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public RutinaEntity getRutina() {
+        return rutina;
+    }
+
+    public void setRutina(RutinaEntity rutina) {
+        this.rutina = rutina;
+    }
+
+    public List<ObjetivoEntity> getObjetivos() {
+        return objetivos;
+    }
+
+    public void setObjetivos(List<ObjetivoEntity> objetivos) {
+        this.objetivos = objetivos;
+    }
+
+    public List<MaquinaEntity> getMaquinas() {
+        return maquinas;
+    }
+
+    public void setMaquinas(List<MaquinaEntity> maquinas) {
+        this.maquinas = maquinas;
+    }
     //--------------------------------------------
     // METODOS
     //--------------------------------------------
@@ -168,7 +156,6 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.descripcion);
         hash = 97 * hash + Objects.hashCode(this.explicacion);
         hash = 97 * hash + Objects.hashCode(this.duracion);
         hash = 97 * hash + Objects.hashCode(this.series);
