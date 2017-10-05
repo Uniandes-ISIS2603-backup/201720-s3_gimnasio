@@ -13,10 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
-/**
- *
- * @author jc.bojaca
- */
 @Entity
 public class EjercicioEntity extends BaseEntity implements Serializable {
     //--------------------------------------------

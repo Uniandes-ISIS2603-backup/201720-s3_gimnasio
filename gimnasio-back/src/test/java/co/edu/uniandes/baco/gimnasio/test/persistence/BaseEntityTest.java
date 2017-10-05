@@ -25,8 +25,14 @@ public class BaseEntityTest {
         BaseEntity tipo=null;
         assertFalse(newEntity.equals(tipo));
          
-        String newEntity2="prueba de objetos de diferente tipo";
+        EjercicioEntity newEntity2= factory.manufacturePojo(EjercicioEntity.class);
         assertFalse(newEntity.equals(newEntity2));
+        
+        Long id=new Long(1);
+        newEntity2.setId(id);
+        assertEquals(newEntity2.hashCode(),id.hashCode());
+        newEntity2.setId(null);
+        assertEquals(newEntity2.hashCode(),((Object)newEntity2).hashCode());
         
         BaseEntity newEntity3=factory.manufacturePojo(EjercicioEntity.class);
         newEntity3.setId(null);
