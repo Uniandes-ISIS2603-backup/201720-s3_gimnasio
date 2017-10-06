@@ -92,7 +92,7 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = super.hashCode();
         hash = 47 * hash + Objects.hashCode(this.tipo);
         hash = 47 * hash + Objects.hashCode(this.descripcion);
         return hash;

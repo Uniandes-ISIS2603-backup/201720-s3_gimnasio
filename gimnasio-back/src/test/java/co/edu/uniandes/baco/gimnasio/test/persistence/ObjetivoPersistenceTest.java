@@ -1,7 +1,12 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
+import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
+import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,20 +30,18 @@ import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-/**
- *
- */
 @RunWith(Arquillian.class)
 public class ObjetivoPersistenceTest {
-
     @Inject
-    private ObjetivoPersistence persistence;
+    private ObjetivoPersistence ObjetivoPersistence;
 
     @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
+    
+    private final PodamFactory factory = new PodamFactoryImpl();
 
     private final List<ObjetivoEntity> data = new ArrayList<>();
 
@@ -75,55 +78,49 @@ public class ObjetivoPersistenceTest {
     }
 
     private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            ObjetivoEntity entity = factory.manufacturePojo(ObjetivoEntity.class);
-
+            ObjetivoEntity entity = create();
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+
     //--------------------------------------
     // TEST
     //--------------------------------------
+    
     @Test
     public void equalsHasTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        ObjetivoEntity newEntity = factory.manufacturePojo(ObjetivoEntity.class);
-        ObjetivoEntity newEntity2 = factory.manufacturePojo(ObjetivoEntity.class);
-        TipoMedidaEntity tipo=factory.manufacturePojo(TipoMedidaEntity.class);
-        assertFalse(newEntity.equals(tipo));
+        ObjetivoEntity newEntity = create();
         assertTrue(newEntity.equals(newEntity));
-        assertEquals(newEntity.equals(newEntity2), newEntity.getId().equals(newEntity2.getId()));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
-        assertEquals((newEntity.hashCode() == newEntity2.hashCode()), newEntity.getId().equals(newEntity2.getId()));
+        
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
+        assertFalse(newEntity.equals(tipo));
+        tipo=null;
+        assertFalse(newEntity.equals(tipo));
+        
+        ObjetivoEntity newEntity2 = create();
+        newEntity2.setId(newEntity.getId());
+        assertTrue(newEntity.equals(newEntity2));
+        
+        newEntity2.setId(newEntity.getId()+1);
+        assertFalse(newEntity.equals(newEntity2));
+        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
     }
     
     @Test
-    public void findByTipo(){
-        ObjetivoEntity entity = data.get(0);
-        ObjetivoEntity newEntity = persistence.findByTipo(entity.getTipo());
-        assertNull(persistence.findByTipo(""));
-        assertNotNull(newEntity);
-        assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
-        assertEquals(newEntity.getTipo(), entity.getTipo());
-    }
-
-    @Test
     public void createObjetivoTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        ObjetivoEntity newEntity = factory.manufacturePojo(ObjetivoEntity.class);
-        ObjetivoEntity result = persistence.create(newEntity);
+        ObjetivoEntity newEntity = create();
+        ObjetivoEntity result = ObjetivoPersistence.create(newEntity);
         assertNotNull(result);
         ObjetivoEntity entity = em.find(ObjetivoEntity.class, result.getId());
-        assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
-        assertEquals(newEntity.getTipo(), entity.getTipo());
+        assertEqualsObject(newEntity, entity);
     }
 
     @Test
     public void geObjetivosTest() {
-        List<ObjetivoEntity> list = persistence.findAll();
+        List<ObjetivoEntity> list = ObjetivoPersistence.findAll();
         assertEquals(data.size(), list.size());
         for (ObjetivoEntity ent : list) {
             boolean found = false;
@@ -139,16 +136,15 @@ public class ObjetivoPersistenceTest {
     @Test
     public void getObjetivoTest() {
         ObjetivoEntity entity = data.get(0);
-        ObjetivoEntity newEntity = persistence.find(entity.getId());
+        ObjetivoEntity newEntity = ObjetivoPersistence.find(entity.getId());
         assertNotNull(newEntity);
-        assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
-        assertEquals(newEntity.getTipo(), entity.getTipo());
+        assertEqualsObject(newEntity, entity);
     }
 
     @Test
     public void deleteObjetivoTest() {
         ObjetivoEntity entity = data.get(0);
-        persistence.delete(entity.getId());
+        ObjetivoPersistence.delete(entity.getId());
         ObjetivoEntity deleted = em.find(ObjetivoEntity.class, entity.getId());
         assertNull(deleted);
     }
@@ -156,12 +152,36 @@ public class ObjetivoPersistenceTest {
     @Test
     public void updateObjetivoTest() {
         ObjetivoEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        ObjetivoEntity newEntity = factory.manufacturePojo(ObjetivoEntity.class);
+        ObjetivoEntity newEntity = create();
         newEntity.setId(entity.getId());
-        persistence.update(newEntity);
+        ObjetivoPersistence.update(newEntity);
+        
         ObjetivoEntity resp = em.find(ObjetivoEntity.class, entity.getId());
-        assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
-        assertEquals(newEntity.getTipo(), resp.getTipo());
+        assertEqualsObject(newEntity, resp);
+    }
+    
+    @Test
+    public void subEnititysTest(){
+        ObjetivoEntity newEntity = create();
+        List<UsuarioEntity> usuarios=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            usuarios.add(factory.manufacturePojo(UsuarioEntity.class));
+        List<AtributoDeCalidadEntity> atributos=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            atributos.add(factory.manufacturePojo(AtributoDeCalidadEntity.class));
+        
+        newEntity.setUsuarios(usuarios);
+        newEntity.setAtributos(atributos);
+        assertEquals(newEntity.getUsuarios(),usuarios);
+        assertEquals(newEntity.getAtributos(), atributos);
+    }
+    
+    private void assertEqualsObject(ObjetivoEntity a,ObjetivoEntity b){
+        assertEquals(a.getDescripcion(),b.getDescripcion());
+        assertEquals(a.getTipo(),b.getTipo());
+    }
+    
+    private ObjetivoEntity create(){
+        return factory.manufacturePojo(ObjetivoEntity.class);
     }
 }
