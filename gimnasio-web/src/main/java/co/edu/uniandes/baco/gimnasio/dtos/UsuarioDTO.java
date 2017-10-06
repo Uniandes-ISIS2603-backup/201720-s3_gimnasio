@@ -36,7 +36,7 @@ public class UsuarioDTO {
         {
             id = u.getId();
             nombre = u.getNombre();
-            genero = u.getGenero();
+            genero = u.isGenero();
             fechaDeNacimiento = u.getFechaDeNacimiento();
         }
     }

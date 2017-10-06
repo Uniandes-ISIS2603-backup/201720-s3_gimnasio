@@ -1,16 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
+import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.UsuarioPersistence;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,37 +26,28 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-/**
- *
- * @author jp.romero12
- */
 @RunWith(Arquillian.class)
 public class UsuarioPersistenceTest {
     @Inject
-    private UsuarioPersistence usuarioPersistence;
-    
+    private UsuarioPersistence UsuarioPersistence;
+
     @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
-    
+
     @Inject
     UserTransaction utx;
     
+    private final PodamFactory factory = new PodamFactoryImpl();
+
     private final List<UsuarioEntity> data = new ArrayList<>();
-    
-    /**
-     *
-     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Employee, el descriptor de la
-     * base de datos y el archivo beans.xml para resolver la inyección de
-     * dependencias.
-     */
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -63,11 +56,7 @@ public class UsuarioPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    /**
-     * Configuración inicial de la prueba.
-     *
-     *
-     */
+
     @Before
     @SuppressWarnings("CallToPrintStackTrace")
     public void setUp() {
@@ -87,134 +76,127 @@ public class UsuarioPersistenceTest {
         }
     }
 
-    /**
-     * Limpia las tablas que están implicadas en la prueba.
-     *
-     *
-     */
     private void clearData() {
         em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
 
-    /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las
-     * pruebas.
-     *
-     *
-     */
     private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
-
+            UsuarioEntity entity = create();
             em.persist(entity);
             data.add(entity);
         }
     }
 
-    /**
-     * Prueba para crear un Employee.
-     *
-     *
-     */
+    //--------------------------------------
+    // TEST
+    //--------------------------------------
+    
     @Test
-    public void createUsuarioTest() {
-        try {
-            PodamFactory factory = new PodamFactoryImpl();
-            UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
-            UsuarioEntity result = usuarioPersistence.create(newEntity);
-            
-            Assert.assertNotNull(result);
-            
-            UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
-            
-            Assert.assertEquals(newEntity.getFechaDeNacimiento().getDate(), entity.getFechaDeNacimiento().getDate());
-        } catch (Exception ex) {
-            Logger.getLogger(UsuarioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Prueba para consultar la lista de Employees.
-     *
-     *
-     */
-    @Test
-    public void geUsuarioTest() {
-        try {
-            List<UsuarioEntity> list = usuarioPersistence.findAll();
-            Assert.assertEquals(data.size(), list.size());
-            for (UsuarioEntity ent : list) {
-                boolean found = false;
-                for (UsuarioEntity entity : data) {
-                    if (ent.getId().equals(entity.getId())) {
-                        found = true;
-                    }
-                }
-                Assert.assertTrue(found);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(UsuarioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Prueba para consultar un Employee.
-     *
-     *
-     */
-    @Test
-    public void getUsuarioTest() {
-        try {
-            UsuarioEntity entity = data.get(0);
-            UsuarioEntity newEntity = usuarioPersistence.find(entity.getId());
-            
-            Assert.assertNotNull(newEntity);
-            Assert.assertEquals(newEntity.getFechaDeNacimiento().getDate(), entity.getFechaDeNacimiento().getDate());
-        } catch (Exception ex) {
-            Logger.getLogger(UsuarioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Prueba para eliminar un Employee.
-     *
-     *
-     */
-    @Test
-    public void deleteUsuarioTest() {
-        try {
-            UsuarioEntity entity = data.get(0);
-            usuarioPersistence.delete(entity.getId());
-            UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
-            Assert.assertNull(deleted);
-        } catch (Exception ex) {
-            Logger.getLogger(UsuarioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Prueba para actualizar un Employee.
-     *
-     *
-     */
-    @Test
-    public void updateRutinaTest() {
-        try {
-            UsuarioEntity entity = data.get(0);
-            PodamFactory factory = new PodamFactoryImpl();
-            UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
-            
-            newEntity.setId(entity.getId());
-            
-            usuarioPersistence.update(newEntity);
-            
-            UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
-            
-            Assert.assertEquals(newEntity.getFechaDeNacimiento().getDate(), resp.getFechaDeNacimiento().getDate());
-        } catch (Exception ex) {
-            Logger.getLogger(UsuarioPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void equalsHasTest() {
+        UsuarioEntity newEntity = create();
+        assertTrue(newEntity.equals(newEntity));
+        assertEquals(newEntity.hashCode(), newEntity.hashCode());
+        
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(UsuarioEntity.class);
+        assertFalse(newEntity.equals(tipo));
+        tipo=null;
+        assertFalse(newEntity.equals(tipo));
+        
+        UsuarioEntity newEntity2 = create();
+        newEntity2.setId(newEntity.getId());
+        assertTrue(newEntity.equals(newEntity2));
+        
+        newEntity2.setId(newEntity.getId()+1);
+        assertFalse(newEntity.equals(newEntity2));
+        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
     }
     
+    @Test
+    public void createUsuarioTest() {
+        UsuarioEntity newEntity = create();
+        UsuarioEntity result = UsuarioPersistence.create(newEntity);
+        assertNotNull(result);
+        UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
+        assertEqualsObject(newEntity, entity);
+    }
+
+    @Test
+    public void geUsuariosTest() {
+        List<UsuarioEntity> list = UsuarioPersistence.findAll();
+        assertEquals(data.size(), list.size());
+        for (UsuarioEntity ent : list) {
+            boolean found = false;
+            for (UsuarioEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            assertTrue(found);
+        }
+    }
+
+    @Test
+    public void getUsuarioTest() {
+        UsuarioEntity entity = data.get(0);
+        UsuarioEntity newEntity = UsuarioPersistence.find(entity.getId());
+        assertNotNull(newEntity);
+        assertEqualsObject(newEntity, entity);
+    }
+
+    @Test
+    public void deleteUsuarioTest() {
+        UsuarioEntity entity = data.get(0);
+        UsuarioPersistence.delete(entity.getId());
+        UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
+        assertNull(deleted);
+    }
+
+    @Test
+    public void updateUsuarioTest() {
+        UsuarioEntity entity = data.get(0);
+        UsuarioEntity newEntity = create();
+        newEntity.setId(entity.getId());
+        UsuarioPersistence.update(newEntity);
+        
+        UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
+        assertEqualsObject(newEntity, resp);
+    }
+    
+    @Test
+    public void subEnititysTest(){
+        UsuarioEntity newEntity = create();
+        List<EntrenadorEntity> entrenadores=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            entrenadores.add(factory.manufacturePojo(EntrenadorEntity.class));
+        List<ObjetivoEntity> objetivos=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            objetivos.add(factory.manufacturePojo(ObjetivoEntity.class));
+        List<RutinaEntity> rutinas=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            rutinas.add(factory.manufacturePojo(RutinaEntity.class));
+        List<EstadoEntity> estados=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            estados.add(factory.manufacturePojo(EstadoEntity.class));
+        
+        newEntity.setEntrenadores(entrenadores);
+        newEntity.setObjetivos(objetivos);
+        newEntity.setRutinas(rutinas);
+        newEntity.setEstados(estados);
+        assertEquals(newEntity.getEntrenadores(), entrenadores);
+        assertEquals(newEntity.getObjetivos(), objetivos);
+        assertEquals(newEntity.getRutinas(), rutinas);
+        assertEquals(newEntity.getEstados(), estados);
+    }
+    
+    private void assertEqualsObject(UsuarioEntity a,UsuarioEntity b){
+        DateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+        assertEquals(format.format(a.getFechaDeNacimiento()),format.format(b.getFechaDeNacimiento()));
+        assertEquals(a.getNombre(),b.getNombre());
+        assertEquals(a.isGenero(),b.isGenero());
+    }
+    
+    private UsuarioEntity create(){
+        return factory.manufacturePojo(UsuarioEntity.class);
+    }
 }

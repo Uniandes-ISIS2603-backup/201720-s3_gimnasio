@@ -91,7 +91,6 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable {
         int hash = super.hashCode();
         hash = 47 * hash + Objects.hashCode(this.tipoMedida);
         hash = 47 * hash + Objects.hashCode(this.unidad);
-        hash = 47 * hash + (this.automatico ? 1 : 0);
         return hash;
     }
 }
