@@ -73,8 +73,8 @@ public class EstadoLogic extends BaseLogic<EstadoEntity>{
      * @throws BusinessLogicException si el usuario no existe 
      */
     public EstadoEntity create(long idUsuario,EstadoEntity entity) throws BusinessLogicException {
-        UsuarioEntity Usuario=logic.find(idUsuario);
-        entity.setUsuario(Usuario);
+        UsuarioEntity usuario=logic.find(idUsuario);
+        entity.setUsuario(usuario);
         return create(entity);
     }
     /**

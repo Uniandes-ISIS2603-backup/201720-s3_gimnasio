@@ -58,8 +58,8 @@ public class MedidaLogic extends BaseLogic<MedidaEntity> {
      * @return lista de medidas del estado
      * @throws BusinessLogicException si el estado no existe
      */
-    public List<MedidaEntity> findAll(Long Idestado) throws BusinessLogicException {
-        return elogic.find(Idestado).getMedidas();
+    public List<MedidaEntity> findAll(Long idestado) throws BusinessLogicException {
+        return elogic.find(idestado).getMedidas();
     }
     /**
      * metodo que encuentra una medida en especifico
@@ -71,7 +71,7 @@ public class MedidaLogic extends BaseLogic<MedidaEntity> {
     public MedidaEntity find(Long idEstado, Long id) throws BusinessLogicException {
         MedidaEntity ent = new MedidaEntity();
         ent.setId(id);
-        List<MedidaEntity> list = elogic.find(id).getMedidas();
+        List<MedidaEntity> list = elogic.find(idEstado).getMedidas();
         int ind = list.indexOf(ent);
         if (ind < 0) {
             throw new NoExisteException(id);

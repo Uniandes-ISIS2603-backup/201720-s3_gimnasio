@@ -7,8 +7,6 @@
  
  import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
  import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import co.edu.uniandes.baco.gimnasio.persistence.UsuarioPersistence;
-import java.util.List;
  import javax.ejb.Stateless;
  
  /**

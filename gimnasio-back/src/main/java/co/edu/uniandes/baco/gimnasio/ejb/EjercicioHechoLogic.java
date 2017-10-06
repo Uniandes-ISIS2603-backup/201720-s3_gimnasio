@@ -6,8 +6,6 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
-import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import co.edu.uniandes.baco.gimnasio.persistence.EjercicioHechoPersistence;
 import javax.ejb.Stateless;
 
 /**

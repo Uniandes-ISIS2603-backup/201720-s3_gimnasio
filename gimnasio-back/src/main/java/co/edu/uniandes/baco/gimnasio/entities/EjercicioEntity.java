@@ -69,12 +69,12 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     // GETS & SETS
     //--------------------------------------------
 
-    public String getExplicacion() {
-        return explicacion;
+    public Integer getSeries() {
+        return series;
     }
 
-    public void setExplicacion(String explicacion) {
-        this.explicacion = explicacion;
+    public void setSeries(Integer series) {
+        this.series = series;
     }
 
     public Integer getDuracion() {
@@ -85,20 +85,20 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
         this.duracion = duracion;
     }
 
-    public Integer getSeries() {
-        return series;
-    }
-
-    public void setSeries(Integer series) {
-        this.series = series;
-    }
-
     public Integer getTamanioParticiones() {
         return tamanioParticiones;
     }
 
     public void setTamanioParticiones(Integer tamanioParticiones) {
         this.tamanioParticiones = tamanioParticiones;
+    }
+    
+     public String getExplicacion() {
+        return explicacion;
+    }
+
+    public void setExplicacion(String explicacion) {
+        this.explicacion = explicacion;
     }
 
     public Integer getRepeticionesPorParticion() {

@@ -1,12 +1,10 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
-import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.UsuarioPersistence;
 import java.text.DateFormat;
@@ -98,7 +96,7 @@ public class UsuarioPersistenceTest {
         assertTrue(newEntity.equals(newEntity));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
         
-        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(UsuarioEntity.class);
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
         assertFalse(newEntity.equals(tipo));
         tipo=null;
         assertFalse(newEntity.equals(tipo));

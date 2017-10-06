@@ -74,12 +74,12 @@ public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
     }
     /**
      * metodo que elimina un usuario de un entrenador
-     * @param EntrenadorId id del entrenador
+     * @param entrenadorId id del entrenador
      * @param usuarioId id del usuario
      * @throws BusinessLogicException si el entrenador o el usuario no existen
      */
-    public void removeUsuario(Long EntrenadorId, Long usuarioId) throws BusinessLogicException  {
-        EntrenadorEntity e = find(EntrenadorId);
+    public void removeUsuario(Long entrenadorId, Long usuarioId) throws BusinessLogicException  {
+        EntrenadorEntity e = find(entrenadorId);
         UsuarioEntity us = new UsuarioEntity();
         us.setId(usuarioId);
         e.getUsuarios().remove(us);

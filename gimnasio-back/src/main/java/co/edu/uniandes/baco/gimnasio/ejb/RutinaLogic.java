@@ -72,8 +72,8 @@ public class RutinaLogic extends BaseLogic<RutinaEntity>{
      * @throws BusinessLogicException 
      */
     public RutinaEntity create(long idUsuario,RutinaEntity entity) throws BusinessLogicException {
-        UsuarioEntity Usuario=logic.find(idUsuario);
-        entity.setUsuario(Usuario);
+        UsuarioEntity usuario=logic.find(idUsuario);
+        entity.setUsuario(usuario);
         return create(entity);
     }
     /**
