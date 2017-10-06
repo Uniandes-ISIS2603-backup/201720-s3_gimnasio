@@ -45,7 +45,7 @@ public class TipoMedidaDTO {
     public TipoMedidaDTO(TipoMedidaEntity foo) {      
         if(foo!=null){
             id = foo.getId();
-            descripcion = foo.getDescripcion();
+            descripcion = foo.getTipoMedida();
             unidad = foo.getUnidad();
             automatico=foo.isAutomatico();
         }
@@ -56,7 +56,7 @@ public class TipoMedidaDTO {
      */
     public TipoMedidaEntity toEntity() {
         TipoMedidaEntity entity = new TipoMedidaEntity();
-        entity.setDescripcion(this.descripcion);
+        entity.setTipoMedida(this.descripcion);
         entity.setUnidad(this.unidad);
         entity.setAutomatico(this.isAutomatico());
         return entity;

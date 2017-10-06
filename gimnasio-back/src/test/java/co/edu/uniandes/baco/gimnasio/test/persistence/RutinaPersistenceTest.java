@@ -1,6 +1,5 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
-import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;

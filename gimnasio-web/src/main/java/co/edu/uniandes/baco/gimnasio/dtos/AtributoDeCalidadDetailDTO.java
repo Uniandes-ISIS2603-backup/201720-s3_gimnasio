@@ -31,7 +31,7 @@ public class AtributoDeCalidadDetailDTO extends AtributoDeCalidadDTO{
      public AtributoDeCalidadDetailDTO(AtributoDeCalidadEntity entity) {
         super(entity);
         if (entity.getTipoMedida() != null) {
-            this.descripcion = entity.getTipoMedida().getDescripcion();
+            this.descripcion = entity.getTipoMedida().getTipoMedida();
             this.unidad = entity.getTipoMedida().getUnidad();
         }
     }

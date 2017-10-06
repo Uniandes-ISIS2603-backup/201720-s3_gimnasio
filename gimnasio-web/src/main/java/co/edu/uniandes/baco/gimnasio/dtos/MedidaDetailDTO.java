@@ -24,7 +24,7 @@ public class MedidaDetailDTO extends MedidaDTO {
     public MedidaDetailDTO(MedidaEntity entity) {
         super(entity);
         if (entity.getParte() != null) {
-            this.descripcion = entity.getParte().getDescripcion();
+            this.descripcion = entity.getParte().getTipoMedida();
             this.unidad = entity.getParte().getUnidad();
         }
     }
