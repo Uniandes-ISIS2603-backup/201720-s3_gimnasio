@@ -25,18 +25,30 @@ public class ExtrasTest {
         BaseEntity newEntity = (BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
         assertTrue(newEntity.equals(newEntity));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
-         assertFalse(newEntity.equals("hola esto es una prueba"));
+        
+        Object object=(Object)factory.manufacturePojo(ObjetivoEntity.class);
+         assertFalse(newEntity.equals(object));
+        assertFalse(newEntity.equals("hola esto es una prueba"));
         
         BaseEntity newEntity2= (BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
         newEntity2.setId(null);
         assertFalse(newEntity.equals(newEntity2));
+        assertFalse(newEntity2.equals(newEntity));
         assertEquals(newEntity2.hashCode(), newEntity2.hashCode());
+        
      }
      
      @Test
      public void pruebaExepcion(){
          String mensaje=factory.manufacturePojo(String.class);
          Throwable cause=factory.manufacturePojo(Throwable.class);
+         
+         try{
+             throw new BusinessLogicException();
+         }catch(BusinessLogicException e){
+             assertTrue(e instanceof Exception);
+         }
+         
          try{
              throw new BusinessLogicException(mensaje);
          }catch(BusinessLogicException e){
