@@ -26,9 +26,9 @@ public class ExtrasTest {
         assertTrue(newEntity.equals(newEntity));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
         
-        ObjetivoEntity object=factory.manufacturePojo(ObjetivoEntity.class);
+        String mensaje=factory.manufacturePojo(String.class);
+        BusinessLogicException object=new BusinessLogicException(mensaje);
         assertFalse(newEntity.equals(object));
-        assertFalse(newEntity.equals("hola esto es una prueba"));
         
         BaseEntity newEntity2= (BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
         newEntity2.setId(null);

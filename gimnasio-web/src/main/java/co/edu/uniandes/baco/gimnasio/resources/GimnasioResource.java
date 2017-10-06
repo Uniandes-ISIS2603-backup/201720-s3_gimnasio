@@ -1,33 +1,9 @@
-/*
-MIT License
-
-Copyright (c) 2017 Universidad de los Andes - ISIS2603
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
- */
 package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.GimnasioDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.GimnasioLogic;
 import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -65,7 +41,7 @@ public class GimnasioResource {
     /**
      * POST http://localhost:8080/gimnasio-web/api/gimnasios
      *
-     * @param Gimnasio correponde a la representación java del objeto json
+     * @param gimnasio correponde a la representación java del objeto json
      * enviado en el llamado.
      * @return Devuelve el objeto json de entrada que contiene el id creado por
      * la base de datos y el tipo del objeto java. Ejemplo: { "type":
@@ -73,11 +49,11 @@ public class GimnasioResource {
      * @throws BusinessLogicException
      */
     @POST
-    public GimnasioDTO createGimnasio(GimnasioDTO Gimnasio) throws BusinessLogicException {
+    public GimnasioDTO createGimnasio(GimnasioDTO gimnasio) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
-        GimnasioEntity GimnasioEntity = Gimnasio.toEntity();
+        GimnasioEntity gimnasioEntity = gimnasio.toEntity();
         // Invoca la lógica para crear la Gimnasio nueva
-        GimnasioEntity nuevoGimnasio = gimnasioLogic.create(GimnasioEntity);
+        GimnasioEntity nuevoGimnasio = gimnasioLogic.create(gimnasioEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new GimnasioDTO(nuevoGimnasio);
     }
@@ -138,28 +114,9 @@ public class GimnasioResource {
                      throw new BusinessLogicException("no se pudo eliminaar ya que no existe");
          }
     }
-
-    /**
-     *
-     * lista de entidades a DTO.
-     *
-     * Este método convierte una lista de objetos GimnasioEntity a una lista de
-     * objetos GimnasioDetailDTO (json)
-     *
-     * @param entityList corresponde a la lista de Gimnasioes de tipo Entity
-     * que vamos a convertir a DTO.
-     * @return la lista de Gimnasioes en forma DTO (json)
-     */
-    private List<GimnasioDTO> listEntity2DetailDTO(List<GimnasioEntity> entityList) {
-        List<GimnasioDTO> list = new ArrayList<>();
-        for (GimnasioEntity entity : entityList) {
-            list.add(new GimnasioDTO(entity));
-        }
-        return list;
-    }
     
     @Path("{id: \\d+}/entrenadores")
-    public Class <EntrenadorResource> getEntrenador (@PathParam("EntrenadorId") Long EntID) throws BusinessLogicException{
+    public Class <EntrenadorResource> getEntrenador (@PathParam("EntrenadorId") Long entID) throws BusinessLogicException{
         return EntrenadorResource.class;
     }
 }

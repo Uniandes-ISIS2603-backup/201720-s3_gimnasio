@@ -49,7 +49,7 @@ public class MedicionMaquinaDTO
         this.medicionMaquina = medicionMaquina;
     }
     
-    public final static List<MedicionMaquinaEntity> listEntity(List<MedicionMaquinaDTO> dtos)
+    public static final  List<MedicionMaquinaEntity> listEntity(List<MedicionMaquinaDTO> dtos)
     {
         List<MedicionMaquinaEntity> resp = new ArrayList<>();
         
@@ -58,7 +58,7 @@ public class MedicionMaquinaDTO
         return resp;
     }
     
-    public final static List<MedicionMaquinaDTO> listDTO(List<MedicionMaquinaEntity> entity)
+    public static final  List<MedicionMaquinaDTO> listDTO(List<MedicionMaquinaEntity> entity)
     {
         List<MedicionMaquinaDTO> resp =new ArrayList<>();
         for(MedicionMaquinaEntity i:entity)
