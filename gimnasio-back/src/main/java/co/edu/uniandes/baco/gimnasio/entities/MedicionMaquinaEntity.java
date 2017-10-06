@@ -14,8 +14,8 @@ import javax.persistence.Entity;
  * @author ce.robles
  */
 @Entity
-public class MedicionMaquinaEntity extends BaseEntity implements Serializable
-{    //--------------------------------------------
+public class MedicionMaquinaEntity extends BaseEntity implements Serializable{
+    //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
     private Double medicionManquina;
@@ -33,6 +33,7 @@ public class MedicionMaquinaEntity extends BaseEntity implements Serializable
     {
         this.medicionManquina = medicionManquina;
     }
+    
     //--------------------------------------------
     // METODOS
     //--------------------------------------------

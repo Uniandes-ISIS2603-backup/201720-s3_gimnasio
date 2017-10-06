@@ -62,7 +62,6 @@ public abstract class BasePersistence<T extends BaseEntity> implements CRUD<T> {
     @Override
     public List<T> findAll(){
         logger.log(Level.INFO, "Consultando todas los {0}s", entityClass.getSimpleName());
-        @SuppressWarnings("JPQLValidation")
         TypedQuery query = manager.createQuery("select u from "+entityClass.getName()+" u", entityClass);
         return query.getResultList();
     }

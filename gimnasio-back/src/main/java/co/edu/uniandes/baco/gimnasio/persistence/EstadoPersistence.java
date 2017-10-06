@@ -6,7 +6,6 @@
 package co.edu.uniandes.baco.gimnasio.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
-import java.util.Date;
 import javax.ejb.Stateless;
 /**
  *

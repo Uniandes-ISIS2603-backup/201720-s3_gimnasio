@@ -1,16 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
+import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.MedidaPersistence;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,31 +24,25 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-/**
- *
- * @author js.palacios437
- */
 @RunWith(Arquillian.class)
 public class MedidaPersistenceTest {
-
     @Inject
-    private MedidaPersistence medidaPersitence;
+    private MedidaPersistence MedidaPersistence;
 
     @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
+    
+    private final PodamFactory factory = new PodamFactoryImpl();
 
     private final List<MedidaEntity> data = new ArrayList<>();
 
@@ -85,96 +79,105 @@ public class MedidaPersistenceTest {
     }
 
     private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            MedidaEntity entity = factory.manufacturePojo(MedidaEntity.class);
-
+            MedidaEntity entity = create();
             em.persist(entity);
             data.add(entity);
         }
     }
 
-    public MedidaPersistenceTest() {
+    //--------------------------------------
+    // TEST
+    //--------------------------------------
+    
+    @Test
+    public void equalsHasTest() {
+        MedidaEntity newEntity = create();
+        assertTrue(newEntity.equals(newEntity));
+        assertEquals(newEntity.hashCode(), newEntity.hashCode());
+        
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
+        assertFalse(newEntity.equals(tipo));
+        tipo=null;
+        assertFalse(newEntity.equals(tipo));
+        
+        MedidaEntity newEntity2 = create();
+        newEntity2.setId(newEntity.getId());
+        assertTrue(newEntity.equals(newEntity2));
+        
+        newEntity2.setId(newEntity.getId()+1);
+        assertFalse(newEntity.equals(newEntity2));
+        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
     }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of crete method, of class MedidaPersistence.
-     */
+    
     @Test
     public void createMedidaTest() {
-        try {
-            PodamFactory factory = new PodamFactoryImpl();
-            MedidaEntity newEntity = factory.manufacturePojo(MedidaEntity.class);
-            MedidaEntity result = medidaPersitence.create(newEntity);
+        MedidaEntity newEntity = create();
+        MedidaEntity result = MedidaPersistence.create(newEntity);
+        assertNotNull(result);
+        MedidaEntity entity = em.find(MedidaEntity.class, result.getId());
+        assertEqualsObject(newEntity, entity);
+    }
 
-            Assert.assertNotNull(result);
-
-            MedidaEntity entity = em.find(MedidaEntity.class, result.getId());
-
-            Assert.assertEquals(newEntity.getMedida(), entity.getMedida());
-        } catch (Exception ex) {
-            Logger.getLogger(MedidaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+    @Test
+    public void geMedidasTest() {
+        List<MedidaEntity> list = MedidaPersistence.findAll();
+        assertEquals(data.size(), list.size());
+        for (MedidaEntity ent : list) {
+            boolean found = false;
+            for (MedidaEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            assertTrue(found);
         }
     }
 
-    /**
-     * get estado
-     */
     @Test
-    public void getMedida() {
+    public void getMedidaTest() {
         MedidaEntity entity = data.get(0);
-        MedidaEntity newEntity = medidaPersitence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getId(), newEntity.getId());
+        MedidaEntity newEntity = MedidaPersistence.find(entity.getId());
+        assertNotNull(newEntity);
+        assertEqualsObject(newEntity, entity);
     }
 
-    /**
-     * actualiza un Medida
-     */
     @Test
-    public void updateMedida() {
-        try {
-            MedidaEntity entity = data.get(0);
-            PodamFactory factory = new PodamFactoryImpl();
-            MedidaEntity newEntity = factory.manufacturePojo(MedidaEntity.class);
-
-            newEntity.setId(entity.getId());
-
-            medidaPersitence.update(newEntity);
-
-            MedidaEntity resp = em.find(MedidaEntity.class, entity.getId());
-
-            Assert.assertEquals(newEntity.getId(), resp.getId());
-        } catch (Exception ex) {
-            Logger.getLogger(MedidaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void deleteMedidaTest() {
+        MedidaEntity entity = data.get(0);
+        MedidaPersistence.delete(entity.getId());
+        MedidaEntity deleted = em.find(MedidaEntity.class, entity.getId());
+        assertNull(deleted);
     }
 
-    /**
-     * borra una rutina
-     */
     @Test
-    public void deleteMedida() {
-        try {
-            MedidaEntity entity = data.get(0);
-            medidaPersitence.delete(entity.getId());
-            MedidaEntity deleted = em.find(MedidaEntity.class, entity.getId());
-            Assert.assertNull(deleted);
-        } catch (Exception ex) {
-            Logger.getLogger(MedidaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void updateMedidaTest() {
+        MedidaEntity entity = data.get(0);
+        MedidaEntity newEntity = create();
+        newEntity.setId(entity.getId());
+        MedidaPersistence.update(newEntity);
+        
+        MedidaEntity resp = em.find(MedidaEntity.class, entity.getId());
+        assertEqualsObject(newEntity, resp);
     }
-
+    
+    @Test
+    public void subEnititysTest(){
+        MedidaEntity newEntity = create();
+        EstadoEntity estadoEntity=factory.manufacturePojo(EstadoEntity.class);
+        TipoMedidaEntity tipoMedidaEntity=factory.manufacturePojo(TipoMedidaEntity.class);
+        
+        newEntity.setParte(tipoMedidaEntity);
+        newEntity.setEstado(estadoEntity);
+        assertEquals(newEntity.getEstado(), estadoEntity);
+        assertEquals(newEntity.getParte(), tipoMedidaEntity);
+    }
+    
+    private void assertEqualsObject(MedidaEntity a,MedidaEntity b){
+        assertEquals(a.getMedida(), b.getMedida());
+    }
+    
+    private MedidaEntity create(){
+        return factory.manufacturePojo(MedidaEntity.class);
+    }
 }
