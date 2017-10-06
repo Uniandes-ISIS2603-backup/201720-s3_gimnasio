@@ -29,6 +29,7 @@ public class UsuarioDTO {
      * Constructor por defecto
      */
     public UsuarioDTO(){
+        //javax
     }
     
     public UsuarioDTO(UsuarioEntity u) {

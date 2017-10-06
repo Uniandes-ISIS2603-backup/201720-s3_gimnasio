@@ -1,31 +1,7 @@
-/*
-MIT License
-
-Copyright (c) 2017 Universidad de los Andes - ISIS2603
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
- */
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 
 import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
-import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,19 +25,20 @@ public class GimnasioDTO {
      * Constructor por defecto
      */
     public GimnasioDTO() {
+        //Constructor por defecto
     }
 
     /**
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento.
      *
-     * @param Gimnasio: Es la entidad que se va a convertir a DTO
+     * @param gimnasio: Es la entidad que se va a convertir a DTO
      */
-    public GimnasioDTO(GimnasioEntity Gimnasio) {
-        this.id = Gimnasio.getId();
-        this.duenio = Gimnasio.getDuenio();
-        this.name = Gimnasio.getName();
-        this.nit = Gimnasio.getNit();
+    public GimnasioDTO(GimnasioEntity gimnasio) {
+        this.id = gimnasio.getId();
+        this.duenio = gimnasio.getDuenio();
+        this.name = gimnasio.getName();
+        this.nit = gimnasio.getNit();
     }
 
     /**

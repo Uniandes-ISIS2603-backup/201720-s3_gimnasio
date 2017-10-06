@@ -7,7 +7,6 @@ package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
-import com.gs.collections.impl.list.fixed.AbstractArrayAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class EntrenadorDetailDTO extends EntrenadorDTO{
         if (entity.getUsuarios() != null)
         {
             
-            this.ususrios = new ArrayList<UsuarioDTO>();
+            this.ususrios = new ArrayList<>();
             for(UsuarioEntity u : entity.getUsuarios())
             {
                 ususrios.add(new UsuarioDTO(u));
@@ -58,7 +57,7 @@ public class EntrenadorDetailDTO extends EntrenadorDTO{
         EntrenadorEntity e = super.toEntity();
         if (getUsusrios() != null)
         {
-            List <UsuarioEntity> ususariosEntity = new ArrayList<UsuarioEntity>();
+            List <UsuarioEntity> ususariosEntity = new ArrayList<>();
             for(UsuarioDTO u : ususrios)
             {
                 ususariosEntity.add(u.toEntity());

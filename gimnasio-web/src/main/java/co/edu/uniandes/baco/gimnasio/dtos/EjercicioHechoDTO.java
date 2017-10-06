@@ -70,23 +70,20 @@ public class EjercicioHechoDTO
     }  
     
        
-    public final static List<EjercicioHechoEntity> listEntity(List<EjercicioHechoDTO> dtos)
+    public static final  List<EjercicioHechoEntity> listEntity(List<EjercicioHechoDTO> dtos)
     {
         List<EjercicioHechoEntity> resp = new ArrayList<>();
         
-        dtos.forEach((dto) -> 
-        {
-            resp.add(dto.toEntity());
-        });
+        for(EjercicioHechoDTO i:dtos)
+            resp.add(i.toEntity());
         return resp;
     }
     
-    public final static List<EjercicioHechoDTO> listDTO(List<EjercicioHechoEntity> entity)
+    public static final  List<EjercicioHechoDTO> listDTO(List<EjercicioHechoEntity> entity)
     {
         List<EjercicioHechoDTO> resp =new ArrayList<>();
-        entity.forEach((ent) -> {
-            resp.add(new EjercicioHechoDTO(ent));
-        });
+        for(EjercicioHechoEntity i:entity)
+            resp.add(new EjercicioHechoDTO(i));
         return resp;
     }
     

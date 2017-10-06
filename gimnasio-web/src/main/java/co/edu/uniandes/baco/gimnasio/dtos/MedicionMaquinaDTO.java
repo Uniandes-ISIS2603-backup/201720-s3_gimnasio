@@ -53,19 +53,16 @@ public class MedicionMaquinaDTO
     {
         List<MedicionMaquinaEntity> resp = new ArrayList<>();
         
-        dtos.forEach((dto) -> 
-        {
-            resp.add(dto.toEntity());
-        });
+        for(MedicionMaquinaDTO i:dtos)
+            resp.add(i.toEntity());
         return resp;
     }
     
     public final static List<MedicionMaquinaDTO> listDTO(List<MedicionMaquinaEntity> entity)
     {
         List<MedicionMaquinaDTO> resp =new ArrayList<>();
-        entity.forEach((ent) -> {
-            resp.add(new MedicionMaquinaDTO(ent));
-        });
+        for(MedicionMaquinaEntity i:entity)
+            resp.add(new MedicionMaquinaDTO(i));
         return resp;
     }
 }

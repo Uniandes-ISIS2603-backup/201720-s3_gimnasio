@@ -26,7 +26,7 @@ public class MedidaDTO {
      */
     public MedidaDTO()
     {
-        
+        //javax
     }
     /**
      * metodo contructor
