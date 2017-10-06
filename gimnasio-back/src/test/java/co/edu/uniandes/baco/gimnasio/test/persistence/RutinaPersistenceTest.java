@@ -1,16 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
+import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
+import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.RutinaPersistence;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,37 +23,28 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-/**
- *
- * @author jp.romero12
- */
 @RunWith(Arquillian.class)
 public class RutinaPersistenceTest {
     @Inject
-    private RutinaPersistence rutinaPersistence;
-    
+    private RutinaPersistence RutinaPersistence;
+
     @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
-    
+
     @Inject
     UserTransaction utx;
     
+    private final PodamFactory factory = new PodamFactoryImpl();
+
     private final List<RutinaEntity> data = new ArrayList<>();
-    
-    /**
-     *
-     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Employee, el descriptor de la
-     * base de datos y el archivo beans.xml para resolver la inyección de
-     * dependencias.
-     */
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -63,11 +53,7 @@ public class RutinaPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    /**
-     * Configuración inicial de la prueba.
-     *
-     *
-     */
+
     @Before
     @SuppressWarnings("CallToPrintStackTrace")
     public void setUp() {
@@ -87,134 +73,114 @@ public class RutinaPersistenceTest {
         }
     }
 
-    /**
-     * Limpia las tablas que están implicadas en la prueba.
-     *
-     *
-     */
     private void clearData() {
         em.createQuery("delete from RutinaEntity").executeUpdate();
     }
 
-    /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las
-     * pruebas.
-     *
-     *
-     */
     private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            RutinaEntity entity = factory.manufacturePojo(RutinaEntity.class);
-
+            RutinaEntity entity = create();
             em.persist(entity);
             data.add(entity);
         }
     }
 
-    /**
-     * Prueba para crear un Employee.
-     *
-     *
-     */
+    //--------------------------------------
+    // TEST
+    //--------------------------------------
+    
     @Test
-    public void createRutinaTest() {
-        try {
-            PodamFactory factory = new PodamFactoryImpl();
-            RutinaEntity newEntity = factory.manufacturePojo(RutinaEntity.class);
-            RutinaEntity result = rutinaPersistence.create(newEntity);
-            
-            Assert.assertNotNull(result);
-            
-            RutinaEntity entity = em.find(RutinaEntity.class, result.getId());
-            
-            Assert.assertEquals(newEntity.getFechaInicio(), entity.getFechaInicio());
-        } catch (Exception ex) {
-            Logger.getLogger(RutinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Prueba para consultar la lista de Employees.
-     *
-     *
-     */
-    @Test
-    public void geRutinaTest() {
-        try {
-            List<RutinaEntity> list = rutinaPersistence.findAll();
-            Assert.assertEquals(data.size(), list.size());
-            for (RutinaEntity ent : list) {
-                boolean found = false;
-                for (RutinaEntity entity : data) {
-                    if (ent.getId().equals(entity.getId())) {
-                        found = true;
-                    }
-                }
-                Assert.assertTrue(found);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(RutinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Prueba para consultar un Employee.
-     *
-     *
-     */
-    @Test
-    public void getRutinaTest() {
-        try {
-            RutinaEntity entity = data.get(0);
-            RutinaEntity newEntity = rutinaPersistence.find(entity.getId());
-            
-            Assert.assertNotNull(newEntity);
-            Assert.assertEquals(newEntity.getFechaInicio().getDate(), entity.getFechaInicio().getDate());
-        } catch (Exception ex) {
-            Logger.getLogger(RutinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Prueba para eliminar un Employee.
-     *
-     *
-     */
-    @Test
-    public void deleteRutinaTest() {
-        try {
-            RutinaEntity entity = data.get(0);
-            rutinaPersistence.delete(entity.getId());
-            RutinaEntity deleted = em.find(RutinaEntity.class, entity.getId());
-            Assert.assertNull(deleted);
-        } catch (Exception ex) {
-            Logger.getLogger(RutinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Prueba para actualizar un Employee.
-     *
-     *
-     */
-    @Test
-    public void updateRutinaTest() {
-        try {
-            RutinaEntity entity = data.get(0);
-            PodamFactory factory = new PodamFactoryImpl();
-            RutinaEntity newEntity = factory.manufacturePojo(RutinaEntity.class);
-            
-            newEntity.setId(entity.getId());
-            
-            rutinaPersistence.update(newEntity);
-            
-            RutinaEntity resp = em.find(RutinaEntity.class, entity.getId());
-            
-            Assert.assertEquals(newEntity.getFechaInicio().getDate(), resp.getFechaInicio().getDate());
-        } catch (Exception ex) {
-            Logger.getLogger(RutinaPersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void equalsHasTest() {
+        RutinaEntity newEntity = create();
+        assertTrue(newEntity.equals(newEntity));
+        assertEquals(newEntity.hashCode(), newEntity.hashCode());
+        
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(UsuarioEntity.class);
+        assertFalse(newEntity.equals(tipo));
+        tipo=null;
+        assertFalse(newEntity.equals(tipo));
+        
+        RutinaEntity newEntity2 = create();
+        newEntity2.setId(newEntity.getId());
+        assertTrue(newEntity.equals(newEntity2));
+        
+        newEntity2.setId(newEntity.getId()+1);
+        assertFalse(newEntity.equals(newEntity2));
+        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
     }
     
+    @Test
+    public void createRutinaTest() {
+        RutinaEntity newEntity = create();
+        RutinaEntity result = RutinaPersistence.create(newEntity);
+        assertNotNull(result);
+        RutinaEntity entity = em.find(RutinaEntity.class, result.getId());
+        assertEqualsObject(newEntity, entity);
+    }
+
+    @Test
+    public void geRutinasTest() {
+        List<RutinaEntity> list = RutinaPersistence.findAll();
+        assertEquals(data.size(), list.size());
+        for (RutinaEntity ent : list) {
+            boolean found = false;
+            for (RutinaEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            assertTrue(found);
+        }
+    }
+
+    @Test
+    public void getRutinaTest() {
+        RutinaEntity entity = data.get(0);
+        RutinaEntity newEntity = RutinaPersistence.find(entity.getId());
+        assertNotNull(newEntity);
+        assertEqualsObject(newEntity, entity);
+    }
+
+    @Test
+    public void deleteRutinaTest() {
+        RutinaEntity entity = data.get(0);
+        RutinaPersistence.delete(entity.getId());
+        RutinaEntity deleted = em.find(RutinaEntity.class, entity.getId());
+        assertNull(deleted);
+    }
+
+    @Test
+    public void updateRutinaTest() {
+        RutinaEntity entity = data.get(0);
+        RutinaEntity newEntity = create();
+        newEntity.setId(entity.getId());
+        RutinaPersistence.update(newEntity);
+        
+        RutinaEntity resp = em.find(RutinaEntity.class, entity.getId());
+        assertEqualsObject(newEntity, resp);
+    }
+    
+    @Test
+    public void subEnititysTest(){
+        RutinaEntity newEntity = create();
+        UsuarioEntity usuario=factory.manufacturePojo(UsuarioEntity.class);
+        List<EjercicioEntity> ejercicios=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            ejercicios.add(factory.manufacturePojo(EjercicioEntity.class));
+        
+        newEntity.setUsuario(usuario);
+        newEntity.setEjercicios(ejercicios);
+        assertEquals(newEntity.getUsuario(),usuario);
+        assertEquals(newEntity.getEjercicios(), ejercicios);
+    }
+    
+    private void assertEqualsObject(RutinaEntity a,RutinaEntity b){
+        DateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+        assertEquals(format.format(a.getFechaFinal()),format.format(b.getFechaFinal()));
+        assertEquals(format.format(a.getFechaInicio()),format.format(b.getFechaInicio()));
+    }
+    
+    private RutinaEntity create(){
+        return factory.manufacturePojo(RutinaEntity.class);
+    }
 }

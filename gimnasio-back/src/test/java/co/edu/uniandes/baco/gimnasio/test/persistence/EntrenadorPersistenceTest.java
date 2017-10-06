@@ -116,6 +116,13 @@ public class EntrenadorPersistenceTest {
         EntrenadorEntity entity = em.find(EntrenadorEntity.class, result.getId());
         assertEqualsObject(newEntity, entity);
     }
+    
+    public void finByDocumentoTest(){
+        EntrenadorEntity entity = data.get(0);
+        EntrenadorEntity newEntity = EntrenadorPersistence.findByDocumento(entity.getDocumento());
+        assertNotNull(newEntity);
+        assertEqualsObject(newEntity, entity);
+    }
 
     @Test
     public void geEntrenadorsTest() {

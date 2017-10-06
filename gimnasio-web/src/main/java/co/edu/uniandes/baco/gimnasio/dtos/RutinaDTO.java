@@ -24,13 +24,13 @@ public class RutinaDTO {
     public RutinaDTO(RutinaEntity entity){
         id=entity.getId();
         fechaInicio=entity.getFechaInicio();
-        fechaFinal=entity.getFenchaFinal();
+        fechaFinal=entity.getFechaFinal();
     }
     
     public RutinaEntity toEntity(){
         RutinaEntity ent=new RutinaEntity();
         ent.setFechaInicio(fechaInicio);
-        ent.setFenchaFinal(fechaFinal);
+        ent.setFechaFinal(fechaFinal);
         return ent;
     }
 

@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -22,25 +23,56 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class RutinaEntity extends BaseEntity implements Serializable {
+    //--------------------------------------------
+    // DATOS BASE
+    //--------------------------------------------
+    /**
+     * fecha de inicio de la rutina
+     */
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaInicio;
+    /**
+     * fecha de finalizacion de la rutina
+     */
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date fenchaFinal;
+    private Date fechaFinal;
     
+    //--------------------------------------------
+    // DATOS ENTITY
+    //--------------------------------------------
+    
+    /**
+     * usuario al que pertenece la rutina
+     */
     @PodamExclude
     @ManyToOne
     UsuarioEntity usuario;
 
+    /**
+     * conjunto de ejercios que componen la rutina
+     */
     @PodamExclude
     @OneToMany(mappedBy = "rutina", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<EjercicioEntity> ejercicios = new ArrayList<>();
 
-    public List<EjercicioEntity> getEjercicios() {
-        return ejercicios;
+    //--------------------------------------------
+    // GETS & SETS
+    //--------------------------------------------
+
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setEjercicios(List<EjercicioEntity> ejercicios) {
-        this.ejercicios = ejercicios;
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFinal() {
+        return fechaFinal;
+    }
+
+    public void setFechaFinal(Date fechaFinal) {
+        this.fechaFinal = fechaFinal;
     }
 
     public UsuarioEntity getUsuario() {
@@ -51,31 +83,31 @@ public class RutinaEntity extends BaseEntity implements Serializable {
         this.usuario = usuario;
     }
 
-    /**
-     * @return the fechaInicio
-     */
-    public Date getFechaInicio() {
-        return fechaInicio;
+    public List<EjercicioEntity> getEjercicios() {
+        return ejercicios;
     }
 
-    /**
-     * @param fechaInicio the fechaInicio to set
-     */
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setEjercicios(List<EjercicioEntity> ejercicios) {
+        this.ejercicios = ejercicios;
+    }
+    
+    //--------------------------------------------
+    // METODOS
+    //--------------------------------------------
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && this.getClass() != obj.getClass()) {
+            return false;
+        }
+        return super.equals(obj);
     }
 
-    /**
-     * @return the fenchaFinal
-     */
-    public Date getFenchaFinal() {
-        return fenchaFinal;
-    }
-
-    /**
-     * @param fenchaFinal the fenchaFinal to set
-     */
-    public void setFenchaFinal(Date fenchaFinal) {
-        this.fenchaFinal = fenchaFinal;
+    @Override
+    public int hashCode() {
+        int hash = super.hashCode();
+        hash = 37 * hash + Objects.hashCode(this.fechaInicio);
+        hash = 37 * hash + Objects.hashCode(this.fechaFinal);
+        return hash;
     }
 }

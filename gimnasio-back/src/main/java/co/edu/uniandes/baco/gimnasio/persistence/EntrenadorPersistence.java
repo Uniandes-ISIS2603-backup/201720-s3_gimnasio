@@ -23,15 +23,9 @@ public class EntrenadorPersistence extends BasePersistence<EntrenadorEntity>{
     {
         TypedQuery querry = manager.createQuery("Select e from EntrenadorEntity e where e.documento = :documento",EntrenadorEntity.class);
         querry = querry.setParameter("documento", doc);
-        List<EntrenadorEntity> sameName = querry.getResultList();
-        EntrenadorEntity result = null; 
-        if (sameName == null ) {
-            result = null;
-        } else if (sameName.isEmpty()) {
-             result = null;
-        } else {
-            result =  sameName.get(0);
-        }
-        return result;
+        List<EntrenadorEntity> ans = querry.getResultList();
+        if(ans.isEmpty())
+            return null;
+        return ans.get(0);
     }
 }
