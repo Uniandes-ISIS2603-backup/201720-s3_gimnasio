@@ -57,7 +57,7 @@ public abstract class BasePersistence<T extends BaseEntity> implements CRUD<T> {
     }
     /**
      * metodo que devuelve todas las entitys de la base de datos
-     * @return lista con todo los entitys encontrados null si no hay niguno
+     * @return lista con todos los entitys encontrados null si no hay niguno
      */
     @Override
     public List<T> findAll(){

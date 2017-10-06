@@ -3,9 +3,6 @@ package co.edu.uniandes.baco.gimnasio.test.persistence;
 import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
 import java.util.ArrayList;
@@ -95,7 +92,7 @@ public class ObjetivoPersistenceTest {
         assertTrue(newEntity.equals(newEntity));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
         
-        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(UsuarioEntity.class);
         assertFalse(newEntity.equals(tipo));
         tipo=null;
         assertFalse(newEntity.equals(tipo));
