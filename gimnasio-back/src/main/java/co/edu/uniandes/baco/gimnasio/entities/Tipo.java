@@ -7,10 +7,11 @@ import java.io.Serializable;
  * @author jc.bojaca
  */
 public enum Tipo implements Serializable{
-    aerobicos,
-    anearobicos,
-    flexibilidad,
-    equilibrio,
-    relajacion,
-    no_pertenece
+    AEROBICOS,
+    ANEAROBICOS,
+    FLEXIBILIDAD,
+    EQUILIBRIO,
+    RELAJACION,
+    NO_PERTENECE
+
 }
