@@ -11,6 +11,7 @@ import co.edu.uniandes.baco.gimnasio.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.ObjetivoLogic;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -21,19 +22,25 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
  *
  * @author jc.bojaca
  */
-@Path("objetivos")
+@Path(URLS.OBJETIVO)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ObjetivoResource{
-    @Inject
     private ObjetivoLogic logic;
+
+    public ObjetivoResource() {
+        //constructor para la parte web
+    }
+
+    @Inject public ObjetivoResource(ObjetivoLogic logic) {
+        this.logic = logic;
+    }
     
     @POST
     public ObjetivoDTO post(ObjetivoDTO nuevo) throws BusinessLogicException{
@@ -46,36 +53,35 @@ public class ObjetivoResource{
     }
     
     @GET
-    @Path("{id: \\d+}")
-    public ObjetivoDetailDTO get(@PathParam("id") long id) throws BusinessLogicException{
+    @Path("{"+OBJETIVOID+": \\d+}")
+    public ObjetivoDetailDTO get(@PathParam(OBJETIVOID) long id) throws BusinessLogicException{
         return new ObjetivoDetailDTO(logic.find(id));
     }
     
     @PUT
-    @Path("{id: \\d+}")
-    public ObjetivoDTO put(@PathParam("id")long id, ObjetivoDTO nuevo) throws BusinessLogicException{
+    @Path("{"+OBJETIVOID+": \\d+}")
+    public ObjetivoDTO put(@PathParam(OBJETIVOID)long id, ObjetivoDTO nuevo) throws BusinessLogicException{
         ObjetivoEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new ObjetivoDTO(logic.update(entity));
     }
     
     @DELETE
-    @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws BusinessLogicException{
+    @Path("{"+OBJETIVOID+": \\d+}")
+    public void delete(@PathParam(OBJETIVOID) long id) throws BusinessLogicException{
         logic.remove(id);
     }
     
     @GET
-    @Path("{id: \\d+}/usuarios")
-    public List<UsuarioDetailDTO> findUsuariosObjetivos(@PathParam("id") long id) throws BusinessLogicException{
+    @Path("{"+OBJETIVOID+": \\d+}/"+USUARIO)
+    public List<UsuarioDetailDTO> findUsuarios(@PathParam(OBJETIVOID) long id) throws BusinessLogicException{
         return UsuarioDetailDTO.listDetailDTO(logic.findAllUsuarios(id));
     }
     
     
-    @Path("{idObjetivo: \\d+}/atributosDeCalidad")
-    public Class<AtributoDeCalidadResource> getEjercicioResource(@PathParam("idObjetivo") Long id) throws BusinessLogicException{
-        if (logic.find(id) == null)
-            throw new WebApplicationException("El ejercicio no existe", 404);
+    @Path("{"+OBJETIVOID+": \\d+}/"+ATRIBUTODECALIDAD)
+    public Class<AtributoDeCalidadResource> getAtributoDeCalidad(@PathParam(OBJETIVOID) Long id) throws BusinessLogicException{
+        logic.find(id);
         return AtributoDeCalidadResource.class;
     }
 }

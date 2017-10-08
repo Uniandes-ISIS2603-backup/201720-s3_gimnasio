@@ -27,8 +27,16 @@ public class MedidaResource {
     /**
      * injeccion de la logica de medida
      */
-    @Inject
     private MedidaLogic logic;
+
+    public MedidaResource() {
+        //constructor para la parte web
+    }
+
+    @Inject public MedidaResource(MedidaLogic logic) {
+        this.logic = logic;
+    }
+    
     /**
     * metodo que crea una medida 
     * @param idEstado del estado

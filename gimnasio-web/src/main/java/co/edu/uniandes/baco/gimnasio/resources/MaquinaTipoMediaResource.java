@@ -7,8 +7,8 @@ package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.TipoMedidaDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.MaquinaLogic;
-import co.edu.uniandes.baco.gimnasio.ejb.TipoMedidaLogic;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -27,29 +27,36 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class MaquinaTipoMediaResource {
-    @Inject
     private MaquinaLogic logic;
 
+    public MaquinaTipoMediaResource() {
+        //constructor para la parte web
+    }
+
+    @Inject public MaquinaTipoMediaResource(MaquinaLogic logic) {
+        this.logic = logic;
+    }
+
     @GET
-    public List<TipoMedidaDTO> findAllObejtivos(@PathParam("idMaquina") Long id) throws BusinessLogicException {
+    public List<TipoMedidaDTO> findAllObejtivos(@PathParam(MAQUINAID) Long id) throws BusinessLogicException {
         return TipoMedidaDTO.listDTO(logic.findAllTipoMedidaMaquina(id));
     }
 
     @GET
-    @Path("{id: \\d+}")
-    public TipoMedidaDTO findTipoMedida(@PathParam("idMaquina") Long idMaquina, @PathParam("id") Long id) throws BusinessLogicException {
+    @Path("{"+TIPOMEDIDAID+": \\d+}")
+    public TipoMedidaDTO findTipoMedida(@PathParam(MAQUINAID) Long idMaquina, @PathParam(TIPOMEDIDAID) Long id) throws BusinessLogicException {
         return new TipoMedidaDTO(logic.findTipoMedida(idMaquina, id));
     }
 
     @POST
-    @Path("{id: \\d+}")
-    public TipoMedidaDTO createTipoMedida(@PathParam("idMaquina") Long idMaquina, @PathParam("id") Long id) throws BusinessLogicException {
+    @Path("{"+TIPOMEDIDAID+": \\d+}")
+    public TipoMedidaDTO createTipoMedida(@PathParam(MAQUINAID) Long idMaquina, @PathParam(TIPOMEDIDAID) Long id) throws BusinessLogicException {
         return new TipoMedidaDTO(logic.createTipoMedida(idMaquina, id));
     }
 
     @DELETE
-    @Path("{id: \\d+}")
-    public void removeTipoMedida(@PathParam("idMaquina") Long idMaquina, @PathParam("id") Long id) throws BusinessLogicException {
+    @Path("{"+TIPOMEDIDAID+": \\d+}")
+    public void removeTipoMedida(@PathParam(MAQUINAID) Long idMaquina, @PathParam(TIPOMEDIDAID) Long id) throws BusinessLogicException {
         logic.removeTipoMedida(idMaquina, id);
     }
 }

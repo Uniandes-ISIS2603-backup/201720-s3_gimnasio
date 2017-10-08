@@ -9,6 +9,7 @@ import co.edu.uniandes.baco.gimnasio.dtos.MedicionMaquinaDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.MedicionMaquinaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -19,7 +20,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -30,10 +30,16 @@ import javax.ws.rs.core.MediaType;
 @Path("medicion")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class MedicionMaquinaResource 
-{
-    @Inject
+public class MedicionMaquinaResource {
     private MedicionMaquinaLogic logic;
+
+    public MedicionMaquinaResource() {
+        //constructor para la parte web
+    }
+
+    @Inject public MedicionMaquinaResource(MedicionMaquinaLogic logic) {
+        this.logic = logic;
+    }
     
     @POST
     public MedicionMaquinaDTO post(MedicionMaquinaDTO nuevo) throws BusinessLogicException{

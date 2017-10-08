@@ -10,6 +10,7 @@ import co.edu.uniandes.baco.gimnasio.dtos.MaquinaDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.MaquinaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -20,19 +21,26 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
  *
  * @author t.kavanagh
  */
-@Path("maquinas")
+@Path(URLS.MAQUINA)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class MaquinaResource{
-    @Inject
+    
     private MaquinaLogic logic;
+
+    public MaquinaResource() {
+        //constrcutor para la parte web
+    }
+
+    @Inject public MaquinaResource(MaquinaLogic logic) {
+        this.logic = logic;
+    }
     
     @POST
     public MaquinaDTO post(MaquinaDTO nuevo) throws BusinessLogicException{
@@ -45,29 +53,28 @@ public class MaquinaResource{
     }
     
     @GET
-    @Path("{id: \\d+}")
-    public MaquinaDetailDTO get(@PathParam("id") long id) throws BusinessLogicException{
+    @Path("{"+MAQUINAID+": \\d+}")
+    public MaquinaDetailDTO get(@PathParam(MAQUINAID) long id) throws BusinessLogicException{
         return new MaquinaDetailDTO(logic.find(id));
     }
     
     @PUT
-    @Path("{id: \\d+}")
-    public MaquinaDTO put(@PathParam("id")long id, MaquinaDTO nuevo) throws BusinessLogicException{
+    @Path("{"+MAQUINAID+": \\d+}")
+    public MaquinaDTO put(@PathParam(MAQUINAID)long id, MaquinaDTO nuevo) throws BusinessLogicException{
         MaquinaEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new MaquinaDTO(logic.update(entity));
     }
     
     @DELETE
-    @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws BusinessLogicException{
+    @Path("{"+MAQUINAID+": \\d+}")
+    public void delete(@PathParam(MAQUINAID) long id) throws BusinessLogicException{
         logic.remove(id);
     }
     
-    @Path("{idMaquina: \\d+}/tipoMedidas")
-    public Class<MaquinaTipoMediaResource> getEjercicioResource(@PathParam("idMaquina") Long idMaquina,@PathParam("idRutina") Long id) throws BusinessLogicException{
-        if (logic.find(idMaquina) == null)
-            throw new WebApplicationException("El ejercicio no existe", 404);
-        return MaquinaTipoMediaResource.class;
+    @Path("{"+MAQUINAID+": \\d+}/"+TIPOMEDIDA)
+    public Class<MaquinaTipoMediaResource> getEjercicioResource(@PathParam(MAQUINAID) Long idMaquina) throws BusinessLogicException{
+       logic.find(idMaquina);
+       return MaquinaTipoMediaResource.class;
     }
 }

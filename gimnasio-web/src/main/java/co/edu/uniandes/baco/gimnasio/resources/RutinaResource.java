@@ -10,6 +10,7 @@ import co.edu.uniandes.baco.gimnasio.dtos.RutinaDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.RutinaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -20,7 +21,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -33,8 +33,15 @@ public class RutinaResource {
     /**
      * injeccion de la logica de rutina
      */
-    @Inject
     private RutinaLogic logic;
+
+    public RutinaResource() {
+    }
+
+    @Inject public RutinaResource(RutinaLogic logic) {
+        this.logic = logic;
+    }
+    
     /**
      * metodo para asociasr o crear una rutina a un usuario
      * @param idUsuario id del usuario
@@ -43,7 +50,7 @@ public class RutinaResource {
      * @throws BusinessLogicException si el usuario noe xiste 
      */
     @POST
-    public RutinaDTO post(@PathParam("idUsuario") Long idUsuario,RutinaDTO nuevo) throws BusinessLogicException{
+    public RutinaDTO post(@PathParam(USUARIOID) Long idUsuario,RutinaDTO nuevo) throws BusinessLogicException{
         return new RutinaDTO(logic.create(idUsuario,nuevo.toEntity()));
     }
     /**
@@ -53,7 +60,7 @@ public class RutinaResource {
      * @throws BusinessLogicException 
      */
     @GET
-    public List<RutinaDetailDTO> getAll(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
+    public List<RutinaDetailDTO> getAll(@PathParam(USUARIOID) Long idUsuario) throws BusinessLogicException {
         return RutinaDetailDTO.listDetailDTO(logic.findAll(idUsuario));
     }
     /**
@@ -64,8 +71,8 @@ public class RutinaResource {
      * @throws BusinessLogicException 
      */
     @GET
-    @Path("{id: \\d+}")
-    public RutinaDetailDTO get(@PathParam("idUsuario") Long idUsuario,@PathParam("id") long id) throws BusinessLogicException {
+    @Path("{"+RUTINAID+": \\d+}")
+    public RutinaDetailDTO get(@PathParam(USUARIOID) Long idUsuario,@PathParam(RUTINAID) long id) throws BusinessLogicException {
         return new RutinaDetailDTO(logic.find(idUsuario,id));
     }
     /**
@@ -77,8 +84,8 @@ public class RutinaResource {
      * @throws BusinessLogicException 
      */
     @PUT
-    @Path("{id: \\d+}")
-    public RutinaDTO put(@PathParam("idUsuario") Long idUsuario,@PathParam("id")long id, RutinaDTO nuevo) throws BusinessLogicException {
+    @Path("{"+RUTINAID+": \\d+}")
+    public RutinaDTO put(@PathParam(USUARIOID) Long idUsuario,@PathParam(RUTINAID)long id, RutinaDTO nuevo) throws BusinessLogicException {
         RutinaEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new RutinaDTO(logic.update(idUsuario,entity));
@@ -90,8 +97,8 @@ public class RutinaResource {
      * @throws BusinessLogicException 
      */
     @DELETE
-    @Path("{id: \\d+}")
-    public void delete(@PathParam("idUsuario") Long idUsuario,@PathParam("id") long id) throws BusinessLogicException{
+    @Path("{"+RUTINAID+": \\d+}")
+    public void delete(@PathParam(USUARIOID) Long idUsuario,@PathParam(RUTINAID) long id) throws BusinessLogicException{
         logic.remove(idUsuario,id);
     }
     /**
@@ -101,10 +108,9 @@ public class RutinaResource {
      * @return la clase de servicion
      * @throws BusinessLogicException 
      */
-    @Path("{idRutina: \\d+}/ejercicios")
-    public Class<EjercicioResource> getEjercicioResource(@PathParam("idUsuario") Long idUsuario,@PathParam("idRutina") Long id) throws BusinessLogicException{
-        if (logic.find(idUsuario,id) == null)
-            throw new WebApplicationException("El ejercicio no existe", 404);
+    @Path("{"+RUTINAID+": \\d+}/"+EJERCICIO)
+    public Class<EjercicioResource> getEjercicioResource(@PathParam(USUARIOID) Long idUsuario,@PathParam(RUTINAID) Long id) throws BusinessLogicException{
+        logic.find(idUsuario,id);
         return EjercicioResource.class;
     }
 }

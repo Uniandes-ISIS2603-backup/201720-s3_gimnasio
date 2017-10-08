@@ -34,7 +34,7 @@ public class EjercicioMaquinaResource {
     }
     
     @GET
-    public List<MaquinaDetailDTO> findAllObejtivos(@PathParam(EJERCICIOID) Long id) throws BusinessLogicException {
+    public List<MaquinaDetailDTO> findAllMaquinas(@PathParam(EJERCICIOID) Long id) throws BusinessLogicException {
           return MaquinaDetailDTO.listDetailDTO(logic.findAllMaquina(id));
     }
 
