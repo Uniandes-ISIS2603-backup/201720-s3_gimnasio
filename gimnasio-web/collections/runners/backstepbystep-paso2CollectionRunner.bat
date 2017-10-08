@@ -1,1 +1,0 @@
-newman run C:\Users\Asistente\Documents\GitHub\back\backstepbystep\gimnasio-web\collections\backstepbystep-paso2.postman_collection.json --disable-unicode
