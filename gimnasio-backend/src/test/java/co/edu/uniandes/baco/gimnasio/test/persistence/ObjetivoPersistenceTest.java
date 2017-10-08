@@ -107,6 +107,27 @@ public class ObjetivoPersistenceTest {
     }
     
     @Test
+    public void finByTipoTest() {
+        ObjetivoEntity entity = data.get(0);
+        ObjetivoEntity newEntity = ObjetivoPersistence.findByTipo(entity.getTipo());
+        assertNotNull(newEntity);
+        assertEqualsObject(newEntity, entity);
+
+        String tipo = data.get(0).getTipo();
+        boolean esta;
+        do {
+            tipo += "a";
+            esta = false;
+            for (ObjetivoEntity i : data) {
+                if (i.getTipo().equals(tipo)) {
+                    esta = true;
+                }
+            }
+        } while (esta);
+        assertNull(ObjetivoPersistence.findByTipo(tipo));
+    }
+    
+    @Test
     public void createObjetivoTest() {
         ObjetivoEntity newEntity = create();
         ObjetivoEntity result = ObjetivoPersistence.create(newEntity);
