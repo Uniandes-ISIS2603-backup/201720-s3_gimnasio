@@ -25,6 +25,7 @@ public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
     private TipoMedidaLogic tipoMedidaLogic;
 
     public MaquinaLogic() {
+        super();
     }
 
     @Inject public MaquinaLogic(TipoMedidaLogic tipoMedidaLogic, BasePersistence<MaquinaEntity> persistence) {

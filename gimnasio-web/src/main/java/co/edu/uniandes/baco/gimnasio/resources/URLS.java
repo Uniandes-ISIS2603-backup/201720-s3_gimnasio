@@ -23,4 +23,7 @@ public final class URLS {
     
     public static final String TIPOMEDIDA="tipoMedidas";
     public static final String TIPOMEDIDAID="tipoMedidasId";
+    
+    public static final String ATRIBUTODECALIDAD="atributosDeCalidad";
+     public static final String ATRIBUTODECALIDADID="atributosDeCalidadId";
 }

@@ -10,6 +10,7 @@ import co.edu.uniandes.baco.gimnasio.dtos.AtributoDeCalidadDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.AtributoDeCalidadLogic;
 import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -29,37 +30,44 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class AtributoDeCalidadResource {
-     @Inject
     private AtributoDeCalidadLogic logic;
-    
+
+    public AtributoDeCalidadResource() {
+        //costructor para la parte web
+    }
+
+    @Inject public AtributoDeCalidadResource(AtributoDeCalidadLogic logic) {
+        this.logic = logic;
+    }
+
     @POST
-    @Path("{id: \\d+}")
-    public AtributoDeCalidadDTO post(@PathParam("idObjetivo") Long idObjetivo, @PathParam("id") Long id ,AtributoDeCalidadDTO nuevo) throws BusinessLogicException{
+    @Path("{"+ATRIBUTODECALIDADID+": \\d+}")
+    public AtributoDeCalidadDTO post(@PathParam(OBJETIVOID) Long idObjetivo, @PathParam(ATRIBUTODECALIDADID) Long id ,AtributoDeCalidadDTO nuevo) throws BusinessLogicException{
         return new AtributoDeCalidadDTO(logic.create(idObjetivo,nuevo.toEntity(),id));
     }
     
     @GET
-    public List<AtributoDeCalidadDetailDTO> getAll(@PathParam("idObjetivo") Long idObjetivo) throws BusinessLogicException {
+    public List<AtributoDeCalidadDetailDTO> getAll(@PathParam(OBJETIVOID) Long idObjetivo) throws BusinessLogicException {
         return AtributoDeCalidadDetailDTO.listDTO(logic.findAll(idObjetivo));
     }
     
     @GET
-    @Path("{id: \\d+}")
-    public AtributoDeCalidadDetailDTO get(@PathParam("idObjetivo") Long idObjetivo,@PathParam("id") long id) throws BusinessLogicException {
+    @Path("{"+ATRIBUTODECALIDADID+": \\d+}")
+    public AtributoDeCalidadDetailDTO get(@PathParam(OBJETIVOID) Long idObjetivo,@PathParam(ATRIBUTODECALIDADID) long id) throws BusinessLogicException {
         return new AtributoDeCalidadDetailDTO(logic.find(idObjetivo,id));
     }
     
     @PUT
-    @Path("{id: \\d+}")
-    public AtributoDeCalidadDTO put(@PathParam("idObjetivo") Long idObjetivo,@PathParam("id")long id, AtributoDeCalidadDTO nuevo) throws BusinessLogicException {
+   @Path("{"+ATRIBUTODECALIDADID+": \\d+}")
+    public AtributoDeCalidadDTO put(@PathParam(OBJETIVOID) Long idObjetivo,@PathParam(ATRIBUTODECALIDADID)long id, AtributoDeCalidadDTO nuevo) throws BusinessLogicException {
         AtributoDeCalidadEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new AtributoDeCalidadDTO(logic.update(idObjetivo,entity));
     }
     
     @DELETE
-    @Path("{id: \\d+}")
-    public void delete(@PathParam("idObjetivo") Long idObjetivo,@PathParam("id") long id) throws BusinessLogicException{
+    @Path("{"+ATRIBUTODECALIDADID+": \\d+}")
+    public void delete(@PathParam(OBJETIVOID) Long idObjetivo,@PathParam(ATRIBUTODECALIDADID) long id) throws BusinessLogicException{
         logic.remove(idObjetivo,id);
     }
 }
