@@ -8,8 +8,8 @@ package co.edu.uniandes.baco.gimnasio.resources;
 import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.EjercicioLogic;
-import co.edu.uniandes.baco.gimnasio.ejb.ObjetivoLogic;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -28,29 +28,36 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EjercicioObjetivoResource {
-    @Inject
     private EjercicioLogic logic;
+
+    public EjercicioObjetivoResource() {
+         //constructor para la parte web
+    }
+
+    @Inject public EjercicioObjetivoResource(EjercicioLogic logic) {
+        this.logic = logic;
+    }
     
     @GET
-    public List<ObjetivoDetailDTO> findAllObejtivos(@PathParam("idEjercicio") Long id) throws BusinessLogicException {
+    public List<ObjetivoDetailDTO> findAllObejtivos(@PathParam(EJERCICIOID) Long id) throws BusinessLogicException {
         return ObjetivoDetailDTO.listDetailDTO(logic.findAllObjetivo(id));
     }
 
     @GET
-    @Path("{id: \\d+}")
-    public ObjetivoDetailDTO findObjetivo(@PathParam("idEjercicio") Long idEjercicio, @PathParam("id") Long id) throws BusinessLogicException {
+    @Path("{"+OBJETIVOID+": \\d+}")
+    public ObjetivoDetailDTO findObjetivo(@PathParam(EJERCICIOID) Long idEjercicio, @PathParam(OBJETIVOID) Long id) throws BusinessLogicException {
         return new ObjetivoDetailDTO(logic.findObjetivo(idEjercicio, id));
     }
 
     @POST
-    @Path("{id: \\d+}")
-    public ObjetivoDTO createObjetivo(@PathParam("idEjercicio") Long idEjericio,@PathParam("id") Long id) throws BusinessLogicException {
+    @Path("{"+OBJETIVOID+": \\d+}")
+    public ObjetivoDTO createObjetivo(@PathParam(EJERCICIOID) Long idEjericio,@PathParam(OBJETIVOID) Long id) throws BusinessLogicException {
         return new ObjetivoDTO(logic.createObjetivo(idEjericio, id));
     }
 
     @DELETE
-    @Path("{id: \\d+}")
-    public void removeObjetivo(@PathParam("idEjercicio") Long idEjercicio, @PathParam("id") Long id) throws BusinessLogicException {
+    @Path("{"+OBJETIVOID+": \\d+}")
+    public void removeObjetivo(@PathParam(EJERCICIOID) Long idEjercicio, @PathParam(OBJETIVOID) Long id) throws BusinessLogicException {
         logic.removeObejtivo(idEjercicio, id);
     }
 }

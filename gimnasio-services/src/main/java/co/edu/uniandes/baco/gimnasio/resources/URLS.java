@@ -21,9 +21,18 @@ public final class URLS {
     public static final String MEDIDA="medidas";
     public static final String MEDIDAID="medidasId";
     
+    public static final String MAQUINA="maquinas";
+    public static final String MAQUINAID="maquinasId";
+    
     public static final String TIPOMEDIDA="tipoMedidas";
     public static final String TIPOMEDIDAID="tipoMedidasId";
     
     public static final String ATRIBUTODECALIDAD="atributosDeCalidad";
-     public static final String ATRIBUTODECALIDADID="atributosDeCalidadId";
+    public static final String ATRIBUTODECALIDADID="atributosDeCalidadId";
+    
+    public static final String EJERCICIOHECHO="ejerciciosHechos";
+    public static final String EJERCICIOHECHOID="ejerciciosHechosId";
+    
+    public static final String EJERCICIO="ejercicios";
+    public static final String EJERCICIOID="ejerciciosId";
 }
