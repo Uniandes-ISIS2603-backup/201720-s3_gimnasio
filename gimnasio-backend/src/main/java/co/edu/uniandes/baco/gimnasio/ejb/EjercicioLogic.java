@@ -155,7 +155,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
         int ind=list.indexOf(aux);
         if(ind<0)
             throw new NoExisteException(id);
-        list.remove(aux);
+        list.remove(ind);
     }
     
     //-----------------------------------

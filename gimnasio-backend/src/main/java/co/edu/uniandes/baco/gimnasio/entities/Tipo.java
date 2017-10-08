@@ -13,5 +13,4 @@ public enum Tipo implements Serializable{
     EQUILIBRIO,
     RELAJACION,
     NO_PERTENECE
-
 }

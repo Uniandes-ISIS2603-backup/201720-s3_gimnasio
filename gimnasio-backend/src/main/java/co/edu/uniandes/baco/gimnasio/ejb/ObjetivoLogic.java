@@ -8,6 +8,7 @@ package co.edu.uniandes.baco.gimnasio.ejb;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -17,6 +18,15 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
+
+    public ObjetivoLogic() {
+        super();
+    }
+    
+    public ObjetivoLogic(BasePersistence<ObjetivoEntity> persistence){
+        super(persistence);
+    }
+    
     /**
      * metodo para crear un objetivo
      * @param entity el objetivo a crear

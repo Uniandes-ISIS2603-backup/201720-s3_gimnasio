@@ -105,4 +105,12 @@ public class EjercicioDTO {
     public void setRepeticionesPorParticion(Integer repeticionesPorParticion) {
         this.repeticionesPorParticion = repeticionesPorParticion;
     }
+
+    public String getExplicacion() {
+        return explicacion;
+    }
+
+    public void setExplicacion(String explicacion) {
+        this.explicacion = explicacion;
+    }
 }

@@ -56,7 +56,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
      * lista de objetivos a los que el ejercicio esta orientado
      */
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<ObjetivoEntity> objetivosEjercicio = new ArrayList<>();
     /**
      * lista de maquinas usadas en ele ejercicio 
