@@ -81,7 +81,7 @@
 
         <dependency>
             <groupId>co.edu.uniandes.gimnasio</groupId>
-            <artifactId>gimnasio-back</artifactId>
+            <artifactId>gimnasio-backend</artifactId>
             <version>0.1.0</version>
         </dependency>
 
