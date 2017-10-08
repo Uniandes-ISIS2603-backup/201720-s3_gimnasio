@@ -7,6 +7,7 @@ package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDetailDTO;
+import co.edu.uniandes.baco.gimnasio.ejb.EjercicioLogic;
 import co.edu.uniandes.baco.gimnasio.ejb.ObjetivoLogic;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.List;
@@ -28,28 +29,28 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class EjercicioObjetivoResource {
     @Inject
-    private ObjetivoLogic logic;
+    private EjercicioLogic logic;
     
     @GET
     public List<ObjetivoDetailDTO> findAllObejtivos(@PathParam("idEjercicio") Long id) throws BusinessLogicException {
-        return ObjetivoDetailDTO.listDetailDTO(logic.findAllObjetivosEjercicio(id));
+        return ObjetivoDetailDTO.listDetailDTO(logic.findAllObjetivo(id));
     }
 
     @GET
     @Path("{id: \\d+}")
     public ObjetivoDetailDTO findObjetivo(@PathParam("idEjercicio") Long idEjercicio, @PathParam("id") Long id) throws BusinessLogicException {
-        return new ObjetivoDetailDTO(logic.findObjetivoEjercicio(idEjercicio, id));
+        return new ObjetivoDetailDTO(logic.findObjetivo(idEjercicio, id));
     }
 
     @POST
     @Path("{id: \\d+}")
     public ObjetivoDTO createObjetivo(@PathParam("idEjercicio") Long idEjericio,@PathParam("id") Long id) throws BusinessLogicException {
-        return new ObjetivoDTO(logic.createObjetivoEjercicio(idEjericio, id));
+        return new ObjetivoDTO(logic.createObjetivo(idEjericio, id));
     }
 
     @DELETE
     @Path("{id: \\d+}")
     public void removeObjetivo(@PathParam("idEjercicio") Long idEjercicio, @PathParam("id") Long id) throws BusinessLogicException {
-        logic.removeObejtivoEjercicio(idEjercicio, id);
+        logic.removeObejtivo(idEjercicio, id);
     }
 }

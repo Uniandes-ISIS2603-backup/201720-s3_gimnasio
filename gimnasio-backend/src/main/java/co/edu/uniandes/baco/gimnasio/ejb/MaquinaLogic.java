@@ -9,6 +9,7 @@ import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
+import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -20,82 +21,25 @@ import javax.inject.Inject;
  */
 @Stateless
 public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
-    //-----------------------------
-    //EJERCICIO
-    //-----------------------------
-    
-    /**
-     * injecion de la logica de ejercicio
-     */
+   
     private TipoMedidaLogic tipoMedidaLogic;
-    
-    @Inject
-    private EjercicioLogic ejercicioLogic;
-    /**
-     * metodo que encuentra todas las maquinas de un ejercicioi
-     * @param id del ejercicio
-     * @return lista con las maquinas de este
-     * @throws BusinessLogicException  si el ejercicio no existe
-     */
-     public List<MaquinaEntity> findAllMaquinas(Long id) throws BusinessLogicException{
-        return ejercicioLogic.find(id).getMaquinas();        
+
+    public MaquinaLogic() {
     }
-    /**
-     * metodo para encontrar una mquina especifica
-     * @param idEjercicio id del ejercicio
-     * @param id de la maquina
-     * @return la maquina 
-     * @throws BusinessLogicException si el ejercicio o la maquina no existe 
-     */
-    public MaquinaEntity findMaquina(Long idEjercicio, Long id) throws BusinessLogicException{
-        MaquinaEntity aux = new MaquinaEntity();
-        aux.setId(id);
-        List<MaquinaEntity> list=ejercicioLogic.find(idEjercicio).getMaquinas();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        return list.get(ind);
-    }
-    /**
-     * metodo para crear o asociasr una maquina a un ejercicio
-     * @param idEjercicio id del ejercicio
-     * @param id de la maquina
-     * @return la maquian creada o asociada
-     * @throws BusinessLogicException si la maquina no existe 
-     */
-    public MaquinaEntity createMaquina(Long idEjercicio, Long id) throws BusinessLogicException{
-        MaquinaEntity aux = find(id);
-        if(aux==null)
-            throw new  NoExisteException(id);
-        ejercicioLogic.find(idEjercicio).getMaquinas().add(aux);
-        return aux;
-    }
-    /**
-     * metodo que elimina una maquina de un ejercicio
-     * @param idEjercicio id del ejercicio
-     * @param id de la maquina
-     * @throws BusinessLogicException si la maquina o el ejercicio no existen
-     */
-    public void removeMaquina(Long idEjercicio, Long id) throws BusinessLogicException{
-        MaquinaEntity aux = new MaquinaEntity();
-        aux.setId(id);
-        List<MaquinaEntity> list=ejercicioLogic.find(idEjercicio).getMaquinas();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        list.remove(aux);
+
+    @Inject public MaquinaLogic(TipoMedidaLogic tipoMedidaLogic, BasePersistence<MaquinaEntity> persistence) {
+        super(persistence);
+        this.tipoMedidaLogic = tipoMedidaLogic;
     }
     
     //-----------------------------------
-    // MAQUINA
+    // TIPOMEDIDA
     //-----------------------------------
-
-
     public List<TipoMedidaEntity> findAllTipoMedidaMaquina(Long id) throws BusinessLogicException {
         return find(id).getTipoMedida();
     }
 
-    public TipoMedidaEntity findTipoMedidaMaquina(Long idMaquina, Long id) throws BusinessLogicException {
+    public TipoMedidaEntity findTipoMedida(Long idMaquina, Long id) throws BusinessLogicException {
         TipoMedidaEntity aux = new TipoMedidaEntity();
         aux.setId(id);
         List<TipoMedidaEntity> list = find(idMaquina).getTipoMedida();
@@ -106,7 +50,7 @@ public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
         return list.get(ind);
     }
 
-    public TipoMedidaEntity createTipoMedidaMaquina(Long idMaquina, Long id) throws BusinessLogicException {
+    public TipoMedidaEntity createTipoMedida(Long idMaquina, Long id) throws BusinessLogicException {
         TipoMedidaEntity aux = tipoMedidaLogic.find(id);
         if (!aux.isAutomatico()) {
             throw new BusinessLogicException("no se puede asociar una medida manual a una maquina");
@@ -115,7 +59,7 @@ public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
         return aux;
     }
 
-    public void removeTipoMedidaMaquina(Long idMaquina, Long id) throws BusinessLogicException {
+    public void removeTipoMedida(Long idMaquina, Long id) throws BusinessLogicException {
         TipoMedidaEntity aux = new TipoMedidaEntity();
         aux.setId(id);
         List<TipoMedidaEntity> list = find(idMaquina).getTipoMedida();

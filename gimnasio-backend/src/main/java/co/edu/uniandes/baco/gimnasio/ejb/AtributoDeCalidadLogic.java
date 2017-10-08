@@ -10,6 +10,7 @@ import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
+import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -20,16 +21,22 @@ import javax.inject.Inject;
  */
 @Stateless
 public class AtributoDeCalidadLogic extends BaseLogic<AtributoDeCalidadEntity>{
-    /**
-     * inject de la logica de estado
-     */
-    @Inject
+    
     private ObjetivoLogic objetivoLogic;
-    /**
-    * inject de la logica de medida
-    */
-    @Inject
     private TipoMedidaLogic tipoMedidaLogic;
+
+    public AtributoDeCalidadLogic() {
+        super();
+    }
+
+    @Inject public AtributoDeCalidadLogic(ObjetivoLogic objetivoLogic, TipoMedidaLogic tipoMedidaLogic, BasePersistence<AtributoDeCalidadEntity> persistence) {
+        super(persistence);
+        this.objetivoLogic = objetivoLogic;
+        this.tipoMedidaLogic = tipoMedidaLogic;
+    }
+    
+    
+    
     /**
      * metodo que crea o asocia una medida a un estado
      * @param idObjetivo id del objetivo

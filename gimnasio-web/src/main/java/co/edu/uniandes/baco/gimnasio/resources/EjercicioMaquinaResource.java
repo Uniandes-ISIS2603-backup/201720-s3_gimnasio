@@ -2,6 +2,7 @@ package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.MaquinaDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.MaquinaDetailDTO;
+import co.edu.uniandes.baco.gimnasio.ejb.EjercicioLogic;
 import co.edu.uniandes.baco.gimnasio.ejb.MaquinaLogic;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.List;
@@ -23,11 +24,11 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class EjercicioMaquinaResource {
     @Inject
-    private MaquinaLogic logic;
+    private EjercicioLogic logic;
     
     @GET
     public List<MaquinaDetailDTO> findAllObejtivos(@PathParam("idEjercicio") Long id) throws BusinessLogicException {
-          return MaquinaDetailDTO.listDetailDTO(logic.findAllMaquinas(id));
+          return MaquinaDetailDTO.listDetailDTO(logic.findAllMaquina(id));
     }
 
     @GET

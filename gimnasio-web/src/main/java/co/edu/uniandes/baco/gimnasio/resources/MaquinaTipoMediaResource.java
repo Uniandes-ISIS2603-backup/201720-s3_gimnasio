@@ -38,18 +38,18 @@ public class MaquinaTipoMediaResource {
     @GET
     @Path("{id: \\d+}")
     public TipoMedidaDTO findTipoMedida(@PathParam("idMaquina") Long idMaquina, @PathParam("id") Long id) throws BusinessLogicException {
-        return new TipoMedidaDTO(logic.findTipoMedidaMaquina(idMaquina, id));
+        return new TipoMedidaDTO(logic.findTipoMedida(idMaquina, id));
     }
 
     @POST
     @Path("{id: \\d+}")
     public TipoMedidaDTO createTipoMedida(@PathParam("idMaquina") Long idMaquina, @PathParam("id") Long id) throws BusinessLogicException {
-        return new TipoMedidaDTO(logic.createTipoMedidaMaquina(idMaquina, id));
+        return new TipoMedidaDTO(logic.createTipoMedida(idMaquina, id));
     }
 
     @DELETE
     @Path("{id: \\d+}")
     public void removeTipoMedida(@PathParam("idMaquina") Long idMaquina, @PathParam("id") Long id) throws BusinessLogicException {
-        logic.removeTipoMedidaMaquina(idMaquina, id);
+        logic.removeTipoMedida(idMaquina, id);
     }
 }

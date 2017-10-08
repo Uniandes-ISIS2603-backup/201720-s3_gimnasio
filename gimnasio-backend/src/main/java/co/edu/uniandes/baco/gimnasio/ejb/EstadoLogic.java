@@ -29,7 +29,6 @@ public class EstadoLogic extends BaseLogic<EstadoEntity>{
     public EstadoLogic() {
         super();
     }
-   
 
     @Inject public EstadoLogic(UsuarioLogic logic, BasePersistence<EstadoEntity> persistence) {
         super(persistence);

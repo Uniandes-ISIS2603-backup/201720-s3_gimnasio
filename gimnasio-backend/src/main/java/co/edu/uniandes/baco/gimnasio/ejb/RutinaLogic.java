@@ -9,6 +9,7 @@ import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
+import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -20,9 +21,17 @@ public class RutinaLogic extends BaseLogic<RutinaEntity>{
     /**
      * injecticon de la clase UsuarioLÑogic
      */
-    @Inject
     UsuarioLogic logic;
-    
+
+    public RutinaLogic() {
+        super();
+    }
+
+    @Inject public RutinaLogic(UsuarioLogic logic, BasePersistence<RutinaEntity> persistence) {
+        super(persistence);
+        this.logic = logic;
+    }
+  
     /**
      * Metodo que retorna todas las rutinas de un usuario
      * @param idUsuario id del usuarioa  buscar

@@ -6,7 +6,9 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity;
+import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
@@ -14,5 +16,12 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class MedicionMaquinaLogic extends BaseLogic<MedicionMaquinaEntity>{
+
+    public MedicionMaquinaLogic() {
+        super();
+    }
     
+    @Inject public MedicionMaquinaLogic(BasePersistence<MedicionMaquinaEntity> persistence){
+        super(persistence);
+    }
 }
