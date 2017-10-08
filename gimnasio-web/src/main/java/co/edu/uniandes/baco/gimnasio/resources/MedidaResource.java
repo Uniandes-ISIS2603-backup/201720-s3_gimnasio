@@ -5,6 +5,7 @@ import co.edu.uniandes.baco.gimnasio.dtos.MedidaDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.MedidaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -37,19 +38,19 @@ public class MedidaResource {
     * @throws BusinessLogicException 
     */
     @POST
-    @Path("{id: \\d+}")
-    public MedidaDTO post(@PathParam("idEstado") Long idEstado,@PathParam("id") Long id, MedidaDTO nuevo) throws BusinessLogicException {
+    @Path("{"+TIPOMEDIDAID+": \\d+}")
+    public MedidaDTO post(@PathParam(ESTADOID) Long idEstado,@PathParam(TIPOMEDIDAID) Long id, MedidaDTO nuevo) throws BusinessLogicException {
         return new MedidaDTO(logic.create(idEstado,nuevo.toEntity(),id));
     }
     /**
      * metodo para obtener todo las medidas de une stado
-     * @param isEstado del estado
+     * @param idEstado del estado
      * @return lista con las medidas
      * @throws BusinessLogicException 
      */
     @GET
-    public List<MedidaDetailDTO> getAll(@PathParam("idEstado") Long isEstado) throws BusinessLogicException {
-        return MedidaDetailDTO.listDTO(logic.findAll(isEstado));
+    public List<MedidaDetailDTO> getAll(@PathParam(ESTADOID) Long idEstado) throws BusinessLogicException {
+        return MedidaDetailDTO.listDTO(logic.findAll(idEstado));
     }
     /**
      * metodo que retorna una medida especifica
@@ -59,8 +60,8 @@ public class MedidaResource {
      * @throws BusinessLogicException 
      */
     @GET
-    @Path("{id: \\d+}")
-    public MedidaDetailDTO get(@PathParam("idEstado") Long idEstado, @PathParam("id") long id) throws BusinessLogicException {
+    @Path("{"+MEDIDAID+": \\d+}")
+    public MedidaDetailDTO get(@PathParam(ESTADOID) Long idEstado, @PathParam(MEDIDAID) long id) throws BusinessLogicException {
         return new MedidaDetailDTO(logic.find(idEstado, id));
     }
     /**
@@ -72,8 +73,8 @@ public class MedidaResource {
      * @throws BusinessLogicException 
      */
     @PUT
-    @Path("{id: \\d+}")
-    public MedidaDTO put(@PathParam("idEstado") Long idEstado, @PathParam("id") long id, MedidaDTO nuevo) throws BusinessLogicException {
+    @Path("{"+MEDIDAID+": \\d+}")
+    public MedidaDTO put(@PathParam(ESTADOID) Long idEstado, @PathParam(MEDIDAID) long id, MedidaDTO nuevo) throws BusinessLogicException {
         MedidaEntity entity = nuevo.toEntity();
         entity.setId(id);
         return new MedidaDTO(logic.update(idEstado, entity));
@@ -85,8 +86,8 @@ public class MedidaResource {
      * @throws BusinessLogicException 
      */
     @DELETE
-    @Path("{id: \\d+}")
-    public void delete(@PathParam("idEstado") Long idEstado,@PathParam("id") long id) throws BusinessLogicException{
-        logic.remove(id);
+    @Path("{"+MEDIDAID+": \\d+}")
+    public void delete(@PathParam(ESTADOID) Long idEstado,@PathParam(MEDIDAID) long id) throws BusinessLogicException{
+        logic.remove(idEstado, id);
     }
 }

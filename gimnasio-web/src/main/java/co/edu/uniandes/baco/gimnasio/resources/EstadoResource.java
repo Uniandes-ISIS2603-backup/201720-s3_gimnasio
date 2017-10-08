@@ -109,7 +109,7 @@ public class EstadoResource {
      * @return la clase de servicio
      * @throws BusinessLogicException si el estado o los servicioo no sirven 
      */
-    @Path("{"+ESTADOID+": \\d+}/"+MEDIDAS)
+    @Path("{"+ESTADOID+": \\d+}/"+MEDIDA)
     public Class<MedidaResource> getMedidasResource(@PathParam(USUARIOID) Long idUsuario,@PathParam(ESTADOID) Long id) throws BusinessLogicException{
         logic.find(idUsuario,id);
         return MedidaResource.class;

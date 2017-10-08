@@ -18,6 +18,9 @@ public final class URLS {
     public static final String ESTADO="estados";
     public static final String ESTADOID="estadosId";
     
-    public static final String MEDIDAS="medidas";
-    public static final String MEDIDASID="medidasId";
+    public static final String MEDIDA="medidas";
+    public static final String MEDIDAID="medidasId";
+    
+    public static final String TIPOMEDIDA="tipoMedidas";
+    public static final String TIPOMEDIDAID="tipoMedidasId";
 }
