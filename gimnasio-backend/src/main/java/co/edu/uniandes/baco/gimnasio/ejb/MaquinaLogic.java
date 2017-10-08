@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import java.util.List;
@@ -26,6 +27,8 @@ public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
     /**
      * injecion de la logica de ejercicio
      */
+    private TipoMedidaLogic tipoMedidaLogic;
+    
     @Inject
     private EjercicioLogic ejercicioLogic;
     /**
@@ -80,6 +83,46 @@ public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
         int ind=list.indexOf(aux);
         if(ind<0)
             throw new NoExisteException(id);
+        list.remove(aux);
+    }
+    
+    //-----------------------------------
+    // MAQUINA
+    //-----------------------------------
+
+
+    public List<TipoMedidaEntity> findAllTipoMedidaMaquina(Long id) throws BusinessLogicException {
+        return find(id).getTipoMedida();
+    }
+
+    public TipoMedidaEntity findTipoMedidaMaquina(Long idMaquina, Long id) throws BusinessLogicException {
+        TipoMedidaEntity aux = new TipoMedidaEntity();
+        aux.setId(id);
+        List<TipoMedidaEntity> list = find(idMaquina).getTipoMedida();
+        int ind = list.indexOf(aux);
+        if (ind < 0) {
+            throw new NoExisteException(id);
+        }
+        return list.get(ind);
+    }
+
+    public TipoMedidaEntity createTipoMedidaMaquina(Long idMaquina, Long id) throws BusinessLogicException {
+        TipoMedidaEntity aux = tipoMedidaLogic.find(id);
+        if (!aux.isAutomatico()) {
+            throw new BusinessLogicException("no se puede asociar una medida manual a una maquina");
+        }
+        find(idMaquina).getTipoMedida().add(aux);
+        return aux;
+    }
+
+    public void removeTipoMedidaMaquina(Long idMaquina, Long id) throws BusinessLogicException {
+        TipoMedidaEntity aux = new TipoMedidaEntity();
+        aux.setId(id);
+        List<TipoMedidaEntity> list = find(idMaquina).getTipoMedida();
+        int ind = list.indexOf(aux);
+        if (ind < 0) {
+            throw new NoExisteException(id);
+        }
         list.remove(aux);
     }
 }

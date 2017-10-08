@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.TipoMedidaDTO;
+import co.edu.uniandes.baco.gimnasio.ejb.MaquinaLogic;
 import co.edu.uniandes.baco.gimnasio.ejb.TipoMedidaLogic;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import java.util.List;
@@ -27,7 +28,7 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class MaquinaTipoMediaResource {
     @Inject
-    private TipoMedidaLogic logic;
+    private MaquinaLogic logic;
 
     @GET
     public List<TipoMedidaDTO> findAllObejtivos(@PathParam("idMaquina") Long id) throws BusinessLogicException {

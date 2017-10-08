@@ -9,6 +9,7 @@ import co.edu.uniandes.baco.gimnasio.dtos.TipoMedidaDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.TipoMedidaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -26,28 +27,23 @@ import javax.ws.rs.core.MediaType;
  *
  * @author t.kavanagh
  */
-@Path("tipoMedidas")
+@Path(URLS.TIPOMEDIDA)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class TipoMedidaResource {
    /**
     * injecion de la logica de tipo medida
     */
-    @Inject
     private TipoMedidaLogic logic;
-    /**
-     * convierte una lista de entitys a dtos
-     * @param entityList
-     * @return lsita de dtos
-     */
-    private List<TipoMedidaDTO> medidaListEntity2DTO(List<TipoMedidaEntity> entityList) {
-        List<TipoMedidaDTO> list = new ArrayList<>();
-        for (TipoMedidaEntity entity : entityList) {
-            list.add(new TipoMedidaDTO(entity));
-        }
-        return list;
+
+    public TipoMedidaResource() {
+        //constructor para la parte web
     }
 
+     @Inject public TipoMedidaResource(TipoMedidaLogic logic) {
+        this.logic = logic;
+    }
+     
     /**
      * Convierte una lista de  dto a entity
      * @param dtos 
@@ -79,8 +75,7 @@ public class TipoMedidaResource {
     @POST
     @Path("addList")
     public List<TipoMedidaDTO> postList(List<TipoMedidaDTO> listdto) throws BusinessLogicException {
-        List<TipoMedidaEntity> ll = logic.createList(medidaListDTO2Entity(listdto));
-        return medidaListEntity2DTO(ll);
+        return TipoMedidaDTO.listDTO(logic.createList(medidaListDTO2Entity(listdto)));
     }
     /**
      * metodo para obtener todos los tipos de medida
@@ -98,8 +93,8 @@ public class TipoMedidaResource {
      * @throws BusinessLogicException 
      */
     @GET
-    @Path("{id: \\d+}")
-    public TipoMedidaDTO get(@PathParam("id") long id) throws BusinessLogicException {
+    @Path("{"+TIPOMEDIDAID+": \\d+}")
+    public TipoMedidaDTO get(@PathParam(TIPOMEDIDAID) long id) throws BusinessLogicException {
         return new TipoMedidaDTO(logic.find(id));
     }
     /**
@@ -110,8 +105,8 @@ public class TipoMedidaResource {
      * @throws BusinessLogicException 
      */
     @PUT
-    @Path("{id: \\d+}")
-    public TipoMedidaDTO put(@PathParam("id") long id, TipoMedidaDTO nuevo) throws BusinessLogicException {
+    @Path("{"+TIPOMEDIDAID+": \\d+}")
+    public TipoMedidaDTO put(@PathParam(TIPOMEDIDAID) long id, TipoMedidaDTO nuevo) throws BusinessLogicException {
         TipoMedidaEntity entity = nuevo.toEntity();
         entity.setId(id);
         return new TipoMedidaDTO(logic.update(entity));
@@ -122,8 +117,8 @@ public class TipoMedidaResource {
     * @throws BusinessLogicException 
     */
     @DELETE
-    @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws BusinessLogicException {
+    @Path("{"+TIPOMEDIDAID+": \\d+}")
+    public void delete(@PathParam(TIPOMEDIDAID) long id) throws BusinessLogicException {
         logic.remove(id);
     }
 }
