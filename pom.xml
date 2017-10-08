@@ -6,10 +6,10 @@
     <artifactId>gimnasio</artifactId>
     <name>gimnasio</name>
     <packaging>pom</packaging>
-    <version>0.1.2</version>
+    <version>0.1.0</version>
 
     <modules>
-        <module>gimnasio-back</module>
+        <module>gimnasio-web</module>
     </modules>
 
 
