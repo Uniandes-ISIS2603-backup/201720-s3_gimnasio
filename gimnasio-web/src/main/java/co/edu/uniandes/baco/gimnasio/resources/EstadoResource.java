@@ -10,6 +10,7 @@ import co.edu.uniandes.baco.gimnasio.dtos.EstadoDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.EstadoLogic;
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -20,7 +21,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -33,8 +33,16 @@ public class EstadoResource {
     /**
      * metodo inject de la logica de estado
      */
-    @Inject
     private EstadoLogic logic;
+
+    public EstadoResource() {
+        //constructor para la parte web
+    }
+
+    @Inject public EstadoResource(EstadoLogic logic) {
+        this.logic = logic;
+    }
+
     /**
      * metodo que crea un nuevo estado
      * @param idUsuario id del usuario
@@ -43,7 +51,7 @@ public class EstadoResource {
      * @throws BusinessLogicException 
      */
     @POST
-    public EstadoDTO post(@PathParam("idUsuario") Long idUsuario,EstadoDTO nuevo) throws BusinessLogicException{
+    public EstadoDTO post(@PathParam(USUARIOID) Long idUsuario,EstadoDTO nuevo) throws BusinessLogicException{
         return new EstadoDTO(logic.create(idUsuario,nuevo.toEntity()));
     }
     /**
@@ -53,7 +61,7 @@ public class EstadoResource {
      * @throws BusinessLogicException el usuario no existe
      */
     @GET
-    public List<EstadoDetailDTO> getAll(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
+    public List<EstadoDetailDTO> getAll(@PathParam(USUARIOID) Long idUsuario) throws BusinessLogicException {
         return EstadoDetailDTO.listDetailDTO(logic.findAll(idUsuario));
     }
     /**
@@ -64,8 +72,8 @@ public class EstadoResource {
      * @throws BusinessLogicException el usuario o el estado no existe 
      */
     @GET
-    @Path("{id: \\d+}")
-    public EstadoDetailDTO get(@PathParam("idUsuario") Long idUsuario,@PathParam("id") long id) throws BusinessLogicException {
+    @Path("{"+ESTADOID+": \\d+}")
+    public EstadoDetailDTO get(@PathParam(USUARIOID) Long idUsuario,@PathParam(ESTADOID) long id) throws BusinessLogicException {
         return new EstadoDetailDTO(logic.find(idUsuario,id));
     }
     /**
@@ -77,8 +85,8 @@ public class EstadoResource {
      * @throws BusinessLogicException 
      */
     @PUT
-    @Path("{id: \\d+}")
-    public EstadoDTO put(@PathParam("idUsuario") Long idUsuario,@PathParam("id")long id, EstadoDTO nuevo) throws BusinessLogicException {
+    @Path("{"+ESTADOID+": \\d+}")
+    public EstadoDTO put(@PathParam(USUARIOID) Long idUsuario,@PathParam(ESTADOID)long id, EstadoDTO nuevo) throws BusinessLogicException {
         EstadoEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new EstadoDTO(logic.update(idUsuario,entity));
@@ -90,8 +98,8 @@ public class EstadoResource {
      * @throws BusinessLogicException si el estado o usuario noe xiste 
      */
     @DELETE
-    @Path("{id: \\d+}")
-    public void delete(@PathParam("idUsuario") Long idUsuario,@PathParam("id") long id) throws BusinessLogicException{
+    @Path("{"+ESTADOID+": \\d+}")
+    public void delete(@PathParam(USUARIOID) Long idUsuario,@PathParam(ESTADOID) long id) throws BusinessLogicException{
         logic.remove(idUsuario,id);
     }
     /**
@@ -101,10 +109,9 @@ public class EstadoResource {
      * @return la clase de servicio
      * @throws BusinessLogicException si el estado o los servicioo no sirven 
      */
-    @Path("{idEstado: \\d+}/medidas")
-    public Class<MedidaResource> getMedidasResource(@PathParam("idUsuario") Long idUsuario,@PathParam("idEstado") Long id) throws BusinessLogicException{
-        if (logic.find(idUsuario,id) == null)
-            throw new WebApplicationException("El ejercicio no existe", 404);
+    @Path("{"+ESTADOID+": \\d+}/"+MEDIDAS)
+    public Class<MedidaResource> getMedidasResource(@PathParam(USUARIOID) Long idUsuario,@PathParam(ESTADOID) Long id) throws BusinessLogicException{
+        logic.find(idUsuario,id);
         return MedidaResource.class;
     }
 }

@@ -9,7 +9,7 @@ import co.edu.uniandes.baco.gimnasio.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.EntrenadorLogic;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import java.util.ArrayList;
+import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -31,74 +31,42 @@ public class EntrenadorUsuarioResource {
     /**
      * injeccion con la logica del entrenador
      */
-    @Inject 
     private EntrenadorLogic entrenadorLogic;
+
+    public EntrenadorUsuarioResource() {
+        //constructor para la parte web
+    }
+
+    @Inject public EntrenadorUsuarioResource(EntrenadorLogic entrenadorLogic) {
+        this.entrenadorLogic = entrenadorLogic;
+    }
      
-    /**
-     * cambia de lista de entity a DTO
-     * @param entityList lista de entity
-     * @return lista de DTO
-     */
-    private List<UsuarioDetailDTO> usuarioListEntity2DTO(List<UsuarioEntity> entityList) {
-        List<UsuarioDetailDTO> list = new ArrayList<>();
-        for (UsuarioEntity entity : entityList) {
-            list.add(new UsuarioDetailDTO(entity));
-        }
-        return list;
-    }
-    
-    /**
-     * da una lista de usuarios de un entrenador
-     * http://localhost:8080/gimnasio-web/api/entrenadores/{id}/usuarios
-     * @param id id del entrenador
-     * @return lista de usuarios
-     * @throws BusinessLogicException si la lista es inexistente
-     */
     @GET
-    public List<UsuarioDetailDTO> listusuarios(@PathParam("EntrenadorId") Long id) throws BusinessLogicException {
-        return usuarioListEntity2DTO(entrenadorLogic.listUsuario(id));
+    public List<UsuarioDetailDTO> getAll(@PathParam(ENTRENADORID) Long id) throws BusinessLogicException {
+        return UsuarioDetailDTO.listDetailDTO(entrenadorLogic.findAllUsuario(id));
     }
     
-    /**
-     * conecta un usuario con un entrenador
-     * http://localhost:8080/gimnasio-web/api/entrenadores/{idEntrenador}/usuarios/{idUsuario}
-     * @param entrenadorId el 
-     * @param usuarioId
-     * @return
-     * @throws BusinessLogicException 
-     */
+    @GET
+    @Path("{"+USUARIOID+": \\d+}")
+    public UsuarioDetailDTO get(@PathParam(ENTRENADORID) Long entrenadorId, @PathParam(USUARIOID) Long usuarioId)throws BusinessLogicException{
+        return new UsuarioDetailDTO(entrenadorLogic.findUsuario(entrenadorId, usuarioId));
+    }
+    
+   
     @POST
-    @Path("{usuarioId: \\d+}")
-    public UsuarioDetailDTO addUsuario(@PathParam("EntrenadorId") Long entrenadorId, @PathParam("usuarioId") Long usuarioId) throws BusinessLogicException{
-        UsuarioEntity a = entrenadorLogic.addUsuarioDeail(entrenadorId, usuarioId);
+    @Path("{"+USUARIOID+": \\d+}")
+    public UsuarioDetailDTO add(@PathParam(ENTRENADORID) Long entrenadorId, @PathParam(USUARIOID) Long usuarioId) throws BusinessLogicException{
+        UsuarioEntity a = entrenadorLogic.createUsuario(entrenadorId, usuarioId);
         return new UsuarioDetailDTO(a);
     }
-    /**
-     * borra un usuario de un entrenador
-     * http://localhost:8080/gimnasio-web/api/entrenadores/{idEntrenador}/usuarios/{idUsuario}
-     * @param entrenadorId
-     * @param usuarioId
-     * @throws BusinessLogicException 
-     */
+    
     @DELETE
-    @Path("{usuarioID: \\d+}")
-    public void removeUsuario(@PathParam("EntrenadorId") Long entrenadorId, @PathParam("usuarioID") Long usuarioId) throws BusinessLogicException{
+    @Path("{"+USUARIOID+": \\d+}")
+    public void remove(@PathParam(ENTRENADORID) Long entrenadorId, @PathParam(USUARIOID) Long usuarioId) throws BusinessLogicException{
         entrenadorLogic.removeUsuario(entrenadorId, usuarioId);
     }
+    
     /**
-     *  da un usuario dado por parametro
-     *  http://localhost:8080/gimnasio-web/api/entrenadores/{idEntrenador}/usuarios/{idUsuario}
-     * @param entrenadorId
-     * @param usuarioId
-     * @return
-     * @throws BusinessLogicException 
-     */
-    @GET
-    @Path("{usuarioID: \\d+}")
-    public UsuarioDetailDTO getUsuario(@PathParam("EntrenadorId") Long entrenadorId, @PathParam("usuarioID") Long usuarioId)throws BusinessLogicException
-    {
-        return new UsuarioDetailDTO(entrenadorLogic.getusuario(entrenadorId, usuarioId));
-    }
     /**
      * redirecciona a las rutinas del usuario
      * http://localhost:8080/gimnasio-web/api/entrenadores/{idEntrenador}/usuarios/{idUsuario}/rutinas
@@ -106,10 +74,10 @@ public class EntrenadorUsuarioResource {
      * @param usuarioId
      * @return
      * @throws BusinessLogicException 
-     */
+     *
     @Path("{idUsuario: \\d+}/rutinas")
     public Class<RutinaResource> irRutina(@PathParam("EntrenadorId") Long entrenadorId, @PathParam("idUsuario") Long usuarioId) throws BusinessLogicException {
-        if(entrenadorLogic.getusuario(entrenadorId, usuarioId) != null)
+        if(entrenadorLogic.findUsuario(entrenadorId, usuarioId) != null)
             return RutinaResource.class;
         else 
             throw new BusinessLogicException("no usuario deberia existir");
@@ -121,10 +89,10 @@ public class EntrenadorUsuarioResource {
      * @param usuarioId
      * @return
      * @throws BusinessLogicException 
-     */
+     *
     @Path("{idUsuario: \\d+}/estados")
     public Class<EstadoResource> irEstado(@PathParam("EntrenadorId") Long entrenadorId, @PathParam("idUsuario") Long usuarioId) throws BusinessLogicException {
-        if(entrenadorLogic.getusuario(entrenadorId, usuarioId) != null)
+        if(entrenadorLogic.findUsuario(entrenadorId, usuarioId) != null)
             return EstadoResource.class;
         else 
             throw new BusinessLogicException("no usuario deberia existir");
@@ -136,12 +104,13 @@ public class EntrenadorUsuarioResource {
      * @param usuarioId
      * @return
      * @throws BusinessLogicException 
-     */
+     *
     @Path("{idUsuario: \\d+}/objetivos")
     public Class<ObjetivoResource> irObjetivos(@PathParam("EntrenadorId") Long entrenadorId, @PathParam("idUsuario") Long usuarioId) throws BusinessLogicException {
-        if(entrenadorLogic.getusuario(entrenadorId, usuarioId) != null)
+        if(entrenadorLogic.findUsuario(entrenadorId, usuarioId) != null)
             return ObjetivoResource.class;
         else 
             throw new BusinessLogicException("no usuario deberia existir");
     }
+    */
 }

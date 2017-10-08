@@ -15,13 +15,13 @@ import java.util.List;
  * @author m.sicard10
  */
 public class EntrenadorDetailDTO extends EntrenadorDTO{
-    //------------------------
-    //atributos
-    //------------------------
-    private List <UsuarioDTO> ususrios;
-    //------------------------
-    //metodos
-    //------------------------
+    //--------------------------------------------
+    // DATOS ENTITY
+    //--------------------------------------------
+    private List <UsuarioDTO> usuarios;
+    //--------------------------------------------
+    // CONSTRUCTOR & LIST
+    //--------------------------------------------
     /**
      * Constructor por defecto
      */
@@ -36,46 +36,30 @@ public class EntrenadorDetailDTO extends EntrenadorDTO{
      */
     public EntrenadorDetailDTO(EntrenadorEntity entity) {
         super(entity);
-        if (entity.getUsuarios() != null)
-        {
-            
-            this.ususrios = new ArrayList<>();
+        if (entity.getUsuarios() != null){
+            this.usuarios = new ArrayList<>();
             for(UsuarioEntity u : entity.getUsuarios())
             {
-                ususrios.add(new UsuarioDTO(u));
+                usuarios.add(new UsuarioDTO(u));
             }
         }
     }
 
-    /**
-     * Transformar un DTO a un Entity
-     *
-     * @return 
-     */
-    @Override
-    public EntrenadorEntity toEntity() {
-        EntrenadorEntity e = super.toEntity();
-        if (getUsusrios() != null)
-        {
-            List <UsuarioEntity> ususariosEntity = new ArrayList<>();
-            for(UsuarioDTO u : ususrios)
-            {
-                ususariosEntity.add(u.toEntity());
-            }
-            e.setUsuarios(ususariosEntity);
+    public static final List<EntrenadorDetailDTO> listDetailDTO(List<EntrenadorEntity> entity) {
+        List<EntrenadorDetailDTO> resp = new ArrayList<>();
+        for (EntrenadorEntity ent : entity) {
+            resp.add(new EntrenadorDetailDTO(ent));
         }
-        return e;
+        return resp;
     }
-    //----------------------------------------------------------
-    //gets and sets
-    //----------------------------------------------------------
-    public List<UsuarioDTO> getUsusrios() {
-        return ususrios;
+    //--------------------------------------------
+    // GETS & SETS
+    //--------------------------------------------
+    public List<UsuarioDTO> getUsuarios() {
+        return usuarios;
     }
 
-    public void setUsusrios(List<UsuarioDTO> ususrios) {
-        this.ususrios = ususrios;
+    public void setUsuarios(List<UsuarioDTO> usuarios) {
+        this.usuarios = usuarios;
     }
-    
-    
 }

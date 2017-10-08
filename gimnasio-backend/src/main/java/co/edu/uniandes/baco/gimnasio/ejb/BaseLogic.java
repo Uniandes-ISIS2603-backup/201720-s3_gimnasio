@@ -10,21 +10,34 @@ import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import java.util.List;
-import javax.inject.Inject;
 
 /**
  *
  * @author jc.bojaca
  * @param <T>
  */
-public abstract class BaseLogic<T extends BaseEntity>{
+public abstract class BaseLogic<T extends BaseEntity>{  
+   /**
+    * persistencia de la clase
+    */
+    protected BasePersistence<T> persistence;
+
+    /**
+     * constructor para la contenedora de aplicaciones
+     */
+    public BaseLogic() {
+        //falla sin este constructor (no identifica el otroen primea instancia)
+    }
     
     /**
-     * injecion de la logica de la persistenciabase
+     * cosntructor prar recibir la persistencia
+     * @param persistence 
      */
-    @Inject
-    protected BasePersistence<T> persistence;
-    /**
+    public BaseLogic(BasePersistence<T> persistence) {
+        this.persistence = persistence;
+    }
+    
+     /**
      * metodo que encuentra una entity 
      * @param id de la entity
      * @return la entity encontrada

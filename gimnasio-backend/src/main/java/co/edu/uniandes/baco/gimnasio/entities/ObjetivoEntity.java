@@ -35,7 +35,7 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
      * lista de usuarios que buscan ese objetivo
      */
     @PodamExclude
-    @ManyToMany
+    @ManyToMany(mappedBy = "objetivos")
     private List<UsuarioEntity> usuarios = new ArrayList<>();
      /**
      * lista de objetivos del ejercicio

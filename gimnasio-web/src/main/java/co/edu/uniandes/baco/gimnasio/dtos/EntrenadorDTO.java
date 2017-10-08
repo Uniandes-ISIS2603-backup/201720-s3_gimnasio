@@ -13,24 +13,18 @@ import java.util.Date;
  * @author m.sicard10
  */
 public class EntrenadorDTO  {
-    
+    //--------------------------------------------
+    // DATOS BASE
+    //--------------------------------------------
     private Long id;
-    
-    /**
-     * nombre de el entrenador
-     */
     private String name;
-    
-    /**
-     * fecha de nacimiento del entrenador
-     */
     private Date fechaNacimiento;
-    
-    /**
-     * documento del entrenador
-     */
     private String documento;
 
+    //--------------------------------------------
+    // CONSTRUCTOR & TOENTITY
+    //--------------------------------------------
+    
     /**
      * constructor vacio
      */
@@ -62,9 +56,10 @@ public class EntrenadorDTO  {
         return ent;
     }
 
-    //----------------------------------------------------------
-    //gets and sets
-    //----------------------------------------------------------
+    //--------------------------------------------
+    // GETS & SETS
+    //--------------------------------------------
+    
     public String getName() {
         return name;
     }
@@ -89,15 +84,11 @@ public class EntrenadorDTO  {
         this.documento = documento;
     }
     
-    
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    
+    }  
 }

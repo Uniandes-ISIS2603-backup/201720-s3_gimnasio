@@ -1,26 +1,21 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
-
 import co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * GimnasioDTO Objeto de transferencia de datos de Gimnasioes. Los DTO
- * contienen las represnetaciones de los JSON que se transfieren entre el
- * cliente y el servidor.
- *
- * @author ISIS2603
- */
 public class GimnasioDTO {
-
-    private Long id;
-    private String descripcion;
-    private String uniadad;
+    //--------------------------------------------
+    // DATOS BASE
+    //--------------------------------------------
+    private long id;
     private long nit;
-   private String duenio;
-   private String name;
+    private String duenio;
+    private String nombre;
 
+    //--------------------------------------------
+    // CONSTRUCTOR & TOENTITY
+    //--------------------------------------------
     /**
      * Constructor por defecto
      */
@@ -37,9 +32,27 @@ public class GimnasioDTO {
     public GimnasioDTO(GimnasioEntity gimnasio) {
         this.id = gimnasio.getId();
         this.duenio = gimnasio.getDuenio();
-        this.name = gimnasio.getName();
+        this.nombre = gimnasio.getName();
         this.nit = gimnasio.getNit();
     }
+    
+     /**
+     * Convertir DTO a Entity
+     *
+     * @return Un Entity con los valores del DTO
+     */
+    public GimnasioEntity toEntity() {
+        GimnasioEntity entity = new GimnasioEntity();
+        entity.setId(this.id);
+        entity.setDuenio(duenio);
+        entity.setName(nombre);
+        entity.setNit(nit);
+        return entity;
+    }
+    
+    //--------------------------------------------
+    // GETS & SETS
+    //--------------------------------------------
 
     /**
      * @return the id
@@ -53,36 +66,6 @@ public class GimnasioDTO {
      */
     public void setId(Long id) {
         this.id = id;
-    }
-
-    /**
-     * Convertir DTO a Entity
-     *
-     * @return Un Entity con los valores del DTO
-     */
-    public GimnasioEntity toEntity() {
-        GimnasioEntity entity = new GimnasioEntity();
-        entity.setId(this.id);
-        entity.setDuenio(duenio);
-        entity.setName(name);
-        entity.setNit(nit);
-        return entity;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getUniadad() {
-        return uniadad;
-    }
-
-    public void setUniadad(String uniadad) {
-        this.uniadad = uniadad;
     }
 
     public long getNit() {
@@ -102,18 +85,18 @@ public class GimnasioDTO {
     }
 
     public String getName() {
-        return name;
+        return nombre;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.nombre = name;
     }
-    
-     public static final List<GimnasioDTO> listDTO(List<GimnasioEntity> entity){
-        List<GimnasioDTO> resp=new ArrayList<>();
-        for(GimnasioEntity ent:entity){
+
+    public static final List<GimnasioDTO> listDTO(List<GimnasioEntity> entity) {
+        List<GimnasioDTO> resp = new ArrayList<>();
+        for (GimnasioEntity ent : entity) {
             resp.add(new GimnasioDTO(ent));
         }
         return resp;
-    }  
+    }
 }

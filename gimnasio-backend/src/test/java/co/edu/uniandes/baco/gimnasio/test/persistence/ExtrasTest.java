@@ -9,7 +9,6 @@ import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
-import javax.ws.rs.WebApplicationException;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -81,19 +80,19 @@ public class ExtrasTest {
         try {
             throw new NoExisteException();
         } catch (NoExisteException e) {
-            assertTrue(e instanceof WebApplicationException);
+            assertTrue(e instanceof BusinessLogicException);
         }
         
         try{
              throw new NoExisteException(id);
         } catch (NoExisteException e) {
-            assertEquals(e.getResponse().getStatus(), 404);
+             assertTrue(e instanceof BusinessLogicException);
         }
         
         try{
              throw new NoExisteException(id,id);
         } catch (NoExisteException e) {
-            assertEquals(e.getResponse().getStatus(), 404);
+             assertTrue(e instanceof BusinessLogicException);
         }
     }
 }

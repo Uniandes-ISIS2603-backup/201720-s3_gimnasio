@@ -5,13 +5,12 @@
  */
 package co.edu.uniandes.baco.gimnasio.exceptions;
 
-import javax.ws.rs.WebApplicationException;
 
 /**
  *
  * @author jc.bojaca
  */
-public class NoExisteException extends WebApplicationException{
+public class NoExisteException extends BusinessLogicException{
 
     public NoExisteException() {
         //constructor base
@@ -21,7 +20,7 @@ public class NoExisteException extends WebApplicationException{
      * @param id 
      */
     public NoExisteException(Long id){
-        super("El recurso con id=" + id + " no existe.", 404);
+        super("El recurso con id=" + id + " no existe.");
     }
     /**
      * contructor con 2 ids padre e hijo
@@ -29,6 +28,6 @@ public class NoExisteException extends WebApplicationException{
      * @param id2 
      */
     public NoExisteException(Long id,Long id2){
-        super("El subrecurso con id=" + id2 + ", no existe en como sub recurso del recurso con id="+id+".", 404);
+        super("El subrecurso con id=" + id2 + ", no existe en como sub recurso del recurso con id="+id+".");
     }
 }

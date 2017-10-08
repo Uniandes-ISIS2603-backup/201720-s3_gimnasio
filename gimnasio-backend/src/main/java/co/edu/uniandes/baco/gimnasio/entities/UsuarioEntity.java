@@ -50,7 +50,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
      * los objetivos del usuario
      */
     @PodamExclude
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany
     private List<ObjetivoEntity> objetivos = new ArrayList<>();
 
     /**

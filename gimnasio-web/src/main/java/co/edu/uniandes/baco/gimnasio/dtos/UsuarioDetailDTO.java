@@ -18,17 +18,17 @@ import java.util.List;
  * @author m.sicard10
  */
 public class UsuarioDetailDTO extends UsuarioDTO{
-    /*
-    *relacion con todos los entrenadores de un usuario
-    */
+    //--------------------------------------------
+    // DATOS ENTITY
+    //--------------------------------------------
     private List<EntrenadorDTO> entrenadores;
     private List<RutinaDTO> rutinas;
     private List<EstadoDTO> estados;
     private List<ObjetivoDTO>objetivos;
     
-    //--------------
-    //Metodos
-    //--------------
+    //--------------------------------------------
+    // CONSTRUCTOR & LIST
+    //--------------------------------------------
      public UsuarioDetailDTO() {
         super();
     }
@@ -58,6 +58,18 @@ public class UsuarioDetailDTO extends UsuarioDTO{
             }
         }
     }
+    
+    public static final List<UsuarioDetailDTO> listDetailDTO(List<UsuarioEntity> entity){
+        List<UsuarioDetailDTO> resp=new ArrayList<>();
+        for(UsuarioEntity ent:entity){
+            resp.add(new UsuarioDetailDTO(ent));
+        }
+        return resp;
+    }
+    
+    //--------------------------------------------
+    // GETS & SETS
+    //--------------------------------------------
 
     public List<EstadoDTO> getEstados() {
         return estados;
@@ -89,15 +101,5 @@ public class UsuarioDetailDTO extends UsuarioDTO{
 
     public void setObjetivos(List<ObjetivoDTO> objetivos) {
         this.objetivos = objetivos;
-    }
-    
-    
-    
-    public static final List<UsuarioDetailDTO> listDetailDTO(List<UsuarioEntity> entity){
-        List<UsuarioDetailDTO> resp=new ArrayList<>();
-        for(UsuarioEntity ent:entity){
-            resp.add(new UsuarioDetailDTO(ent));
-        }
-        return resp;
     }
 }

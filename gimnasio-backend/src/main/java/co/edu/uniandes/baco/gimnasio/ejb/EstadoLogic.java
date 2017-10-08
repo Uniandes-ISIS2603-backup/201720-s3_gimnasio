@@ -9,6 +9,7 @@ import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
+import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ejb.Stateless;
@@ -22,9 +23,19 @@ public class EstadoLogic extends BaseLogic<EstadoEntity>{
     /**
      * injecion de la logica de usuario
      */
-    @Inject
-    UsuarioLogic logic;
     
+    UsuarioLogic logic;
+
+    public EstadoLogic() {
+        super();
+    }
+   
+
+    @Inject public EstadoLogic(UsuarioLogic logic, BasePersistence<EstadoEntity> persistence) {
+        super(persistence);
+        this.logic = logic;
+    }
+
     /**
      * metodo que encuentra todos los estados de un usuario
      * @param idUsuario id del usuario

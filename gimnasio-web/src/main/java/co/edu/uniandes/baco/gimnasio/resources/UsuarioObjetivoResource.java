@@ -7,8 +7,9 @@ package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDetailDTO;
-import co.edu.uniandes.baco.gimnasio.ejb.ObjetivoLogic;
+import co.edu.uniandes.baco.gimnasio.ejb.UsuarioLogic;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -30,8 +31,16 @@ public class UsuarioObjetivoResource {
     /**
      * inject de la logica de objetivos
      */
-    @Inject
-    private ObjetivoLogic logic;
+    private UsuarioLogic logic;
+
+    public UsuarioObjetivoResource() {
+        //constructor para la parte web
+    }
+
+    @Inject public UsuarioObjetivoResource(UsuarioLogic logic) {
+        this.logic = logic;
+    }
+
     /**
      * metodo que debuelve todo los objeticos
      * @param id del usuario
@@ -39,8 +48,8 @@ public class UsuarioObjetivoResource {
      * @throws BusinessLogicException si el usuario noe xiste
      */
     @GET
-    public List<ObjetivoDetailDTO> findAllObejtivos(@PathParam("idUsuario") Long id) throws BusinessLogicException {
-        return ObjetivoDetailDTO.listDetailDTO(logic.findAllObjetivosUsuario(id));
+    public List<ObjetivoDetailDTO> findAll(@PathParam(USUARIOID) Long id) throws BusinessLogicException {
+        return ObjetivoDetailDTO.listDetailDTO(logic.findAllObjetivo(id));
     }
     /**
      * metodo qque encuentra un objetivo 
@@ -50,9 +59,9 @@ public class UsuarioObjetivoResource {
      * @throws BusinessLogicException si el usuario o el objetivo noe xisten 
      */
     @GET
-    @Path("{id: \\d+}")
-    public ObjetivoDetailDTO findObjetivo(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id) throws BusinessLogicException {
-        return new ObjetivoDetailDTO(logic.findObjetivoUsuario(idUsuario, id));
+    @Path("{"+OBJETIVOID+": \\d+}")
+    public ObjetivoDetailDTO find(@PathParam(USUARIOID) Long idUsuario, @PathParam(OBJETIVOID) Long id) throws BusinessLogicException {
+        return new ObjetivoDetailDTO(logic.findObjetivo(idUsuario, id));
     }
     /**
      * metodo que crea un objetivo
@@ -62,9 +71,9 @@ public class UsuarioObjetivoResource {
      * @throws BusinessLogicException si el usuario o objetivo noe xiste 
      */
     @POST
-    @Path("{id: \\d+}")
-    public ObjetivoDTO createObjetivo(@PathParam("idUsuario") Long idUsuario,@PathParam("id") Long id) throws BusinessLogicException {
-        return new ObjetivoDTO(logic.createObjetivoUsuario(idUsuario, id));
+    @Path("{"+OBJETIVOID+": \\d+}")
+    public ObjetivoDTO create(@PathParam(USUARIOID) Long idUsuario,@PathParam(OBJETIVOID) Long id) throws BusinessLogicException {
+       return new ObjetivoDTO(logic.createObjetivo(idUsuario, id));
     }
     /**
      * metodo que elimina un objetivo
@@ -73,8 +82,8 @@ public class UsuarioObjetivoResource {
      * @throws BusinessLogicException si el objetivo no existe o el usuario tampoco 
      */
     @DELETE
-    @Path("{id: \\d+}")
-    public void removeObjetivo(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id) throws BusinessLogicException {
-        logic.removeObejtivoUsuario(idUsuario, id);
+    @Path("{"+OBJETIVOID+": \\d+}")
+    public void removeObjetivo(@PathParam(USUARIOID) Long idUsuario, @PathParam(OBJETIVOID) Long id) throws BusinessLogicException {
+        logic.removeObejtivo(idUsuario, id);
     }
 }

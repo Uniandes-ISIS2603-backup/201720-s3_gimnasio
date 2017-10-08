@@ -13,17 +13,17 @@ import java.util.Date;
  * @author m.sicard10
  */
 public class UsuarioDTO {
-    //---------------
-    //atributos
-    //---------------
+    //--------------------------------------------
+    // DATOS BASE
+    //--------------------------------------------
     private long id;
     private String nombre;
     private Boolean genero;
     private Date fechaDeNacimiento;
     
-    //----------------
-    //Metodos
-    //----------------
+     //--------------------------------------------
+    // CONSTRUCTOR & TOENTITY
+    //--------------------------------------------
 
     /**
      * Constructor por defecto
@@ -50,6 +50,10 @@ public class UsuarioDTO {
         nuevo.setNombre(nombre);
         return nuevo;
     }
+    
+     //--------------------------------------------
+    // GETS & SETS
+    //--------------------------------------------
 
     public long getId() {
         return id;
@@ -81,7 +85,5 @@ public class UsuarioDTO {
 
     public void setFechaDeNacimiento(Date fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
-    }
-    
-    
+    } 
 }

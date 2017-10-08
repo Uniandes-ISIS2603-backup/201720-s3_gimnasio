@@ -19,12 +19,6 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
-     /**
-     * inject de la clase logic usuario
-     */
-    @Inject
-    private UsuarioLogic usuarioLogic;
-    
     /**
      * inject de la clase logica de ejercicios
      */
@@ -104,59 +98,5 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
         if(ind<0)
             throw new NoExisteException(id);
         list.remove(aux);
-    }
-    //-----------------------------------
-    // USUSARIO
-    //-----------------------------------
-    /**
-     * metodo apra encontrar todos los usuarios
-     * @param id del usuario a buscar
-     * @return los objetivos de ese usuario
-     * @throws BusinessLogicException si el usuario no existe
-     */
-    public List<ObjetivoEntity> findAllObjetivosUsuario(Long id) throws BusinessLogicException{
-        return usuarioLogic.find(id).getObjetivos();        
-    }
-    /**
-     * metodo apra encontrar un objetivo en un usuario
-     * @param idUsuario id del ejercicio
-     * @param id del objetivo
-     * @return el objetivo deseado
-     * @throws BusinessLogicException si el usuario o el objetivo no existen 
-     */
-    public ObjetivoEntity findObjetivoUsuario(Long idUsuario, Long id) throws BusinessLogicException{
-        ObjetivoEntity aux = new ObjetivoEntity();
-        aux.setId(id);
-        List<ObjetivoEntity> list=usuarioLogic.find(idUsuario).getObjetivos();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        return list.get(ind);
-    }
-    /**
-     * metodo que asocia un objetico a un usuario 
-     * @param idUsuario del usuario
-     * @param id id del objetivo
-     * @return el objetivo creado
-     * @throws BusinessLogicException si el usuario o objetivo no existe 
-     */
-    public ObjetivoEntity createObjetivoUsuario(Long idUsuario, Long id) throws BusinessLogicException{
-        ObjetivoEntity objetivoEntity = find(id);
-        UsuarioEntity usuarioEntity = new UsuarioEntity();
-        usuarioEntity.setId(idUsuario);
-        objetivoEntity.getUsuarios().add(usuarioEntity);
-        return objetivoEntity;
-    }
-    /**
-     *  metodo para eliminar un objetivo a un usuario
-     * @param idUsuario del Usuario
-     * @param id del objetivo
-     * @throws BusinessLogicException si el usuario o el objetivo no existen 
-     */
-    public void removeObejtivoUsuario(Long idUsuario, Long id) throws BusinessLogicException{
-        ObjetivoEntity entity = find(id);
-        UsuarioEntity usuarioEntity = new UsuarioEntity();
-        usuarioEntity.setId(idUsuario);
-        entity.getUsuarios().remove(usuarioEntity);
     }
 }
