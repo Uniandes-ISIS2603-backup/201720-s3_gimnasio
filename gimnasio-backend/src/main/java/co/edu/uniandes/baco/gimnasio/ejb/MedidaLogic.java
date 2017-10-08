@@ -93,6 +93,7 @@ public class MedidaLogic extends BaseLogic<MedidaEntity> {
         if (!old.getEstado().getId().equals(idEstado))
             throw new NoExisteException(idEstado);
         entity.setEstado(old.getEstado());
+        entity.setParte(old.getParte());
         return persistence.update(entity);
     }
     /**
