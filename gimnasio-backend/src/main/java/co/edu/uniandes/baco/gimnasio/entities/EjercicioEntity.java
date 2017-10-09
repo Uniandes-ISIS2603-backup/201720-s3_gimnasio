@@ -4,13 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 @Entity
@@ -56,13 +54,13 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
      * lista de objetivos a los que el ejercicio esta orientado
      */
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.EAGER)
+    @ManyToMany
     private List<ObjetivoEntity> objetivosEjercicio = new ArrayList<>();
     /**
      * lista de maquinas usadas en ele ejercicio 
      */
     @PodamExclude
-    @OneToMany(cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.EAGER)
+    @ManyToMany
     private List<MaquinaEntity> maquinas = new ArrayList<>();
     
     //--------------------------------------------

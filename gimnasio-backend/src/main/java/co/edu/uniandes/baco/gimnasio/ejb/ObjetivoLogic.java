@@ -12,6 +12,7 @@ import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  * @author jc.bojaca
@@ -23,7 +24,7 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
         super();
     }
     
-    public ObjetivoLogic(BasePersistence<ObjetivoEntity> persistence){
+    @Inject public ObjetivoLogic(BasePersistence<ObjetivoEntity> persistence){
         super(persistence);
     }
     

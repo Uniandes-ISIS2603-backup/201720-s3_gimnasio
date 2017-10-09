@@ -58,7 +58,6 @@ public class EjercicioObjetivoResource {
     @DELETE
     @Path("{"+OBJETIVOID+": \\d+}")
     public void removeObjetivo(@PathParam(EJERCICIOID) Long idEjercicio, @PathParam(OBJETIVOID) Long id) throws BusinessLogicException {
-        System.out.println("co.edu.uniandes.baco.gimnasio.resources.EjercicioObjetivoResource.removeObjetivo()");
         logic.removeObejtivo(idEjercicio, id);
     }
 }

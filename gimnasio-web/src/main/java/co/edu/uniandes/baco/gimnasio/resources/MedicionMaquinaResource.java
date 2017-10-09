@@ -9,7 +9,6 @@ import co.edu.uniandes.baco.gimnasio.dtos.MedicionMaquinaDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.MedicionMaquinaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -26,7 +25,6 @@ import javax.ws.rs.core.MediaType;
  *
  * @author ce.robles
  */
-//TODO Arreglar el path.
 @Path("medicion")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)

@@ -36,6 +36,7 @@ public class RutinaResource {
     private RutinaLogic logic;
 
     public RutinaResource() {
+        //constructor para la parte web
     }
 
     @Inject public RutinaResource(RutinaLogic logic) {

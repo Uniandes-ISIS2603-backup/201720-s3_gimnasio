@@ -1,5 +1,11 @@
 package co.edu.uniandes.baco.gimnasio.resources;
+
 public final class URLS {
+
+    public URLS() {
+        //es necesario para sonar
+    }
+    
     public static final String GIMNASIO="gimnasios";
     public static final String GIMNASIOID="gimnasiosId";
     
