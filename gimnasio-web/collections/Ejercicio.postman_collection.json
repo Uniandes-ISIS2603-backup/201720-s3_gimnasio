@@ -1,0 +1,398 @@
+{
+	"id": "64450af4-8ac7-a358-008e-22888343db20",
+	"name": "Ejercicio",
+	"description": "colecion para probar el funcionamiento de el servivio Ejercicio",
+	"order": [
+		"5cbc920e-c1df-0bdd-deec-1bb155d0d6a4",
+		"2210caa3-f44b-f268-4303-da0c18a83e4a",
+		"420a09e8-5570-46fd-05a3-71f659dd581e",
+		"236b3008-27a2-6dd8-f93b-b0c2db0ba7a8",
+		"3ca9dac3-c6cb-0a16-5f52-412b14ce8ee3",
+		"e65821d1-eac5-354c-c193-46b23b25204d",
+		"e0ca8ef9-2974-dae1-7733-f82eaef867cd",
+		"1e385c94-6543-e28c-d85d-84f6de65cb69",
+		"865c41f5-a197-ee90-e340-f8a525cf7221",
+		"ba1fba4e-fec5-8841-09a6-674299788716",
+		"9dfeafe1-9c7a-2fad-670f-423f86da875b",
+		"26cd2cad-9537-d8a0-cbe1-d5e63ac6f30c"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1507511513908,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "1e385c94-6543-e28c-d85d-84f6de65cb69",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/999",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "intetar cambiar un ejercicio que no existe",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507562251480,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 412\"] = responseCode.code === 412;\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"duracion\": 30,\n    \"explicacion\": \"usar la trotadora\",\n    \"repeticionesPorParticion\": 1,\n    \"series\": 0,\n    \"tamanioParticiones\": 7,\n    \"tipo\": \"AEROBICOS\"\n}"
+		},
+		{
+			"id": "2210caa3-f44b-f268-4303-da0c18a83e4a",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "test dar ejercicio con id 1",
+			"description": "dar elejercicio con id 1 con la ruta correcta",
+			"descriptionFormat": "html",
+			"time": 1507511985315,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test id\"] = jsonData.id === 1\ntests[\"test duracion\"] = jsonData.duracion === 15\ntests[\"test explicacion\"] = jsonData.explicacion === \"ABDOMINALES\"\ntests[\"test series\"] = jsonData.series === 20\ntests[\"test tipo\"] = jsonData.tipo === \"AEROBICOS\"\ntests[\"test tamanioParticiones\"] = jsonData.tamanioParticiones === 7\ntests[\"test repeticionesPorParticion\"] = jsonData.repeticionesPorParticion === 1\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "236b3008-27a2-6dd8-f93b-b0c2db0ba7a8",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "agregar un nuevo ejercicio",
+			"description": "agregar un nuevo ejercicio (se espera que el id sea 8)",
+			"descriptionFormat": "html",
+			"time": 1507512380087,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test id\"] = jsonData.id === 8\ntests[\"test duracion\"] = jsonData.duracion === 20\ntests[\"test explicacion\"] = jsonData.explicacion === \"abdominales\"\ntests[\"test series\"] = jsonData.series === 30\ntests[\"test tipo\"] = jsonData.tipo === \"AEROBICOS\"\ntests[\"test tamanioParticiones\"] = jsonData.tamanioParticiones === 7\ntests[\"test repeticionesPorParticion\"] = jsonData.repeticionesPorParticion === 2\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\t\"duracion\": 20,\n    \"explicacion\": \"abdominales\",\n    \"repeticionesPorParticion\": 2,\n    \"series\": 30,\n    \"tamanioParticiones\": 7,\n    \"tipo\": \"AEROBICOS\"\n}"
+		},
+		{
+			"id": "26cd2cad-9537-d8a0-cbe1-d5e63ac6f30c",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "verificacion final de ids",
+			"description": "verifica efecutadas las operaciones de post and delete que los ids que se encuentran sean los esperados",
+			"descriptionFormat": "html",
+			"time": 1507562678185,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData[0].id === 1\ntests[\"test contenido 2\"] = jsonData[1].id === 2\ntests[\"test contenido 3\"] = jsonData[2].id === 8\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"duracion\": 30,\n    \"explicacion\": \"usar la trotadora\",\n    \"repeticionesPorParticion\": 1,\n    \"series\": 0,\n    \"tamanioParticiones\": 7,\n    \"tipo\": \"AEROBICOS\"\n}"
+		},
+		{
+			"id": "3ca9dac3-c6cb-0a16-5f52-412b14ce8ee3",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/8",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "dar el ejercicio agregado",
+			"description": "se consulta el ejerecio con el id esperado 8y se verifica que sean los datos posteados anteriormete",
+			"descriptionFormat": "html",
+			"time": 1507561892525,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test id\"] = jsonData.id === 8\ntests[\"test duracion\"] = jsonData.duracion === 20\ntests[\"test explicacion\"] = jsonData.explicacion === \"abdominales\"\ntests[\"test series\"] = jsonData.series === 30\ntests[\"test tipo\"] = jsonData.tipo === \"AEROBICOS\"\ntests[\"test tamanioParticiones\"] = jsonData.tamanioParticiones === 7\ntests[\"test repeticionesPorParticion\"] = jsonData.repeticionesPorParticion === 2\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\t\"duracion\": 20,\n    \"explicacion\": \"abdominales\",\n    \"repeticionesPorParticion\": 2,\n    \"series\": 30,\n    \"tamanioParticiones\": 7,\n    \"tipo\": \"AEROBICOS\"\n}"
+		},
+		{
+			"id": "420a09e8-5570-46fd-05a3-71f659dd581e",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/999",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "consultar un ejercicio que no existe",
+			"description": "se consulta un ejercio con un id que no esta en la BD",
+			"descriptionFormat": "html",
+			"time": 1507512090264,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 412;\n\ntests[\"Body is correct\"] = responseBody === \"El recurso con id=999 no existe.\";",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "5cbc920e-c1df-0bdd-deec-1bb155d0d6a4",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "findAll",
+			"description": "dar todos los ejercicios de una rutina especifica",
+			"descriptionFormat": "html",
+			"time": 1507511650458,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData[0].id === 1\ntests[\"test contenido 2\"] = jsonData[1].id === 2\ntests[\"test contenido 3\"] = jsonData[2].id === 3\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "865c41f5-a197-ee90-e340-f8a525cf7221",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/999",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "eliminar un recurso que no existe",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507562392830,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 412\"] = responseCode.code === 412;\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "9dfeafe1-9c7a-2fad-670f-423f86da875b",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/3",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "consultar el registro eliminado",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507562528932,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 412\"] = responseCode.code === 412;\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "ba1fba4e-fec5-8841-09a6-674299788716",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/3",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "eliminar un ejercicio",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507562475594,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 204\"] = responseCode.code === 204;\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "e0ca8ef9-2974-dae1-7733-f82eaef867cd",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/2",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "consultar el ejercicio alterado",
+			"description": "se revisa  que el ejercicio con id 2 tiene los datos cambiados previamente",
+			"descriptionFormat": "html",
+			"time": 1507562174344,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test id\"] = jsonData.id === 2\ntests[\"test duracion\"] = jsonData.duracion === 30\ntests[\"test explicacion\"] = jsonData.explicacion === \"usar la trotadora\"\ntests[\"test series\"] = jsonData.series === 0\ntests[\"test tipo\"] = jsonData.tipo === \"AEROBICOS\"\ntests[\"test tamanioParticiones\"] = jsonData.tamanioParticiones === 7\ntests[\"test repeticionesPorParticion\"] = jsonData.repeticionesPorParticion === 1\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"duracion\": 30,\n    \"explicacion\": \"usar la trotadora\",\n    \"repeticionesPorParticion\": 1,\n    \"series\": 0,\n    \"tamanioParticiones\": 7,\n    \"tipo\": \"AEROBICOS\"\n}"
+		},
+		{
+			"id": "e65821d1-eac5-354c-c193-46b23b25204d",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/2",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "alterar los datos del ejercicio con id 2",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507562128170,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test id\"] = jsonData.id === 2\ntests[\"test duracion\"] = jsonData.duracion === 30\ntests[\"test explicacion\"] = jsonData.explicacion === \"usar la trotadora\"\ntests[\"test series\"] = jsonData.series === 0\ntests[\"test tipo\"] = jsonData.tipo === \"AEROBICOS\"\ntests[\"test tamanioParticiones\"] = jsonData.tamanioParticiones === 7\ntests[\"test repeticionesPorParticion\"] = jsonData.repeticionesPorParticion === 1\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"duracion\": 30,\n    \"explicacion\": \"usar la trotadora\",\n    \"repeticionesPorParticion\": 1,\n    \"series\": 0,\n    \"tamanioParticiones\": 7,\n    \"tipo\": \"AEROBICOS\"\n}"
+		}
+	]
+}
