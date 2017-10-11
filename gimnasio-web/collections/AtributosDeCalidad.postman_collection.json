@@ -1,0 +1,302 @@
+{
+	"id": "3f2b2fcb-9a92-f00f-943c-274a54bbc93d",
+	"name": "AtributosDeCalidad",
+	"description": "",
+	"order": [
+		"b0a9bdb1-a792-873d-91c1-9b608f4585fc",
+		"fecc665e-1e93-00c3-187e-ca5ca574abe0",
+		"cee5574c-cb43-44c4-e587-5285250bde4e",
+		"8ed4cfc7-e558-5477-77ff-4342f9f28451",
+		"056904f7-f254-5313-72a1-24ff41f564db",
+		"dcc8c230-f4db-dac1-20b5-afb90182a0a4",
+		"f7f49b2b-ccf0-c33b-0c53-f37c89934b2b",
+		"ad588260-3664-7ae1-d01d-b865a11a98a3",
+		"dbb54734-5a39-1974-1b21-cdc027d8a207"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1507731182476,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "056904f7-f254-5313-72a1-24ff41f564db",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/objetivos/1/atributosDeCalidad/3",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3f2b2fcb-9a92-f00f-943c-274a54bbc93d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "consultar el atribto de calida agregado",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507731456017,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData.id === 3\ntests[\"test contenido 1\"] = jsonData.regresion === 0\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"regresion\": 0\n}"
+		},
+		{
+			"id": "8ed4cfc7-e558-5477-77ff-4342f9f28451",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/objetivos/1/atributosDeCalidad/3",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "3f2b2fcb-9a92-f00f-943c-274a54bbc93d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "agregar un nuevo atributo de calidad",
+			"description": "el 3 en el path es il id del tipo medida que se referencia",
+			"descriptionFormat": "html",
+			"time": 1507731425952,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData.id === 3\ntests[\"test contenido 1\"] = jsonData.regresion === 0\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"regresion\": 0\n}"
+		},
+		{
+			"id": "ad588260-3664-7ae1-d01d-b865a11a98a3",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/objetivos/1/atributosDeCalidad/2",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "3f2b2fcb-9a92-f00f-943c-274a54bbc93d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "eliminar el atributo de calida con id 2",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507731596251,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 204\"] = responseCode.code === 204;\n\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "b0a9bdb1-a792-873d-91c1-9b608f4585fc",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/objetivos/1/atributosDeCalidad",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3f2b2fcb-9a92-f00f-943c-274a54bbc93d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "dar todos los atributos de caidad de un objetivo",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507731184139,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData[0].id === 1\ntests[\"test contenido 1\"] = jsonData[1].id === 2\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"descripcion\": \"BAJAR EL PESO x2\",\n    \"tipo\": \"PÉRDIDA DE PESO\"\n}"
+		},
+		{
+			"id": "cee5574c-cb43-44c4-e587-5285250bde4e",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/objetivos/1/atributosDeCalidad/999",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3f2b2fcb-9a92-f00f-943c-274a54bbc93d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "dar un atributo de calidad queno existe",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507731272191,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 412\"] = responseCode.code === 412;\n\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"descripcion\": \"BAJAR EL PESO x2\",\n    \"tipo\": \"PÉRDIDA DE PESO\"\n}"
+		},
+		{
+			"id": "dbb54734-5a39-1974-1b21-cdc027d8a207",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/objetivos/1/atributosDeCalidad/2",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3f2b2fcb-9a92-f00f-943c-274a54bbc93d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "consulta el atributo borrado",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507731629319,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 412\"] = responseCode.code === 412;\n\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "dcc8c230-f4db-dac1-20b5-afb90182a0a4",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/objetivos/1/atributosDeCalidad/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "3f2b2fcb-9a92-f00f-943c-274a54bbc93d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "alterar el atributo de calidad 1",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507731529984,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData.id === 1\ntests[\"test contenido 1\"] = jsonData.regresion === -1\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"regresion\": -1\n}"
+		},
+		{
+			"id": "f7f49b2b-ccf0-c33b-0c53-f37c89934b2b",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/objetivos/1/atributosDeCalidad/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3f2b2fcb-9a92-f00f-943c-274a54bbc93d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "verificar el atributo de calidad cambiado",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507731553725,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData.id === 1\ntests[\"test contenido 1\"] = jsonData.regresion === -1\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"regresion\": -1\n}"
+		},
+		{
+			"id": "fecc665e-1e93-00c3-187e-ca5ca574abe0",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/objetivos/1/atributosDeCalidad/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3f2b2fcb-9a92-f00f-943c-274a54bbc93d",
+			"data": [],
+			"dataMode": "raw",
+			"name": "dar el atributo de calidad de un objetivo",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507731227240,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData.id === 1\ntests[\"test contenido 1\"] = jsonData.regresion === 1\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"descripcion\": \"BAJAR EL PESO x2\",\n    \"tipo\": \"PÉRDIDA DE PESO\"\n}"
+		}
+	]
+}

@@ -40,6 +40,13 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
             throw new BusinessLogicException("ya existe un objetivo con ese tipo");
         return super.create(entity); 
     }
+
+    @Override
+    public ObjetivoEntity update(ObjetivoEntity entity) throws BusinessLogicException {
+        ObjetivoEntity old=find(entity.getId());
+        entity.setAtributos(old.getAtributos());
+        return super.update(entity);
+    }
     
     public List<UsuarioEntity> findAllUsuarios(Long id) throws BusinessLogicException{
         return find(id).getUsuarios();

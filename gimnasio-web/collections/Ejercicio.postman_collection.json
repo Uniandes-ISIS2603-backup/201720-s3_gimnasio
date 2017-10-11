@@ -14,7 +14,21 @@
 		"865c41f5-a197-ee90-e340-f8a525cf7221",
 		"ba1fba4e-fec5-8841-09a6-674299788716",
 		"9dfeafe1-9c7a-2fad-670f-423f86da875b",
-		"26cd2cad-9537-d8a0-cbe1-d5e63ac6f30c"
+		"26cd2cad-9537-d8a0-cbe1-d5e63ac6f30c",
+		"0ea0b6fe-a713-26db-1789-34dfa6df1dcf",
+		"95d4b1d3-f187-6a30-e422-c12ff60957ce",
+		"e7d3f118-0e1b-67f6-e09c-df8935213258",
+		"e5500417-4796-65d8-5a29-b4ea19579697",
+		"cb1d2b83-8ade-9dfa-2106-a09dd7938184",
+		"ef1b81a6-1704-8a3b-feed-a8d924a99547",
+		"322a78ed-4af2-5377-062f-226dded7bf97",
+		"ccbdf830-b634-a8e1-fe18-5416556ac3de",
+		"7447a557-49f3-6086-7510-277b9b994dcd",
+		"900345d7-b143-bde8-ea16-6ec690f4f654",
+		"8e30d4dd-6934-70d5-a635-48e4d2140c93",
+		"057e6662-5fd6-73ef-4bfa-97b360d30396",
+		"a675fa79-1a69-9751-21d5-e52447df3ac3",
+		"a2b012b4-0a96-4456-c9d0-be60d87d8ab7"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -22,6 +36,68 @@
 	"owner": 0,
 	"public": false,
 	"requests": [
+		{
+			"id": "057e6662-5fd6-73ef-4bfa-97b360d30396",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/maquinas/5",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "dar la maquina agregada",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507728691788,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData.id === 5\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "0ea0b6fe-a713-26db-1789-34dfa6df1dcf",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/objetivos",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "consultar todos los objetivos de un ejercicio",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507727962778,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData[0].id === 1\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"duracion\": 30,\n    \"explicacion\": \"usar la trotadora\",\n    \"repeticionesPorParticion\": 1,\n    \"series\": 0,\n    \"tamanioParticiones\": 7,\n    \"tipo\": \"AEROBICOS\"\n}"
+		},
 		{
 			"id": "1e385c94-6543-e28c-d85d-84f6de65cb69",
 			"headers": "Content-Type: application/json\n",
@@ -147,6 +223,37 @@
 			"rawModeData": "{\n    \"duracion\": 30,\n    \"explicacion\": \"usar la trotadora\",\n    \"repeticionesPorParticion\": 1,\n    \"series\": 0,\n    \"tamanioParticiones\": 7,\n    \"tipo\": \"AEROBICOS\"\n}"
 		},
 		{
+			"id": "322a78ed-4af2-5377-062f-226dded7bf97",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/objetivos/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "consultar el objetivo eliminado",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507728353347,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 412\"] = responseCode.code === 412;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
 			"id": "3ca9dac3-c6cb-0a16-5f52-412b14ce8ee3",
 			"headers": "Content-Type: application/json\n",
 			"headerData": [
@@ -240,6 +347,37 @@
 			"rawModeData": ""
 		},
 		{
+			"id": "7447a557-49f3-6086-7510-277b9b994dcd",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/maquinas/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "dar la maquina 1 si pertenece al ejercicio",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507728610812,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData[0].id === 1\ntests[\"test contenido 2\"] = jsonData[1].id === 2\ntests[\"test contenido 3\"] = jsonData[2].id === 3\ntests[\"test contenido 4\"] = jsonData[3].id === 4\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
 			"id": "865c41f5-a197-ee90-e340-f8a525cf7221",
 			"headers": "Content-Type: application/json\n",
 			"headerData": [
@@ -271,6 +409,99 @@
 			"rawModeData": ""
 		},
 		{
+			"id": "8e30d4dd-6934-70d5-a635-48e4d2140c93",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/maquinas/5",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "agregar la maquina 5",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507728669940,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData.id === 5\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "900345d7-b143-bde8-ea16-6ec690f4f654",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/maquinas/7",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "dar una maquina que no pertene al ejercicio",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507728639686,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData[0].id === 1\ntests[\"test contenido 2\"] = jsonData[1].id === 2\ntests[\"test contenido 3\"] = jsonData[2].id === 3\ntests[\"test contenido 4\"] = jsonData[3].id === 4\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "95d4b1d3-f187-6a30-e422-c12ff60957ce",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/objetivos/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "consultar el objetivo con con id 1 si perteece al ejercicio",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507728024108,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData.id === 1\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"duracion\": 30,\n    \"explicacion\": \"usar la trotadora\",\n    \"repeticionesPorParticion\": 1,\n    \"series\": 0,\n    \"tamanioParticiones\": 7,\n    \"tipo\": \"AEROBICOS\"\n}"
+		},
+		{
 			"id": "9dfeafe1-9c7a-2fad-670f-423f86da875b",
 			"headers": "Content-Type: application/json\n",
 			"headerData": [
@@ -297,6 +528,68 @@
 			"version": 2,
 			"responses": [],
 			"tests": "tests[\"Status code is 412\"] = responseCode.code === 412;\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "a2b012b4-0a96-4456-c9d0-be60d87d8ab7",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/maquinas/4",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "consutar la maquina eliminada",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507728822268,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 412\"] = responseCode.code === 412;\n\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "a675fa79-1a69-9751-21d5-e52447df3ac3",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/maquinas/4",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "eliminar la maquina 4 de las maquinas del ejercicio",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507728787730,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 204\"] = responseCode.code === 204;\n\n\n\n",
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"rawModeData": ""
@@ -333,6 +626,68 @@
 			"rawModeData": ""
 		},
 		{
+			"id": "cb1d2b83-8ade-9dfa-2106-a09dd7938184",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/objetivos/2",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "consultar el ejercicio agregado",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507728229382,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData.id === 2\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "ccbdf830-b634-a8e1-fe18-5416556ac3de",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/maquinas",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "dar todas las maquinas de  un ejercicio",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507728587446,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData[0].id === 1\ntests[\"test contenido 2\"] = jsonData[1].id === 2\ntests[\"test contenido 3\"] = jsonData[2].id === 3\ntests[\"test contenido 4\"] = jsonData[3].id === 4\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
 			"id": "e0ca8ef9-2974-dae1-7733-f82eaef867cd",
 			"headers": "Content-Type: application/json\n",
 			"headerData": [
@@ -364,6 +719,37 @@
 			"rawModeData": "{\n    \"duracion\": 30,\n    \"explicacion\": \"usar la trotadora\",\n    \"repeticionesPorParticion\": 1,\n    \"series\": 0,\n    \"tamanioParticiones\": 7,\n    \"tipo\": \"AEROBICOS\"\n}"
 		},
 		{
+			"id": "e5500417-4796-65d8-5a29-b4ea19579697",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/objetivos/2",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "agregar un objetivo al ejercicio",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507728158902,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\n\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"test contenido 1\"] = jsonData.id === 2\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
 			"id": "e65821d1-eac5-354c-c193-46b23b25204d",
 			"headers": "Content-Type: application/json\n",
 			"headerData": [
@@ -393,6 +779,68 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"rawModeData": "{\n    \"duracion\": 30,\n    \"explicacion\": \"usar la trotadora\",\n    \"repeticionesPorParticion\": 1,\n    \"series\": 0,\n    \"tamanioParticiones\": 7,\n    \"tipo\": \"AEROBICOS\"\n}"
+		},
+		{
+			"id": "e7d3f118-0e1b-67f6-e09c-df8935213258",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/objetivos/3",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "consultar un objetivo que no pertenece al ejercicio",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507728130303,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 412\"] = responseCode.code === 412;\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "ef1b81a6-1704-8a3b-feed-a8d924a99547",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/objetivos/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "64450af4-8ac7-a358-008e-22888343db20",
+			"data": [],
+			"dataMode": "raw",
+			"name": "eliminar un objetivo de un ejercicio",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1507728315412,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 204\"] = responseCode.code === 204;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
 		}
 	]
 }
