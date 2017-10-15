@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.baco.gimnasio.ejb;
 
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
@@ -34,6 +35,10 @@ public class EjercicioInstanciaLogic extends BaseLogic<EjercicioInstanciaEntity>
         super(persistence);
         this.rutinaLogic = rutinaLogic;
         this.ejercicioLogic = ejercicioLogic;
+    }
+    
+    public EjercicioEntity findEjercicio(long idRutina, long id) throws BusinessLogicException{
+        return find(idRutina, id).getEjercicio();
     }
     
     public List<EjercicioInstanciaEntity> findAll(long idRutina) throws BusinessLogicException {

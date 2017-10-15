@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -38,6 +41,17 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToMany(mappedBy = "tiposMedidas")
     private List<EjercicioEntity> ejercicios = new ArrayList<>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "parte", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<MedidaEntity> medidas;
+    
+    /**
+     * lista de objetivos del ejercicio
+     */
+    @PodamExclude
+    @OneToMany(mappedBy = "tipoMedida",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<AtributoDeCalidadEntity> atributos = new ArrayList<>();
 
     //--------------------------------------------
     // GETS & SETS
@@ -86,6 +100,22 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable {
         this.unidad = unidad;
     }
 
+    public List<AtributoDeCalidadEntity> getAtributos() {
+        return atributos;
+    }
+
+    public void setAtributos(List<AtributoDeCalidadEntity> atributos) {
+        this.atributos = atributos;
+    }
+
+    public List<MedidaEntity> getMedidas() {
+        return medidas;
+    }
+
+    public void setMedidas(List<MedidaEntity> medidas) {
+        this.medidas = medidas;
+    }
+    
     public String getTipoMedida() {
         return tipoMedida;
     }

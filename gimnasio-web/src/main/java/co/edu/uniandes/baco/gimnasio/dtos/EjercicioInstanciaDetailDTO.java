@@ -14,6 +14,9 @@ import java.util.List;
  * @author jc.bojaca
  */
 public class EjercicioInstanciaDetailDTO extends EjercicioInstanciaDTO{
+    private String descricpion;
+    private String tipo;
+    private String explicacion;
     //--------------------------------------------
     // DATOS ENTITY
     //--------------------------------------------
@@ -21,8 +24,11 @@ public class EjercicioInstanciaDetailDTO extends EjercicioInstanciaDTO{
         super();
     }
     
-    public EjercicioInstanciaDetailDTO(EjercicioInstanciaEntity entity) {    
+    public EjercicioInstanciaDetailDTO(EjercicioInstanciaEntity entity) {
         super(entity);
+        this.tipo = entity.getEjercicio().getTipo().name();
+        this.explicacion = entity.getEjercicio().getExplicacion();
+        this.descricpion=entity.getEjercicio().getDescripcion();
     }
 
     //--------------------------------------------
@@ -38,4 +44,27 @@ public class EjercicioInstanciaDetailDTO extends EjercicioInstanciaDTO{
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
+    public String getDescricpion() {
+        return descricpion;
+    }
+
+    public void setDescricpion(String descricpion) {
+        this.descricpion = descricpion;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getExplicacion() {
+        return explicacion;
+    }
+
+    public void setExplicacion(String explicacion) {
+        this.explicacion = explicacion;
+    }
 }

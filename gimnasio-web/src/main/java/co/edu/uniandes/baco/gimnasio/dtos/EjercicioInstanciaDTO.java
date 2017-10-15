@@ -22,9 +22,7 @@ public class EjercicioInstanciaDTO{
     private Integer series;
     private Integer tamanioParticiones;
     private Integer repeticionesPorParticion;
-    private String descricpion;
-    private String tipo;
-    private String explicacion;
+    
     
     //--------------------------------------------
     // CONSTRUCTOR & TOENTITY
@@ -34,9 +32,6 @@ public class EjercicioInstanciaDTO{
     }
     
     public EjercicioInstanciaDTO(EjercicioInstanciaEntity entity){
-        this.tipo = entity.getEjercicio().getTipo().name();
-        this.explicacion = entity.getEjercicio().getExplicacion();
-        this.descricpion=entity.getEjercicio().getDescripcion();
         this.id=entity.getId();
         efectividad=entity.getEfectividad();
         cumplimiento=entity.getCumplimiento();
@@ -113,29 +108,4 @@ public class EjercicioInstanciaDTO{
     public void setRepeticionesPorParticion(Integer repeticionesPorParticion) {
         this.repeticionesPorParticion = repeticionesPorParticion;
     }
-
-    public String getDescricpion() {
-        return descricpion;
-    }
-
-    public void setDescricpion(String descricpion) {
-        this.descricpion = descricpion;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getExplicacion() {
-        return explicacion;
-    }
-
-    public void setExplicacion(String explicacion) {
-        this.explicacion = explicacion;
-    }
-    
 }

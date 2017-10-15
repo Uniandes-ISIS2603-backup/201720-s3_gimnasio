@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.baco.gimnasio.resources;
 
+import co.edu.uniandes.baco.gimnasio.dtos.EjercicioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.EjercicioInstanciaDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.EjercicioInstanciaDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.EjercicioInstanciaLogic;
@@ -49,6 +50,12 @@ public class EjercicioInsResource{
         return new EjercicioInstanciaDetailDTO(logic.find(idRutina,id));
     }
     
+    @GET
+    @Path("{"+EJERCICIOID+": \\d+}/DATA")
+    public EjercicioDetailDTO getEjercicio(@PathParam(RUTINAID)Long idRutina,@PathParam(EJERCICIOID) long id) throws BusinessLogicException {
+        return new EjercicioDetailDTO(logic.findEjercicio(idRutina,id));
+    }
+    
     @PUT
     @Path("{"+EJERCICIOID+": \\d+}")
     public EjercicioInstanciaDTO put(@PathParam(RUTINAID)Long idRutina,@PathParam(EJERCICIOID)long id, EjercicioInstanciaDTO nuevo) throws BusinessLogicException {
@@ -61,5 +68,5 @@ public class EjercicioInsResource{
    @Path("{"+EJERCICIOID+": \\d+}")
     public void delete(@PathParam(RUTINAID)Long idRutina,@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
         logic.remove(idRutina,id);
-    }
+   }
 }

@@ -2,10 +2,8 @@ package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -38,7 +36,7 @@ public class MedidaEntity extends BaseEntity implements Serializable {
      * dato que mide la medida
      */
     @PodamExclude
-    @OneToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne
     private TipoMedidaEntity parte;
 
     //--------------------------------------------

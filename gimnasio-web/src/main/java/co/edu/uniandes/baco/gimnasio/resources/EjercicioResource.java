@@ -71,7 +71,7 @@ public class EjercicioResource {
         logic.remove(id);
     }
     
-     @Path("{"+EJERCICIOID+": \\d+}/"+OBJETIVO)
+    @Path("{"+EJERCICIOID+": \\d+}/"+OBJETIVO)
     public Class<EjercicioObjetivoResource> getObjetivo(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
         logic.find(id);
         return EjercicioObjetivoResource.class;
@@ -84,8 +84,8 @@ public class EjercicioResource {
     }
     
      @Path("{"+EJERCICIOID+": \\d+}/"+TIPOMEDIDA)
-    public Class<EjercicioMaquinaResource> getTipoMedida(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
+    public Class<EjercicioTipoMedidaResource> getTipoMedida(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
         logic.find(id);
-        return EjercicioMaquinaResource.class;
+        return EjercicioTipoMedidaResource.class;
     }
 }

@@ -164,7 +164,7 @@ public class EstadoPersistenceTest {
     public void subEnititysTest(){
         EstadoEntity newEntity = create();
         UsuarioEntity usuarioEntity=factory.manufacturePojo(UsuarioEntity.class);
-         List<MedidaEntity> medidas=new ArrayList<>();
+        List<MedidaEntity> medidas=new ArrayList<>();
         for(int i=0;i<5;i++)
             medidas.add(factory.manufacturePojo(MedidaEntity.class));
         

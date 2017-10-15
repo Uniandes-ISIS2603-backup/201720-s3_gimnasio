@@ -1,7 +1,9 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
+import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.TipoMedidaPersistence;
@@ -163,9 +165,19 @@ public class TipoMedidaPersistenceTest {
         List<EjercicioEntity> ejercicios=new ArrayList<>();
         for(int i=0;i<5;i++)
             ejercicios.add(factory.manufacturePojo(EjercicioEntity.class));
+        List<MedidaEntity> medidas=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            medidas.add(factory.manufacturePojo(MedidaEntity.class));
+        List<AtributoDeCalidadEntity> atributos=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            atributos.add(factory.manufacturePojo(AtributoDeCalidadEntity.class));
         
         newEntity.setEjercicios(ejercicios);
+        newEntity.setMedidas(medidas);
+        newEntity.setAtributos(atributos);
         assertEquals(newEntity.getEjercicios(), ejercicios);
+        assertEquals(newEntity.getMedidas(), medidas);
+         assertEquals(newEntity.getAtributos(), atributos);
     }
     
     private void assertEqualsObject(TipoMedidaEntity a,TipoMedidaEntity b){
