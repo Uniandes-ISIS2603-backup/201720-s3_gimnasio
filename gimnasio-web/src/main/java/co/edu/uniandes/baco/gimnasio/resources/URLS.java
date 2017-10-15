@@ -36,4 +36,8 @@ public final class URLS {
     
     public static final String EJERCICIO="ejercicios";
     public static final String EJERCICIOID="ejerciciosId";
+
+    private URLS() {
+        //constructor vacio
+    }
 }

@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.baco.gimnasio.dtos;
 
-import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import java.util.ArrayList;
 import java.util.List;
