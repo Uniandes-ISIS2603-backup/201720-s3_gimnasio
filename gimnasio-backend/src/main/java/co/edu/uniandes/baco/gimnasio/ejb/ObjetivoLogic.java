@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.baco.gimnasio.ejb;
 
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
@@ -50,5 +51,9 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
     
     public List<UsuarioEntity> findAllUsuarios(Long id) throws BusinessLogicException{
         return find(id).getUsuarios();
+    }
+    
+    public List<EjercicioEntity> findAllEjercicio(Long id) throws BusinessLogicException{
+        return find(id).getEjercicios();
     }
 }

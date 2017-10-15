@@ -15,10 +15,7 @@ public class EjercicioDTO {
     private Long id;
     private String tipo;
     private String explicacion;
-    private Integer duracion;
-    private Integer series;
-    private Integer tamanioParticiones;
-    private Integer repeticionesPorParticion;
+    private String descricpion;
 
     //--------------------------------------------
     // CONSTRUCTOR & TOENTITY
@@ -31,22 +28,17 @@ public class EjercicioDTO {
         this.id = entity.getId();
         this.tipo = entity.getTipo().name();
         this.explicacion = entity.getExplicacion();
-        this.duracion = entity.getDuracion();
-        this.series = entity.getSeries();
-        this.tamanioParticiones = entity.getTamanioParticiones();
-        this.repeticionesPorParticion = entity.getRepeticionesPorParticion();
+        this.descricpion=entity.getDescripcion();
     }
      /**
      * convierte un dto a entity
      * @return 
+     * @throws co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException 
      */
     public EjercicioEntity toEntity() throws BusinessLogicException {
         EjercicioEntity ent = new EjercicioEntity();
         ent.setExplicacion(explicacion);
-        ent.setDuracion(duracion);
-        ent.setSeries(series);
-        ent.setTamanioParticiones(tamanioParticiones);
-        ent.setRepeticionesPorParticion(repeticionesPorParticion);
+        ent.setDescripcion(descricpion);
         try {
             ent.setTipo(Tipo.valueOf(tipo));
         } catch (java.lang.IllegalArgumentException e) {
@@ -74,38 +66,15 @@ public class EjercicioDTO {
         this.tipo = tipo;
     }
 
-    public Integer getDuracion() {
-        return duracion;
+    public String getDescricpion() {
+        return descricpion;
     }
 
-    public void setDuracion(Integer duracion) {
-        this.duracion = duracion;
+    public void setDescricpion(String descricpion) {
+        this.descricpion = descricpion;
     }
-
-    public Integer getSeries() {
-        return series;
-    }
-
-    public void setSeries(Integer series) {
-        this.series = series;
-    }
-
-    public Integer getTamanioParticiones() {
-        return tamanioParticiones;
-    }
-
-    public void setTamanioParticiones(Integer tamanioParticiones) {
-        this.tamanioParticiones = tamanioParticiones;
-    }
-
-    public Integer getRepeticionesPorParticion() {
-        return repeticionesPorParticion;
-    }
-
-    public void setRepeticionesPorParticion(Integer repeticionesPorParticion) {
-        this.repeticionesPorParticion = repeticionesPorParticion;
-    }
-
+    
+    
     public String getExplicacion() {
         return explicacion;
     }

@@ -53,7 +53,7 @@ public class RutinaEntity extends BaseEntity implements Serializable {
      */
     @PodamExclude
     @OneToMany(mappedBy = "rutina", orphanRemoval = true, cascade = CascadeType.ALL)
-    private List<EjercicioEntity> ejercicios = new ArrayList<>();
+    private List<EjercicioInstanciaEntity> ejercicios = new ArrayList<>();
 
     //--------------------------------------------
     // GETS & SETS
@@ -83,11 +83,11 @@ public class RutinaEntity extends BaseEntity implements Serializable {
         this.usuario = usuario;
     }
 
-    public List<EjercicioEntity> getEjercicios() {
+    public List<EjercicioInstanciaEntity> getEjercicios() {
         return ejercicios;
     }
 
-    public void setEjercicios(List<EjercicioEntity> ejercicios) {
+    public void setEjercicios(List<EjercicioInstanciaEntity> ejercicios) {
         this.ejercicios = ejercicios;
     }
     

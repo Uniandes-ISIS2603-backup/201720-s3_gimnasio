@@ -1,8 +1,12 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * @author t.kavanagh
@@ -10,7 +14,6 @@ import javax.persistence.Entity;
  */
 @Entity
 public class TipoMedidaEntity extends BaseEntity implements Serializable {
-
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
@@ -26,6 +29,15 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable {
      * atributo que modela si la medida es automatica o no
      */
     private boolean automatico;
+    //--------------------------------------------
+    // DATOS ENTITY
+    //--------------------------------------------
+    /**
+     * lista de usuarios que buscan ese objetivo
+     */
+    @PodamExclude
+    @ManyToMany(mappedBy = "tiposMedidas")
+    private List<EjercicioEntity> ejercicios = new ArrayList<>();
 
     //--------------------------------------------
     // GETS & SETS
@@ -39,6 +51,14 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable {
         return automatico;
     }
 
+    public List<EjercicioEntity> getEjercicios() {
+        return ejercicios;
+    }
+
+    public void setEjercicios(List<EjercicioEntity> ejercicios) {
+        this.ejercicios = ejercicios;
+    }
+    
     /**
      * metodo set de atomatico
      *

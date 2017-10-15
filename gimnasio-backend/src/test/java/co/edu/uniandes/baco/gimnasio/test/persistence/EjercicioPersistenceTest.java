@@ -2,9 +2,10 @@ package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.EjercicioPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -161,28 +162,32 @@ public class EjercicioPersistenceTest {
     @Test
     public void subEnititysTest(){
         EjercicioEntity newEntity = create();
-        RutinaEntity rutina=factory.manufacturePojo(RutinaEntity.class);
         List<ObjetivoEntity> objetivos=new ArrayList<>();
         for(int i=0;i<5;i++)
             objetivos.add(factory.manufacturePojo(ObjetivoEntity.class));
         List<MaquinaEntity> maquinas=new ArrayList<>();
         for(int i=0;i<5;i++)
             maquinas.add(factory.manufacturePojo(MaquinaEntity.class));
+        List<TipoMedidaEntity> tipoMedidas=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            tipoMedidas.add(factory.manufacturePojo(TipoMedidaEntity.class));
+        List<EjercicioInstanciaEntity> instancias=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            instancias.add(factory.manufacturePojo(EjercicioInstanciaEntity.class));
         
-        newEntity.setRutina(rutina);
         newEntity.setObjetivosEjercicio(objetivos);
         newEntity.setMaquinas(maquinas);
-        assertEquals(newEntity.getRutina(), rutina);
+        newEntity.setTiposMedidas(tipoMedidas);
+        newEntity.setInstancias(instancias);
         assertEquals(newEntity.getObjetivosEjercicio(),objetivos);
         assertEquals(newEntity.getMaquinas(), maquinas);
+        assertEquals(newEntity.getInstancias(), instancias);
+        assertEquals(newEntity.getTiposMedidas(), tipoMedidas);
     }
     
     private void assertEqualsObject(EjercicioEntity a,EjercicioEntity b){
         assertEquals(a.getExplicacion(), b.getExplicacion());
-        assertEquals(a.getDuracion(), b.getDuracion());
-        assertEquals(a.getSeries(), b.getSeries());
-        assertEquals(a.getTamanioParticiones(), b.getTamanioParticiones());
-        assertEquals(a.getRepeticionesPorParticion(), b.getRepeticionesPorParticion());
+        assertEquals(a.getDescripcion(), b.getDescripcion());
         assertEquals(a.getTipo(), b.getTipo());
     }
     

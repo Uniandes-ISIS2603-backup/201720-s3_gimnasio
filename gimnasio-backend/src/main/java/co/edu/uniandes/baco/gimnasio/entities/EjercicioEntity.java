@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 @Entity
@@ -21,21 +22,9 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
      */
     private String explicacion;
     /**
-     * la duracion en minutos del ejercicio
+     * 
      */
-    private Integer duracion;
-    /**
-     * la cantidad de series asignadas para el ejercicio
-     */
-    private Integer series;
-    /**
-     * el atributo que define la regularidad con la que hay que hacer el ejercicio en dias {1="diariamente" , 7="semanalmente")
-     */
-    private Integer tamanioParticiones;
-    /**
-     * atributo que define la cantidad de veces que hay que hacer el ejercicio por particion {con el atributo de tamanioParticiones define la frecuencia del ejercicio}
-     */
-    private Integer repeticionesPorParticion;
+    private String descripcion;
     /**
      * el tipo de ejercicio al que pertenece
      */
@@ -44,12 +33,6 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     //--------------------------------------------
     // DATOS ENTITY
     //--------------------------------------------
-    /**
-     * atibuto de rutina a la que pertenece
-     */
-    @PodamExclude
-    @ManyToOne
-    private RutinaEntity rutina;
     /**
      * lista de objetivos a los que el ejercicio esta orientado
      */
@@ -62,36 +45,24 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToMany
     private List<MaquinaEntity> maquinas = new ArrayList<>();
+    /**
+     * lista de las partes del cuerpo/ medidciones que afecta
+     */
+    @PodamExclude
+    @ManyToMany
+    private List<TipoMedidaEntity> tiposMedidas = new ArrayList<>();
     
+    /**
+     * referencias al ejercicio en las rutinas especificas
+     */
+    @PodamExclude
+    @OneToMany(mappedBy = "ejercicio", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<EjercicioInstanciaEntity> instancias = new ArrayList<>();
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
 
-    public Integer getSeries() {
-        return series;
-    }
-
-    public void setSeries(Integer series) {
-        this.series = series;
-    }
-
-    public Integer getDuracion() {
-        return duracion;
-    }
-
-    public void setDuracion(Integer duracion) {
-        this.duracion = duracion;
-    }
-
-    public Integer getTamanioParticiones() {
-        return tamanioParticiones;
-    }
-
-    public void setTamanioParticiones(Integer tamanioParticiones) {
-        this.tamanioParticiones = tamanioParticiones;
-    }
-    
-     public String getExplicacion() {
+    public String getExplicacion() {
         return explicacion;
     }
 
@@ -99,28 +70,36 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
         this.explicacion = explicacion;
     }
 
-    public Integer getRepeticionesPorParticion() {
-        return repeticionesPorParticion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setRepeticionesPorParticion(Integer repeticionesPorParticion) {
-        this.repeticionesPorParticion = repeticionesPorParticion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
+    public List<TipoMedidaEntity> getTiposMedidas() {
+        return tiposMedidas;
+    }
+
+    public void setTiposMedidas(List<TipoMedidaEntity> tiposMedidas) {
+        this.tiposMedidas = tiposMedidas;
+    }
+
+    public List<EjercicioInstanciaEntity> getInstancias() {
+        return instancias;
+    }
+
+    public void setInstancias(List<EjercicioInstanciaEntity> instancias) {
+        this.instancias = instancias;
+    }
+    
     public Tipo getTipo() {
         return tipo;
     }
 
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
-    }
-
-    public RutinaEntity getRutina() {
-        return rutina;
-    }
-
-    public void setRutina(RutinaEntity rutina) {
-        this.rutina = rutina;
     }
 
     public List<ObjetivoEntity> getObjetivosEjercicio() {
@@ -153,11 +132,9 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     @Override
     public int hashCode() {
         int hash = super.hashCode();
-        hash = 97 * hash + Objects.hashCode(this.explicacion);
-        hash = 97 * hash + Objects.hashCode(this.duracion);
-        hash = 97 * hash + Objects.hashCode(this.series);
-        hash = 97 * hash + Objects.hashCode(this.tamanioParticiones);
-        hash = 97 * hash + Objects.hashCode(this.repeticionesPorParticion);
+        hash = 59 * hash + Objects.hashCode(this.explicacion);
+        hash = 59 * hash + Objects.hashCode(this.descripcion);
+        hash = 59 * hash + Objects.hashCode(this.tipo);
         return hash;
     }
 }

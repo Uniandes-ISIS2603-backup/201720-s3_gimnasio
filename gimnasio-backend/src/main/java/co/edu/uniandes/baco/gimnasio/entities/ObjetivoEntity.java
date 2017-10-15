@@ -43,6 +43,13 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "objetivo",cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<AtributoDeCalidadEntity> atributos = new ArrayList<>();
+    
+    /**
+     * lista de usuarios que buscan ese objetivo
+     */
+    @PodamExclude
+    @ManyToMany(mappedBy = "objetivosEjercicio")
+    private List<EjercicioEntity> ejercicios = new ArrayList<>();
 
     //--------------------------------------------
     // GETS & SETS
@@ -78,6 +85,15 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
     public void setAtributos(List<AtributoDeCalidadEntity> atributos) {
         this.atributos = atributos;
     }
+
+    public List<EjercicioEntity> getEjercicios() {
+        return ejercicios;
+    }
+
+    public void setEjercicios(List<EjercicioEntity> ejercicios) {
+        this.ejercicios = ejercicios;
+    }
+    
     //--------------------------------------------
     // METODOS
     //--------------------------------------------

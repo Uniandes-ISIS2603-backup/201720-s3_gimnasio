@@ -19,8 +19,9 @@
     <class>co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.PartesDelCuerpoEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity</class>
-    <class>co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity</class>
     <validation-mode>CALLBACK</validation-mode>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>

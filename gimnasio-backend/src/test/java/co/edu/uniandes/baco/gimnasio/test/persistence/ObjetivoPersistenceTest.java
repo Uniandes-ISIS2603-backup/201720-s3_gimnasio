@@ -2,6 +2,7 @@ package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
@@ -187,9 +188,14 @@ public class ObjetivoPersistenceTest {
         List<AtributoDeCalidadEntity> atributos=new ArrayList<>();
         for(int i=0;i<5;i++)
             atributos.add(factory.manufacturePojo(AtributoDeCalidadEntity.class));
+        List<EjercicioEntity> ejercicios=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            ejercicios.add(factory.manufacturePojo(EjercicioEntity.class));
         
+        newEntity.setEjercicios(ejercicios);
         newEntity.setUsuarios(usuarios);
         newEntity.setAtributos(atributos);
+        assertEquals(newEntity.getEjercicios(), ejercicios);
         assertEquals(newEntity.getUsuarios(),usuarios);
         assertEquals(newEntity.getAtributos(), atributos);
     }

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.baco.gimnasio.resources;
 
+import co.edu.uniandes.baco.gimnasio.dtos.EjercicioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDetailDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.UsuarioDetailDTO;
@@ -78,6 +79,11 @@ public class ObjetivoResource{
         return UsuarioDetailDTO.listDetailDTO(logic.findAllUsuarios(id));
     }
     
+    @GET
+    @Path("{"+OBJETIVOID+": \\d+}/"+EJERCICIO)
+    public List<EjercicioDetailDTO> findEjercicios(@PathParam(OBJETIVOID) long id) throws BusinessLogicException{
+        return EjercicioDetailDTO.listDetailDTO(logic.findAllEjercicio(id));
+    }
     
     @Path("{"+OBJETIVOID+": \\d+}/"+ATRIBUTODECALIDAD)
     public Class<AtributoDeCalidadResource> getAtributoDeCalidad(@PathParam(OBJETIVOID) Long id) throws BusinessLogicException{

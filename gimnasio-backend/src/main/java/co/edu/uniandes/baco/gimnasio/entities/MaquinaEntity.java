@@ -1,9 +1,11 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -33,6 +35,13 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
     @OneToMany
     private List<TipoMedidaEntity> tipoMedida;
     
+    /**
+     * lista de usuarios que buscan ese objetivo
+     */
+    @PodamExclude
+    @ManyToMany(mappedBy = "maquinas")
+    private List<EjercicioEntity> ejercicios = new ArrayList<>();
+    
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
@@ -43,6 +52,14 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
 
     public void setInformacion(String informacion) {
         this.informacion = informacion;
+    }
+    
+    public List<EjercicioEntity> getEjercicios() {
+        return ejercicios;
+    }
+
+    public void setEjercicios(List<EjercicioEntity> ejercicios) {
+        this.ejercicios = ejercicios;
     }
 
     public List<TipoMedidaEntity> getTipoMedida() {

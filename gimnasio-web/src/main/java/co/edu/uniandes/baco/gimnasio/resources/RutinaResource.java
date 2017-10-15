@@ -110,8 +110,8 @@ public class RutinaResource {
      * @throws BusinessLogicException 
      */
     @Path("{"+RUTINAID+": \\d+}/"+EJERCICIO)
-    public Class<EjercicioResource> getEjercicioResource(@PathParam(USUARIOID) Long idUsuario,@PathParam(RUTINAID) Long id) throws BusinessLogicException{
+    public Class<EjercicioInsResource> getEjercicioResource(@PathParam(USUARIOID) Long idUsuario,@PathParam(RUTINAID) Long id) throws BusinessLogicException{
         logic.find(idUsuario,id);
-        return EjercicioResource.class;
+        return EjercicioInsResource.class;
     }
 }

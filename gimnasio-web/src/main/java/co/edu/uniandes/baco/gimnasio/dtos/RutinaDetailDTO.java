@@ -15,7 +15,6 @@ import java.util.List;
  * @author jc.bojaca
  */
 public class RutinaDetailDTO extends RutinaDTO{
-    private List<EjercicioDTO> ejericcios;
 
     public RutinaDetailDTO() {
         super();
@@ -23,12 +22,6 @@ public class RutinaDetailDTO extends RutinaDTO{
 
     public RutinaDetailDTO(RutinaEntity entity) {
         super(entity);
-        if (entity.getEjercicios() != null){
-            this.ejericcios = new ArrayList<>();
-            for(EjercicioEntity aux : entity.getEjercicios()){
-                ejericcios.add(new EjercicioDTO(aux));
-            }
-        }
     }
     
     public static final List<RutinaDetailDTO> listDetailDTO(List<RutinaEntity> entity){
@@ -38,12 +31,4 @@ public class RutinaDetailDTO extends RutinaDTO{
         }
         return resp;
     }
-
-    public List<EjercicioDTO> getEjericcios() {
-        return ejericcios;
-    }
-
-    public void setEjericcios(List<EjercicioDTO> ejericcios) {
-        this.ejericcios = ejericcios;
-    } 
 }

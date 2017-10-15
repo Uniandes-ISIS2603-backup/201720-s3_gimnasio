@@ -13,15 +13,24 @@ import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
 /**
  *
  * @author jc.bojaca
  */
+@Path(URLS.EJERCICIO)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class EjercicioResource{
+public class EjercicioResource {
     private EjercicioLogic logic;
 
     public EjercicioResource() {
@@ -31,47 +40,52 @@ public class EjercicioResource{
      @Inject public EjercicioResource(EjercicioLogic logic) {
         this.logic = logic;
     }
-    
-    @POST
-    public EjercicioDTO post(@PathParam(RUTINAID)Long idRutina,EjercicioDTO nuevo) throws BusinessLogicException{
-        return new EjercicioDTO(logic.create(idRutina,nuevo.toEntity()));
+     
+     @POST
+    public EjercicioDTO post(EjercicioDTO nuevo) throws BusinessLogicException{
+        return new EjercicioDTO(logic.create(nuevo.toEntity()));
     }
     
     @GET
-    public List<EjercicioDetailDTO> getAll(@PathParam(RUTINAID)Long idRutina) throws BusinessLogicException {
-        return EjercicioDetailDTO.listDetailDTO(logic.findAll(idRutina));
+    public List<EjercicioDetailDTO> getAll() throws BusinessLogicException{
+        return EjercicioDetailDTO.listDetailDTO(logic.findAll());
     }
     
     @GET
     @Path("{"+EJERCICIOID+": \\d+}")
-    public EjercicioDetailDTO get(@PathParam(RUTINAID)Long idRutina,@PathParam(EJERCICIOID) long id) throws BusinessLogicException {
-        return new EjercicioDetailDTO(logic.find(idRutina,id));
+    public EjercicioDetailDTO get(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
+        return new EjercicioDetailDTO(logic.find(id));
     }
     
     @PUT
     @Path("{"+EJERCICIOID+": \\d+}")
-    public EjercicioDTO put(@PathParam(RUTINAID)Long idRutina,@PathParam(EJERCICIOID)long id, EjercicioDTO nuevo) throws BusinessLogicException {
+    public EjercicioDTO put(@PathParam(EJERCICIOID)long id, EjercicioDTO nuevo) throws BusinessLogicException{
         EjercicioEntity entity=nuevo.toEntity();
         entity.setId(id);
-        return new EjercicioDTO(logic.update(idRutina,entity));
+        return new EjercicioDTO(logic.update(entity));
     }
     
-   @DELETE
-   @Path("{"+EJERCICIOID+": \\d+}")
-    public void delete(@PathParam(RUTINAID)Long idRutina,@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
-        logic.remove(idRutina,id);
+    @DELETE
+    @Path("{"+EJERCICIOID+": \\d+}")
+    public void delete(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
+        logic.remove(id);
     }
     
-    
-    @Path("{"+EJERCICIOID+": \\d+}/"+OBJETIVO)
-    public Class<EjercicioObjetivoResource> getObjetivo(@PathParam(RUTINAID)Long idRutina,@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
-        logic.find(idRutina, id);
+     @Path("{"+EJERCICIOID+": \\d+}/"+OBJETIVO)
+    public Class<EjercicioObjetivoResource> getObjetivo(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
+        logic.find(id);
         return EjercicioObjetivoResource.class;
     }
     
     @Path("{"+EJERCICIOID+": \\d+}/"+MAQUINA)
-    public Class<EjercicioMaquinaResource> getMaquina(@PathParam(RUTINAID)Long idRutina,@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
-        logic.find(idRutina, id);
+    public Class<EjercicioMaquinaResource> getMaquina(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
+        logic.find(id);
+        return EjercicioMaquinaResource.class;
+    }
+    
+     @Path("{"+EJERCICIOID+": \\d+}/"+TIPOMEDIDA)
+    public Class<EjercicioMaquinaResource> getTipoMedida(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
+        logic.find(id);
         return EjercicioMaquinaResource.class;
     }
 }

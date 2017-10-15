@@ -1,6 +1,7 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.TipoMedidaPersistence;
@@ -154,6 +155,17 @@ public class TipoMedidaPersistenceTest {
         
         TipoMedidaEntity resp = em.find(TipoMedidaEntity.class, entity.getId());
         assertEqualsObject(newEntity, resp);
+    }
+    
+     @Test
+    public void subEnititysTest(){
+        TipoMedidaEntity newEntity = create();
+        List<EjercicioEntity> ejercicios=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            ejercicios.add(factory.manufacturePojo(EjercicioEntity.class));
+        
+        newEntity.setEjercicios(ejercicios);
+        assertEquals(newEntity.getEjercicios(), ejercicios);
     }
     
     private void assertEqualsObject(TipoMedidaEntity a,TipoMedidaEntity b){

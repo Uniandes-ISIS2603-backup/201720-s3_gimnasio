@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.baco.gimnasio.resources;
 
+import co.edu.uniandes.baco.gimnasio.dtos.EjercicioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.MaquinaDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.MaquinaDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.MaquinaLogic;
@@ -76,5 +77,11 @@ public class MaquinaResource{
     public Class<MaquinaTipoMediaResource> getEjercicioResource(@PathParam(MAQUINAID) Long idMaquina) throws BusinessLogicException{
        logic.find(idMaquina);
        return MaquinaTipoMediaResource.class;
+    }
+    
+    @GET
+    @Path("{"+MAQUINAID+": \\d+}/"+EJERCICIO)
+    public List<EjercicioDetailDTO> findEjercicios(@PathParam(MAQUINAID) long id) throws BusinessLogicException{
+        return EjercicioDetailDTO.listDetailDTO(logic.findAllEjercicio(id));
     }
 }

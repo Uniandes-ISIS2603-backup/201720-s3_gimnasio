@@ -1,12 +1,12 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
-import co.edu.uniandes.baco.gimnasio.persistence.RutinaPersistence;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import co.edu.uniandes.baco.gimnasio.persistence.EjercicioInstanciaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -30,9 +30,9 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 @RunWith(Arquillian.class)
-public class RutinaPersistenceTest {
+public class EjercicioInstanciaPersistenceTest {
     @Inject
-    private RutinaPersistence RutinaPersistence;
+    private EjercicioInstanciaPersistence EjercicioInstanciaPersistence;
 
     @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
@@ -42,13 +42,13 @@ public class RutinaPersistenceTest {
     
     private final PodamFactory factory = new PodamFactoryImpl();
 
-    private final List<RutinaEntity> data = new ArrayList<>();
+    private final List<EjercicioInstanciaEntity> data = new ArrayList<>();
 
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(RutinaEntity.class.getPackage())
-                .addPackage(RutinaPersistence.class.getPackage())
+                .addPackage(EjercicioInstanciaEntity.class.getPackage())
+                .addPackage(EjercicioInstanciaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -73,12 +73,12 @@ public class RutinaPersistenceTest {
     }
 
     private void clearData() {
-        em.createQuery("delete from RutinaEntity").executeUpdate();
+        em.createQuery("delete from EjercicioInstanciaEntity").executeUpdate();
     }
 
     private void insertData() {
         for (int i = 0; i < 3; i++) {
-            RutinaEntity entity = create();
+            EjercicioInstanciaEntity entity = create();
             em.persist(entity);
             data.add(entity);
         }
@@ -90,16 +90,16 @@ public class RutinaPersistenceTest {
     
     @Test
     public void equalsHasTest() {
-        RutinaEntity newEntity = create();
+        EjercicioInstanciaEntity newEntity = create();
         assertTrue(newEntity.equals(newEntity));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
         
-        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(UsuarioEntity.class);
+        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
         assertFalse(newEntity.equals(tipo));
         tipo=null;
         assertFalse(newEntity.equals(tipo));
         
-        RutinaEntity newEntity2 = create();
+        EjercicioInstanciaEntity newEntity2 = create();
         newEntity2.setId(newEntity.getId());
         assertTrue(newEntity.equals(newEntity2));
         
@@ -109,21 +109,21 @@ public class RutinaPersistenceTest {
     }
     
     @Test
-    public void createRutinaTest() {
-        RutinaEntity newEntity = create();
-        RutinaEntity result = RutinaPersistence.create(newEntity);
+    public void createEjercicioInstanciaTest() {
+        EjercicioInstanciaEntity newEntity = create();
+        EjercicioInstanciaEntity result = EjercicioInstanciaPersistence.create(newEntity);
         assertNotNull(result);
-        RutinaEntity entity = em.find(RutinaEntity.class, result.getId());
+        EjercicioInstanciaEntity entity = em.find(EjercicioInstanciaEntity.class, result.getId());
         assertEqualsObject(newEntity, entity);
     }
 
     @Test
-    public void geRutinasTest() {
-        List<RutinaEntity> list = RutinaPersistence.findAll();
+    public void geEjercicioInstanciasTest() {
+        List<EjercicioInstanciaEntity> list = EjercicioInstanciaPersistence.findAll();
         assertEquals(data.size(), list.size());
-        for (RutinaEntity ent : list) {
+        for (EjercicioInstanciaEntity ent : list) {
             boolean found = false;
-            for (RutinaEntity entity : data) {
+            for (EjercicioInstanciaEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -133,53 +133,54 @@ public class RutinaPersistenceTest {
     }
 
     @Test
-    public void getRutinaTest() {
-        RutinaEntity entity = data.get(0);
-        RutinaEntity newEntity = RutinaPersistence.find(entity.getId());
+    public void getEjercicioInstanciaTest() {
+        EjercicioInstanciaEntity entity = data.get(0);
+        EjercicioInstanciaEntity newEntity = EjercicioInstanciaPersistence.find(entity.getId());
         assertNotNull(newEntity);
         assertEqualsObject(newEntity, entity);
     }
 
     @Test
-    public void deleteRutinaTest() {
-        RutinaEntity entity = data.get(0);
-        RutinaPersistence.delete(entity.getId());
-        RutinaEntity deleted = em.find(RutinaEntity.class, entity.getId());
+    public void deleteEjercicioInstanciaTest() {
+        EjercicioInstanciaEntity entity = data.get(0);
+        EjercicioInstanciaPersistence.delete(entity.getId());
+        EjercicioInstanciaEntity deleted = em.find(EjercicioInstanciaEntity.class, entity.getId());
         assertNull(deleted);
     }
 
     @Test
-    public void updateRutinaTest() {
-        RutinaEntity entity = data.get(0);
-        RutinaEntity newEntity = create();
+    public void updateEjercicioInstanciaTest() {
+        EjercicioInstanciaEntity entity = data.get(0);
+        EjercicioInstanciaEntity newEntity = create();
         newEntity.setId(entity.getId());
-        RutinaPersistence.update(newEntity);
+        EjercicioInstanciaPersistence.update(newEntity);
         
-        RutinaEntity resp = em.find(RutinaEntity.class, entity.getId());
+        EjercicioInstanciaEntity resp = em.find(EjercicioInstanciaEntity.class, entity.getId());
         assertEqualsObject(newEntity, resp);
     }
     
     @Test
     public void subEnititysTest(){
-        RutinaEntity newEntity = create();
-        UsuarioEntity usuario=factory.manufacturePojo(UsuarioEntity.class);
-        List<EjercicioInstanciaEntity> ejercicios=new ArrayList<>();
-        for(int i=0;i<5;i++)
-            ejercicios.add(factory.manufacturePojo(EjercicioInstanciaEntity.class));
+        EjercicioInstanciaEntity newEntity = create();
+        RutinaEntity rutina= factory.manufacturePojo(RutinaEntity.class);
+        EjercicioEntity ejercicio=factory.manufacturePojo(EjercicioEntity.class);
         
-        newEntity.setUsuario(usuario);
-        newEntity.setEjercicios(ejercicios);
-        assertEquals(newEntity.getUsuario(),usuario);
-        assertEquals(newEntity.getEjercicios(), ejercicios);
+        newEntity.setEjercicio(ejercicio);
+        newEntity.setRutina(rutina);
+        assertEquals(newEntity.getEjercicio(), ejercicio);
+        assertEquals(newEntity.getRutina(), rutina);
     }
     
-    private void assertEqualsObject(RutinaEntity a,RutinaEntity b){
-        DateFormat format=new SimpleDateFormat("dd/MM/yyyy");
-        assertEquals(format.format(a.getFechaFinal()),format.format(b.getFechaFinal()));
-        assertEquals(format.format(a.getFechaInicio()),format.format(b.getFechaInicio()));
+    private void assertEqualsObject(EjercicioInstanciaEntity a,EjercicioInstanciaEntity b){
+        assertEquals(a.getCumplimiento(), b.getCumplimiento());
+        assertEquals(a.getDuracion(), b.getDuracion());
+        assertEquals(a.getEfectividad(), b.getEfectividad());
+        assertEquals(a.getRepeticionesPorParticion(), b.getRepeticionesPorParticion());
+        assertEquals(a.getSeries(), b.getSeries());
+        assertEquals(a.getTamanioParticiones(), b.getTamanioParticiones());
     }
     
-    private RutinaEntity create(){
-        return factory.manufacturePojo(RutinaEntity.class);
+    private EjercicioInstanciaEntity create(){
+        return factory.manufacturePojo(EjercicioInstanciaEntity.class);
     }
 }

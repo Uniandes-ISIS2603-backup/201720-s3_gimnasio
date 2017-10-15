@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.baco.gimnasio.dtos;
 
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
  */
 public class MaquinaDetailDTO extends MaquinaDTO{
     private List<TipoMedidaDTO> tipoMedida;
+    private List<EjercicioDTO> ejercicios;
 
     public MaquinaDetailDTO() {
         super();
@@ -29,12 +31,26 @@ public class MaquinaDetailDTO extends MaquinaDTO{
                 tipoMedida.add(new TipoMedidaDTO(aux));
             }
         }
+         if(foo.getEjercicios() != null){
+             this.ejercicios=new ArrayList<>();
+             for(EjercicioEntity aux:foo.getEjercicios()){
+                 ejercicios.add(new EjercicioDTO(aux));
+             }
+         }
     }
 
     public List<TipoMedidaDTO> getTipoMedida() {
         return tipoMedida;
     }
 
+    public List<EjercicioDTO> getEjercicios() {
+        return ejercicios;
+    }
+
+    public void setEjercicios(List<EjercicioDTO> ejercicios) {
+        this.ejercicios = ejercicios;
+    }
+    
     public void setTipoMedida(List<TipoMedidaDTO> tipoMedida) {
         this.tipoMedida = tipoMedida;
     }

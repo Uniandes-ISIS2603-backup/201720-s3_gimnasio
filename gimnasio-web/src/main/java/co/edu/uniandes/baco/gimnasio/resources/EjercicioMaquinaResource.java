@@ -40,8 +40,8 @@ public class EjercicioMaquinaResource {
 
     @GET
     @Path("{"+MAQUINAID+": \\d+}")
-    public MaquinaDTO findMaquina(@PathParam(EJERCICIOID) Long idEjercicio, @PathParam(MAQUINAID) Long id) throws BusinessLogicException {
-        return new MaquinaDTO(logic.findMaquina(idEjercicio, id));
+    public MaquinaDetailDTO findMaquina(@PathParam(EJERCICIOID) Long idEjercicio, @PathParam(MAQUINAID) Long id) throws BusinessLogicException {
+        return new MaquinaDetailDTO(logic.findMaquina(idEjercicio, id));
     }
 
     @POST

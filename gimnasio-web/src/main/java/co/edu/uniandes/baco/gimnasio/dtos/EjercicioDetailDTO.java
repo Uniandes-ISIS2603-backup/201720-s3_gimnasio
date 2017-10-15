@@ -1,8 +1,10 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,8 @@ public class EjercicioDetailDTO extends EjercicioDTO {
     //--------------------------------------------
     private List<ObjetivoDTO> objetivos;
     private List<MaquinaDTO> maquinas;
+    private List<TipoMedidaDTO> tipoMedida;
+    private List<EjercicioInstanciaDTO> instancias;
 
     //--------------------------------------------
     // CONSTRUCTOR & LIST
@@ -39,6 +43,18 @@ public class EjercicioDetailDTO extends EjercicioDTO {
                 maquinas.add(new MaquinaDTO(aux2));
             }
         }
+        if (entity.getTiposMedidas() != null){
+            this.tipoMedida = new ArrayList<>();
+            for(TipoMedidaEntity aux : entity.getTiposMedidas()){
+                tipoMedida.add(new TipoMedidaDTO(aux));
+            }
+        }
+        if (entity.getInstancias() != null){
+            this.instancias = new ArrayList<>();
+            for(EjercicioInstanciaEntity aux : entity.getInstancias()){
+                instancias.add(new EjercicioInstanciaDTO(aux));
+            }
+        }
     }
 
     public static final List<EjercicioDetailDTO> listDetailDTO(List<EjercicioEntity> entity) {
@@ -59,6 +75,24 @@ public class EjercicioDetailDTO extends EjercicioDTO {
     public void setMaquinas(List<MaquinaDTO> maquinas) {
         this.maquinas = maquinas;
     }
+
+    public List<EjercicioInstanciaDTO> getInstancias() {
+        return instancias;
+    }
+
+    public void setInstancias(List<EjercicioInstanciaDTO> instancias) {
+        this.instancias = instancias;
+    }
+
+    public List<TipoMedidaDTO> getTipoMedida() {
+        return tipoMedida;
+    }
+
+    public void setTipoMedida(List<TipoMedidaDTO> tipoMedida) {
+        this.tipoMedida = tipoMedida;
+    }
+    
+    
 
     public List<ObjetivoDTO> getObjetivos() {
         return objetivos;

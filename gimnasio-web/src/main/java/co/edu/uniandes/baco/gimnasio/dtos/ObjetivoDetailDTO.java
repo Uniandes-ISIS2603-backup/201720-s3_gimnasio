@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class ObjetivoDetailDTO extends ObjetivoDTO{
     //--------------------------------------------
     private List<UsuarioDTO> usuarios;
     private List<AtributoDeCalidadDetailDTO> calidad;
+    private List<EjercicioDTO> ejercicios;
     
     //--------------------------------------------
     // CONSTRUCTOR & LIST
@@ -45,6 +47,12 @@ public class ObjetivoDetailDTO extends ObjetivoDTO{
                  calidad.add(new AtributoDeCalidadDetailDTO(aux));
              }
          }
+         if(objetivo.getEjercicios() != null){
+             this.ejercicios=new ArrayList<>();
+             for(EjercicioEntity aux:objetivo.getEjercicios()){
+                 ejercicios.add(new EjercicioDTO(aux));
+             }
+         }
     }
     
     public static final List<ObjetivoDetailDTO> listDetailDTO(List<ObjetivoEntity> entity) {
@@ -60,6 +68,14 @@ public class ObjetivoDetailDTO extends ObjetivoDTO{
 
     public List<AtributoDeCalidadDetailDTO> getCalidad() {
         return calidad;
+    }
+
+    public List<EjercicioDTO> getEjercicios() {
+        return ejercicios;
+    }
+
+    public void setEjercicios(List<EjercicioDTO> ejercicios) {
+        this.ejercicios = ejercicios;
     }
 
     public void setCalidad(List<AtributoDeCalidadDetailDTO> calidad) {

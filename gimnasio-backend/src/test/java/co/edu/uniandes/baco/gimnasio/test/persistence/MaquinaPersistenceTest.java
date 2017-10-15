@@ -1,14 +1,11 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.MaquinaPersistence;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -164,13 +161,17 @@ public class MaquinaPersistenceTest {
     @Test
     public void subEnititysTest(){
         MaquinaEntity newEntity = create();
-     
-         List<TipoMedidaEntity> medidas=new ArrayList<>();
+        List<TipoMedidaEntity> medidas=new ArrayList<>();
         for(int i=0;i<5;i++)
             medidas.add(factory.manufacturePojo(TipoMedidaEntity.class));
+        List<EjercicioEntity> ejercicios=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            ejercicios.add(factory.manufacturePojo(EjercicioEntity.class));
         
+        newEntity.setEjercicios(ejercicios);
         newEntity.setTipoMedida(medidas);
         assertEquals(newEntity.getTipoMedida(), medidas);
+        assertEquals(newEntity.getEjercicios(), ejercicios);
     }
     
     private void assertEqualsObject(MaquinaEntity a,MaquinaEntity b){
