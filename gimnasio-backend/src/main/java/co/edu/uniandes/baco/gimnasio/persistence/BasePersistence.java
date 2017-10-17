@@ -17,7 +17,7 @@ import javax.persistence.TypedQuery;
  * @param <T>
  */
 public abstract class BasePersistence<T extends BaseEntity> implements CRUD<T> {
-    protected final Class entityClass;
+    protected final Class<T> entityClass;
     protected static Logger logger;
     /**
      * definicion unidad de persistencia
@@ -29,7 +29,7 @@ public abstract class BasePersistence<T extends BaseEntity> implements CRUD<T> {
      * metodo contructor de la clase base
      * @param entityClass 
      */
-    public BasePersistence(Class entityClass) {
+    public BasePersistence(Class<T> entityClass) {
         this.entityClass = entityClass;
         logger=Logger.getLogger(entityClass.getName());
     }
@@ -87,5 +87,9 @@ public abstract class BasePersistence<T extends BaseEntity> implements CRUD<T> {
         T entity=find(id);
         manager.remove(entity);
         manager.flush();
+    }
+    
+    public Class<T> getClase(){
+        return entityClass;
     }
 }
