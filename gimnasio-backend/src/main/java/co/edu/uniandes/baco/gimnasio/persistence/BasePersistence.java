@@ -53,7 +53,7 @@ public abstract class BasePersistence<T extends BaseEntity> implements CRUD<T> {
     @Override
     public T find(final Long id){
         logger.log(Level.INFO, "Consultando {0} con id={1}", new Object[]{entityClass.getSimpleName(), id});
-        return (T) manager.find(entityClass, id);
+        return manager.find(entityClass, id);
     }
     /**
      * metodo que devuelve todas las entitys de la base de datos

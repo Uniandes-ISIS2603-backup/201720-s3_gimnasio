@@ -76,7 +76,7 @@ public class ObjetivoResource{
     @GET
     @Path("{"+OBJETIVOID+": \\d+}/"+USUARIO)
     public List<UsuarioDetailDTO> findUsuarios(@PathParam(OBJETIVOID) long id) throws BusinessLogicException{
-        return UsuarioDetailDTO.listDetailDTO(logic.findAllUsuarios(id));
+        return UsuarioDetailDTO.listDetailDTO(logic.findAllUsuario(id));
     }
     
     @GET

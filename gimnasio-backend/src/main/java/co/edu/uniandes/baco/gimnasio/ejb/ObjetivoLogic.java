@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.baco.gimnasio.ejb;
 
+import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
@@ -29,12 +30,6 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
         super(persistence);
     }
     
-    /**
-     * metodo para crear un objetivo
-     * @param entity el objetivo a crear
-     * @return el objetico creado
-     * @throws BusinessLogicException si ya existe un objetivo de este estilo 
-     */
     @Override
     public ObjetivoEntity create(ObjetivoEntity entity)throws BusinessLogicException{
         if(null!=((ObjetivoPersistence)persistence).findByTipo(entity.getTipo()))
@@ -49,11 +44,11 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
         return super.update(entity);
     }
     
-    public List<UsuarioEntity> findAllUsuarios(Long id) throws BusinessLogicException{
+    public List<UsuarioEntity> findAllUsuario(Long id) throws BusinessLogicException{
         return find(id).getUsuarios();
     }
     
-    public List<EjercicioEntity> findAllEjercicio(Long id) throws BusinessLogicException{
+     public List<EjercicioEntity> findAllEjercicio(Long id) throws BusinessLogicException{
         return find(id).getEjercicios();
     }
 }

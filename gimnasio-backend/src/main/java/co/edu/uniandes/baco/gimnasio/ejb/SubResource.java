@@ -48,11 +48,7 @@ public abstract class SubResource<R extends BaseEntity, S extends BaseEntity> ex
             S s=clase.newInstance();
             s.setId(idSub);
             List<S> lista=findAll(id);
-            for(S w:lista){
-                System.out.println(w.getId());
-            }
             int ind=lista.indexOf(s);
-            System.out.println(s.getId()+"  :  "+ind);
             if(ind<0)
                 throw new NoExisteException(id,idSub);
             return lista.get(ind);
@@ -61,6 +57,9 @@ public abstract class SubResource<R extends BaseEntity, S extends BaseEntity> ex
             return null;
         }
     }
+    
+    public abstract S update(Long id,S s);
+    
     public S create(long id,S entity) throws BusinessLogicException {
         R r=logic.find(id);
         set.accept(entity, r);

@@ -43,11 +43,7 @@ public class Connection <R extends BaseEntity, S extends BaseEntity> extends Bas
             S s=clase.newInstance();
             s.setId(idSub);
             List<S> lista=findAll(id);
-            for(S w:lista){
-                System.out.println(w.getId());
-            }
             int ind=lista.indexOf(s);
-            System.out.println(s.getId()+"  :  "+ind);
             if(ind<0)
                 throw new NoExisteException(id,idSub);
             return lista.get(ind);
