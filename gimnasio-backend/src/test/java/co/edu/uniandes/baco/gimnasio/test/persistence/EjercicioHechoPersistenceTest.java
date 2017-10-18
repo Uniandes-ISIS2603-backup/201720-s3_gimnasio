@@ -116,9 +116,16 @@ public class EjercicioHechoPersistenceTest {
     @Test
     public void finByFecchaTest() {
         EjercicioHechoEntity entity = data.get(0);
+        Date f= entity.getFechaInicio();
         EjercicioHechoEntity newEntity = EjercicioHechoPersistence.findByFecha(entity.getEjercicios().getId(),entity.getFechaInicio());
         assertNotNull(newEntity);
-        assertEqualsObject(newEntity, entity);
+        boolean coincide=false;
+        for(EjercicioHechoEntity i:data){
+            if(i.getFechaInicio().equals(f))
+                if(i.equals(newEntity))
+                    coincide=true;
+        }
+        assertTrue(coincide);
 
         Long tipo = data.get(0).getFechaInicio().getTime();
         boolean esta;
