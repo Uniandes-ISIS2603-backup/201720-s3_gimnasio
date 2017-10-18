@@ -22,6 +22,8 @@
     <class>co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity</class>
+    <class>co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity</class>
     <validation-mode>CALLBACK</validation-mode>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>

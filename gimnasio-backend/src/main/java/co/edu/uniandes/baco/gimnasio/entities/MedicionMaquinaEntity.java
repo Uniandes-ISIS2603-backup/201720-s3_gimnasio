@@ -8,6 +8,9 @@ package co.edu.uniandes.baco.gimnasio.entities;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -20,8 +23,12 @@ public class MedicionMaquinaEntity extends BaseEntity implements Serializable{
     //--------------------------------------------
     private Double medicionManquina;
     
+    @PodamExclude
+    @ManyToOne
     private EjercicioHechoEntity ejercicioEnt;
     
+    @PodamExclude
+    @ManyToOne
     private TipoMedidaEntity tipoMedida;
     
     //--------------------------------------------

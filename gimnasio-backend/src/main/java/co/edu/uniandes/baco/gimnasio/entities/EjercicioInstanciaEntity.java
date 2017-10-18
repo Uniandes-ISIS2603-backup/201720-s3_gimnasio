@@ -6,9 +6,13 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -55,6 +59,10 @@ public class EjercicioInstanciaEntity extends BaseEntity implements Serializable
     @ManyToOne
     private EjercicioEntity ejercicio;
     
+    @PodamExclude
+    @OneToMany(mappedBy = "ejercicio",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<EjercicioHechoEntity> ejerciciosHechos;
+    
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
@@ -81,6 +89,14 @@ public class EjercicioInstanciaEntity extends BaseEntity implements Serializable
 
     public void setEjercicio(EjercicioEntity ejercicio) {
         this.ejercicio = ejercicio;
+    }
+
+    public List<EjercicioHechoEntity> getEjerciciosHechos() {
+        return ejerciciosHechos;
+    }
+
+    public void setEjerciciosHechos(List<EjercicioHechoEntity> ejerciciosHechos) {
+        this.ejerciciosHechos = ejerciciosHechos;
     }
 
     public Integer getTamanioParticiones() {

@@ -49,13 +49,6 @@ public class EjercicioHechoResource {
         return new EjercicioHechoDTO(logic.find(id));
     }
     
-    @GET
-    @Path("{"+EJERCICIOHECHOID+": \\d+}/"+EJERCICIO)
-    public List<EjercicioDetailDTO> findEjercicios(@PathParam(EJERCICIOHECHOID) long id) throws BusinessLogicException
-    {
-        return EjercicioDetailDTO.listDetailDTO(logic.findAllEjercicio(id));
-    }
-    
     @PUT
     @Path("{"+EJERCICIOHECHOID+": \\d+}")
     public EjercicioHechoDTO put(@PathParam(EJERCICIOHECHOID)long id, EjercicioHechoDTO nuevo) throws BusinessLogicException {

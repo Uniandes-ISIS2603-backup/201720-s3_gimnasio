@@ -1,7 +1,9 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.EjercicioHechoPersistence;
 import java.text.DateFormat;
@@ -77,8 +79,11 @@ public class EjercicioHechoPersistenceTest {
     }
 
     private void insertData() {
+        EjercicioInstanciaEntity b=factory.manufacturePojo(EjercicioInstanciaEntity.class);
+        em.persist(b);
         for (int i = 0; i < 3; i++) {
             EjercicioHechoEntity entity = create();
+            entity.setEjercicios(b);
             em.persist(entity);
             data.add(entity);
         }
@@ -111,8 +116,8 @@ public class EjercicioHechoPersistenceTest {
     @Test
     public void finByFecchaTest() {
         EjercicioHechoEntity entity = data.get(0);
-        EjercicioHechoEntity newEntity = EjercicioHechoPersistence.findByFecha(entity.getFechaInicio());
-         assertNotNull(newEntity);
+        EjercicioHechoEntity newEntity = EjercicioHechoPersistence.findByFecha(entity.getEjercicios().getId(),entity.getFechaInicio());
+        assertNotNull(newEntity);
         assertEqualsObject(newEntity, entity);
 
         Long tipo = data.get(0).getFechaInicio().getTime();
@@ -128,7 +133,7 @@ public class EjercicioHechoPersistenceTest {
         } while (esta);
         Date fecha=new Date();
         fecha.setTime(tipo);
-        assertNull(EjercicioHechoPersistence.findByFecha(fecha));
+        assertNull(EjercicioHechoPersistence.findByFecha((long)0, fecha));
     }
     
     @Test

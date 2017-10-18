@@ -18,10 +18,10 @@ public class EjercicioHechoPersistence extends BasePersistence<EjercicioHechoEnt
         super(EjercicioHechoEntity.class);
     }
     
-    public EjercicioHechoEntity findByFecha(Date fecha)
-    {
-        TypedQuery query = manager.createQuery("select u from "+ entityClass.getName()+" u where u.fecha = :fecha", entityClass);
+    public EjercicioHechoEntity findByFecha(Long id,Date fecha){
+        TypedQuery query = manager.createQuery("select u from "+ entityClass.getName()+" u ,EjercicioInstanciaEntity s where u.fechaInicio = :fecha and s.id = :id", entityClass);
         query.setParameter("fecha", fecha);
+        query.setParameter("id", id);
         List<EjercicioHechoEntity> ans =query.getResultList();
         if(ans.isEmpty())
             return null;

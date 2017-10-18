@@ -52,7 +52,13 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "tipoMedida",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<AtributoDeCalidadEntity> atributos = new ArrayList<>();
-
+    
+    /**
+     * lista de objetivos del ejercicio
+     */
+    @PodamExclude
+    @OneToMany(mappedBy = "tipoMedida",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<MedicionMaquinaEntity> medicion = new ArrayList<>();
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
@@ -106,6 +112,14 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable {
 
     public void setAtributos(List<AtributoDeCalidadEntity> atributos) {
         this.atributos = atributos;
+    }
+
+    public List<MedicionMaquinaEntity> getMedicion() {
+        return medicion;
+    }
+
+    public void setMedicion(List<MedicionMaquinaEntity> medicion) {
+        this.medicion = medicion;
     }
 
     public List<MedidaEntity> getMedidas() {

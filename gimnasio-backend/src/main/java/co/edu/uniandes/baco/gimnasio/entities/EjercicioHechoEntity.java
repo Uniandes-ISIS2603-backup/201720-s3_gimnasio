@@ -6,7 +6,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -29,8 +33,12 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
      */
     private Integer seriesReales;
     
-    private List<EjercicioEntity> ejercicios = new ArrayList<>();
-    
+    @PodamExclude
+    @ManyToOne
+    private EjercicioInstanciaEntity ejercicio;
+
+    @PodamExclude
+    @OneToMany(mappedBy = "ejercicioEnt", orphanRemoval = true, fetch = FetchType.LAZY)
     private List<MedicionMaquinaEntity> atributos = new ArrayList<>();
     
     //--------------------------------------------
@@ -63,13 +71,12 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
         this.fechaInicio = fechaInicio;
     }
     
-    public List<EjercicioEntity> getEjercicios() {
-        return ejercicios;
+    public EjercicioInstanciaEntity getEjercicios() {
+        return ejercicio;
     }
 
-    public void setEjercicios(List<EjercicioEntity> ejercicios)
-    {
-        this.ejercicios = ejercicios;
+    public void setEjercicios(EjercicioInstanciaEntity ejercicio){
+        this.ejercicio = ejercicio;
     }
     
     //--------------------------------------------

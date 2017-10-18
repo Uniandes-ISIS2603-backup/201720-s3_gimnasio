@@ -24,12 +24,6 @@ public class EjercicioHechoDetailDTO extends EjercicioHechoDTO {
 
     public EjercicioHechoDetailDTO(EjercicioHechoEntity ent) {
         super(ent);
-        if (ent != null && ent.getEjercicios() != null) {
-            this.ejercicios = new ArrayList<>();
-            for (EjercicioEntity aux : ent.getEjercicios()) {
-                ejercicios.add(new EjercicioDTO(aux));
-            }
-        }
     }
 
     public static final List<EjercicioHechoDetailDTO> listDetailDTO(List<EjercicioHechoEntity> entity) {

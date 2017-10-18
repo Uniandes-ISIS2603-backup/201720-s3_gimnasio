@@ -31,10 +31,9 @@ public class EjercicioHechoLogic extends BaseLogic<EjercicioHechoEntity>
     }
     
     //Revisar. Algo no me cuadra. ATT:Carlos
-    @Override
-    public EjercicioHechoEntity create(EjercicioHechoEntity entity)throws BusinessLogicException
+    public EjercicioHechoEntity create(Long id,EjercicioHechoEntity entity)throws BusinessLogicException
     {
-        if(null!=((EjercicioHechoPersistence)persistence).findByFecha(entity.getFechaInicio()))
+        if(null!=((EjercicioHechoPersistence)persistence).findByFecha(id,entity.getFechaInicio()))
             throw new BusinessLogicException("ya existe un ejercicio con esta fecha");
         
         return super.create(entity); 
@@ -45,11 +44,6 @@ public class EjercicioHechoLogic extends BaseLogic<EjercicioHechoEntity>
         EjercicioHechoEntity old=find(entity.getId());
         entity.setAtributos(old.getAtributos());
         return super.update(entity);
-    }
-    
-    public List<EjercicioEntity> findAllEjercicio(Long id) throws BusinessLogicException
-    {
-        return find(id).getEjercicios();
     }
     
     public List<MedicionMaquinaEntity> findAllMedicion(Long id) throws BusinessLogicException
