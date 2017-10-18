@@ -40,9 +40,9 @@ public class Connection <R extends BaseEntity, S extends BaseEntity> extends Bas
     
      public S find(long id,long idSub) throws BusinessLogicException {
         try {
+            List<S> lista=findAll(id);
             S s=clase.newInstance();
             s.setId(idSub);
-            List<S> lista=findAll(id);
             int ind=lista.indexOf(s);
             if(ind<0)
                 throw new NoExisteException(id,idSub);
