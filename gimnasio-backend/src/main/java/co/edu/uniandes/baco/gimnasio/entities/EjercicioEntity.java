@@ -58,6 +58,12 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "ejercicio", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<EjercicioInstanciaEntity> instancias = new ArrayList<>();
+    
+    @PodamExclude
+    @ManyToMany
+    private List<EjercicioHechoEntity> ejercicioHecho = new ArrayList<>();
+    
+    
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
@@ -116,6 +122,14 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
 
     public void setMaquinas(List<MaquinaEntity> maquinas) {
         this.maquinas = maquinas;
+    }
+    
+    public List<EjercicioHechoEntity> getEjercicioHecho() {
+        return ejercicioHecho;
+    }
+
+    public void setEjercicioHecho(List<EjercicioHechoEntity> ejercicioHecho) {
+        this.ejercicioHecho = ejercicioHecho;
     }
    
     //--------------------------------------------

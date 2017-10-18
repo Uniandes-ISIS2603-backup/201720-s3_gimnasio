@@ -20,6 +20,11 @@ public class EjercicioHechoDTO
     private Date fecha;
     private Integer seriesReales;
 
+    public  EjercicioHechoDTO()
+    {
+        
+    }
+    
     public EjercicioHechoDTO(EjercicioHechoEntity entity) 
     {
         this.id = entity.getId();

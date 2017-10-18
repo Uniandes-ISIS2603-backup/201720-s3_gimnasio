@@ -5,20 +5,14 @@
  */
 package co.edu.uniandes.baco.gimnasio.resources;
 
-import co.edu.uniandes.baco.gimnasio.dtos.MedicionMaquinaDTO;
-import co.edu.uniandes.baco.gimnasio.ejb.MedicionMaquinaLogic;
-import co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity;
-import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import co.edu.uniandes.baco.gimnasio.dtos.*;
+import co.edu.uniandes.baco.gimnasio.ejb.*;
+import co.edu.uniandes.baco.gimnasio.entities.*;
+import co.edu.uniandes.baco.gimnasio.exceptions.*;
+import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -39,33 +33,34 @@ public class MedicionMaquinaResource {
     }
     
     @POST
-    public MedicionMaquinaDTO post(MedicionMaquinaDTO nuevo) throws BusinessLogicException{
-        return new MedicionMaquinaDTO(logic.create(nuevo.toEntity()));
+    @Path("{"+MEDICIONMAQUINAID+": \\d+}")
+    public MedicionMaquinaDTO post(@PathParam(EJERCICIOHECHOID) Long idEjercicioHecho, @PathParam(MEDICIONMAQUINAID) Long id ,MedicionMaquinaDTO nuevo) throws BusinessLogicException{
+        return new MedicionMaquinaDTO(logic.create(idEjercicioHecho,nuevo.toEntity(),id));
     }
     
     @GET
-    public List<MedicionMaquinaDTO> getAll()throws BusinessLogicException
+    public List<MedicionMaquinaDetailDTO> getAll(@PathParam(EJERCICIOHECHOID) Long idEjercicioHecho)throws BusinessLogicException
     {
-        return MedicionMaquinaDTO.listDTO(logic.findAll());
+        return MedicionMaquinaDetailDTO.listDetailDTO(logic.findAll(idEjercicioHecho));
     }
     
     @GET
-    @Path("{id: \\d+}")
-    public MedicionMaquinaDTO get(@PathParam("id") long id) throws BusinessLogicException{
-        return new MedicionMaquinaDTO(logic.find(id));
+    @Path("{"+MEDICIONMAQUINAID+": \\d+}")
+    public MedicionMaquinaDTO get(@PathParam(EJERCICIOHECHOID) Long idEjercicioHecho,@PathParam(MEDICIONMAQUINAID) long id) throws BusinessLogicException{
+        return new MedicionMaquinaDTO(logic.find(idEjercicioHecho,id));
     }
     
     @PUT
-    @Path("{id: \\d+}")
-    public MedicionMaquinaDTO put(@PathParam("id")long id, MedicionMaquinaDTO nuevo) throws BusinessLogicException{
+    @Path("{"+MEDICIONMAQUINAID+": \\d+}")
+    public MedicionMaquinaDTO put(@PathParam(EJERCICIOHECHOID) Long idEjercicioHecho ,@PathParam(MEDICIONMAQUINAID)long id, MedicionMaquinaDTO nuevo) throws BusinessLogicException{
         MedicionMaquinaEntity entity = nuevo.toEntity();
         entity.setId(id);
-        return new MedicionMaquinaDTO(logic.update(entity));
+        return new MedicionMaquinaDTO(logic.update(idEjercicioHecho,entity));
     }
     
     @DELETE
-    @Path("{id: \\d+}")
-    public void delete(@PathParam("id") long id) throws BusinessLogicException{
-        logic.remove(id);
+    @Path("{"+MEDICIONMAQUINAID+": \\d+}")
+    public void delete(@PathParam(EJERCICIOHECHOID) Long idEjercicioHecho ,@PathParam(MEDICIONMAQUINAID)long id) throws BusinessLogicException{
+        logic.remove(idEjercicioHecho,id);
     } 
 }

@@ -20,6 +20,10 @@ public class MedicionMaquinaEntity extends BaseEntity implements Serializable{
     //--------------------------------------------
     private Double medicionManquina;
     
+    private EjercicioHechoEntity ejercicioEnt;
+    
+    private TipoMedidaEntity tipoMedida;
+    
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
@@ -32,6 +36,22 @@ public class MedicionMaquinaEntity extends BaseEntity implements Serializable{
     public void setMedicionManquina(Double medicionManquina)
     {
         this.medicionManquina = medicionManquina;
+    }
+    
+    public EjercicioHechoEntity getEjercicioEnt() {
+        return ejercicioEnt;
+    }
+
+    public void setEjercicioEnt(EjercicioHechoEntity ejercicioEnt) {
+        this.ejercicioEnt = ejercicioEnt;
+    }
+
+    public TipoMedidaEntity getTipoMedida() {
+        return tipoMedida;
+    }
+
+    public void setTipoMedida(TipoMedidaEntity tipoMedida) {
+        this.tipoMedida = tipoMedida;
     }
     
     //--------------------------------------------

@@ -8,10 +8,6 @@ package co.edu.uniandes.baco.gimnasio.persistence;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import javax.ejb.Stateless;
 
-
-/**
- * @author ce.robles/ Carlos Eduardo Robles 201617129
- **/
 @Stateless
 public class TipoMedidaPersistence extends BasePersistence<TipoMedidaEntity>{
 

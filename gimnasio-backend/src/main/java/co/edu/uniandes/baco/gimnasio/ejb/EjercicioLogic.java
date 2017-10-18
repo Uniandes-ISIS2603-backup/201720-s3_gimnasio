@@ -1,6 +1,7 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
@@ -186,5 +187,48 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
         if(ind<0)
             throw new NoExisteException(id);
         list.remove(ind);
+    }
+    
+    //-----------------------------------------
+    //EJERCICIO
+    //-----------------------------------------
+    
+    public List<EjercicioHechoEntity> findAllEjercicio(Long id) throws BusinessLogicException
+    {
+        return find(id).getEjercicioHecho();        
+    }
+  
+    public EjercicioHechoEntity findEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException
+    {
+        EjercicioHechoEntity aux = new EjercicioHechoEntity();
+        aux.setId(id);
+        List<EjercicioHechoEntity> list = find(idEjercicio).getEjercicioHecho();
+        int ind=list.indexOf(aux);
+        
+        if(ind<0)
+            throw new NoExisteException(id);
+        
+        return list.get(ind);
+    }
+  
+    public EjercicioHechoEntity createEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException
+    {
+        EjercicioHechoEntity aux = new EjercicioHechoEntity();
+        aux.setId(id);
+        find(idEjercicio).getEjercicioHecho().add(aux);
+        return aux;
+    }
+   
+    public void removeEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException
+    {
+        EjercicioHechoEntity aux = new EjercicioHechoEntity();
+        aux.setId(id);
+        List<EjercicioHechoEntity> list=find(idEjercicio).getEjercicioHecho();
+        int ind=list.indexOf(aux);
+        
+        if(ind<0)
+            throw new NoExisteException(id);
+        
+        list.remove(aux);
     }
 }

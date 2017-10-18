@@ -18,6 +18,11 @@ public class MedicionMaquinaDTO
 {
     private Long id;
     private Double medicionMaquina;
+       
+    public MedicionMaquinaDTO() 
+    {
+       
+    }
     
     public MedicionMaquinaDTO(MedicionMaquinaEntity entity) 
     {
@@ -55,14 +60,6 @@ public class MedicionMaquinaDTO
         
         for(MedicionMaquinaDTO i:dtos)
             resp.add(i.toEntity());
-        return resp;
-    }
-    
-    public static final  List<MedicionMaquinaDTO> listDTO(List<MedicionMaquinaEntity> entity)
-    {
-        List<MedicionMaquinaDTO> resp =new ArrayList<>();
-        for(MedicionMaquinaEntity i:entity)
-            resp.add(new MedicionMaquinaDTO(i));
         return resp;
     }
 }
