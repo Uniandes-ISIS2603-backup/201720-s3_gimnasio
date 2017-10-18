@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.baco.gimnasio.ejb;
 
-import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
