@@ -38,20 +38,20 @@ public class MedicionMaquinaEntity extends BaseEntity implements Serializable{
         this.medicionManquina = medicionManquina;
     }
     
+     public TipoMedidaEntity getTipoMedida() {
+        return tipoMedida;
+    }
+
+    public void setTipoMedida(TipoMedidaEntity tipoMedida) {
+        this.tipoMedida = tipoMedida;
+    }
+    
     public EjercicioHechoEntity getEjercicioEnt() {
         return ejercicioEnt;
     }
 
     public void setEjercicioEnt(EjercicioHechoEntity ejercicioEnt) {
         this.ejercicioEnt = ejercicioEnt;
-    }
-
-    public TipoMedidaEntity getTipoMedida() {
-        return tipoMedida;
-    }
-
-    public void setTipoMedida(TipoMedidaEntity tipoMedida) {
-        this.tipoMedida = tipoMedida;
     }
     
     //--------------------------------------------

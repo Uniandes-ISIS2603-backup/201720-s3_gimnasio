@@ -43,6 +43,17 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
     public void setSeriesReales(Integer seriesReales) {
         this.seriesReales = seriesReales;
     }
+    
+      public List<MedicionMaquinaEntity> getAtributos() 
+    {
+        return atributos;
+    }
+    
+
+    public void setAtributos(List<MedicionMaquinaEntity> atributos) 
+    {
+        this.atributos = atributos;
+    }
 
     public Date getFechaInicio() {
         return fechaInicio;
@@ -59,16 +70,6 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
     public void setEjercicios(List<EjercicioEntity> ejercicios)
     {
         this.ejercicios = ejercicios;
-    }
-    
-    public List<MedicionMaquinaEntity> getAtributos() 
-    {
-        return atributos;
-    }
-
-    public void setAtributos(List<MedicionMaquinaEntity> atributos) 
-    {
-        this.atributos = atributos;
     }
     
     //--------------------------------------------

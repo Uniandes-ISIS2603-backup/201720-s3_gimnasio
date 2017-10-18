@@ -21,7 +21,7 @@ public class MedicionMaquinaDTO
        
     public MedicionMaquinaDTO() 
     {
-       
+       //JAVAX
     }
     
     public MedicionMaquinaDTO(MedicionMaquinaEntity entity) 

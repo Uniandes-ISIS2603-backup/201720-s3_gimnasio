@@ -20,9 +20,8 @@ public class EjercicioHechoDTO
     private Date fecha;
     private Integer seriesReales;
 
-    public  EjercicioHechoDTO()
-    {
-        
+    public  EjercicioHechoDTO(){
+        //JAVAX
     }
     
     public EjercicioHechoDTO(EjercicioHechoEntity entity) 

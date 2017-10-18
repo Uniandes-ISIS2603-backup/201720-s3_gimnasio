@@ -7,6 +7,7 @@ import co.edu.uniandes.baco.gimnasio.persistence.EjercicioHechoPersistence;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -105,6 +106,29 @@ public class EjercicioHechoPersistenceTest {
         newEntity2.setId(newEntity.getId()+1);
         assertFalse(newEntity.equals(newEntity2));
         assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
+    }
+    
+    @Test
+    public void finByFecchaTest() {
+        EjercicioHechoEntity entity = data.get(0);
+        EjercicioHechoEntity newEntity = EjercicioHechoPersistence.findByFecha(entity.getFechaInicio());
+         assertNotNull(newEntity);
+        assertEqualsObject(newEntity, entity);
+
+        Long tipo = data.get(0).getFechaInicio().getTime();
+        boolean esta;
+        do {
+            tipo++;
+            esta = false;
+            for (EjercicioHechoEntity i : data) {
+                if (i.getFechaInicio().getTime() == tipo) {
+                    esta = true;
+                }
+            }
+        } while (esta);
+        Date fecha=new Date();
+        fecha.setTime(tipo);
+        assertNull(EjercicioHechoPersistence.findByFecha(fecha));
     }
     
     @Test
