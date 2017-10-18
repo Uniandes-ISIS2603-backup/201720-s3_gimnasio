@@ -58,7 +58,7 @@ public abstract class SubResource<R extends BaseEntity, S extends BaseEntity> ex
         }
     }
     
-    public abstract S update(Long id,S s);
+    public abstract S update(Long id,S s)throws BusinessLogicException;
     
     public S create(long id,S entity) throws BusinessLogicException {
         R r=logic.find(id);
