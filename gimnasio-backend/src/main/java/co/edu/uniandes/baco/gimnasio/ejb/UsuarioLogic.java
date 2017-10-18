@@ -19,6 +19,8 @@ import javax.inject.Inject;
   */
  @Stateless
  public class UsuarioLogic extends BaseLogic<UsuarioEntity> {
+     
+    private Connection<UsuarioEntity,ObjetivoEntity> conObjetivo;
 
     public UsuarioLogic() {
         super();
@@ -26,6 +28,7 @@ import javax.inject.Inject;
     
     @Inject UsuarioLogic(BasePersistence<UsuarioEntity>persistence) {
         super(persistence);
+        conObjetivo=new Connection<>(persistence, UsuarioEntity::getObjetivos, ObjetivoEntity.class);
     }
     
     @Override
@@ -49,7 +52,7 @@ import javax.inject.Inject;
      * @throws BusinessLogicException si el usuario no existe
      */
     public List<ObjetivoEntity> findAllObjetivo(Long id) throws BusinessLogicException{
-        return find(id).getObjetivos();        
+        return conObjetivo.findAll(id);
     }
     
     /**
@@ -60,13 +63,7 @@ import javax.inject.Inject;
      * @throws BusinessLogicException si el usuario o el objetivo no existen 
      */
     public ObjetivoEntity findObjetivo(Long idUsuario, Long id) throws BusinessLogicException{
-        ObjetivoEntity aux = new ObjetivoEntity();
-        aux.setId(id);
-        List<ObjetivoEntity> list=find(idUsuario).getObjetivos();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(idUsuario,id);
-        return list.get(ind);
+        return conObjetivo.find(idUsuario, id);
     }
     /**
      * metodo que asocia un objetico a un usuario 
@@ -76,10 +73,7 @@ import javax.inject.Inject;
      * @throws BusinessLogicException si el usuario o objetivo no existe 
      */
     public ObjetivoEntity createObjetivo(Long idUsuario, Long id) throws BusinessLogicException{
-        ObjetivoEntity aux = new ObjetivoEntity();
-        aux.setId(id);
-        find(idUsuario).getObjetivos().add(aux);
-        return findObjetivo(idUsuario, id);
+        return conObjetivo.create(idUsuario, id);
     }
     
     /**
@@ -89,8 +83,6 @@ import javax.inject.Inject;
      * @throws BusinessLogicException si el usuario o el objetivo no existen 
      */
     public void removeObejtivo(Long idUsuario, Long id) throws BusinessLogicException{
-        ObjetivoEntity aux = new ObjetivoEntity();
-        aux.setId(id);
-        find(idUsuario).getObjetivos().remove(aux);
+        conObjetivo.remove(idUsuario, id);
     }
  }
