@@ -15,13 +15,15 @@ import javax.inject.Inject;
  */
 @Stateless
 public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
-
+    private Connection<EntrenadorEntity,UsuarioEntity> connUsuario;
+    
     public EntrenadorLogic() {
         super();
     }
     
     @Inject public EntrenadorLogic(BasePersistence<EntrenadorEntity> persistence) {
         super(persistence);
+        this.connUsuario= new Connection<>(persistence, EntrenadorEntity::getUsuarios, UsuarioEntity.class);
     }
     
     /**
@@ -44,7 +46,7 @@ public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
      * @throws BusinessLogicException  si el entrenador no existe
      */
     public List<UsuarioEntity> findAllUsuario(long id) throws BusinessLogicException {
-        return find(id).getUsuarios();
+        return connUsuario.findAll(id);
     }
     
     /**
@@ -55,10 +57,7 @@ public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
      * @throws BusinessLogicException si el usuario o el entrenado no existen 
      */
     public UsuarioEntity createUsuario(Long id, Long usuarioId) throws BusinessLogicException{
-        UsuarioEntity us = new UsuarioEntity();
-        us.setId(usuarioId);
-        find(id).getUsuarios().add(us);
-        return findUsuario(id, usuarioId);
+        return connUsuario.create(id , usuarioId);
     }
     
     /**
@@ -69,14 +68,7 @@ public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
      * @throws BusinessLogicException si el entrenador no existe o el usuario 
      */
      public UsuarioEntity findUsuario(Long id, Long usuarioId) throws BusinessLogicException {
-        List<UsuarioEntity> list = find(id).getUsuarios();
-        UsuarioEntity usuarioEntity = new UsuarioEntity();
-        usuarioEntity.setId(usuarioId);
-        int index = list.indexOf(usuarioEntity);
-        if (index >= 0) {
-            return list.get(index);
-        }
-        return null;
+        return connUsuario.find(id, usuarioId);
     }
      
     /**
@@ -86,8 +78,6 @@ public class EntrenadorLogic extends BaseLogic<EntrenadorEntity>{
      * @throws BusinessLogicException si el entrenador o el usuario no existen
      */
     public void removeUsuario(Long id, Long usuarioId) throws BusinessLogicException  {
-        UsuarioEntity us = new UsuarioEntity();
-        us.setId(usuarioId);
-        find(id).getUsuarios().remove(us);
+        connUsuario.remove(id, usuarioId);
     }
 }

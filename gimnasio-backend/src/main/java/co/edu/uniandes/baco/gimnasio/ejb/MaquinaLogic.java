@@ -9,7 +9,6 @@ import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -22,9 +21,10 @@ import javax.inject.Inject;
  */
 @Stateless
 public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
-   
     private TipoMedidaLogic tipoMedidaLogic;
-
+    private Connection<MaquinaEntity,TipoMedidaEntity> connTipoMedida;
+    private Search<MaquinaEntity,EjercicioEntity> connEjercio;
+    
     public MaquinaLogic() {
         super();
     }
@@ -34,26 +34,27 @@ public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
         this.tipoMedidaLogic = tipoMedidaLogic;
     }
     
+    //-----------------------------------
+    // EJERCICIO
+    //-----------------------------------
+    
     public List<EjercicioEntity> findAllEjercicio(Long id) throws BusinessLogicException{
-        return find(id).getEjercicios();
+        return connEjercio.findAll(id);
+    }
+    
+    public EjercicioEntity findEjercicio(Long id,Long idEjercicio) throws BusinessLogicException{
+        return connEjercio.find(id,idEjercicio);
     }
     
     //-----------------------------------
     // TIPOMEDIDA
     //-----------------------------------
     public List<TipoMedidaEntity> findAllTipoMedidaMaquina(Long id) throws BusinessLogicException {
-        return find(id).getTipoMedida();
+        return connTipoMedida.findAll(id);
     }
 
     public TipoMedidaEntity findTipoMedida(Long idMaquina, Long id) throws BusinessLogicException {
-        TipoMedidaEntity aux = new TipoMedidaEntity();
-        aux.setId(id);
-        List<TipoMedidaEntity> list = find(idMaquina).getTipoMedida();
-        int ind = list.indexOf(aux);
-        if (ind < 0) {
-            throw new NoExisteException(id);
-        }
-        return list.get(ind);
+        return connTipoMedida.find(idMaquina, id);
     }
 
     public TipoMedidaEntity createTipoMedida(Long idMaquina, Long id) throws BusinessLogicException {
@@ -66,13 +67,6 @@ public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
     }
 
     public void removeTipoMedida(Long idMaquina, Long id) throws BusinessLogicException {
-        TipoMedidaEntity aux = new TipoMedidaEntity();
-        aux.setId(id);
-        List<TipoMedidaEntity> list = find(idMaquina).getTipoMedida();
-        int ind = list.indexOf(aux);
-        if (ind < 0) {
-            throw new NoExisteException(id);
-        }
-        list.remove(aux);
+        connTipoMedida.remove(idMaquina, id);
     }
 }

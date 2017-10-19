@@ -17,12 +17,17 @@ import javax.inject.Inject;
  */
 @Stateless
 public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
+    private Connection<EjercicioEntity,ObjetivoEntity> connObjetivo;
+    private Connection<EjercicioEntity,MaquinaEntity> connMaquina;
+    private Connection<EjercicioEntity,TipoMedidaEntity> connTipoMedida;
+    
     public EjercicioLogic() {
         super();
     }
 
     @Inject public EjercicioLogic(BasePersistence<EjercicioEntity> persistence) {
         super(persistence);
+        this.connMaquina=new Connection<>(persistence, EjercicioEntity::getMaquinas, MaquinaEntity.class);
     }
     //-----------------------------------
     // OBJETIVO
@@ -34,7 +39,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
      * @throws BusinessLogicException si no eciste el jercicio
      */
     public List<ObjetivoEntity> findAllObjetivo(Long id) throws BusinessLogicException{
-        return find(id).getObjetivosEjercicio();        
+        return connObjetivo.findAll(id);
     }
     /**
      * metodo apra encontrar un objetivo de un ejercicio
@@ -44,13 +49,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
      * @throws BusinessLogicException si no existe el objetivo
      */
     public ObjetivoEntity findObjetivo(Long idEjercicio, Long id) throws BusinessLogicException{
-        ObjetivoEntity aux = new ObjetivoEntity();
-        aux.setId(id);
-        List<ObjetivoEntity> list=find(idEjercicio).getObjetivosEjercicio();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        return list.get(ind);
+        return connObjetivo.find(idEjercicio, id);
     }
     /**
      * metodo para crear un objetivo en el ejercicios
@@ -60,10 +59,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
      * @throws BusinessLogicException si el objetivo no existe o el ejercicio no existe
      */
     public ObjetivoEntity createObjetivo(Long idEjercicio, Long id) throws BusinessLogicException{
-        ObjetivoEntity aux = new ObjetivoEntity();
-        aux.setId(id);
-        find(idEjercicio).getObjetivosEjercicio().add(aux);
-        return aux;
+        return connObjetivo.create(idEjercicio, id);
     }
     /**
      * metodo que remueve un objetivo de un ejercicio
@@ -72,13 +68,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
      * @throws BusinessLogicException si el ejercicio no existe, o el objetivo no existe 
      */
     public void removeObejtivo(Long idEjercicio, Long id) throws BusinessLogicException{
-        ObjetivoEntity aux = new ObjetivoEntity();
-        aux.setId(id);
-        List<ObjetivoEntity> list=find(idEjercicio).getObjetivosEjercicio();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        list.remove(ind);
+        connObjetivo.remove(idEjercicio, id);
     }
     
     //-----------------------------------
@@ -86,7 +76,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
     //-----------------------------------
     
       public List<MaquinaEntity> findAllMaquina(Long id) throws BusinessLogicException{
-        return find(id).getMaquinas();        
+        return connMaquina.findAll(id);
     }
     /**
      * metodo para encontrar una mquina especifica
@@ -96,13 +86,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
      * @throws BusinessLogicException si el ejercicio o la maquina no existe 
      */
     public MaquinaEntity findMaquina(Long idEjercicio, Long id) throws BusinessLogicException{
-        MaquinaEntity aux = new MaquinaEntity();
-        aux.setId(id);
-        List<MaquinaEntity> list=find(idEjercicio).getMaquinas();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        return list.get(ind);
+        return connMaquina.find(idEjercicio, id);
     }
     /**
      * metodo para crear o asociasr una maquina a un ejercicio
@@ -112,10 +96,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
      * @throws BusinessLogicException si la maquina no existe 
      */
     public MaquinaEntity createMaquina(Long idEjercicio, Long id) throws BusinessLogicException{
-        MaquinaEntity aux = new MaquinaEntity();
-        aux.setId(id);
-        find(idEjercicio).getMaquinas().add(aux);
-        return aux;
+        return connMaquina.create(idEjercicio, id);
     }
     /**
      * metodo que elimina una maquina de un ejercicio
@@ -124,13 +105,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
      * @throws BusinessLogicException si la maquina o el ejercicio no existen
      */
     public void removeMaquina(Long idEjercicio, Long id) throws BusinessLogicException{
-        MaquinaEntity aux = new MaquinaEntity();
-        aux.setId(id);
-        List<MaquinaEntity> list=find(idEjercicio).getMaquinas();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        list.remove(aux);
+        connMaquina.remove(idEjercicio, id);
     }
     //-----------------------------------
     // TIPOMEDIDA
@@ -142,7 +117,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
      * @throws BusinessLogicException si no eciste el jercicio
      */
     public List<TipoMedidaEntity> findAllTipoMedida(Long id) throws BusinessLogicException{
-        return find(id).getTiposMedidas();
+        return connTipoMedida.findAll(id);
     }
     /**
      * metodo apra encontrar un objetivo de un ejercicio
@@ -152,13 +127,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
      * @throws BusinessLogicException si no existe el objetivo
      */
     public TipoMedidaEntity findTipoMedida(Long idEjercicio, Long id) throws BusinessLogicException{
-        TipoMedidaEntity aux = new TipoMedidaEntity();
-        aux.setId(id);
-        List<TipoMedidaEntity> list=find(idEjercicio).getTiposMedidas();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        return list.get(ind);
+        return connTipoMedida.find(idEjercicio, id);
     }
     /**
      * metodo para crear un objetivo en el ejercicios
@@ -168,10 +137,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
      * @throws BusinessLogicException si el objetivo no existe o el ejercicio no existe
      */
     public TipoMedidaEntity createTipoMedida(Long idEjercicio, Long id) throws BusinessLogicException{
-        TipoMedidaEntity aux = new TipoMedidaEntity();
-        aux.setId(id);
-        find(idEjercicio).getTiposMedidas().add(aux);
-        return aux;
+        return connTipoMedida.create(idEjercicio, id);
     }
     /**
      * metodo que remueve un objetivo de un ejercicio
@@ -180,26 +146,18 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
      * @throws BusinessLogicException si el ejercicio no existe, o el objetivo no existe 
      */
     public void removeTipoMedida(Long idEjercicio, Long id) throws BusinessLogicException{
-        TipoMedidaEntity aux = new TipoMedidaEntity();
-        aux.setId(id);
-        List<TipoMedidaEntity> list=find(idEjercicio).getTiposMedidas();
-        int ind=list.indexOf(aux);
-        if(ind<0)
-            throw new NoExisteException(id);
-        list.remove(ind);
+        connTipoMedida.remove(idEjercicio, id);
     }
     
     //-----------------------------------------
     //EJERCICIO
     //-----------------------------------------
     
-    public List<EjercicioHechoEntity> findAllEjercicio(Long id) throws BusinessLogicException
-    {
+    public List<EjercicioHechoEntity> findAllEjercicio(Long id) throws BusinessLogicException{
         return find(id).getEjercicioHecho();        
     }
   
-    public EjercicioHechoEntity findEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException
-    {
+    public EjercicioHechoEntity findEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException{
         EjercicioHechoEntity aux = new EjercicioHechoEntity();
         aux.setId(id);
         List<EjercicioHechoEntity> list = find(idEjercicio).getEjercicioHecho();
@@ -211,16 +169,14 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
         return list.get(ind);
     }
   
-    public EjercicioHechoEntity createEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException
-    {
+    public EjercicioHechoEntity createEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException{
         EjercicioHechoEntity aux = new EjercicioHechoEntity();
         aux.setId(id);
         find(idEjercicio).getEjercicioHecho().add(aux);
         return aux;
     }
    
-    public void removeEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException
-    {
+    public void removeEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException{
         EjercicioHechoEntity aux = new EjercicioHechoEntity();
         aux.setId(id);
         List<EjercicioHechoEntity> list=find(idEjercicio).getEjercicioHecho();

@@ -20,13 +20,17 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
-
+    private Search<ObjetivoEntity, EjercicioEntity> conEjercicio;
+    private Search<ObjetivoEntity, UsuarioEntity> conUsuario;
+    
     public ObjetivoLogic() {
         super();
     }
     
     @Inject public ObjetivoLogic(BasePersistence<ObjetivoEntity> persistence){
         super(persistence);
+        this.conEjercicio=new Search<>(persistence, ObjetivoEntity::getEjercicios, EjercicioEntity.class);
+        this.conUsuario=new Search<>(persistence, ObjetivoEntity::getUsuarios, UsuarioEntity.class);
     }
     
     @Override
@@ -44,10 +48,18 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
     }
     
     public List<UsuarioEntity> findAllUsuario(Long id) throws BusinessLogicException{
-        return find(id).getUsuarios();
+        return conUsuario.findAll(id);
     }
     
-     public List<EjercicioEntity> findAllEjercicio(Long id) throws BusinessLogicException{
-        return find(id).getEjercicios();
+    public UsuarioEntity findEjerciccio(Long id,Long idEjercicio) throws BusinessLogicException{
+        return conUsuario.find(id,idEjercicio);
+    }
+    
+    public List<EjercicioEntity> findAllEjercicio(Long id) throws BusinessLogicException{
+        return conEjercicio.findAll(id);
+    }
+    
+    public EjercicioEntity findAllEjercicio(Long id,Long idEjercicio) throws BusinessLogicException{
+        return conEjercicio.find(id, idEjercicio);
     }
 }

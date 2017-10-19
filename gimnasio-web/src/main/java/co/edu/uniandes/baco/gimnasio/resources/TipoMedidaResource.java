@@ -61,17 +61,7 @@ public class TipoMedidaResource {
     public TipoMedidaDTO post(TipoMedidaDTO nuevo) throws BusinessLogicException {
         return new TipoMedidaDTO(logic.create(nuevo.toEntity()));
     }
-    /**
-     * metodo de post que agrega carga masiva de estados
-     * @param listdto lsita de dtos
-     * @return la lsita agregada
-     * @throws BusinessLogicException 
-     */
-    @POST
-    @Path("addList")
-    public List<TipoMedidaDTO> postList(List<TipoMedidaDTO> listdto) throws BusinessLogicException {
-        return TipoMedidaDTO.listDTO(logic.createList(medidaListDTO2Entity(listdto)));
-    }
+    
     /**
      * metodo para obtener todos los tipos de medida
      * @return

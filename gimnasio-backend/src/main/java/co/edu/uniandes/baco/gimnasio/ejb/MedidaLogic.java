@@ -51,6 +51,7 @@ public class MedidaLogic extends SubResource<EstadoEntity,MedidaEntity> {
      * @return la medida actulizada
      * @throws BusinessLogicException si el estado o la medida noe xisten 
      */
+    @Override
     public MedidaEntity update(Long idEstado, MedidaEntity entity) throws BusinessLogicException {
         MedidaEntity old = find(entity.getId());
         if (!old.getEstado().getId().equals(idEstado))

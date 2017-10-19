@@ -11,7 +11,6 @@ import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -20,9 +19,7 @@ import javax.inject.Inject;
  * @author camilo
  */
 @Stateless
-public class AtributoDeCalidadLogic extends BaseLogic<AtributoDeCalidadEntity>{
-    
-    private ObjetivoLogic objetivoLogic;
+public class AtributoDeCalidadLogic extends SubResource<ObjetivoEntity,AtributoDeCalidadEntity>{
     private TipoMedidaLogic tipoMedidaLogic;
 
     public AtributoDeCalidadLogic() {
@@ -30,12 +27,9 @@ public class AtributoDeCalidadLogic extends BaseLogic<AtributoDeCalidadEntity>{
     }
 
     @Inject public AtributoDeCalidadLogic(ObjetivoLogic objetivoLogic, TipoMedidaLogic tipoMedidaLogic, BasePersistence<AtributoDeCalidadEntity> persistence) {
-        super(persistence);
-        this.objetivoLogic = objetivoLogic;
+        super(persistence, objetivoLogic, ObjetivoEntity::getAtributos, AtributoDeCalidadEntity::setObjetivo);
         this.tipoMedidaLogic = tipoMedidaLogic;
     }
-    
-    
     
     /**
      * metodo que crea o asocia una medida a un estado
@@ -46,38 +40,10 @@ public class AtributoDeCalidadLogic extends BaseLogic<AtributoDeCalidadEntity>{
      * @throws BusinessLogicException si el objetivo no existe 
      */
     public AtributoDeCalidadEntity create(Long idObjetivo, AtributoDeCalidadEntity entity,Long idTipoMedida) throws BusinessLogicException {
-        ObjetivoEntity objetivo = objetivoLogic.find(idObjetivo);
         TipoMedidaEntity tipoMedida = tipoMedidaLogic.find(idTipoMedida);
-        entity.setObjetivo(objetivo);
-        AtributoDeCalidadEntity est=create(entity);
+        AtributoDeCalidadEntity est=create(idObjetivo, entity);
         entity.setTipoMedida(tipoMedida);
         return est;
-    }
-    /**
-     * metodo que encuentra todos los atribtos de calidad de un obetivo
-     * @param idObjetivo id del objetivo
-     * @return lista de atributos de calidad del objetivo
-     * @throws BusinessLogicException si el objetivo no existe
-     */
-    public List<AtributoDeCalidadEntity> findAll(Long idObjetivo) throws BusinessLogicException {
-        return objetivoLogic.find(idObjetivo).getAtributos();
-    }
-    /**
-     * metodo que encuentra un atributo de calidad de un objetivo especifico
-     * @param idObjetivo id del objetivo
-     * @param id del atributo de calidad
-     * @return el atributo de calidad
-     * @throws BusinessLogicException el objetivo o el atrbuto de calidad no existen 
-     */
-    public AtributoDeCalidadEntity find(Long idObjetivo, Long id) throws BusinessLogicException {
-        AtributoDeCalidadEntity ent = new AtributoDeCalidadEntity();
-        ent.setId(id);
-        List<AtributoDeCalidadEntity> list = objetivoLogic.find(idObjetivo).getAtributos();
-        int ind = list.indexOf(ent);
-        if (ind < 0) {
-            throw new NoExisteException(id);
-        }
-        return list.get(ind);
     }
     /**
      * metodo para actualizar el atributo de calidad
@@ -86,6 +52,7 @@ public class AtributoDeCalidadLogic extends BaseLogic<AtributoDeCalidadEntity>{
      * @return el atributo actulizado
      * @throws BusinessLogicException si el objetivo o la medida no existen 
      */
+    @Override
     public AtributoDeCalidadEntity update(Long idObjetivo, AtributoDeCalidadEntity entity) throws BusinessLogicException {
         AtributoDeCalidadEntity old = find(entity.getId());
         if (!old.getObjetivo().getId().equals(idObjetivo)) {
@@ -95,15 +62,4 @@ public class AtributoDeCalidadLogic extends BaseLogic<AtributoDeCalidadEntity>{
         entity.setTipoMedida(old.getTipoMedida());
         return persistence.update(entity);
     }
-    /**
-     * metodo que elimina una medida de un estado
-     * @param idObjetivo id del objetivo
-     * @param id de el atributo De calidad
-     * @throws BusinessLogicException si el estado o la medida no existe 
-     */
-     public void remove(long idObjetivo,long id) throws BusinessLogicException {
-        AtributoDeCalidadEntity ent=find(idObjetivo,id);
-        objetivoLogic.find(idObjetivo).getAtributos().remove(ent);
-        remove(id);
-    }  
 }
