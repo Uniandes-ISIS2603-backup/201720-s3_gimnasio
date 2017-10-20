@@ -31,6 +31,7 @@ public class RutinaLogic extends SubResource<UsuarioEntity,RutinaEntity>{
      * @return la rutina actulizada
      * @throws BusinessLogicException  
      */
+    @Override
     public RutinaEntity update(Long idUsuario,RutinaEntity entity) throws BusinessLogicException {
         RutinaEntity old=find(entity.getId());
         if(!old.getUsuario().getId().equals(idUsuario))

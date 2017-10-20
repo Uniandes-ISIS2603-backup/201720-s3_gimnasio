@@ -22,14 +22,14 @@ import javax.ws.rs.*;
 @Produces(MediaType.APPLICATION_JSON)
 public class EjercicioEjercicioHechoResource 
 {
-    private EjercicioLogic logic;
+    private EjercicioInstanciaLogic logic;
     
     private EjercicioEjercicioHechoResource()
     {
         
     }
 
-    @Inject public EjercicioEjercicioHechoResource(EjercicioLogic logic) 
+    @Inject public EjercicioEjercicioHechoResource(EjercicioInstanciaLogic logic) 
     {
         this.logic = logic;
     }

@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
@@ -111,5 +112,45 @@ public class EjercicioInstanciaLogic extends BaseLogic<EjercicioInstanciaEntity>
         }
         rutinaLogic.find(idRutina).getEjercicios().remove(ent);
         remove(id);
+    }
+    
+    
+    //-----------------------------------------
+    //EJERCICIOHECHO
+    //-----------------------------------------
+    
+    public List<EjercicioHechoEntity> findAllEjercicio(Long id) throws BusinessLogicException{
+        return find(id).getEjerciciosHechos();        
+    }
+  
+    public EjercicioHechoEntity findEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException{
+        EjercicioHechoEntity aux = new EjercicioHechoEntity();
+        aux.setId(id);
+        List<EjercicioHechoEntity> list = find(idEjercicio).getEjerciciosHechos();
+        int ind=list.indexOf(aux);
+        
+        if(ind<0)
+            throw new NoExisteException(id);
+        
+        return list.get(ind);
+    }
+  
+    public EjercicioHechoEntity createEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException{
+        EjercicioHechoEntity aux = new EjercicioHechoEntity();
+        aux.setId(id);
+        find(idEjercicio).getEjerciciosHechos().add(aux);
+        return aux;
+    }
+   
+    public void removeEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException{
+        EjercicioHechoEntity aux = new EjercicioHechoEntity();
+        aux.setId(id);
+        List<EjercicioHechoEntity> list=find(idEjercicio).getEjerciciosHechos();
+        int ind=list.indexOf(aux);
+        
+        if(ind<0)
+            throw new NoExisteException(id);
+        
+        list.remove(aux);
     }
 }
