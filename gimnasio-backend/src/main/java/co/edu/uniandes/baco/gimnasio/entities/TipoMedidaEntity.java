@@ -65,7 +65,7 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable {
      * lista de maquinas
      */
     @PodamExclude
-    @OneToMany(mappedBy = "tipoMedida", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "tipoMedida", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MaquinaEntity> maquinas = new ArrayList<>();
 
     //--------------------------------------------

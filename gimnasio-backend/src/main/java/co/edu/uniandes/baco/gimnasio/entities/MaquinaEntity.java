@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
