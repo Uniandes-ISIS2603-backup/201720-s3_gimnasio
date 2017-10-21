@@ -5,7 +5,6 @@ import co.edu.uniandes.baco.gimnasio.ejb.TipoMedidaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
-import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
