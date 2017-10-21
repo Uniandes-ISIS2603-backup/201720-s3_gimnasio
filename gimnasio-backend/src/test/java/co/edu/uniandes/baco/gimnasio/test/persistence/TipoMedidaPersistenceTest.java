@@ -3,6 +3,7 @@ package co.edu.uniandes.baco.gimnasio.test.persistence;
 import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
@@ -179,15 +180,21 @@ public class TipoMedidaPersistenceTest {
         for (int i = 0; i < 5; i++) {
             mediciones.add(factory.manufacturePojo(MedicionMaquinaEntity.class));
         }
+        List<MaquinaEntity> maquinas = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            maquinas.add(factory.manufacturePojo(MaquinaEntity.class));
+        }
 
         newEntity.setEjercicios(ejercicios);
         newEntity.setMedidas(medidas);
         newEntity.setAtributos(atributos);
         newEntity.setMedicion(mediciones);
+        newEntity.setMaquinas(maquinas);
         assertEquals(newEntity.getEjercicios(), ejercicios);
         assertEquals(newEntity.getMedidas(), medidas);
         assertEquals(newEntity.getAtributos(), atributos);
         assertEquals(newEntity.getMedicion(), mediciones);
+        assertEquals(newEntity.getMaquinas(), maquinas);
     }
 
     private void assertEqualsObject(TipoMedidaEntity a, TipoMedidaEntity b) {
