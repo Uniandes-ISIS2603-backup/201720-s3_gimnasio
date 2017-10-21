@@ -27,12 +27,12 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
      */
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaInicio;
-    
+
     /**
      * numero de series realizadas
      */
     private Integer seriesReales;
-    
+
     @PodamExclude
     @ManyToOne
     private EjercicioInstanciaEntity ejercicio;
@@ -40,7 +40,7 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "ejercicioEnt", orphanRemoval = true, fetch = FetchType.LAZY)
     private List<MedicionMaquinaEntity> atributos = new ArrayList<>();
-    
+
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
@@ -51,15 +51,12 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
     public void setSeriesReales(Integer seriesReales) {
         this.seriesReales = seriesReales;
     }
-    
-      public List<MedicionMaquinaEntity> getAtributos() 
-    {
+
+    public List<MedicionMaquinaEntity> getAtributos() {
         return atributos;
     }
-    
 
-    public void setAtributos(List<MedicionMaquinaEntity> atributos) 
-    {
+    public void setAtributos(List<MedicionMaquinaEntity> atributos) {
         this.atributos = atributos;
     }
 
@@ -70,15 +67,15 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
-    
+
     public EjercicioInstanciaEntity getEjercicios() {
         return ejercicio;
     }
 
-    public void setEjercicios(EjercicioInstanciaEntity ejercicio){
+    public void setEjercicios(EjercicioInstanciaEntity ejercicio) {
         this.ejercicio = ejercicio;
     }
-    
+
     //--------------------------------------------
     // METODOS
     //--------------------------------------------

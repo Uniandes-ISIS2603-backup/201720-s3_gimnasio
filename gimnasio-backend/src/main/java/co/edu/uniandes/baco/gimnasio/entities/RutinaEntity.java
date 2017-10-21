@@ -23,6 +23,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class RutinaEntity extends BaseEntity implements Serializable {
+
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
@@ -36,11 +37,10 @@ public class RutinaEntity extends BaseEntity implements Serializable {
      */
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaFinal;
-    
+
     //--------------------------------------------
     // DATOS ENTITY
     //--------------------------------------------
-    
     /**
      * usuario al que pertenece la rutina
      */
@@ -58,7 +58,6 @@ public class RutinaEntity extends BaseEntity implements Serializable {
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
-
     public Date getFechaInicio() {
         return fechaInicio;
     }
@@ -90,11 +89,10 @@ public class RutinaEntity extends BaseEntity implements Serializable {
     public void setEjercicios(List<EjercicioInstanciaEntity> ejercicios) {
         this.ejercicios = ejercicios;
     }
-    
+
     //--------------------------------------------
     // METODOS
     //--------------------------------------------
-
     @Override
     public boolean equals(Object obj) {
         if (obj != null && this.getClass() != obj.getClass()) {

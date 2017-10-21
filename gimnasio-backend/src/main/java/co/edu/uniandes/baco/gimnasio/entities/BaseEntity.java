@@ -37,10 +37,12 @@ public abstract class BaseEntity implements Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-        if (obj == null)
+        if (obj == null) {
             return false;
-        if (this.getClass() != obj.getClass())
+        }
+        if (this.getClass() != obj.getClass()) {
             return false;
+        }
         BaseEntity mc = (BaseEntity) obj;
         if (this.getId() != null && mc.getId() != null) {
             return this.getId().equals(((BaseEntity) obj).getId());

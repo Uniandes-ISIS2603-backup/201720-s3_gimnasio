@@ -10,6 +10,7 @@ import javax.persistence.Entity;
  */
 @Entity
 public class GimnasioEntity extends BaseEntity implements Serializable {
+
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
@@ -27,11 +28,10 @@ public class GimnasioEntity extends BaseEntity implements Serializable {
      * nit de la empresa
      */
     private long nit;
-    
+
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
-
     public String getName() {
 
         return name;
@@ -56,7 +56,7 @@ public class GimnasioEntity extends BaseEntity implements Serializable {
     public void setNit(long nit) {
         this.nit = nit;
     }
-    
+
     //--------------------------------------------
     // METODOS
     //--------------------------------------------

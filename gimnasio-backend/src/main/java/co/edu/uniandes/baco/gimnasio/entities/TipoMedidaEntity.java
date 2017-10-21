@@ -17,6 +17,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class TipoMedidaEntity extends BaseEntity implements Serializable {
+
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
@@ -41,24 +42,32 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToMany(mappedBy = "tiposMedidas")
     private List<EjercicioEntity> ejercicios = new ArrayList<>();
-    
+
     @PodamExclude
     @OneToMany(mappedBy = "parte", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<MedidaEntity> medidas;
-    
+
     /**
      * lista de objetivos del ejercicio
      */
     @PodamExclude
-    @OneToMany(mappedBy = "tipoMedida",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tipoMedida", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<AtributoDeCalidadEntity> atributos = new ArrayList<>();
-    
+
     /**
      * lista de objetivos del ejercicio
      */
     @PodamExclude
-    @OneToMany(mappedBy = "tipoMedida",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tipoMedida", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<MedicionMaquinaEntity> medicion = new ArrayList<>();
+
+    /**
+     * lista de maquinas
+     */
+    @PodamExclude
+    @OneToMany(mappedBy = "tipoMedida", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<MaquinaEntity> maquinas = new ArrayList<>();
+
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
@@ -78,7 +87,7 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable {
     public void setEjercicios(List<EjercicioEntity> ejercicios) {
         this.ejercicios = ejercicios;
     }
-    
+
     /**
      * metodo set de atomatico
      *
@@ -86,6 +95,14 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable {
      */
     public void setAutomatico(boolean automatico) {
         this.automatico = automatico;
+    }
+
+    public List<MaquinaEntity> getMaquinas() {
+        return maquinas;
+    }
+
+    public void setMaquinas(List<MaquinaEntity> maquinas) {
+        this.maquinas = maquinas;
     }
 
     /**
@@ -129,7 +146,7 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable {
     public void setMedidas(List<MedidaEntity> medidas) {
         this.medidas = medidas;
     }
-    
+
     public String getTipoMedida() {
         return tipoMedida;
     }
@@ -137,11 +154,10 @@ public class TipoMedidaEntity extends BaseEntity implements Serializable {
     public void setTipoMedida(String tipoMedida) {
         this.tipoMedida = tipoMedida;
     }
-    
+
     //--------------------------------------------
     // METODOS
     //--------------------------------------------
-
     @Override
     public boolean equals(Object obj) {
         if (obj != null && this.getClass() != obj.getClass()) {

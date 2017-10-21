@@ -22,14 +22,14 @@ import javax.ws.rs.*;
 @Produces(MediaType.APPLICATION_JSON)
 public class EjercicioHechoMedicionResource 
 {
-    private EjercicioHechoLogic logic;
+    private MedicionMaquinaLogic logic;
     
     private EjercicioHechoMedicionResource()
     {
         
     }
     
-    @Inject private EjercicioHechoMedicionResource(EjercicioHechoLogic logic)
+    @Inject private EjercicioHechoMedicionResource(MedicionMaquinaLogic logic)
     {
         this.logic = logic;
     }
@@ -37,27 +37,27 @@ public class EjercicioHechoMedicionResource
     @GET
     public List<MedicionMaquinaDetailDTO> findAll(@PathParam(EJERCICIOHECHOID) Long id) throws BusinessLogicException 
     {
-        return MedicionMaquinaDetailDTO.listDetailDTO(logic.findAllMedicion(id));
+        return MedicionMaquinaDetailDTO.listDetailDTO(logic.findAll(id));
     }
     
     @GET
     @Path("{"+MEDICIONMAQUINAID+": \\d+}")
     public MedicionMaquinaDetailDTO find(@PathParam(EJERCICIOHECHOID) Long idEjercicio, @PathParam(MEDICIONMAQUINAID) Long id) throws BusinessLogicException 
     {
-        return new MedicionMaquinaDetailDTO(logic.findMedicion(idEjercicio, id));
+        return new MedicionMaquinaDetailDTO(logic.find(idEjercicio, id));
     }
     
-    @POST
-    @Path("{"+MEDICIONMAQUINAID+": \\d+}")
-    public MedicionMaquinaDTO create(@PathParam(EJERCICIOHECHOID) Long idEjercicio, @PathParam(MEDICIONMAQUINAID) Long id) throws BusinessLogicException 
-    {
-       return new MedicionMaquinaDTO(logic.createMedicion(idEjercicio, id));
-    }
+//    @POST
+//    @Path("{"+MEDICIONMAQUINAID+": \\d+}")
+//    public MedicionMaquinaDTO create(@PathParam(EJERCICIOHECHOID) Long idEjercicio, @PathParam(MEDICIONMAQUINAID) Long id) throws BusinessLogicException 
+//    {
+//       return new MedicionMaquinaDTO(logic.createMedicion(idEjercicio, id));
+//    }
     
     @DELETE
     @Path("{"+MEDICIONMAQUINAID+": \\d+}")
     public void removeMedicion(@PathParam(EJERCICIOHECHOID) Long idEjercicio, @PathParam(MEDICIONMAQUINAID) Long id) throws BusinessLogicException 
     {
-        logic.removeMedicion(idEjercicio, id);
+        logic.remove(idEjercicio, id);
     }
 }

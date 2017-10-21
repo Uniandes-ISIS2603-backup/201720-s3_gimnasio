@@ -47,6 +47,9 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
         return super.update(entity);
     }
     
+    //-----------------------------------
+    //USUARIOS
+    //-----------------------------------
     public List<UsuarioEntity> findAllUsuario(Long id) throws BusinessLogicException{
         return conUsuario.findAll(id);
     }
@@ -55,6 +58,9 @@ public class ObjetivoLogic extends BaseLogic<ObjetivoEntity>{
         return conUsuario.find(id,idEjercicio);
     }
     
+     //-----------------------------------
+    //EJERCICIOS
+    //-----------------------------------
     public List<EjercicioEntity> findAllEjercicio(Long id) throws BusinessLogicException{
         return conEjercicio.findAll(id);
     }

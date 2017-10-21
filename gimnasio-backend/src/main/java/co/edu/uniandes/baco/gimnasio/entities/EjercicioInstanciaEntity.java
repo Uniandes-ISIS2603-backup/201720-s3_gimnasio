@@ -20,11 +20,13 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author jc.bojaca
  */
 @Entity
-public class EjercicioInstanciaEntity extends BaseEntity implements Serializable{
+public class EjercicioInstanciaEntity extends BaseEntity implements Serializable {
+
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
-    /***
+    /**
+     * *
      * efectividad del ejercicio
      */
     private Double efectividad;
@@ -41,11 +43,14 @@ public class EjercicioInstanciaEntity extends BaseEntity implements Serializable
      */
     private Integer series;
     /**
-     * el atributo que define la regularidad con la que hay que hacer el ejercicio en dias {1="diariamente" , 7="semanalmente")
+     * el atributo que define la regularidad con la que hay que hacer el
+     * ejercicio en dias {1="diariamente" , 7="semanalmente")
      */
     private Integer tamanioParticiones;
     /**
-     * atributo que define la cantidad de veces que hay que hacer el ejercicio por particion {con el atributo de tamanioParticiones define la frecuencia del ejercicio}
+     * atributo que define la cantidad de veces que hay que hacer el ejercicio
+     * por particion {con el atributo de tamanioParticiones define la frecuencia
+     * del ejercicio}
      */
     private Integer repeticionesPorParticion;
     //--------------------------------------------
@@ -54,19 +59,18 @@ public class EjercicioInstanciaEntity extends BaseEntity implements Serializable
     @PodamExclude
     @ManyToOne
     private RutinaEntity rutina;
-    
+
     @PodamExclude
     @ManyToOne
     private EjercicioEntity ejercicio;
-    
+
     @PodamExclude
-    @OneToMany(mappedBy = "ejercicio",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "ejercicio", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<EjercicioHechoEntity> ejerciciosHechos;
-    
+
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
-
     public Integer getDuracion() {
         return duracion;
     }
@@ -138,6 +142,7 @@ public class EjercicioInstanciaEntity extends BaseEntity implements Serializable
     public void setRutina(RutinaEntity rutina) {
         this.rutina = rutina;
     }
+
     //--------------------------------------------
     // METODOS
     //--------------------------------------------

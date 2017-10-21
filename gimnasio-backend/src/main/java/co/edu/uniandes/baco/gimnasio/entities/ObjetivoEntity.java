@@ -16,6 +16,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class ObjetivoEntity extends BaseEntity implements Serializable {
+
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
@@ -30,21 +31,21 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
     //--------------------------------------------
     // DATOS ENTITY
     //--------------------------------------------
-    
+
     /**
      * lista de usuarios que buscan ese objetivo
      */
     @PodamExclude
     @ManyToMany(mappedBy = "objetivos")
     private List<UsuarioEntity> usuarios = new ArrayList<>();
-    
+
     /**
      * lista de objetivos del ejercicio
      */
     @PodamExclude
-    @OneToMany(mappedBy = "objetivo",cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "objetivo", cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<AtributoDeCalidadEntity> atributos = new ArrayList<>();
-    
+
     /**
      * lista de usuarios que buscan ese objetivo
      */
@@ -94,11 +95,10 @@ public class ObjetivoEntity extends BaseEntity implements Serializable {
     public void setEjercicios(List<EjercicioEntity> ejercicios) {
         this.ejercicios = ejercicios;
     }
-    
+
     //--------------------------------------------
     // METODOS
     //--------------------------------------------
-
     @Override
     public boolean equals(Object obj) {
         if (obj != null && this.getClass() != obj.getClass()) {

@@ -16,42 +16,40 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author ce.robles
  */
 @Entity
-public class MedicionMaquinaEntity extends BaseEntity implements Serializable{
+public class MedicionMaquinaEntity extends BaseEntity implements Serializable {
+
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
     private Double medicionManquina;
-    
+
     @PodamExclude
     @ManyToOne
     private EjercicioHechoEntity ejercicioEnt;
-    
+
     @PodamExclude
     @ManyToOne
     private TipoMedidaEntity tipoMedida;
-    
+
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
-    
-    public Double getMedicionManquina() 
-    {
+    public Double getMedicionManquina() {
         return medicionManquina;
     }
 
-    public void setMedicionManquina(Double medicionManquina)
-    {
+    public void setMedicionManquina(Double medicionManquina) {
         this.medicionManquina = medicionManquina;
     }
-    
-     public TipoMedidaEntity getTipoMedida() {
+
+    public TipoMedidaEntity getTipoMedida() {
         return tipoMedida;
     }
 
     public void setTipoMedida(TipoMedidaEntity tipoMedida) {
         this.tipoMedida = tipoMedida;
     }
-    
+
     public EjercicioHechoEntity getEjercicioEnt() {
         return ejercicioEnt;
     }
@@ -59,7 +57,7 @@ public class MedicionMaquinaEntity extends BaseEntity implements Serializable{
     public void setEjercicioEnt(EjercicioHechoEntity ejercicioEnt) {
         this.ejercicioEnt = ejercicioEnt;
     }
-    
+
     //--------------------------------------------
     // METODOS
     //--------------------------------------------

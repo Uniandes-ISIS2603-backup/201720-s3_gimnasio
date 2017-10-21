@@ -14,6 +14,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 @Entity
 public class EjercicioEntity extends BaseEntity implements Serializable {
+
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
@@ -22,7 +23,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
      */
     private String explicacion;
     /**
-     * 
+     *
      */
     private String descripcion;
     /**
@@ -40,7 +41,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     @ManyToMany
     private List<ObjetivoEntity> objetivosEjercicio = new ArrayList<>();
     /**
-     * lista de maquinas usadas en ele ejercicio 
+     * lista de maquinas usadas en ele ejercicio
      */
     @PodamExclude
     @ManyToMany
@@ -51,7 +52,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToMany
     private List<TipoMedidaEntity> tiposMedidas = new ArrayList<>();
-    
+
     /**
      * referencias al ejercicio en las rutinas especificas
      */
@@ -93,7 +94,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     public void setInstancias(List<EjercicioInstanciaEntity> instancias) {
         this.instancias = instancias;
     }
-    
+
     public Tipo getTipo() {
         return tipo;
     }
@@ -117,6 +118,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     public void setMaquinas(List<MaquinaEntity> maquinas) {
         this.maquinas = maquinas;
     }
+
     //--------------------------------------------
     // METODOS
     //--------------------------------------------

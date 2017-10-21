@@ -6,7 +6,7 @@ import java.io.Serializable;
  *
  * @author jc.bojaca
  */
-public enum Tipo implements Serializable{
+public enum Tipo implements Serializable {
     AEROBICOS,
     ANEAROBICOS,
     FLEXIBILIDAD,

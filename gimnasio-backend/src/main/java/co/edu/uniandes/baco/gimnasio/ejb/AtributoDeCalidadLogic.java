@@ -19,38 +19,43 @@ import javax.inject.Inject;
  * @author camilo
  */
 @Stateless
-public class AtributoDeCalidadLogic extends SubResource<ObjetivoEntity,AtributoDeCalidadEntity>{
+public class AtributoDeCalidadLogic extends SubResource<ObjetivoEntity, AtributoDeCalidadEntity> {
+
     private TipoMedidaLogic tipoMedidaLogic;
 
     public AtributoDeCalidadLogic() {
         super();
     }
 
-    @Inject public AtributoDeCalidadLogic(ObjetivoLogic objetivoLogic, TipoMedidaLogic tipoMedidaLogic, BasePersistence<AtributoDeCalidadEntity> persistence) {
+    @Inject
+    public AtributoDeCalidadLogic(ObjetivoLogic objetivoLogic, TipoMedidaLogic tipoMedidaLogic, BasePersistence<AtributoDeCalidadEntity> persistence) {
         super(persistence, objetivoLogic, ObjetivoEntity::getAtributos, AtributoDeCalidadEntity::setObjetivo);
         this.tipoMedidaLogic = tipoMedidaLogic;
     }
-    
+
     /**
      * metodo que crea o asocia una medida a un estado
+     *
      * @param idObjetivo id del objetivo
      * @param entity el atributo de calidad a asociar
      * @param idTipoMedida el tipod e medida de la medida
      * @return el atributo de calidad creado
-     * @throws BusinessLogicException si el objetivo no existe 
+     * @throws BusinessLogicException si el objetivo no existe
      */
-    public AtributoDeCalidadEntity create(Long idObjetivo, AtributoDeCalidadEntity entity,Long idTipoMedida) throws BusinessLogicException {
+    public AtributoDeCalidadEntity create(Long idObjetivo, AtributoDeCalidadEntity entity, Long idTipoMedida) throws BusinessLogicException {
         TipoMedidaEntity tipoMedida = tipoMedidaLogic.find(idTipoMedida);
-        AtributoDeCalidadEntity est=create(idObjetivo, entity);
+        AtributoDeCalidadEntity est = create(idObjetivo, entity);
         entity.setTipoMedida(tipoMedida);
         return est;
     }
+
     /**
      * metodo para actualizar el atributo de calidad
+     *
      * @param idObjetivo id del objetivo
      * @param entity atribto a actualizar
      * @return el atributo actulizado
-     * @throws BusinessLogicException si el objetivo o la medida no existen 
+     * @throws BusinessLogicException si el objetivo o la medida no existen
      */
     @Override
     public AtributoDeCalidadEntity update(Long idObjetivo, AtributoDeCalidadEntity entity) throws BusinessLogicException {

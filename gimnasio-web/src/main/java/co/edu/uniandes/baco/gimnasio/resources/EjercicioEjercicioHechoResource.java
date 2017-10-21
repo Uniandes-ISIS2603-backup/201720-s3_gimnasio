@@ -22,14 +22,14 @@ import javax.ws.rs.*;
 @Produces(MediaType.APPLICATION_JSON)
 public class EjercicioEjercicioHechoResource 
 {
-    private EjercicioInstanciaLogic logic;
+    private EjercicioHechoLogic logic;
     
     private EjercicioEjercicioHechoResource()
     {
         
     }
 
-    @Inject public EjercicioEjercicioHechoResource(EjercicioInstanciaLogic logic) 
+    @Inject public EjercicioEjercicioHechoResource(EjercicioHechoLogic logic) 
     {
         this.logic = logic;
     }
@@ -37,27 +37,27 @@ public class EjercicioEjercicioHechoResource
     @GET
     public List<EjercicioHechoDetailDTO> findAllEjercicios(@PathParam(EJERCICIOID) Long id) throws BusinessLogicException 
     {
-          return EjercicioHechoDetailDTO.listDetailDTO(logic.findAllEjercicio(id));
+          return EjercicioHechoDetailDTO.listDetailDTO(logic.findAll(id));
     }
     
     @GET
     @Path("{"+EJERCICIOHECHOID+": \\d+}")
     public EjercicioHechoDetailDTO findEjercicio(@PathParam(EJERCICIOID) Long idEjercicio, @PathParam(EJERCICIOHECHOID) Long id) throws BusinessLogicException 
     {
-        return new EjercicioHechoDetailDTO(logic.findEjercicioHecho(idEjercicio, id));
+        return new EjercicioHechoDetailDTO(logic.find(idEjercicio, id));
     }
     
-    @POST
-    @Path("{"+EJERCICIOHECHOID+": \\d+}")
-    public EjercicioHechoDTO createMaquina(@PathParam(EJERCICIOID) Long idEjericio,@PathParam(EJERCICIOHECHOID) Long id) throws BusinessLogicException 
-    {
-        return new EjercicioHechoDTO(logic.createEjercicioHecho(idEjericio, id));
-    }
+//    @POST
+//    @Path("{"+EJERCICIOHECHOID+": \\d+}")
+//    public EjercicioHechoDTO createMaquina(@PathParam(EJERCICIOID) Long idEjericio,@PathParam(EJERCICIOHECHOID) Long id) throws BusinessLogicException 
+//    {
+//        return new EjercicioHechoDTO(logic.createEjercicioHecho(idEjericio, id));
+//    }
     
     @DELETE
     @Path("{"+EJERCICIOHECHOID+": \\d+}")
     public void removeEjercicioHecho(@PathParam(EJERCICIOID) Long idEjercicio, @PathParam(EJERCICIOHECHOID) Long id) throws BusinessLogicException 
     {
-        logic.removeEjercicioHecho(idEjercicio, id);
+        logic.remove(idEjercicio, id);
     }
 }

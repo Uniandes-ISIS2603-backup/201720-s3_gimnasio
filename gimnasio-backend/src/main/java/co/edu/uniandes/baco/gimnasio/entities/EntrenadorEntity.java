@@ -16,6 +16,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class EntrenadorEntity extends BaseEntity implements Serializable {
+
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
@@ -34,7 +35,7 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
      * documento del entrenador
      */
     private String documento;
-    
+
     //--------------------------------------------
     // DATOS ENTITY
     //--------------------------------------------
@@ -44,11 +45,10 @@ public class EntrenadorEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToMany
     private List<UsuarioEntity> usuarios = new ArrayList<>();
-    
+
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
-
     public String getNombre() {
         return nombre;
     }

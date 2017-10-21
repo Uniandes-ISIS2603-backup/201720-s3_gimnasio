@@ -15,16 +15,15 @@ public class MedidaEntity extends BaseEntity implements Serializable {
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
-    
+
     /**
      * atributo que modela una medida
      */
-    Double medida; 
-    
+    Double medida;
+
     //--------------------------------------------
     // DATOS ENTITY
     //--------------------------------------------
-    
     /**
      * estado al que pertenece la medida
      */
@@ -42,7 +41,6 @@ public class MedidaEntity extends BaseEntity implements Serializable {
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
-    
     public EstadoEntity getEstado() {
         return estado;
     }
@@ -66,7 +64,7 @@ public class MedidaEntity extends BaseEntity implements Serializable {
     public void setMedida(Double medida) {
         this.medida = medida;
     }
-    
+
     //--------------------------------------------
     // METODOS
     //--------------------------------------------

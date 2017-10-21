@@ -11,7 +11,7 @@ public class AtributoDeCalidadEntity extends BaseEntity {
     // DATOS BASE
     //--------------------------------------------
     /**
-     * atributo que define el objetivo especifico sobre el tipo de medida      {0<} desea disminurir sus medidiciones sobre ese atributo
+     * atributo que define el objetivo especifico sobre el tipo de medida null     {0<} desea disminurir sus medidiciones sobre ese atributo
      * {0>} desea aumenar sus medidciones sobre ese atributo {0=} desea
      * conservar sus medicionse sobre es atributo
      */
@@ -24,18 +24,17 @@ public class AtributoDeCalidadEntity extends BaseEntity {
      */
     @PodamExclude
     @ManyToOne
-        private ObjetivoEntity objetivo;
+    private ObjetivoEntity objetivo;
     /**
      * atributo que mide
      */
     @PodamExclude
     @ManyToOne
     private TipoMedidaEntity tipoMedida;
-    
+
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
-
     public int getRegresion() {
         return regresion;
     }
@@ -59,6 +58,7 @@ public class AtributoDeCalidadEntity extends BaseEntity {
     public void setTipoMedida(TipoMedidaEntity tipoMedida) {
         this.tipoMedida = tipoMedida;
     }
+
     //--------------------------------------------
     // METODOS
     //--------------------------------------------

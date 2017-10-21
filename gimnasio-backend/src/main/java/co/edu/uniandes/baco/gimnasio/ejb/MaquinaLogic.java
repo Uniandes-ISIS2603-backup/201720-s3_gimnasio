@@ -14,38 +14,40 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-
 /**
  *
  * @author t.kavanagh
  */
 @Stateless
-public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
+public class MaquinaLogic extends BaseLogic<MaquinaEntity> {
+
     private TipoMedidaLogic tipoMedidaLogic;
-    private Connection<MaquinaEntity,TipoMedidaEntity> connTipoMedida;
-    private Search<MaquinaEntity,EjercicioEntity> connEjercio;
-    
+    private Connection<MaquinaEntity, TipoMedidaEntity> connTipoMedida;
+    private Search<MaquinaEntity, EjercicioEntity> connEjercio;
+
     public MaquinaLogic() {
         super();
     }
 
-    @Inject public MaquinaLogic(TipoMedidaLogic tipoMedidaLogic, BasePersistence<MaquinaEntity> persistence) {
+    @Inject
+    public MaquinaLogic(TipoMedidaLogic tipoMedidaLogic, BasePersistence<MaquinaEntity> persistence) {
         super(persistence);
+        this.connTipoMedida = new Connection<>(persistence, MaquinaEntity::getTipoMedida, TipoMedidaEntity.class);
+        this.connEjercio = new Search<>(persistence, MaquinaEntity::getEjercicios, EjercicioEntity.class);
         this.tipoMedidaLogic = tipoMedidaLogic;
     }
-    
+
     //-----------------------------------
     // EJERCICIO
     //-----------------------------------
-    
-    public List<EjercicioEntity> findAllEjercicio(Long id) throws BusinessLogicException{
+    public List<EjercicioEntity> findAllEjercicio(Long id) throws BusinessLogicException {
         return connEjercio.findAll(id);
     }
-    
-    public EjercicioEntity findEjercicio(Long id,Long idEjercicio) throws BusinessLogicException{
-        return connEjercio.find(id,idEjercicio);
+
+    public EjercicioEntity findEjercicio(Long id, Long idEjercicio) throws BusinessLogicException {
+        return connEjercio.find(id, idEjercicio);
     }
-    
+
     //-----------------------------------
     // TIPOMEDIDA
     //-----------------------------------
@@ -62,8 +64,7 @@ public class MaquinaLogic extends BaseLogic<MaquinaEntity>{
         if (!aux.isAutomatico()) {
             throw new BusinessLogicException("no se puede asociar una medida manual a una maquina");
         }
-        find(idMaquina).getTipoMedida().add(aux);
-        return aux;
+        return connTipoMedida.create(idMaquina, id);
     }
 
     public void removeTipoMedida(Long idMaquina, Long id) throws BusinessLogicException {

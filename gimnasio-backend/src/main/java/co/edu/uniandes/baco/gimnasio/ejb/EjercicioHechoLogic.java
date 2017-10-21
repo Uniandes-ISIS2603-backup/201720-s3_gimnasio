@@ -9,8 +9,6 @@ import co.edu.uniandes.baco.gimnasio.entities.*;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
-import co.edu.uniandes.baco.gimnasio.persistence.EjercicioHechoPersistence;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -19,64 +17,32 @@ import javax.inject.Inject;
  * @author ce.robles
  */
 @Stateless
-public class EjercicioHechoLogic extends BaseLogic<EjercicioHechoEntity>
-{
+public class EjercicioHechoLogic extends SubResource<EjercicioInstanciaEntity, EjercicioHechoEntity> {
 
-    public EjercicioHechoLogic() 
-    {
+    public EjercicioHechoLogic() {
         super();
-    } 
-    @Inject public EjercicioHechoLogic(BasePersistence<EjercicioHechoEntity> persistence){
-        super(persistence);
     }
-    
-    //Revisar. Algo no me cuadra. ATT:Carlos
-    public EjercicioHechoEntity create(Long id,EjercicioHechoEntity entity)throws BusinessLogicException
-    {
-        if(null!=((EjercicioHechoPersistence)persistence).findByFecha(id,entity.getFechaInicio()))
-            throw new BusinessLogicException("ya existe un ejercicio con esta fecha");
-        
-        return super.create(entity); 
+
+    @Inject
+    public EjercicioHechoLogic(BasePersistence<EjercicioHechoEntity> persistence, EjercicioInstanciaLogic logic) {
+        super(persistence, logic, EjercicioInstanciaEntity::getEjerciciosHechos, EjercicioHechoEntity::setEjercicios);
     }
 
     @Override
     public EjercicioHechoEntity update(EjercicioHechoEntity entity) throws BusinessLogicException {
-        EjercicioHechoEntity old=find(entity.getId());
+        EjercicioHechoEntity old = find(entity.getId());
         entity.setAtributos(old.getAtributos());
         return super.update(entity);
     }
-    
-    public List<MedicionMaquinaEntity> findAllMedicion(Long id) throws BusinessLogicException
-    {
-        return find(id).getAtributos();
+
+    @Override
+    public EjercicioHechoEntity update(Long id, EjercicioHechoEntity s) throws BusinessLogicException {
+        EjercicioHechoEntity old = find(s.getId());
+        if (!old.getEjercicios().getId().equals(id)) {
+            throw new NoExisteException(old.getEjercicios().getId(), id);
+        }
+        s.setAtributos(old.getAtributos());
+        s.setEjercicios(old.getEjercicios());
+        return super.update(s);
     }
-    
-    public MedicionMaquinaEntity findMedicion(Long idUsuario, Long id) throws BusinessLogicException{
-        MedicionMaquinaEntity aux = new MedicionMaquinaEntity();
-        aux.setId(id);
-        List<MedicionMaquinaEntity> list = find(idUsuario).getAtributos();
-        int ind=list.indexOf(aux);
-        
-        if(ind<0)
-            throw new NoExisteException(idUsuario,id);
-        
-        return list.get(ind);
-    }
-    
-    public MedicionMaquinaEntity createMedicion(Long idUsuario, Long id) throws BusinessLogicException
-    {
-        MedicionMaquinaEntity aux = new MedicionMaquinaEntity();
-        aux.setId(id);
-        find(idUsuario).getAtributos().add(aux);
-        return findMedicion(idUsuario, id);
-    }
-    
-    public void removeMedicion(Long idUsuario, Long id) throws BusinessLogicException
-    {
-        MedicionMaquinaEntity aux = new MedicionMaquinaEntity();
-        aux.setId(id);
-        find(idUsuario).getAtributos().remove(aux);
-    }
-    
-    
 }

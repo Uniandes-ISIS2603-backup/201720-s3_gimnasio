@@ -19,6 +19,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class EstadoEntity extends BaseEntity implements Serializable {
+
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
@@ -27,7 +28,7 @@ public class EstadoEntity extends BaseEntity implements Serializable {
      */
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
-    
+
     //--------------------------------------------
     // DATOS ENTITY
     //--------------------------------------------
@@ -38,16 +39,15 @@ public class EstadoEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "estado", cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<MedidaEntity> medidas;
     /**
-     *  el usuario al que le pertenecen las medidas
+     * el usuario al que le pertenecen las medidas
      */
     @PodamExclude
     @ManyToOne
     private UsuarioEntity usuario;
-    
+
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
-
     public UsuarioEntity getUsuario() {
         return usuario;
     }
@@ -71,7 +71,7 @@ public class EstadoEntity extends BaseEntity implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
+
     //--------------------------------------------
     // METODOS
     //--------------------------------------------

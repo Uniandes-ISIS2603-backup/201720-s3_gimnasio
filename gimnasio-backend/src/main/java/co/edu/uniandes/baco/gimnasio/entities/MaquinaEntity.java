@@ -32,7 +32,7 @@ public class MaquinaEntity extends BaseEntity implements Serializable {
      * tipos de medida que puede tomar la maquina al ser usada
      */
     @PodamExclude
-    @OneToMany
+    @ManyToMany
     private List<TipoMedidaEntity> tipoMedida;
     
     /**

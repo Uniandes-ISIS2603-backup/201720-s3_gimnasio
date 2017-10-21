@@ -18,6 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class UsuarioEntity extends BaseEntity implements Serializable {
+
     //--------------------------------------------
     // DATOS BASE
     //--------------------------------------------
@@ -38,9 +39,8 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
     //--------------------------------------------
     // DATOS ENTITY
     //--------------------------------------------
-    
     /**
-     *  los entrenadores asginados ael usuario
+     * los entrenadores asginados ael usuario
      */
     @PodamExclude
     @ManyToMany(mappedBy = "usuarios")
@@ -66,11 +66,10 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EstadoEntity> estados = new ArrayList<>();
-    
+
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
-
     public String getNombre() {
         return nombre;
     }
@@ -126,11 +125,10 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
     public void setEstados(List<EstadoEntity> estados) {
         this.estados = estados;
     }
-    
+
     //--------------------------------------------
     // METODOS
     //--------------------------------------------
-
     @Override
     public boolean equals(Object obj) {
         if (obj != null && this.getClass() != obj.getClass()) {
@@ -146,5 +144,5 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
         hash = 23 * hash + Objects.hashCode(this.fechaDeNacimiento);
         return hash;
     }
-    
+
 }

@@ -16,10 +16,11 @@ import java.util.List;
  * @author jc.bojaca
  * @param <T>
  */
-public abstract class BaseLogic<T extends BaseEntity>{  
-   /**
-    * persistencia de la clase
-    */
+public abstract class BaseLogic<T extends BaseEntity> {
+
+    /**
+     * persistencia de la clase
+     */
     protected BasePersistence<T> persistence;
 
     /**
@@ -28,63 +29,76 @@ public abstract class BaseLogic<T extends BaseEntity>{
     public BaseLogic() {
         //falla sin este constructor (no identifica el otroen primea instancia)
     }
-    
+
     /**
      * cosntructor prar recibir la persistencia
-     * @param persistence 
+     *
+     * @param persistence
      */
     public BaseLogic(BasePersistence<T> persistence) {
         this.persistence = persistence;
     }
-    
-     /**
-     * metodo que encuentra una entity 
+
+    /**
+     * metodo que encuentra una entity
+     *
      * @param id de la entity
      * @return la entity encontrada
-     * @throws BusinessLogicException si no existe 
+     * @throws BusinessLogicException si no existe
      */
-     public T find(Long id)throws BusinessLogicException{
-        T t= persistence.find(id);
-        if(t==null)
+    public T find(Long id) throws BusinessLogicException {
+        T t = persistence.find(id);
+        if (t == null) {
             throw new NoExisteException(id);
+        }
         return t;
     }
+
     /**
      * metodo que persiste una entiti
-     * @param entity 
+     *
+     * @param entity
      * @return la entity creada
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
-     public T create(T entity)throws BusinessLogicException{
+    public T create(T entity) throws BusinessLogicException {
         return persistence.create(entity);
     }
+
     /**
      * metodo qque actuliza una entity
+     *
      * @param entity
      * @return la entity actulizada
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
-    public T update(T entity) throws BusinessLogicException{
-        if(persistence.find(entity.getId())==null)
-             throw new NoExisteException(entity.getId());
+    public T update(T entity) throws BusinessLogicException {
+        if (persistence.find(entity.getId()) == null) {
+            throw new NoExisteException(entity.getId());
+        }
         return persistence.update(entity);
     }
+
     /**
      * metodo que elimina una entity
-     * @param id el id de la entity 
-     * @throws BusinessLogicException si no existe la entity 
+     *
+     * @param id el id de la entity
+     * @throws BusinessLogicException si no existe la entity
      */
-    public void remove(Long id)throws BusinessLogicException{
-         if(persistence.find(id)==null)
-             throw new NoExisteException(id);
+    public void remove(Long id) throws BusinessLogicException {
+        if (persistence.find(id) == null) {
+            throw new NoExisteException(id);
+        }
         persistence.delete(id);
     }
+
     /**
-     * metodo que encuentra todas las entitys 
+     * metodo que encuentra todas las entitys
+     *
      * @return lista de entitys
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
-    public List<T> findAll()throws BusinessLogicException{
+    public List<T> findAll() throws BusinessLogicException {
         return persistence.findAll();
     }
 }

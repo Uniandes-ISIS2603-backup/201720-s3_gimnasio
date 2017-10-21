@@ -20,32 +20,34 @@ import java.util.logging.Logger;
  * @param <R>
  * @param <S>
  */
-public class Search <R extends BaseEntity, S extends BaseEntity> extends BaseLogic<R>{
-    protected Function<R,List<S>> list;
+public class Search<R extends BaseEntity, S extends BaseEntity> extends BaseLogic<R> {
+
+    protected Function<R, List<S>> list;
     protected Class<S> clase;
 
     public Search() {
         super();
     }
-    
-    public Search(BasePersistence<R> persistence,final Function<R,List<S>> list,Class<S> clase) {
+
+    public Search(BasePersistence<R> persistence, final Function<R, List<S>> list, Class<S> clase) {
         super(persistence);
-        this.list=list;
-        this.clase=clase;
+        this.list = list;
+        this.clase = clase;
     }
-    
+
     public List<S> findAll(long id) throws BusinessLogicException {
         return list.apply(find(id));
     }
-    
-     public S find(long id,long idSub) throws BusinessLogicException {
+
+    public S find(long id, long idSub) throws BusinessLogicException {
         try {
-            List<S> lista=findAll(id);
-            S s=clase.newInstance();
+            List<S> lista = findAll(id);
+            S s = clase.newInstance();
             s.setId(idSub);
-            int ind=lista.indexOf(s);
-            if(ind<0)
-                throw new NoExisteException(id,idSub);
+            int ind = lista.indexOf(s);
+            if (ind < 0) {
+                throw new NoExisteException(id, idSub);
+            }
             return lista.get(ind);
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
