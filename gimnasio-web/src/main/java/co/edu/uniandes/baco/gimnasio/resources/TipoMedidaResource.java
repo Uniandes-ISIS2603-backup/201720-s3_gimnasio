@@ -38,19 +38,6 @@ public class TipoMedidaResource {
      @Inject public TipoMedidaResource(TipoMedidaLogic logic) {
         this.logic = logic;
     }
-     
-    /**
-     * Convierte una lista de  dto a entity
-     * @param dtos 
-     * @return Lista de entitys
-     */
-    private List<TipoMedidaEntity> medidaListDTO2Entity(List<TipoMedidaDTO> dtos) {
-        List<TipoMedidaEntity> list = new ArrayList<>();
-        for (TipoMedidaDTO dto : dtos) {
-            list.add(dto.toEntity());
-        }
-        return list;
-    }
     /**
      * metodo que crear un tipo de medida
      * @param nuevo

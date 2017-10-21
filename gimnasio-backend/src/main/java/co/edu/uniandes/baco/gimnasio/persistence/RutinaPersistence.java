@@ -8,7 +8,7 @@ import javax.ejb.Stateless;
  * @author jp.romero12
  */
 @Stateless
-public class RutinaPersistence extends BasePersistence<RutinaEntity>{
+public class RutinaPersistence extends BasePersistence<RutinaEntity> {
 
     public RutinaPersistence() {
         super(RutinaEntity.class);

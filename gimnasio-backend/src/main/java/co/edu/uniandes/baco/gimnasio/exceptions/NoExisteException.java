@@ -5,29 +5,32 @@
  */
 package co.edu.uniandes.baco.gimnasio.exceptions;
 
-
 /**
  *
  * @author jc.bojaca
  */
-public class NoExisteException extends BusinessLogicException{
+public class NoExisteException extends BusinessLogicException {
 
     public NoExisteException() {
         //constructor base
     }
+
     /**
      * contrutiror con un id
-     * @param id 
+     *
+     * @param id
      */
-    public NoExisteException(Long id){
+    public NoExisteException(Long id) {
         super("El recurso con id=" + id + " no existe.");
     }
+
     /**
      * contructor con 2 ids padre e hijo
+     *
      * @param id
-     * @param id2 
+     * @param id2
      */
-    public NoExisteException(Long id,Long id2){
-        super("El subrecurso con id=" + id2 + ", no existe en como sub recurso del recurso con id="+id+".");
+    public NoExisteException(Long id, Long id2) {
+        super("El subrecurso con id=" + id2 + ", no existe en como sub recurso del recurso con id=" + id + ".");
     }
 }

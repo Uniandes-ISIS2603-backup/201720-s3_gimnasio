@@ -13,10 +13,10 @@ import javax.ejb.Stateless;
  * @author camilo
  */
 @Stateless
-public class AtributoDeCalidadPersistence extends BasePersistence<AtributoDeCalidadEntity>{
-    
+public class AtributoDeCalidadPersistence extends BasePersistence<AtributoDeCalidadEntity> {
+
     public AtributoDeCalidadPersistence() {
         super(AtributoDeCalidadEntity.class);
     }
-    
+
 }

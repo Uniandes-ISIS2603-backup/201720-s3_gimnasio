@@ -9,7 +9,7 @@ import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import javax.ejb.Stateless;
 
 @Stateless
-public class TipoMedidaPersistence extends BasePersistence<TipoMedidaEntity>{
+public class TipoMedidaPersistence extends BasePersistence<TipoMedidaEntity> {
 
     public TipoMedidaPersistence() {
         super(TipoMedidaEntity.class);

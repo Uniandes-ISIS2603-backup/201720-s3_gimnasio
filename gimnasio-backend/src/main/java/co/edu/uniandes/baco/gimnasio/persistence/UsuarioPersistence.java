@@ -13,9 +13,9 @@ import javax.ejb.Stateless;
  * @author jp.romero12
  */
 @Stateless
-public class UsuarioPersistence extends BasePersistence<UsuarioEntity>{
-    
+public class UsuarioPersistence extends BasePersistence<UsuarioEntity> {
+
     public UsuarioPersistence() {
         super(UsuarioEntity.class);
-    }  
+    }
 }

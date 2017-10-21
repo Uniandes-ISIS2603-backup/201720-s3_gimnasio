@@ -9,6 +9,7 @@ import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
+import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -94,5 +95,11 @@ public class ExtrasTest {
         } catch (NoExisteException e) {
              assertTrue(e instanceof BusinessLogicException);
         }
+    }
+    
+    @Test
+    public void ClassPersistence(){
+        BasePersistence a=new BasePersistence(ObjetivoEntity.class) {};
+        assertEquals(a.getClase(),ObjetivoEntity.class);
     }
 }

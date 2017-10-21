@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
  * @author t.kavanagh
  */
 @Stateless
-public class MaquinaPersistence extends BasePersistence<MaquinaEntity>{
+public class MaquinaPersistence extends BasePersistence<MaquinaEntity> {
 
     public MaquinaPersistence() {
         super(MaquinaEntity.class);

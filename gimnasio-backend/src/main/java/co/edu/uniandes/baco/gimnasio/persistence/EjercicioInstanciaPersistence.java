@@ -13,8 +13,8 @@ import javax.ejb.Stateless;
  * @author jc.bojaca
  */
 @Stateless
-public class EjercicioInstanciaPersistence extends BasePersistence<EjercicioInstanciaEntity>{
-    
+public class EjercicioInstanciaPersistence extends BasePersistence<EjercicioInstanciaEntity> {
+
     public EjercicioInstanciaPersistence() {
         super(EjercicioInstanciaEntity.class);
     }

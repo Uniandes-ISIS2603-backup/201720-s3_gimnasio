@@ -8,7 +8,7 @@ import javax.ejb.Stateless;
  * @author ce.robles
  */
 @Stateless
-public class MedicionMaquinaPersistence extends BasePersistence<MedicionMaquinaEntity>{
+public class MedicionMaquinaPersistence extends BasePersistence<MedicionMaquinaEntity> {
 
     public MedicionMaquinaPersistence() {
         super(MedicionMaquinaEntity.class);

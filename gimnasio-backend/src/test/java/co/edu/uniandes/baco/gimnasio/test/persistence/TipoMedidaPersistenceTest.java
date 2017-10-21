@@ -3,6 +3,7 @@ package co.edu.uniandes.baco.gimnasio.test.persistence;
 import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
@@ -31,6 +32,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 @RunWith(Arquillian.class)
 public class TipoMedidaPersistenceTest {
+
     @Inject
     private TipoMedidaPersistence TipoMedidaPersistence;
 
@@ -39,7 +41,7 @@ public class TipoMedidaPersistenceTest {
 
     @Inject
     UserTransaction utx;
-    
+
     private final PodamFactory factory = new PodamFactoryImpl();
 
     private final List<TipoMedidaEntity> data = new ArrayList<>();
@@ -87,27 +89,26 @@ public class TipoMedidaPersistenceTest {
     //--------------------------------------
     // TEST
     //--------------------------------------
-    
     @Test
     public void equalsHasTest() {
         TipoMedidaEntity newEntity = create();
         assertTrue(newEntity.equals(newEntity));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
-        
-        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(UsuarioEntity.class);
+
+        BaseEntity tipo = (BaseEntity) factory.manufacturePojo(UsuarioEntity.class);
         assertFalse(newEntity.equals(tipo));
-        tipo=null;
+        tipo = null;
         assertFalse(newEntity.equals(tipo));
-        
+
         TipoMedidaEntity newEntity2 = create();
         newEntity2.setId(newEntity.getId());
         assertTrue(newEntity.equals(newEntity2));
-        
-        newEntity2.setId(newEntity.getId()+1);
+
+        newEntity2.setId(newEntity.getId() + 1);
         assertFalse(newEntity.equals(newEntity2));
-        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
+        assertNotEquals(newEntity.hashCode(), newEntity2.hashCode());
     }
-    
+
     @Test
     public void createTipoMedidaTest() {
         TipoMedidaEntity newEntity = create();
@@ -154,39 +155,48 @@ public class TipoMedidaPersistenceTest {
         TipoMedidaEntity newEntity = create();
         newEntity.setId(entity.getId());
         TipoMedidaPersistence.update(newEntity);
-        
+
         TipoMedidaEntity resp = em.find(TipoMedidaEntity.class, entity.getId());
         assertEqualsObject(newEntity, resp);
     }
-    
-     @Test
-    public void subEnititysTest(){
+
+    @Test
+    public void subEnititysTest() {
         TipoMedidaEntity newEntity = create();
-        List<EjercicioEntity> ejercicios=new ArrayList<>();
-        for(int i=0;i<5;i++)
+        List<EjercicioEntity> ejercicios = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
             ejercicios.add(factory.manufacturePojo(EjercicioEntity.class));
-        List<MedidaEntity> medidas=new ArrayList<>();
-        for(int i=0;i<5;i++)
+        }
+        List<MedidaEntity> medidas = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
             medidas.add(factory.manufacturePojo(MedidaEntity.class));
-        List<AtributoDeCalidadEntity> atributos=new ArrayList<>();
-        for(int i=0;i<5;i++)
+        }
+        List<AtributoDeCalidadEntity> atributos = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
             atributos.add(factory.manufacturePojo(AtributoDeCalidadEntity.class));
-        
+        }
+        List<MedicionMaquinaEntity> mediciones = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            mediciones.add(factory.manufacturePojo(MedicionMaquinaEntity.class));
+        }
+
         newEntity.setEjercicios(ejercicios);
         newEntity.setMedidas(medidas);
         newEntity.setAtributos(atributos);
+        newEntity.setMedicion(mediciones);
         assertEquals(newEntity.getEjercicios(), ejercicios);
         assertEquals(newEntity.getMedidas(), medidas);
-         assertEquals(newEntity.getAtributos(), atributos);
+        assertEquals(newEntity.getAtributos(), atributos);
+        assertEquals(newEntity.getMedicion(), mediciones);
     }
-    
-    private void assertEqualsObject(TipoMedidaEntity a,TipoMedidaEntity b){
+
+    private void assertEqualsObject(TipoMedidaEntity a, TipoMedidaEntity b) {
         assertEquals(a.getTipoMedida(), b.getTipoMedida());
         assertEquals(a.getUnidad(), b.getUnidad());
         assertEquals(a.isAutomatico(), b.isAutomatico());
     }
-    
-    private TipoMedidaEntity create(){
+
+    private TipoMedidaEntity create() {
         return factory.manufacturePojo(TipoMedidaEntity.class);
     }
 }
