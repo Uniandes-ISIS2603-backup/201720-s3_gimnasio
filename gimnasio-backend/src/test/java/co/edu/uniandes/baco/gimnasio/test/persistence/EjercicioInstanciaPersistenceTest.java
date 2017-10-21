@@ -2,6 +2,7 @@ package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
@@ -31,6 +32,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 @RunWith(Arquillian.class)
 public class EjercicioInstanciaPersistenceTest {
+
     @Inject
     private EjercicioInstanciaPersistence EjercicioInstanciaPersistence;
 
@@ -39,7 +41,7 @@ public class EjercicioInstanciaPersistenceTest {
 
     @Inject
     UserTransaction utx;
-    
+
     private final PodamFactory factory = new PodamFactoryImpl();
 
     private final List<EjercicioInstanciaEntity> data = new ArrayList<>();
@@ -87,27 +89,26 @@ public class EjercicioInstanciaPersistenceTest {
     //--------------------------------------
     // TEST
     //--------------------------------------
-    
     @Test
     public void equalsHasTest() {
         EjercicioInstanciaEntity newEntity = create();
         assertTrue(newEntity.equals(newEntity));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
-        
-        BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
+
+        BaseEntity tipo = (BaseEntity) factory.manufacturePojo(ObjetivoEntity.class);
         assertFalse(newEntity.equals(tipo));
-        tipo=null;
+        tipo = null;
         assertFalse(newEntity.equals(tipo));
-        
+
         EjercicioInstanciaEntity newEntity2 = create();
         newEntity2.setId(newEntity.getId());
         assertTrue(newEntity.equals(newEntity2));
-        
-        newEntity2.setId(newEntity.getId()+1);
+
+        newEntity2.setId(newEntity.getId() + 1);
         assertFalse(newEntity.equals(newEntity2));
-        assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
+        assertNotEquals(newEntity.hashCode(), newEntity2.hashCode());
     }
-    
+
     @Test
     public void createEjercicioInstanciaTest() {
         EjercicioInstanciaEntity newEntity = create();
@@ -154,24 +155,30 @@ public class EjercicioInstanciaPersistenceTest {
         EjercicioInstanciaEntity newEntity = create();
         newEntity.setId(entity.getId());
         EjercicioInstanciaPersistence.update(newEntity);
-        
+
         EjercicioInstanciaEntity resp = em.find(EjercicioInstanciaEntity.class, entity.getId());
         assertEqualsObject(newEntity, resp);
     }
-    
+
     @Test
-    public void subEnititysTest(){
+    public void subEnititysTest() {
         EjercicioInstanciaEntity newEntity = create();
-        RutinaEntity rutina= factory.manufacturePojo(RutinaEntity.class);
-        EjercicioEntity ejercicio=factory.manufacturePojo(EjercicioEntity.class);
-        
+        RutinaEntity rutina = factory.manufacturePojo(RutinaEntity.class);
+        EjercicioEntity ejercicio = factory.manufacturePojo(EjercicioEntity.class);
+        List<EjercicioHechoEntity> loHecho = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            loHecho.add(factory.manufacturePojo(EjercicioHechoEntity.class));
+        }
+
         newEntity.setEjercicio(ejercicio);
         newEntity.setRutina(rutina);
+        newEntity.setEjerciciosHechos(loHecho);
         assertEquals(newEntity.getEjercicio(), ejercicio);
         assertEquals(newEntity.getRutina(), rutina);
+        assertEquals(newEntity.getEjerciciosHechos(), loHecho);
     }
-    
-    private void assertEqualsObject(EjercicioInstanciaEntity a,EjercicioInstanciaEntity b){
+
+    private void assertEqualsObject(EjercicioInstanciaEntity a, EjercicioInstanciaEntity b) {
         assertEquals(a.getCumplimiento(), b.getCumplimiento());
         assertEquals(a.getDuracion(), b.getDuracion());
         assertEquals(a.getEfectividad(), b.getEfectividad());
@@ -179,8 +186,8 @@ public class EjercicioInstanciaPersistenceTest {
         assertEquals(a.getSeries(), b.getSeries());
         assertEquals(a.getTamanioParticiones(), b.getTamanioParticiones());
     }
-    
-    private EjercicioInstanciaEntity create(){
+
+    private EjercicioInstanciaEntity create() {
         return factory.manufacturePojo(EjercicioInstanciaEntity.class);
     }
 }
