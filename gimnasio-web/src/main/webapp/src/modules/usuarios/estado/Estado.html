@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <body>
+
+
+    <h1>Estados</h1>
+       <h2>Seleccione un Usuario</h2>
+       <select ng-model="selectUsuraio" ng-options="x for x in usuarios"></select> <br>
+       
+       <h3>iD: {{selectUsuraio.id}}</h3>
+        <h3>Nombre: {{selectUsuraio.nombre}}</h3>
+         <h3>Genero: {{selectUsuraio.genero}}</h3>
+          <h3>Fecha de nacimeinto: {{selectUsuraio.fechaDeNacimiento}}</h3>
+          
+            <input type="date" name="bday">
+ 
+   <button type="button">Agregar Estado</button>
+         
+
+
+  </body>
 </html>
