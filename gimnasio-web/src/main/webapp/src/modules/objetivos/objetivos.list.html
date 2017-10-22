@@ -1,0 +1,19 @@
+<div class="col-md-4">
+    <div class="container-fluid">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Tipo</th>    
+                    <th>Descricion</th>  
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="objetivo in objetivosRecords">
+                    <td id="{{$index}}-Tipo">{{objetivo.tipo}}</td>
+                    <td id="{{$index}}-Descripcion">{{objetivo.descripcion}}</td>                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

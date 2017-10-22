@@ -4,9 +4,7 @@
         'ui.router',
         'ui.bootstrap',
         // Internal modules dependencies       
-        'bookModule',
-        'authorModule',
-        'editorialModule'
+        'objetivoModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
