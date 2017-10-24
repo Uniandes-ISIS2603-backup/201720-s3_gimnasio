@@ -1,0 +1,19 @@
+<div class="col-md-4">
+    <div class="container-fluid">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>    
+                    <th>Documento</th>  
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="entrenador in entrenadorRecords">
+                    <td id="{{$index}}-Nombre">{{entrenador.name}}</td>
+                    <td id="{{$index}}-Documento">{{entrenador.documento}}</td>                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

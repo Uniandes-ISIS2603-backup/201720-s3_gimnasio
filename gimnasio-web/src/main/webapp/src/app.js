@@ -4,7 +4,8 @@
         'ui.router',
         'ui.bootstrap',
         // Internal modules dependencies       
-        'objetivoModule'
+        'objetivoModule',
+        'entrenadorModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
