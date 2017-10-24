@@ -2,17 +2,26 @@
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <body>
-
-
     <h1>Estados</h1>
-       <h2>Seleccione un Usuario</h2>
-       <select ng-model="selectUsuraio" ng-options="x for x in usuarios"></select> <br>
+        <div class="container-fluid">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fecha</th>    
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="estados in estadosRecords">
+                     <td id="{{$index}}-Fecha">{{estados.fecha}}</td>
+              
+            </tbody>
+        </table>
+    </div>
+       <h2>Agregar Estado</h2>
+   <!--    <select ng-model="selectUsuraio" ng-options="x for x in usuarios"></select> <br>
        
-       <h3>iD: {{selectUsuraio.id}}</h3>
-        <h3>Nombre: {{selectUsuraio.nombre}}</h3>
-         <h3>Genero: {{selectUsuraio.genero}}</h3>
-          <h3>Fecha de nacimeinto: {{selectUsuraio.fechaDeNacimiento}}</h3>
-          
+        -->  
             <input type="date" name="bday">
  
    <button type="button">Agregar Estado</button>

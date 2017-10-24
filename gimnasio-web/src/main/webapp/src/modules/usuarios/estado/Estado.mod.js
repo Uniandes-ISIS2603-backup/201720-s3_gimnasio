@@ -1,34 +1,23 @@
 (function (ng) {
-    // Definición:
-    var mod = ng.module("objetivoModule", ['ui.router']);
-    //constantes:
-    mod.constant("objetivosContext", "api/objetivos");
-    // Configuración:
-    mod.config(['$stateProvider', '$urlRouterProvider',
-        
-        function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/objetivos/';
-            
-            // default
-            $urlRouterProvider.otherwise("/objetivosList");
-            
-            // estados
-            $stateProvider.state('objetivos', {
-                url: '/objetivos',
-                abstract: true,
+    // Definición del módulo
+    var mod = ng.module("EstadoModule", ['ui.router']);
+
+    
+    // Configuración de los estados del módulo
+    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+            // En basePath se encuentran los templates y controladores de módulo
+            var basePath = 'src/modules/usuarios/estado/';
+            // Mostrar la lista de autores será el estado por defecto del módulo
+            $urlRouterProvider.otherwise("/estado");
+            // Definición del estado 'authorsList' donde se listan los autores
+            $stateProvider.state('estadoList', {
+                // Url que aparecerá en el browser
+                url: '/usuarios/list',
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'objetivos.html',
-                        controller: 'objetivoCtrl',
+                        templateUrl: basePath + 'Estado.html',
+                        controller: 'estadoCtrl',
                         controllerAs: 'ctrl'
-                    }
-                }
-            }).state('objetivosList', {
-                url: '/list',
-                parent: 'objetivos',
-                views: {
-                    'listView': {
-                        templateUrl: basePath + 'objetivos.list.html'
                     }
                 }
             });
