@@ -1,19 +1,30 @@
-<div class="col-md-4">
-    <div class="container-fluid">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nombre</th>    
-                    <th>Documento</th>  
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="entrenador in entrenadorRecords">
-                    <td id="{{$index}}-Nombre">{{entrenador.name}}</td>
-                    <td id="{{$index}}-Documento">{{entrenador.documento}}</td>                   
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div>
+    <div ng-repeat="entrenador in entrenadorRecords" style="display: inline-block ; width: 30%;height: 30%;" >
+        <div class ="thumbnail" style=" background: lightskyblue;width: 90%; border-color: orange; border-width: 5px; border-style: double">
+                <div class="row">
+                    <label>Id:</label> 
+                    <p id="{{$index}}-id">{{entrenador.id}}</p>
+                </div>
+                <div class="row">
+                    <label>Nombre:</label>
+                    <p id="{{$index}}-Nombre">{{entrenador.name}}</p>
+                </div>
+                <div class="row">
+                    <label>Documento:</label>
+                    <p id="{{$index}}-Documento">{{entrenador.documento}}</p>
+                </div>
+                <div class="row">
+                    <label>fecha Nacimiento:</label>
+                    <p id="{{$index}}-fechaNacimiento">{{entrenador.fechaNacimiento}}</p>
+                </div>
+                <div class="row">
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(entrenador)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                </div>
+            </div>
+        </div>
+     <div>
+         <button id="createEntrenador-btn" class="btn btn-default btn-sm" ui-sref="createEntrenador"><span class="glyphicon glyphicon-plus-sign"></span> Crear Entrenador</button>
+     </div>
 </div>
+        
+

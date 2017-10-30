@@ -23,12 +23,24 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('createEntrenador',{
+                url:'/crear',
+                parent:'entrenadores',
+                views: {
+                    'listView':{
+                        templateUrl: basePath + 'entrenador.create.html',
+                        controller: 'entrenadoresCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             }).state('entrenadoresList', {
                 url: '/list',
                 parent: 'entrenadores',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'entrenadores.list.html'
+                        templateUrl: basePath + 'entrenadores.list.html',
+                        controller: 'entrenadoresCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
             });
