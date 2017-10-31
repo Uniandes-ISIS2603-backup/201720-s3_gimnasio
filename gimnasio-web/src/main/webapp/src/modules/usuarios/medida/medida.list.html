@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <body>
+    <h1>Medida</h1>
+        <div class="container-fluid">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>medida</th>
+                    <th>Tipo de medida</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="medidas in medidaRecords">
+                <td id="{{$index}}-medida">{{medidas.medida}}</td>
+                   
+                   
+            </tbody>
+        </table>
+    </div>
+       <h2>Agregar medida</h2>
+   <!--    <select ng-model="selectUsuraio" ng-options="x for x in usuarios"></select> <br>
+       
+        --> 
+         <h5>Agregar medida</h5>
+          <h6> medicion</h6>
+            <input type="number" name="medida">
+           <h6>Agregar Tipo de medida</h6>
+           <select ng-model="SelectTmedida" ng-options="x for x in Tmedida"></select>
+            
+            </br>
+            </br>
+   <button type="button">Agregar medida</button>
+         
+
+
+  </body>
+</html>

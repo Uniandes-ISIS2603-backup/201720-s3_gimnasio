@@ -7,14 +7,16 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Fecha</th>    
+                    <th>Fecha</th>
+                    <th>Agregar</th>
                    
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="estados in estadosRecords">
                      <td id="{{$index}}-Fecha">{{estados.fecha}}</td>
-              
+                     <td  id="{{$index}}-Agregar"> <a class="btn btn-info" ui-sref="medidaList"><span class="glyphicon glyphicon-plus-sign"></span> Agregar medida</a></td>
+                   
             </tbody>
         </table>
     </div>
@@ -22,9 +24,14 @@
    <!--    <select ng-model="selectUsuraio" ng-options="x for x in usuarios"></select> <br>
        
         -->  
+         <h5>Fecha de incio</h5>
             <input type="date" name="bday">
- 
-   <button type="button">Agregar Estado</button>
+           <h5>Fecha fin</h5>
+            <input type="date" name="bday"> 
+            </br>
+            </br>
+            
+   <button type="button" >Agregar Estado</button>
          
 
 
