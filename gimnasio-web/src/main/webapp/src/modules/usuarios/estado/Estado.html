@@ -3,24 +3,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <body>
     <h1>Estados</h1>
-        <div class="container-fluid">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Agregar</th>
-                   
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="estados in estadosRecords">
-                     <td id="{{$index}}-Fecha">{{estados.fecha}}</td>
-                     <td  id="{{$index}}-Agregar"> <a class="btn btn-info" ui-sref="medidaList"><span class="glyphicon glyphicon-plus-sign"></span> Agregar medida</a></td>
-                   
-            </tbody>
-        </table>
-    </div>
-       <h2>Agregar Estado</h2>
+    
+         <h2>Agregar Estado</h2>
    <!--    <select ng-model="selectUsuraio" ng-options="x for x in usuarios"></select> <br>
        
         -->  
@@ -32,8 +16,26 @@
             </br>
             
    <button type="button" >Agregar Estado</button>
-         
-
-
-  </body>
+      </br>
+            </br>
+            
+        <div class="container-fluid">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Agregar</th>
+                    <th>Eliminar</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="estados in estadosRecords">
+                     <td id="{{$index}}-Fecha">{{estados.fecha}}</td>
+                     <td  id="{{$index}}-Agregar"> <a class="btn btn-info" ui-sref="medidaList"><span class="glyphicon glyphicon-plus-sign"></span> Agregar medida</a></td>
+                     <td  id="{{$index}}-Eliminar"> <a class="btn btn-info" ng-click="ctrl.deleteRecord(estados.id)"><span class="glyphicon glyphicon-minus-sign"></span> eliminar</a></td>
+            </tbody>
+        </table>
+    </div>
+   </body>
 </html>
