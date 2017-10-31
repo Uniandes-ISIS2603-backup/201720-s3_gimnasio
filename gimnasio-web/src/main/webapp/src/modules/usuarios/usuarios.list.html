@@ -1,0 +1,29 @@
+<div>
+    <div ng-repeat="usuario in usuarioRecords" style="display: inline-block ; width: 30%;height: 30%;" >
+        <div class ="thumbnail" style=" background: lightskyblue;width: 90%; border-color: orange; border-width: 5px; border-style: double">
+                <div class="row">
+                    <label>Id:</label> 
+                    <p id="{{$index}}-id">{{usuario.id}}</p>
+                </div>
+                <div class="row">
+                    <label>Nombre:</label>
+                    <p id="{{$index}}-Nombre">{{usuario.name}}</p>
+                </div>
+                <div class="row">
+                    <label>Documento:</label>
+                    <p id="{{$index}}-Documento">{{usuario.documento}}</p>
+                </div>
+                <div class="row">
+                    <label>fecha Nacimiento:</label>
+                    <p id="{{$index}}-fechaNacimiento">{{usuario.fechaNacimiento}}</p>
+                </div>
+                <div class="row">
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(usuario)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                </div>
+            </div>
+        </div>
+     <div>
+         <button id="createUsuario-btn" class="btn btn-default btn-sm" ui-sref="createUsuario"><span class="glyphicon glyphicon-plus-sign"></span> Crear Usuario</button>
+     </div>
+</div>
+        
