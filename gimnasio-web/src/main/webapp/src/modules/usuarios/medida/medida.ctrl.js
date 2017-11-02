@@ -6,8 +6,20 @@
             console.info("dar datos medida");
             $http.get(MedidaContext).then(function (response) {
                 $scope.medidaRecords = response.data;
-            });
+            })   
+        
+           $scope.creatMedida = function()
+            {
+                $http.post(MedidaContext+"/1", {
+                    medida: $scope.medida           
+                }).then(function (response) {
+                    //Author created successfully
+                   $state.go('medidaList', {id: response.data.id}, {reload: true});
+                });
+            }
+
         }
+        
     ]);
 }
 )(angular);
