@@ -21,6 +21,15 @@
                                 }
                             });
             }
+             $scope.createEstado = function()
+            {
+                $http.post(EstadoContext, {
+                    fecha: $scope.fechaEstado           
+                }).then(function (response) {
+                    //Author created successfully
+                   $state.go('estadoList', {id: response.data.id}, {reload: true});
+                });
+            }
 
         }
     ]);
