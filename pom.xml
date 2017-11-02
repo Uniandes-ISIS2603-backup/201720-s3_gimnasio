@@ -10,7 +10,6 @@
 
     <modules>
         <module>gimnasio-backend</module>
-        <module>gimnasio-web</module>
     </modules>
 
 
