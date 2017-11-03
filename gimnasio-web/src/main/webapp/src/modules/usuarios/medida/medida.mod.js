@@ -12,7 +12,11 @@
             // Definición del estado 'authorsList' donde se listan los autores
             $stateProvider.state('medidaList', {
                 // Url que aparecerá en el browser
-                url: '/usuarios/estado/medida/',
+                url: 'estado/{estadoID:int}/medida/',
+                paretn:'estadoList',
+                param: {
+                    estadoID: null
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'medida.list.html',

@@ -8,10 +8,7 @@
     <packaging>pom</packaging>
     <version>0.1.0</version>
 
-    <modules>
-        <module>gimnasio-backend</module>
-        <module>gimnasio-web</module>
-    </modules>
+    <modules></modules>
 
 
     <properties>

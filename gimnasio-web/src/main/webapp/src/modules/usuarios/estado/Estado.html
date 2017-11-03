@@ -22,15 +22,15 @@
                 <tr>
                     <th>Fecha</th>
                     <th>Agregar</th>
-                    <th>Eliminar</th>
+                   
                    
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="estados in estadosRecords">
                      <td id="{{$index}}-Fecha">{{estados.fecha}}</td>
-                     <td  id="{{$index}}-Agregar"> <a class="btn btn-info" ui-sref="medidaList"><span class="glyphicon glyphicon-plus-sign"></span> Agregar medida</a></td>
-                     <td  id="{{$index}}-Eliminar"> <a class="btn btn-info" ng-click="ctrl.deleteRecord(estados.id)"><span class="glyphicon glyphicon-minus-sign"></span> eliminar</a></td>
+                     <td  id="{{$index}}-Agregar"> <a class="btn btn-info" ui-sref="medidaList({estadoID: estados.id})"><span class="glyphicon glyphicon-plus-sign"></span> Agregar medida</a></td>
+                    
             </tbody>
         </table>
     </div>
