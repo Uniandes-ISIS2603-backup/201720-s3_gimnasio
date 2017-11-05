@@ -1,0 +1,28 @@
+<div>
+    <div ng-repeat="maquina in maquinaRecords" style="display: inline-table ; width: 30%;height: 30%;" >
+        <div class ="thumbnail" style=" background: turquoise;width: 90%; border-color: pink; border-width: 8px; border-style: triple">
+                <div class="row">
+                    <label>Id:</label> 
+                    <p id="{{$index}}-id">{{maquina.id}}</p>
+                </div>
+                <div class="row">
+                    <label>Informacion:</label> 
+                    <p id="{{$index}}-Informacion">{{maquina.descripcion}}</p>
+                </div>
+                    
+                <div class="row">
+                    <label>Tipos Medida:</label> 
+                    <p id="{{$index}}-TipoMedida">{{maquina.tipoMedida}}</p>
+                </div>
+            
+                <div class="row">
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(maquina)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                </div>
+            </div>
+        </div>
+     <div>
+         <button id="createMaquina-btn" class="btn btn-default btn-sm" ui-sref="createMaquina"><span class="glyphicon glyphicon-plus-sign"></span> Crear Maquina</button>
+     </div>
+</div>
+        
+
