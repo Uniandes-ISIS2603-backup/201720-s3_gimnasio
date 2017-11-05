@@ -16,9 +16,24 @@ import java.util.List;
  */
 public class MedicionMaquinaDTO 
 {
+    //----------------------------------------------------------------------------------------
+    //------------------------------------Atributos------------------------------------------
+    //----------------------------------------------------------------------------------------
+
+    /**
+     * Id de la medicionMaquina.
+     */
     private Long id;
+    
+    /**
+     * Medicion de la maquina.
+     */
     private Double medicionMaquina;
        
+    //----------------------------------------------------------------------------------------
+    //------------------------------------Constructores---------------------------------------
+    //----------------------------------------------------------------------------------------
+
     public MedicionMaquinaDTO() 
     {
        //JAVAX
@@ -30,28 +45,28 @@ public class MedicionMaquinaDTO
         this.medicionMaquina = entity.getMedicionManquina();
     }
     
+    //----------------------------------------------------------------------------------------
+    //------------------------------------Setters y Getters-----------------------------------
+    //----------------------------------------------------------------------------------------
+    
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
+
+    public Double getMedicionMaquina() { return medicionMaquina; }
+
+    public void setMedicionMaquina(Double medicionMaquina) { this.medicionMaquina = medicionMaquina; }
+    
+    //----------------------------------------------------------------------------------------
+    //------------------------------------------Metodos---------------------------------------
+    //----------------------------------------------------------------------------------------
+   
     public MedicionMaquinaEntity toEntity()
     {
         MedicionMaquinaEntity ent= new MedicionMaquinaEntity();
         ent.setMedicionManquina(medicionMaquina);
         
         return ent;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Double getMedicionMaquina() {
-        return medicionMaquina;
-    }
-
-    public void setMedicionMaquina(Double medicionMaquina) {
-        this.medicionMaquina = medicionMaquina;
     }
     
     public static final  List<MedicionMaquinaEntity> listEntity(List<MedicionMaquinaDTO> dtos)
@@ -62,4 +77,5 @@ public class MedicionMaquinaDTO
             resp.add(i.toEntity());
         return resp;
     }
+    
 }

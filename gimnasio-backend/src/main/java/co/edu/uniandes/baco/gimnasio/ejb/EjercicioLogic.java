@@ -1,6 +1,7 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
@@ -20,6 +21,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
     private Connection<EjercicioEntity, ObjetivoEntity> connObjetivo;
     private Connection<EjercicioEntity, MaquinaEntity> connMaquina;
     private Connection<EjercicioEntity, TipoMedidaEntity> connTipoMedida;
+    private Connection<EjercicioEntity, EjercicioHechoEntity> connHecho;
     private Search<EjercicioEntity, EjercicioInstanciaEntity> connInstancias;
 
     public EjercicioLogic() {
@@ -188,6 +190,26 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
 
     public EjercicioInstanciaEntity findEjercicioInstancia(Long idEjercicio, Long id) throws BusinessLogicException {
         return connInstancias.find(idEjercicio, id);
+    }
+
+    //-----------------------------------
+    //EJERCICIO HECHO
+    //-----------------------------------
+    
+    public List<EjercicioHechoEntity> findAllEjerciciosHechos(Long id)throws BusinessLogicException {
+        return connHecho.findAll(id);
+    }
+
+    public EjercicioHechoEntity findEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException {
+        return connHecho.find(idEjercicio, id);
+    }
+
+    public EjercicioHechoEntity createEjercicioHecho(Long idEjercicio, Long id)throws BusinessLogicException {
+        return connHecho.create(idEjercicio, id);
+    }
+
+    public void removeEjercicioHecho(Long idEjercicio, Long id) throws BusinessLogicException {
+        connHecho.remove(idEjercicio, id);
     }
 
 }

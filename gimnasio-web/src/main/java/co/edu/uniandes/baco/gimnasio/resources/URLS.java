@@ -34,8 +34,8 @@ public final class URLS {
     public static final String EJERCICIOHECHO="ejerciciosHechos";
     public static final String EJERCICIOHECHOID="ejerciciosHechosId";
     
-    public static final String MEDICIONMAQUINA="ejerciciosHechos";
-    public static final String MEDICIONMAQUINAID="ejerciciosHechosId";
+    public static final String MEDICIONMAQUINA="medicionMaquina";
+    public static final String MEDICIONMAQUINAID="medicionMaquinaId";
     
     public static final String EJERCICIO="ejercicios";
     public static final String EJERCICIOID="ejerciciosId";
