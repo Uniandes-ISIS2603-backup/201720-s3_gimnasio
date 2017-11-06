@@ -18,6 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  *
  * @author ce.robles
  */
+
 @Entity
 public class EjercicioHechoEntity extends BaseEntity implements Serializable {
 
