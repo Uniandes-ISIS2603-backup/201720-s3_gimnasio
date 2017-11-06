@@ -1,10 +1,6 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
-import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
-import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +14,7 @@ public class EjercicioDetailDTO extends EjercicioDTO {
     // DATOS ENTITY
     //--------------------------------------------
     private List<ObjetivoDTO> objetivos;
+    private List<EjercicioHechoDTO> ejerciciosHechos;
     private List<MaquinaDTO> maquinas;
     private List<TipoMedidaDTO> tipoMedida;
     private List<EjercicioInstanciaDTO> instancias;
@@ -35,6 +32,13 @@ public class EjercicioDetailDTO extends EjercicioDTO {
             this.objetivos = new ArrayList<>();
             for (ObjetivoEntity aux : entity.getObjetivosEjercicio()) {
                 objetivos.add(new ObjetivoDTO(aux));
+            }
+        }
+        
+        if (entity.getEjerciciosHechos()!= null) {
+            this.ejerciciosHechos = new ArrayList<>();
+            for (EjercicioHechoEntity aux3 : entity.getEjerciciosHechos()) {
+                ejerciciosHechos.add(new EjercicioHechoDTO(aux3));
             }
         }
         if (entity.getMaquinas() != null) {
@@ -90,9 +94,7 @@ public class EjercicioDetailDTO extends EjercicioDTO {
 
     public void setTipoMedida(List<TipoMedidaDTO> tipoMedida) {
         this.tipoMedida = tipoMedida;
-    }
-    
-    
+    }      
 
     public List<ObjetivoDTO> getObjetivos() {
         return objetivos;
@@ -101,4 +103,14 @@ public class EjercicioDetailDTO extends EjercicioDTO {
     public void setObjetivos(List<ObjetivoDTO> objetivos) {
         this.objetivos = objetivos;
     }
+
+    public List<EjercicioHechoDTO> getEjerciciosHechos() {
+        return ejerciciosHechos;
+    }
+
+    public void setEjerciciosHechos(List<EjercicioHechoDTO> ejerciciosHechos) {
+        this.ejerciciosHechos = ejerciciosHechos;
+    }
+    
+    
 }

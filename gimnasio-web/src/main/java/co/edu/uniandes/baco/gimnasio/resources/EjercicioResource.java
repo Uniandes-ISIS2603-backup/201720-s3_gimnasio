@@ -5,10 +5,9 @@
  */
 package co.edu.uniandes.baco.gimnasio.resources;
 
-import co.edu.uniandes.baco.gimnasio.dtos.EjercicioDTO;
-import co.edu.uniandes.baco.gimnasio.dtos.EjercicioDetailDTO;
-import co.edu.uniandes.baco.gimnasio.ejb.EjercicioLogic;
-import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.dtos.*;
+import co.edu.uniandes.baco.gimnasio.ejb.*;
+import co.edu.uniandes.baco.gimnasio.entities.*;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
@@ -83,9 +82,17 @@ public class EjercicioResource {
         return EjercicioMaquinaResource.class;
     }
     
-     @Path("{"+EJERCICIOID+": \\d+}/"+TIPOMEDIDA)
+    @Path("{"+EJERCICIOID+": \\d+}/"+TIPOMEDIDA)
     public Class<EjercicioTipoMedidaResource> getTipoMedida(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
         logic.find(id);
         return EjercicioTipoMedidaResource.class;
     }
+    
+    @Path("{"+EJERCICIOID+": \\d+}/"+EJERCICIOHECHO)
+    public Class<EjercicioEjercicioHechoResource> getEjercicioHecho(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
+        logic.find(id);
+        return EjercicioEjercicioHechoResource.class;
+    }
+    
+    
 }

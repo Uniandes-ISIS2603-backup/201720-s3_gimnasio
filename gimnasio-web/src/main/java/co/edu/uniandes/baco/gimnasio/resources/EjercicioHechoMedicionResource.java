@@ -22,14 +22,14 @@ import javax.ws.rs.*;
 @Produces(MediaType.APPLICATION_JSON)
 public class EjercicioHechoMedicionResource 
 {
-    private MedicionMaquinaLogic logic;
+    private EjercicioHechoLogic logic;
     
     private EjercicioHechoMedicionResource()
     {
         
     }
     
-    @Inject private EjercicioHechoMedicionResource(MedicionMaquinaLogic logic)
+    @Inject private EjercicioHechoMedicionResource(EjercicioHechoLogic logic)
     {
         this.logic = logic;
     }
@@ -37,27 +37,27 @@ public class EjercicioHechoMedicionResource
     @GET
     public List<MedicionMaquinaDetailDTO> findAll(@PathParam(EJERCICIOHECHOID) Long id) throws BusinessLogicException 
     {
-        return MedicionMaquinaDetailDTO.listDetailDTO(logic.findAll(id));
+        return MedicionMaquinaDetailDTO.listDetailDTO(logic.findAllMedicionMaquina(id));
     }
     
     @GET
     @Path("{"+MEDICIONMAQUINAID+": \\d+}")
     public MedicionMaquinaDetailDTO find(@PathParam(EJERCICIOHECHOID) Long idEjercicio, @PathParam(MEDICIONMAQUINAID) Long id) throws BusinessLogicException 
     {
-        return new MedicionMaquinaDetailDTO(logic.find(idEjercicio, id));
+        return new MedicionMaquinaDetailDTO(logic.findMedicionMaquina(idEjercicio, id));
     }
     
-//    @POST
-//    @Path("{"+MEDICIONMAQUINAID+": \\d+}")
-//    public MedicionMaquinaDTO create(@PathParam(EJERCICIOHECHOID) Long idEjercicio, @PathParam(MEDICIONMAQUINAID) Long id) throws BusinessLogicException 
-//    {
-//       return new MedicionMaquinaDTO(logic.createMedicion(idEjercicio, id));
-//    }
+    @POST
+    @Path("{"+MEDICIONMAQUINAID+": \\d+}")
+    public MedicionMaquinaDTO create(@PathParam(EJERCICIOHECHOID) Long idEjercicio, @PathParam(MEDICIONMAQUINAID) Long id) throws BusinessLogicException 
+    {
+       return new MedicionMaquinaDTO(logic.createMedicionMaquina(idEjercicio, id));
+    }
     
     @DELETE
     @Path("{"+MEDICIONMAQUINAID+": \\d+}")
     public void removeMedicion(@PathParam(EJERCICIOHECHOID) Long idEjercicio, @PathParam(MEDICIONMAQUINAID) Long id) throws BusinessLogicException 
     {
-        logic.remove(idEjercicio, id);
+        logic.removeMedicion(idEjercicio, id);
     }
 }

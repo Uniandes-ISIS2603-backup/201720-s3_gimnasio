@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -16,9 +16,28 @@ import java.util.List;
  */
 public class EjercicioHechoDTO 
 {
-    private Long id;
+    //----------------------------------------------------------------------------------------
+    // -----------------------------------Atributos------------------------------------------
+    //----------------------------------------------------------------------------------------
+
+    /**
+     * Id del EjercicioHecho.
+     */
+    private long id;
+    
+    /**
+     * Fecha en la que se realizo el EjercicioHecho.
+     */
     private Date fecha;
+    
+    /**
+     * Series que se realizaron en el EjercicioHecho.
+     */
     private Integer seriesReales;
+
+    //----------------------------------------------------------------------------------------
+    //---------------------------------Constructores----------------------------------------
+    //----------------------------------------------------------------------------------------
 
     public  EjercicioHechoDTO(){
         //JAVAX
@@ -27,68 +46,36 @@ public class EjercicioHechoDTO
     public EjercicioHechoDTO(EjercicioHechoEntity entity) 
     {
         this.id = entity.getId();
-        this.fecha = entity.getFechaInicio();
+        this.fecha = entity.getFecha();
         this.seriesReales = entity.getSeriesReales();
     }
-    /**
-     * convierte un dto a entity
-     * @return 
-     */
+    
+    //----------------------------------------------------------------------------------------
+    //---------------------------------Setters y Getters----------------------------------------
+    //----------------------------------------------------------------------------------------
+    
+    public Long getId() { return id; }
+
+    public void setId(Long id) {  this.id = id; }
+
+    public Date getFecha(){ return fecha;}
+
+    public void setFecha(Date fecha){ this.fecha = fecha; }
+
+    public Integer getSeriesReales() { return seriesReales; }
+
+    public void setSeriesReales(Integer seriesReales){ this.seriesReales = seriesReales; } 
+    
+    //----------------------------------------------------------------------------------------
+    //-------------------------------------Metodos----------------------------------------
+    //----------------------------------------------------------------------------------------
+  
     public EjercicioHechoEntity toEntity()
     {
         EjercicioHechoEntity ent= new EjercicioHechoEntity();
-        ent.setFechaInicio(fecha);
+        ent.setFecha(fecha);
         ent.setSeriesReales(seriesReales);
         
         return ent;
-    }
-
-    public Long getId() 
-    {
-        return id;
-    }
-
-    public void setId(Long id) 
-    {
-        this.id = id;
-    }
-
-    public Date getFecha() 
-    {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) 
-    {
-        this.fecha = fecha;
-    }
-
-    public Integer getSeriesReales() 
-    {
-        return seriesReales;
-    }
-
-    public void setSeriesReales(Integer seriesReales) 
-    {
-        this.seriesReales = seriesReales;
-    }  
-    
-       
-    public static final  List<EjercicioHechoEntity> listEntity(List<EjercicioHechoDTO> dtos)
-    {
-        List<EjercicioHechoEntity> resp = new ArrayList<>();
-        
-        for(EjercicioHechoDTO i:dtos)
-            resp.add(i.toEntity());
-        return resp;
-    }
-    
-    public static final  List<EjercicioHechoDTO> listDTO(List<EjercicioHechoEntity> entity)
-    {
-        List<EjercicioHechoDTO> resp =new ArrayList<>();
-        for(EjercicioHechoEntity i:entity)
-            resp.add(new EjercicioHechoDTO(i));
-        return resp;
-    }
-    
+    }        
 }

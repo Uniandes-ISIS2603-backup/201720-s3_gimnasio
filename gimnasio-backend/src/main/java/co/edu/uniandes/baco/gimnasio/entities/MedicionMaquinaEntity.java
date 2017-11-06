@@ -18,49 +18,49 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class MedicionMaquinaEntity extends BaseEntity implements Serializable {
 
-    //--------------------------------------------
-    // DATOS BASE
-    //--------------------------------------------
+    //----------------------------------------------------------------------------------------
+    //------------------------------------Atributos------------------------------------------
+    //----------------------------------------------------------------------------------------
+
+    /**
+     * Medicion que realizo la maquina.
+     */
     private Double medicionManquina;
 
+    /**
+     * EjericioHecho al que pertenece.
+     */
     @PodamExclude
     @ManyToOne
-    private EjercicioHechoEntity ejercicioEnt;
+    private EjercicioHechoEntity ejercicioHecho;
 
+    /**
+     * Atributo que mide.
+     */
     @PodamExclude
     @ManyToOne
     private TipoMedidaEntity tipoMedida;
 
-    //--------------------------------------------
-    // GETS & SETS
-    //--------------------------------------------
-    public Double getMedicionManquina() {
-        return medicionManquina;
-    }
+    //----------------------------------------------------------------------------------------
+    //-----------------------------------Setters y Getters------------------------------------
+    //----------------------------------------------------------------------------------------
+    
+    public Double getMedicionManquina() {return medicionManquina; }
 
-    public void setMedicionManquina(Double medicionManquina) {
-        this.medicionManquina = medicionManquina;
-    }
+    public void setMedicionManquina(Double medicionManquina) {this.medicionManquina = medicionManquina;}
 
-    public TipoMedidaEntity getTipoMedida() {
-        return tipoMedida;
-    }
+    public TipoMedidaEntity getTipoMedida() { return tipoMedida; }
 
-    public void setTipoMedida(TipoMedidaEntity tipoMedida) {
-        this.tipoMedida = tipoMedida;
-    }
+    public void setTipoMedida(TipoMedidaEntity tipoMedida) { this.tipoMedida = tipoMedida; }
 
-    public EjercicioHechoEntity getEjercicioEnt() {
-        return ejercicioEnt;
-    }
+    public EjercicioHechoEntity getEjercicioHecho() { return ejercicioHecho; }
 
-    public void setEjercicioEnt(EjercicioHechoEntity ejercicioEnt) {
-        this.ejercicioEnt = ejercicioEnt;
-    }
+    public void setEjercicioHecho(EjercicioHechoEntity ejercicioHecho) { this.ejercicioHecho = ejercicioHecho; }
 
-    //--------------------------------------------
-    // METODOS
-    //--------------------------------------------
+    //----------------------------------------------------------------------------------------
+    //------------------------------------Otros metodos---------------------------------------
+    //----------------------------------------------------------------------------------------
+
     @Override
     public boolean equals(Object obj) {
         if (obj != null && this.getClass() != obj.getClass()) {

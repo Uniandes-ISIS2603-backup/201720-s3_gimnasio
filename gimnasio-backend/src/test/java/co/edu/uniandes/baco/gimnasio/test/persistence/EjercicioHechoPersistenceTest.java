@@ -116,24 +116,24 @@ public class EjercicioHechoPersistenceTest {
     @Test
     public void finByFecchaTest() {
         EjercicioHechoEntity entity = data.get(0);
-        Date f= entity.getFechaInicio();
-        EjercicioHechoEntity newEntity = EjercicioHechoPersistence.findByFecha(entity.getEjercicios().getId(),entity.getFechaInicio());
+        Date f= entity.getFecha();
+        EjercicioHechoEntity newEntity = EjercicioHechoPersistence.findByFecha(entity.getEjercicios().getId(),entity.getFecha());
         assertNotNull(newEntity);
         boolean coincide=false;
         for(EjercicioHechoEntity i:data){
-            if(i.getFechaInicio().equals(f))
+            if(i.getFecha().equals(f))
                 if(i.equals(newEntity))
                     coincide=true;
         }
         assertTrue(coincide);
 
-        Long tipo = data.get(0).getFechaInicio().getTime();
+        Long tipo = data.get(0).getFecha().getTime();
         boolean esta;
         do {
             tipo++;
             esta = false;
             for (EjercicioHechoEntity i : data) {
-                if (i.getFechaInicio().getTime() == tipo) {
+                if (i.getFecha().getTime() == tipo) {
                     esta = true;
                 }
             }
@@ -200,7 +200,7 @@ public class EjercicioHechoPersistenceTest {
     
     private void assertEqualsObject(EjercicioHechoEntity a,EjercicioHechoEntity b){
         DateFormat format=new SimpleDateFormat("dd/MM/yyyy");
-        assertEquals(format.format(a.getFechaInicio()),format.format(b.getFechaInicio()));
+        assertEquals(format.format(a.getFecha()),format.format(b.getFecha()));
         assertEquals(a.getSeriesReales(), b.getSeriesReales());
     }
     
