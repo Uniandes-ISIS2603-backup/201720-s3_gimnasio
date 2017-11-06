@@ -8,7 +8,8 @@
         'entrenadorModule',
         'EstadoModule',
         'medidaModule',
-        'maquinaModule'
+        'maquinaModule',
+        'usuarioModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
