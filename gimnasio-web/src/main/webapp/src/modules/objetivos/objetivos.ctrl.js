@@ -1,18 +1,29 @@
 (function (ng) {
     var mod = ng.module("objetivoModule");
-    mod.constant("objetivoContext", "api/objetivos");
-    mod.controller('objetivoCtrl', ['$scope', '$http', 'objetivoContext', '$state',
-        function ($scope, $http, objetivoContext, $state) {
-            console.info("dar datos objetivos");
-            $http.get(objetivoContext).then(function (response) {
+    mod.constant("objetivosContext", "api/objetivos");
+    mod.controller('objetivoCtrl', ['$scope', '$http', 'objetivosContext', '$state',
+        function ($scope, $http, objetivosContext, $state) {
+            $http.get(objetivosContext).then(function (response) {
                 $scope.objetivosRecords = response.data;
             });
 
-            if ($state.params.objetivosId !== undefined) {
-                $http.get(objetivoContext + '/' + $state.params.objetivosId).then(function (response) {
+            if ($state.params.objetivoId !== undefined  && $state.params.objetivoId !==null) {
+                $http.get(objetivosContext + '/' + $state.params.objetivoId).then(function (response) {
+                    $scope.currentObjetivo=response.data;
                     $scope.atributosDeCalidadRecords = response.data.calidad;
                 });
             }
+        }
+    ]);
+    mod.controller('objetivoDeleteCtrl', ['$scope', '$http', 'objetivosContext', '$state',
+        function ($scope, $http, objetivosContext, $state) {
+            console.info("a eliminar");
+            var idObjetivo = $state.params.objetivoId;
+            $scope.deleteObjetivo = function () {
+                $http.delete(objetivosContext + '/' + idObjetivo, {}).then(function (response) {
+                    $state.go('objetivosList', {objetivoId: response.data.id}, {reload: true});
+                });
+            };
         }
     ]);
 }

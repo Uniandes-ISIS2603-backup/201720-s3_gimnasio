@@ -150,9 +150,10 @@ INSERT INTO MEDIDAENTITY (MEDIDA,ESTADO_ID,PARTE_ID) VALUES (27,1,3);
 INSERT INTO MEDIDAENTITY (MEDIDA,ESTADO_ID,PARTE_ID) VALUES (26,2,3);
 INSERT INTO MEDIDAENTITY (MEDIDA,ESTADO_ID,PARTE_ID) VALUES (28,3,3);
 
-INSERT INTO OBJETIVOENTITY (DESCRIPCION,TIPO) VALUES ('BAJAR EL PESO','PÉRDIDA DE PESO');
-INSERT INTO OBJETIVOENTITY (DESCRIPCION,TIPO) VALUES ('AUMNETAR LA MUSCULATURA','TONIFICACION');
-INSERT INTO OBJETIVOENTITY (DESCRIPCION,TIPO) VALUES ('MEJORAR LA VELOCIDAD','ATLETISMO');
+INSERT INTO OBJETIVOENTITY (TIPO,DESCRIPCION) VALUES ('ADELGAZAR','es una reducción de la masa corporal de un individuo, por razón de una pérdida promedio de líquidos, grasa o de tejidos como el músculo, tendón o tejido conjuntivo.');
+INSERT INTO OBJETIVOENTITY (TIPO,DESCRIPCION) VALUES ('AUMNETAR LA MASA MUSCULAR','Los doctores afirman que puedes aumentar tu masa muscular de manera notoria en unas seis semanas después de empezar una rutina de ejercicios regular.');
+INSERT INTO OBJETIVOENTITY (TIPO,DESCRIPCION) VALUES ('GANAR RESISTENCIA','La resistencia es una cualidad psicofísica que nos permite prolongar un ejercicio o una actividad.');
+INSERT INTO OBJETIVOENTITY (TIPO,DESCRIPCION) VALUES ('TONIFICAR','Tonificar es sinónimo de endurecer, fortalecer, sin necesariamente aumentar la masa muscular en forma exagerada. Se puede estar delgado, pero tonificado.');
 
 INSERT INTO USUARIOENTITY_OBJETIVOENTITY (OBJETIVOS_ID,USUARIOS_ID) VALUES (1,1);
 INSERT INTO USUARIOENTITY_OBJETIVOENTITY (OBJETIVOS_ID,USUARIOS_ID) VALUES (1,2);
