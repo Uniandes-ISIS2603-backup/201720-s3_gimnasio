@@ -28,5 +28,19 @@
             };
         }
     ]);
+    
+    mod.controller('objetivoNewCtrl', ['$scope', '$http', 'objetivosContext', '$state', '$rootScope',
+        function ($scope, $http, objetivosContext, $state, $rootScope) {
+            $rootScope.edit = false;
+            $scope.createObjetivo = function () {
+                $http.post(objetivosContext, {
+                    tipo: $scope.objetivoTipo.toUpperCase(),
+                    descripcion: $scope.objetivoDescripcion
+                }).then(function (response) {
+                    $state.go('objetivosList', {objetivoId: response.data.id}, {reload: true});
+                });
+            };
+        }
+    ]);
 }
 )(angular);

@@ -56,6 +56,15 @@
                         controller: 'objetivoDeleteCtrl'
                     }
                 }
+            }).state('objetivosCreate', {
+                url: '/create',
+                parent: 'objetivos',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'objetivos.new.html',
+                        controller: 'objetivoNewCtrl'
+                    }
+                }
             });
         }]);
 })(window.angular);
