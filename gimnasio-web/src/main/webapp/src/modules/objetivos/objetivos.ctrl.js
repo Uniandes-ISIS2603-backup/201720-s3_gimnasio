@@ -11,6 +11,8 @@
                 $http.get(objetivosContext + '/' + $state.params.objetivoId).then(function (response) {
                     $scope.currentObjetivo=response.data;
                     $scope.atributosDeCalidadRecords = response.data.calidad;
+                    $scope.ejerciciosRecords= response.data.ejercicios;
+                    $scope.usuariosRecosrds = response.data.usuarios;
                 });
             }
         }
