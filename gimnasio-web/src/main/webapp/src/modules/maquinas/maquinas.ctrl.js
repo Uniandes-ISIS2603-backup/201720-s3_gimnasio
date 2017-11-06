@@ -25,7 +25,7 @@
             $scope.createMaquina = function()
             {
                 $http.post(maquinaContext, {
-                    informacion: $scope.informacionMaquina
+                    descripcion: $scope.descripcionMaquina
 
                 }).then(function (response) {
                     //se crea exitosamente la maquina

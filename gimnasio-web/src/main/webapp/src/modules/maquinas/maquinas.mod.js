@@ -23,7 +23,7 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('createmaquina',{
+            }).state('createMaquina',{
                 url:'/crear',
                 parent:'maquinas',
                 views: {
