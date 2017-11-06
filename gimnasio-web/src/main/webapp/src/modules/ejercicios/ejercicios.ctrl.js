@@ -10,8 +10,20 @@
             if ($state.params.ejercicioId !== undefined && $state.params.ejercicioId !== null) {
                 $http.get(ejerciciosContext + '/' + $state.params.ejercicioId).then(function (response) {
                     $scope.currentEjercicio = response.data;
+                    $scope.ejercicioInstanciaRecords = response.data.instancias;
                 });
             }
+        }
+    ]);
+
+    mod.controller('ejercicioDeleteCtrl', ['$scope', '$http', 'ejerciciosContext', '$state',
+        function ($scope, $http, ejerciciosContext, $state) {
+            var idEjercicio = $state.params.ejercicioId;
+            $scope.deleteEjercicio = function () {
+                $http.delete(ejerciciosContext + '/' + idEjercicio, {}).then(function (response) {
+                    $state.go('ejerciciosList', {ejercicioId: response.data.id}, {reload: true});
+                });
+            };
         }
     ]);
 
@@ -23,17 +35,6 @@
                     tipo: $scope.ejercicioTipo.toUpperCase(),
                     descripcion: $scope.ejercicioDescripcion
                 }).then(function (response) {
-                    $state.go('ejerciciosList', {ejercicioId: response.data.id}, {reload: true});
-                });
-            };
-        }
-    ]);
-
-    mod.controller('ejercicioDeleteCtrl', ['$scope', '$http', 'ejerciciosContext', '$state',
-        function ($scope, $http, ejerciciosContext, $state) {
-            var idEjercicio = $state.params.ejercicioId;
-            $scope.deleteEjercicio = function () {
-                $http.delete(ejerciciosContext + '/' + idEjercicio, {}).then(function (response) {
                     $state.go('ejerciciosList', {ejercicioId: response.data.id}, {reload: true});
                 });
             };
