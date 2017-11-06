@@ -17,14 +17,17 @@
                 <div class="row">
 
                    <label>Tipos medidas:</label>
+                                    <div class="row">
+                    <button id="{{$index}}-addTipoMedida-btn" class="btn btn-default btn-sm" ng-click="ctrl.addTipoMedida(maquina)"><span class="glyphicon glyphicon-plus"></span> agregar tipo medida</button>
+                </div>
                     <div ng-repeat='tipoMedida in maquina.tipoMedida'>
                   
                      <p id="{{$index}}-Descripcion">{{tipoMedida.descripcion}}</p>
                       <p id="{{$index}}-idk">{{tipoMedida.unidad}}</p>
                     </div>
-                    
+    
                 <div class="row">
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(maquina)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(maquina)"><span class="glyphicon glyphicon-minus"></span> Eliminar maquina</button>
                 </div>
             </div>
         </div>

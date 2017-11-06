@@ -21,12 +21,19 @@
                                 }
                             });
             }
+              this.crearTipoMedida = function(maquina){
+                    return $http.put(maquinaContext + "/" + maquina.id)
+                            .then(function () {
+                                // $http.delete es una promesa
+                                // cuando termine bien, cambie de estado
+                            });
+            }
             
             $scope.createMaquina = function()
             {
                 $http.post(maquinaContext, {
-                    descripcion: $scope.descripcionMaquina
-
+                    descripcion: $scope.descripcionMaquina,
+                    tipoMedida: $scope.tipoMedidaMaquina
                 }).then(function (response) {
                     //se crea exitosamente la maquina
                     $state.go('maquinasList', {id: response.data.id}, {reload: true});
@@ -36,6 +43,7 @@
         
         
     ]);
+  
 }
 )(angular);
 
