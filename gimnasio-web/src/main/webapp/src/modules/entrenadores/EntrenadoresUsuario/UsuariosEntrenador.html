@@ -1,0 +1,26 @@
+<div>
+    <p>hola {{entrenadorActual.name}}</p>
+    <p>tus Estudiantes son:</p>
+     <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Nombre</th>
+        <th>Fecha de Nacimiento</th>
+        <th>genero</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="usuario in entrenadorActual.usuarios">
+      <tr>
+        <td>{{usuario.id}}</td>
+        <td>{{usuario.nombre}}</td>
+        <td>{{usuario.fechaDeNacimiento}}</td>
+        <td>{{usuario.genero}}</td>
+        <td>
+        <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteUsuarioEntrenador(usuario,entrenadorActual.id)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

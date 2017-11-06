@@ -3,10 +3,29 @@
     mod.constant("entrenadorContext", "api/entrenadores");
     mod.controller('entrenadoresCtrl', ['$scope', '$http', 'entrenadorContext', '$state',
        function ($scope, $http, entrenadorContext, $state) {
-            console.info("dar datos entrenador");
+            //console.info("dar datos entrenador");
             $http.get(entrenadorContext).then(function (response) {
                 $scope.entrenadorRecords = response.data;
-                console.info(response.data);
+                
+                if (($state.params.Eid !== undefined) && ($state.params.Eid !== null))
+                {
+                    $http.get(entrenadorContext + '/' + $state.params.Eid).then(function(response)
+                    {
+                       var entrenadorActua = response.data;
+                        entrenadorActua.usuarios.forEach(function(element){
+                            if(element.genero === 'true')
+                            {
+                                element.genero = 'M';
+                            }else
+                            {
+                                element.genero = 'F';
+                            }
+                        });
+                        $scope.entrenadorActual = entrenadorActua ;
+                        //console.info(entrenadorActua);
+                    });
+                }
+                
             });
             
             //borrar
@@ -20,7 +39,20 @@
                                     $scope.entrenadorRecords.splice(index, 1);
                                 }
                             });
-            }
+            };
+            
+            this.deleteUsuarioEntrenador= function(usuario,entrenadorid){
+                //console.info(entrenadorContext + "/" + entrenadorid + "/usuarios/"+ usuario.id);
+                return $http.delete(entrenadorContext + "/" + entrenadorid + "/usuarios/"+ usuario.id)
+                            .then(function () {
+                                // $http.delete es una promesa
+                                // cuando termine bien, cambie de estado
+                                var index = $scope.entrenadorActual.usuarios.indexOf(usuario);                               
+                                if (index > -1) {
+                                    $scope.entrenadorActual.usuarios.splice(index, 1);
+                                }
+                            });
+            };
             
             $scope.createEntrenador = function()
             {
@@ -33,7 +65,7 @@
                     //se crea exitosamente el entrenador
                     $state.go('entrenadoresList', {id: response.data.id}, {reload: true});
                 });
-            }
+            };
         }
         
         
