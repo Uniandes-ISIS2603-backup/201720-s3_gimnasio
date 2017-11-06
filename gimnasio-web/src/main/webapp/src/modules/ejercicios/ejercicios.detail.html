@@ -1,0 +1,27 @@
+<div class="col-md-10">
+    <dl>     
+        <dt><h3>{{currentObjetivo.tipo}}</h3></dt>
+        <dt style="text-align: left">descripcion:</dt>
+        <dd>{{currentObjetivo.descripcion}}</dd>
+    </dl>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-3" role="group" aria-label="First group">
+            <a class="btn btn-link" style="text-align: right; ">atributos de calidad</a>
+        </div>
+    </div>
+    <div class="panel-info">
+        <h5 style="text-align: left"><b>ejercicios:</b></h5>
+        <div class="container-fluid">
+            <ul class="list-group-item-info"  style="text-align: left">
+                <li ng-repeat="ejercicio in ejerciciosRecords">{{ejercicio.descricpion}}</li>
+            </ul>
+        </div>
+        <h5 style="text-align: left"><b>usuarios:</b></h5>
+        <div class="container-fluid">
+            <ul class="list-group-item-success"  style="text-align: left">
+                <li ng-repeat="usuario in usuariosRecosrds">{{usuario.nombre}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
