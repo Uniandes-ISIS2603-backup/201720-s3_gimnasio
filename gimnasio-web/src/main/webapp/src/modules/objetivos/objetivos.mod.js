@@ -65,6 +65,18 @@
                         controller: 'objetivoNewCtrl'
                     }
                 }
+            }).state('objetivoUpdate', {
+                url: '/update/{objetivoId:int}',
+                parent: 'objetivos',
+                param: {
+                    objetivoId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'objetivos.new.html',
+                        controller: 'objetivoUpdateCtrl'
+                    }
+                }
             });
         }]);
 })(window.angular);

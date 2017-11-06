@@ -34,13 +34,6 @@ public class EjercicioDetailDTO extends EjercicioDTO {
                 objetivos.add(new ObjetivoDTO(aux));
             }
         }
-        
-        if (entity.getEjerciciosHechos()!= null) {
-            this.ejerciciosHechos = new ArrayList<>();
-            for (EjercicioHechoEntity aux3 : entity.getEjerciciosHechos()) {
-                ejerciciosHechos.add(new EjercicioHechoDTO(aux3));
-            }
-        }
         if (entity.getMaquinas() != null) {
             this.maquinas = new ArrayList<>();
             for (MaquinaEntity aux2 : entity.getMaquinas()) {

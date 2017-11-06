@@ -44,7 +44,7 @@ public class EjercicioHechoLogic extends SubResource<EjercicioInstanciaEntity, E
     public EjercicioHechoLogic(BasePersistence<EjercicioHechoEntity> persistence, EjercicioInstanciaLogic logic) 
     {
         super(persistence, logic, EjercicioInstanciaEntity::getEjerciciosHechos, EjercicioHechoEntity::setEjercicios);
-        this.conEjercicio=new Search<>(persistence, EjercicioHechoEntity::getEjercicioEnt, EjercicioEntity.class);
+        //this.conEjercicio=new Search<>(persistence, EjercicioHechoEntity::getEjercicioEnt, EjercicioEntity.class);
         this.connMedicion = new Connection<>(persistence, EjercicioHechoEntity::getMedicionMaquinaEnt, MedicionMaquinaEntity.class);
     }
     

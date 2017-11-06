@@ -87,12 +87,4 @@ public class EjercicioResource {
         logic.find(id);
         return EjercicioTipoMedidaResource.class;
     }
-    
-    @Path("{"+EJERCICIOID+": \\d+}/"+EJERCICIOHECHO)
-    public Class<EjercicioEjercicioHechoResource> getEjercicioHecho(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
-        logic.find(id);
-        return EjercicioEjercicioHechoResource.class;
-    }
-    
-    
 }
