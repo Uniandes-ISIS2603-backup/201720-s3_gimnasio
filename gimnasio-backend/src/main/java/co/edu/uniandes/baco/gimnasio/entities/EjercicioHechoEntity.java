@@ -44,12 +44,12 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
     @ManyToOne
     private EjercicioInstanciaEntity ejercicio;
     
-    /**
-     * Relacion con EjercicioEntity.
-     */
-    @PodamExclude
-    @ManyToMany(mappedBy = "ejerciciosHechos")
-    private List<EjercicioEntity> ejercicioEnt = new ArrayList<>();    
+//    /**
+//     * Relacion con EjercicioEntity.
+//     */
+//    @PodamExclude
+//    @ManyToMany(mappedBy = "ejerciciosHechos")
+//    private List<EjercicioEntity> ejercicioEnt = new ArrayList<>();    
 
     /**
      * Relacion con MedicionMaquinaEntity.
@@ -78,9 +78,9 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
 
     public void setEjercicios(EjercicioInstanciaEntity ejercicio) { this.ejercicio = ejercicio; }
     
-    public List<EjercicioEntity> getEjercicioEnt() { return ejercicioEnt;  }
-
-    public void setEjercicioEnt(List<EjercicioEntity> ejercicioEnt) { this.ejercicioEnt = ejercicioEnt; }
+//    public List<EjercicioEntity> getEjercicioEnt() { return ejercicioEnt;  }
+//
+//    public void setEjercicioEnt(List<EjercicioEntity> ejercicioEnt) { this.ejercicioEnt = ejercicioEnt; }
 
     //----------------------------------------------------------------------------------------
     //---------------------------------Otros metodos.-----------------------------------------

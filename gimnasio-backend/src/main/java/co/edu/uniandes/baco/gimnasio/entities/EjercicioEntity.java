@@ -52,10 +52,6 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToMany
     private List<TipoMedidaEntity> tiposMedidas = new ArrayList<>();
-
-    @PodamExclude
-    @ManyToMany
-    private List<EjercicioHechoEntity> ejerciciosHechos = new ArrayList<>();  
     
     /**
      * referencias al ejercicio en las rutinas especificas
@@ -123,14 +119,6 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
 
     public void setMaquinas(List<MaquinaEntity> maquinas) {
         this.maquinas = maquinas;
-    }
-    
-    public List<EjercicioHechoEntity> getEjerciciosHechos() {
-        return ejerciciosHechos;
-    }
-
-    public void setEjerciciosHechos(List<EjercicioHechoEntity> ejerciciosHechos) {
-        this.ejerciciosHechos = ejerciciosHechos;
     }
 
     //--------------------------------------------
