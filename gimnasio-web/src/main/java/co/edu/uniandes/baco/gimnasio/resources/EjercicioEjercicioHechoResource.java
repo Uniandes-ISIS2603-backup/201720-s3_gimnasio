@@ -34,30 +34,30 @@ public class EjercicioEjercicioHechoResource
         this.logic = logic;
     }
     
-    @GET
-    public List<EjercicioHechoDetailDTO> findAllEjerciciosHechos(@PathParam(EJERCICIOID) Long id) throws BusinessLogicException 
-    {
-          return EjercicioHechoDetailDTO.listDetailDTO(logic.findAllEjerciciosHechos(id));
-    }
-    
-    @GET
-    @Path("{"+EJERCICIOHECHOID+": \\d+}")
-    public EjercicioHechoDetailDTO findEjercicio(@PathParam(EJERCICIOID) Long idEjercicio, @PathParam(EJERCICIOHECHOID) Long id) throws BusinessLogicException 
-    {
-        return new EjercicioHechoDetailDTO(logic.findEjercicioHecho(idEjercicio, id));
-    }
-    
-    @POST
-    @Path("{"+EJERCICIOHECHOID+": \\d+}")
-    public EjercicioHechoDTO createEjercicioHecho(@PathParam(EJERCICIOID) Long idEjercicio,@PathParam(EJERCICIOHECHOID) Long id) throws BusinessLogicException 
-    {
-       return new EjercicioHechoDTO(logic.createEjercicioHecho(idEjercicio, id));
-    }
-    
-    @DELETE
-    @Path("{"+EJERCICIOHECHOID+": \\d+}")
-    public void removeEjercicioHecho(@PathParam(EJERCICIOID) Long idEjercicio, @PathParam(EJERCICIOHECHOID) Long id) throws BusinessLogicException 
-    {
-        logic.removeEjercicioHecho(idEjercicio, id);
-    }
+//    @GET
+//    public List<EjercicioHechoDetailDTO> findAllEjerciciosHechos(@PathParam(EJERCICIOID) Long id) throws BusinessLogicException 
+//    {
+//          return EjercicioHechoDetailDTO.listDetailDTO(logic.findAllEjerciciosHechos(id));
+//    }
+//    
+//    @GET
+//    @Path("{"+EJERCICIOHECHOID+": \\d+}")
+//    public EjercicioHechoDetailDTO findEjercicio(@PathParam(EJERCICIOID) Long idEjercicio, @PathParam(EJERCICIOHECHOID) Long id) throws BusinessLogicException 
+//    {
+//        return new EjercicioHechoDetailDTO(logic.findEjercicioHecho(idEjercicio, id));
+//    }
+//    
+//    @POST
+//    @Path("{"+EJERCICIOHECHOID+": \\d+}")
+//    public EjercicioHechoDTO createEjercicioHecho(@PathParam(EJERCICIOID) Long idEjercicio,@PathParam(EJERCICIOHECHOID) Long id) throws BusinessLogicException 
+//    {
+//       return new EjercicioHechoDTO(logic.createEjercicioHecho(idEjercicio, id));
+//    }
+//    
+//    @DELETE
+//    @Path("{"+EJERCICIOHECHOID+": \\d+}")
+//    public void removeEjercicioHecho(@PathParam(EJERCICIOID) Long idEjercicio, @PathParam(EJERCICIOHECHOID) Long id) throws BusinessLogicException 
+//    {
+//        logic.removeEjercicioHecho(idEjercicio, id);
+//    }
 }

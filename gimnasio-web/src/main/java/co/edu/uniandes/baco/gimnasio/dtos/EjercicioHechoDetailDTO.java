@@ -32,14 +32,6 @@ public class EjercicioHechoDetailDTO extends EjercicioHechoDTO {
 
     public EjercicioHechoDetailDTO(EjercicioHechoEntity ent) {
         super(ent);
-        if(ent.getEjercicios() != null)
-        {
-             this.ejercicios=new ArrayList<>();
-             for(EjercicioEntity aux: ent.getEjercicioEnt())
-             {
-                 ejercicios.add(new EjercicioDTO(aux));
-             }
-        }
         
         if(ent.getMedicionMaquinaEnt() != null)
         {
