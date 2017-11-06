@@ -2,27 +2,41 @@
     <div class="container-fluid">
         <div class="panel-group">
             <div class="panel panel-primary">
-                <div class="panel-heading"><label ng-if="!edit" id="createAuthor">nuevo Objetivo</label>
-                    <label ng-if="edit" id="editAuthor">editar objetivo</label></div>
+                <div class="panel-heading"><label ng-if="!edit" id="createEjercicio">nuevo Ejercicio</label>
+                    <label ng-if="edit" id="editEjercicio">editar ejercicio</label></div>
                 <div class="panel-body">
-                    <form ng-submit="createObjetivo()" name="objetivo">
+                    <form ng-submit="createEjercicio()" name="ejercicio">
                         <div class="form-group row">
                             <div class="form-group">
-                                <label for="objetivoTipo" class="col-sm-3">Nombre:</label>
-                                <input id="objetivoTipo" required ng-model="objetivoTipo" class="col-sm-8"/>
+                                <label for="ejercicioDescricpion" class="col-sm-3">Nombre:</label>
+                                <input id="ejercicioDescricpion" required ng-model="ejercicioDescricpion" class="col-sm-8"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group">
-                                <label for="objetivoDescripcion" class="col-sm-3">Descripcion:</label>
-                                <textarea id="objetivoDescripcion" required ng-model="objetivoDescripcion" class="col-sm-8"></textarea>
+                                <label for="ejercicioExplicacion" class="col-sm-3">Explicacion:</label>
+                                <textarea id="ejercicioExplicacion" required ng-model="ejercicioExplicacion" class="col-sm-8"></textarea>
                             </div>
                         </div>
-
+                        
+                        <div class="form-group row">
+                            <div class="form-group">
+                                <label for="ejercicioTipo" class="col-sm-3">Tipo:</label>
+                                <select id="ejercicioTipo" required ng-model="ejercicioTipo" class="ng-pristine ng-valid ng-empty ng-touched">
+                                    <option label="NO_PERTENECE" value="NO_PERTENECE" selected>NO_PERTENECE</option>
+                                    <option label="AEROBICOS" value="AEROBICOS">AEROBICOS</option>
+                                    <option label="ANEAROBICOS" value="ANEAROBICOS">ANEAROBICOS</option>
+                                    <option label="FLEXIBILIDAD" value="FLEXIBILIDAD">FLEXIBILIDAD</option>
+                                    <option label="EQUILIBRIO" value="EQUILIBRIO">EQUILIBRIO</option>
+                                    <option label="FLEXIBILIDAD" value="FLEXIBILIDAD">RELAJACION</option>
+                                </select>
+                            </div>
+                        </div>
+                        
                         <div class="form-group row">
                             <div class="form-group col-sm-12">
-                                <input ng-show="objetivo.$valid" type="submit" value="Save" class="btn btn-success"/>
-                                <a class="btn btn-info" ui-sref="objetivosList">Cancel</a>
+                                <input ng-show="ejercicio.$valid" type="submit" value="Save" class="btn btn-success"/>
+                                <a class="btn btn-info" ui-sref="ejerciciosList">Cancel</a>
                             </div>
                         </div>
                     </form>
@@ -32,5 +46,3 @@
         </div>
     </div>
 </div>
-
-
