@@ -11,7 +11,8 @@
         'maquinaModule',
         'usuarioModule',
         'ejercicioModule',
-        'calidadModule'
+        'calidadModule',
+        'tipoMedidaModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {

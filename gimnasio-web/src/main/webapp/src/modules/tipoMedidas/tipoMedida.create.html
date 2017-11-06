@@ -1,0 +1,21 @@
+
+        <div class = "container-fluid">
+            <h1>Agregar una tipoMedida</h1>
+            <form ng-submit="createtipoMedida()" name = "tipoMedida">
+                <div class="row">
+                <label>Descripcion:</label>  
+                <input ng-model="descripciontipoMedida"/>
+                </div>
+                <div class="row">
+                <label>Unidad:</label>  
+                <input ng-model="unidadtipoMedida"/>
+                </div>
+                <div class="row">
+                <input  type="submit" value="Save" class="btn btn-default btn-sm"/>
+                <a class="btn btn-default btn-sm" ui-sref="tipoMedidasList">Cancel</a>
+            </form>
+            
+        </div>
+
+
+
