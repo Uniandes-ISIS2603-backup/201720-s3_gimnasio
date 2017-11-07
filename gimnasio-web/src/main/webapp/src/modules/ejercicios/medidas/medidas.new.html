@@ -1,15 +1,15 @@
-<div class="col-md-5">
+<div class="col-md-4">
     <div class="container-fluid">
         <div class="panel-group">
             <div class="panel panel-primary">
-                <div class="panel-heading"><label id="createEjercicio">add Parte Del Cuerpo</label></div>
+                <div class="panel-heading"><label id="createEjercicio">Parte Del Cuerpo</label></div>
                 <div class="panel-body">
                     <form ng-submit="createMedida()" name="medida">
                         <div class="form-group row">
                             <div class="form-group">
                                 <label for="medidaId" class="col-sm-3">parte:</label>
                                 
-                                <select id="medidaId" required ng-model="medidaId" class="col-lg-7">
+                                <select id="medidaId" required ng-model="medidaId" class="col-lg-5">
                                     <option ng-repeat="x in medidasRecords" value="{{x.id}}">{{x.descripcion}}</option>
                                 </select>
                                 

@@ -13,7 +13,8 @@
         'ejercicioModule',
         'calidadModule',
         'tipoMedidaModule',
-        'medidaModule'
+        'medidaModule',
+        'ejeobjetivoModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
