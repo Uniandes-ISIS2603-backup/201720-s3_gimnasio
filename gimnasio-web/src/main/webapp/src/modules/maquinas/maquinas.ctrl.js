@@ -39,6 +39,16 @@
                     $state.go('maquinasList', {id: response.data.id}, {reload: true});
                 });
             }
+           $scope.addTipoMedida = function(maquina, idTipoMedida)
+            {
+                console.info(maquinaContext +"/"+ maquina.id + "/tipoMedidas/" + idTipoMedida);
+                $http.post(
+                        maquinaContext +"/"+ maquina.id + "/tipoMedidas/" + idTipoMedida,{}
+                        ).then(function (response) {
+                    //se agrego 
+                    $state.go('maquinasList', {id: response.data.id}, {reload: true});
+                });
+            };
         }
         
         
