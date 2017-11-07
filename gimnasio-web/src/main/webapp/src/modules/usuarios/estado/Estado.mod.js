@@ -14,7 +14,7 @@
                 // Url que aparecerá en el browser
                 url: '/usuarios/list',
                 views: {
-                    'mainView': {
+                    'detailView': {
                         templateUrl: basePath + 'Estado.html',
                         controller: 'estadoCtrl',
                         controllerAs: 'ctrl'
