@@ -21,6 +21,8 @@ import javax.inject.Inject;
 @Stateless
 public class AtributoDeCalidadLogic extends SubResource<ObjetivoEntity, AtributoDeCalidadEntity> {
 
+    
+    
     private TipoMedidaLogic tipoMedidaLogic;
 
     public AtributoDeCalidadLogic() {
