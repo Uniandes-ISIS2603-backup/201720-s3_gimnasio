@@ -40,8 +40,6 @@
             
             $rootScope.edit = false;
             $scope.createCalidad = function () {
-                console.info($scope.calidadMedida);
-                console.info($scope.calidadRegresion);
                 $http.post(calidadContext + '/' + $scope.calidadMedida, {
                     regresion: $scope.calidadRegresion
                 }).then(function (response) {
@@ -51,23 +49,19 @@
         }
     ]);
 
-    mod.controller('calidadUpdateCtrl', ['$scope', '$http', 'calidadsContext', '$state', '$rootScope',
-        function ($scope, $http, calidadsContext, $state, $rootScope) {
+    mod.controller('calidadUpdateCtrl', ['$scope', '$http', 'calidadsContext','tipoMedidaContext', '$state', '$rootScope',
+        function ($scope, $http, calidadsContext,tipoMedidaContext, $state, $rootScope) {
             $rootScope.edit = true;
             var idCalidad = $state.params.calidadId;
-
-            $http.get(calidadsContext + '/' + idCalidad).then(function (response) {
-                var calidad = response.data;
-                $scope.calidadTipo = calidad.tipo;
-                $scope.calidadDescricpion = calidad.descricpion;
-                 $scope.calidadExplicacion = calidad.explicacion;
+            var calidadContext=calidadsContext+ '/' + $state.params.objetivoId+ '/'+"atributosDeCalidad";
+            
+            $http.get(tipoMedidaContext).then(function (response) {
+                $scope.medidasRecords = response.data;
             });
 
             $scope.createCalidad = function () {
-                $http.put(calidadsContext + "/" + idCalidad, {
-                    descricpion: $scope.calidadDescricpion.toUpperCase(),
-                    explicacion: $scope.calidadExplicacion,
-                    tipo: $scope.calidadTipo
+                $http.put(calidadContext + "/" + idCalidad, {
+                    regresion: $scope.calidadRegresion
                 }).then(function (response) {
                     $state.go('calidadsList', {calidadId: response.data.id}, {reload: true});
                 });

@@ -61,7 +61,7 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'calidads.new.html',
+                        templateUrl: basePath + 'calidad.edit.html',
                         controller: 'calidadUpdateCtrl'
                     }
                 }
