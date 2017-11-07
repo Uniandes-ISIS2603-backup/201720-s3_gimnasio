@@ -1,3 +1,5 @@
+//<!--Esta pagina ha sido desarrollada por Mateo Sicard 
+//    m.sicard10 201512474  -->
 (function (ng) {
     // Definición:
     var mod = ng.module("entrenadorModule", ['ui.router']);
@@ -90,6 +92,18 @@
                 }
                  
         
+            }).state('entrenadorEdit',{
+                url:'/entrenadores/{entId:int}/editar',
+                param:{
+                    entId:null
+                },
+                views: {
+                     'mainView': {
+                        templateUrl: basePath + 'entrenador.edit.html',
+                        controller: 'entrenadoresCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }
     ]);
