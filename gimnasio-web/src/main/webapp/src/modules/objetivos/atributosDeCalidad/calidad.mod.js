@@ -44,12 +44,12 @@
                         controller: 'calidadDeleteCtrl'
                     }
                 }
-            }).state('calidadsCreate', {
+            }).state('calidadCreate', {
                 url: '/create',
                 parent: 'calidads',
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'calidads.new.html',
+                        templateUrl: basePath + 'calidad.new.html',
                         controller: 'calidadNewCtrl'
                     }
                 }

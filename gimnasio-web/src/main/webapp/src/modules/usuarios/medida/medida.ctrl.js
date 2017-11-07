@@ -20,7 +20,7 @@
            $scope.creatMedida = function()
             {
                
-                $http.post(MedidaContext + $state.params.estadoID +"/medidas/" + $scope.tipo.id, {
+                $http.post(MedidaContext + $state.params.estadoID +"/medidas/" + $scope.tip, {
                     medida: $scope.medida           
                 }).then(function (response) {
                     //Author created successfully

@@ -2,41 +2,36 @@
     <div class="container-fluid">
         <div class="panel-group">
             <div class="panel panel-primary">
-                <div class="panel-heading"><label ng-if="!edit" id="createEjercicio">nuevo Ejercicio</label>
-                    <label ng-if="edit" id="editEjercicio">editar ejercicio</label></div>
+                <div class="panel-heading"><label ng-if="!edit" id="createEjercicio">nuevo atributo de calidad</label>
+                    <label ng-if="edit" id="editEjercicio">editar atributo de calidad</label></div>
                 <div class="panel-body">
-                    <form ng-submit="createEjercicio()" name="ejercicio">
+                    <form ng-submit="createCalidad()" name="calidad">
                         <div class="form-group row">
                             <div class="form-group">
-                                <label for="ejercicioDescricpion" class="col-sm-3">Nombre:</label>
-                                <input id="ejercicioDescricpion" required ng-model="ejercicioDescricpion" class="col-sm-8"/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="form-group">
-                                <label for="ejercicioExplicacion" class="col-sm-3">Explicacion:</label>
-                                <textarea id="ejercicioExplicacion" required ng-model="ejercicioExplicacion" class="col-sm-8"></textarea>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                            <div class="form-group">
-                                <label for="ejercicioTipo" class="col-sm-3">Tipo:</label>
-                                <select id="ejercicioTipo" required ng-model="ejercicioTipo" class="ng-pristine ng-valid ng-empty ng-touched">
-                                    <option label="NO_PERTENECE" value="NO_PERTENECE" selected>NO_PERTENECE</option>
-                                    <option label="AEROBICOS" value="AEROBICOS">AEROBICOS</option>
-                                    <option label="ANEAROBICOS" value="ANEAROBICOS">ANEAROBICOS</option>
-                                    <option label="FLEXIBILIDAD" value="FLEXIBILIDAD">FLEXIBILIDAD</option>
-                                    <option label="EQUILIBRIO" value="EQUILIBRIO">EQUILIBRIO</option>
-                                    <option label="FLEXIBILIDAD" value="FLEXIBILIDAD">RELAJACION</option>
+                                <label for="atributoRegrecion" class="col-sm-3">Objetivo:</label>
+                                <select id="calidadRegresion" required ng-model="calidadRegresion" class="ng-pristine ng-valid ng-empty ng-touched">
+                                    <option label="MANTENER" value=0>MANTENER</option>
+                                    <option label="AUMENTAR" value=1>AUMENTAR</option>
+                                    <option label="DISMINUIR" value=-1>DISMINUIR</option>
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
-                            <div class="form-group col-sm-12">
-                                <input ng-show="ejercicio.$valid" type="submit" value="Save" class="btn btn-success"/>
-                                <a class="btn btn-info" ui-sref="ejerciciosList">Cancel</a>
+                            <div class="form-group">
+                                <label for="calidadMedida" class="col-sm-3">Medida:</label>
+                                <select id="calidadMedida" required ng-model="calidadMedida">
+                                    <option ng-repeat="x in medidasRecords" value="{{x.id}}">{{x.descripcion}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div ng-if="!edit">
+                            <div class="form-group row">
+                                <div class="form-group col-sm-12">
+                                    <input ng-show="calidad.$valid" type="submit" value="Save" class="btn btn-success"/>
+                                    <a class="btn btn-info" ui-sref="calidadsList">Cancel</a>
+                                </div>
                             </div>
                         </div>
                     </form>

@@ -1,6 +1,7 @@
 (function (ng) {
     var mod = ng.module("calidadModule");
     mod.constant("calidadsContext", "api/objetivos");
+    mod.constant("tipoMedidaContext", "api/tipoMedidas");
     mod.controller('calidadCtrl', ['$scope', '$http', 'calidadsContext', '$state',
         function ($scope, $http, calidadsContext, $state) {
             var calidadContext=calidadsContext+ '/' + $state.params.objetivoId+ '/'+"atributosDeCalidad";
@@ -22,7 +23,6 @@
             var calidadContext=calidadsContext+ '/' + $state.params.objetivoId+ '/'+"atributosDeCalidad";
             var idCalidad = $state.params.calidadId;
             $scope.deleteCalidad = function () {
-                console.info("borrando");
                 $http.delete(calidadContext + '/' + idCalidad, {}).then(function (response) {
                     $state.go('calidadsList', {calidadId: response.data.id}, {reload: true});
                 });
@@ -30,14 +30,20 @@
         }
     ]);
 
-    mod.controller('calidadNewCtrl', ['$scope', '$http', 'calidadsContext', '$state', '$rootScope',
-        function ($scope, $http, calidadsContext, $state, $rootScope) {
+    mod.controller('calidadNewCtrl', ['$scope', '$http', 'calidadsContext','tipoMedidaContext', '$state', '$rootScope',
+        function ($scope, $http, calidadsContext,tipoMedidaContext, $state, $rootScope) {
+            var calidadContext=calidadsContext+ '/' + $state.params.objetivoId+ '/'+"atributosDeCalidad";
+            
+            $http.get(tipoMedidaContext).then(function (response) {
+                $scope.medidasRecords = response.data;
+            });
+            
             $rootScope.edit = false;
             $scope.createCalidad = function () {
-                $http.post(calidadsContext, {
-                    descricpion: $scope.calidadDescricpion.toUpperCase(),
-                    explicacion: $scope.calidadExplicacion,
-                    tipo: $scope.calidadTipo
+                console.info($scope.calidadMedida);
+                console.info($scope.calidadRegresion);
+                $http.post(calidadContext + '/' + $scope.calidadMedida, {
+                    regresion: $scope.calidadRegresion
                 }).then(function (response) {
                     $state.go('calidadsList', {calidadId: response.data.id}, {reload: true});
                 });
