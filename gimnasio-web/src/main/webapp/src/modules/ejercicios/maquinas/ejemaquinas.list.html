@@ -1,0 +1,14 @@
+<div class="col-md-3">
+    <div class="container-fluid">
+        <table class="table table-condensed" >
+            <tbody>
+                <tr ng-repeat="ejemaquina in ejemaquinasRecords">
+                    <td id="{{$index}}-Descripcion">{{ejemaquina.descripcion}}</td>
+                    <td id="{{$index}}-actions">
+                        <a class="btn btn-danger btn-sm" ui-sref="ejemaquinaDelete({ejemaquinaId: ejemaquina.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
