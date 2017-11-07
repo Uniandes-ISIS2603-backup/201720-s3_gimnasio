@@ -1,12 +1,6 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 (function (ng) {
     var mod = ng.module("usuarioModule");
-    mod.constant("usuario                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Context", "api/entrenadores");
+    mod.constant("usuarioContext", "api/usuarios");
     mod.controller('usuariosCtrl', ['$scope', '$http', 'usuarioContext', '$state',
        function ($scope, $http, usuarioContext, $state) {
             console.info("dar datos usuario");
@@ -19,21 +13,21 @@
             this.deleteRecord = function(usuario){
                     return $http.delete(usuarioContext + "/" + usuario.id)
                             .then(function () {
-                                // $http.delete es una promesa
-                                // cuando termine bien, cambie de estado
+                                
                                 var index = $scope.usuarioRecords.indexOf(usuario);                               
                                 if (index > -1) {
-                                    $scope.usuaruiRecords.splice(index, 1);
+                                    $scope.usuarioRecords.splice(index, 1);
                                 }
                             });
             }
+              
             
             $scope.createUsuario = function()
             {
                 $http.post(usuarioContext, {
-                    name: $scope.nombreUsuario,
-                    fechaNacimiento: $scope.fechaUsuario,
-                    documento: $scope.documentoUsuario
+                    nombre: $scope.nombreUsuario,
+                    fechaDeNacimiento: $scope.fechaUsuario,
+                    genero: $scope.genero
 
                 }).then(function (response) {
                     //se crea exitosamente el usuario
@@ -44,5 +38,6 @@
         
         
     ]);
+  
 }
 )(angular);
