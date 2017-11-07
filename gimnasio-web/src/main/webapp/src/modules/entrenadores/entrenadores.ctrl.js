@@ -26,6 +26,16 @@
                     });
                 }
                 
+                if (($state.params.Enid !== undefined) && ($state.params.Enid !== null))
+                {
+                     $http.get(entrenadorContext + '/' + $state.params.Enid + '/usuarios/' + $state.params.Uid).then(function(response)
+                    {
+                        //console.info(response.data);
+                        $scope.usuarioActual = response.data;
+                        
+                    });
+                }
+                
             });
             
             //borrar
@@ -62,6 +72,17 @@
                     documento: $scope.documentoEntrenador
 
                 }).then(function (response) {
+                    //se crea exitosamente el entrenador
+                    $state.go('entrenadoresList', {id: response.data.id}, {reload: true});
+                });
+            };
+            
+            $scope.createEstudiante = function()
+            {
+                console.info(entrenadorContext +"/"+ $state.params.Xid + "/usuarios/" + $scope.idUsuarioC);
+                $http.post(
+                        entrenadorContext +"/"+ $state.params.Xid + "/usuarios/" + $scope.idUsuarioC,{}
+                        ).then(function (response) {
                     //se crea exitosamente el entrenador
                     $state.go('entrenadoresList', {id: response.data.id}, {reload: true});
                 });

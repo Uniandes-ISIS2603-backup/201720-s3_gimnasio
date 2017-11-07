@@ -18,9 +18,12 @@
         <td>{{usuario.genero}}</td>
         <td>
         <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteUsuarioEntrenador(usuario,entrenadorActual.id)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+        <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ui-sref="vistaUsuarioEntrenador({Enid : entrenadorActual.id, Uid : usuario.id})"><span class="glyphicon glyphicon-zoom-in"></span> detalles</button>
         </td>
       </tr>
     </tbody>
   </table>
+    <button id="{{$index}}-create" class="btn btn-default btn-sm" ui-sref="crearEstudiante({Xid : entrenadorActual.id})"><span class="glyphicon glyphicon-plus"></span> Agregar estudiante</button>
+    <div ui-view="addEstudainte"></div>
 </div>
 

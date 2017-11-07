@@ -61,6 +61,35 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('crearEstudiante',{
+                url: '/{Xid:int}/crearEstudiante',
+                param:{
+                    Xid: null
+                },
+                views: {
+                    'mainView': {
+                        templateUrl: basePath + 'EntrenadoresUsuario/crearUsuarioAEntrenador.html',
+                        controller: 'entrenadoresCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }
+            
+            ).state('vistaUsuarioEntrenador',{
+                url:'/{Enid:int}/usuarios/{Uid:int}',
+                param:{
+                 Enid:null,
+                 Uid:null
+                 },
+                 views: {
+                    'mainView': {
+                        templateUrl: basePath + 'EntrenadoresUsuario/vistaAUsuario.html',
+                        controller: 'entrenadoresCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+                 
+        
             });
         }
     ]);
