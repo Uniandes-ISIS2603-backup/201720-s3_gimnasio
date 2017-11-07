@@ -1,3 +1,5 @@
+//<!--Esta pagina ha sido desarrollada por Mateo Sicard 
+//    m.sicard10 201512474  -->
 (function (ng) {
     // Definición:
     var mod = ng.module("entrenadorModule", ['ui.router']);
