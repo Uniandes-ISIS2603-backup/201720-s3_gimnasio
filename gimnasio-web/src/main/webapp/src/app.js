@@ -7,7 +7,7 @@
         'objetivoModule',
         'entrenadorModule',
         'EstadoModule',
-        'medidaModule',
+        'medidasModule',
         'maquinaModule',
         'usuarioModule',
         'ejercicioModule',

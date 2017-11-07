@@ -1,0 +1,25 @@
+<div>
+    <div ng-repeat="ejercicioHecho in ejercicioHechoRecords" style="display: inline-block ; width: 30%;height: 30%;" >
+        <div class ="thumbnail" style=" background: lightskyblue;width: 90%; border-color: orange; border-width: 5px; border-style: double">
+                <div class="row">
+                    <label>Id:</label> 
+                    <p id="{{$index}}-id">{{ejercicioHecho.id}}</p>
+                </div>
+                <div class="row">
+                    <label>Series:</label>
+                    <p id="{{$index}}-Series">{{ejercicioHecho.series}}</p>
+                </div>                
+                <div class="row">
+                    <label>Fecha realizacion:</label>
+                    <p id="{{$index}}-Fecha">{{ejercicioHecho.fecha}}</p>
+                </div>
+               <!--<div class="row">
+                    <button id="{{$index}}-ejercicioHecho" class="btn btn-default btn-sm" ui-sref="EjercicioHechoMedicion({Eid : ejercicioHecho.id, e:ejercicioHecho })"><span class="glyphicon glyphicon-check"></span> Ver medicion maquina:</button>
+                </div>*/-->
+            </div>
+        </div>
+     <div>
+         <button id="createEjercicioHecho-btn" class="btn btn-default btn-sm" ui-sref="createEjercicioHecho"><span class="glyphicon glyphicon-plus-sign"></span> Crear Ejercicio Hecho</button>
+     </div>
+</div>
+        

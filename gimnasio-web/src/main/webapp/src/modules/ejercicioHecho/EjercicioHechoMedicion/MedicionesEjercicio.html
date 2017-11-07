@@ -1,0 +1,17 @@
+<div>  
+    <p>tus Mediciones:</p>
+     <table class="table">
+    <thead>
+      <tr>
+        <th>Medicion</th>
+        <th>Valor</th>  
+      </tr>
+    </thead>
+    <tbody ng-repeat="medicionMaquina in ejercicioHechoActualActual.medicionMaquina">
+      <tr>
+        <td>{{medicionMaquina.id}}</td>
+        <td>{{medicionMaquina.medicion}}</td>        
+      </tr>
+    </tbody>
+  </table>
+</div>

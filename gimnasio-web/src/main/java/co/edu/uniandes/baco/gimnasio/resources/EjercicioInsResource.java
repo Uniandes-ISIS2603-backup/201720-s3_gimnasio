@@ -70,10 +70,11 @@ public class EjercicioInsResource{
         logic.remove(idRutina,id);
    }
     
+    
      @Path("{"+EJERCICIOID+": \\d+}/"+EJERCICIOHECHO)
-    public Class<EjercicioEjercicioHechoResource> getEjercicioHecho(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
+    public Class<EjercicioHechoResource> getEjercicioHecho(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
         logic.find(id);
-        return EjercicioEjercicioHechoResource.class;
+        return EjercicioHechoResource.class;
     }
     
 }

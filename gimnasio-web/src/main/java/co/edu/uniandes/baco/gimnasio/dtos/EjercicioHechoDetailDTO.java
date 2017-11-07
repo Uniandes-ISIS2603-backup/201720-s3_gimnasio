@@ -20,7 +20,7 @@ public class EjercicioHechoDetailDTO extends EjercicioHechoDTO {
     //----------------------------------------------------------------------------------------
 
     private List<MedicionMaquinaDetailDTO> medicionMaquina;
-    private List<EjercicioDTO> ejercicios;
+    private EjercicioDTO ejercicio;
 
     //----------------------------------------------------------------------------------------
     // -----------------------------------Constructores------------------------------------------
@@ -47,9 +47,9 @@ public class EjercicioHechoDetailDTO extends EjercicioHechoDTO {
     // ---------------------------------Setters y Getters-------------------------------------
     //----------------------------------------------------------------------------------------
     
-    public List<EjercicioDTO> getEjercicios() { return ejercicios; }
+    public EjercicioDTO getEjercicio() { return ejercicio; }
 
-    public void setEjercicios(List<EjercicioDTO> ejercicios) { this.ejercicios = ejercicios; }
+    public void setEjercicio(EjercicioDTO ejercicio) { this.ejercicio = ejercicio; }
 
     public List<MedicionMaquinaDetailDTO> getMedicionMaquina() { return medicionMaquina; }
 

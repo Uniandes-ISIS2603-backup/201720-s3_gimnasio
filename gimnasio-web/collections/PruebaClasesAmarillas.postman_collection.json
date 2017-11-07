@@ -1,0 +1,358 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebaClasesAmarillas",
+		"_postman_id": "052b4618-3d7e-5d20-a129-c9d2f87846b4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "EjercicioHecho",
+			"description": "Pruebas de POST, GET y DELETE de ejercicioHecho. (No se realizaron de PUT debido a que esto no debe ser modificable.)",
+			"item": [
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/6",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/6",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/5",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/5",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/6",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/6",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/5",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/5",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"seriesReales\" : 5,\n\t\"fecha\": \"27-05-2017\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"seriesReales\" : 12,\n\t\"fecha\": \"27-05-2017\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"seriesReales\" : 10,\n\t\"fecha\": \"27-05-2017\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MedicionMaquina",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"medicionMaquina\": 10.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/2",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/2",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"medicionMaquina\": 10.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/2",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/2",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"medicionMaquina\": 10.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/1",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"medicionMaquina\": 10.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/3",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/3",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"medicionMaquina\": 10.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/2",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/2",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"medicionMaquina\": 10.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/1",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"medicionMaquina\": 10.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/1",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"medicionMaquina\": 10.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"medicionMaquina\": 10.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/1",
+					"request": {
+						"url": "http://localhost:8080/gimnasio-web/api/usuarios/1/rutinas/1/ejercicios/1/ejerciciosHechos/7/medicionMaquina/1",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"medicionMaquina\": 4.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
