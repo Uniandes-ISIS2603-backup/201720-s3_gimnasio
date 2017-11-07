@@ -90,6 +90,18 @@
                 }
                  
         
+            }).state('entrenadorEdit',{
+                url:'/entrenadores/{entId:int}/editar',
+                param:{
+                    entId:null
+                },
+                views: {
+                     'mainView': {
+                        templateUrl: basePath + 'entrenador.edit.html',
+                        controller: 'entrenadoresCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }
     ]);

@@ -4,8 +4,28 @@
     mod.controller('entrenadoresCtrl', ['$scope', '$http', 'entrenadorContext', '$state',
        function ($scope, $http, entrenadorContext, $state) {
             //console.info("dar datos entrenador");
+            
             $http.get(entrenadorContext).then(function (response) {
-                $scope.entrenadorRecords = response.data;
+                
+                var h = response.data;
+                $scope.entrenadorRecords = h;
+                //console.info(response.data);
+                
+                if (($state.params.entId !== undefined) && ($state.params.entId !== null))
+                {
+                    $http.get(entrenadorContext + '/' + $state.params.entId).then(function(response)
+                    {
+                        $scope.entrenadorActual = response.data ;
+                        $scope.nombreEntrenador = $scope.entrenadorActual.name;
+                        $scope.documentoEntrenador = $scope.entrenadorActual.documento;
+                        var x = $scope.entrenadorActual.fechaNacimiento;
+                        var parts = x.split('T');
+                        parts = parts[0].split('-');
+                        //console.info(parts);
+                        $scope.fechaEntrenador = new Date(parts[0],parts[1]-1,parts[2]);
+                        
+                    });
+                }
                 
                 if (($state.params.Eid !== undefined) && ($state.params.Eid !== null))
                 {
@@ -62,6 +82,20 @@
                                     $scope.entrenadorActual.usuarios.splice(index, 1);
                                 }
                             });
+            };
+            
+            $scope.editarEntrenador = function()
+            {
+                //console.info(entrenadorContext + '/'+ $scope.entrenadorID);
+                $http.put(entrenadorContext + '/'+ $scope.entrenadorActual.id , {
+                    name: $scope.nombreEntrenador,
+                    fechaNacimiento: $scope.fechaEntrenador,
+                    documento: $scope.documentoEntrenador
+
+                }).then(function (response) {
+                    //se crea exitosamente el entrenador
+                    $state.go('entrenadoresList', {id: response.data.id}, {reload: true});
+                });
             };
             
             $scope.createEntrenador = function()
