@@ -1,0 +1,14 @@
+<div class="col-md-3">
+    <div class="container-fluid">
+        <table class="table table-condensed" >
+            <tbody>
+                <tr ng-repeat="medida in medidasRecords">
+                    <td id="{{$index}}-Descripcion">{{medida.descripcion}}</td>
+                    <td id="{{$index}}-actions">
+                        <a class="btn btn-danger btn-sm" ui-sref="medidaDelete({medidaId: medida.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

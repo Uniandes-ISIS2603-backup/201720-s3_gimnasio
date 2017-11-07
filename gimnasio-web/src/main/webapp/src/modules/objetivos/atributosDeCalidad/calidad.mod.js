@@ -1,24 +1,25 @@
 (function (ng) {
     // Definición:
-    var mod = ng.module("calidadModule", ['ui.router']);
-    //constantes:
-    mod.constant("calidadsContext", "api/calidads");
+    var mod = ng.module("calidadModule", ['ui.router','objetivoModule']);
     // Configuración:
     mod.config(['$stateProvider', '$urlRouterProvider',
         
         function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/calidads/';
+            var basePath = 'src/modules/objetivos/atributosDeCalidad/';
             
             // default
             $urlRouterProvider.otherwise("/calidadsList");
             
             // estados
             $stateProvider.state('calidads', {
-                url: '/calidads',
+                url: '/objetivos/{objetivoId:int}/atributosDeCalidad',
                 abstract: true,
+                param : {
+                    objetivoId:null
+                },
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'calidads.html',
+                        templateUrl: basePath + 'calidad.html',
                         controller: 'calidadCtrl',
                         controllerAs: 'ctrl'
                     }
@@ -28,20 +29,7 @@
                 parent: 'calidads',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'calidads.list.html'
-                    }
-                }
-            }).state('calidadDetail',{
-                url: '/{calidadId:int}/detail',
-                parent: 'calidads',
-                param : {
-                    calidadId:null
-                },
-                views: {
-                    'detailView':{
-                        templateUrl: basePath + 'calidads.detail.html',
-                        controller: 'calidadCtrl',
-                        controllerAs: 'ctrl'
+                        templateUrl: basePath + 'calidad.list.html'
                     }
                 }
             }).state('calidadDelete', {
@@ -52,16 +40,16 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'calidads.delete.html',
+                        templateUrl: basePath + 'calidad.delete.html',
                         controller: 'calidadDeleteCtrl'
                     }
                 }
-            }).state('calidadsCreate', {
+            }).state('calidadCreate', {
                 url: '/create',
                 parent: 'calidads',
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'calidads.new.html',
+                        templateUrl: basePath + 'calidad.new.html',
                         controller: 'calidadNewCtrl'
                     }
                 }
@@ -73,7 +61,7 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'calidads.new.html',
+                        templateUrl: basePath + 'calidad.edit.html',
                         controller: 'calidadUpdateCtrl'
                     }
                 }

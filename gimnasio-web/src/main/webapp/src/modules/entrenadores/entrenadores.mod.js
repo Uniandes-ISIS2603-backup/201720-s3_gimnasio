@@ -1,3 +1,5 @@
+//<!--Esta pagina ha sido desarrollada por Mateo Sicard 
+//    m.sicard10 201512474  -->
 (function (ng) {
     // Definición:
     var mod = ng.module("entrenadorModule", ['ui.router']);
@@ -57,6 +59,47 @@
                 views: {
                     'listView': {
                         templateUrl: basePath + 'entrenadores.list.html',
+                        controller: 'entrenadoresCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('crearEstudiante',{
+                url: '/{Xid:int}/crearEstudiante',
+                param:{
+                    Xid: null
+                },
+                views: {
+                    'mainView': {
+                        templateUrl: basePath + 'EntrenadoresUsuario/crearUsuarioAEntrenador.html',
+                        controller: 'entrenadoresCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }
+            
+            ).state('vistaUsuarioEntrenador',{
+                url:'/{Enid:int}/usuarios/{Uid:int}',
+                param:{
+                 Enid:null,
+                 Uid:null
+                 },
+                 views: {
+                    'mainView': {
+                        templateUrl: basePath + 'EntrenadoresUsuario/vistaAUsuario.html',
+                        controller: 'entrenadoresCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+                 
+        
+            }).state('entrenadorEdit',{
+                url:'/entrenadores/{entId:int}/editar',
+                param:{
+                    entId:null
+                },
+                views: {
+                     'mainView': {
+                        templateUrl: basePath + 'entrenador.edit.html',
                         controller: 'entrenadoresCtrl',
                         controllerAs: 'ctrl'
                     }

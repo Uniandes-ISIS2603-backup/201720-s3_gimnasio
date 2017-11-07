@@ -1,0 +1,50 @@
+<div class="col-md-7">
+    <div class="container-fluid">
+        <div class="panel-group">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><label ng-if="!edit" id="createEjercicio">editar instancia del ejercicio</label></div>
+                <div class="panel-body">
+                    <form ng-submit="createInstancia()" name="instancia">
+
+                        <div class="form-group row">
+                            <div class="form-group">
+                                <label for="instanciaSeries" class="col-sm-3">series:</label>
+                                <input type="number" id="instanciaSeries" required ng-model="instanciaSeries" class="col-sm-8"/>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="form-group">
+                                <label for="instanciaDuracion" class="col-sm-3">duracion(min):</label>
+                                <input type="number" id="instanciaDuracion" required ng-model="instanciaDuracion" class="col-sm-8"/>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="form-group">
+                                <label for="instanciaRepeticionesPorParticion" class="col-sm-3">veces por particion:</label>
+                                <input type="number" id="instanciaRepeticionesPorParticion" required ng-model="instanciaRepeticionesPorParticion" class="col-sm-8"/>
+                            </div>
+                        </div>
+                        
+                       <div class="form-group row">
+                            <div class="form-group">
+                                <label for="instanciaTamanioParticiones" class="col-sm-3">dias de cada paricion</label>
+                                <input type="number" id="instanciaTamanioParticiones" required ng-model="instanciaTamanioParticiones" class="col-sm-8"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="form-group col-sm-12">
+                                <input ng-show="instancia.$valid" type="submit" value="Save" class="btn btn-success"/>
+                                <a class="btn btn-info" ui-sref="instanciasList">Cancel</a>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

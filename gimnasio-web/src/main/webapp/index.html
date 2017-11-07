@@ -41,7 +41,14 @@
         <script src="src/modules/usuarios/usuarios.mod.js" type="text/javascript"></script>
         <script src="src/modules/usuarios/usuarios.ctrl.js" type="text/javascript"></script>
         
+<<<<<<< HEAD
+        <script src="src/modules/usuarios/estado/Estado.mod.js" type="text/javascript"></script>
+=======
+         <script src="src/modules/usuarios/rutinas/ejerInstancia/ejerInstancia.mod.js" type="text/javascript"></script>
+        <script src="src/modules/usuarios/rutinas/ejerInstancia/ejerInstancia.ctrl.js" type="text/javascript"></script>
+        
          <script src="src/modules/usuarios/estado/Estado.mod.js" type="text/javascript"></script>
+>>>>>>> ead7b4cb022382f8ede57f4680a0352b230d0a6a
         <script src="src/modules/usuarios/estado/Estado.ctrl.js" type="text/javascript"></script>
         
         <script src="src/modules/usuarios/medida/medida.mod.js" type="text/javascript"></script>
@@ -51,12 +58,16 @@
         <script src="src/modules/ejercicios/ejercicios.mod.js" type="text/javascript"></script>
         <script src="src/modules/ejercicios/ejercicios.ctrl.js" type="text/javascript"></script>
         
-        <!--Ejecicio Hecho-->
-        <script src="src/modules/ejercicioHecho/ejercicioHecho.mod.js" type="text/javascript"></script>
-        <script src="src/modules/ejercicioHecho/ejercicioHecho.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/ejercicios/medidas/medidas.mod.js" type="text/javascript"></script>
+        <script src="src/modules/ejercicios/medidas/medidas.ctrl.js" type="text/javascript"></script>
         
-
-         
+        <script src="src/modules/ejercicios/objetivos/ejeobjetivos.mod.js" type="text/javascript"></script>
+        <script src="src/modules/ejercicios/objetivos/ejeobjetivos.ctrl.js" type="text/javascript"></script>
+        
+        <script src="src/modules/ejercicios/maquinas/ejemaquinas.mod.js" type="text/javascript"></script>
+        <script src="src/modules/ejercicios/maquinas/ejemaquinas.ctrl.js" type="text/javascript"></script>
+        
+        
     </head>
     <body >
         <center>
@@ -67,14 +78,14 @@
             <div class="row">
                 <div class="col-lg-10" >
                     <ul class="nav nav-tabs">
-                         <li><a ui-sref="estadoList">Estado</a></li>
+                   
                          <li><a ui-sref="entrenadoresList">Entrenadores</a></li>
                          <li><a ui-sref="usuariosList">Usuarios</a></li>
                          <li><a ui-sref="maquinasList">Maquinas</a></li>
                          <li><a ui-sref="ejerciciosList">Ejercicios</a></li>
                          <li><a ui-sref="objetivosList">Objetivos</a></li>
                          <li><a ui-sref="tipoMedidasList">TipoMedidas</a></li>
-                         <li><a ui-sref="ejercicioHechoList">Ejercicio Hecho</a></li>
+                         <li><a ui-sref="instanciasList({usuariosId:1, rutinaId:1})">--EjercicioInstacia</a></li>
                     </ul>                   
                 </div>
             </div>               

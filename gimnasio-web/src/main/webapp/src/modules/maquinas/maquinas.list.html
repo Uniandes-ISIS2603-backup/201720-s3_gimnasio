@@ -17,9 +17,20 @@
                 <div class="row">
 
                    <label>Tipos medidas:</label>
-                                    <div class="row">
-                    <button id="{{$index}}-addTipoMedida-btn" class="btn btn-default btn-sm" ng-click="ctrl.addTipoMedida(maquina)"><span class="glyphicon glyphicon-plus"></span> agregar tipo medida</button>
+                <div class="row">
+                
+            <form ng-submit="addTipoMedida(maquina, idTipoMedida)" name = "tipoMedida">
+                <div class="row">
+                <label>Id nuevo:</label>  
+                <input ng-model="idTipoMedida"/>
                 </div>
+                <div class="row">
+                <input  type="submit" value="Save" class="btn btn-default btn-sm"/>
+                <a class="btn btn-default btn-sm" ui-sref="maquinasList">Cancel</a>
+            </form>  
+                
+                </div>
+                  
                     <div ng-repeat='tipoMedida in maquina.tipoMedida'>
                   
                      <p id="{{$index}}-Descripcion">{{tipoMedida.descripcion}}</p>

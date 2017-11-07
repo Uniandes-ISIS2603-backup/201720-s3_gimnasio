@@ -4,22 +4,24 @@
             <thead>
                 <tr>
                     <th><div class="h4" style="text-transform: uppercase">DESCRIPCION</div></th>    
-                    <th><div class="h4" style="text-transform: uppercase">EXPLICACION</div></th>
-                    <th><div class="h4" style="text-transform: uppercase">TIPO</div></th>
-                    <th><a class="btn btn-info" ui-sref="ejerciciosCreate">
+                    <th><div class="h4" style="text-transform: uppercase">UNIDAD</div></th>
+                    <th><div class="h4" style="text-transform: uppercase">OBJETIVO</div></th>
+                    <th><a class="btn btn-info" ui-sref="calidadCreate">
                             <span class="glyphicon glyphicon-plus-sign"></span>nuevo
                         </a></th>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="ejercicio in ejerciciosRecords">
-                    <td id="{{$index}}-Descripcion"><b><a ui-sref="ejercicioDetail({ejercicioId: ejercicio.id})">{{ejercicio.descricpion}}</a></b></td>
-                    <td id="{{$index}}-explicacion">{{ejercicio.explicacion}}</td> 
-                    <td id="{{$index}}-tipo">{{ejercicio.tipo}}</dt>
+                <tr ng-repeat="calidad in calidadsRecords">
+                    <td id="{{$index}}-Descripcion">{{calidad.descripcion}}</td>
+                    <td id="{{$index}}-explicacion">{{calidad.unidad}}</td> 
+                    <td id="{{$index}}-tipo" ng-if="calidad.regresion==0"><b>MANTENER</b></dt>
+                        <td id="{{$index}}-tipo" ng-if="calidad.regresion>0"><b>AUMENTAR</b></dt>
+                            <td id="{{$index}}-tipo" ng-if="calidad.regresion<0"><b>DISMINUIR</b></dt>
                     <td id="{{$index}}-actions">
-                        <a class="btn btn-default btn-sm" ui-sref="ejercicioUpdate({ejercicioId: ejercicio.id})"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a class="btn btn-danger btn-sm" ui-sref="ejercicioDelete({ejercicioId: ejercicio.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a class="btn btn-default btn-sm" ui-sref="calidadUpdate({calidadId: calidad.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn btn-danger btn-sm" ui-sref="calidadDelete({calidadId: calidad.id})"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
             </tbody>

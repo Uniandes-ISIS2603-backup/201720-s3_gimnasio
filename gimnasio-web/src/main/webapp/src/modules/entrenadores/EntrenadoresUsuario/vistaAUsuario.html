@@ -1,16 +1,64 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<!--Esta pagina ha sido desarrollada por Mateo Sicard 
+    m.sicard10 201512474  -->
+<div>
+<div> <label> Estudiante:</label> {{usuarioActual.nombre}}</div>
+<div> <label> genero:</label> {{usuarioActual.genero}}</div>
+<div> <label> fecha de nacimiento: </label> {{usuarioActual.fechaDeNacimiento}}</div>
+
+<div><h1>histrorial:</h1></div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>fecha</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="x in usuarioActual.estados">
+      <tr>
+        <td>{{x.id}}</td>
+        <td>{{x.fecha}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+<div><h1>objetivos:</h1></div>
+ <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>tipo</th>
+        <th>descripcion</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="x in usuarioActual.objetivos">
+      <tr>
+        <td>{{x.id}}</td>
+        <td>{{x.tipo}}</td>
+        <td>{{x.descripcion}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+<div><h1>Rutinas:</h1></div>
+ <table class="table">
+    <thead>
+      <tr>
+         <th>id</th>
+        <th>fecha Inicio</th>
+        <th>Fecha Fin</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="x in usuarioActual.rutinas">
+      <tr>
+        <td>{{x.id}}</td>
+        <td>{{x.fechaInicio}}</td>
+        <td>{{x.fechaFinal}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+

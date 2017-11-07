@@ -1,0 +1,25 @@
+<div class="col-md-4">
+    <div class="container-fluid">
+        <div class="panel-group">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><label id="createEjercicio">Parte Del Cuerpo</label></div>
+                <div class="panel-body">
+                    <form ng-submit="createMedida()" name="medida">
+                        <div class="form-group row">
+                            <div class="form-group">
+                                <label for="medidaId" class="col-sm-3">parte:</label>
+                                
+                                <select id="medidaId" required ng-model="medidaId" class="col-lg-5">
+                                    <option ng-repeat="x in medidasRecords" value="{{x.id}}">{{x.descripcion}}</option>
+                                </select>
+                                
+                                <input ng-show="medida.$valid" type="submit" value="add" class="btn btn-success"/>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

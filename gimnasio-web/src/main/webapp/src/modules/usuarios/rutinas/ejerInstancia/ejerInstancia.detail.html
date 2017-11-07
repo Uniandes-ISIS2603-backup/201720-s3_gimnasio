@@ -1,0 +1,31 @@
+<div class="col-md-10">
+    <dl>     
+        <dt><h3>{{currentInstancia.descricpion}}</h3></dt>
+        <dt style="text-align: left">explicacion</dt>
+        <dd>{{currentInstancia.explicacion}}</dd>
+        <dt style="text-align: left">tipo: {{currentInstancia.tipo}}</dt>
+        
+        <table class="table table-bordered col-md-3" >
+            <thead>
+                <tr> 
+                    <th><div class="h6" style="text-transform: uppercase"><b>SERIES</b></div></th>
+                    <th><div class="h6" style="text-transform: uppercase"><b>DURACION</b></div></th>
+                    <th><div class="h6" style="text-transform: uppercase"><b>FRECUENCIA</b></div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="{{$index}}-series">{{currentInstancia.series}}</td> 
+                    <td id="{{$index}}-duracion">{{currentInstancia.duracion}}</td>
+                    <td id="{{$index}}-frecuencia">{{currentInstancia.repeticionesPorParticion}} veces cada {{currentInstancia.tamanioParticiones}} dias</td>
+                </tr>
+            </tbody>
+        </table>
+    </dl>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-3" role="group" aria-label="First group">
+            <a class="btn btn-link" style="text-align: right; ">ejercicios hechos</a>
+        </div>
+    </div>
+</div>
+
