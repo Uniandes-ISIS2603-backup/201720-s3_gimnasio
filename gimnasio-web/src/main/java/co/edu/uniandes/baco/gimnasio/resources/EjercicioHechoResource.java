@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author ce.robles
  */
-@Path(URLS.EJERCICIOHECHO)
+
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EjercicioHechoResource 
@@ -108,18 +108,6 @@ public class EjercicioHechoResource
     @Path("{"+EJERCICIOHECHOID+": \\d+}")
     public void delete(@PathParam(EJERCICIOID) Long idEjercicio, @PathParam(EJERCICIOHECHOID) long id) throws BusinessLogicException{
         logic.remove(idEjercicio, id);
-    }
-    
-    /**
-     * Encontrar el ejercicio al que pertenece el ejercicioHecho.
-     * @param id - Id del ejercicioHecho al que se le buscara el ejercicio al que pertenece.
-     * @return EjercicioHecho encontrado.
-     * @throws BusinessLogicException - Cualquier error que incumpla las reglas de negocio.
-     */
-    @GET
-    @Path("{"+EJERCICIOHECHOID+": \\d+}/"+EJERCICIO)
-    public List<EjercicioDetailDTO> findEjercicios(@PathParam(EJERCICIOHECHOID) long id) throws BusinessLogicException{
-        return EjercicioDetailDTO.listDetailDTO(logic.findAllEjercicio(id));
     }
     
     /**

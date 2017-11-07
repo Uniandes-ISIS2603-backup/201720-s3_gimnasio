@@ -20,19 +20,6 @@ import javax.inject.Inject;
 @Stateless
 public class EjercicioHechoLogic extends SubResource<EjercicioInstanciaEntity, EjercicioHechoEntity>  
 {
-    //----------------------------------------------------------------------------------------
-    //-----------------------------------Atributos--------------------------------------------
-    //----------------------------------------------------------------------------------------
-    
-    /**
-     * Conexion con Ejercicio.
-     */
-    private Search<EjercicioHechoEntity, EjercicioEntity> conEjercicio;
-    
-    /**
-     * Conexion con MedicionMaquina.
-     */
-    private Connection<EjercicioHechoEntity, MedicionMaquinaEntity> connMedicion;
     
     //----------------------------------------------------------------------------------------
     //---------------------------------Constructores------------------------------------------
@@ -43,9 +30,7 @@ public class EjercicioHechoLogic extends SubResource<EjercicioInstanciaEntity, E
     @Inject
     public EjercicioHechoLogic(BasePersistence<EjercicioHechoEntity> persistence, EjercicioInstanciaLogic logic) 
     {
-        super(persistence, logic, EjercicioInstanciaEntity::getEjerciciosHechos, EjercicioHechoEntity::setEjercicios);
-        //this.conEjercicio=new Search<>(persistence, EjercicioHechoEntity::getEjercicioEnt, EjercicioEntity.class);
-        this.connMedicion = new Connection<>(persistence, EjercicioHechoEntity::getMedicionMaquinaEnt, MedicionMaquinaEntity.class);
+        super(persistence, logic, EjercicioInstanciaEntity::getEjerciciosHechos, EjercicioHechoEntity::setEjercicios);      
     }
     
     //----------------------------------------------------------------------------------------
@@ -61,39 +46,5 @@ public class EjercicioHechoLogic extends SubResource<EjercicioInstanciaEntity, E
         s.setMedicionMaquinaEnt(old.getMedicionMaquinaEnt());
         s.setEjercicios(old.getEjercicios());
         return super.update(s);
-    }   
-    
-    //----------------------------------------------------------------------------------------
-    // ------------------------------------Ejercicio-----------------------------------------
-    //----------------------------------------------------------------------------------------
-      
-    public List<EjercicioEntity> findAllEjercicio(Long id) throws BusinessLogicException
-    {
-        return conEjercicio.findAll(id);
-    }
-    
-    public EjercicioEntity findAllEjercicio(Long id,Long idEjercicio) throws BusinessLogicException{
-        return conEjercicio.find(id, idEjercicio);
-    }
-    
-    //----------------------------------------------------------------------------------------
-    // ------------------------------------MedicionMaquina------------------------------------
-    //----------------------------------------------------------------------------------------
-
-    public List<MedicionMaquinaEntity> findAllMedicionMaquina(Long id) throws BusinessLogicException {
-        return connMedicion.findAll(id);
-    }
-
-    public MedicionMaquinaEntity findMedicionMaquina(Long idHecho, Long id) throws BusinessLogicException {
-        return connMedicion.find(idHecho, id);
-    }
-
-    public MedicionMaquinaEntity createMedicionMaquina(Long idHecho, Long id)  throws BusinessLogicException {
-           return connMedicion.create(idHecho, id);
-    }
-
-    public void removeMedicion(Long idHecho, Long id) throws BusinessLogicException {
-        connMedicion.remove(idHecho, id);
-    }
-    
+    }       
 }
