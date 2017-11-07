@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("instanciaModule");
     mod.constant("instanciasContext", "api/usuarios");
-    mod.constant("tipoMedidaContext", "api/tipoMedidas");
+    mod.constant("ejercicioContext", "api/ejercicios");
     mod.controller('instanciaCtrl', ['$scope', '$http', 'instanciasContext', '$state',
         function ($scope, $http, instanciasContext, $state) {
             var instanciaContext=instanciasContext+ '/' + $state.params.usuariosId+ "/rutinas/"+$state.params.rutinaId+"/ejercicios";
@@ -32,18 +32,21 @@
         }
     ]);
 
-    mod.controller('instanciaNewCtrl', ['$scope', '$http', 'instanciasContext','tipoMedidaContext', '$state', '$rootScope',
-        function ($scope, $http, instanciasContext,tipoMedidaContext, $state, $rootScope) {
+    mod.controller('instanciaNewCtrl', ['$scope', '$http', 'instanciasContext','ejercicioContext', '$state', '$rootScope',
+        function ($scope, $http, instanciasContext,ejercicioContext, $state, $rootScope) {
             var instanciaContext=instanciasContext+ '/' + $state.params.usuariosId+ "/rutinas/"+$state.params.rutinaId+"/ejercicios";
             
-            $http.get(tipoMedidaContext).then(function (response) {
-                $scope.medidasRecords = response.data;
+            $http.get(ejercicioContext).then(function (response) {
+                $scope.ejerciciosRecords = response.data;
             });
             
             $rootScope.edit = false;
             $scope.createInstancia = function () {
-                $http.post(instanciaContext + '/' + $scope.instanciaMedida, {
-                    regresion: $scope.instanciaRegresion
+                $http.post(instanciaContext + '/' + $scope.instanciaEjercicio, {
+                    series: $scope.instanciaSeries,
+                    duracion: $scope.instanciaDuracion,
+                    tamanioParticiones:$scope.instanciaTamanioParticiones,
+                    repeticionesPorParticion: $scope.instanciaRepeticionesPorParticion
                 }).then(function (response) {
                     $state.go('instanciasList', {instanciaId: response.data.id}, {reload: true});
                 });
