@@ -2,7 +2,7 @@
     var mod = ng.module("medidasModule");
     mod.constant("MedidaContext", "api/usuarios/");
   
-    mod.controller('medidaCtrl', ['$scope', '$http', 'MedidaContext', '$state',
+    mod.controller('medCtrl', ['$scope', '$http', 'MedidaContext', '$state',
         function ($scope, $http, MedidaContext, $state) {
             console.info("dar datos medida");
                 console.info($state.params.UsuariosId);

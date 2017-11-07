@@ -21,7 +21,7 @@
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'medida.list.html',
-                        controller: 'medidaCtrl',
+                        controller: 'medCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
