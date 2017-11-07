@@ -17,6 +17,10 @@
                     <label>Unidad:</label> 
                     <p id="{{$index}}-Unidad">{{tipoMedida.unidad}}</p>
                 </div>
+            <div class="row">
+                    <label>Automatico:</label> 
+                    <p id="{{$index}}-Automatico">{{tipoMedida.automatico}}</p>
+                </div>
     
                 <div class="row">
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(tipoMedida)"><span class="glyphicon glyphicon-minus"></span> Eliminar tipoMedida</button>
