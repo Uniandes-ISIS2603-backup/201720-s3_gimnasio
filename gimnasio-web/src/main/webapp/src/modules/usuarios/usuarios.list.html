@@ -20,6 +20,10 @@
                 <div class="row">
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(usuario)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
                 </div>
+                   <div class="row">
+              
+                    <td  id="{{$index}}-Agregar"> <a class="btn btn-info" ui-sref="estadoList({UsuarioId: usuario.id})"><span class="glyphicon glyphicon-plus-sign"></span> Agregar estado</a></td>
+                </div>
             </div>
         </div>
      <div>

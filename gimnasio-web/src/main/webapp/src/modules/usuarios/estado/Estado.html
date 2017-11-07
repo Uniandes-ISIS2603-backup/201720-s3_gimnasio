@@ -3,7 +3,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <body>
     <h1>Estados</h1>
-    
          <h2>Agregar Estado</h2> 
          <form ng-submit="createEstado()" name = "estado">
          <h5>Fecha de toma</h5>
@@ -16,6 +15,7 @@
             </br>
             </br>
            </form>  
+         
         <div class="container-fluid">   
         <table class="table table-striped">
             <thead>
@@ -29,7 +29,7 @@
             <tbody>
                 <tr ng-repeat="estados in estadosRecords">
                      <td id="{{$index}}-Fecha">{{estados.fecha}}</td>
-                     <td  id="{{$index}}-Agregar"> <a class="btn btn-info" ui-sref="medidaList({estadoID: estados.id})"><span class="glyphicon glyphicon-plus-sign"></span> Agregar medida</a></td>
+                     <td  id="{{$index}}-Agregar"> <a class="btn btn-info" ui-sref="medidaList({UsuariosId: uid ,estadoID: estados.id})"><span class="glyphicon glyphicon-plus-sign"></span> Agregar medida</a></td>
             </tbody>
         </table>
     </div>
