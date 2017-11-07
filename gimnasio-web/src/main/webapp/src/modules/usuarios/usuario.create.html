@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+        <div class = "container-fluid">
+            <h1>Crear un Usuario</h1>
+            <form ng-submit="createUsuario()" name = "usuario">
+                <div class="row">
+                <label>Nombre:</label>  
+                <input ng-model="nombreUsuario"/>
+                </div>
+                <div class="row">
+                <label>Genero:</label>  
+                <label>Ingrese 1 si es mujer o 0 si es hombre</label>
+                <input ng-model="genero"/>
+                </div>
+                <div class="row">
+                <label>Fecha de nacimiento:</label>  
+                <input type="date" placeholder="DD/MM/YYYY" ng-model="fechaUsuario"/>
+                </div>
+                <input  type="submit" value="Save" class="btn btn-default btn-sm"/>
+                <a class="btn btn-default btn-sm" ui-sref="usuariosList">Cancel</a>
+            </form>
+            
+        </div>
