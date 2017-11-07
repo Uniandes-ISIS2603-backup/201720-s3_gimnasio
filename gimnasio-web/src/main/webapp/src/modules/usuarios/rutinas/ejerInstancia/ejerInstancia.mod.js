@@ -1,25 +1,26 @@
 (function (ng) {
     // Definición:
-    var mod = ng.module("instanciaModule", ['ui.router','objetivoModule']);
+    var mod = ng.module("instanciaModule", ['ui.router']);
     // Configuración:
     mod.config(['$stateProvider', '$urlRouterProvider',
         
         function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/objetivos/atributosDeInstancia/';
+            var basePath = 'src/modules/usuarios/rutinas/ejerInstancia';
             
             // default
             $urlRouterProvider.otherwise("/instanciasList");
             
             // estados
             $stateProvider.state('instancias', {
-                url: '/objetivos/{objetivoId:int}/atributosDeInstancia',
+                url: '/usuarios/{usuariosId:int}/rutinas/{rutinaId:int}',
                 abstract: true,
                 param : {
-                    objetivoId:null
+                    usuariosId:null,
+                    rutinaId:null
                 },
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'instancia.html',
+                        templateUrl: basePath + 'ejerInstancia.html',
                         controller: 'instanciaCtrl',
                         controllerAs: 'ctrl'
                     }
@@ -29,7 +30,7 @@
                 parent: 'instancias',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'instancia.list.html'
+                        templateUrl: basePath + 'ejerInstancia.list.html'
                     }
                 }
             }).state('instanciaDelete', {
@@ -40,7 +41,7 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'instancia.delete.html',
+                        templateUrl: basePath + 'ejerInstancia.delete.html',
                         controller: 'instanciaDeleteCtrl'
                     }
                 }
@@ -49,7 +50,7 @@
                 parent: 'instancias',
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'instancia.new.html',
+                        templateUrl: basePath + 'ejerInstancia.new.html',
                         controller: 'instanciaNewCtrl'
                     }
                 }
@@ -61,7 +62,7 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'instancia.edit.html',
+                        templateUrl: basePath + 'ejerInstancia.edit.html',
                         controller: 'instanciaUpdateCtrl'
                     }
                 }
