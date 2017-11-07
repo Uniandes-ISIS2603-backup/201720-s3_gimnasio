@@ -86,5 +86,6 @@ public class EjercicioResource {
     public Class<EjercicioTipoMedidaResource> getTipoMedida(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
         logic.find(id);
         return EjercicioTipoMedidaResource.class;
-    }
+    }   
+ 
 }
