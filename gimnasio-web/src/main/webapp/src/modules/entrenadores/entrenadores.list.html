@@ -17,7 +17,7 @@
                 </div>
                 <div class="row">
                     <label>fecha Nacimiento:</label>
-                    <p id="{{$index}}-fechaNacimiento">{{entrenador.fechaNacimiento}}</p>
+                    <p id="{{$index}}-fechaNacimiento">{{entrenador.fechaNacimiento | date: 'yyyy-MM-dd'}}</p>
                 </div>
                 <div class="row">
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(entrenador)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
