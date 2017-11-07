@@ -54,19 +54,25 @@
         }
     ]);
 
-    mod.controller('instanciaUpdateCtrl', ['$scope', '$http', 'instanciasContext','tipoMedidaContext', '$state', '$rootScope',
-        function ($scope, $http, instanciasContext,tipoMedidaContext, $state, $rootScope) {
-            $rootScope.edit = true;
+    mod.controller('instanciaUpdateCtrl', ['$scope', '$http', 'instanciasContext', '$state', '$rootScope',
+        function ($scope, $http, instanciasContext, $state, $rootScope) {
             var idInstancia = $state.params.instanciaId;
-            var instanciaContext=instanciasContext+ '/' + $state.params.objetivoId+ '/'+"atributosDeInstancia";
+            var instanciaContext=instanciasContext+ '/' + $state.params.usuariosId+ "/rutinas/"+$state.params.rutinaId+"/ejercicios";
             
-            $http.get(tipoMedidaContext).then(function (response) {
-                $scope.medidasRecords = response.data;
+            $http.get(instanciaContext + "/" + idInstancia).then(function (response) {
+                var instancia = response.data;
+                $scope.instanciaSeries= instancia.series;
+                $scope.instanciaDuracion= instancia.duracion;
+                $scope.instanciaTamanioParticiones= instancia.tamanioParticiones;
+                $scope.instanciaRepeticionesPorParticion= instancia.repeticionesPorParticion;
             });
 
             $scope.createInstancia = function () {
                 $http.put(instanciaContext + "/" + idInstancia, {
-                    regresion: $scope.instanciaRegresion
+                    series: $scope.instanciaSeries,
+                    duracion: $scope.instanciaDuracion,
+                    tamanioParticiones:$scope.instanciaTamanioParticiones,
+                    repeticionesPorParticion: $scope.instanciaRepeticionesPorParticion
                 }).then(function (response) {
                     $state.go('instanciasList', {instanciaId: response.data.id}, {reload: true});
                 });

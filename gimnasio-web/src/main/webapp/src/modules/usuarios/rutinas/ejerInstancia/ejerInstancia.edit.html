@@ -2,17 +2,35 @@
     <div class="container-fluid">
         <div class="panel-group">
             <div class="panel panel-primary">
-                <div class="panel-heading"><label  id="createAtributo">editar atributo de instancia</label></div>
+                <div class="panel-heading"><label ng-if="!edit" id="createEjercicio">editar instancia del ejercicio</label></div>
                 <div class="panel-body">
                     <form ng-submit="createInstancia()" name="instancia">
+
                         <div class="form-group row">
                             <div class="form-group">
-                                <label for="atributoRegrecion" class="col-sm-3">Objetivo:</label>
-                                <select id="instanciaRegresion" required ng-model="instanciaRegresion" class="ng-pristine ng-valid ng-empty ng-touched">
-                                    <option label="MANTENER" value=0>MANTENER</option>
-                                    <option label="AUMENTAR" value=1>AUMENTAR</option>
-                                    <option label="DISMINUIR" value=-1>DISMINUIR</option>
-                                </select>
+                                <label for="instanciaSeries" class="col-sm-3">series:</label>
+                                <input type="number" id="instanciaSeries" required ng-model="instanciaSeries" class="col-sm-8"/>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="form-group">
+                                <label for="instanciaDuracion" class="col-sm-3">duracion(min):</label>
+                                <input type="number" id="instanciaDuracion" required ng-model="instanciaDuracion" class="col-sm-8"/>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="form-group">
+                                <label for="instanciaRepeticionesPorParticion" class="col-sm-3">veces por particion:</label>
+                                <input type="number" id="instanciaRepeticionesPorParticion" required ng-model="instanciaRepeticionesPorParticion" class="col-sm-8"/>
+                            </div>
+                        </div>
+                        
+                       <div class="form-group row">
+                            <div class="form-group">
+                                <label for="instanciaTamanioParticiones" class="col-sm-3">dias de cada paricion</label>
+                                <input type="number" id="instanciaTamanioParticiones" required ng-model="instanciaTamanioParticiones" class="col-sm-8"/>
                             </div>
                         </div>
 
