@@ -32,8 +32,9 @@
             $rootScope.edit = false;
             $scope.createEjercicio = function () {
                 $http.post(ejerciciosContext, {
-                    tipo: $scope.ejercicioTipo.toUpperCase(),
-                    descripcion: $scope.ejercicioDescripcion
+                    descricpion: $scope.ejercicioDescricpion.toUpperCase(),
+                    explicacion: $scope.ejercicioExplicacion,
+                    tipo: $scope.ejercicioTipo
                 }).then(function (response) {
                     $state.go('ejerciciosList', {ejercicioId: response.data.id}, {reload: true});
                 });
@@ -49,13 +50,15 @@
             $http.get(ejerciciosContext + '/' + idEjercicio).then(function (response) {
                 var ejercicio = response.data;
                 $scope.ejercicioTipo = ejercicio.tipo;
-                $scope.ejercicioDescripcion = ejercicio.descripcion;
+                $scope.ejercicioDescricpion = ejercicio.descricpion;
+                 $scope.ejercicioExplicacion = ejercicio.explicacion;
             });
 
             $scope.createEjercicio = function () {
                 $http.put(ejerciciosContext + "/" + idEjercicio, {
-                    tipo: $scope.ejercicioTipo.toUpperCase(),
-                    descripcion: $scope.ejercicioDescripcion
+                    descricpion: $scope.ejercicioDescricpion.toUpperCase(),
+                    explicacion: $scope.ejercicioExplicacion,
+                    tipo: $scope.ejercicioTipo
                 }).then(function (response) {
                     $state.go('ejerciciosList', {ejercicioId: response.data.id}, {reload: true});
                 });

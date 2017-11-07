@@ -1,0 +1,30 @@
+<div>
+         <div>
+         <button id="createtipoMedida-btn" class="btn btn-default btn-sm" ui-sref="createtipoMedida"><span class="glyphicon glyphicon-plus-sign"></span> Agregar tipoMedida</button>
+     </div>
+    <div ng-repeat="tipoMedida in tipoMedidaRecords" style="display: inline-table ; width: 30%;height: 30%;" >
+        <div class ="thumbnail" style=" background: #00ffcd;width: 90%; border-color: #dc758f; border-width: 8px; border-style: triple">
+               
+            <div class="row">
+                    <label>Id:</label> 
+                    <p id="{{$index}}-id">{{tipoMedida.id}}</p>
+                </div>
+                <div class="row">
+                    <label>Informacion:</label> 
+                    <p id="{{$index}}-Informacion">{{tipoMedida.descripcion}}</p>
+                </div>
+            <div class="row">
+                    <label>Unidad:</label> 
+                    <p id="{{$index}}-Unidad">{{tipoMedida.unidad}}</p>
+                </div>
+    
+                <div class="row">
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(tipoMedida)"><span class="glyphicon glyphicon-minus"></span> Eliminar tipoMedida</button>
+                </div>
+            </div>
+        </div>
+
+</div>
+        
+        
+
