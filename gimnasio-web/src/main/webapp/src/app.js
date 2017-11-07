@@ -13,7 +13,7 @@
         'ejercicioModule',
         'calidadModule',
         'tipoMedidaModule',
-      
+        'medidaModule',
         'ejeobjetivoModule',
         'ejemaquinaModule',
         'instanciaModule'
