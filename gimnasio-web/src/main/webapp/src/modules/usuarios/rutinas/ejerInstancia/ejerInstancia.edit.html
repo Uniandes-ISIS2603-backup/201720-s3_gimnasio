@@ -1,0 +1,32 @@
+<div class="col-md-7">
+    <div class="container-fluid">
+        <div class="panel-group">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><label  id="createAtributo">editar atributo de instancia</label></div>
+                <div class="panel-body">
+                    <form ng-submit="createInstancia()" name="instancia">
+                        <div class="form-group row">
+                            <div class="form-group">
+                                <label for="atributoRegrecion" class="col-sm-3">Objetivo:</label>
+                                <select id="instanciaRegresion" required ng-model="instanciaRegresion" class="ng-pristine ng-valid ng-empty ng-touched">
+                                    <option label="MANTENER" value=0>MANTENER</option>
+                                    <option label="AUMENTAR" value=1>AUMENTAR</option>
+                                    <option label="DISMINUIR" value=-1>DISMINUIR</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="form-group col-sm-12">
+                                <input ng-show="instancia.$valid" type="submit" value="Save" class="btn btn-success"/>
+                                <a class="btn btn-info" ui-sref="instanciasList">Cancel</a>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
