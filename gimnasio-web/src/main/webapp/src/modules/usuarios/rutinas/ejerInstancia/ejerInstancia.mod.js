@@ -33,6 +33,19 @@
                         templateUrl: basePath + 'ejerInstancia.list.html'
                     }
                 }
+            }).state('instanciaDetail',{
+                url: '/{instanciaId:int}/detail',
+                parent: 'instancias',
+                param : {
+                    instanciaId:null
+                },
+                views: {
+                    'detailView':{
+                        templateUrl: basePath + 'ejerInstancia.detail.html',
+                        controller: 'instanciaCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             }).state('instanciaDelete', {
                 url: '/delete/{instanciaId:int}',
                 parent: 'instancias',

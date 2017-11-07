@@ -15,7 +15,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="instancia in instanciasRecords">
-                    <td id="{{$index}}-Descripcion">{{instancia.descricpion}}</td>
+                    <td id="{{$index}}-Descripcion"><a ui-sref="instanciaDetail({instanciaId: instancia.id})"><b>{{instancia.descricpion}}</b></a></td>
                     <td id="{{$index}}-series">{{instancia.series}}</td> 
                     <td id="{{$index}}-duracion">{{instancia.duracion}}</td>
                     <td id="{{$index}}-frecuencia">{{instancia.repeticionesPorParticion}} veces cada {{instancia.tamanioParticiones}} dias</td>

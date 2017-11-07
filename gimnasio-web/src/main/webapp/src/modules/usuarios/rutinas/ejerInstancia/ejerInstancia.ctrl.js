@@ -11,8 +11,10 @@
             });
 
             if ($state.params.instanciaId !== undefined && $state.params.instanciaId !== null) {
-                $http.get(instanciasContext + '/' + $state.params.instanciaId).then(function (response) {
+                console.info("a ver");
+                $http.get(instanciaContext + '/' + $state.params.instanciaId).then(function (response) {
                     $scope.currentInstancia = response.data;
+                    console.info(response.data.id);
                 });
             }
         }
