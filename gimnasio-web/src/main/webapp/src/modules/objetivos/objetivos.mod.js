@@ -2,7 +2,7 @@
     // Definición:
     var mod = ng.module("objetivoModule", ['ui.router']);
     //constantes:
-    mod.constant("objetivosContext", "api/objetivos");
+    mod.constant("calidadsContext", "api/calidads");
     // Configuración:
     mod.config(['$stateProvider', '$urlRouterProvider',
         

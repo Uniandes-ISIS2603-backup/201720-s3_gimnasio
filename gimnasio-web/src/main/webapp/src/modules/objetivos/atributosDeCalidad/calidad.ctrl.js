@@ -1,16 +1,17 @@
 (function (ng) {
     var mod = ng.module("calidadModule");
-    mod.constant("calidadsContext", "api/calidads");
+    mod.constant("calidadsContext", "api/objetivos");
     mod.controller('calidadCtrl', ['$scope', '$http', 'calidadsContext', '$state',
         function ($scope, $http, calidadsContext, $state) {
-            $http.get(calidadsContext).then(function (response) {
+            var calidadContext=calidadsContext+ '/' + $state.params.objetivoId+ '/'+"atributosDeCalidad";
+            
+            $http.get(calidadContext).then(function (response) {
                 $scope.calidadsRecords = response.data;
             });
 
             if ($state.params.calidadId !== undefined && $state.params.calidadId !== null) {
                 $http.get(calidadsContext + '/' + $state.params.calidadId).then(function (response) {
                     $scope.currentCalidad = response.data;
-                    $scope.calidadInstanciaRecords = response.data.instancias;
                 });
             }
         }
@@ -18,9 +19,11 @@
 
     mod.controller('calidadDeleteCtrl', ['$scope', '$http', 'calidadsContext', '$state',
         function ($scope, $http, calidadsContext, $state) {
+            var calidadContext=calidadsContext+ '/' + $state.params.objetivoId+ '/'+"atributosDeCalidad";
             var idCalidad = $state.params.calidadId;
             $scope.deleteCalidad = function () {
-                $http.delete(calidadsContext + '/' + idCalidad, {}).then(function (response) {
+                console.info("borrando");
+                $http.delete(calidadContext + '/' + idCalidad, {}).then(function (response) {
                     $state.go('calidadsList', {calidadId: response.data.id}, {reload: true});
                 });
             };
