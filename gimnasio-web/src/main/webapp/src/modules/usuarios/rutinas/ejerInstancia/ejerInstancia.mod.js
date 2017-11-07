@@ -5,14 +5,14 @@
     mod.config(['$stateProvider', '$urlRouterProvider',
         
         function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/usuarios/rutinas/ejerInstancia';
+            var basePath = 'src/modules/usuarios/rutinas/ejerInstancia/';
             
             // default
             $urlRouterProvider.otherwise("/instanciasList");
             
             // estados
             $stateProvider.state('instancias', {
-                url: '/usuarios/{usuariosId:int}/rutinas/{rutinaId:int}',
+                url: '/usuarios/{usuariosId:int}/rutinas/{rutinaId:int}/ejercicios',
                 abstract: true,
                 param : {
                     usuariosId:null,

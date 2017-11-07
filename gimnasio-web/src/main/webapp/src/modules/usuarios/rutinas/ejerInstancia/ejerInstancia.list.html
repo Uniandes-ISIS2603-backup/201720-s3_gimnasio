@@ -3,9 +3,10 @@
         <table class="table table-condensed" >
             <thead>
                 <tr>
-                    <th><div class="h4" style="text-transform: uppercase">DESCRIPCION</div></th>    
-                    <th><div class="h4" style="text-transform: uppercase">UNIDAD</div></th>
-                    <th><div class="h4" style="text-transform: uppercase">OBJETIVO</div></th>
+                    <th><div class="h4" style="text-transform: uppercase">EJERCICIO</div></th>    
+                    <th><div class="h4" style="text-transform: uppercase">SERIES</div></th>
+                    <th><div class="h4" style="text-transform: uppercase">DURACION</div></th>
+                    <th><div class="h4" style="text-transform: uppercase">FRECUENCIA</div></th>
                     <th><a class="btn btn-info" ui-sref="instanciaCreate">
                             <span class="glyphicon glyphicon-plus-sign"></span>nuevo
                         </a></th>
@@ -14,11 +15,10 @@
             </thead>
             <tbody>
                 <tr ng-repeat="instancia in instanciasRecords">
-                    <td id="{{$index}}-Descripcion">{{instancia.descripcion}}</td>
-                    <td id="{{$index}}-explicacion">{{instancia.unidad}}</td> 
-                    <td id="{{$index}}-tipo" ng-if="instancia.regresion==0"><b>MANTENER</b></dt>
-                        <td id="{{$index}}-tipo" ng-if="instancia.regresion>0"><b>AUMENTAR</b></dt>
-                            <td id="{{$index}}-tipo" ng-if="instancia.regresion<0"><b>DISMINUIR</b></dt>
+                    <td id="{{$index}}-Descripcion">{{instancia.descricpion}}</td>
+                    <td id="{{$index}}-series">{{instancia.series}}</td> 
+                    <td id="{{$index}}-duracion">{{instancia.duracion}}</td>
+                    <td id="{{$index}}-frecuencia">{{instancia.repeticionesPorParticion}} veces cada {{instancia.tamanioParticiones}} dias</td>
                     <td id="{{$index}}-actions">
                         <a class="btn btn-default btn-sm" ui-sref="instanciaUpdate({instanciaId: instancia.id})"><span class="glyphicon glyphicon-edit"></span></a>
                         <a class="btn btn-danger btn-sm" ui-sref="instanciaDelete({instanciaId: instancia.id})"><span class="glyphicon glyphicon-trash"></span></a>

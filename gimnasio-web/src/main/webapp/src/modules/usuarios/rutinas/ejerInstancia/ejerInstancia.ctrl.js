@@ -1,10 +1,10 @@
 (function (ng) {
     var mod = ng.module("instanciaModule");
-    mod.constant("instanciasContext", "api/objetivos");
+    mod.constant("instanciasContext", "api/usuarios");
     mod.constant("tipoMedidaContext", "api/tipoMedidas");
     mod.controller('instanciaCtrl', ['$scope', '$http', 'instanciasContext', '$state',
         function ($scope, $http, instanciasContext, $state) {
-            var instanciaContext=instanciasContext+ '/' + $state.params.objetivoId+ '/'+"atributosDeInstancia";
+            var instanciaContext=instanciasContext+ '/' + $state.params.usuariosId+ "/rutinas/"+$state.params.rutinaId+"/ejercicios";
             
             $http.get(instanciaContext).then(function (response) {
                 $scope.instanciasRecords = response.data;
@@ -20,7 +20,7 @@
 
     mod.controller('instanciaDeleteCtrl', ['$scope', '$http', 'instanciasContext', '$state',
         function ($scope, $http, instanciasContext, $state) {
-            var instanciaContext=instanciasContext+ '/' + $state.params.objetivoId+ '/'+"atributosDeInstancia";
+            var instanciaContext=instanciasContext+ '/' + $state.params.usuariosId+ "/rutinas/"+$state.params.rutinaId+"/ejercicios";
             var idInstancia = $state.params.instanciaId;
             $scope.deleteInstancia = function () {
                 $http.delete(instanciaContext + '/' + idInstancia, {}).then(function (response) {
@@ -32,7 +32,7 @@
 
     mod.controller('instanciaNewCtrl', ['$scope', '$http', 'instanciasContext','tipoMedidaContext', '$state', '$rootScope',
         function ($scope, $http, instanciasContext,tipoMedidaContext, $state, $rootScope) {
-            var instanciaContext=instanciasContext+ '/' + $state.params.objetivoId+ '/'+"atributosDeInstancia";
+            var instanciaContext=instanciasContext+ '/' + $state.params.usuariosId+ "/rutinas/"+$state.params.rutinaId+"/ejercicios";
             
             $http.get(tipoMedidaContext).then(function (response) {
                 $scope.medidasRecords = response.data;
