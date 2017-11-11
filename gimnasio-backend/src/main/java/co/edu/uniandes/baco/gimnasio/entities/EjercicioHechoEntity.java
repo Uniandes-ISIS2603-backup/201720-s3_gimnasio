@@ -8,24 +8,17 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import uk.co.jemos.podam.common.PodamExclude;
 
-/**
- *
- * @author ce.robles
- */
-
 @Entity
 public class EjercicioHechoEntity extends BaseEntity implements Serializable {
 
-    //----------------------------------------------------------------------------------------
-    // -----------------------------------Atributos-------------------------------------------
-    //----------------------------------------------------------------------------------------
-
+    //--------------------------------------------
+    // DATOS BASE
+    //--------------------------------------------
     /**
      * Fecha en la que se realizo el ejercicioHecho.
      */
@@ -37,19 +30,15 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
      */
     private Integer seriesReales;
 
+    //--------------------------------------------
+    // DATOS ENTITY
+    //--------------------------------------------
     /**
      * Relacion con EjercicioInstanciaEntity.
      */
     @PodamExclude
     @ManyToOne
     private EjercicioInstanciaEntity ejercicio;
-    
-//    /**
-//     * Relacion con EjercicioEntity.
-//     */
-//    @PodamExclude
-//    @ManyToMany(mappedBy = "ejerciciosHechos")
-//    private List<EjercicioEntity> ejercicioEnt = new ArrayList<>();    
 
     /**
      * Relacion con MedicionMaquinaEntity.
@@ -58,33 +47,44 @@ public class EjercicioHechoEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "ejercicioHecho", cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<MedicionMaquinaEntity> medicionMaquinaEnt = new ArrayList<>();
 
-    //----------------------------------------------------------------------------------------
-    //---------------------------------Setters y Getters--------------------------------------
-    //----------------------------------------------------------------------------------------
+    //--------------------------------------------
+    // GETS & SETS
+    //--------------------------------------------
+    public Integer getSeriesReales() {
+        return seriesReales;
+    }
 
-    public Integer getSeriesReales() { return seriesReales; }
+    public void setSeriesReales(Integer seriesReales) {
+        this.seriesReales = seriesReales;
+    }
 
-    public void setSeriesReales(Integer seriesReales) { this.seriesReales = seriesReales;}
+    public List<MedicionMaquinaEntity> getMedicionMaquinaEnt() {
+        return medicionMaquinaEnt;
+    }
 
-    public List<MedicionMaquinaEntity> getMedicionMaquinaEnt() {return medicionMaquinaEnt;}
+    public void setMedicionMaquinaEnt(List<MedicionMaquinaEntity> medicionMaquinaEnt) {
+        this.medicionMaquinaEnt = medicionMaquinaEnt;
+    }
 
-    public void setMedicionMaquinaEnt(List<MedicionMaquinaEntity> medicionMaquinaEnt) { this.medicionMaquinaEnt = medicionMaquinaEnt; }
+    public Date getFecha() {
+        return fecha;
+    }
 
-    public Date getFecha() {return fecha;}
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
 
-    public void setFecha(Date fecha) {this.fecha = fecha; }
+    public EjercicioInstanciaEntity getEjercicios() {
+        return ejercicio;
+    }
 
-    public EjercicioInstanciaEntity getEjercicios() {return ejercicio;  }
+    public void setEjercicios(EjercicioInstanciaEntity ejercicio) {
+        this.ejercicio = ejercicio;
+    }
 
-    public void setEjercicios(EjercicioInstanciaEntity ejercicio) { this.ejercicio = ejercicio; }
-    
-//    public List<EjercicioEntity> getEjercicioEnt() { return ejercicioEnt;  }
-//
-//    public void setEjercicioEnt(List<EjercicioEntity> ejercicioEnt) { this.ejercicioEnt = ejercicioEnt; }
-
-    //----------------------------------------------------------------------------------------
-    //---------------------------------Otros metodos.-----------------------------------------
-    //----------------------------------------------------------------------------------------
+    //--------------------------------------------
+    // METODOS
+    //--------------------------------------------
     @Override
     public boolean equals(Object obj) {
         if (obj != null && this.getClass() != obj.getClass()) {

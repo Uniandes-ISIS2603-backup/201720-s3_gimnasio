@@ -1,8 +1,10 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.MedicionMaquinaPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -158,6 +160,14 @@ public class MedicionMaquinaPersistenceTest {
     
     @Test
     public void subEnititysTest(){
+        MedicionMaquinaEntity nuevo=create();
+        EjercicioHechoEntity ejercicioHechoEntity=factory.manufacturePojo(EjercicioHechoEntity.class);
+        TipoMedidaEntity tipoMedidaEntity=factory.manufacturePojo(TipoMedidaEntity.class);
+        
+        nuevo.setEjercicioHecho(ejercicioHechoEntity);
+        nuevo.setTipoMedida(tipoMedidaEntity);
+        assertEquals(nuevo.getEjercicioHecho(), ejercicioHechoEntity);
+        assertEquals(nuevo.getTipoMedida(), tipoMedidaEntity);
     }
     
     private void assertEqualsObject(MedicionMaquinaEntity a,MedicionMaquinaEntity b){

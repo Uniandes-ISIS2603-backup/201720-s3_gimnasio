@@ -1,15 +1,16 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
-/*
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.EjercicioHechoPersistence;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -114,36 +115,6 @@ public class EjercicioHechoPersistenceTest {
     }
     
     @Test
-    public void finByFecchaTest() {
-        EjercicioHechoEntity entity = data.get(0);
-        Date f= entity.getFechaInicio();
-        EjercicioHechoEntity newEntity = EjercicioHechoPersistence.findByFecha(entity.getEjercicios().getId(),entity.getFechaInicio());
-        assertNotNull(newEntity);
-        boolean coincide=false;
-        for(EjercicioHechoEntity i:data){
-            if(i.getFechaInicio().equals(f))
-                if(i.equals(newEntity))
-                    coincide=true;
-        }
-        assertTrue(coincide);
-
-        Long tipo = data.get(0).getFechaInicio().getTime();
-        boolean esta;
-        do {
-            tipo++;
-            esta = false;
-            for (EjercicioHechoEntity i : data) {
-                if (i.getFechaInicio().getTime() == tipo) {
-                    esta = true;
-                }
-            }
-        } while (esta);
-        Date fecha=new Date();
-        fecha.setTime(tipo);
-        assertNull(EjercicioHechoPersistence.findByFecha((long)0, fecha));
-    }
-    
-    @Test
     public void createEjercicioHechoTest() {
         EjercicioHechoEntity newEntity = create();
         EjercicioHechoEntity result = EjercicioHechoPersistence.create(newEntity);
@@ -196,11 +167,21 @@ public class EjercicioHechoPersistenceTest {
     
     @Test
     public void subEnititysTest(){
+        EjercicioHechoEntity nuevo=create();
+        EjercicioInstanciaEntity ejercicioInstanciaEntity=factory.manufacturePojo(EjercicioInstanciaEntity.class);
+        List<MedicionMaquinaEntity> medicionMaquinaEntitys=new LinkedList<>();
+        for(int i=0;i<5;i++){
+            medicionMaquinaEntitys.add(factory.manufacturePojo(MedicionMaquinaEntity.class));
+        }
+        nuevo.setEjercicios(ejercicioInstanciaEntity);
+        nuevo.setMedicionMaquinaEnt(medicionMaquinaEntitys);
+        assertEquals(nuevo.getEjercicios(), ejercicioInstanciaEntity);
+        assertEquals(nuevo.getMedicionMaquinaEnt(), medicionMaquinaEntitys);
     }
     
     private void assertEqualsObject(EjercicioHechoEntity a,EjercicioHechoEntity b){
         DateFormat format=new SimpleDateFormat("dd/MM/yyyy");
-        assertEquals(format.format(a.getFechaInicio()),format.format(b.getFechaInicio()));
+        assertEquals(format.format(a.getFecha()),format.format(b.getFecha()));
         assertEquals(a.getSeriesReales(), b.getSeriesReales());
     }
     
@@ -208,4 +189,3 @@ public class EjercicioHechoPersistenceTest {
         return factory.manufacturePojo(EjercicioHechoEntity.class);
     }
 }
-*/
