@@ -6,7 +6,7 @@
     <artifactId>gimnasio</artifactId>
     <name>gimnasio</name>
     <packaging>pom</packaging>
-    <version>0.1.0</version>
+    <version>0.1.2</version>
 
     <modules>
         <module>gimnasio-backend</module>

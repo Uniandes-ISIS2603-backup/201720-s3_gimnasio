@@ -4,19 +4,14 @@ import co.edu.uniandes.baco.gimnasio.entities.*;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-/**
- *
- * @author ce.robles
- */
 @Stateless
 public class MedicionMaquinaLogic extends SubResource<EjercicioHechoEntity, MedicionMaquinaEntity> {
 
-    private TipoMedidaLogic tipoMedidaLogic;    
-  
+    private TipoMedidaLogic tipoMedidaLogic;
+
     public MedicionMaquinaLogic() {
         super();
     }
@@ -44,5 +39,5 @@ public class MedicionMaquinaLogic extends SubResource<EjercicioHechoEntity, Medi
         entity.setEjercicioHecho(old.getEjercicioHecho());
         entity.setTipoMedida(old.getTipoMedida());
         return persistence.update(entity);
-    }   
+    }
 }

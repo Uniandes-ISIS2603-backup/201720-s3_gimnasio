@@ -1,6 +1,5 @@
 package co.edu.uniandes.baco.gimnasio.test.persistence;
 import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
-import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity;
@@ -9,7 +8,6 @@ import co.edu.uniandes.baco.gimnasio.persistence.EjercicioHechoPersistence;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import javax.inject.Inject;

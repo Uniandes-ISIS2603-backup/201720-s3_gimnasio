@@ -111,18 +111,6 @@ public class EjercicioHechoResource
     }
     
     /**
-     * Encontrar el ejercicio al que pertenece el ejercicioHecho.
-     * @param id - Id del ejercicioHecho al que se le buscara el ejercicio al que pertenece.
-     * @return EjercicioHecho encontrado.
-     * @throws BusinessLogicException - Cualquier error que incumpla las reglas de negocio.
-     */
-    @GET
-    @Path("{"+EJERCICIOHECHOID+": \\d+}/"+EJERCICIO)
-    public List<EjercicioDetailDTO> findEjercicios(@PathParam(EJERCICIOHECHOID) long id) throws BusinessLogicException{
-        return EjercicioDetailDTO.listDetailDTO(logic.findAllEjercicio(id));
-    }
-    
-    /**
      * Obtener los servicios del ejercicioHecho.
      * @param id - Id del ejercicioHecho al que pertenece el servicio.
      * @return La clase del servicio.
