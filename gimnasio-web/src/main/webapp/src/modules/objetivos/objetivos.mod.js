@@ -4,7 +4,7 @@
 
         function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/objetivos/';
-            var basePathCalidad = basePath+'/atributosDeCalidad/';
+            var basePathCalidad = basePath + '/atributosDeCalidad/';
             $urlRouterProvider.otherwise("/objetivosList");
 
             $stateProvider.state('objetivos', {
@@ -19,7 +19,7 @@
             }).state('objetivo', {
                 url: '/objetivos/{objetivoId:int}',
                 abstract: true,
-                parent:'objetivos',
+                parent: 'objetivos',
                 param: {objetivoId: null},
                 views: {
                     'detailView': {
@@ -57,7 +57,7 @@
                         controllerAs: 'ctrl'
                     },
                     'listView': {
-                        templateUrl: basePathCalidad+ 'calidad.list.html',
+                        templateUrl: basePathCalidad + 'calidad.list.html',
                         controller: 'calidadCtrl',
                         controllerAs: 'calidadCtrl'
                     }

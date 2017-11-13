@@ -1,18 +1,11 @@
 (function (ng) {
-    // Definición:
     var mod = ng.module("ejercicioModule", ['ui.router']);
-    //constantes:
-    mod.constant("ejerciciosContext", "api/ejercicios");
-    // Configuración:
     mod.config(['$stateProvider', '$urlRouterProvider',
-        
+
         function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/ejercicios/';
-            
-            // default
             $urlRouterProvider.otherwise("/ejerciciosList");
-            
-            // estados
+
             $stateProvider.state('ejercicios', {
                 url: '/ejercicios',
                 abstract: true,
@@ -21,42 +14,28 @@
                         templateUrl: basePath + 'ejercicios.html',
                         controller: 'ejercicioCtrl',
                         controllerAs: 'ctrl'
-                    }
-                }
-            }).state('ejerciciosList', {
+                    }}
+            }).state('ejercicio', {
+                url: '/ejercicios/{ejercicioId:int}',
+                abstract: true,
+                parent: 'ejercicios',
+                param: {ejercicioId: null},
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'ejercicios.html',
+                        controller: 'ejercicioCtrl',
+                        controllerAs: 'ctrl'
+                    }}
+            });
+
+            $stateProvider.state('ejercicios_list', {
                 url: '/list',
                 parent: 'ejercicios',
                 views: {
                     'listView': {
                         templateUrl: basePath + 'ejercicios.list.html'
-                    }
-                }
-            }).state('ejercicioDetail',{
-                url: '/{ejercicioId:int}/detail',
-                parent: 'ejercicios',
-                param : {
-                    ejercicioId:null
-                },
-                views: {
-                    'detailView':{
-                        templateUrl: basePath + 'ejercicios.detail.html',
-                        controller: 'ejercicioCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
-            }).state('ejercicioDelete', {
-                url: '/delete/{ejercicioId:int}',
-                parent: 'ejercicios',
-                param: {
-                    ejercicioId: null
-                },
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'ejercicios.delete.html',
-                        controller: 'ejercicioDeleteCtrl'
-                    }
-                }
-            }).state('ejerciciosCreate', {
+                    }}
+            }).state('ejercicios_create', {
                 url: '/create',
                 parent: 'ejercicios',
                 views: {
@@ -65,12 +44,30 @@
                         controller: 'ejercicioNewCtrl'
                     }
                 }
-            }).state('ejercicioUpdate', {
-                url: '/update/{ejercicioId:int}',
-                parent: 'ejercicios',
-                param: {
-                    ejercicioId: null
-                },
+            });
+
+            $stateProvider.state('ejercicio_detail', {
+                url: '/detail',
+                parent: 'ejercicio',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'ejercicios.detail.html',
+                        controller: 'ejercicioCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('ejercicio_delete', {
+                url: '/delete',
+                parent: 'ejercicio',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'ejercicios.delete.html',
+                        controller: 'ejercicioDeleteCtrl'
+                    }
+                }
+            }).state('ejercicio_update', {
+                url: '/update',
+                parent: 'ejercicio',
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'ejercicios.new.html',

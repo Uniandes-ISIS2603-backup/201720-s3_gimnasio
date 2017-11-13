@@ -1,28 +1,26 @@
-<div class="col-md-10">
-    <div class="container-fluid">
-        <table class="table table-condensed" >
-            <thead>
-                <tr>
-                    <th><div class="h4" style="text-transform: uppercase">DESCRIPCION</div></th>    
-                    <th><div class="h4" style="text-transform: uppercase">EXPLICACION</div></th>
-                    <th><div class="h4" style="text-transform: uppercase">TIPO</div></th>
-                    <th><a class="btn btn-info" ui-sref="ejerciciosCreate">
-                            <span class="glyphicon glyphicon-plus-sign"></span>nuevo
-                        </a></th>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="ejercicio in ejerciciosRecords">
-                    <td id="{{$index}}-Descripcion"><b><a ui-sref="ejercicioDetail({ejercicioId: ejercicio.id})">{{ejercicio.descricpion}}</a></b></td>
-                    <td id="{{$index}}-explicacion">{{ejercicio.explicacion}}</td> 
-                    <td id="{{$index}}-tipo">{{ejercicio.tipo}}</dt>
-                    <td id="{{$index}}-actions">
-                        <a class="btn btn-default btn-sm" ui-sref="ejercicioUpdate({ejercicioId: ejercicio.id})"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a class="btn btn-danger btn-sm" ui-sref="ejercicioDelete({ejercicioId: ejercicio.id})"><span class="glyphicon glyphicon-trash"></span></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="container-fluid">
+    <table class="table table-condensed" >
+        <thead>
+            <tr>
+                <th><div class="h4" style="text-transform: uppercase">DESCRIPCION</div></th>    
+                <th><div class="h4" style="text-transform: uppercase">EXPLICACION</div></th>
+                <th><div class="h4" style="text-transform: uppercase">TIPO</div></th>
+                <th><a class="btn btn-info" ui-sref="ejercicios_create">
+                        <span class="glyphicon glyphicon-plus-sign"></span>nuevo
+                    </a></th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="ejercicio in ejerciciosRecords">
+                <td id="{{$index}}-Descripcion"><b><a ui-sref="ejercicio_detail({ejercicioId: ejercicio.id})">{{ejercicio.descricpion}}</a></b></td>
+                <td id="{{$index}}-explicacion">{{ejercicio.explicacion}}</td> 
+                <td id="{{$index}}-tipo">{{ejercicio.tipo}}</dt>
+                <td id="{{$index}}-actions">
+                    <a class="btn btn-default btn-sm" ui-sref="ejercicio_update({ejercicioId: ejercicio.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a class="btn btn-danger btn-sm" ui-sref="ejercicio_delete({ejercicioId: ejercicio.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

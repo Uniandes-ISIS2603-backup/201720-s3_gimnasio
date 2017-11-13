@@ -21,7 +21,7 @@
             var idEjercicio = $state.params.ejercicioId;
             $scope.deleteEjercicio = function () {
                 $http.delete(ejerciciosContext + '/' + idEjercicio, {}).then(function (response) {
-                    $state.go('ejerciciosList', {ejercicioId: response.data.id}, {reload: true});
+                    $state.go('ejercicios_list', {ejercicioId: response.data.id}, {reload: true});
                 });
             };
         }
@@ -36,7 +36,7 @@
                     explicacion: $scope.ejercicioExplicacion,
                     tipo: $scope.ejercicioTipo
                 }).then(function (response) {
-                    $state.go('ejerciciosList', {ejercicioId: response.data.id}, {reload: true});
+                    $state.go('ejercicios_list', {ejercicioId: response.data.id}, {reload: true});
                 });
             };
         }
@@ -51,7 +51,7 @@
                 var ejercicio = response.data;
                 $scope.ejercicioTipo = ejercicio.tipo;
                 $scope.ejercicioDescricpion = ejercicio.descricpion;
-                 $scope.ejercicioExplicacion = ejercicio.explicacion;
+                $scope.ejercicioExplicacion = ejercicio.explicacion;
             });
 
             $scope.createEjercicio = function () {
@@ -60,7 +60,7 @@
                     explicacion: $scope.ejercicioExplicacion,
                     tipo: $scope.ejercicioTipo
                 }).then(function (response) {
-                    $state.go('ejerciciosList', {ejercicioId: response.data.id}, {reload: true});
+                    $state.go('ejercicios_list', {ejercicioId: response.data.id}, {reload: true});
                 });
             };
         }

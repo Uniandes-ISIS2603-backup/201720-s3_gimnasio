@@ -1,11 +1,25 @@
 <div class="col-md-10">
-    <dl>     
-        <dt><h3>{{currentEjercicio.descricpion}}</h3></dt>
-        <dt style="text-align: left">explicacion</dt>
-        <dd>{{currentEjercicio.explicacion}}</dd>
-        <dt style="text-align: left">tipo: {{currentEjercicio.tipo}}</dt>
-        
-    </dl>
+    <div class="panel-info col-md-7" style="border-color: whitesmoke; border-width: medium">
+        <dl>     
+            <dt><div class="h3">{{currentEjercicio.descricpion}}</div></dt>
+            <dt style="text-align: left">Tipo: {{currentEjercicio.tipo}}</dt>
+            <dt style="text-align: left">Explicacion:</dt>
+            <dd>{{currentEjercicio.explicacion}}</dd>
+        </dl>
+    </div>
+    <br>
+    <div class="panel-group col-md-5">
+        <div class="panel panel-primary" style="background-color: #212021; border-color: gray; height: 170px">
+            <div class="panel-heading" style="background-color: gray; height: 20%; text-align: left"><label>Las instancias especificas del ejercicio son:</label></div>
+            <div class="panel-body">
+                <div class="col-sm-1" style="text-align: right;width: 100%">
+                    <ul class="list-group-item-text"  style="text-align: left; height: 100%; overflow-y: scroll; background: #545354">
+                        <li ng-repeat="instancia in ejercicioInstanciaRecords">{{instancia.series}} series = {{instancia.repeticionesPorParticion}} veces cada {{instancia.tamanioParticiones}} dias({{instancia.duracion}} min)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group mr-3" role="group" aria-label="First group">
             <a class="btn btn-link" style="text-align: right; " ui-sref="ejemaquinasList({ejercicioId: currentEjercicio.id})">maquinas</a>
@@ -13,11 +27,5 @@
             <a class="btn btn-link" style="text-align: left; " ui-sref="medidasList({ejercicioId: currentEjercicio.id})">partes del cuerpo</a>
         </div>
     </div>
-    <h5 style="text-align: left"><b>instancias:</b></h5>
-        <div class="container-fluid">
-            <ul class="list-group-item-info"  style="text-align: left">
-                <li ng-repeat="instancia in ejercicioInstanciaRecords">{{instancia.series}} series = {{instancia.repeticionesPorParticion}} veces cada {{instancia.tamanioParticiones}} dias({{instancia.duracion}} min)</li>
-            </ul>
-        </div>
 </div>
 

@@ -1,27 +1,28 @@
 <div class="col-md-7">
     <div class="container-fluid">
+        <br>
         <div class="panel-group">
-            <div class="panel panel-primary">
-                <div class="panel-heading"><label ng-if="!edit" id="createEjercicio">nuevo Ejercicio</label>
+            <div class="panel panel-primary" style="border-color: #122b40; color: black; background-color: #363636">
+                <div class="panel-heading" style="background-color: #122b40"><label ng-if="!edit" id="createEjercicio">nuevo Ejercicio</label>
                     <label ng-if="edit" id="editEjercicio">editar ejercicio</label></div>
                 <div class="panel-body">
                     <form ng-submit="createEjercicio()" name="ejercicio">
                         <div class="form-group row">
                             <div class="form-group">
-                                <label for="ejercicioDescricpion" class="col-sm-3">Nombre:</label>
+                                <label for="ejercicioDescricpion" class="col-sm-3" style="color: whitesmoke">Nombre:</label>
                                 <input id="ejercicioDescricpion" required ng-model="ejercicioDescricpion" class="col-sm-8"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group">
-                                <label for="ejercicioExplicacion" class="col-sm-3">Explicacion:</label>
+                                <label for="ejercicioExplicacion" class="col-sm-3" style="color: whitesmoke">Explicacion:</label>
                                 <textarea id="ejercicioExplicacion" required ng-model="ejercicioExplicacion" class="col-sm-8"></textarea>
                             </div>
                         </div>
                         
                         <div class="form-group row">
                             <div class="form-group">
-                                <label for="ejercicioTipo" class="col-sm-3">Tipo:</label>
+                                <label for="ejercicioTipo" class="col-sm-3" style="color: whitesmoke">Tipo:</label>
                                 <select id="ejercicioTipo" required ng-model="ejercicioTipo" class="ng-pristine ng-valid ng-empty ng-touched">
                                     <option label="NO_PERTENECE" value="NO_PERTENECE" selected>NO_PERTENECE</option>
                                     <option label="AEROBICOS" value="AEROBICOS">AEROBICOS</option>
@@ -36,7 +37,7 @@
                         <div class="form-group row">
                             <div class="form-group col-sm-12">
                                 <input ng-show="ejercicio.$valid" type="submit" value="Save" class="btn btn-success"/>
-                                <a class="btn btn-info" ui-sref="ejerciciosList">Cancel</a>
+                                <a class="btn btn-info" ui-sref="ejercicios_list">Cancel</a>
                             </div>
                         </div>
                     </form>
