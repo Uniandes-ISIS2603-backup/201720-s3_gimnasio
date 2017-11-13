@@ -1,64 +1,58 @@
 (function (ng) {
-    // Definición:
     var mod = ng.module("calidadModule", ['ui.router','objetivoModule']);
-    // Configuración:
     mod.config(['$stateProvider', '$urlRouterProvider',
         
         function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/objetivos/atributosDeCalidad/';
-            
-            // default
             $urlRouterProvider.otherwise("/calidadsList");
             
-            // estados
             $stateProvider.state('calidads', {
-                url: '/objetivos/{objetivoId:int}/atributosDeCalidad',
+                url: '/atributosDeCalidad',
+                parent: 'objetivo',
                 abstract: true,
-                param : {
-                    objetivoId:null
-                },
                 views: {
-                    'mainView': {
+                    'detailView': {
                         templateUrl: basePath + 'calidad.html',
-                        controller: 'calidadCtrl',
+                        controller: 'objetivoCtrl',
                         controllerAs: 'ctrl'
-                    }
-                }
-            }).state('calidadsList', {
-                url: '/list',
-                parent: 'calidads',
-                views: {
-                    'listView': {
-                        templateUrl: basePath + 'calidad.list.html'
-                    }
-                }
-            }).state('calidadDelete', {
-                url: '/delete/{calidadId:int}',
+                    }}
+            }).state('calidad',{
+                url: '/{calidadId:int}',
                 parent: 'calidads',
                 param: {
                     calidadId: null
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'calidad.delete.html',
-                        controller: 'calidadDeleteCtrl'
+                        templateUrl: basePath + 'calidad.html',
+                        controller: 'objetivoCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
-            }).state('calidadCreate', {
+            });
+            
+            $stateProvider.state('calidads_create', {
                 url: '/create',
                 parent: 'calidads',
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'calidad.new.html',
                         controller: 'calidadNewCtrl'
+                    }}
+            });
+            
+            $stateProvider.state('calidad_delete', {
+                url: '/delete',
+                parent: 'calidad',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'calidad.delete.html',
+                        controller: 'calidadDeleteCtrl'
                     }
                 }
-            }).state('calidadUpdate', {
-                url: '/update/{calidadId:int}',
-                parent: 'calidads',
-                param: {
-                    calidadId: null
-                },
+            }).state('calidad_update', {
+                url: '/update',
+                parent: 'calidad',
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'calidad.edit.html',

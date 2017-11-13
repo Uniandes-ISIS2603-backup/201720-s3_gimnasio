@@ -1,41 +1,35 @@
+<br>
 <div class="col-md-7">
     <div class="container-fluid">
         <div class="panel-group">
-            <div class="panel panel-primary">
-                <div class="panel-heading"><label ng-if="!edit" id="createEjercicio">nuevo atributo de calidad</label>
-                    <label ng-if="edit" id="editEjercicio">editar atributo de calidad</label></div>
+            <div class="panel panel-primary" style="border-color: #122b40; color: black; background-color: #363636">
+                <div class="panel-heading" style="background-color: #122b40"><label id="createAtributo">Nuevo atributo de calidad</label></div>
                 <div class="panel-body">
                     <form ng-submit="createCalidad()" name="calidad">
                         <div class="form-group row">
-                            <div class="form-group">
-                                <label for="atributoRegrecion" class="col-sm-3">Objetivo:</label>
-                                <select id="calidadRegresion" required ng-model="calidadRegresion" class="ng-pristine ng-valid ng-empty ng-touched">
-                                    <option label="MANTENER" value=0>MANTENER</option>
-                                    <option label="AUMENTAR" value=1>AUMENTAR</option>
-                                    <option label="DISMINUIR" value=-1>DISMINUIR</option>
-                                </select>
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <div class="form-group">
-                                <label for="calidadMedida" class="col-sm-3">Medida:</label>
-                                <select id="calidadMedida" required ng-model="calidadMedida">
+                            <div class="form-group col-sm-1">
+                                <select id="calidadMedida" required ng-model="calidadMedida" size="10" style="width: 250px; background-color: #565656;border-width: medium; border-color: whitesmoke; overflow-x: no-display">
                                     <option ng-repeat="x in medidasRecords" value="{{x.id}}">{{x.descripcion}}</option>
                                 </select>
                             </div>
-                        </div>
 
-
-                        <div class="form-group row">
-                            <div class="form-group col-sm-12">
-                                <input ng-show="calidad.$valid" type="submit" value="Save" class="btn btn-success"/>
-                                <a class="btn btn-info" ui-sref="calidadsList">Cancel</a>
+                            <div class="form-group right">
+                                <div class="form-group">
+                                    <label for="atributoRegrecion" class="col-sm-10" style="color: whitesmoke">Objetivo:</label>
+                                    <select id="calidadRegresion" required ng-model="calidadRegresion" class="ng-pristine ng-valid ng-empty ng-touched">
+                                        <option label="MANTENER" value=0>MANTENER</option>
+                                        <option label="AUMENTAR" value=1>AUMENTAR</option>
+                                        <option label="DISMINUIR" value=-1>DISMINUIR</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input ng-show="calidad.$valid" type="submit" value="Save" class="btn btn-success"/>
+                                    <a class="btn btn-info" ui-sref="objetivo_detail">Cancel</a>
+                                </div>
                             </div>
                         </div>
-
                     </form>
-
                 </div>
             </div>
         </div>

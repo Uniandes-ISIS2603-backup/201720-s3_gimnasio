@@ -70,7 +70,7 @@ public abstract class SubResource<R extends BaseEntity, S extends BaseEntity> ex
 
     public void remove(long idUsuario, long id) throws BusinessLogicException {
         S ent = find(idUsuario, id);
-        findAll(id).remove(ent);
+        findAll(idUsuario).remove(ent);
         remove(id);
     }
 }

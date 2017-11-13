@@ -1,13 +1,14 @@
+<br>
 <div class="col-md-7">
     <div class="container-fluid">
         <div class="panel-group">
-            <div class="panel panel-primary">
-                <div class="panel-heading"><label  id="createAtributo">editar atributo de calidad</label></div>
+            <div class="panel panel-primary" style="border-color: #122b40; color: black; background-color: #363636">
+                <div class="panel-heading" style="background-color: #122b40"><label  id="createAtributo">editar atributo de calidad</label></div>
                 <div class="panel-body">
                     <form ng-submit="createCalidad()" name="calidad">
                         <div class="form-group row">
                             <div class="form-group">
-                                <label for="atributoRegrecion" class="col-sm-3">Objetivo:</label>
+                                <label for="atributoRegrecion" class="col-sm-3" style="color: whitesmoke">Objetivo:</label>
                                 <select id="calidadRegresion" required ng-model="calidadRegresion" class="ng-pristine ng-valid ng-empty ng-touched">
                                     <option label="MANTENER" value=0>MANTENER</option>
                                     <option label="AUMENTAR" value=1>AUMENTAR</option>
@@ -19,7 +20,7 @@
                         <div class="form-group row">
                             <div class="form-group col-sm-12">
                                 <input ng-show="calidad.$valid" type="submit" value="Save" class="btn btn-success"/>
-                                <a class="btn btn-info" ui-sref="calidadsList">Cancel</a>
+                                <a class="btn btn-info" ui-sref="objetivo_detail">Cancel</a>
                             </div>
                         </div>
 

@@ -1,30 +1,28 @@
-<div class="col-md-10">
-    <div class="container-fluid">
-        <table class="table table-condensed" >
-            <thead>
-                <tr>
-                    <th><div class="h4" style="text-transform: uppercase">DESCRIPCION</div></th>    
-                    <th><div class="h4" style="text-transform: uppercase">UNIDAD</div></th>
-                    <th><div class="h4" style="text-transform: uppercase">OBJETIVO</div></th>
-                    <th><a class="btn btn-info" ui-sref="calidadCreate">
-                            <span class="glyphicon glyphicon-plus-sign"></span>nuevo
-                        </a></th>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="calidad in calidadsRecords">
-                    <td id="{{$index}}-Descripcion">{{calidad.descripcion}}</td>
-                    <td id="{{$index}}-explicacion">{{calidad.unidad}}</td> 
-                    <td id="{{$index}}-tipo" ng-if="calidad.regresion==0"><b>MANTENER</b></dt>
-                        <td id="{{$index}}-tipo" ng-if="calidad.regresion>0"><b>AUMENTAR</b></dt>
-                            <td id="{{$index}}-tipo" ng-if="calidad.regresion<0"><b>DISMINUIR</b></dt>
-                    <td id="{{$index}}-actions">
-                        <a class="btn btn-default btn-sm" ui-sref="calidadUpdate({calidadId: calidad.id})"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a class="btn btn-danger btn-sm" ui-sref="calidadDelete({calidadId: calidad.id})"><span class="glyphicon glyphicon-trash"></span></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="container-fluid">
+    <table class="table table-condensed" >
+        <thead>
+            <tr>
+                <th><div class="h4" style="text-transform: uppercase">DESCRIPCION</div></th>    
+                <th><div class="h4" style="text-transform: uppercase">UNIDAD</div></th>
+                <th><div class="h4" style="text-transform: uppercase">OBJETIVO</div></th>
+                <th><a class="btn btn-info" ui-sref="calidads_create">
+                        <span class="glyphicon glyphicon-plus-sign"></span>nuevo
+                    </a></th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="calidad in calidadsRecords">
+                <td id="{{$index}}-Descripcion">{{calidad.descripcion}}</td>
+                <td id="{{$index}}-explicacion">{{calidad.unidad}}</td> 
+                <td id="{{$index}}-tipo" ng-if="calidad.regresion === 0"><b>MANTENER</b></dt>
+                <td id="{{$index}}-tipo" ng-if="calidad.regresion > 0"><b>AUMENTAR</b></dt>
+                <td id="{{$index}}-tipo" ng-if="calidad.regresion < 0"><b>DISMINUIR</b></dt>
+                <td id="{{$index}}-actions">
+                    <a class="btn btn-default btn-sm" ui-sref="calidad_update({calidadId: calidad.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a class="btn btn-danger btn-sm" ui-sref="calidad_delete({calidadId: calidad.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

@@ -26,7 +26,7 @@
                     tipo: $scope.objetivoTipo.toUpperCase(),
                     descripcion: $scope.objetivoDescripcion
                 }).then(function (response) {
-                    $state.go('objetivosList', {objetivoId: response.data.id}, {reload: true});
+                    $state.go('objetivos_list', {objetivoId: response.data.id}, {reload: true});
                 });
             };
         }
@@ -38,7 +38,7 @@
             var idObjetivo = $state.params.objetivoId;
             $scope.deleteObjetivo = function () {
                 $http.delete(objetivosContext + '/' + idObjetivo, {}).then(function (response) {
-                    $state.go('objetivosList', {objetivoId: response.data.id}, {reload: true});
+                    $state.go('objetivos_list', {objetivoId: response.data.id}, {reload: true});
                 });
             };
         }
@@ -60,7 +60,7 @@
                     tipo: $scope.objetivoTipo.toUpperCase(),
                     descripcion: $scope.objetivoDescripcion
                 }).then(function (response) {
-                    $state.go('objetivosList', {objetivoId: response.data.id}, {reload: true});
+                    $state.go('objetivos_list', {objetivoId: response.data.id}, {reload: true});
                 });
             };
         }

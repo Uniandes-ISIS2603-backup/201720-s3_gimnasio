@@ -1,35 +1,35 @@
 <div class="col-md-7">
     <div class="container-fluid">
+        <br>
         <div class="panel-group">
-            <div class="panel panel-primary">
-                <div class="panel-heading"><label ng-if="!edit" id="createAuthor">nuevo Objetivo</label>
-                    <label ng-if="edit" id="editAuthor">editar objetivo</label></div>
-                <div class="panel-body">
-                    <form ng-submit="createObjetivo()" name="objetivo">
-                        <div class="form-group row">
-                            <div class="form-group">
-                                <label for="objetivoTipo" class="col-sm-3">Nombre:</label>
-                                <input id="objetivoTipo" required ng-model="objetivoTipo" class="col-sm-8"/>
+                <div class="panel panel-primary" style="border-color: #122b40; color: black; background-color: #363636">
+                    <div class="panel-heading" style="background-color: #122b40"><label ng-if="!edit" id="createAuthor">Nuevo Objetivo</label>
+                        <label ng-if="edit" id="editAuthor">Editar objetivo</label></div>
+                    <div class="panel-body">
+                        <form ng-submit="createObjetivo()" name="objetivo">
+                            <div class="form-group row">
+                                <div class="form-group">
+                                    <label for="objetivoTipo" class="col-sm-3" style="color: whitesmoke">Nombre:</label>
+                                    <input id="objetivoTipo" required ng-model="objetivoTipo" class="col-sm-8"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="form-group">
-                                <label for="objetivoDescripcion" class="col-sm-3">Descripcion:</label>
-                                <textarea id="objetivoDescripcion" required ng-model="objetivoDescripcion" class="col-sm-8"></textarea>
+                            <div class="form-group row">
+                                <div class="form-group">
+                                    <label for="objetivoDescripcion" class="col-sm-3" style="color: whitesmoke">Descripcion:</label>
+                                    <textarea id="objetivoDescripcion" required ng-model="objetivoDescripcion" class="col-sm-8"></textarea>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <div class="form-group col-sm-12">
-                                <input ng-show="objetivo.$valid" type="submit" value="Save" class="btn btn-success"/>
-                                <a class="btn btn-info" ui-sref="objetivosList">Cancel</a>
+                            <div class="form-group row">
+                                <div class="form-group col-sm-12">
+                                    <input ng-show="objetivo.$valid" type="submit" value="Save" class="btn btn-success"/>
+                                    <a class="btn btn-info" ui-sref="objetivos_list">Cancel</a>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
 

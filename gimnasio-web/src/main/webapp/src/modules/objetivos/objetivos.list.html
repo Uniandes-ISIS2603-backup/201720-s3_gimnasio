@@ -4,7 +4,7 @@
             <tr>
                 <th><div class="h4" style="text-transform: uppercase">Objetivo</div></th>    
                 <th><div class="h4" style="text-transform: uppercase">Descricion</div></th>
-                <th><a class="btn btn-info" ui-sref="objetivosCreate">
+                <th><a class="btn btn-info" ui-sref="objetivos_create">
                         <span class="glyphicon glyphicon-plus-sign"></span>nuevo
                     </a></th>
                 </th>
@@ -12,11 +12,11 @@
         </thead>
         <tbody>
             <tr ng-repeat="objetivo in objetivosRecords">
-                <td id="{{$index}}-Tipo"><b><a ui-sref="objetivoDetail({objetivoId: objetivo.id})">{{objetivo.tipo}}</a></b></td>
+                <td id="{{$index}}-Tipo"><b><a ui-sref="objetivo_detail({objetivoId: objetivo.id})">{{objetivo.tipo}}</a></b></td>
                 <td id="{{$index}}-Descripcion">{{objetivo.descripcion}}</td> 
                 <td id="{{$index}}-actions">
-                    <a class="btn btn-default btn-sm" ui-sref="objetivoUpdate({objetivoId: objetivo.id})"><span class="glyphicon glyphicon-edit"></span></a>
-                    <a class="btn btn-danger btn-sm" ui-sref="objetivoDelete({objetivoId: objetivo.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a class="btn btn-default btn-sm" ui-sref="objetivo_update({objetivoId: objetivo.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a class="btn btn-danger btn-sm" ui-sref="objetivo_delete({objetivoId: objetivo.id})"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
             </tr>
         </tbody>

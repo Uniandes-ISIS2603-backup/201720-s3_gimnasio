@@ -1,18 +1,12 @@
 (function (ng) {
-    // Definición:
     var mod = ng.module("objetivoModule", ['ui.router']);
-    //constantes:
-    mod.constant("calidadsContext", "api/calidads");
-    // Configuración:
     mod.config(['$stateProvider', '$urlRouterProvider',
-        
+
         function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/objetivos/';
-            
-            // default
+            var basePathCalidad = basePath+'/atributosDeCalidad/';
             $urlRouterProvider.otherwise("/objetivosList");
-            
-            // estados
+
             $stateProvider.state('objetivos', {
                 url: '/objetivos',
                 abstract: true,
@@ -21,42 +15,28 @@
                         templateUrl: basePath + 'objetivos.html',
                         controller: 'objetivoCtrl',
                         controllerAs: 'ctrl'
-                    }
-                }
-            }).state('objetivosList', {
+                    }}
+            }).state('objetivo', {
+                url: '/objetivos/{objetivoId:int}',
+                abstract: true,
+                parent:'objetivos',
+                param: {objetivoId: null},
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'objetivos.html',
+                        controller: 'objetivoCtrl',
+                        controllerAs: 'ctrl'
+                    }}
+            });
+
+            $stateProvider.state('objetivos_list', {
                 url: '/list',
                 parent: 'objetivos',
                 views: {
                     'listView': {
                         templateUrl: basePath + 'objetivos.list.html'
-                    }
-                }
-            }).state('objetivoDetail',{
-                url: '/{objetivoId:int}/detail',
-                parent: 'objetivos',
-                param : {
-                    objetivoId:null
-                },
-                views: {
-                    'detailView':{
-                        templateUrl: basePath + 'objetivos.detail.html',
-                        controller: 'objetivoCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
-            }).state('objetivoDelete', {
-                url: '/delete/{objetivoId:int}',
-                parent: 'objetivos',
-                param: {
-                    objetivoId: null
-                },
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'objetivos.delete.html',
-                        controller: 'objetivoDeleteCtrl'
-                    }
-                }
-            }).state('objetivosCreate', {
+                    }}
+            }).state('objetivos_create', {
                 url: '/create',
                 parent: 'objetivos',
                 views: {
@@ -65,12 +45,35 @@
                         controller: 'objetivoNewCtrl'
                     }
                 }
-            }).state('objetivoUpdate', {
-                url: '/update/{objetivoId:int}',
-                parent: 'objetivos',
-                param: {
-                    objetivoId: null
-                },
+            });
+
+            $stateProvider.state('objetivo_detail', {
+                url: '/detail',
+                parent: 'objetivo',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'objetivos.detail.html',
+                        controller: 'objetivoCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'listView': {
+                        templateUrl: basePathCalidad+ 'calidad.list.html',
+                        controller: 'calidadCtrl',
+                        controllerAs: 'calidadCtrl'
+                    }
+                }
+            }).state('objetivo_delete', {
+                url: '/delete',
+                parent: 'objetivo',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'objetivos.delete.html',
+                        controller: 'objetivoDeleteCtrl'
+                    }
+                }
+            }).state('objetivo_update', {
+                url: '/update',
+                parent: 'objetivo',
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'objetivos.new.html',

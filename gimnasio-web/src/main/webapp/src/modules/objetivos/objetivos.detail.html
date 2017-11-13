@@ -1,27 +1,32 @@
-<div class="col-md-10">
-    <dl>     
-        <dt><h3>{{currentObjetivo.tipo}}</h3></dt>
-        <dt style="text-align: left">descripcion:</dt>
-        <dd>{{currentObjetivo.descripcion}}</dd>
-    </dl>
-    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mr-3" role="group" aria-label="First group">
-            <a class="btn btn-link" style="text-align: right" ui-sref="calidadsList({objetivoId: currentObjetivo.id})">atributos de calidad</a>
-        </div>
+<div class="container-fluid">
+    <div class="panel-info col-md-4" style="border-color: whitesmoke; border-width: medium">
+        <dl>     
+            <dt><div class="h3">{{currentObjetivo.tipo}}</div></dt>
+            <dt></dt>
+            <dt style="text-align: left">Descripcion:</dt>
+            <dd style="border-color: white">{{currentObjetivo.descripcion}}</dd>
+        </dl>
     </div>
-    <div class="panel-info">
-        <h5 style="text-align: left"><b>ejercicios:</b></h5>
-        <div class="container-fluid">
-            <ul class="list-group-item-info"  style="text-align: left">
-                <li ng-repeat="ejercicio in ejerciciosRecords">{{ejercicio.descricpion}}</li>
-            </ul>
-        </div>
-        <h5 style="text-align: left"><b>usuarios:</b></h5>
-        <div class="container-fluid">
-            <ul class="list-group-item-success"  style="text-align: left">
-                <li ng-repeat="usuario in usuariosRecosrds">{{usuario.nombre}}</li>
-            </ul>
+    <br>
+    <div class="panel-group col-md-6">
+        <div class="panel panel-primary" style="background-color: #212021; border-color: gray; height: 170px">
+            <div class="panel-heading" style="background-color: gray; height: 20%"><label>El objetivo es usado por:</label></div>
+            <div class="panel-body">
+                <div class="col-sm-1" style="text-align: center; width: 50%">
+                    <h5 style="text-align: left"><b>Ejercicios:</b></h5>
+                    <ul class="list-group-item-text"  style="text-align: left;height: 70px; overflow-y: scroll; background: #545354">
+                        <li ng-repeat="ejercicio in ejerciciosRecords">{{ejercicio.descricpion}}</li>
+                    </ul>
+                </div>
+                <div class="col-sm-1" style="text-align: right;width: 50%">
+                    <h5 style="text-align: left"><b>Usuarios:</b></h5>
+                    <ul class="list-group-item-text"  style="text-align: left; height: 70px; overflow-y: scroll; background: #545354">
+                        <li ng-repeat="usuario in usuariosRecosrds">{{usuario.nombre}}</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<p style="text-align: left"><b>Estos son los atributos que se aspiran mejorar:</b></p>
 

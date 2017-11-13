@@ -24,7 +24,7 @@
             var idCalidad = $state.params.calidadId;
             $scope.deleteCalidad = function () {
                 $http.delete(calidadContext + '/' + idCalidad, {}).then(function (response) {
-                    $state.go('calidadsList', {calidadId: response.data.id}, {reload: true});
+                    $state.go('objetivo_detail', {calidadId: response.data.id}, {reload: true});
                 });
             };
         }
@@ -43,7 +43,7 @@
                 $http.post(calidadContext + '/' + $scope.calidadMedida, {
                     regresion: $scope.calidadRegresion
                 }).then(function (response) {
-                    $state.go('calidadsList', {calidadId: response.data.id}, {reload: true});
+                    $state.go('objetivo_detail', {calidadId: response.data.id}, {reload: true});
                 });
             };
         }
@@ -63,7 +63,7 @@
                 $http.put(calidadContext + "/" + idCalidad, {
                     regresion: $scope.calidadRegresion
                 }).then(function (response) {
-                    $state.go('calidadsList', {calidadId: response.data.id}, {reload: true});
+                    $state.go('objetivo_detail', {calidadId: response.data.id}, {reload: true});
                 });
             };
         }
