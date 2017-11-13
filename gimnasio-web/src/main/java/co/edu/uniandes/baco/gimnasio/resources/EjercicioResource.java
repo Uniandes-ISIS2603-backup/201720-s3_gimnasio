@@ -30,60 +30,62 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EjercicioResource {
+
     private EjercicioLogic logic;
 
     public EjercicioResource() {
         //constructor para la parte web
     }
 
-     @Inject public EjercicioResource(EjercicioLogic logic) {
+    @Inject
+    public EjercicioResource(EjercicioLogic logic) {
         this.logic = logic;
     }
-     
-     @POST
-    public EjercicioDTO post(EjercicioDTO nuevo) throws BusinessLogicException{
+
+    @POST
+    public EjercicioDTO post(EjercicioDTO nuevo) throws BusinessLogicException {
         return new EjercicioDTO(logic.create(nuevo.toEntity()));
     }
-    
+
     @GET
-    public List<EjercicioDetailDTO> getAll() throws BusinessLogicException{
-        return EjercicioDetailDTO.listDetailDTO(logic.findAll());
+    public List<EjercicioDetailDTO> getAll() throws BusinessLogicException {
+        return EjercicioDetailDTO.listDetailDTO(logic.findAll((o1, o2) -> o1.getDescripcion().compareTo(o2.getDescripcion())));
     }
-    
+
     @GET
-    @Path("{"+EJERCICIOID+": \\d+}")
-    public EjercicioDetailDTO get(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
+    @Path("{" + EJERCICIOID + ": \\d+}")
+    public EjercicioDetailDTO get(@PathParam(EJERCICIOID) long id) throws BusinessLogicException {
         return new EjercicioDetailDTO(logic.find(id));
     }
-    
+
     @PUT
-    @Path("{"+EJERCICIOID+": \\d+}")
-    public EjercicioDTO put(@PathParam(EJERCICIOID)long id, EjercicioDTO nuevo) throws BusinessLogicException{
-        EjercicioEntity entity=nuevo.toEntity();
+    @Path("{" + EJERCICIOID + ": \\d+}")
+    public EjercicioDTO put(@PathParam(EJERCICIOID) long id, EjercicioDTO nuevo) throws BusinessLogicException {
+        EjercicioEntity entity = nuevo.toEntity();
         entity.setId(id);
         return new EjercicioDTO(logic.update(entity));
     }
-    
+
     @DELETE
-    @Path("{"+EJERCICIOID+": \\d+}")
-    public void delete(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
+    @Path("{" + EJERCICIOID + ": \\d+}")
+    public void delete(@PathParam(EJERCICIOID) long id) throws BusinessLogicException {
         logic.remove(id);
     }
-    
-    @Path("{"+EJERCICIOID+": \\d+}/"+OBJETIVO)
-    public Class<EjercicioObjetivoResource> getObjetivo(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
+
+    @Path("{" + EJERCICIOID + ": \\d+}/" + OBJETIVO)
+    public Class<EjercicioObjetivoResource> getObjetivo(@PathParam(EJERCICIOID) long id) throws BusinessLogicException {
         logic.find(id);
         return EjercicioObjetivoResource.class;
     }
-    
-    @Path("{"+EJERCICIOID+": \\d+}/"+MAQUINA)
-    public Class<EjercicioMaquinaResource> getMaquina(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
+
+    @Path("{" + EJERCICIOID + ": \\d+}/" + MAQUINA)
+    public Class<EjercicioMaquinaResource> getMaquina(@PathParam(EJERCICIOID) long id) throws BusinessLogicException {
         logic.find(id);
         return EjercicioMaquinaResource.class;
     }
-    
-    @Path("{"+EJERCICIOID+": \\d+}/"+TIPOMEDIDA)
-    public Class<EjercicioTipoMedidaResource> getTipoMedida(@PathParam(EJERCICIOID) long id) throws BusinessLogicException{
+
+    @Path("{" + EJERCICIOID + ": \\d+}/" + TIPOMEDIDA)
+    public Class<EjercicioTipoMedidaResource> getTipoMedida(@PathParam(EJERCICIOID) long id) throws BusinessLogicException {
         logic.find(id);
         return EjercicioTipoMedidaResource.class;
     }

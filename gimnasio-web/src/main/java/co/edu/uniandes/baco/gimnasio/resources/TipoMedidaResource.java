@@ -55,7 +55,7 @@ public class TipoMedidaResource {
      */
     @GET
     public List<TipoMedidaDTO> getAll() throws BusinessLogicException {
-        return TipoMedidaDTO.listDTO(logic.findAll());
+        return TipoMedidaDTO.listDTO(logic.findAll((o1,o2)->o1.getTipoMedida().compareTo(o2.getTipoMedida())));
     }
     /**
      * obtiene un tipo de medida especific

@@ -9,6 +9,7 @@ import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -100,5 +101,11 @@ public abstract class BaseLogic<T extends BaseEntity> {
      */
     public List<T> findAll() throws BusinessLogicException {
         return persistence.findAll();
+    }
+    
+    public List<T> findAll(Comparator<T> comparator) throws BusinessLogicException {
+        List<T> ans =persistence.findAll();
+        ans.sort(comparator);
+        return ans;
     }
 }

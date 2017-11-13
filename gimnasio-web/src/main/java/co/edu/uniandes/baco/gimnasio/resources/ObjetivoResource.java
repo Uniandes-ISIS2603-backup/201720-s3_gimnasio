@@ -50,7 +50,7 @@ public class ObjetivoResource{
     
     @GET
     public List<ObjetivoDetailDTO> getAll() throws BusinessLogicException{
-        return ObjetivoDetailDTO.listDetailDTO(logic.findAll());
+        return ObjetivoDetailDTO.listDetailDTO(logic.findAll((o1, o2) -> o1.getTipo().compareTo(o2.getTipo())));
     }
     
     @GET
