@@ -9,7 +9,6 @@ import co.edu.uniandes.baco.gimnasio.entities.*;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import co.edu.uniandes.baco.gimnasio.persistence.*;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
