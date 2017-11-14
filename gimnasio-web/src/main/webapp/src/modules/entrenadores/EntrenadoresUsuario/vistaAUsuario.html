@@ -5,24 +5,27 @@
 <div> <label> genero:</label> {{usuarioActual.genero}}</div>
 <div> <label> fecha de nacimiento: </label> {{usuarioActual.fechaDeNacimiento}}</div>
 
-<div><h1>histrorial:</h1></div>
+<div><h1>Historial:</h1></div>
 
 <table class="table">
     <thead>
       <tr>
         <th>id</th>
         <th>fecha</th>
+        <th> <button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref=""><span class="glyphicon glyphicon-plus"></span> Crear estado</button></th>
       </tr>
     </thead>
     <tbody ng-repeat="x in usuarioActual.estados">
       <tr>
         <td>{{x.id}}</td>
         <td>{{x.fecha}}</td>
+        <td>
+                     <button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref=""><span class="glyphicon glyphicon-check"></span> Ver detalles</button>
+        </td>
       </tr>
     </tbody>
   </table>
-
-<div><h1>objetivos:</h1></div>
+<div><h1>Objetivos:</h1></div>
  <table class="table">
     <thead>
       <tr>

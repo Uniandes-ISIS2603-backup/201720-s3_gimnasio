@@ -78,7 +78,7 @@
             }
             
             ).state('vistaUsuarioEntrenador',{
-                url:'/{Enid:int}/usuarios/{Uid:int}',
+                url:'entrenadores/{Enid:int}/usuarios/{Uid:int}',
                 param:{
                  Enid:null,
                  Uid:null
