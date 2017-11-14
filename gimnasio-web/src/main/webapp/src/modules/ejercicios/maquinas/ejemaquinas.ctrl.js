@@ -7,7 +7,9 @@
             var ejemaquinaContext = ejemaquinasContext + '/' + $state.params.ejercicioId + '/' + "maquinas";
 
             $http.get(ejemaquinaContext).then(function (response) {
-                $scope.ejemaquinasRecords = response.data;
+                $scope.ejemaquinasRecords = response.data.sort(function (a, b) {
+                    return a.descripcion.localeCompare(b.descripcion);
+                });
             });
         }
     ]);
@@ -33,12 +35,14 @@
 
                 $http.get(tipoEjemaquinaContext).then(function (response) {
                     $scope.ejemaquinasRecords = response.data.filter(function (c) {
-                        var encontrado=false;
-                        for(var i=0;i<list.length;i++){
-                            if(c.id === list[i].id)
-                                encontrado=true;
+                        var encontrado = false;
+                        for (var i = 0; i < list.length; i++) {
+                            if (c.id === list[i].id)
+                                encontrado = true;
                         }
                         return !encontrado;
+                    }).sort(function (a, b) {
+                        return a.descripcion.localeCompare(b.descripcion);
                     });
                 });
             });
