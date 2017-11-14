@@ -102,10 +102,4 @@ public abstract class BaseLogic<T extends BaseEntity> {
     public List<T> findAll() throws BusinessLogicException {
         return persistence.findAll();
     }
-    
-    public List<T> findAll(Comparator<T> comparator) throws BusinessLogicException {
-        List<T> ans =persistence.findAll();
-        ans.sort(comparator);
-        return ans;
-    }
 }

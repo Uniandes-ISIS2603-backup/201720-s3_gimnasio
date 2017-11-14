@@ -44,12 +44,6 @@ public abstract class SubResource<R extends BaseEntity, S extends BaseEntity> ex
     public List<S> findAll(long id) throws BusinessLogicException {
         return list.apply(logic.find(id));
     }
-    
-     public List<S> findAll(long id, Comparator<S> comparator) throws BusinessLogicException {
-        List<S> ans= findAll(id);
-        ans.sort(comparator);
-        return ans;
-    }
 
     public S find(long id, long idSub) throws BusinessLogicException {
         try {

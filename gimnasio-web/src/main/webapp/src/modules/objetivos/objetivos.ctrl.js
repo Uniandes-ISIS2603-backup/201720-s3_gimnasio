@@ -4,13 +4,13 @@
     mod.controller('objetivoCtrl', ['$scope', '$http', 'objetivosContext', '$state',
         function ($scope, $http, objetivosContext, $state) {
             $http.get(objetivosContext).then(function (response) {
-                $scope.objetivosRecords = response.data;
+                $scope.objetivosRecords = response.data.sort(function(a, b){return a.tipo.localeCompare(b.tipo);});
             });
 
             if ($state.params.objetivoId !== undefined && $state.params.objetivoId !== null) {
                 $http.get(objetivosContext + '/' + $state.params.objetivoId).then(function (response) {
                     $scope.currentObjetivo = response.data;
-                    $scope.atributosDeCalidadRecords = response.data.calidad;
+                    $scope.atributosDeCalidadRecords = response.data.calidad.sort(function(a, b){return a.descripcion.localeCompare(b.descripcion);});
                     $scope.ejerciciosRecords = response.data.ejercicios;
                     $scope.usuariosRecosrds = response.data.usuarios;
                 });

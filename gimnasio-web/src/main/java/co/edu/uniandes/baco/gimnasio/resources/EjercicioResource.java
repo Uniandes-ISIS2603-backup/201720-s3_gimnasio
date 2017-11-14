@@ -49,7 +49,7 @@ public class EjercicioResource {
 
     @GET
     public List<EjercicioDetailDTO> getAll() throws BusinessLogicException {
-        return EjercicioDetailDTO.listDetailDTO(logic.findAll((o1, o2) -> o1.getDescripcion().compareTo(o2.getDescripcion())));
+        return EjercicioDetailDTO.listDetailDTO(logic.findAll());
     }
 
     @GET

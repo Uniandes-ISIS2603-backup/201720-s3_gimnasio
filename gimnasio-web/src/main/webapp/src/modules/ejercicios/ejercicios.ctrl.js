@@ -4,7 +4,7 @@
     mod.controller('ejercicioCtrl', ['$scope', '$http', 'ejerciciosContext', '$state',
         function ($scope, $http, ejerciciosContext, $state) {
             $http.get(ejerciciosContext).then(function (response) {
-                $scope.ejerciciosRecords = response.data;
+                $scope.ejerciciosRecords = response.data.sort(function(a, b){return a.descricpion.localeCompare(b.descricpion);});
             });
 
             if ($state.params.ejercicioId !== undefined && $state.params.ejercicioId !== null) {
