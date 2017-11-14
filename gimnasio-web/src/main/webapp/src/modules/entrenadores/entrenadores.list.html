@@ -1,9 +1,10 @@
 <!--Esta pagina ha sido desarrollada por Mateo Sicard 
     m.sicard10 201512474  -->
+<br></br>
 <div>
     <div ng-repeat="entrenador in entrenadorRecords" style="display: inline-block ; width: 30%;height: 30%;" >
-        <div class ="thumbnail" style=" background: lightskyblue;width: 90%; border-color: orange; border-width: 5px; border-style: double">
-                <div class="row">
+        <div class ="thumbnail" style=" color: black; background: lightgray;width: 90%; border-color: black; border-width: 7px; border-style: double">
+            <div class="row">
                     <label>Id:</label> 
                     <p id="{{$index}}-id">{{entrenador.id}}</p>
                 </div>
@@ -20,14 +21,14 @@
                     <p id="{{$index}}-fechaNacimiento">{{entrenador.fechaNacimiento}}</p>
                 </div>
                 <div class="row">
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(entrenador)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="entrenadorEdit({entId : entrenador.id})"><span class="glyphicon glyphicon-pencil"></span> editar</button>
-                    <button id="{{$index}}-usuarios" class="btn btn-default btn-sm" ui-sref="EntrenadorUsuarios({Eid : entrenador.id, e:entrenador })"><span class="glyphicon glyphicon-check"></span> Ver usuarios</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-danger" ng-click="ctrl.deleteRecord(entrenador)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-info" ui-sref="entrenadorEdit({entId : entrenador.id})"><span class="glyphicon glyphicon-pencil"></span> editar</button>
+                    <button id="{{$index}}-usuarios" class="btn btn-success" ui-sref="EntrenadorUsuarios({Eid : entrenador.id, e:entrenador })"><span class="glyphicon glyphicon-check"></span> Ver usuarios</button>
                 </div>
             </div>
         </div>
      <div>
-         <button id="createEntrenador-btn" class="btn btn-default btn-sm" ui-sref="createEntrenador"><span class="glyphicon glyphicon-plus-sign"></span> Crear Entrenador</button>
+         <button id="createEntrenador-btn" class="btn btn-info" ui-sref="createEntrenador" style=" margin-bottom: 30px"><span class="glyphicon glyphicon-plus-sign"></span> Crear Entrenador</button>
      </div>
 </div>
         
