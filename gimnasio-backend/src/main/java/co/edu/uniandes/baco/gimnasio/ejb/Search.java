@@ -9,7 +9,6 @@ import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.logging.Level;
