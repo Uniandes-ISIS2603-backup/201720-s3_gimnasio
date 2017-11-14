@@ -1,20 +1,15 @@
 (function (ng) {
-    // Definición:
     var mod = ng.module("ejeobjetivoModule", ['ui.router', 'ejercicioModule']);
-    // Configuración:
     mod.config(['$stateProvider', '$urlRouterProvider',
 
         function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/ejercicios/objetivos/';
-
-            // default
             $urlRouterProvider.otherwise("/ejeobjetivosList");
 
-            // estados
             $stateProvider.state('ejeobjetivos', {
                 url: '/objetivos',
                 abstract: true,
-                parent:'ejercicio_detail',
+                parent: 'ejercicio_detail',
                 param: {
                     ejercicioId: null
                 },
@@ -29,11 +24,11 @@
                 url: '/list',
                 parent: 'ejeobjetivos',
                 views: {
-                    'detailView':{
+                    'detailView': {
                         templateUrl: basePath + 'ejeobjetivos.list.html'
                     }
                 }
-            }).state('ejeobjetivosCreate',{
+            }).state('ejeobjetivosCreate', {
                 url: '/create',
                 parent: 'ejeobjetivos',
                 views: {
