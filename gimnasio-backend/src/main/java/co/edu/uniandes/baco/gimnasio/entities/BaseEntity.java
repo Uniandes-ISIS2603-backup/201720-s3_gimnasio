@@ -40,7 +40,7 @@ public abstract class BaseEntity implements Serializable {
         if (obj == null) {
             return false;
         }
-        if (this.getClass() != obj.getClass()) {
+        if (!(obj instanceof BaseEntity)) {
             return false;
         }
         BaseEntity mc = (BaseEntity) obj;
