@@ -28,8 +28,19 @@
         function ($scope, $http, ejeobjetivosContext,tipoEjeobjetivoContext, $state, $rootScope) {
             var ejeobjetivoContext=ejeobjetivosContext+ '/' + $state.params.ejercicioId+ '/'+"objetivos";
             
-            $http.get(tipoEjeobjetivoContext).then(function (response) {
-                $scope.ejeobjetivosRecords = response.data;
+            $http.get(ejeobjetivoContext).then(function (response) {
+                var list = response.data;
+
+                $http.get(tipoEjeobjetivoContext).then(function (response) {
+                    $scope.ejeobjetivosRecords = response.data.filter(function (c) {
+                        var encontrado=false;
+                        for(var i=0;i<list.length;i++){
+                            if(c.id === list[i].id)
+                                encontrado=true;
+                        }
+                        return !encontrado;
+                    });
+                });
             });
             
             $scope.createEjeobjetivo = function () {

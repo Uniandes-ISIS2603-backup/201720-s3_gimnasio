@@ -34,9 +34,12 @@ public class Connection <R extends BaseEntity, S extends BaseEntity> extends Sea
         try {
             S s = clase.newInstance();
             s.setId(idSub);
-            if(find(id, idSub)!=null)
-                throw new BusinessLogicException("ya existe la relaccion");
-            findAll(id).add(s);
+            List<S> lista = findAll(id);
+            int ind = lista.indexOf(s);
+            if (ind >= 0) {
+                throw new BusinessLogicException("la conexion ya existe");
+            }
+            lista.add(s);
             return  find(id, idSub);
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);

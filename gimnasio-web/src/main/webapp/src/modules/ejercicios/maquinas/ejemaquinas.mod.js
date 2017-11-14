@@ -1,24 +1,20 @@
 (function (ng) {
-    // Definición:
     var mod = ng.module("ejemaquinaModule", ['ui.router', 'ejercicioModule']);
-    // Configuración:
     mod.config(['$stateProvider', '$urlRouterProvider',
 
         function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/ejercicios/maquinas/';
-
-            // default
             $urlRouterProvider.otherwise("/ejemaquinasList");
 
-            // estados
             $stateProvider.state('ejemaquinas', {
-                url: '/ejercicios/{ejercicioId:int}/atributosDeEjeejemaquina',
+                url: '/maquinas',
                 abstract: true,
+                parent:'ejercicio_detail',
                 param: {
                     ejercicioId: null
                 },
                 views: {
-                    'mainView': {
+                    'mainView2': {
                         templateUrl: basePath + 'ejemaquinas.html',
                         controller: 'ejemaquinaCtrl',
                         controllerAs: 'ctrl'
@@ -28,16 +24,21 @@
                 url: '/list',
                 parent: 'ejemaquinas',
                 views: {
-                    'detailView': {
-                        templateUrl: basePath + 'ejemaquinas.new.html',
-                        controller: 'ejemaquinaNewCtrl'
-                    },
                     'listView': {
                         templateUrl: basePath + 'ejemaquinas.list.html'
                     }
                 }
+            }).state('ejemaquinasCreate',{
+                url: '/create',
+                parent: 'ejemaquinas',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'ejemaquinas.new.html',
+                        controller: 'ejemaquinaNewCtrl'
+                    }
+                }
             }).state('ejemaquinaDelete', {
-                url: '/delete/{ejemaquinaId:int}',
+                url: '/{ejemaquinaId:int}/delete',
                 parent: 'ejemaquinas',
                 param: {
                     ejemaquinaId: null

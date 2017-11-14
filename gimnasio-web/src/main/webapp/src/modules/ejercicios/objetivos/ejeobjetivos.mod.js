@@ -14,11 +14,12 @@
             $stateProvider.state('ejeobjetivos', {
                 url: '/ejercicios/{ejercicioId:int}/atributosDeEjeejeobjetivo',
                 abstract: true,
+                parent:'ejercicio_detail',
                 param: {
                     ejercicioId: null
                 },
                 views: {
-                    'mainView': {
+                    'mainView2': {
                         templateUrl: basePath + 'ejeobjetivos.html',
                         controller: 'ejeobjetivoCtrl',
                         controllerAs: 'ctrl'
@@ -28,12 +29,17 @@
                 url: '/list',
                 parent: 'ejeobjetivos',
                 views: {
+                    'detailView':{
+                        templateUrl: basePath + 'ejeobjetivos.list.html'
+                    }
+                }
+            }).state('ejeobjetivosCreate',{
+                url: '/create',
+                parent: 'ejeobjetivos',
+                views: {
                     'detailView': {
                         templateUrl: basePath + 'ejeobjetivos.new.html',
                         controller: 'ejeobjetivoNewCtrl'
-                    },
-                    'listView': {
-                        templateUrl: basePath + 'ejeobjetivos.list.html'
                     }
                 }
             }).state('ejeobjetivoDelete', {

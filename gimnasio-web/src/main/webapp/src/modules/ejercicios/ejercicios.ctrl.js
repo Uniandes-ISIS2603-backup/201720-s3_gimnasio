@@ -32,7 +32,7 @@
             $rootScope.edit = false;
             $scope.createEjercicio = function () {
                 $http.post(ejerciciosContext, {
-                    descricpion: $scope.ejercicioDescricpion.toUpperCase(),
+                    descricpion: $scope.ejercicioDescricpion,
                     explicacion: $scope.ejercicioExplicacion,
                     tipo: $scope.ejercicioTipo
                 }).then(function (response) {
@@ -56,7 +56,7 @@
 
             $scope.createEjercicio = function () {
                 $http.put(ejerciciosContext + "/" + idEjercicio, {
-                    descricpion: $scope.ejercicioDescricpion.toUpperCase(),
+                    descricpion: $scope.ejercicioDescricpion,
                     explicacion: $scope.ejercicioExplicacion,
                     tipo: $scope.ejercicioTipo
                 }).then(function (response) {

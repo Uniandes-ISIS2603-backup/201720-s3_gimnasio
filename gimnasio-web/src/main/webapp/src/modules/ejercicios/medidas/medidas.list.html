@@ -1,14 +1,22 @@
-<div class="col-md-3">
-    <div class="container-fluid">
-        <table class="table table-condensed" >
+<div class="container-fluid" >
+    <div class="container-fluid" style="height: 170px; overflow-y: scroll; margin-bottom:10px; margin-top: 10px">
+        <table class="table table-condensed" style="border-color: black">
             <tbody>
-                <tr ng-repeat="medida in medidasRecords">
-                    <td id="{{$index}}-Descripcion">{{medida.descripcion}}</td>
+                <tr ng-repeat="ejemedida in ejemedidasRecords">
+                    <td id="{{$index}}-Descripcion">{{ejemedida.descripcion}}</td>
                     <td id="{{$index}}-actions">
-                        <a class="btn btn-danger btn-sm" ui-sref="medidaDelete({medidaId: medida.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a class="btn btn-danger btn-sm" ui-sref="ejemedidaDelete({ejemedidaId: ejemedida.id})"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="btn-group">
+        <div class="btn-block">
+            <a class="btn btn-info" ui-sref="ejemedidasCreate">
+                <span class="glyphicon glyphicon-plus-sign"></span>asociar otra medida al ejercicio
+            </a>
+        </div>
+        <br>
     </div>
 </div>

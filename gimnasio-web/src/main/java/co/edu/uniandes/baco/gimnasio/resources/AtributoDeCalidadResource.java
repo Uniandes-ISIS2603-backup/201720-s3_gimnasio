@@ -48,7 +48,9 @@ public class AtributoDeCalidadResource {
     
     @GET
     public List<AtributoDeCalidadDetailDTO> getAll(@PathParam(OBJETIVOID) Long idObjetivo) throws BusinessLogicException {
-        return AtributoDeCalidadDetailDTO.listDTO(logic.findAll(idObjetivo));
+        List<AtributoDeCalidadDetailDTO> ans= AtributoDeCalidadDetailDTO.listDTO(logic.findAll(idObjetivo));
+        ans.sort((o1, o2) -> o1.getDescripcion().compareTo(o2.getDescripcion()));
+        return ans;
     }
     
     @GET

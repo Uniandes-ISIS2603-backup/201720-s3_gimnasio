@@ -1,6 +1,6 @@
-<div class="col-md-3">
-    <div class="container-fluid">
-        <table class="table table-condensed" >
+<div class="container-fluid" >
+    <div class="container-fluid" style="height: 170px; overflow-y: scroll; margin-bottom:10px; margin-top: 10px">
+        <table class="table table-condensed" style="border-color: black">
             <tbody>
                 <tr ng-repeat="ejemaquina in ejemaquinasRecords">
                     <td id="{{$index}}-Descripcion">{{ejemaquina.descripcion}}</td>
@@ -10,5 +10,13 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="btn-group">
+        <div class="btn-block">
+            <a class="btn btn-info" ui-sref="ejemaquinasCreate">
+                <span class="glyphicon glyphicon-plus-sign"></span>asociar otra maquina al ejercicio
+            </a>
+        </div>
+        <br>
     </div>
 </div>
