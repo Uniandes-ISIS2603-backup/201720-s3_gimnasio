@@ -12,7 +12,7 @@
 
             // estados
             $stateProvider.state('ejeobjetivos', {
-                url: '/ejercicios/{ejercicioId:int}/atributosDeEjeejeobjetivo',
+                url: '/objetivos',
                 abstract: true,
                 parent:'ejercicio_detail',
                 param: {

@@ -1,18 +1,5 @@
 <h3>{{currentEjercicio.descricpion}}</h3>
 <div class="container-fluid">
-    <div class="container-fluid col-md-5">
-        <iframe class="youtube-player" type="text/html" width="100%" height="300px" src="http://www.youtube.com/embed/lD_gfTofg4A" frameborder="0"></iframe>
-        <div class="row">
-            <ul class="nav nav-tabs" style="background-color: #212121; border-width: thin; border-color: #204d74">
-                <li><a ui-sref="ejemaquinasList({ejercicioId: currentEjercicio.id})">Maquinas</a></li>
-                <li><a ui-sref="ejeobjetivosList({ejercicioId: currentEjercicio.id})">Objetivos</a></li>
-                <li><a ui-sref="ejemedidasList({ejercicioId: currentEjercicio.id})">Partes Del Cuerpo</a></li>
-            </ul>
-            <div class="container-fluid" style="background-color: gray">
-                <div  ui-view="mainView2" style="color: black"></div>
-            </div>
-        </div>
-    </div>
     <div class="panel-group col-md-7">
         <div class="panel-info" style="border-color: whitesmoke; border-width: medium; text-align: left">
             <dl>     
@@ -34,13 +21,17 @@
             <br>
         </div>
         <br>
-        <div class="panel panel-primary" style="background-color: #212021; border-color: gray; height: 170px">
-            <div class="panel-heading" style="background-color: gray; height: 20%; text-align: left"><label>Las instancias especificas del ejercicio son:</label></div>
-            <div class="panel-body">
-                <div class="col-sm-1" style="text-align: right;width: 100%">
-                    <ul class="list-group-item-text"  style="text-align: left; height: 100%; overflow-y: scroll; background: #545354">
-                        <li ng-repeat="instancia in ejercicioInstanciaRecords">{{instancia.series}} series = {{instancia.repeticionesPorParticion}} veces cada {{instancia.tamanioParticiones}} dias({{instancia.duracion}} min)</li>
-                    </ul>
+    </div>
+    <div class="container-fluid col-md-5">
+        <div class="row">
+            <ul class="nav nav-tabs" style="background-color: #212121; border-width: thin; border-color: #204d74">
+                <li><a ui-sref="ejercicio_detail">Explicacion</a></li>
+                <li><a ui-sref="ejemaquinasList({ejercicioId: currentEjercicio.id})">Maquinas</a></li>
+                <li><a ui-sref="ejeobjetivosList({ejercicioId: currentEjercicio.id})">Objetivos</a></li>
+                <li><a ui-sref="ejemedidasList({ejercicioId: currentEjercicio.id})">Partes Del Cuerpo</a></li>
+            </ul>
+            <div class="container-fluid" style="background-color: gray">
+                <div  ui-view="mainView2" style="color: black"><iframe class="youtube-player" type="text/html" width="100%" height="300px" src="http://www.youtube.com/embed/lD_gfTofg4A" frameborder="0"></iframe>
                 </div>
             </div>
         </div>
