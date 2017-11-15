@@ -55,8 +55,7 @@ public abstract class SubResource<R extends BaseEntity, S extends BaseEntity> ex
             }
             return lista.get(ind);
         } catch (InstantiationException | IllegalAccessException ex) {
-            Logger.getLogger(SubResource.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            throw new BusinessLogicException(ex.getMessage());
         }
     }
 

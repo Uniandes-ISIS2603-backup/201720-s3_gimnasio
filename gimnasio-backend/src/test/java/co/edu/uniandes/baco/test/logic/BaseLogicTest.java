@@ -174,6 +174,7 @@ public class BaseLogicTest {
             }        
             ObjetivoEntity nuevo= create();
             nuevo.setId(entity);
+            assertNull(baseLogic.find(entity));
             baseLogic.update(nuevo);
             fail("debe dar error");
         } catch (BusinessLogicException ex) {

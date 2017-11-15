@@ -156,7 +156,7 @@ public class SubResourceTest {
     public void deleteEstadoTest() {
         try {
             EstadoEntity entity = data.get(0);
-            baseLogic.remove(entity.getId());
+            baseLogic.remove(entity.getUsuario().getId(),entity.getId());
             EstadoEntity deleted = em.find(EstadoEntity.class, entity.getId());
             assertNull(deleted);
         } catch (BusinessLogicException ex) {
