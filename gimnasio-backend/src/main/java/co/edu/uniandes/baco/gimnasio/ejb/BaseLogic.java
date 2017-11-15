@@ -9,7 +9,11 @@ import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -73,10 +77,24 @@ public abstract class BaseLogic<T extends BaseEntity> {
      * @throws BusinessLogicException
      */
     public T update(T entity) throws BusinessLogicException {
-        if (persistence.find(entity.getId()) == null) {
-            throw new NoExisteException(entity.getId());
+        try {
+            T old = persistence.find(entity.getId());
+            if (old == null) {
+                throw new NoExisteException(entity.getId());
+            }
+            Logger.getLogger(BaseLogic.class.getSimpleName()).log(Level.INFO, "esta");
+            for (Field field : entity.getClass().getDeclaredFields()) {
+                if (field.isAnnotationPresent(ManyToMany.class)) {
+                    Logger.getLogger(BaseLogic.class.getSimpleName()).log(Level.INFO, "entro");
+                    field.setAccessible(true);
+                    field.set(entity, field.get(old));
+                }
+            }
+            return persistence.update(entity);
+        } catch (IllegalArgumentException | IllegalAccessException ex) {
+            Logger.getLogger(BaseLogic.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-        return persistence.update(entity);
     }
 
     /**

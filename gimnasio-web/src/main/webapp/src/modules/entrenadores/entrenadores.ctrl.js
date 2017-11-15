@@ -11,7 +11,7 @@
                 
                 var h = response.data;
                 $scope.entrenadorRecords = h;
-                //console.info(response.data);
+                //console.info(response.data)
                 
                 if (($state.params.entId !== undefined) && ($state.params.entId !== null))
                 {
