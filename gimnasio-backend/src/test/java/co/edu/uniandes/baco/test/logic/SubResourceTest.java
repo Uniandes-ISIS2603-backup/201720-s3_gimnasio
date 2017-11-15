@@ -1,13 +1,12 @@
 package co.edu.uniandes.baco.test.logic;
 
 import co.edu.uniandes.baco.gimnasio.ejb.EstadoLogic;
-import co.edu.uniandes.baco.gimnasio.ejb.ObjetivoLogic;
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.EstadoPersistence;
-import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -45,6 +44,7 @@ public class SubResourceTest {
     private final PodamFactory factory = new PodamFactoryImpl();
 
     private final List<EstadoEntity> data = new ArrayList<>();
+    private final List<UsuarioEntity> padres= new ArrayList<>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -84,6 +84,7 @@ public class SubResourceTest {
         for (int j = 0; j < 4; j++) {
             UsuarioEntity objetivoEntity= factory.manufacturePojo(UsuarioEntity.class);
             em.persist(objetivoEntity);
+            padres.add(objetivoEntity);
             for (int i = 0; i < 3; i++) {
                 EstadoEntity entity = create();
                 entity.setUsuario(objetivoEntity);
@@ -100,9 +101,11 @@ public class SubResourceTest {
     public void createEstadoTest() {
         try {
             EstadoEntity newEntity = create();
-            EstadoEntity result = baseLogic.create(newEntity);
+            UsuarioEntity user= padres.get(0);
+            EstadoEntity result = baseLogic.create(user.getId(), newEntity);
             EstadoEntity entity = em.find(EstadoEntity.class, result.getId());
             assertEqualsObject(newEntity, entity);
+            assertEquals(user, newEntity.getUsuario());
         } catch (BusinessLogicException ex) {
             fail("debe crearse");
         }
@@ -162,32 +165,9 @@ public class SubResourceTest {
         }
     }
 
-    @Test
-    public void updateEstadoTest() {
-        try {
-            EstadoEntity entity = data.get(0);
-            EstadoEntity newEntity = create();
-            newEntity.setId(entity.getId());
-            baseLogic.update(newEntity);
-
-            EstadoEntity resp = em.find(EstadoEntity.class, entity.getId());
-            assertEqualsObject(newEntity, resp);
-        } catch (BusinessLogicException ex) {
-            fail("no debe dar error");
-        }
-        try {
-            EstadoEntity entity = data.get(0);
-            entity.setId((long) 0);
-            baseLogic.update(entity);
-            fail("debe dar error");
-        } catch (BusinessLogicException ex) {
-            //es lo que se espera 
-        }
-    }
-
-    private void assertEqualsObject(EstadoEntity a, EstadoEntity b) {
-        assertEquals(a.getDescripcion(), b.getDescripcion());
-        assertEquals(a.getTipo(), b.getTipo());
+    private void assertEqualsObject(EstadoEntity a,EstadoEntity b){
+        DateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+        assertEquals(format.format(a.getFecha()),format.format(b.getFecha()));
     }
 
     private EstadoEntity create() {
