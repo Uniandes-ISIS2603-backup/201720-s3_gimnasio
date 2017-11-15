@@ -27,7 +27,7 @@
     ]);
 
     mod.controller('ejemaquinaNewCtrl', ['$scope', '$http', 'ejemaquinasContext', 'tipoEjemaquinaContext', '$state', '$rootScope',
-        function ($scope, $http, ejemaquinasContext, tipoEjemaquinaContext, $state, $rootScope) {
+        function ($scope, $http, ejemaquinasContext, tipoEjemaquinaContext, $state) {
             var ejemaquinaContext = ejemaquinasContext + '/' + $state.params.ejercicioId + '/' + "maquinas";
 
             $http.get(ejemaquinaContext).then(function (response) {

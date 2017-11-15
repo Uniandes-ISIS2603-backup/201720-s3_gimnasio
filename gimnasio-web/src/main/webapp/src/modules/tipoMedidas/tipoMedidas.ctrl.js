@@ -3,7 +3,6 @@
     mod.constant("tipoMedidaContext", "api/tipoMedidas");
     mod.controller('tipoMedidasCtrl', ['$scope', '$http', 'tipoMedidaContext', '$state',
        function ($scope, $http, tipoMedidaContext, $state) {
-            //console.info("dar datos tipoMedida");
             $http.get(tipoMedidaContext).then(function (response) {
                 $scope.tipoMedidaRecords = response.data;
                 
@@ -22,7 +21,6 @@
                             }
                         });
                         $scope.tipoMedidaActual = tipoMedidaActua ;
-                        //console.info(tipoMedidaActua);
                     });
                 }
                 
@@ -42,7 +40,6 @@
             };
             
             this.deleteUsuariotipoMedida= function(usuario,tipoMedidaid){
-                //console.info(tipoMedidaContext + "/" + tipoMedidaid + "/usuarios/"+ usuario.id);
                 return $http.delete(tipoMedidaContext + "/" + tipoMedidaid + "/usuarios/"+ usuario.id)
                             .then(function () {
                                 // $http.delete es una promesa

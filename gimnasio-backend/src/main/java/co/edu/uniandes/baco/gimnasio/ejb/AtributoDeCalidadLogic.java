@@ -9,7 +9,6 @@ import co.edu.uniandes.baco.gimnasio.entities.AtributoDeCalidadEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
-import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -47,24 +46,5 @@ public class AtributoDeCalidadLogic extends SubResource<ObjetivoEntity, Atributo
         AtributoDeCalidadEntity est = create(idObjetivo, entity);
         entity.setTipoMedida(tipoMedida);
         return est;
-    }
-
-    /**
-     * metodo para actualizar el atributo de calidad
-     *
-     * @param idObjetivo id del objetivo
-     * @param entity atribto a actualizar
-     * @return el atributo actulizado
-     * @throws BusinessLogicException si el objetivo o la medida no existen
-     */
-    @Override
-    public AtributoDeCalidadEntity update(Long idObjetivo, AtributoDeCalidadEntity entity) throws BusinessLogicException {
-        AtributoDeCalidadEntity old = find(entity.getId());
-        if (!old.getObjetivo().getId().equals(idObjetivo)) {
-            throw new NoExisteException(idObjetivo);
-        }
-        entity.setObjetivo(old.getObjetivo());
-        entity.setTipoMedida(old.getTipoMedida());
-        return persistence.update(entity);
     }
 }

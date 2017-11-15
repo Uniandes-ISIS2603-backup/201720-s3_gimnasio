@@ -55,7 +55,7 @@
     ]);
 
     mod.controller('instanciaUpdateCtrl', ['$scope', '$http', 'instanciasContext', '$state', '$rootScope',
-        function ($scope, $http, instanciasContext, $state, $rootScope) {
+        function ($scope, $http, instanciasContext, $state) {
             var idInstancia = $state.params.instanciaId;
             var instanciaContext=instanciasContext+ '/' + $state.params.usuariosId+ "/rutinas/"+$state.params.rutinaId+"/ejercicios";
             
