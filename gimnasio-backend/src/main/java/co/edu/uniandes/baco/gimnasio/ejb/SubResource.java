@@ -29,7 +29,7 @@ public abstract class SubResource<R extends BaseEntity, S extends BaseEntity> ex
     private Class<S> clase;
 
     public SubResource() {
-        super();
+         //para glasfish
     }
 
     public SubResource(BasePersistence<S> persistence, BaseLogic<R> logic, final Function<R, List<S>> list, final BiConsumer<S, R> set) {
