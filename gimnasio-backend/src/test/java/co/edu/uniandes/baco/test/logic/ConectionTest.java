@@ -7,8 +7,6 @@ import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.EstadoPersistence;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -121,6 +119,14 @@ public class ConectionTest {
 
     @Test
     public void deleteEstadoTest() {
+        try {
+            UsuarioEntity newEntity = data.get(0);
+            EntrenadorEntity entre = padres.get(0);
+            baseLogic.removeUsuario(entre.getId(), newEntity.getId());
+            assertFalse(em.find(EntrenadorEntity.class, entre.getId()).getUsuarios().contains(newEntity));
+        } catch (BusinessLogicException ex) {
+            fail("debe borrarse");
+        }
     }
 
 
