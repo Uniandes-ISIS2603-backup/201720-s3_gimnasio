@@ -167,7 +167,9 @@ public class BaseLogicTest {
             fail("no debe dar error");
         }
         try {
-            baseLogic.find((long) 0);
+            ObjetivoEntity entity = data.get(0);
+            entity.setId((long) 0);
+            baseLogic.update(entity);
             fail("debe dar error");
         } catch (BusinessLogicException ex) {
             //es lo que se espera 
