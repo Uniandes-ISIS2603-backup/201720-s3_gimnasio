@@ -7,7 +7,6 @@ import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
-import java.util.Comparator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
