@@ -5,7 +5,7 @@
     mod.constant("entrenadorContext", "api/entrenadores");
     mod.controller('entrenadoresCtrl', ['$scope', '$http', 'entrenadorContext', '$state',
        function ($scope, $http, entrenadorContext, $state) {
-            //console.info("dar datos entrenador");
+            //console.info("dar datos entrenador")
             
             $http.get(entrenadorContext).then(function (response) {
                 
@@ -23,7 +23,7 @@
                         var x = $scope.entrenadorActual.fechaNacimiento;
                         var parts = x.split('T');
                         parts = parts[0].split('-');
-                        //console.info(parts);
+                        //console.info(parts)
                         $scope.fechaEntrenador = new Date(parts[0],parts[1]-1,parts[2]);
                         
                     });
@@ -44,7 +44,7 @@
                             }
                         });
                         $scope.entrenadorActual = entrenadorActua ;
-                        //console.info(entrenadorActua);
+                        //console.info(entrenadorActua)
                     });
                 }
                 
@@ -52,7 +52,7 @@
                 {
                      $http.get(entrenadorContext + '/' + $state.params.Enid + '/usuarios/' + $state.params.Uid).then(function(response)
                     {
-                        //console.info(response.data);
+                        //console.info(response.data)
                         $scope.usuarioActual = response.data;
                         
                     });
@@ -74,7 +74,7 @@
             };
             
             this.deleteUsuarioEntrenador= function(usuario,entrenadorid){
-                //console.info(entrenadorContext + "/" + entrenadorid + "/usuarios/"+ usuario.id);
+                //console.info(entrenadorContext + "/" + entrenadorid + "/usuarios/"+ usuario.id)
                 return $http.delete(entrenadorContext + "/" + entrenadorid + "/usuarios/"+ usuario.id)
                             .then(function () {
                                 // $http.delete es una promesa
@@ -88,7 +88,7 @@
             
             $scope.editarEntrenador = function()
             {
-                //console.info(entrenadorContext + '/'+ $scope.entrenadorID);
+                //console.info(entrenadorContext + '/'+ $scope.entrenadorID)
                 $http.put(entrenadorContext + '/'+ $scope.entrenadorActual.id , {
                     name: $scope.nombreEntrenador,
                     fechaNacimiento: $scope.fechaEntrenador,
