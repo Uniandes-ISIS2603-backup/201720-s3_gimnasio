@@ -2,12 +2,13 @@ package co.edu.uniandes.baco.test.logic;
 
 import co.edu.uniandes.baco.gimnasio.ejb.EntrenadorLogic;
 import co.edu.uniandes.baco.gimnasio.ejb.EstadoLogic;
-import co.edu.uniandes.baco.gimnasio.ejb.UsuarioLogic;
 import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.EstadoPersistence;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -102,18 +103,26 @@ public class ConectionTest {
     @Test
     public void createEstadoTest() {
         try {
-            UsuarioEntity newEntity = create();
-            em.persist(newEntity);
-            EntrenadorEntity entre= padres.get(0);
-            baseLogic.createUsuario(entre.getId(),newEntity.getId());
+            UsuarioEntity newEntity = data.get(1);
+            EntrenadorEntity entre = padres.get(0);
+            baseLogic.createUsuario(entre.getId(), newEntity.getId());
+            assertTrue(em.find(EntrenadorEntity.class, entre.getId()).getUsuarios().contains(newEntity));
         } catch (BusinessLogicException ex) {
             fail("debe crearse");
+        }
+        try {
+            UsuarioEntity newEntity = data.get(0);
+            EntrenadorEntity entre = padres.get(0);
+            baseLogic.createUsuario(entre.getId(), newEntity.getId());
+            fail("debe debe fallar");
+        } catch (BusinessLogicException ex) {
         }
     }
 
     @Test
     public void deleteEstadoTest() {
     }
+
 
     private UsuarioEntity create() {
         return factory.manufacturePojo(UsuarioEntity.class);
