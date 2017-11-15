@@ -1,5 +1,6 @@
 package co.edu.uniandes.baco.test.logic;
 
+import co.edu.uniandes.baco.gimnasio.ejb.EntrenadorLogic;
 import co.edu.uniandes.baco.gimnasio.ejb.EstadoLogic;
 import co.edu.uniandes.baco.gimnasio.ejb.UsuarioLogic;
 import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
@@ -30,10 +31,10 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 @RunWith(Arquillian.class)
-public class SearchTest {
+public class ConectionTest {
 
     @Inject
-    private UsuarioLogic baseLogic;
+    private EntrenadorLogic baseLogic;
 
     @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
@@ -99,36 +100,19 @@ public class SearchTest {
     // TEST
     //--------------------------------------
     @Test
-    public void geEstadosTest() {
+    public void createEstadoTest() {
         try {
-            UsuarioEntity user = data.get(0);
-            List<EntrenadorEntity> real = em.find(UsuarioEntity.class, user.getId()).getEntrenadores();
-            assertNotEquals(0, real.size());
-            List<EntrenadorEntity> list = baseLogic.findAllEntrenador(user.getId());
-            assertNotEquals(0, list.size());
-            assertEquals(real, list);
+            UsuarioEntity newEntity = create();
+            em.persist(newEntity);
+            EntrenadorEntity entre= padres.get(0);
+            baseLogic.createUsuario(entre.getId(),newEntity.getId());
         } catch (BusinessLogicException ex) {
-            fail("no debe dar error");
+            fail("debe crearse");
         }
     }
 
     @Test
-    public void getEstadoTest() {
-        try {
-            UsuarioEntity user = data.get(0);
-            EntrenadorEntity entreador = user.getEntrenadores().get(0);
-            assertTrue(baseLogic.findAllEntrenador(user.getId()).contains(entreador));
-            EntrenadorEntity newEntity = baseLogic.findAllEntrenador(user.getId(), entreador.getId());
-            assertEquals(newEntity.getId(), entreador.getId());
-            try {
-                user = data.get(1);
-                baseLogic.findAllEntrenador(user.getId(), entreador.getId());
-                fail("debereia fallar");
-            } catch (BusinessLogicException ex) {
-            }
-        } catch (BusinessLogicException ex) {
-            fail("no debe dar error" + ex.getMessage() + "\n" + ex.getStackTrace()[0]);
-        }
+    public void deleteEstadoTest() {
     }
 
     private UsuarioEntity create() {

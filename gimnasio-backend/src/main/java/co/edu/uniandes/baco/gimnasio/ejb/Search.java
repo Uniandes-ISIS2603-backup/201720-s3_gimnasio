@@ -25,10 +25,6 @@ public class Search<R extends BaseEntity, S extends BaseEntity> extends BaseLogi
     protected Function<R, List<S>> list;
     protected Class<S> clase;
 
-    public Search() {
-        //para glasfish
-    }
-
     public Search(BasePersistence<R> persistence, final Function<R, List<S>> list, Class<S> clase) {
         super(persistence);
         this.list = list;

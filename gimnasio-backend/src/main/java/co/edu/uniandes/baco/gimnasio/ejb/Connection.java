@@ -20,9 +20,6 @@ import java.util.logging.Logger;
  * @param <S>
  */
 public class Connection <R extends BaseEntity, S extends BaseEntity> extends Search<R, S>{
-    public Connection() {
-        //para glasfish
-    }
     
     public Connection(BasePersistence<R> persistence,final Function<R,List<S>> list,Class<S> clase) {
         super(persistence, list, clase);
