@@ -118,10 +118,10 @@ public class SubResourceTest {
             EstadoEntity newEntity = create();
             UsuarioEntity user= padres.get(0);
             newEntity.setId(user.getEstados().get(0).getId());
-            EstadoEntity result = baseLogic.create(user.getId(), newEntity);
+            EstadoEntity result = baseLogic.update(user.getId(), newEntity);
             EstadoEntity entity = em.find(EstadoEntity.class, result.getId());
             assertEqualsObject(newEntity, entity);
-            assertEquals(user, newEntity.getUsuario());
+            assertEquals(user, result.getUsuario());
         } catch (BusinessLogicException ex) {
             fail("debe crearse");
         }
