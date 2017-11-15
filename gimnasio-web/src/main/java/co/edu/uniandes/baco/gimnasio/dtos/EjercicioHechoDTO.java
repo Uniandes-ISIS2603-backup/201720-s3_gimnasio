@@ -6,9 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  *

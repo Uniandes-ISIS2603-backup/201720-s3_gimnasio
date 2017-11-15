@@ -27,7 +27,7 @@
     ]);
 
     mod.controller('ejemedidaNewCtrl', ['$scope', '$http', 'ejemedidasContext', 'tipoEjemedidaContext', '$state', '$rootScope',
-        function ($scope, $http, ejemedidasContext, tipoEjemedidaContext, $state, $rootScope) {
+        function ($scope, $http, ejemedidasContext, tipoEjemedidaContext, $state) {
             var ejemedidaContext = ejemedidasContext + '/' + $state.params.ejercicioId + '/' + "tipoMedidas";
 
             $http.get(ejemedidaContext).then(function (response) {

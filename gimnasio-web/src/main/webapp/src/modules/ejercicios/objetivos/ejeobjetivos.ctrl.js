@@ -27,7 +27,7 @@
     ]);
 
     mod.controller('ejeobjetivoNewCtrl', ['$scope', '$http', 'ejeobjetivosContext', 'tipoEjeobjetivoContext', '$state', '$rootScope',
-        function ($scope, $http, ejeobjetivosContext, tipoEjeobjetivoContext, $state, $rootScope) {
+        function ($scope, $http, ejeobjetivosContext, tipoEjeobjetivoContext, $state) {
             var ejeobjetivoContext = ejeobjetivosContext + '/' + $state.params.ejercicioId + '/' + "objetivos";
 
             $http.get(ejeobjetivoContext).then(function (response) {
