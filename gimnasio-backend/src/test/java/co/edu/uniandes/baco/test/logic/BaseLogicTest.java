@@ -167,14 +167,13 @@ public class BaseLogicTest {
             fail("no debe dar error");
         }
         try {
-            Long entity = data.get(0).getId();
-            boolean esta=true;
-            while(em.find(ObjetivoEntity.class, entity)!=null){
-                entity++;
+            Long id = (long) 0;
+            while(em.find(ObjetivoEntity.class, id)!=null){
+                id++;
             }        
             ObjetivoEntity nuevo= create();
-            nuevo.setId(entity);
-            assertNull(baseLogic.find(entity));
+            nuevo.setId(id);
+            assertNull(baseLogic.find(id));
             baseLogic.update(nuevo);
             fail("debe dar error");
         } catch (BusinessLogicException ex) {
