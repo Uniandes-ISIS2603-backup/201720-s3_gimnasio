@@ -28,21 +28,4 @@ public class EstadoLogic extends SubResource<UsuarioEntity, EstadoEntity> {
     public EstadoLogic(UsuarioLogic logic, BasePersistence<EstadoEntity> persistence) {
         super(persistence, logic, UsuarioEntity::getEstados, EstadoEntity::setUsuario);
     }
-
-    /**
-     * @param idUsuario el susario al que pertenece el estado
-     * @param entity estado a actulizar
-     * @return el estado actuilzado
-     * @throws BusinessLogicException si el usuario o el estado no existen
-     */
-    @Override
-    public EstadoEntity update(Long idUsuario, EstadoEntity entity) throws BusinessLogicException {
-        EstadoEntity old = find(entity.getId());
-        if (!old.getUsuario().getId().equals(idUsuario)) {
-            throw new NoExisteException(idUsuario);
-        }
-        entity.setUsuario(old.getUsuario());
-        entity.setMedidas(old.getMedidas());
-        return update(entity);
-    }
 }

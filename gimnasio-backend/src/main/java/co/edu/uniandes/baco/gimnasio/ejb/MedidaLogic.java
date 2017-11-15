@@ -46,23 +46,4 @@ public class MedidaLogic extends SubResource<EstadoEntity, MedidaEntity> {
         entity.setParte(parte);
         return est;
     }
-
-    /**
-     * metodo para actulizar una medida
-     *
-     * @param idEstado id del estado
-     * @param entity medida actulizar
-     * @return la medida actulizada
-     * @throws BusinessLogicException si el estado o la medida noe xisten
-     */
-    @Override
-    public MedidaEntity update(Long idEstado, MedidaEntity entity) throws BusinessLogicException {
-        MedidaEntity old = find(entity.getId());
-        if (!old.getEstado().getId().equals(idEstado)) {
-            throw new NoExisteException(idEstado);
-        }
-        entity.setEstado(old.getEstado());
-        entity.setParte(old.getParte());
-        return persistence.update(entity);
-    }
 }

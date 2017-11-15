@@ -29,18 +29,4 @@ public class EjercicioHechoLogic extends SubResource<EjercicioInstanciaEntity, E
     public EjercicioHechoLogic(BasePersistence<EjercicioHechoEntity> persistence, EjercicioInstanciaLogic logic) {
         super(persistence, logic, EjercicioInstanciaEntity::getEjerciciosHechos, EjercicioHechoEntity::setEjercicios);
     }
-
-    //----------------------------------------------------------------------------------------
-    // ------------------------------------Metodos-----------------------------------------
-    //----------------------------------------------------------------------------------------
-    @Override
-    public EjercicioHechoEntity update(Long idEjercicio, EjercicioHechoEntity s) throws BusinessLogicException {
-        EjercicioHechoEntity old = find(s.getId());
-        if (!old.getEjercicios().getId().equals(idEjercicio)) {
-            throw new NoExisteException(old.getEjercicios().getId(), idEjercicio);
-        }
-        s.setMedicionMaquinaEnt(old.getMedicionMaquinaEnt());
-        s.setEjercicios(old.getEjercicios());
-        return super.update(s);
-    }
 }

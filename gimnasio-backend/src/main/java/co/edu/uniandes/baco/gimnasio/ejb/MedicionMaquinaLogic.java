@@ -28,16 +28,4 @@ public class MedicionMaquinaLogic extends SubResource<EjercicioHechoEntity, Medi
         entity.setTipoMedida(tipoMedida);
         return est;
     }
-
-    @Override
-    public MedicionMaquinaEntity update(Long idEjercicioHecho, MedicionMaquinaEntity entity) throws BusinessLogicException {
-        MedicionMaquinaEntity old = find(entity.getId());
-        if (!old.getEjercicioHecho().getId().equals(idEjercicioHecho)) {
-            throw new NoExisteException(idEjercicioHecho);
-        }
-
-        entity.setEjercicioHecho(old.getEjercicioHecho());
-        entity.setTipoMedida(old.getTipoMedida());
-        return persistence.update(entity);
-    }
 }

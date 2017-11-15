@@ -37,25 +37,6 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
     }
 
     /**
-     * metodo para actulizar un ejercicio en una rutina
-     *
-     * @param idRutina id de la rutina
-     * @param entity ejercicio a actulizar
-     * @return el ejercicio actulizado
-     * @throws BusinessLogicException si la rutino o el ejercicio no existen
-     */
-    @Override
-    public EjercicioInstanciaEntity update(Long idRutina, EjercicioInstanciaEntity entity) throws BusinessLogicException {
-        EjercicioInstanciaEntity old = find(entity.getId());
-        if (!old.getRutina().getId().equals(idRutina)) {
-            throw new NoExisteException(idRutina);
-        }
-        entity.setRutina(old.getRutina());
-        entity.setEjercicio(old.getEjercicio());
-        return update(entity);
-    }
-
-    /**
      * metodo que crea o asocia un ejercicio a una rutina
      *
      * @param idRutina id de la rutina
