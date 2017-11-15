@@ -87,8 +87,9 @@ public class SubResourceTest {
             padres.add(objetivoEntity);
             for (int i = 0; i < 3; i++) {
                 EstadoEntity entity = create();
-                entity.setUsuario(objetivoEntity);
+                entity.setUsuario(em.find(UsuarioEntity.class, objetivoEntity.getId()));
                 em.persist(entity);
+                objetivoEntity.getEstados().add(entity);
                 data.add(entity);
             }
         }
@@ -114,17 +115,12 @@ public class SubResourceTest {
     @Test
     public void geEstadosTest() {
         try {
-            List<EstadoEntity> list = baseLogic.findAll();
-            assertEquals(data.size(), list.size());
-            for (EstadoEntity ent : list) {
-                boolean found = false;
-                for (EstadoEntity entity : data) {
-                    if (ent.getId().equals(entity.getId())) {
-                        found = true;
-                    }
-                }
-                assertTrue(found);
-            }
+            UsuarioEntity user= padres.get(0);
+            List<EstadoEntity> real=em.find(UsuarioEntity.class, user.getId()).getEstados();
+            assertNotEquals(0, real.size());
+            List<EstadoEntity> list = baseLogic.findAll(user.getId());
+            assertNotEquals(0, list.size());
+            assertEquals(real, list);
         } catch (BusinessLogicException ex) {
             fail("no debe dar error");
         }
@@ -134,10 +130,19 @@ public class SubResourceTest {
     public void getEstadoTest() {
         try {
             EstadoEntity entity = data.get(0);
+            UsuarioEntity user= entity.getUsuario();
             EstadoEntity newEntity = baseLogic.find(entity.getId());
+            assertEquals(newEntity.getUsuario(), user);
+            assertTrue(baseLogic.findAll(user.getId()).contains(entity));
+            newEntity = baseLogic.find(user.getId(),entity.getId());
             assertEqualsObject(newEntity, entity);
+            try{
+                user= padres.get(1);
+                baseLogic.find(user.getId(),entity.getId());
+                fail("debereia fallar");
+            }catch (BusinessLogicException ex){}
         } catch (BusinessLogicException ex) {
-            fail("no debe dar error");
+            fail("no debe dar error"+ ex.getMessage() + "\n"+ ex.getStackTrace()[0]);
         }
         try {
             EstadoEntity newEntity = baseLogic.find((long) 0);
