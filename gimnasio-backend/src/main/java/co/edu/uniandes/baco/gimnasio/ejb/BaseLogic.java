@@ -82,10 +82,8 @@ public abstract class BaseLogic<T extends BaseEntity> {
             if (old == null) {
                 throw new NoExisteException(entity.getId());
             }
-            Logger.getLogger(BaseLogic.class.getSimpleName()).log(Level.INFO, "esta");
             for (Field field : entity.getClass().getDeclaredFields()) {
                 if (field.isAnnotationPresent(ManyToMany.class)) {
-                    Logger.getLogger(BaseLogic.class.getSimpleName()).log(Level.INFO, "entro");
                     field.setAccessible(true);
                     field.set(entity, field.get(old));
                 }

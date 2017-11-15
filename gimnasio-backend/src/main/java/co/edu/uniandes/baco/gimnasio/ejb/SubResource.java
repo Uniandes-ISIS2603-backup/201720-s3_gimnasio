@@ -9,11 +9,14 @@ import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.exceptions.NoExisteException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -29,7 +32,7 @@ public abstract class SubResource<R extends BaseEntity, S extends BaseEntity> ex
     private Class<S> clase;
 
     public SubResource() {
-         //para glasfish
+        //para glasfish
     }
 
     public SubResource(BasePersistence<S> persistence, BaseLogic<R> logic, final Function<R, List<S>> list, final BiConsumer<S, R> set) {
@@ -60,7 +63,22 @@ public abstract class SubResource<R extends BaseEntity, S extends BaseEntity> ex
         }
     }
 
-    public abstract S update(Long id, S s) throws BusinessLogicException;
+    public S update(Long id, S s) throws BusinessLogicException {
+        try {
+            S old = find(id, s.getId());
+            for (Field field : s.getClass().getDeclaredFields()) {
+                if (field.isAnnotationPresent(ManyToMany.class) || field.isAnnotationPresent(ManyToOne.class)) {
+                    field.setAccessible(true);
+                    field.set(s, field.get(old));
+                }
+            }
+            update(s);
+            return old;
+        } catch (IllegalArgumentException | IllegalAccessException ex) {
+            Logger.getLogger(BaseLogic.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
     public S create(long id, S entity) throws BusinessLogicException {
         R r = logic.find(id);
