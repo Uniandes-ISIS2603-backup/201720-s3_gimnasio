@@ -1,8 +1,12 @@
 package co.edu.uniandes.baco.test.logic;
 
+import co.edu.uniandes.baco.gimnasio.ejb.EstadoLogic;
 import co.edu.uniandes.baco.gimnasio.ejb.ObjetivoLogic;
+import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import co.edu.uniandes.baco.gimnasio.persistence.EstadoPersistence;
 import co.edu.uniandes.baco.gimnasio.persistence.ObjetivoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +31,10 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 @RunWith(Arquillian.class)
-public class BaseLogicTest {
+public class SubResourceTest {
 
     @Inject
-    private ObjetivoLogic baseLogic;
+    private EstadoLogic baseLogic;
 
     @PersistenceContext(unitName = "gimnasioPU")
     private EntityManager em;
@@ -40,14 +44,14 @@ public class BaseLogicTest {
 
     private final PodamFactory factory = new PodamFactoryImpl();
 
-    private final List<ObjetivoEntity> data = new ArrayList<>();
+    private final List<EstadoEntity> data = new ArrayList<>();
 
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ObjetivoEntity.class.getPackage())
-                .addPackage(ObjetivoPersistence.class.getPackage())
-                .addPackage(ObjetivoLogic.class.getPackage())
+                .addPackage(EstadoEntity.class.getPackage())
+                .addPackage(EstadoPersistence.class.getPackage())
+                .addPackage(EstadoLogic.class.getPackage())
                 .addPackage(BusinessLogicException.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
@@ -73,14 +77,19 @@ public class BaseLogicTest {
     }
 
     private void clearData() {
-        em.createQuery("delete from ObjetivoEntity").executeUpdate();
+        em.createQuery("delete from EstadoEntity").executeUpdate();
     }
 
     private void insertData() {
-        for (int i = 0; i < 3; i++) {
-            ObjetivoEntity entity = create();
-            em.persist(entity);
-            data.add(entity);
+        for (int j = 0; j < 4; j++) {
+            UsuarioEntity objetivoEntity= factory.manufacturePojo(UsuarioEntity.class);
+            em.persist(objetivoEntity);
+            for (int i = 0; i < 3; i++) {
+                EstadoEntity entity = create();
+                entity.setUsuario(objetivoEntity);
+                em.persist(entity);
+                data.add(entity);
+            }
         }
     }
 
@@ -88,11 +97,11 @@ public class BaseLogicTest {
     // TEST
     //--------------------------------------
     @Test
-    public void createObjetivoTest() {
+    public void createEstadoTest() {
         try {
-            ObjetivoEntity newEntity = create();
-            ObjetivoEntity result = baseLogic.create(newEntity);
-            ObjetivoEntity entity = em.find(ObjetivoEntity.class, result.getId());
+            EstadoEntity newEntity = create();
+            EstadoEntity result = baseLogic.create(newEntity);
+            EstadoEntity entity = em.find(EstadoEntity.class, result.getId());
             assertEqualsObject(newEntity, entity);
         } catch (BusinessLogicException ex) {
             fail("debe crearse");
@@ -100,13 +109,13 @@ public class BaseLogicTest {
     }
 
     @Test
-    public void geObjetivosTest() {
+    public void geEstadosTest() {
         try {
-            List<ObjetivoEntity> list = baseLogic.findAll();
+            List<EstadoEntity> list = baseLogic.findAll();
             assertEquals(data.size(), list.size());
-            for (ObjetivoEntity ent : list) {
+            for (EstadoEntity ent : list) {
                 boolean found = false;
-                for (ObjetivoEntity entity : data) {
+                for (EstadoEntity entity : data) {
                     if (ent.getId().equals(entity.getId())) {
                         found = true;
                     }
@@ -119,16 +128,16 @@ public class BaseLogicTest {
     }
 
     @Test
-    public void getObjetivoTest() {
+    public void getEstadoTest() {
         try {
-            ObjetivoEntity entity = data.get(0);
-            ObjetivoEntity newEntity = baseLogic.find(entity.getId());
+            EstadoEntity entity = data.get(0);
+            EstadoEntity newEntity = baseLogic.find(entity.getId());
             assertEqualsObject(newEntity, entity);
         } catch (BusinessLogicException ex) {
             fail("no debe dar error");
         }
         try {
-            ObjetivoEntity newEntity = baseLogic.find((long) 0);
+            EstadoEntity newEntity = baseLogic.find((long) 0);
             fail("debe dar error");
         } catch (BusinessLogicException ex) {
             //es lo que se espera 
@@ -136,11 +145,11 @@ public class BaseLogicTest {
     }
 
     @Test
-    public void deleteObjetivoTest() {
+    public void deleteEstadoTest() {
         try {
-            ObjetivoEntity entity = data.get(0);
+            EstadoEntity entity = data.get(0);
             baseLogic.remove(entity.getId());
-            ObjetivoEntity deleted = em.find(ObjetivoEntity.class, entity.getId());
+            EstadoEntity deleted = em.find(EstadoEntity.class, entity.getId());
             assertNull(deleted);
         } catch (BusinessLogicException ex) {
             fail("no debe dar error");
@@ -154,27 +163,21 @@ public class BaseLogicTest {
     }
 
     @Test
-    public void updateObjetivoTest() {
+    public void updateEstadoTest() {
         try {
-            ObjetivoEntity entity = data.get(0);
-            ObjetivoEntity newEntity = create();
+            EstadoEntity entity = data.get(0);
+            EstadoEntity newEntity = create();
             newEntity.setId(entity.getId());
             baseLogic.update(newEntity);
 
-            ObjetivoEntity resp = em.find(ObjetivoEntity.class, entity.getId());
+            EstadoEntity resp = em.find(EstadoEntity.class, entity.getId());
             assertEqualsObject(newEntity, resp);
         } catch (BusinessLogicException ex) {
             fail("no debe dar error");
         }
         try {
-            ObjetivoEntity entity =null;
-            boolean encontrado=true;
-            int i=0;
-            while (encontrado) {
-                entity= em.find(ObjetivoEntity.class, (long)i);
-                if(entity ==null)
-                    encontrado=false;
-            }
+            EstadoEntity entity = data.get(0);
+            entity.setId((long) 0);
             baseLogic.update(entity);
             fail("debe dar error");
         } catch (BusinessLogicException ex) {
@@ -182,12 +185,12 @@ public class BaseLogicTest {
         }
     }
 
-    private void assertEqualsObject(ObjetivoEntity a, ObjetivoEntity b) {
+    private void assertEqualsObject(EstadoEntity a, EstadoEntity b) {
         assertEquals(a.getDescripcion(), b.getDescripcion());
         assertEquals(a.getTipo(), b.getTipo());
     }
 
-    private ObjetivoEntity create() {
-        return factory.manufacturePojo(ObjetivoEntity.class);
+    private EstadoEntity create() {
+        return factory.manufacturePojo(EstadoEntity.class);
     }
 }
