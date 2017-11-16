@@ -83,18 +83,23 @@
                 </div>
             </div>
 
-            <div class="row">
-                <ul class="nav nav-tabs" style="background-color: #212021; border-width: medium">
-                    <li><a ui-sref="estadoList">Estado</a></li>
-                    <li><a ui-sref="entrenadoresList">Entrenadores</a></li>
-                    <li><a ui-sref="usuariosList">Usuarios</a></li>
-                    <li><a ui-sref="maquinasList">Maquinas</a></li>
-                    <li><a ui-sref="ejercicios_list">Ejercicios</a></li>
-                    <li><a ui-sref="objetivos_list">Objetivos</a></li>
-                    <li><a ui-sref="tipoMedidasList">TipoMedidas</a></li>
-                </ul>
-                <div class="container-fluid" style="background-color: #545354; background-image: url(resources/images/image.png)">
-                    <div  ui-view="mainView" style="color: whitesmoke"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-10" style="alignment-adjust: central">
+                <div class="row">
+                    <ul class="nav nav-tabs" style="background-color: #212021; border-width: medium">
+                        <li><a ui-sref="estadoList">Estado</a></li>
+                        <li><a ui-sref="entrenadoresList">Entrenadores</a></li>
+                        <li><a ui-sref="usuariosList">Usuarios</a></li>
+                        <li><a ui-sref="maquinasList">Maquinas</a></li>
+                        <li><a ui-sref="ejercicios_list">Ejercicios</a></li>
+                        <li><a ui-sref="objetivos_list">Objetivos</a></li>
+                        <li><a ui-sref="tipoMedidasList">TipoMedidas</a></li>
+                    </ul>
+                    <div class="container-fluid">
+                        <div style="background-color:rgba(0, 0, 0, 0.7)">
+                            <div ui-view="mainView" style="color: whitesmoke"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
