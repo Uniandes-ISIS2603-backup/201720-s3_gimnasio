@@ -1,0 +1,28 @@
+<div class = "container-fluid">
+    <h1>
+        Añadir un ejercicio hecho.
+    </h1>
+    
+    <form ng-submit="createEjercicioHecho()" name = "usuario">
+        <div class="row">
+            <label>Series:</label>  
+            <input ng-model="ejercicioHechoSeries"/>
+        </div>      
+        
+        <div class="row">
+            <label>Fecha actual:</label>  
+            <!--Verificar si funciona. -->
+            <p id="fecha"></p>            
+            <script>
+               n =  new Date();
+               y = n.getFullYear();
+               m = n.getMonth() + 1;
+               d = n.getDate();
+               document.getElementById("fecha").innerHTML = m + "/" + d + "/" + y;
+            </script>
+        
+        </div>
+            <input  type="submit" value="Save" class="btn btn-default btn-sm"/>
+            <a class="btn btn-default btn-sm" ui-sref="ejerciciosHechosList">Cancel</a>
+    </form>            
+</div>

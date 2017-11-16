@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <table class="table table-condensed" >
+        <thead>
+            <tr>
+                <th><div class="h4" style="text-transform: uppercase">Fecha de realizacion </div></th>    
+                <th><div class="h4" style="text-transform: uppercase">Series realizadas</div></th>
+                <th><a class="btn btn-info" ui-sref="ejercicioHechoCreate">
+                        <span class="glyphicon glyphicon-plus-sign"></span>nuevo
+                    </a></th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="ejercicioHecho in ejerciciosHechosRecords">
+                <!--<td id="{{$index}}-Fecha"><b><a ui-sref="ejercicio_detail({ejerciciosHechosId: ejercicioHecho.id})">{{ejercicioHecho.fecha}}</a></b></td>-->
+                <td id="{{$index}}-Series">{{ejercicioHecho.fecha}}</td> 
+                <td id="{{$index}}-Series">{{ejercicioHecho.series}}</td> 
+            </tr>
+        </tbody>
+    </table>
+</div>
