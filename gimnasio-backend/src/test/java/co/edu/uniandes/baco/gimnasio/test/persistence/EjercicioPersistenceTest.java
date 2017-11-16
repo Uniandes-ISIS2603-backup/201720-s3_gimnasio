@@ -190,6 +190,7 @@ public class EjercicioPersistenceTest {
         assertEquals(a.getDescripcion(), b.getDescripcion());
         assertEquals(a.getTipo(), b.getTipo());
         assertEquals(a.getVideo(), b.getVideo());
+        assertEquals(a.getPasos(), b.getPasos());
     }
     
     private EjercicioEntity create(){

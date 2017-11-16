@@ -3,6 +3,7 @@ package co.edu.uniandes.baco.gimnasio.dtos;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.Tipo;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import java.util.List;
 
 /**
  * @author jc.bojaca
@@ -17,6 +18,7 @@ public class EjercicioDTO {
     private String explicacion;
     private String descricpion;
     private String video;
+    private List<String> pasos;
 
     //--------------------------------------------
     // CONSTRUCTOR & TOENTITY
@@ -31,6 +33,7 @@ public class EjercicioDTO {
         this.explicacion = entity.getExplicacion();
         this.descricpion=entity.getDescripcion();
         this.video=entity.getVideo();
+        this.pasos=entity.getPasos();
     }
      /**
      * convierte un dto a entity
@@ -42,6 +45,7 @@ public class EjercicioDTO {
         ent.setExplicacion(explicacion);
         ent.setDescripcion(descricpion);
         ent.setVideo(video);
+        ent.setPasos(pasos);
         try {
             ent.setTipo(Tipo.valueOf(tipo));
         } catch (java.lang.IllegalArgumentException e) {
@@ -68,6 +72,16 @@ public class EjercicioDTO {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public List<String> getPasos() {
+        return pasos;
+    }
+
+    public void setPasos(List<String> pasos) {
+        this.pasos = pasos;
+    }
+    
+    
 
     public String getDescricpion() {
         return descricpion;

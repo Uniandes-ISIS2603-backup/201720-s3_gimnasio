@@ -17,9 +17,10 @@
                 });
             }
         }
-    ]).config(function($sceDelegateProvider) {
-  $sceDelegateProvider.resourceUrlWhitelist(['**']);
-});;
+    ]).config(function ($sceDelegateProvider) {
+        $sceDelegateProvider.resourceUrlWhitelist(['**']);
+    });
+    ;
 
     mod.controller('ejercicioDeleteCtrl', ['$scope', '$http', 'ejerciciosContext', '$state',
         function ($scope, $http, ejerciciosContext, $state) {
@@ -35,13 +36,14 @@
     mod.controller('ejercicioNewCtrl', ['$scope', '$http', 'ejerciciosContext', '$state', '$rootScope',
         function ($scope, $http, ejerciciosContext, $state, $rootScope) {
             $rootScope.edit = false;
-            var videos=$scope.ejercicioVideo.split("=");
+            var videos = $scope.ejercicioVideo.split("=");
             $scope.createEjercicio = function () {
                 $http.post(ejerciciosContext, {
                     descricpion: $scope.ejercicioDescricpion,
                     explicacion: $scope.ejercicioExplicacion,
                     tipo: $scope.ejercicioTipo,
-                    video: videos[videos.length-1]
+                    video: videos[videos.length - 1],
+                    pasos: $scope.ejercicioPasos.split("\n")
                 }).then(function (response) {
                     $state.go('ejercicios_list', {ejercicioId: response.data.id}, {reload: true});
                 });
@@ -56,19 +58,27 @@
 
             $http.get(ejerciciosContext + '/' + idEjercicio).then(function (response) {
                 var ejercicio = response.data;
+                var listPasos = "";
+                if (ejercicio.pasos !== undefined) {
+                    for (var i = 0; i < ejercicio.pasos.length; i++) {
+                        listPasos = listPasos + ejercicio.pasos[i] + "\n";
+                    }
+                }
                 $scope.ejercicioTipo = ejercicio.tipo;
                 $scope.ejercicioDescricpion = ejercicio.descricpion;
                 $scope.ejercicioExplicacion = ejercicio.explicacion;
-                $scope.ejercicioVideo= ejercicio.video;
+                $scope.ejercicioVideo = ejercicio.video;
+                $scope.ejercicioPasos = listPasos;
             });
 
             $scope.createEjercicio = function () {
-                var videos=$scope.ejercicioVideo.split("=");
+                var videos = $scope.ejercicioVideo.split("=");
                 $http.put(ejerciciosContext + "/" + idEjercicio, {
                     descricpion: $scope.ejercicioDescricpion,
                     explicacion: $scope.ejercicioExplicacion,
                     tipo: $scope.ejercicioTipo,
-                    video: videos[videos.length-1]
+                    video: videos[videos.length - 1],
+                    pasos: $scope.ejercicioPasos.split("\n")
                 }).then(function (response) {
                     $state.go('ejercicios_list', {ejercicioId: response.data.id}, {reload: true});
                 });

@@ -33,6 +33,10 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
      */
     private String video;
     /**
+     * 
+     */
+    private List<String> pasos;
+    /**
      * el tipo de ejercicio al que pertenece
      */
     @Enumerated(EnumType.STRING)
@@ -127,6 +131,14 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
         this.maquinas = maquinas;
     }
 
+    public List<String> getPasos() {
+        return pasos;
+    }
+
+    public void setPasos(List<String> pasos) {
+        this.pasos = pasos;
+    }
+    
     public String getVideo() {
         return video;
     }
