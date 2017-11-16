@@ -16,6 +16,7 @@ public class EjercicioDTO {
     private String tipo;
     private String explicacion;
     private String descricpion;
+    private String video;
 
     //--------------------------------------------
     // CONSTRUCTOR & TOENTITY
@@ -29,6 +30,7 @@ public class EjercicioDTO {
         this.tipo = entity.getTipo().name();
         this.explicacion = entity.getExplicacion();
         this.descricpion=entity.getDescripcion();
+        this.video=entity.getVideo();
     }
      /**
      * convierte un dto a entity
@@ -39,6 +41,7 @@ public class EjercicioDTO {
         EjercicioEntity ent = new EjercicioEntity();
         ent.setExplicacion(explicacion);
         ent.setDescripcion(descricpion);
+        ent.setVideo(video);
         try {
             ent.setTipo(Tipo.valueOf(tipo));
         } catch (java.lang.IllegalArgumentException e) {
@@ -74,6 +77,13 @@ public class EjercicioDTO {
         this.descricpion = descricpion;
     }
     
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
     
     public String getExplicacion() {
         return explicacion;

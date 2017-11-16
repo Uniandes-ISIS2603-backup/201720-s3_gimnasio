@@ -29,6 +29,10 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
      */
     private String descripcion;
     /**
+     * 
+     */
+    private String video;
+    /**
      * el tipo de ejercicio al que pertenece
      */
     @Enumerated(EnumType.STRING)
@@ -123,6 +127,13 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
         this.maquinas = maquinas;
     }
 
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
     //--------------------------------------------
     // METODOS
     //--------------------------------------------
