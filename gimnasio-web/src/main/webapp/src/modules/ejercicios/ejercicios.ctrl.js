@@ -60,9 +60,10 @@
                 var ejercicio = response.data;
                 var listPasos = "";
                 if (ejercicio.pasos !== undefined) {
-                    for (var i = 0; i < ejercicio.pasos.length; i++) {
+                    for (var i = 0; i < ejercicio.pasos.length-1; i++) {
                         listPasos = listPasos + ejercicio.pasos[i] + "\n";
                     }
+                    listPasos=listPasos+ejercicio.pasos[ejercicio.pasos.length-1];
                 }
                 $scope.ejercicioTipo = ejercicio.tipo;
                 $scope.ejercicioDescricpion = ejercicio.descricpion;
