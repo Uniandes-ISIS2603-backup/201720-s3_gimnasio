@@ -61,15 +61,17 @@
             });
             
             //borrar
-            this.deleteRecord = function(entrenador){
-                    return $http.delete(entrenadorContext + "/" + entrenador.id)
+            this.deleteRecord = function(){
+                console.info(entrenadorContext + "/" + $state.params.entrenadorid);
+                    return $http.delete(entrenadorContext + "/" + $state.params.entrenadorid)
                             .then(function () {
+                                $state.go('entrenadoresList', {id: response.data.id}, {reload: true});
                                 // $http.delete es una promesa
                                 // cuando termine bien, cambie de estado
-                                var index = $scope.entrenadorRecords.indexOf(entrenador);                               
-                                if (index > -1) {
-                                    $scope.entrenadorRecords.splice(index, 1);
-                                }
+                                //var index = $scope.entrenadorRecords.indexOf(entrenador);                               
+                                //if (index > -1) {
+                                 //   $scope.entrenadorRecords.splice(index, 1);
+                                //}
                             });
             };
             

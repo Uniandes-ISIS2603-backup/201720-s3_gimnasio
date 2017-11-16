@@ -104,6 +104,18 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('entrenadorDelete',{
+                url:'/entrenadores/{entrenadorid:int}/delete',
+                param:{
+                    entrenadorid:null
+                },
+                views: {
+                     'mainView': {
+                        templateUrl: basePath + 'entrenador.delete.html',
+                        controller: 'entrenadoresCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }
     ]);
