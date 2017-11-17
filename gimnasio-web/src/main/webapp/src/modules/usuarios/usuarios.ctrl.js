@@ -31,9 +31,9 @@
             $scope.createUsuario = function()
             {
                 $http.post(usuarioContext, {
-                    name: $scope.nombreUsuario,
-                    fechaNacimiento: $scope.fechaUsuario,
-                    documento: $scope.documentoUsuario
+                    nombre: $scope.nombreUsuario,
+                    fechaDeNacimiento: $scope.fechaUsuario,
+                    genero: $scope.genero
 
                 }).then(function (response) {
                     //se crea exitosamente el usuario
