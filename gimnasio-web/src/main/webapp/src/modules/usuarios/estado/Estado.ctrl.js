@@ -1,11 +1,13 @@
 (function (ng) {
     var mod = ng.module("EstadoModule");
-    mod.constant("EstadoContext", "api/usuarios/1/estados/");
+    mod.constant("EstadoContext", "api/usuarios/");
     mod.controller('estadoCtrl', ['$scope', '$http', 'EstadoContext', '$state',
         function ($scope, $http, EstadoContext, $state) {
             console.info("dar datos estados");
-            $http.get(EstadoContext).then(function (response) {
+            console.info($state.params.UsuarioId);
+            $http.get(EstadoContext +$state.params.UsuarioId+"/estados/").then(function (response) {
                 $scope.estadosRecords = response.data;
+                $scope.uid = $state.params.UsuarioId;
             });
             
             
@@ -23,7 +25,7 @@
             }
              $scope.createEstado = function()
             {
-                $http.post(EstadoContext, {
+                $http.post(EstadoContext + +$state.params.UsuarioId+"/estados/", {
                     fecha: $scope.fechaEstado           
                 }).then(function (response) {
                     //Author created successfully

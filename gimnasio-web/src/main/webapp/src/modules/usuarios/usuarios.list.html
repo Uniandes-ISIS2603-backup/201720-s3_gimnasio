@@ -17,9 +17,16 @@
                     <label>fecha Nacimiento:</label>
                     <p id="{{$index}}-fechaDeNacimiento">{{usuario.fechaDeNacimiento|date:'yyyy-MM-dd'}}</p>
                 </div>
-                <div class="row">
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(usuario)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                      <div class="row">
+                    <label>fecha :</label>
+                    <p id="{{$index}}-verestado"><a class="btn btn-info" ui-sref="estadoList({UsuarioId: usuario.id})"><span class="glyphicon glyphicon-plus-sign"></span> Agregar estado</a></p>
                 </div>
+                <div class="row">
+                    
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(usuario)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+             
+                </div>
+       
             </div>
         </div>
      <div>
