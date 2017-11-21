@@ -78,14 +78,19 @@
             }
             
             ).state('vistaUsuarioEntrenador',{
-                url:'entrenadores/{Enid:int}/usuarios/{Uid:int}',
-                param:{
+                url:'/{Enid:int}/usuarios/{Uid:int}',
+                parent: 'entrenadores',
+                params:{
                  Enid:null,
                  Uid:null
                  },
                  views: {
                     'mainView': {
                         templateUrl: basePath + 'EntrenadoresUsuario/vistaAUsuario.html',
+                        controller: 'entrenadoresCtrl',
+                        controllerAs: 'ctrl'
+                    },'rutinasView': {
+                        templateUrl: basePath + 'EntrenadoresUsuario/rutinas.html',
                         controller: 'entrenadoresCtrl',
                         controllerAs: 'ctrl'
                     }

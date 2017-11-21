@@ -54,7 +54,14 @@
                     {
                         //console.info(response.data)
                         $scope.usuarioActual = response.data;
-                        
+                        if($scope.usuarioActual.genero === 'true')
+                            {
+                                $scope.usuarioActual.genero = 'M';
+                            }else
+                            {
+                                $scope.usuarioActual.genero = 'F';
+                            }
+                       
                     });
                 }
                 
@@ -87,7 +94,14 @@
                                 }
                             });
             };
-            
+            this.genero = function(genero)
+            {
+                if(genero)
+                {
+                    return 'Femenino';
+                }
+                return 'masculino';
+            }
             $scope.editarEntrenador = function()
             {
                 //console.info(entrenadorContext + '/'+ $scope.entrenadorID)

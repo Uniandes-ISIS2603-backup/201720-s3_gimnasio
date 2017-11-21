@@ -1,0 +1,22 @@
+<div><h1>Rutinas:</h1></div>
+ <table class="table">
+    <thead>
+      <tr>
+         <th>id</th>
+        <th>fecha Inicio</th>
+        <th>Fecha Fin</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="x in usuarioActual.rutinas">
+      <tr>
+        <td>{{x.id}}</td>
+        <td>{{x.fechaInicio}}</td>
+        <td>{{x.fechaFinal}}</td>
+        <td>
+         <button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref="instanciasList({usuariosId:usuarioActual.id, rutinaId:x.id})"><span class="glyphicon glyphicon-check"></span> Ver detalles</button>
+        </td>nstanciasList({usuariosId:usuarioActual.i
+      </tr>
+               <button id="{{$index}}-detalles" class="btn btn-default btn-sm" ><span class="glyphicon glyphicon-plus"></span> agregar Rutina</button>
+
+    </tbody>
+  </table>
