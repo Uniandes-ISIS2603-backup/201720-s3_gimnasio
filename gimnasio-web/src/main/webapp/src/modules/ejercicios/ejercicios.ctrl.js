@@ -36,8 +36,9 @@
     mod.controller('ejercicioNewCtrl', ['$scope', '$http', 'ejerciciosContext', '$state', '$rootScope',
         function ($scope, $http, ejerciciosContext, $state, $rootScope) {
             $rootScope.edit = false;
-            var videos = $scope.ejercicioVideo.split("=");
+           
             $scope.createEjercicio = function () {
+                var videos = $scope.ejercicioVideo.split("=");
                 $http.post(ejerciciosContext, {
                     descricpion: $scope.ejercicioDescricpion,
                     explicacion: $scope.ejercicioExplicacion,

@@ -2,19 +2,19 @@
 <div class="col-md-7">
     <div class="container-fluid">
         <div class="panel-group">
-            <div class="panel panel-primary" style="border-color: #122b40; color: black; background-color: #363636">
-                <div class="panel-heading" style="background-color: #122b40"><label id="createAtributo">Nuevo atributo de calidad</label></div>
+            <div class="panel panel-primary" style="border-color: #212021; color: black;background-image: url(resources/images/image.png)">
+                <div class="panel-heading" style="background-color: #212021"><label id="createAtributo">Nuevo atributo de calidad</label></div>
                 <div class="panel-body">
                     <form ng-submit="createCalidad()" name="calidad">
                         <div class="form-group row">
 
-                            <div class="form-group col-sm-1">
+                            <div class="form-group col-sm-5">
                                 <select id="calidadMedida" required ng-model="calidadMedida" size="10" style="width: 250px; background-color: #565656;border-width: medium; border-color: whitesmoke; overflow-x: no-display">
                                     <option ng-repeat="x in medidasRecords" value="{{x.id}}">{{x.descripcion}}</option>
                                 </select>
                             </div>
 
-                            <div class="form-group right">
+                            <div class="form-group right col-sm-7">
                                 <div class="form-group">
                                     <label for="atributoRegrecion" class="col-sm-10" style="color: whitesmoke">Objetivo:</label>
                                     <select id="calidadRegresion" required ng-model="calidadRegresion" class="ng-pristine ng-valid ng-empty ng-touched">
