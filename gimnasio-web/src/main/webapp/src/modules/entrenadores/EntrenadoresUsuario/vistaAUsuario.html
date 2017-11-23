@@ -4,7 +4,8 @@
 <div> <label> Estudiante:</label> {{usuarioActual.nombre}}</div>
 <div> <label> genero:</label> {{usuarioActual.genero}}</div>
 <div> <label> fecha de nacimiento: </label> {{usuarioActual.fechaDeNacimiento|date: 'yyyy-MM-dd'}}</div>
-
+ <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
+<div id="demo" class="collapse">
 <div><h1>Historial:</h1></div>
 
 <table class="table">
@@ -25,6 +26,7 @@
       </tr>
     </tbody>
   </table>
+</div>
 <div><h1>Objetivos:</h1></div>
  <table class="table">
     <thead>

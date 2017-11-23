@@ -47,6 +47,8 @@ public class EjercicioInstanciaDTO{
         ent.setRepeticionesPorParticion(repeticionesPorParticion);
         ent.setSeries(series);
         ent.setTamanioParticiones(tamanioParticiones);
+        ent.setCumplimiento(0.0);
+        ent.setEfectividad(0.0);
         return ent;
     }
     //--------------------------------------------

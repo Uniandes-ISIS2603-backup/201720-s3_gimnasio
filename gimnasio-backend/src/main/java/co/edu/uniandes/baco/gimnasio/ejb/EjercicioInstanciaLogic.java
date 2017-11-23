@@ -6,10 +6,13 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
+import java.util.Calendar;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -48,6 +51,48 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
         EjercicioInstanciaEntity ans = create(idRutina, entity);
         ans.setEjercicio(ejercicioLogic.find(idEjercicio));
         return ans;
+    }
+
+    public void calcularCumplimento() throws BusinessLogicException {
+        RutinaEntity rutina;
+        Calendar ini = Calendar.getInstance();
+        Calendar fin = Calendar.getInstance();
+        Calendar aux = Calendar.getInstance();
+        List<EjercicioHechoEntity> list;
+        double part;
+        int i;
+        double cont;
+        for (EjercicioInstanciaEntity e : findAll()) {
+            rutina = e.getRutina();
+            ini.setTime(rutina.getFechaInicio());
+            fin.setTime(rutina.getFechaFinal());
+            list = e.getEjerciciosHechos();
+            if (!list.isEmpty()) {
+                list.sort((a, b) -> (int) (a.getFecha().getTime() - b.getFecha().getTime()));
+                part = 1;
+                i = 0;
+                cont = 0;
+                ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
+                aux.setTime(list.get(i).getFecha());
+                while (ini.before(fin)) {
+                    int series = 0;
+                    int veces = 0;
+                    while (!aux.after(ini) && i < list.size()) {
+                        veces++;
+                        series += list.get(i++).getSeriesReales();
+                        if (i < list.size()) {
+                            aux.setTime(list.get(i).getFecha());
+                        }
+                    }
+                    cont += (double) ((veces * e.getSeries()) + series) / (2 * e.getSeries() * e.getRepeticionesPorParticion());
+                    ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
+                    part++;
+                }
+                e.setCumplimiento((double) (cont / part) * 100);
+            } else {
+                e.setCumplimiento(0.0);
+            }
+        }
     }
 
     //-----------------------------------

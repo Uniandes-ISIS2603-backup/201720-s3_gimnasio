@@ -6,6 +6,9 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -13,9 +16,11 @@ import java.util.Date;
  * @author jc.bojaca
  */
 public class RutinaDTO {
+    private final static SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+    
     private Long id;
-    private Date fechaInicio;
-    private Date fechaFinal;
+    private String fechaInicio;
+    private String fechaFinal;
 
     public RutinaDTO() {
         //javaxs
@@ -23,14 +28,14 @@ public class RutinaDTO {
     
     public RutinaDTO(RutinaEntity entity){
         id=entity.getId();
-        fechaInicio=entity.getFechaInicio();
-        fechaFinal=entity.getFechaFinal();
+        fechaInicio=format.format(entity.getFechaInicio());
+        fechaFinal=format.format(entity.getFechaFinal());
     }
     
-    public RutinaEntity toEntity(){
+    public RutinaEntity toEntity() throws ParseException{
         RutinaEntity ent=new RutinaEntity();
-        ent.setFechaInicio(fechaInicio);
-        ent.setFechaFinal(fechaFinal);
+        ent.setFechaInicio(format.parse(fechaInicio));
+        ent.setFechaFinal(format.parse(fechaFinal));
         return ent;
     }
 
@@ -42,21 +47,21 @@ public class RutinaDTO {
         this.id = id;
     }
 
-    public Date getFechaFinal() {
+    public String getFechaFinal() {
         return fechaFinal;
     }
 
-    public void setFechaFinal(Date fechaFinal) {
+    public void setFechaFinal(String fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
     
     
     
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 }
