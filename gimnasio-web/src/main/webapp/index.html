@@ -6,11 +6,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
         <title>Gimnasio</title>
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <script src="bower_components/angular/angular.js"></script>
@@ -67,53 +66,24 @@
 
     </head>
     <body background="resources/images/fondo.jpg">
-    <center>
-        <div class="container-fluid">
-            <div class="row mainHeader col-md-12">
-                <div class="col-md-1"></div>
-                <div class="col-md-1"> 
-                    <img src="resources/images/pesas.png" alt="pesas">
-                </div>
-                <div class="col-md-2"> 
-                    <h1 style="color: whitesmoke"><b>Gimnasio</b></h1>
-                </div>
-
-                <div class="col-md-8">
-                    <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
-                        <li><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    </ul>
-                    <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
-                        <li class="nameUser">Hola, {{currentUser}}</li>
-                        <li><a ui-sref="logout">Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-md-1"></div>
-            <div class="col-md-10" style="alignment-adjust: central">
-                <div class="row">
-                    <ul class="nav nav-tabs" style="background-color: #212021; border-width: medium">
-                        <li><a ui-sref="entrenadoresList">Entrenadores</a></li>
-                        <li><a ui-sref="usuariosList">Usuarios</a></li>
-                        <li><a ui-sref="maquinasList">Maquinas</a></li>
-                        <li><a ui-sref="ejercicios_list">Ejercicios</a></li>
-                        <li><a ui-sref="objetivos_list">Objetivos</a></li>
-                        <li><a ui-sref="tipoMedidasList">TipoMedidas</a></li>
-                    </ul>
-                    <div class="container-fluid" style="background-color:rgba(204, 204, 204, 0.9)">
-                        <div ui-view="mainView" style="color: #000000"></div>
-                    </div>
-                </div>
-            </div>
+        <nav class="nav  bg-inverse navbar-inverse navbar-fixed-top">
+            <a class="navbar-brand" href="#">GIMNASIO</a>
+            <ul class="nav nav-tabs center-block" style="margin-top: 8px">
+                <li><a ui-sref="entrenadoresList">Entrenadores</a></li>
+                <li><a ui-sref="usuariosList">Usuarios</a></li>
+                <li><a ui-sref="maquinasList">Maquinas</a></li>
+                <li><a ui-sref="ejercicios_list">Ejercicios</a></li>
+                <li><a ui-sref="objetivos_list">Objetivos</a></li>
+                <li><a ui-sref="tipoMedidasList">TipoMedidas</a></li>
+                <li ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right" style="margin-right: 20px"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li class="nameUser nav navbar-nav pull-right" ng-if="isAuthenticated()">Hola, {{currentUser}}<a ui-sref="logout">Logout</a></li>
+            </ul>
+        </nav>
+        
+        <div class="container-fluid row" style="background-color:rgba(201, 201, 201, 0.9)">
+            <br>
+            <br>
+            <center><div ui-view="mainView" style="color: #000000; margin-top: 10px"></div> </center>
         </div>
-        <br>
-        <br>
-    </center>
-
-    <div class="navbar navbar-default navbar-fixed-bottom" style="background-color: #212021">
-        <p class="navbar-text pull-left" style="text-align: center">©Desarrollo de sofware en equipos
-            <img src="resources/images/Logo_Uniandes.png" alt="logo" width="8%"/>
-        </p>
-    </div>
-</body>
+    </body>
 </html>

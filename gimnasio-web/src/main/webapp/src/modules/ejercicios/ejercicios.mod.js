@@ -32,9 +32,11 @@
                 url: '/list',
                 parent: 'ejercicios',
                 views: {
-                    'listView': {
-                        templateUrl: basePath + 'ejercicios.list.html'
-                    }}
+                    'detailView': {
+                        templateUrl: basePath + 'ejercicios.list.html',
+                        controller: 'ejercicioCtrl',
+                        controllerAs: 'ctrl'}
+                }
             }).state('ejercicios_create', {
                 url: '/create',
                 parent: 'ejercicios',
@@ -47,10 +49,11 @@
             });
 
             $stateProvider.state('ejercicio_detail', {
-                url: '/detail',
-                parent: 'ejercicio',
+                url: '/{ejercicioId:int}/detail',
+                parent: 'ejercicios_list',
+                param: {ejercicioId: null},
                 views: {
-                    'detailView': {
+                    'detailView2': {
                         templateUrl: basePath + 'ejercicios.detail.html',
                         controller: 'ejercicioCtrl',
                         controllerAs: 'ctrl'

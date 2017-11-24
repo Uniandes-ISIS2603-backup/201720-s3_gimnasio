@@ -6,17 +6,14 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
-import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  *
  * @author jc.bojaca
  */
 public class RutinaDTO {
-    private final static SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+    private final SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
     
     private Long id;
     private String fechaInicio;

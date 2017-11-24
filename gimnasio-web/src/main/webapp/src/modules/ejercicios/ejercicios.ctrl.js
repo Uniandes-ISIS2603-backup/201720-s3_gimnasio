@@ -12,7 +12,7 @@
             if ($state.params.ejercicioId !== undefined && $state.params.ejercicioId !== null) {
                 $http.get(ejerciciosContext + '/' + $state.params.ejercicioId).then(function (response) {
                     $scope.currentEjercicio = response.data;
-                    $scope.currentEjercicio.video = "http://www.youtube.com/embed/" + response.data.video;
+                    $scope.currentvideo = "http://www.youtube.com/embed/" + response.data.video;
                     $scope.ejercicioInstanciaRecords = response.data.instancias;
                 });
             }
@@ -27,7 +27,7 @@
             var idEjercicio = $state.params.ejercicioId;
             $scope.deleteEjercicio = function () {
                 $http.delete(ejerciciosContext + '/' + idEjercicio, {}).then(function (response) {
-                    $state.go('ejercicios_list', {ejercicioId: response.data.id}, {reload: true});
+                    $state.go('ejercicios_list', {ejercicioId: response.data.id}, {reload$s: true});
                 });
             };
         }
@@ -36,7 +36,7 @@
     mod.controller('ejercicioNewCtrl', ['$scope', '$http', 'ejerciciosContext', '$state', '$rootScope',
         function ($scope, $http, ejerciciosContext, $state, $rootScope) {
             $rootScope.edit = false;
-           
+
             $scope.createEjercicio = function () {
                 var videos = $scope.ejercicioVideo.split("=");
                 $http.post(ejerciciosContext, {
@@ -61,10 +61,10 @@
                 var ejercicio = response.data;
                 var listPasos = "";
                 if (ejercicio.pasos !== undefined) {
-                    for (var i = 0; i < ejercicio.pasos.length-1; i++) {
+                    for (var i = 0; i < ejercicio.pasos.length - 1; i++) {
                         listPasos = listPasos + ejercicio.pasos[i] + "\n";
                     }
-                    listPasos=listPasos+ejercicio.pasos[ejercicio.pasos.length-1];
+                    listPasos = listPasos + ejercicio.pasos[ejercicio.pasos.length - 1];
                 }
                 $scope.ejercicioTipo = ejercicio.tipo;
                 $scope.ejercicioDescricpion = ejercicio.descricpion;
