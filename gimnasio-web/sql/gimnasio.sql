@@ -109,11 +109,18 @@ INSERT INTO RUTINAENTITY (ID,FECHAINICIO,FECHAFINAL,USUARIO_ID) VALUES (8,'11/18
 INSERT INTO RUTINAENTITY (ID,FECHAINICIO,FECHAFINAL,USUARIO_ID) VALUES (9,'11/18/2016','11/18/2017',9);
 INSERT INTO RUTINAENTITY (ID,FECHAINICIO,FECHAFINAL,USUARIO_ID) VALUES (10,'11/18/2016','11/18/2017',10);
 
-INSERT INTO EJERCICIOENTITY (DESCRIPCION,video,EXPLICACION,TIPO) VALUES ('Mountain Climbers','lvaQcFaxL00','un ejercicio que involucra los músculos de la cintura y que nos permiten elevar las piernas a la hora de saltar, golpear un balón o soltar una patada.','AEROBICOS');
-INSERT INTO EJERCICIOENTITY (DESCRIPCION,video,EXPLICACION,TIPO) VALUES ('Abdominales en barra con los brazos sujetos','-lCIV_SNvbM',' hacer los abdominales de esta forma colgamos todo nuestro cuerpo con un único punto de sujeción, los brazos que están agarrados de la barra. Así, todo el cuerpo queda en suspensión, siendo la pared abdominal la que debe de soportar y equilibrar todo nuestro cuerpo. ','AEROBICOS');
-INSERT INTO EJERCICIOENTITY (DESCRIPCION,video,EXPLICACION,TIPO) VALUES ('Remo horizontal con mancuerna','n1Xb8ispJbs','Para empezar, hay que posicionarse, tomando una mancuerna con la mano izquierda o derecha, y apoyando la palma de la mano contraria, al igual que la rodilla sobre el banco. La espalda debe permanecer fija y el brazo con la mancuerna extendido hacia abajo, al costado del cuerpo.
+INSERT INTO EJERCICIOENTITY (DESCRIPCION,video,EXPLICACION,TIPO) 
+VALUES ('Remo horizontal con mancuerna','n1Xb8ispJbs','Para empezar, hay que posicionarse, tomando una mancuerna con la mano izquierda o derecha, y apoyando la palma de la mano contraria, al igual que la rodilla sobre el banco. La espalda debe permanecer fija y el brazo con la mancuerna extendido hacia abajo, al costado del cuerpo.
 Inspirar y elevar la mancuerna hasta la espalda, de forma que el codo quede por encima de la misma para imitar el movimiento de remo.
 Regresar a la posición original en un movimiento controlado y lento, y espirar al final de recorrido.','AEROBICOS');
+INSERT INTO APP.EJERCICIOENTITY (DESCRIPCION, EXPLICACION, TIPO, VIDEO) 
+	VALUES ('Remo al cuello con polea baja', 'Uno de los ejercicios que vale la pena llevar a cabo en las rutinas de volumen muscular es el remo al cuello con polea baja, ya que ayuda a trabajar el tren superior, específicamente los músculos de los hombros.', 'ANEAROBICOS', 'SyX9QF76-c8');
+INSERT INTO APP.EJERCICIOENTITY (DESCRIPCION, EXPLICACION, TIPO, VIDEO) 
+	VALUES ('Encogimiento de hombros con mancuernas', 'Para su ejecución será necesario de un par de mancuernas de peso ajustado, según tus capacidades de levantamiento.', 'NO_PERTENECE', 'qlIv6nW5kHU');
+INSERT INTO APP.EJERCICIOENTITY (DESCRIPCION, EXPLICACION, TIPO, VIDEO) 
+	VALUES ('Mountain Climbers', 'un ejercicio que involucra los músculos de la cintura y que nos permiten elevar las piernas a la hora de saltar, golpear un balón o soltar una patada.', 'AEROBICOS', 'lvaQcFaxL00');
+INSERT INTO APP.EJERCICIOENTITY (DESCRIPCION, EXPLICACION, TIPO, VIDEO) 
+	VALUES ('Abdominales en barra', 'para hacerlo bien es necesario tener un perfecto control abdominal y una amplia concentración en la zona que estamos trabajando.', 'EQUILIBRIO', 'hCRrA-EAiBU');
 
 INSERT INTO EJERCICIOINSTANCIAENTITY (DURACION,SERIES,REPETICIONESPORPARTICION,TAMANIOPARTICIONES,EJERCICIO_ID,RUTINA_ID) VALUES (15,20,1,7,1,1);
 INSERT INTO EJERCICIOINSTANCIAENTITY (DURACION,SERIES,REPETICIONESPORPARTICION,TAMANIOPARTICIONES,EJERCICIO_ID,RUTINA_ID) VALUES (25,0,1,7,2,1);
@@ -141,6 +148,8 @@ INSERT INTO TIPOMEDIDAENTITY (TIPOMEDIDA,UNIDAD,AUTOMATICO) VALUES ('GLUTEOS','C
 INSERT INTO TIPOMEDIDAENTITY (TIPOMEDIDA,UNIDAD,AUTOMATICO) VALUES ('BICEP','CM',0);
 INSERT INTO TIPOMEDIDAENTITY (TIPOMEDIDA,UNIDAD,AUTOMATICO) VALUES ('OBLICUOS','CM',0);
 INSERT INTO TIPOMEDIDAENTITY (TIPOMEDIDA,UNIDAD,AUTOMATICO) VALUES ('TRICEP','CM',0);
+INSERT INTO TIPOMEDIDAENTITY (TIPOMEDIDA,UNIDAD,AUTOMATICO) VALUES ('TRAPECIOS','CM',0);
+INSERT INTO TIPOMEDIDAENTITY (TIPOMEDIDA,UNIDAD,AUTOMATICO) VALUES ('TELDOiDES','CM',0);
 INSERT INTO TIPOMEDIDAENTITY (TIPOMEDIDA,UNIDAD,AUTOMATICO) VALUES ('PIERNAS','CM',0);
 INSERT INTO TIPOMEDIDAENTITY (TIPOMEDIDA,UNIDAD,AUTOMATICO) VALUES ('PESO','KG',0);
 INSERT INTO TIPOMEDIDAENTITY (TIPOMEDIDA,UNIDAD,AUTOMATICO) VALUES ('VELOCIDAD PROMEDIO','KM/S',1);
