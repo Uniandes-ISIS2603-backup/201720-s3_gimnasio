@@ -1,10 +1,12 @@
 <!--Esta pagina ha sido desarrollada por Mateo Sicard 
     m.sicard10 201512474  -->
 <div>
-    <img width="20%" height="20%" src="{{usuarioActual.imagen}}"><br>
+    <img width="20%" height="20%" src="{{usuarioActual.imagen}}">
+    <div>
     <label> Usuario:</label> {{usuarioActual.nombre}} <br>
     <label> genero:</label> {{usuarioActual.genero2}} <br>
     <label> fecha de nacimiento: </label> {{usuarioActual.fechaDeNacimiento|date: 'yyyy-MM-dd'}}<br>
+    </div>
 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#historial">Historial <span class="glyphicon glyphicon-chevron-down"></span></button>
 <div id="historial" class="collapse">
 <div><h1>Historial:</h1></div>

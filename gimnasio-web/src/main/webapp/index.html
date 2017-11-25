@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html ng-app="mainApp">
-    <head >
+
         <link rel="shortcut icon" href="https://cdn3.iconfinder.com/data/icons/sports-recreation-1/128/weight-128.png"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,26 +64,33 @@
         <script src="src/modules/ejercicios/maquinas/ejemaquinas.mod.js" type="text/javascript"></script>
         <script src="src/modules/ejercicios/maquinas/ejemaquinas.ctrl.js" type="text/javascript"></script>
 
+
     </head>
     <body background="resources/images/fondo.jpg">
-        <nav class="nav  bg-inverse navbar-inverse navbar-fixed-top">
-            <a class="navbar-brand" href="#">GIMNASIO</a>
-            <ul class="nav nav-tabs center-block" style="margin-top: 8px">
-                <li><a ui-sref="entrenadoresList">Entrenadores</a></li>
-                <li><a ui-sref="usuariosList">Usuarios</a></li>
-                <li><a ui-sref="maquinasList">Maquinas</a></li>
-                <li><a ui-sref="ejercicios_list">Ejercicios</a></li>
-                <li><a ui-sref="objetivos_list">Objetivos</a></li>
-                <li><a ui-sref="tipoMedidasList">TipoMedidas</a></li>
-                <li ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right" style="margin-right: 20px"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                <li class="nameUser nav navbar-nav pull-right" ng-if="isAuthenticated()">Hola, {{currentUser}}<a ui-sref="logout">Logout</a></li>
-            </ul>
-        </nav>
-        
-        <div class="container-fluid row" style="background-color:rgba(201, 201, 201, 0.9);">
-            <br>
-            <br>
-            <center><div ui-view="mainView" style="color: #000000; margin-top: 10px"></div> </center>
+        <div class="col-md-1 center-block">
+
+        </div>
+        <div class="col-md-10 center-block"  >
+            <nav class="nav col-md-12 navbar-inverse">
+                <a class="navbar-brand " href="#">GIMNASIO</a>
+                <ul class="nav nav-tabs center-block" style="margin-top: 8px">
+                    <li><a ui-sref="entrenadoresList">Entrenadores</a></li>
+                    <li><a ui-sref="usuariosList">Usuarios</a></li>
+                    <li><a ui-sref="maquinasList">Maquinas</a></li>
+                    <li><a ui-sref="ejercicios_list">Ejercicios</a></li>
+                    <li><a ui-sref="objetivos_list">Objetivos</a></li>
+                    <li><a ui-sref="tipoMedidasList">TipoMedidas</a></li>
+                    <li ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right" style="margin-right: 20px"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li class="nameUser nav navbar-nav pull-right" ng-if="isAuthenticated()">Hola, {{currentUser}}<a ui-sref="logout">Logout</a></li>
+                </ul>
+            </nav>
+
+
+            <div class="container-fluid row" style="background-color:rgba(201, 201, 201, 0.9);">
+                <br>
+                <br>
+                <center><div ui-view="mainView" style="color: #000000; margin-top: 10px"></div> </center>
+            </div>
         </div>
     </body>
 </html>
