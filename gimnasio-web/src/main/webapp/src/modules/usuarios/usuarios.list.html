@@ -1,24 +1,20 @@
 <div>
     <div ng-repeat="usuario in usuarioRecords" style="display: inline-block ; width: 30%;height: 30%;" >
         <div class ="thumbnail" style=" color: black; background: white;width: 90%; border-color: blue; border-width: 5px; border-style: groove">
+                <img width="20%" height="20%" src="{{usuario.imagen}}">
                 <div class="row">
-                    <label>Id:</label> 
-                    <p id="{{$index}}-id">{{usuario.id}}</p>
+                    <label>Id:</label> {{usuario.id}}
                 </div>
                 <div class="row">
-                    <label>Nombre:</label>
-                    <p id="{{$index}}-Nombre">{{usuario.nombre}}</p>
+                    <label>Nombre:</label> {{usuario.nombre}}
                 </div>
                 <div class="row">
-                    <label>Genero:</label>
-                    <p id="{{$index}}-Genero">{{usuario.genero}}</p>
+                    <label>Genero:</label> {{usuario.genero2}}
                 </div>
                 <div class="row">
-                    <label>fecha Nacimiento:</label>
-                    <p id="{{$index}}-fechaDeNacimiento">{{usuario.fechaDeNacimiento|date:'yyyy-MM-dd'}}</p>
+                    <label>fecha Nacimiento:</label> {{usuario.fechaDeNacimiento|date:'yyyy-MM-dd'}}
                 </div>
                       <div class="row">
-                    <label>fecha :</label>
                     <p id="{{$index}}-verestado"><a class="btn btn-info" ui-sref="usuarioDetalle({Uid : usuario.id})"><span class="glyphicon glyphicon-plus-sign"></span> Ver detalle</a></p>
                 </div>
                 <div class="row">

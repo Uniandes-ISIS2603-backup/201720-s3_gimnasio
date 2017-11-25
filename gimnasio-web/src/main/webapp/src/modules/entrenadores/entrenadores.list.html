@@ -3,33 +3,30 @@
 <br></br>
 <div>
     <div ng-repeat="entrenador in entrenadorRecords" style="display: inline-block ; width: 30%;height: 30%;" >
-        <div class ="thumbnail" style=" color: black; background: lightgray;width: 90%; border-color: black; border-width: 7px; border-style: double">
+        <div class ="thumbnail" style=" color: black; background: white;width: 90%; border-color: black; border-width: 7px; border-style: double">
+            <img width="20%" height="20%" src="resources/images/ent.png">
             <div class="row">
-                    <label>Id:</label> 
-                    <p id="{{$index}}-id">{{entrenador.id}}</p>
-                </div>
-                <div class="row">
-                    <label>Nombre:</label>
-                    <p id="{{$index}}-Nombre">{{entrenador.name}}</p>
-                </div>
-                <div class="row">
-                    <label>Documento:</label>
-                    <p id="{{$index}}-Documento">{{entrenador.documento}}</p>
-                </div>
-                <div class="row">
-                    <label>fecha Nacimiento:</label>
-                    <p id="{{$index}}-fechaNacimiento">{{entrenador.fechaNacimiento|date:'yyyy-MM-dd'}}</p>
-                </div>
-                <div class="row">
-                    <button id="{{$index}}-delete-btn" class="btn btn-danger" ui-sref="entrenadorDelete({entrenadorid : entrenador.id})"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
-                    <button id="{{$index}}-edit-btn" class="btn btn-info" ui-sref="entrenadorEdit({entId : entrenador.id})"><span class="glyphicon glyphicon-pencil"></span> editar</button>
-                    <button id="{{$index}}-usuarios" class="btn btn-success" ui-sref="EntrenadorUsuarios({Eid : entrenador.id, e:entrenador })"><span class="glyphicon glyphicon-check"></span> Ver usuarios</button>
-                </div>
+                <label>Id:</label> {{entrenador.id}}
+            </div>
+            <div class="row">
+                <label>Nombre:</label> {{entrenador.name}}
+            </div>
+            <div class="row">
+                <label>Documento:</label> {{entrenador.documento}}
+            </div>
+            <div class="row">
+                <label>fecha Nacimiento:</label> {{entrenador.fechaNacimiento|date:'yyyy-MM-dd'}}
+            </div>
+            <div class="row">
+                <button id="{{$index}}-delete-btn" class="btn btn-danger" ui-sref="entrenadorDelete({entrenadorid : entrenador.id})"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                <button id="{{$index}}-edit-btn" class="btn btn-info" ui-sref="entrenadorEdit({entId : entrenador.id})"><span class="glyphicon glyphicon-pencil"></span> editar</button>
+                <button id="{{$index}}-usuarios" class="btn btn-success" ui-sref="EntrenadorUsuarios({Eid : entrenador.id, e:entrenador })"><span class="glyphicon glyphicon-check"></span> Ver usuarios</button>
             </div>
         </div>
-     <div>
-         <button id="createEntrenador-btn" class="btn btn-info" ui-sref="createEntrenador" style=" margin-bottom: 30px"><span class="glyphicon glyphicon-plus-sign"></span> Crear Entrenador</button>
-     </div>
+    </div>
+    <div>
+        <button id="createEntrenador-btn" class="btn btn-info" ui-sref="createEntrenador" style=" margin-bottom: 30px"><span class="glyphicon glyphicon-plus-sign"></span> Crear Entrenador</button>
+    </div>
 </div>
-        
+
 

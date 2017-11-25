@@ -11,8 +11,21 @@
        function ($scope, $http, usuarioContext, $state) {
             //console.info("dar datos usuario");
             $http.get(usuarioContext).then(function (response) {
-                $scope.usuarioRecords = response.data;
+                var x= response.data;
                 //console.info(response.data);
+                
+                x.forEach(function(element){
+                            if(element.genero === true)
+                            {
+                                element.genero2 = 'M';
+                                element.imagen = "resources/images/hombre.png";
+                            }else 
+                            {
+                                element.genero2 = 'F';
+                                element.imagen = "resources/images/mujer.png";
+                            }
+                        });
+                        $scope.usuarioRecords = x
                 
                 if (($state.params.Uid !== undefined) && ($state.params.Uid !== null))
                 {
