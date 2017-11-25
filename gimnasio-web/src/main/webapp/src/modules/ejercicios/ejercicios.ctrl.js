@@ -16,6 +16,19 @@
                     $scope.ejercicioInstanciaRecords = response.data.instancias;
                 });
             }
+
+            $scope.buscarEjercicio = function () {
+                var a = $scope.Nombre.toLowerCase();
+                if (a !== undefined && a !== null) {
+                    $http.get(ejerciciosContext).then(function (response) {
+                        $scope.ejerciciosRecords = response.data.filter(function (c) {
+                            return c.descricpion.toLowerCase().includes(a);
+                        }).sort(function (a, b) {
+                            return a.descricpion.localeCompare(b.descricpion);
+                        });
+                    });
+                }
+            };
         }
     ]).config(function ($sceDelegateProvider) {
         $sceDelegateProvider.resourceUrlWhitelist(['**']);

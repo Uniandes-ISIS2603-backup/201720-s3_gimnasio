@@ -88,7 +88,7 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
                     ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
                     part++;
                 }
-                e.setCumplimiento((double) (cont / part) * 100);
+                e.setCumplimiento((cont / part) * 100);
             } else {
                 e.setCumplimiento(0.0);
             }
