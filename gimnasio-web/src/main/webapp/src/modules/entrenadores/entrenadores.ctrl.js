@@ -35,16 +35,18 @@
                     {
                        var entrenadorActua = response.data;
                         entrenadorActua.usuarios.forEach(function(element){
-                            if(element.genero === 'true')
+                            if(element.genero === true)
                             {
-                                element.genero = 'M';
-                            }else
+                                element.genero2 = 'M';
+                                
+                            }else 
                             {
-                                element.genero = 'F';
+                                element.genero2 = 'F';
+                                
                             }
                         });
                         $scope.entrenadorActual = entrenadorActua ;
-                        //console.info(entrenadorActua)
+                        //console.info(entrenadorActua);
                     });
                 }
                 
@@ -54,13 +56,16 @@
                     {
                         //console.info(response.data)
                         $scope.usuarioActual = response.data;
-                        if($scope.usuarioActual.genero === 'true')
+                        if($scope.usuarioActual.genero === true)
                             {
-                                $scope.usuarioActual.genero = 'M';
-                            }else
+                                $scope.usuarioActual.genero2 = 'M';
+                                $scope.usuarioActual.imagen = "resources/images/hombre.png";
+                            }else 
                             {
-                                $scope.usuarioActual.genero = 'F';
+                                $scope.usuarioActual.genero2 = 'F';
+                                $scope.usuarioActual.imagen = "resources/images/mujer.png";
                             }
+                            //console.info($scope.usuarioActual);
                        
                     });
                 }

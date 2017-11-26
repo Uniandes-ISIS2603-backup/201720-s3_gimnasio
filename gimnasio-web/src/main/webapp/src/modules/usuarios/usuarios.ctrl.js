@@ -9,11 +9,34 @@
     mod.constant("usuario                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Context", "api/entrenadores");
     mod.controller('usuariosCtrl', ['$scope', '$http', 'usuarioContext', '$state',
        function ($scope, $http, usuarioContext, $state) {
-            console.info("dar datos usuario");
+            //console.info("dar datos usuario");
             $http.get(usuarioContext).then(function (response) {
                 $scope.usuarioRecords = response.data;
-                console.info(response.data);
+                //console.info(response.data);
+                
+                if (($state.params.Uid !== undefined) && ($state.params.Uid !== null))
+                {
+                    $http.get(usuarioContext + '/' + $state.params.Uid).then(function(response)
+                    {
+                       var usuarioActua = response.data;
+                        
+                            if(usuarioActua.genero === true)
+                            {
+                                usuarioActua.genero2 = 'M';
+                                usuarioActua.imagen = "resources/images/hombre.png";
+
+                            }else
+                            {
+                                usuarioActua.genero2 = 'F';
+                                usuarioActua.imagen = "resources/images/mujer.png";
+                            }
+                       
+                        $scope.usuarioActual = usuarioActua ;
+                    });
+                }
             });
+            
+            
             
             //borrar
             this.deleteRecord = function(usuario){

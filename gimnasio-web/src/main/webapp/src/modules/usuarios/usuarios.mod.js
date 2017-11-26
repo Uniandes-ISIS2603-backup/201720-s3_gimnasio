@@ -43,6 +43,19 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('usuarioDetalle',{
+                 url: '/{Uid:int}',
+                parent: 'usuarios',
+                param:{
+                    Uid: null
+                },
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'usuarios.detalle.html',
+                        controller: 'usuariosCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }
     ]);

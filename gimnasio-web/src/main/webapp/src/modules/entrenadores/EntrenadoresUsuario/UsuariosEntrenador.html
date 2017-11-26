@@ -17,7 +17,7 @@
         <td>{{usuario.id}}</td>
         <td>{{usuario.nombre}}</td>
         <td>{{usuario.fechaDeNacimiento|date: 'yyyy-MM-dd'}}</td>
-        <td>{{usuario.genero}}</td>
+        <td>{{usuario.genero2}}</td>
         <td>
         <button id="{{$index}}-delete-btn" class="btn btn-danger btn-sm" ng-click="ctrl.deleteUsuarioEntrenador(usuario,entrenadorActual.id)"><span class="glyphicon glyphicon-minus"></span> Desvincular</button>
         <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ui-sref="vistaUsuarioEntrenador({Enid : entrenadorActual.id, Uid : usuario.id})"><span class="glyphicon glyphicon-zoom-in"></span> detalles</button>
