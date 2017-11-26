@@ -8,18 +8,20 @@
    <!--    <select ng-model="selectUsuraio" ng-options="x for x in usuarios"></select> <br>
        
         --> 
+        
         <form ng-submit="creatMedida()" name = "medida">
          <h5>Agregar medida</h5>
           <h6> medida</h6>
            <input type="number" ng-model="medida" required/>
            <h6>Seleccione un Tipo de medida</h6>
            <select ng-model="tipo" ng-options="tipo.descripcion for tipo in tipoRecords"></select>
+            <button onclick="history.back()">Back</button>
            </br>
            </br>
             <input type="submit" value="Agregar" class="btn btn-info btn-sm"/>
   </form> 
            </br>
-  <button id="cancelarMedida-btn" class="btn btn-info btn-sm" ui-sref="estadoList" >Cancelar</button>
+        <button onclick="history.back()">Back</button>tton id="cancelarMedida-btn" class="btn btn-info btn-sm" ui-sref="estadoList" >Cancelar</button>
       
         <div class="container-fluid">
         <table class="table table-striped">

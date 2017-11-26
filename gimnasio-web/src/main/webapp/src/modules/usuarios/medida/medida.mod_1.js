@@ -1,6 +1,6 @@
 (function (ng) {
     // Definición del módulo
-    var mod = ng.module("medidaModule", ['ui.router']);
+    var mod = ng.module("medidasModule", ['ui.router']);
 
     
     // Configuración de los estados del módulo
@@ -29,3 +29,4 @@
         }
     ]);
 })(window.angular);
+

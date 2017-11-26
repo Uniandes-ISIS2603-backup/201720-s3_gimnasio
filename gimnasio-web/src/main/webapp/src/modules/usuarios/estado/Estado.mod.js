@@ -24,6 +24,17 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('estadocreate', {
+                // Url que aparecerá en el browser
+                url: '/usuarios/estado/create',
+          
+                views: {
+                    'mainView': {
+                        templateUrl: basePath + 'Estado_create.html',
+                        controller: 'estadoCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }
     ]);

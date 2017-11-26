@@ -1,8 +1,8 @@
 (function (ng) {
-    var mod = ng.module("medidaModule");
+    var mod = ng.module("medModule");
     mod.constant("MedidaContext", "api/usuarios/");
   
-    mod.controller('medCtrl', ['$scope', '$http', 'MedidaContext', '$state',
+    mod.controller('medCtr', ['$scope', '$http', 'MedidaContext', '$state',
         function ($scope, $http, MedidaContext, $state) {
             console.info("dar datos medida");
                 console.info($state.params.UsuariosId);
