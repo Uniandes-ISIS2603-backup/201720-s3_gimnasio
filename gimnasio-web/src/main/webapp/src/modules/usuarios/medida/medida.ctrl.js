@@ -4,8 +4,6 @@
   
     mod.controller('medCtrl', ['$scope', '$http', 'MedidaContext', '$state',
         function ($scope, $http, MedidaContext, $state) {
-            console.info("dar datos medida");
-                console.info($state.params.UsuariosId);
             $http.get(MedidaContext +$state.params.UsuariosId+"/estados/"+ $state.params.estadoID +"/medidas").then(function (response) {
                 $scope.medidaRecords = response.data;
                 $scope.devusuar = $state.params.UsuariosId;
