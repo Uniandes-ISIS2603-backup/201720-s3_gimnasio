@@ -1,10 +1,11 @@
 <!--Esta pagina ha sido desarrollada por Mateo Sicard 
     m.sicard10 201512474  -->
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
-<div ui-view="listView"></div>
-<div ui-view="mainView"></div>
-<div ui-view="rutinasView"></div>
-
+<center>
+    <div ui-view="listView"></div>
+    <div ui-view="mainView"></div>
+    <div ui-view="rutinasView"></div>
+</center>
 
 
 

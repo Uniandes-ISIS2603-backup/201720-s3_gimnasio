@@ -2,12 +2,12 @@
     <nav class="col-md-3 hidden-xs-down bg-faded sidebar" style="background-image: url(resources/images/image2.png)">
         <ul class="nav nav-pills flex-column container-fluid" style="margin-top: 10px; margin-bottom: 10px">
             <li class="nav-item" style=" width: 45%">
-                <a class="btn btn-lg" ui-sref="#" style=" color: #28c7ce">
+                <a class="btn btn-l" ui-sref="#" style=" color: #28c7ce">
                     <span class="glyphicon glyphicon-plus-sign"></span> Filtrar
                 </a>
             </li>
             <li class="nav-item" style="width: 45%">
-                <a class="btn btn-lg" ui-sref="ejercicios_create" style=" color: #219821">
+                <a class="btn btn-l" ui-sref="ejercicios_create" style=" color: #219821">
                     <span class="glyphicon glyphicon-plus-sign"></span> Nuevo
                 </a>
             </li>
@@ -16,13 +16,16 @@
                 <input class="col-md-3" ng-show="ejercicio.$valid" type="submit" value=">" class="btn btn-success"/>
             </form>
         </ul>
-        <ul class="nav nav-pills flex-column" style="height: 550px; overflow-y: auto">
+        <ul class="nav nav-tabs flex-column row" style="height: 550px; overflow-y: auto">
             <li class="dropdown col-md-12" ng-repeat="ejercicio in ejerciciosRecords">
-                <a ui-sref="ejercicio_detail({ejercicioId: ejercicio.id})" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ejercicio.descricpion}}<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a ui-sref="ejercicio_update({ejercicioId: ejercicio.id})">modificar</a></li>
-                    <li><a ui-sref="ejercicio_delete({ejercicioId: ejercicio.id})">eliminar</a></li>
-                </ul>
+                <div class="btn-group  row col-md-12 dropdown-toggle">
+                    <a type="button" class="col-md-2 left dropdown-toggle-split" style="text-align: left; height: 100%" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+                    <a type="button" class="col-md-10 dropdown-toggle-split" ui-sref="ejercicio_detail({ejercicioId: ejercicio.id})">{{ejercicio.descricpion}}</a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="ejercicio_update({ejercicioId: ejercicio.id})">modificar</a></li>
+                        <li><a ui-sref="ejercicio_delete({ejercicioId: ejercicio.id})">eliminar</a></li>
+                    </ul>
+                </div>
             </li>
         </ul>
     </nav>
