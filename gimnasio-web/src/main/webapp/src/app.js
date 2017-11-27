@@ -17,6 +17,7 @@
         'ejemedidaModule',
         'ejeobjetivoModule',
         'ejemaquinaModule',
+        'ejerciciosHechosModule',
         'instanciaModule'
     ]);
 

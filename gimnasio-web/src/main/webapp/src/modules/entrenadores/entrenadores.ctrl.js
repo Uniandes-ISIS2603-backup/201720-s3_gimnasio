@@ -17,6 +17,7 @@
                 {
                     $http.get(entrenadorContext + '/' + $state.params.entId).then(function(response)
                     {
+                     
                         $scope.entrenadorActual = response.data ;
                         $scope.nombreEntrenador = $scope.entrenadorActual.name;
                         $scope.documentoEntrenador = $scope.entrenadorActual.documento;

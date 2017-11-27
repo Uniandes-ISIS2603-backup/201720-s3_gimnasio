@@ -4,9 +4,9 @@
         
         function ($stateProvider, $urlRouterProvider) 
         {
-            var basePath = 'src/modules/usuarios/rutinas/ejerInstancia/ejerciciosHechos';
+            var basePath = 'src/modules/usuarios/rutinas/ejerInstancia/ejerciciosHechos/';
             $urlRouterProvider.otherwise("/ejerciciosHechosList");
-            
+                
             //Estados
             $stateProvider.state('ejerciciosHechos', 
             {
@@ -37,6 +37,7 @@
                         templateUrl: basePath + '/ejerciciosHechos.list.html'
                     }
                 }
+                }            
             }).state('ejerciciosHechosDetail', 
             {
                 url: '/{ejerciciosHechosId:int}/detail',
@@ -62,45 +63,11 @@
                 {
                     'detailView': 
                     {
-                        templateUrl: basePath + 'ejerciciosHechos.new.html',
+                        templateUrl: 'src/modules/usuarios/rutinas/ejerInstancia/ejerciciosHechos/ejerciciosHechos.new.html',
                         controller: 'ejercicioHechoNewCtrl'
                     }
                 }
-            }).state('ejercicioHechoUpdate', 
-            {
-                url: '/update/{ejerciciosHechosId:int}',
-                parent: 'ejerciciosHechos',
-                param: 
-                {
-                    ejerciciosHechosId: null
-                },
-                views: 
-                {
-                    'detailView': 
-                    {
-                        templateUrl: basePath + 'ejerciciosHechos.update.html',
-                        controller: 'ejercicioHechoUpdateCtrl'
-                    }
-                }
             })
-            //Lo comento por si en algun momento es util.
-            /*.state('ejercicioHechoDelete', 
-            {
-                url: '/delete/{ejerciciosHechosId:int}',
-                parent: 'ejerciciosHechos',
-                param: 
-                {
-                    ejerciciosHechosId: null
-                },
-                views: 
-                {
-                    'detailView': 
-                    {
-                        templateUrl: basePath + 'ejerciciosHechos.delete.html',
-                        controller: 'ejercicioHechoDeleteCtrl'
-                    }
-                }
-            });*/
         }]);
 })(window.angular);
 

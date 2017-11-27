@@ -1,14 +1,12 @@
 (function (ng) {
     var mod = ng.module("ejerciciosHechosModule");
     mod.constant("UsuariosEjerciciosHechosContext", "api/usuarios");
-    mod.constant("EjercicioEjerciciosHechosContext", "api/ejercicios");  
-    //mod.constant("InstanciaEjerciciosHechosContext", "aiuda");  
-    mod.controller('ejerciciosHechosCtrl', ['$scope', '$http', 'ejerciciosHechosContext', '$state',
+    mod.controller('ejerciciosHechosCtrl', ['$scope', '$http', 'UsuariosEjerciciosHechosContext', '$state',
         
-        function ($scope, $http, UsuariosEjerciciosHechosContext, EjercicioEjerciciosHechosContext , $state)         
+        function ($scope, $http, UsuariosEjerciciosHechosContext, $state)         
         {
             var ejercicioHechoContext = UsuariosEjerciciosHechosContext+ '/' + $state.params.usuariosId+ "/rutinas/"+ 
-                    $state.params.rutinaId+ "/" + EjercicioEjerciciosHechosContext + "/" + $state.params.instanciaId + "/ejerciciosHechos";
+                    $state.params.rutinaId+ "/ejercicios/" + $state.params.instanciaId + "/ejerciciosHechos";
 
             $http.get(ejercicioHechoContext).then(function (response) 
             {
@@ -23,13 +21,12 @@
         }
     ]);
     
-    mod.controller('ejercicioHechoNewCtrl', ['$scope', '$http', 'UsuariosEjerciciosHechosContext','EjercicioEjerciciosHechosContext' /*, 'InstanciaEjerciciosHechosContext' 
-        ,*/,'$state', '$rootScope',
+    mod.controller('ejercicioHechoNewCtrl', ['$scope', '$http', 'UsuariosEjerciciosHechosContext', '$state', '$rootScope',
         
-        function ($scope, $http, UsuariosEjerciciosHechosContext, EjercicioEjerciciosHechosContext/*, InstanciaEjerciciosHechosContext*/, $state, $rootScope) 
+        function ($scope, $http, UsuariosEjerciciosHechosContext , $state, $rootScope) 
         {
             var ejercicioHechoContext = UsuariosEjerciciosHechosContext+ '/' + $state.params.usuariosId+ "/rutinas/"+ 
-                    $state.params.rutinaId+ "/" + EjercicioEjerciciosHechosContext + "/" + $state.params.instanciaId + "/ejerciciosHechos";            
+                    $state.params.rutinaId+ "/ejercicios/"  + $state.params.instanciaId + "/ejerciciosHechos";            
             
             $http.get(ejercicioHechoContext).then(function (response) {
                 $scope.ejerciciosHechosRecords = response.data;
@@ -49,34 +46,6 @@
             };
         }
     ]);
-
-    mod.controller('ejercicioHechoUpdateCtrl', ['$scope', '$http', 'UsuariosEjerciciosHechosContext','EjercicioEjerciciosHechosContext' , 'InstanciaEjerciciosHechosContext' 
-        ,'$state', '$rootScope',
-        
-        function ($scope, $http, UsuariosEjerciciosHechosContext, EjercicioEjerciciosHechosContext/*, InstanciaEjerciciosHechosContext*/, $state, $rootScope) 
-        {
-            var hechoId = $state.params.ejerciciosHechosId;
-            var ejercicioHechoContext = UsuariosEjerciciosHechosContext+ '/' + $state.params.usuariosId+ "/rutinas/"+ 
-                    $state.params.rutinaId+ "/" + EjercicioEjerciciosHechosContext + "/" + $state.params.instanciaId + "/ejerciciosHechos";              
-            
-            $http.get(ejercicioHechoContext + "/" + hechoId).then(function (response) 
-            {
-                var hecho = response.data;
-                $scope.ejercicioHechoFecha= hecho.fecha;
-                $scope.ejercicioHechoSeries= hecho.series;
-            });
-
-            $scope.createEjercicioHecho = function () {
-                $http.put(ejercicioHechoContext + "/" + hechoId, 
-                {
-                    fecha: $scope.ejercicioHechoFecha,
-                    series: $scope.ejercicioHechoSeries 
-                    
-                }).then(function (response) {
-                    $state.go('ejerciciosHechosList', {ejerciciosHechosId: response.data.id}, {reload: true});
-                });
-            };
-        }
-    ]);
+    
 }
 )(window.angular);
