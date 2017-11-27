@@ -53,46 +53,45 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
         return ans;
     }
 
-    public void calcularCumplimento() throws BusinessLogicException {
-        RutinaEntity rutina;
-        Calendar ini = Calendar.getInstance();
-        Calendar fin = Calendar.getInstance();
-        Calendar aux = Calendar.getInstance();
-        List<EjercicioHechoEntity> list;
-        double part;
-        int i;
-        double cont;
+    public void calcularCumplimentoAll() throws BusinessLogicException {
         for (EjercicioInstanciaEntity e : findAll()) {
-            rutina = e.getRutina();
-            ini.setTime(rutina.getFechaInicio());
-            fin.setTime(rutina.getFechaFinal());
-            list = e.getEjerciciosHechos();
-            if (!list.isEmpty()) {
-                list.sort((a, b) -> (int) (a.getFecha().getTime() - b.getFecha().getTime()));
-                part = 1;
-                i = 0;
-                cont = 0;
-                ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
-                aux.setTime(list.get(i).getFecha());
-                while (ini.before(fin)) {
-                    int series = 0;
-                    int veces = 0;
-                    while (!aux.after(ini) && i < list.size()) {
-                        veces++;
-                        series += list.get(i++).getSeriesReales();
-                        if (i < list.size()) {
-                            aux.setTime(list.get(i).getFecha());
-                        }
-                    }
-                    cont += (double) ((veces * e.getSeries()) + series) / (2 * e.getSeries() * e.getRepeticionesPorParticion());
-                    ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
-                    part++;
-                }
-                e.setCumplimiento((cont / part) * 100);
+            if (!e.getEjerciciosHechos().isEmpty()) {
+                calcularCumplimiento(e);
             } else {
                 e.setCumplimiento(0.0);
             }
         }
+    }
+
+    public void calcularCumplimiento(EjercicioInstanciaEntity e) {
+        Calendar ini = Calendar.getInstance();
+        Calendar fin = Calendar.getInstance();
+        Calendar aux = Calendar.getInstance();
+        RutinaEntity rutina = e.getRutina();
+        ini.setTime(rutina.getFechaInicio());
+        fin.setTime(rutina.getFechaFinal());
+        List<EjercicioHechoEntity> list = e.getEjerciciosHechos();
+        list.sort((a, b) -> (int) (a.getFecha().getTime() - b.getFecha().getTime()));
+        int part = 1; //cuanta las particiones
+        int i = 0; //recorre la lista
+        double cont = 0; //coteo para el promedio
+        ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
+        aux.setTime(list.get(i).getFecha());
+        while (ini.before(fin)) { //recorre las particiones
+            int series = 0; //series hechas en la particion
+            int veces = 0; // ejercicios hechos en una particion
+            while (!aux.after(ini) && i < list.size()) {
+                veces++;
+                series += list.get(i++).getSeriesReales();
+                if (i < list.size()) {
+                    aux.setTime(list.get(i).getFecha());
+                }
+            }
+            cont += (double) ((veces * e.getSeries()) + series) / (2 * e.getSeries() * e.getRepeticionesPorParticion());
+            ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
+            part++;
+        }
+        e.setCumplimiento((cont / part) * 100);
     }
 
     //-----------------------------------

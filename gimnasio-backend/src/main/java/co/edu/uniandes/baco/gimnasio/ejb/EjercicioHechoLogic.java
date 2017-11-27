@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.ejb;
 
 import co.edu.uniandes.baco.gimnasio.entities.*;
+import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.*;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -16,6 +17,7 @@ import javax.inject.Inject;
  */
 @Stateless
 public class EjercicioHechoLogic extends SubResource<EjercicioInstanciaEntity, EjercicioHechoEntity> {
+
     //----------------------------------------------------------------------------------------
     //---------------------------------Constructores------------------------------------------
     //----------------------------------------------------------------------------------------
@@ -27,4 +29,12 @@ public class EjercicioHechoLogic extends SubResource<EjercicioInstanciaEntity, E
     public EjercicioHechoLogic(BasePersistence<EjercicioHechoEntity> persistence, EjercicioInstanciaLogic logic) {
         super(persistence, logic, EjercicioInstanciaEntity::getEjerciciosHechos, EjercicioHechoEntity::setEjercicios);
     }
+
+    @Override
+    public EjercicioHechoEntity create(long id, EjercicioHechoEntity entity) throws BusinessLogicException {
+        EjercicioHechoEntity ret = super.create(id, entity);
+        ((EjercicioInstanciaLogic)logic).calcularCumplimiento(ret.getEjercicios());
+        return ret;
+    }
+
 }

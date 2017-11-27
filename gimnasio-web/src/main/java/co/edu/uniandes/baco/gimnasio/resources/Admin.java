@@ -36,6 +36,6 @@ public class Admin {
     
     @GET
     public void getAll() throws BusinessLogicException {
-       logic.calcularCumplimento();
+       logic.calcularCumplimentoAll();
     }
 }

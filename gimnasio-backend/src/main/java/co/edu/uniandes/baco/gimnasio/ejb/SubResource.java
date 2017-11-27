@@ -25,8 +25,7 @@ import javax.persistence.ManyToOne;
  * @param <S>
  */
 public abstract class SubResource<R extends BaseEntity, S extends BaseEntity> extends BaseLogic<S> {
-
-    private BaseLogic<R> logic;
+    protected BaseLogic<R> logic;
     private Function<R, List<S>> list;
     private BiConsumer<S, R> set;
     private Class<S> clase;
