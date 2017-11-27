@@ -1,6 +1,6 @@
 <div class="container-fluid" ng-if="currentEjercicio !== undefined">
     <center><h3>{{currentEjercicio.descricpion}}</h3></center>
-    <button type="button" class="btn btn-sm col-md-12" style="background-image: url(resources/images/image.png)" data-toggle="collapse" data-target="#vid"><b>video</b></button>
+    <button type="button" class="btn btn-sm col-md-12" style="background-image: url(resources/images/image.png)" data-toggle="collapse" data-target="#vid"><b>video</b><span class="glyphicon glyphicon-chevron-down"></span></button>
     <div class="container-fluid col-md-12 collapse" id="vid">
         <div ng-if="currentvideo !== undefined && currentvideo !== null" class="container-fluid">
             <iframe class="youtube-player" style="height: 400px;width: 100%" type="text/html" src="{{currentvideo}}" frameborder="0"></iframe>
