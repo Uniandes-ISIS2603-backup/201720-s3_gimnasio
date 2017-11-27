@@ -15,7 +15,7 @@
                 <label>Documento:</label> {{entrenador.documento}}
             </div>
             <div class="row">
-                <label>fecha Nacimiento:</label> {{entrenador.fechaNacimiento|date:'yyyy-MM-dd'}}
+                <label>Edad:</label> {{entrenador.edad}} años
             </div>
             <div class="row">
                 <button id="{{$index}}-delete-btn" class="btn btn-danger" ui-sref="entrenadorDelete({entrenadorid : entrenador.id})"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>

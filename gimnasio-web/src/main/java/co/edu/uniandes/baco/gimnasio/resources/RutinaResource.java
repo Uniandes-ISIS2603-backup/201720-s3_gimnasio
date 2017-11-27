@@ -11,7 +11,6 @@ import co.edu.uniandes.baco.gimnasio.ejb.RutinaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
-import java.text.ParseException;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -50,9 +49,10 @@ public class RutinaResource {
      * @param nuevo la rutina
      * @return la rutina agregada
      * @throws BusinessLogicException si el usuario noe xiste 
+     * @throws java.text.ParseException 
      */
     @POST
-    public RutinaDTO post(@PathParam(USUARIOID) Long idUsuario,RutinaDTO nuevo) throws BusinessLogicException, ParseException{
+    public RutinaDTO post(@PathParam(USUARIOID) Long idUsuario,RutinaDTO nuevo) throws BusinessLogicException, java.text.ParseException{
         return new RutinaDTO(logic.create(idUsuario,nuevo.toEntity()));
     }
     /**
@@ -84,10 +84,11 @@ public class RutinaResource {
      * @param nuevo la rutina a actulizar
      * @return la rutina actulizada
      * @throws BusinessLogicException 
+     * @throws java.text.ParseException 
      */
     @PUT
     @Path("{"+RUTINAID+": \\d+}")
-    public RutinaDTO put(@PathParam(USUARIOID) Long idUsuario,@PathParam(RUTINAID)long id, RutinaDTO nuevo) throws BusinessLogicException, ParseException {
+    public RutinaDTO put(@PathParam(USUARIOID) Long idUsuario,@PathParam(RUTINAID)long id, RutinaDTO nuevo) throws BusinessLogicException, java.text.ParseException {
         RutinaEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new RutinaDTO(logic.update(idUsuario,entity));
