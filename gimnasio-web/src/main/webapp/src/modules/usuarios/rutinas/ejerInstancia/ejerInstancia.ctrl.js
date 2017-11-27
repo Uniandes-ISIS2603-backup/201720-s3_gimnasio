@@ -4,6 +4,8 @@
     mod.constant("ejercicioContext", "api/ejercicios");
     mod.controller('instanciaCtrl', ['$scope', '$http', 'instanciasContext', '$state',
         function ($scope, $http, instanciasContext, $state) {
+            $scope.idUsuario=$state.params.usuariosId;
+            $scope.idRutina=$state.params.rutinaId;
             var instanciaContext=instanciasContext+ '/' + $state.params.usuariosId+ "/rutinas/"+$state.params.rutinaId+"/ejercicios";
             
             $http.get(instanciaContext).then(function (response) {
@@ -11,10 +13,8 @@
             });
 
             if ($state.params.instanciaId !== undefined && $state.params.instanciaId !== null) {
-                console.info("a ver");
                 $http.get(instanciaContext + '/' + $state.params.instanciaId).then(function (response) {
                     $scope.currentInstancia = response.data;
-                    console.info(response.data.id);
                 });
             }
         }

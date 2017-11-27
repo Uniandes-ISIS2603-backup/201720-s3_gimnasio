@@ -21,7 +21,7 @@
                 {
                     'mainView':
                     {
-                        templateUrl: basePath + 'ejerciciosHechos.html',
+                        templateUrl: basePath + '/ejerciciosHechos.html',
                         controller: 'ejerciciosHechosCtrl',
                         controllerAs: 'ctrl'
                     }
@@ -34,7 +34,7 @@
                 {
                     'listView': 
                     {
-                        templateUrl: basePath + 'ejerciciosHechos.list.html'
+                        templateUrl: basePath + '/ejerciciosHechos.list.html'
                     }
                 }
             }).state('ejerciciosHechosDetail', 

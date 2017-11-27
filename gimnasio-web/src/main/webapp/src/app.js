@@ -11,6 +11,7 @@
         'maquinaModule',
         'usuarioModule',
         'ejercicioModule',
+        'ejerciciosHechosModule',
         'calidadModule',
         'tipoMedidaModule',
         'ejemedidaModule',
