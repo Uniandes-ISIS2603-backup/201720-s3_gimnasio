@@ -37,6 +37,10 @@ public class RutinaEntity extends BaseEntity implements Serializable {
      */
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaFinal;
+    /**
+     * porcentaje de cumplimiento de la rutina
+     */
+    private Double cumplimiento;
 
     //--------------------------------------------
     // DATOS ENTITY
@@ -74,6 +78,14 @@ public class RutinaEntity extends BaseEntity implements Serializable {
         this.fechaFinal = fechaFinal;
     }
 
+    public Double getCumplimiento() {
+        return cumplimiento;
+    }
+
+    public void setCumplimiento(Double cumplimiento) {
+        this.cumplimiento = cumplimiento;
+    }
+    
     public UsuarioEntity getUsuario() {
         return usuario;
     }

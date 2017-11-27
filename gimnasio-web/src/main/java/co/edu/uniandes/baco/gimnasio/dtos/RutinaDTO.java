@@ -16,6 +16,7 @@ public class RutinaDTO {
     private final SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
     
     private Long id;
+    private Double cumplimiento;
     private String fechaInicio;
     private String fechaFinal;
 
@@ -27,12 +28,14 @@ public class RutinaDTO {
         id=entity.getId();
         fechaInicio=format.format(entity.getFechaInicio());
         fechaFinal=format.format(entity.getFechaFinal());
+        cumplimiento=entity.getCumplimiento();
     }
     
     public RutinaEntity toEntity() throws ParseException{
         RutinaEntity ent=new RutinaEntity();
         ent.setFechaInicio(format.parse(fechaInicio));
         ent.setFechaFinal(format.parse(fechaFinal));
+        ent.setCumplimiento(0.0);
         return ent;
     }
 
@@ -51,8 +54,14 @@ public class RutinaDTO {
     public void setFechaFinal(String fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
-    
-    
+
+    public Double getCumplimiento() {
+        return cumplimiento;
+    }
+
+    public void setCumplimiento(Double cumplimiento) {
+        this.cumplimiento = cumplimiento;
+    }
     
     public String getFechaInicio() {
         return fechaInicio;
