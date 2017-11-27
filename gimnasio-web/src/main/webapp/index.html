@@ -72,10 +72,16 @@
         <ul class="nav nav-tabs center-block" style="margin-top: 8px">
             <li><a ui-sref="entrenadoresList">Entrenadores</a></li>
             <li><a ui-sref="usuariosList">Usuarios</a></li>
-            <li><a ui-sref="maquinasList">Maquinas</a></li>
             <li><a ui-sref="ejercicios_list">Ejercicios</a></li>
-            <li><a ui-sref="objetivos_list">Objetivos</a></li>
-            <li><a ui-sref="tipoMedidasList">TipoMedidas</a></li>
+            
+            <li class="dropdown">
+               <a type="button" class="left dropdown-toggle-split" style="text-align: left; height: 100%" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ADMIN<span class="caret"></span></a> 
+                <ul class="dropdown-menu">
+                    <li><a ui-sref="maquinasList">Maquinas</a></li>
+                    <li><a ui-sref="objetivos_list">Objetivos</a></li>
+                    <li><a ui-sref="tipoMedidasList">TipoMedidas</a></li>
+                </ul>
+            </li>
             <li ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right" style="margin-right: 20px"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             <li class="nameUser nav navbar-nav pull-right" ng-if="isAuthenticated()">Hola, {{currentUser}}<a ui-sref="logout">Logout</a></li>
         </ul>
