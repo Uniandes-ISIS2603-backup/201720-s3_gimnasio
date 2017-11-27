@@ -2,8 +2,8 @@
          <div>
          <button id="createMaquina-btn" class="btn btn-default btn-sm" ui-sref="createMaquina"><span class="glyphicon glyphicon-plus-sign"></span> Agregar Maquina</button>
      </div>
-    <div ng-repeat="maquina in maquinaRecords" style="display: inline-table ; width: 30%;height: 30%;" >
-        <div class ="thumbnail" style=" background: turquoise;width: 90%; border-color: pink; border-width: 8px; border-style: triple">
+    <div ng-repeat="maquina in maquinaRecords" style="display: list-item ; width: 30%;height: 30%;" >
+        <div class ="thumbnail" style=" background: lightgrey;width: 90%; border-color: black; border-width: 8px; border-style: double">
                
             <div class="row">
                     <label>Id:</label> 
@@ -25,16 +25,16 @@
                 <input ng-model="idTipoMedida"/>
                 </div>
                 <div class="row">
-                <input  type="submit" value="Save" class="btn btn-default btn-sm"/>
-                <a class="btn btn-default btn-sm" ui-sref="maquinasList">Cancel</a>
+                <input  type="submit" value="Agregar" class="btn btn-default btn-sm"/>
+               
             </form>  
                 
                 </div>
                   
                     <div ng-repeat='tipoMedida in maquina.tipoMedida'>
                   
-                     <p id="{{$index}}-Descripcion">{{tipoMedida.descripcion}}</p>
-                      <p id="{{$index}}-idk">{{tipoMedida.unidad}}</p>
+                     <p id="{{$index}}-Descripcion">{{tipoMedida.descripcion}} medido en {{tipoMedida.unidad}} </p> 
+                     
                     </div>
     
                 <div class="row">
