@@ -36,7 +36,6 @@
                     {
                         templateUrl: basePath + '/ejerciciosHechos.list.html'
                     }
-                }
                 }            
             }).state('ejerciciosHechosDetail', 
             {
