@@ -23,9 +23,9 @@
                                 }
                             });
             }
-             $scope.createEstado = function()
+             $scope.createEstado = function(id)
             {
-                $http.post(EstadoContext + +$state.params.UsuarioId+"/estados/", {
+                $http.post(EstadoContext + +$state.params.UsId+"/estados/", {
                     fecha: $scope.fechaEstado           
                 }).then(function (response) {
                     //Author created successfully

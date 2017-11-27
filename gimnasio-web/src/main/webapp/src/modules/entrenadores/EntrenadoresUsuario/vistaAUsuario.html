@@ -16,7 +16,7 @@
       <tr>
         <th>id</th>
         <th>fecha</th>
-        <th> <button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref="estadocreate"><span class="glyphicon glyphicon-plus"></span> Crear estado</button></th>
+        <th> <button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref="estadocreate({UsId: usuarioActual.id})"><span class="glyphicon glyphicon-plus"></span> Crear estado</button></th>
       </tr>
     </thead>
     <tbody ng-repeat="x in usuarioActual.estados"  >

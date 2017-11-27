@@ -6,10 +6,17 @@
                 <div class="panel-heading" style="background-color: #212021"><label ng-if="!edit" id="createEjercicio">Nuevo Estados</label>
                 <div class="panel-body">
                
-                <label class="col-sm-3" style="color: whitesmoke">Fecha:</label>      
-                <input class="col-sm-4" type ="date" placeholder="YYYY/MM/DD" required ng-model ="fechaEstado">
-                           
-                        
+
+                   <h2>Agregar Estado</h2> 
+           <form ng-submit="createEstado()" name = "estado">
+           <h5>Fecha de toma</h5>
+            <input type="date" placeholder="YYYY/MM/DD" required ng-model="fechaEstado">
+            </br>
+            </br>
+           <input type="submit" value="Agregar  " class="btn btn-info btn-sm"/>
+            </br>
+            </br>
+           </form>  
             
                                     
                         <div class="form-group row">
