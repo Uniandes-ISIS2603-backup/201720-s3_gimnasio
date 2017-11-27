@@ -18,49 +18,49 @@
     <div id="historial" class="collapse">
         <div><h1>Historial:</h1></div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>fecha</th>
-                    <th> <button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref="estadocreate"><span class="glyphicon glyphicon-plus"></span> Crear estado</button></th>
-                </tr>
-            </thead>
-            <tbody ng-repeat="x in usuarioActual.estados"  >
-                <tr>
-                    <td>{{x.id}}</td>
-                    <td>{{x.fecha|date:'yyyy-MM-dd'}}</td>
-                    <td>
-                        <button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref="medidaList({UsuariosId: usuarioActual.id ,estadoID: x.id})" ><span class="glyphicon glyphicon-check"></span> Ver detalle</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div>
-
-    </div>
-    <button type="button" class="btn btn-info col-md-12" data-toggle="collapse" data-target="#ob">Objetivos<span class="glyphicon glyphicon-chevron-down"></span></button>
-    <div id="ob" class="collapse">
-        <div><h1>Objetivos:</h1></div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>tipo</th>
-                    <th>descripcion</th>
-                </tr>
-            </thead>
-            <tbody ng-repeat="x in usuarioActual.objetivos">
-                <tr>
-                    <td>{{x.id}}</td>
-                    <td>{{x.tipo}}</td>
-                    <td>{{x.descripcion}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
+<table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>fecha</th>
+        <th> <button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref="estadocreate({UsId: usuarioActual.id})"><span class="glyphicon glyphicon-plus"></span> Crear estado</button></th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="x in usuarioActual.estados"  >
+      <tr>
+        <td>{{x.id}}</td>
+        <td>{{x.fecha|date:'yyyy-MM-dd'}}</td>
+        <td>
+            <button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref="medidaList({UsuariosId: usuarioActual.id ,estadoID: x.id})" ><span class="glyphicon glyphicon-check"></span> Ver detalle</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+ <div>
+     
+ </div>
+ <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ob">Objetivos<span class="glyphicon glyphicon-chevron-down"></span></button>
+ <div id="ob" class="collapse">
+<div><h1>Objetivos:</h1></div>
+ <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>tipo</th>
+        <th>descripcion</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="x in usuarioActual.objetivos">
+      <tr>
+        <td>{{x.id}}</td>
+        <td>{{x.tipo}}</td>
+        <td>{{x.descripcion}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+ 
 </div>
 
 
