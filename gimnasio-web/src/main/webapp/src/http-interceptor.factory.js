@@ -1,5 +1,5 @@
 (function (ng) {
-    var appModule = angular.module('mainApp');
+    var appModule = ng.module('mainApp');
 
     appModule.factory('httpInterceptor', ['$q', '$rootScope', function ($q, $rootScope) {
             

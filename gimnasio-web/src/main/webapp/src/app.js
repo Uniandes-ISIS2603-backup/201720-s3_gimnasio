@@ -1,5 +1,5 @@
 (function (ng) {
-    var app = angular.module('mainApp', [
+    var app = ng.module('mainApp', [
         // External dependencies
         'ui.router',
         'ui.bootstrap',
