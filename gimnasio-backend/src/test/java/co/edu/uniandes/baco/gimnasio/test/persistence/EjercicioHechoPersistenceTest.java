@@ -97,6 +97,7 @@ public class EjercicioHechoPersistenceTest {
         EjercicioHechoEntity newEntity = create();
         assertTrue(newEntity.equals(newEntity));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
+        assertEqualsObject(newEntity, newEntity);
         
         BaseEntity tipo=(BaseEntity)factory.manufacturePojo(ObjetivoEntity.class);
         assertFalse(newEntity.equals(tipo));
@@ -110,57 +111,6 @@ public class EjercicioHechoPersistenceTest {
         newEntity2.setId(newEntity.getId()+1);
         assertFalse(newEntity.equals(newEntity2));
         assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
-    }
-    
-    @Test
-    public void createEjercicioHechoTest() {
-        EjercicioHechoEntity newEntity = create();
-        EjercicioHechoEntity result = EjercicioHechoPersistence.create(newEntity);
-        assertNotNull(result);
-        EjercicioHechoEntity entity = em.find(EjercicioHechoEntity.class, result.getId());
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void geEjercicioHechosTest() {
-        List<EjercicioHechoEntity> list = EjercicioHechoPersistence.findAll();
-        assertEquals(data.size(), list.size());
-        for (EjercicioHechoEntity ent : list) {
-            boolean found = false;
-            for (EjercicioHechoEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            assertTrue(found);
-        }
-    }
-
-    @Test
-    public void getEjercicioHechoTest() {
-        EjercicioHechoEntity entity = data.get(0);
-        EjercicioHechoEntity newEntity = EjercicioHechoPersistence.find(entity.getId());
-        assertNotNull(newEntity);
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void deleteEjercicioHechoTest() {
-        EjercicioHechoEntity entity = data.get(0);
-        EjercicioHechoPersistence.delete(entity.getId());
-        EjercicioHechoEntity deleted = em.find(EjercicioHechoEntity.class, entity.getId());
-        assertNull(deleted);
-    }
-
-    @Test
-    public void updateEjercicioHechoTest() {
-        EjercicioHechoEntity entity = data.get(0);
-        EjercicioHechoEntity newEntity = create();
-        newEntity.setId(entity.getId());
-        EjercicioHechoPersistence.update(newEntity);
-        
-        EjercicioHechoEntity resp = em.find(EjercicioHechoEntity.class, entity.getId());
-        assertEqualsObject(newEntity, resp);
     }
     
     @Test
