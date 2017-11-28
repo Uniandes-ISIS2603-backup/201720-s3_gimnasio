@@ -20,10 +20,10 @@ public class RegresionPersistence extends BasePersistence<RegrecionEntity> {
         super(RegrecionEntity.class);
     }
     
-    public void removeByTipo(long idInstancia,long tipo){
-        TypedQuery query = manager.createQuery("delete from " + entityClass.getName() + " u where u.tipoMedida_id = :name AND u.ejercicio_id = :name2", entityClass);
-        query.setParameter("name", tipo+"");
-        query.setParameter("name2", tipo+"");
+    public void removeByTipo(Long idInstancia,Long tipo){
+        TypedQuery query = manager.createQuery("delete from " + entityClass.getName() + " u where u.tipoMedida.id= :name and u.ejercicio.id = :name2", entityClass);
+        query.setParameter("name", tipo);
+        query.setParameter("name2", idInstancia);
         query.executeUpdate();
     }
 }
