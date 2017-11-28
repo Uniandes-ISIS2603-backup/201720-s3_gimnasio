@@ -94,6 +94,9 @@ public class EjercicioHechoPersistenceTest {
     
     @Test
     public void equalsHasTest() {
+        EjercicioHechoEntity a=data.get(0);
+        assertEqualsObject(a, EjercicioHechoPersistence.find(a.getId()));
+        
         EjercicioHechoEntity newEntity = create();
         assertTrue(newEntity.equals(newEntity));
         assertEquals(newEntity.hashCode(), newEntity.hashCode());
