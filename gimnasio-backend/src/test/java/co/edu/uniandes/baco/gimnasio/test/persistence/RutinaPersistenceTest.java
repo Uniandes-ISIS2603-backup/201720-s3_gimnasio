@@ -177,6 +177,7 @@ public class RutinaPersistenceTest {
         DateFormat format=new SimpleDateFormat("dd/MM/yyyy");
         assertEquals(format.format(a.getFechaFinal()),format.format(b.getFechaFinal()));
         assertEquals(format.format(a.getFechaInicio()),format.format(b.getFechaInicio()));
+        assertEquals(a.getCumplimiento(), b.getCumplimiento());
     }
     
     private RutinaEntity create(){
