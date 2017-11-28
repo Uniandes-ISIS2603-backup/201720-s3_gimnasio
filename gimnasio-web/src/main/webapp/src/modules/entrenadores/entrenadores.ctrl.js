@@ -25,7 +25,6 @@
                         var x = $scope.entrenadorActual.fechaNacimiento;
                         var parts = x.split('T');
                         parts = parts[0].split('-');
-                        //console.info(parts)
                         $scope.fechaEntrenador = new Date(parts[0], parts[1] - 1, parts[2]);
                         $scope.edadEntrenador = calcularEdad($scope.fechaEntrenador);
 
@@ -62,7 +61,6 @@
                             }
                         });
                         $scope.entrenadorActual = entrenadorActua;
-                        //console.info(entrenadorActua);
                     });
                 }
 
@@ -70,7 +68,6 @@
                 {
                     $http.get(entrenadorContext + '/' + $state.params.Enid + '/usuarios/' + $state.params.Uid).then(function (response)
                     {
-                        //console.info(response.data)
                         $scope.usuarioActual = response.data;
                         if ($scope.usuarioActual.genero === true)
                         {
@@ -81,7 +78,6 @@
                             $scope.usuarioActual.genero2 = 'F';
                             $scope.usuarioActual.imagen = "resources/images/mujer.png";
                         }
-                        //console.info($scope.usuarioActual);
 
                     });
                 }
@@ -92,19 +88,13 @@
             this.deleteRecord = function () {
                 console.info(entrenadorContext + "/" + $state.params.entrenadorid);
                 return $http.delete(entrenadorContext + "/" + $state.params.entrenadorid)
-                        .then(function () {
+                        .then(function (response) {
                             $state.go('entrenadoresList', {id: response.data.id}, {reload: true});
-                            // $http.delete es una promesa
-                            // cuando termine bien, cambie de estado
-                            //var index = $scope.entrenadorRecords.indexOf(entrenador);                               
-                            //if (index > -1) {
-                            //   $scope.entrenadorRecords.splice(index, 1);
-                            //}
+                            
                         });
             };
 
             this.deleteUsuarioEntrenador = function (usuario, entrenadorid) {
-                //console.info(entrenadorContext + "/" + entrenadorid + "/usuarios/"+ usuario.id)
                 return $http.delete(entrenadorContext + "/" + entrenadorid + "/usuarios/" + usuario.id)
                         .then(function () {
                             // $http.delete es una promesa
@@ -122,10 +112,10 @@
                     return 'Femenino';
                 }
                 return 'masculino';
-            }
+            };
+            
             $scope.editarEntrenador = function ()
             {
-                //console.info(entrenadorContext + '/'+ $scope.entrenadorID)
                 $http.put(entrenadorContext + '/' + $scope.entrenadorActual.id, {
                     name: $scope.nombreEntrenador,
                     fechaNacimiento: $scope.fechaEntrenador,

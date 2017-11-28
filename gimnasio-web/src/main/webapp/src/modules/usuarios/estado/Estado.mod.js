@@ -25,7 +25,6 @@
                     }
                 }
             }).state('estadocreate', {
-                // Url que aparecerá en el browser
                 url: '/usuarios/{UsId:int}/estado/create',            
                 paretn:'usuarios',
                 param: {
@@ -35,7 +34,7 @@
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'Estado_create.html',
-                        controller: 'estadoCtrl',
+                        controller: 'estadoCreateCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

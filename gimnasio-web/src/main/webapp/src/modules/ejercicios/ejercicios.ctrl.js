@@ -16,8 +16,8 @@
         $sceDelegateProvider.resourceUrlWhitelist(['**']);
     });
 
-    mod.controller('ejercicioCtrl', ['$scope', '$http', 'ejerciciosContext', '$state',
-        function ($scope, $http, ejerciciosContext, $state) {
+    mod.controller('ejercicioCtrl', ['$scope', '$http', 'ejerciciosContext',
+        function ($scope, $http, ejerciciosContext) {
             $http.get(ejerciciosContext).then(function (response) {
                 $scope.ejerciciosRecords = response.data.sort(function (a, b) {
                     return a.descricpion.localeCompare(b.descricpion);
