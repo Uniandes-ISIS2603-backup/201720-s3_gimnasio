@@ -113,7 +113,11 @@
                 }
                 return 'masculino';
             };
+        }
+    ]);
 
+    mod.controller('entrenadoresUpdateCtrl', ['$scope', '$http', 'entrenadorContext', '$state',
+        function ($scope, $http, entrenadorContext, $state) {
             $scope.editarEntrenador = function ()
             {
                 $http.put(entrenadorContext + '/' + $scope.entrenadorActual.id, {
@@ -126,10 +130,12 @@
                     $state.go('entrenadoresList', {id: response.data.id}, {reload: true});
                 });
             };
+        }]);
 
+    mod.controller('entrenadoresUsuarioCtrl', ['$scope', '$http', 'entrenadorContext', '$state',
+        function ($scope, $http, entrenadorContext, $state) {
             $scope.createEstudiante = function ()
             {
-                console.info(entrenadorContext + "/" + $state.params.Xid + "/usuarios/" + $scope.idUsuarioC);
                 $http.post(
                         entrenadorContext + "/" + $state.params.Xid + "/usuarios/" + $scope.idUsuarioC, {}
                 ).then(function (response) {
@@ -137,10 +143,7 @@
                     $state.go('entrenadoresList', {id: response.data.id}, {reload: true});
                 });
             };
-        }
-
-
-    ]);
+        }]);
 
     mod.controller('entrenadoresCreateCtrl', ['$scope', '$http', 'entrenadorContext', '$state',
         function ($scope, $http, entrenadorContext, $state) {

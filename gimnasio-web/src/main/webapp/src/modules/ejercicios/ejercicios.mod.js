@@ -1,11 +1,12 @@
 (function (ng) {
     var mod = ng.module("ejercicioModule", ['ui.router']);
+    
     mod.config(['$stateProvider', '$urlRouterProvider',
-
         function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/ejercicios/';
             $urlRouterProvider.otherwise("/ejerciciosList");
-
+            
+            //estadosAbstractos de la apk
             $stateProvider.state('ejercicios', {
                 url: '/ejercicios',
                 abstract: true,

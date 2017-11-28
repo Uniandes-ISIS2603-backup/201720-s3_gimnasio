@@ -71,7 +71,7 @@
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'EntrenadoresUsuario/crearUsuarioAEntrenador.html',
-                        controller: 'entrenadoresCtrl',
+                        controller: 'entrenadoresUsuarioCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
@@ -105,7 +105,7 @@
                 views: {
                      'mainView': {
                         templateUrl: basePath + 'entrenador.edit.html',
-                        controller: 'entrenadoresCtrl',
+                        controller: 'entrenadoresUpdateCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

@@ -24,8 +24,8 @@
             }
         }]);
 
-    mod.controller('usuariosCtrl', ['$scope', '$http', 'usuarioContext', '$state',
-        function ($scope, $http, usuarioContext, $state) {
+    mod.controller('usuariosCtrl', ['$scope', '$http', 'usuarioContext',
+        function ($scope, $http, usuarioContext) {
             $http.get(usuarioContext).then(function (response) {
                 var x = response.data;
                 x.forEach(function (element) {
