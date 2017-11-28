@@ -19,7 +19,7 @@ public class RegresionDTO {
     //--------------------------------------------
 
     private Long id;
-    private int regresion;
+    private double regresion;
     private String descripcion;
     private String unidad;
     //--------------------------------------------
@@ -74,11 +74,11 @@ public class RegresionDTO {
         this.unidad = unidad;
     }
 
-    public int getRegresion() {
+    public double getRegresion() {
         return regresion;
     }
 
-    public void setRegresion(int regresion) {
+    public void setRegresion(double regresion) {
         this.regresion = regresion;
     }
 }
