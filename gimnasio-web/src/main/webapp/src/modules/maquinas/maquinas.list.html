@@ -19,15 +19,21 @@
                    <label>Tipos medidas:</label>
                 <div class="row">
                 
-            <form ng-submit="addTipoMedida(maquina, idTipoMedida)" name = "tipoMedida">
-                <div class="row">
-                <label>Id nuevo:</label>  
-                <input ng-model="idTipoMedida"/>
-                </div>
-                <div class="row">
-                <input  type="submit" value="Agregar" class="btn btn-default btn-sm"/>
+            <form ng-submit="addTipoMedida(maquina, tipo.id)" name = "tipoMedida">
+                     
+         <h5>Agregar medida</h5>
+
+           <h4>Seleccione un Tipo de medida</h4>
+           <select ng-model="tipo" ng-options="tipo.descripcion for tipo in tipoRecords"></select>
+        
+           </br>
+           </br>
+            <input type="submit" value="Agregar" class="btn btn-info btn-sm"/>
+  </form> 
+                
+                
                
-            </form>  
+
                 
                 </div>
                   

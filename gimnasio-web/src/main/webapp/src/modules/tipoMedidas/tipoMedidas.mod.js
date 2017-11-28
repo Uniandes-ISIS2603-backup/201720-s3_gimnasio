@@ -29,7 +29,7 @@
                 views: {
                     'listView':{
                         templateUrl: basePath + 'tipoMedida.create.html',
-                        controller: 'tipoMedidasCreateCtrl',
+                        controller: 'tipoMedidasCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

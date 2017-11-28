@@ -5,7 +5,11 @@
         function ($scope, $http, maquinaContext, $state) {
             $http.get(maquinaContext).then(function (response) {
                 $scope.maquinaRecords = response.data;
-            });
+            },
+             $http.get("api/tipoMedidas/").then(function (response) {
+                $scope.tipoRecords = response.data;
+                       }
+               ) );
 
             this.deleteRecord = function (maquina) {
                 return $http.delete(maquinaContext + "/" + maquina.id)
