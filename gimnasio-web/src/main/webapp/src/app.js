@@ -1,4 +1,4 @@
-(function (ng) {
+(function () {
     var app = angular.module('mainApp', [
         // External dependencies
         'ui.router',
