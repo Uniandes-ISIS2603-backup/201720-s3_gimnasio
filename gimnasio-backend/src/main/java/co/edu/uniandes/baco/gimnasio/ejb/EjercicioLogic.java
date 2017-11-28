@@ -4,9 +4,11 @@ import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.RegrecionEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
+import co.edu.uniandes.baco.gimnasio.persistence.RegresionPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -21,14 +23,16 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
     private Connection<EjercicioEntity, MaquinaEntity> connMaquina;
     private Connection<EjercicioEntity, TipoMedidaEntity> connTipoMedida;
     private Search<EjercicioEntity, EjercicioInstanciaEntity> connInstancias;
+     private RegresionPersistence RegPersistence;
 
     public EjercicioLogic() {
         super();
     }
 
     @Inject
-    public EjercicioLogic(BasePersistence<EjercicioEntity> persistence) {
+    public EjercicioLogic(RegresionPersistence RegPersistence,BasePersistence<EjercicioEntity> persistence) {
         super(persistence);
+        this.RegPersistence=RegPersistence;
         this.connMaquina = new Connection<>(persistence, EjercicioEntity::getMaquinas, MaquinaEntity.class);
         this.connObjetivo = new Connection<>(persistence, EjercicioEntity::getObjetivosEjercicio, ObjetivoEntity.class);
         this.connTipoMedida = new Connection<>(persistence, EjercicioEntity::getTiposMedidas, TipoMedidaEntity.class);
@@ -164,7 +168,15 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
      * existe
      */
     public TipoMedidaEntity createTipoMedida(Long idEjercicio, Long id) throws BusinessLogicException {
-        return connTipoMedida.create(idEjercicio, id);
+        TipoMedidaEntity ans= connTipoMedida.create(idEjercicio, id);
+        for(EjercicioInstanciaEntity x:find(idEjercicio).getInstancias()){
+            RegrecionEntity nueva=new RegrecionEntity();
+            nueva.setRegresion(0.0);
+            nueva.setEjercicio(x);
+            nueva.setTipoMedida(ans);
+            RegPersistence.create(nueva);
+        }
+        return ans;
     }
 
     /**
@@ -177,6 +189,9 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
      */
     public void removeTipoMedida(Long idEjercicio, Long id) throws BusinessLogicException {
         connTipoMedida.remove(idEjercicio, id);
+        for(EjercicioInstanciaEntity x:find(idEjercicio).getInstancias()){
+            RegPersistence.removeByTipo(x.getId(), id);
+        }
     }
     //-----------------------------------
     // TIPOMEDIDA

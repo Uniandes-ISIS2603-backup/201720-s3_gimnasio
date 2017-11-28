@@ -64,7 +64,26 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
             nueva.setTipoMedida(x);
             RegPersistence.create(nueva);
         }
+        RutinaEntity rut=ans.getRutina();
+        int cant = rut.getEjercicios().size();
+        rut.setCumplimiento(rut.getCumplimiento()*((cant-1)/cant));
         return ans;
+    }
+
+    @Override
+    public EjercicioInstanciaEntity update(Long id, EjercicioInstanciaEntity s) throws BusinessLogicException {
+        EjercicioInstanciaEntity ans = super.update(id, s);
+        calcularCumplimiento(ans);
+        return ans;
+    }
+
+    @Override
+    public void remove(long idUsuario, long id) throws BusinessLogicException {
+        EjercicioInstanciaEntity ans=find(idUsuario, id);
+        RutinaEntity rut=ans.getRutina();
+        int cant = rut.getEjercicios().size();
+        rut.setCumplimiento((rut.getCumplimiento()-(ans.getCumplimiento()/cant))*(cant/(cant-1)));
+        super.remove(idUsuario, id);
     }
 
     public void calcularCumplimentoAll() throws BusinessLogicException {

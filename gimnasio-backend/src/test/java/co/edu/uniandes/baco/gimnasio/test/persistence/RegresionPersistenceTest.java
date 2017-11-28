@@ -73,7 +73,7 @@ public class RegresionPersistenceTest {
     }
 
     private void clearData() {
-        em.createQuery("delete from RegresionEntity").executeUpdate();
+        em.createQuery("delete from RegrecionEntity").executeUpdate();
     }
 
     private void insertData() {
@@ -129,7 +129,7 @@ public class RegresionPersistenceTest {
     }
     
     private void assertEqualsObject(RegrecionEntity a,RegrecionEntity b){
-        assertEquals(a.getRegresion(),b.getRegresion());
+        assertEquals(a.getRegresion(),b.getRegresion(),0);
     }
     
     private RegrecionEntity create(){

@@ -43,4 +43,11 @@ public class EjercicioHechoLogic extends SubResource<EjercicioInstanciaEntity, E
         ((EjercicioInstanciaLogic) logic).calcularCumplimiento(ret.getEjercicios());
         return ret;
     }
+
+    @Override
+    public void remove(long idUsuario, long id) throws BusinessLogicException {
+        super.remove(idUsuario, id);
+        ((EjercicioInstanciaLogic) logic).calcularCumplimiento(find(idUsuario, id).getEjercicios());
+    }
+
 }
