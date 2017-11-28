@@ -40,6 +40,7 @@ public class RutinaDTO {
         try {
             RutinaEntity ent = new RutinaEntity();
             ent.setFechaFinal(format.parse(fechaFinal));
+            ent.setFechaInicio(format.parse(fechaInicio));
             ent.setCumplimiento(0.0);
             return ent;
         } catch (ParseException ex) {

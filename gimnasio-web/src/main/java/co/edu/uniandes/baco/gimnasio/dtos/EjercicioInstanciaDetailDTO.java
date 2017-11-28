@@ -18,6 +18,7 @@ public class EjercicioInstanciaDetailDTO extends EjercicioInstanciaDTO{
     private String descricpion;
     private String tipo;
     private String explicacion;
+    private int num;
     private List<RegresionDTO> regrecion;
     //--------------------------------------------
     // DATOS ENTITY
@@ -32,6 +33,7 @@ public class EjercicioInstanciaDetailDTO extends EjercicioInstanciaDTO{
         this.explicacion = entity.getEjercicio().getExplicacion();
         this.descricpion=entity.getEjercicio().getDescripcion();
         regrecion= new ArrayList<>();
+        num=entity.getRegreciones().size();
         for(RegrecionEntity x:entity.getRegreciones()){
             regrecion.add(new RegresionDTO(x));
         }
@@ -54,6 +56,14 @@ public class EjercicioInstanciaDetailDTO extends EjercicioInstanciaDTO{
         return descricpion;
     }
 
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+        
     public void setDescricpion(String descricpion) {
         this.descricpion = descricpion;
     }
