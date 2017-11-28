@@ -29,7 +29,7 @@
                 views: {
                     'listView':{
                         templateUrl: basePath + 'maquina.create.html',
-                        controller: 'maquinasCtrl',
+                        controller: 'maquinasCreateCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

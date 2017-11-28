@@ -55,7 +55,7 @@
                 views: {
                     'detailView2': {
                         templateUrl: basePath + 'ejercicios.detail.html',
-                        controller: 'ejercicioCtrl',
+                        controller: 'ejercicioDetailCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

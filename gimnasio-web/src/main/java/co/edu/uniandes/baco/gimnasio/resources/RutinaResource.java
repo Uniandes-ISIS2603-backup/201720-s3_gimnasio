@@ -52,7 +52,7 @@ public class RutinaResource {
      * @throws java.text.ParseException 
      */
     @POST
-    public RutinaDTO post(@PathParam(USUARIOID) Long idUsuario,RutinaDTO nuevo) throws BusinessLogicException, java.text.ParseException{
+    public RutinaDTO post(@PathParam(USUARIOID) Long idUsuario,RutinaDTO nuevo) throws Exception{
         return new RutinaDTO(logic.create(idUsuario,nuevo.toEntity()));
     }
     /**
@@ -88,7 +88,7 @@ public class RutinaResource {
      */
     @PUT
     @Path("{"+RUTINAID+": \\d+}")
-    public RutinaDTO put(@PathParam(USUARIOID) Long idUsuario,@PathParam(RUTINAID)long id, RutinaDTO nuevo) throws BusinessLogicException, java.text.ParseException {
+    public RutinaDTO put(@PathParam(USUARIOID) Long idUsuario,@PathParam(RUTINAID)long id, RutinaDTO nuevo) throws Exception {
         RutinaEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new RutinaDTO(logic.update(idUsuario,entity));

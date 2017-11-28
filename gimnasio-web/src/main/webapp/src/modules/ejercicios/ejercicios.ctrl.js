@@ -1,14 +1,9 @@
 (function (ng) {
     var mod = ng.module("ejercicioModule");
     mod.constant("ejerciciosContext", "api/ejercicios");
-    mod.controller('ejercicioCtrl', ['$scope', '$http', 'ejerciciosContext', '$state',
-        function ($scope, $http, ejerciciosContext, $state) {
-            $http.get(ejerciciosContext).then(function (response) {
-                $scope.ejerciciosRecords = response.data.sort(function (a, b) {
-                    return a.descricpion.localeCompare(b.descricpion);
-                });
-            });
 
+    mod.controller('ejercicioDetailCtrl', ['$scope', '$http', 'ejerciciosContext', '$state',
+        function ($scope, $http, ejerciciosContext, $state) {
             if ($state.params.ejercicioId !== undefined && $state.params.ejercicioId !== null) {
                 $http.get(ejerciciosContext + '/' + $state.params.ejercicioId).then(function (response) {
                     $scope.currentEjercicio = response.data;
@@ -16,6 +11,18 @@
                     $scope.ejercicioInstanciaRecords = response.data.instancias;
                 });
             }
+        }
+    ]).config(function ($sceDelegateProvider) {
+        $sceDelegateProvider.resourceUrlWhitelist(['**']);
+    });
+
+    mod.controller('ejercicioCtrl', ['$scope', '$http', 'ejerciciosContext', '$state',
+        function ($scope, $http, ejerciciosContext, $state) {
+            $http.get(ejerciciosContext).then(function (response) {
+                $scope.ejerciciosRecords = response.data.sort(function (a, b) {
+                    return a.descricpion.localeCompare(b.descricpion);
+                });
+            });
 
             $scope.buscarEjercicio = function () {
                 var a = $scope.Nombre.toLowerCase();
@@ -30,10 +37,7 @@
                 }
             };
         }
-    ]).config(function ($sceDelegateProvider) {
-        $sceDelegateProvider.resourceUrlWhitelist(['**']);
-    });
-    ;
+    ]);
 
     mod.controller('ejercicioDeleteCtrl', ['$scope', '$http', 'ejerciciosContext', '$state',
         function ($scope, $http, ejerciciosContext, $state) {
