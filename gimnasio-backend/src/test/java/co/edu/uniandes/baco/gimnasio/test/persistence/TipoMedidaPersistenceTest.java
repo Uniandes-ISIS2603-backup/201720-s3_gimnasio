@@ -111,54 +111,11 @@ public class TipoMedidaPersistenceTest {
     }
 
     @Test
-    public void createTipoMedidaTest() {
-        TipoMedidaEntity newEntity = create();
-        TipoMedidaEntity result = TipoMedidaPersistence.create(newEntity);
-        assertNotNull(result);
-        TipoMedidaEntity entity = em.find(TipoMedidaEntity.class, result.getId());
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void geTipoMedidasTest() {
-        List<TipoMedidaEntity> list = TipoMedidaPersistence.findAll();
-        assertEquals(data.size(), list.size());
-        for (TipoMedidaEntity ent : list) {
-            boolean found = false;
-            for (TipoMedidaEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            assertTrue(found);
-        }
-    }
-
-    @Test
     public void getTipoMedidaTest() {
         TipoMedidaEntity entity = data.get(0);
         TipoMedidaEntity newEntity = TipoMedidaPersistence.find(entity.getId());
         assertNotNull(newEntity);
         assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void deleteTipoMedidaTest() {
-        TipoMedidaEntity entity = data.get(0);
-        TipoMedidaPersistence.delete(entity.getId());
-        TipoMedidaEntity deleted = em.find(TipoMedidaEntity.class, entity.getId());
-        assertNull(deleted);
-    }
-
-    @Test
-    public void updateTipoMedidaTest() {
-        TipoMedidaEntity entity = data.get(0);
-        TipoMedidaEntity newEntity = create();
-        newEntity.setId(entity.getId());
-        TipoMedidaPersistence.update(newEntity);
-
-        TipoMedidaEntity resp = em.find(TipoMedidaEntity.class, entity.getId());
-        assertEqualsObject(newEntity, resp);
     }
 
     @Test

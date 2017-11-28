@@ -110,30 +110,6 @@ public class EstadoPersistenceTest {
     }
     
     @Test
-    public void createEstadoTest() {
-        EstadoEntity newEntity = create();
-        EstadoEntity result = EstadoPersistence.create(newEntity);
-        assertNotNull(result);
-        EstadoEntity entity = em.find(EstadoEntity.class, result.getId());
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void geEstadosTest() {
-        List<EstadoEntity> list = EstadoPersistence.findAll();
-        assertEquals(data.size(), list.size());
-        for (EstadoEntity ent : list) {
-            boolean found = false;
-            for (EstadoEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            assertTrue(found);
-        }
-    }
-
-    @Test
     public void getEstadoTest() {
         EstadoEntity entity = data.get(0);
         EstadoEntity newEntity = EstadoPersistence.find(entity.getId());
@@ -141,25 +117,6 @@ public class EstadoPersistenceTest {
         assertEqualsObject(newEntity, entity);
     }
 
-    @Test
-    public void deleteEstadoTest() {
-        EstadoEntity entity = data.get(0);
-        EstadoPersistence.delete(entity.getId());
-        EstadoEntity deleted = em.find(EstadoEntity.class, entity.getId());
-        assertNull(deleted);
-    }
-
-    @Test
-    public void updateEstadoTest() {
-        EstadoEntity entity = data.get(0);
-        EstadoEntity newEntity = create();
-        newEntity.setId(entity.getId());
-        EstadoPersistence.update(newEntity);
-        
-        EstadoEntity resp = em.find(EstadoEntity.class, entity.getId());
-        assertEqualsObject(newEntity, resp);
-    }
-    
     @Test
     public void subEnititysTest(){
         EstadoEntity newEntity = create();

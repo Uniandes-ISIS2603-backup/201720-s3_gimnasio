@@ -109,30 +109,6 @@ public class UsuarioPersistenceTest {
         assertFalse(newEntity.equals(newEntity2));
         assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
     }
-    
-    @Test
-    public void createUsuarioTest() {
-        UsuarioEntity newEntity = create();
-        UsuarioEntity result = UsuarioPersistence.create(newEntity);
-        assertNotNull(result);
-        UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void geUsuariosTest() {
-        List<UsuarioEntity> list = UsuarioPersistence.findAll();
-        assertEquals(data.size(), list.size());
-        for (UsuarioEntity ent : list) {
-            boolean found = false;
-            for (UsuarioEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            assertTrue(found);
-        }
-    }
 
     @Test
     public void getUsuarioTest() {
@@ -142,25 +118,6 @@ public class UsuarioPersistenceTest {
         assertEqualsObject(newEntity, entity);
     }
 
-    @Test
-    public void deleteUsuarioTest() {
-        UsuarioEntity entity = data.get(0);
-        UsuarioPersistence.delete(entity.getId());
-        UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
-        assertNull(deleted);
-    }
-
-    @Test
-    public void updateUsuarioTest() {
-        UsuarioEntity entity = data.get(0);
-        UsuarioEntity newEntity = create();
-        newEntity.setId(entity.getId());
-        UsuarioPersistence.update(newEntity);
-        
-        UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
-        assertEqualsObject(newEntity, resp);
-    }
-    
     @Test
     public void subEnititysTest(){
         UsuarioEntity newEntity = create();

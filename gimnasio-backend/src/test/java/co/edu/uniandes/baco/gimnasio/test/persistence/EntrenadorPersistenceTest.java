@@ -109,15 +109,6 @@ public class EntrenadorPersistenceTest {
     }
 
     @Test
-    public void createEntrenadorTest() {
-        EntrenadorEntity newEntity = create();
-        EntrenadorEntity result = EntrenadorPersistence.create(newEntity);
-        assertNotNull(result);
-        EntrenadorEntity entity = em.find(EntrenadorEntity.class, result.getId());
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
     public void finByDocumentoTest() {
         EntrenadorEntity entity = data.get(0);
         EntrenadorEntity newEntity = EntrenadorPersistence.findByDocumento(entity.getDocumento());
@@ -136,48 +127,6 @@ public class EntrenadorPersistenceTest {
             }
         } while (esta);
         assertNull(EntrenadorPersistence.findByDocumento(documento));
-    }
-
-    @Test
-    public void geEntrenadorsTest() {
-        List<EntrenadorEntity> list = EntrenadorPersistence.findAll();
-        assertEquals(data.size(), list.size());
-        for (EntrenadorEntity ent : list) {
-            boolean found = false;
-            for (EntrenadorEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            assertTrue(found);
-        }
-    }
-
-    @Test
-    public void getEntrenadorTest() {
-        EntrenadorEntity entity = data.get(0);
-        EntrenadorEntity newEntity = EntrenadorPersistence.find(entity.getId());
-        assertNotNull(newEntity);
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void deleteEntrenadorTest() {
-        EntrenadorEntity entity = data.get(0);
-        EntrenadorPersistence.delete(entity.getId());
-        EntrenadorEntity deleted = em.find(EntrenadorEntity.class, entity.getId());
-        assertNull(deleted);
-    }
-
-    @Test
-    public void updateEntrenadorTest() {
-        EntrenadorEntity entity = data.get(0);
-        EntrenadorEntity newEntity = create();
-        newEntity.setId(entity.getId());
-        EntrenadorPersistence.update(newEntity);
-
-        EntrenadorEntity resp = em.find(EntrenadorEntity.class, entity.getId());
-        assertEqualsObject(newEntity, resp);
     }
 
     @Test

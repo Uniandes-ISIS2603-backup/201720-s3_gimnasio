@@ -106,30 +106,6 @@ public class MedicionMaquinaPersistenceTest {
         assertFalse(newEntity.equals(newEntity2));
         assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
     }
-    
-    @Test
-    public void createMedicionMaquinaTest() {
-        MedicionMaquinaEntity newEntity = create();
-        MedicionMaquinaEntity result = MedicionMaquinaPersistence.create(newEntity);
-        assertNotNull(result);
-        MedicionMaquinaEntity entity = em.find(MedicionMaquinaEntity.class, result.getId());
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void geMedicionMaquinasTest() {
-        List<MedicionMaquinaEntity> list = MedicionMaquinaPersistence.findAll();
-        assertEquals(data.size(), list.size());
-        for (MedicionMaquinaEntity ent : list) {
-            boolean found = false;
-            for (MedicionMaquinaEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            assertTrue(found);
-        }
-    }
 
     @Test
     public void getMedicionMaquinaTest() {
@@ -139,25 +115,6 @@ public class MedicionMaquinaPersistenceTest {
         assertEqualsObject(newEntity, entity);
     }
 
-    @Test
-    public void deleteMedicionMaquinaTest() {
-        MedicionMaquinaEntity entity = data.get(0);
-        MedicionMaquinaPersistence.delete(entity.getId());
-        MedicionMaquinaEntity deleted = em.find(MedicionMaquinaEntity.class, entity.getId());
-        assertNull(deleted);
-    }
-
-    @Test
-    public void updateMedicionMaquinaTest() {
-        MedicionMaquinaEntity entity = data.get(0);
-        MedicionMaquinaEntity newEntity = create();
-        newEntity.setId(entity.getId());
-        MedicionMaquinaPersistence.update(newEntity);
-        
-        MedicionMaquinaEntity resp = em.find(MedicionMaquinaEntity.class, entity.getId());
-        assertEqualsObject(newEntity, resp);
-    }
-    
     @Test
     public void subEnititysTest(){
         MedicionMaquinaEntity nuevo=create();

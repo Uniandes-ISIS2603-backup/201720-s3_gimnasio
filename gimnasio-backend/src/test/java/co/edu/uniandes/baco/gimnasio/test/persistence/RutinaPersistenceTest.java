@@ -107,30 +107,6 @@ public class RutinaPersistenceTest {
         assertFalse(newEntity.equals(newEntity2));
         assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
     }
-    
-    @Test
-    public void createRutinaTest() {
-        RutinaEntity newEntity = create();
-        RutinaEntity result = RutinaPersistence.create(newEntity);
-        assertNotNull(result);
-        RutinaEntity entity = em.find(RutinaEntity.class, result.getId());
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void geRutinasTest() {
-        List<RutinaEntity> list = RutinaPersistence.findAll();
-        assertEquals(data.size(), list.size());
-        for (RutinaEntity ent : list) {
-            boolean found = false;
-            for (RutinaEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            assertTrue(found);
-        }
-    }
 
     @Test
     public void getRutinaTest() {
@@ -140,25 +116,6 @@ public class RutinaPersistenceTest {
         assertEqualsObject(newEntity, entity);
     }
 
-    @Test
-    public void deleteRutinaTest() {
-        RutinaEntity entity = data.get(0);
-        RutinaPersistence.delete(entity.getId());
-        RutinaEntity deleted = em.find(RutinaEntity.class, entity.getId());
-        assertNull(deleted);
-    }
-
-    @Test
-    public void updateRutinaTest() {
-        RutinaEntity entity = data.get(0);
-        RutinaEntity newEntity = create();
-        newEntity.setId(entity.getId());
-        RutinaPersistence.update(newEntity);
-        
-        RutinaEntity resp = em.find(RutinaEntity.class, entity.getId());
-        assertEqualsObject(newEntity, resp);
-    }
-    
     @Test
     public void subEnititysTest(){
         RutinaEntity newEntity = create();

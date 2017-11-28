@@ -108,30 +108,6 @@ public class MedidaPersistenceTest {
     }
     
     @Test
-    public void createMedidaTest() {
-        MedidaEntity newEntity = create();
-        MedidaEntity result = MedidaPersistence.create(newEntity);
-        assertNotNull(result);
-        MedidaEntity entity = em.find(MedidaEntity.class, result.getId());
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void geMedidasTest() {
-        List<MedidaEntity> list = MedidaPersistence.findAll();
-        assertEquals(data.size(), list.size());
-        for (MedidaEntity ent : list) {
-            boolean found = false;
-            for (MedidaEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            assertTrue(found);
-        }
-    }
-
-    @Test
     public void getMedidaTest() {
         MedidaEntity entity = data.get(0);
         MedidaEntity newEntity = MedidaPersistence.find(entity.getId());
@@ -139,25 +115,6 @@ public class MedidaPersistenceTest {
         assertEqualsObject(newEntity, entity);
     }
 
-    @Test
-    public void deleteMedidaTest() {
-        MedidaEntity entity = data.get(0);
-        MedidaPersistence.delete(entity.getId());
-        MedidaEntity deleted = em.find(MedidaEntity.class, entity.getId());
-        assertNull(deleted);
-    }
-
-    @Test
-    public void updateMedidaTest() {
-        MedidaEntity entity = data.get(0);
-        MedidaEntity newEntity = create();
-        newEntity.setId(entity.getId());
-        MedidaPersistence.update(newEntity);
-        
-        MedidaEntity resp = em.find(MedidaEntity.class, entity.getId());
-        assertEqualsObject(newEntity, resp);
-    }
-    
     @Test
     public void subEnititysTest(){
         MedidaEntity newEntity = create();

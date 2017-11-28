@@ -108,54 +108,11 @@ public class MaquinaPersistenceTest {
     }
     
     @Test
-    public void createMaquinaTest() {
-        MaquinaEntity newEntity = create();
-        MaquinaEntity result = MaquinaPersistence.create(newEntity);
-        assertNotNull(result);
-        MaquinaEntity entity = em.find(MaquinaEntity.class, result.getId());
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void geMaquinasTest() {
-        List<MaquinaEntity> list = MaquinaPersistence.findAll();
-        assertEquals(data.size(), list.size());
-        for (MaquinaEntity ent : list) {
-            boolean found = false;
-            for (MaquinaEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            assertTrue(found);
-        }
-    }
-
-    @Test
     public void getMaquinaTest() {
         MaquinaEntity entity = data.get(0);
         MaquinaEntity newEntity = MaquinaPersistence.find(entity.getId());
         assertNotNull(newEntity);
         assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void deleteMaquinaTest() {
-        MaquinaEntity entity = data.get(0);
-        MaquinaPersistence.delete(entity.getId());
-        MaquinaEntity deleted = em.find(MaquinaEntity.class, entity.getId());
-        assertNull(deleted);
-    }
-
-    @Test
-    public void updateMaquinaTest() {
-        MaquinaEntity entity = data.get(0);
-        MaquinaEntity newEntity = create();
-        newEntity.setId(entity.getId());
-        MaquinaPersistence.update(newEntity);
-        
-        MaquinaEntity resp = em.find(MaquinaEntity.class, entity.getId());
-        assertEqualsObject(newEntity, resp);
     }
     
     @Test

@@ -129,57 +129,6 @@ public class ObjetivoPersistenceTest {
     }
     
     @Test
-    public void createObjetivoTest() {
-        ObjetivoEntity newEntity = create();
-        ObjetivoEntity result = ObjetivoPersistence.create(newEntity);
-        assertNotNull(result);
-        ObjetivoEntity entity = em.find(ObjetivoEntity.class, result.getId());
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void geObjetivosTest() {
-        List<ObjetivoEntity> list = ObjetivoPersistence.findAll();
-        assertEquals(data.size(), list.size());
-        for (ObjetivoEntity ent : list) {
-            boolean found = false;
-            for (ObjetivoEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            assertTrue(found);
-        }
-    }
-
-    @Test
-    public void getObjetivoTest() {
-        ObjetivoEntity entity = data.get(0);
-        ObjetivoEntity newEntity = ObjetivoPersistence.find(entity.getId());
-        assertNotNull(newEntity);
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void deleteObjetivoTest() {
-        ObjetivoEntity entity = data.get(0);
-        ObjetivoPersistence.delete(entity.getId());
-        ObjetivoEntity deleted = em.find(ObjetivoEntity.class, entity.getId());
-        assertNull(deleted);
-    }
-
-    @Test
-    public void updateObjetivoTest() {
-        ObjetivoEntity entity = data.get(0);
-        ObjetivoEntity newEntity = create();
-        newEntity.setId(entity.getId());
-        ObjetivoPersistence.update(newEntity);
-        
-        ObjetivoEntity resp = em.find(ObjetivoEntity.class, entity.getId());
-        assertEqualsObject(newEntity, resp);
-    }
-    
-    @Test
     public void subEnititysTest(){
         ObjetivoEntity newEntity = create();
         List<UsuarioEntity> usuarios=new ArrayList<>();
