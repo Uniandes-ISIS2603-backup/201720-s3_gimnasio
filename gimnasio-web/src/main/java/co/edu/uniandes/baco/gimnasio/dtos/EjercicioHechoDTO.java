@@ -6,7 +6,12 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
+import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,6 +19,7 @@ import java.util.Date;
  */
 public class EjercicioHechoDTO 
 {
+    private final SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
     //----------------------------------------------------------------------------------------
     // -----------------------------------Atributos------------------------------------------
     //----------------------------------------------------------------------------------------
@@ -26,7 +32,7 @@ public class EjercicioHechoDTO
     /**
      * Fecha en la que se realizo el EjercicioHecho.
      */
-    private Date fecha;
+    private String fecha;
     
     /**
      * Series que se realizaron en el EjercicioHecho.
@@ -44,7 +50,7 @@ public class EjercicioHechoDTO
     public EjercicioHechoDTO(EjercicioHechoEntity entity) 
     {
         this.id = entity.getId();
-        this.fecha = entity.getFecha();
+        this.fecha = format.format(entity.getFecha());
         this.seriesReales = entity.getSeriesReales();
     }
     
@@ -56,9 +62,9 @@ public class EjercicioHechoDTO
 
     public void setId(Long id) {  this.id = id; }
 
-    public Date getFecha(){ return fecha;}
+    public String getFecha(){ return fecha;}
 
-    public void setFecha(Date fecha){ this.fecha = fecha; }
+    public void setFecha(String fecha){ this.fecha = fecha; }
 
     public Integer getSeriesReales() { return seriesReales; }
 
@@ -68,12 +74,17 @@ public class EjercicioHechoDTO
     //-------------------------------------Metodos----------------------------------------
     //----------------------------------------------------------------------------------------
   
-    public EjercicioHechoEntity toEntity()
+    public EjercicioHechoEntity toEntity() throws BusinessLogicException
     {
+        try {
         EjercicioHechoEntity ent= new EjercicioHechoEntity();
-        ent.setFecha(fecha);
+        ent.setFecha(format.parse(fecha));
         ent.setSeriesReales(seriesReales);
         
         return ent;
+        } catch (ParseException ex) {
+            Logger.getLogger(RutinaDTO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new BusinessLogicException(ex.getMessage());
+        }
     }        
 }
