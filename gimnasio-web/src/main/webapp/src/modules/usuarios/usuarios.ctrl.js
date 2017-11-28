@@ -51,6 +51,7 @@
                         });
             };
         }]);
+    
     mod.controller('usuarioscreateCtrl', ['$scope', '$http', 'usuarioContext', '$state',
         function ($scope, $http, usuarioContext, $state) {
             $scope.createUsuario = function ()

@@ -29,7 +29,7 @@
                 views: {
                     'listView':{
                         templateUrl: basePath + 'usuario.create.html',
-                        controller: 'usuariosCtrl',
+                        controller: 'usuarioscreateCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
