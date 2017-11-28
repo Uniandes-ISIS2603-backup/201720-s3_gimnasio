@@ -4,7 +4,6 @@ import co.edu.uniandes.baco.gimnasio.entities.BaseEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.persistence.EjercicioInstanciaPersistence;
@@ -110,54 +109,11 @@ public class EjercicioInstanciaPersistenceTest {
     }
 
     @Test
-    public void createEjercicioInstanciaTest() {
-        EjercicioInstanciaEntity newEntity = create();
-        EjercicioInstanciaEntity result = EjercicioInstanciaPersistence.create(newEntity);
-        assertNotNull(result);
-        EjercicioInstanciaEntity entity = em.find(EjercicioInstanciaEntity.class, result.getId());
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void geEjercicioInstanciasTest() {
-        List<EjercicioInstanciaEntity> list = EjercicioInstanciaPersistence.findAll();
-        assertEquals(data.size(), list.size());
-        for (EjercicioInstanciaEntity ent : list) {
-            boolean found = false;
-            for (EjercicioInstanciaEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            assertTrue(found);
-        }
-    }
-
-    @Test
     public void getEjercicioInstanciaTest() {
         EjercicioInstanciaEntity entity = data.get(0);
         EjercicioInstanciaEntity newEntity = EjercicioInstanciaPersistence.find(entity.getId());
         assertNotNull(newEntity);
         assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void deleteEjercicioInstanciaTest() {
-        EjercicioInstanciaEntity entity = data.get(0);
-        EjercicioInstanciaPersistence.delete(entity.getId());
-        EjercicioInstanciaEntity deleted = em.find(EjercicioInstanciaEntity.class, entity.getId());
-        assertNull(deleted);
-    }
-
-    @Test
-    public void updateEjercicioInstanciaTest() {
-        EjercicioInstanciaEntity entity = data.get(0);
-        EjercicioInstanciaEntity newEntity = create();
-        newEntity.setId(entity.getId());
-        EjercicioInstanciaPersistence.update(newEntity);
-
-        EjercicioInstanciaEntity resp = em.find(EjercicioInstanciaEntity.class, entity.getId());
-        assertEqualsObject(newEntity, resp);
     }
 
     @Test

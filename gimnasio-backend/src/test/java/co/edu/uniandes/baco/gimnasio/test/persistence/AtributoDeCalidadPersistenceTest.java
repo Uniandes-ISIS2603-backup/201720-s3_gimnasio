@@ -105,56 +105,13 @@ public class AtributoDeCalidadPersistenceTest {
         assertFalse(newEntity.equals(newEntity2));
         assertNotEquals(newEntity.hashCode(),newEntity2.hashCode());
     }
-    
-    @Test
-    public void createAtributoDeCalidadTest() {
-        AtributoDeCalidadEntity newEntity = create();
-        AtributoDeCalidadEntity result = AtributoDeCalidadPersistence.create(newEntity);
-        assertNotNull(result);
-        AtributoDeCalidadEntity entity = em.find(AtributoDeCalidadEntity.class, result.getId());
-        assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void geAtributoDeCalidadsTest() {
-        List<AtributoDeCalidadEntity> list = AtributoDeCalidadPersistence.findAll();
-        assertEquals(data.size(), list.size());
-        for (AtributoDeCalidadEntity ent : list) {
-            boolean found = false;
-            for (AtributoDeCalidadEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            assertTrue(found);
-        }
-    }
-
+ 
     @Test
     public void getAtributoDeCalidadTest() {
         AtributoDeCalidadEntity entity = data.get(0);
         AtributoDeCalidadEntity newEntity = AtributoDeCalidadPersistence.find(entity.getId());
         assertNotNull(newEntity);
         assertEqualsObject(newEntity, entity);
-    }
-
-    @Test
-    public void deleteAtributoDeCalidadTest() {
-        AtributoDeCalidadEntity entity = data.get(0);
-        AtributoDeCalidadPersistence.delete(entity.getId());
-        AtributoDeCalidadEntity deleted = em.find(AtributoDeCalidadEntity.class, entity.getId());
-        assertNull(deleted);
-    }
-
-    @Test
-    public void updateAtributoDeCalidadTest() {
-        AtributoDeCalidadEntity entity = data.get(0);
-        AtributoDeCalidadEntity newEntity = create();
-        newEntity.setId(entity.getId());
-        AtributoDeCalidadPersistence.update(newEntity);
-        
-        AtributoDeCalidadEntity resp = em.find(AtributoDeCalidadEntity.class, entity.getId());
-        assertEqualsObject(newEntity, resp);
     }
     
     @Test

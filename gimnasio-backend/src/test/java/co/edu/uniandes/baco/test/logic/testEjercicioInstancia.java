@@ -11,7 +11,6 @@ import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.EstadoPersistence;
 import java.util.ArrayList;
@@ -130,7 +129,6 @@ public class testEjercicioInstancia {
             assertEquals(rut, ans.getRutina());
             assertEquals(ejer, ans.getEjercicio());
         } catch (BusinessLogicException ex) {
-            ex.printStackTrace();
             Logger.getLogger(testEjercicioInstancia.class.getName()).log(Level.SEVERE, null, ex);
             fail(ex.getMessage());
         }
