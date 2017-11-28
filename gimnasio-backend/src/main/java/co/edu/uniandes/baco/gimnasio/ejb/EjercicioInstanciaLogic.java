@@ -62,8 +62,6 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
         for (EjercicioInstanciaEntity e : findAll()) {
             if (!e.getEjerciciosHechos().isEmpty()) {
                 calcularCumplimiento(e);
-            } else {
-                e.setCumplimiento(0.0);
             }
         }
     }
@@ -74,7 +72,7 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
         Calendar aux = Calendar.getInstance();
         RutinaEntity rutina = e.getRutina();
         ini.setTime(rutina.getFechaInicio());
-        fin.setTime(rutina.getFechaFinal().before(new Date())? rutina.getFechaFinal() : new Date());
+        fin.setTime(rutina.getFechaFinal().before(new Date()) ? rutina.getFechaFinal() : new Date());
         List<EjercicioHechoEntity> list = e.getEjerciciosHechos();
         list.sort((a, b) -> (int) (a.getFecha().getTime() - b.getFecha().getTime()));
         int part = 1; //cuanta las particiones

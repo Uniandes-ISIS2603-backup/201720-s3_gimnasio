@@ -7,7 +7,6 @@
     <class>co.edu.uniandes.csw.company.entities.EjercicioHechoEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.EstadoEntity</class>
-    <class>co.edu.uniandes.baco.gimnasio.entities.GimnasioEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.JornadaEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.MedicionEntity</class>
     <class>co.edu.uniandes.baco.gimnasio.entities.MedidaEntity</class>
