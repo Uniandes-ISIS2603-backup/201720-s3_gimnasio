@@ -90,7 +90,7 @@
                 return $http.delete(entrenadorContext + "/" + $state.params.entrenadorid)
                         .then(function (response) {
                             $state.go('entrenadoresList', {id: response.data.id}, {reload: true});
-                            
+
                         });
             };
 
@@ -113,23 +113,10 @@
                 }
                 return 'masculino';
             };
-            
+
             $scope.editarEntrenador = function ()
             {
                 $http.put(entrenadorContext + '/' + $scope.entrenadorActual.id, {
-                    name: $scope.nombreEntrenador,
-                    fechaNacimiento: $scope.fechaEntrenador,
-                    documento: $scope.documentoEntrenador
-
-                }).then(function (response) {
-                    //se crea exitosamente el entrenador
-                    $state.go('entrenadoresList', {id: response.data.id}, {reload: true});
-                });
-            };
-
-            $scope.createEntrenador = function ()
-            {
-                $http.post(entrenadorContext, {
                     name: $scope.nombreEntrenador,
                     fechaNacimiento: $scope.fechaEntrenador,
                     documento: $scope.documentoEntrenador
@@ -154,6 +141,22 @@
 
 
     ]);
+
+    mod.controller('entrenadoresCreateCtrl', ['$scope', '$http', 'entrenadorContext', '$state',
+        function ($scope, $http, entrenadorContext, $state) {
+            $scope.createEntrenador = function ()
+            {
+                $http.post(entrenadorContext, {
+                    name: $scope.nombreEntrenador,
+                    fechaNacimiento: $scope.fechaEntrenador,
+                    documento: $scope.documentoEntrenador
+
+                }).then(function (response) {
+                    //se crea exitosamente el entrenador
+                    $state.go('entrenadoresList', {id: response.data.id}, {reload: true});
+                });
+            };
+        }]);
 }
 )(angular);
 

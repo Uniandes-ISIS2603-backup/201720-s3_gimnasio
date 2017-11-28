@@ -31,7 +31,7 @@
                 views: {
                     'listView':{
                         templateUrl: basePath + 'entrenador.create.html',
-                        controller: 'entrenadoresCtrl',
+                        controller: 'entrenadoresCreateCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

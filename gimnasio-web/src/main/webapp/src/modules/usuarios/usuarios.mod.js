@@ -52,7 +52,7 @@
                 views: {
                     'listView': {
                         templateUrl: basePath + 'usuarios.detalle.html',
-                        controller: 'usuariosCtrl',
+                        controller: 'usuariosDetailCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
