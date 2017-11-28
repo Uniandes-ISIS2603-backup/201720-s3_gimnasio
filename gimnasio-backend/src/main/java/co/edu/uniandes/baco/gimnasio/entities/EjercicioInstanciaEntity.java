@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -63,6 +64,13 @@ public class EjercicioInstanciaEntity extends BaseEntity implements Serializable
     @PodamExclude
     @ManyToOne
     private EjercicioEntity ejercicio;
+    
+    /**
+     * lista de objetivos del ejercicio
+     */
+    @PodamExclude
+    @OneToMany(mappedBy = "ejercicio", cascade = CascadeType.REFRESH, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<RegrecionEntity> regreciones = new ArrayList<>();
 
     @PodamExclude
     @OneToMany(mappedBy = "ejercicio", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
@@ -95,6 +103,14 @@ public class EjercicioInstanciaEntity extends BaseEntity implements Serializable
         this.ejercicio = ejercicio;
     }
 
+    public List<RegrecionEntity> getRegreciones() {
+        return regreciones;
+    }
+
+    public void setRegreciones(List<RegrecionEntity> regreciones) {
+        this.regreciones = regreciones;
+    }
+    
     public List<EjercicioHechoEntity> getEjerciciosHechos() {
         return ejerciciosHechos;
     }

@@ -33,8 +33,14 @@ public class EjercicioHechoLogic extends SubResource<EjercicioInstanciaEntity, E
     @Override
     public EjercicioHechoEntity create(long id, EjercicioHechoEntity entity) throws BusinessLogicException {
         EjercicioHechoEntity ret = super.create(id, entity);
-        ((EjercicioInstanciaLogic)logic).calcularCumplimiento(ret.getEjercicios());
+        ((EjercicioInstanciaLogic) logic).calcularCumplimiento(ret.getEjercicios());
         return ret;
     }
 
+    @Override
+    public EjercicioHechoEntity update(EjercicioHechoEntity entity) throws BusinessLogicException {
+        EjercicioHechoEntity ret = super.update(entity);
+        ((EjercicioInstanciaLogic) logic).calcularCumplimiento(ret.getEjercicios());
+        return ret;
+    }
 }

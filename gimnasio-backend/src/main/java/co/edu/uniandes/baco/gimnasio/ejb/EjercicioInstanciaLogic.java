@@ -8,9 +8,12 @@ package co.edu.uniandes.baco.gimnasio.ejb;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.RegrecionEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
+import co.edu.uniandes.baco.gimnasio.persistence.RegresionPersistence;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -28,15 +31,17 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
      * injecion de la logica de rutina
      */
     private EjercicioLogic ejercicioLogic;
+    private RegresionPersistence RegPersistence;
 
     public EjercicioInstanciaLogic() {
         super();
     }
 
     @Inject
-    public EjercicioInstanciaLogic(RutinaLogic rutinaLogic, EjercicioLogic ejercicioLogic, BasePersistence<EjercicioInstanciaEntity> persistence) {
+    public EjercicioInstanciaLogic(RutinaLogic rutinaLogic, EjercicioLogic ejercicioLogic, RegresionPersistence RegPersistence, BasePersistence<EjercicioInstanciaEntity> persistence) {
         super(persistence, rutinaLogic, RutinaEntity::getEjercicios, EjercicioInstanciaEntity::setRutina);
         this.ejercicioLogic = ejercicioLogic;
+        this.RegPersistence=RegPersistence;
     }
 
     /**
@@ -50,7 +55,15 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
      */
     public EjercicioInstanciaEntity create(long idRutina, EjercicioInstanciaEntity entity, long idEjercicio) throws BusinessLogicException {
         EjercicioInstanciaEntity ans = create(idRutina, entity);
-        ans.setEjercicio(ejercicioLogic.find(idEjercicio));
+        EjercicioEntity ejercicio=ejercicioLogic.find(idEjercicio);
+        ans.setEjercicio(ejercicio);
+        for(TipoMedidaEntity x:ejercicio.getTiposMedidas()){
+            RegrecionEntity nueva=new RegrecionEntity();
+            nueva.setRegresion(0.0);
+            nueva.setEjercicio(ans);
+            nueva.setTipoMedida(x);
+            RegPersistence.create(nueva);
+        }
         return ans;
     }
 
@@ -77,7 +90,7 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
         list.sort((a, b) -> (int) (a.getFecha().getTime() - b.getFecha().getTime()));
         int part = 1; //cuanta las particiones
         int i = 0; //recorre la lista
-        double cont = 0; //coteo para el promedio
+        double cont = 0; //conteo para el promedio
         ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
         aux.setTime(list.get(i).getFecha());
         while (ini.before(fin)) { //recorre las particiones

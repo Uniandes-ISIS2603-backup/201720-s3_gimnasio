@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.RegrecionEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class EjercicioInstanciaDetailDTO extends EjercicioInstanciaDTO{
     private String descricpion;
     private String tipo;
     private String explicacion;
+    private List<RegresionDTO> regrecion;
     //--------------------------------------------
     // DATOS ENTITY
     //--------------------------------------------
@@ -29,6 +31,10 @@ public class EjercicioInstanciaDetailDTO extends EjercicioInstanciaDTO{
         this.tipo = entity.getEjercicio().getTipo().name();
         this.explicacion = entity.getEjercicio().getExplicacion();
         this.descricpion=entity.getEjercicio().getDescripcion();
+        regrecion= new ArrayList<>();
+        for(RegrecionEntity x:entity.getRegreciones()){
+            regrecion.add(new RegresionDTO(x));
+        }
     }
 
     //--------------------------------------------
@@ -52,6 +58,14 @@ public class EjercicioInstanciaDetailDTO extends EjercicioInstanciaDTO{
         this.descricpion = descricpion;
     }
 
+    public List<RegresionDTO> getRegrecion() {
+        return regrecion;
+    }
+
+    public void setRegrecion(List<RegresionDTO> regrecion) {
+        this.regrecion = regrecion;
+    }
+    
     public String getTipo() {
         return tipo;
     }
