@@ -76,6 +76,19 @@ public class RutinaResource {
     public RutinaDetailDTO get(@PathParam(USUARIOID) Long idUsuario,@PathParam(RUTINAID) long id) throws BusinessLogicException {
         return new RutinaDetailDTO(logic.find(idUsuario,id));
     }
+    
+    /**
+     * metodo para obtener una rutina especifica
+     * @param idUsuario id del usuario
+     * @param id de a rutina
+     * @return la rutina
+     * @throws BusinessLogicException 
+     */
+    @GET
+    @Path("last")
+    public RutinaDetailDTO get(@PathParam(USUARIOID) Long idUsuario) throws BusinessLogicException {
+        return new RutinaDetailDTO(logic.getLast(idUsuario));
+    }
     /**
      * metodo que actuliza una rutina
      * @param idUsuario id del usuario
