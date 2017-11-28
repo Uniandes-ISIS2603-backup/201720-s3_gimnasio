@@ -49,10 +49,9 @@ public class RutinaResource {
      * @param nuevo la rutina
      * @return la rutina agregada
      * @throws BusinessLogicException si el usuario noe xiste 
-     * @throws java.text.ParseException 
      */
     @POST
-    public RutinaDTO post(@PathParam(USUARIOID) Long idUsuario,RutinaDTO nuevo) throws Exception{
+    public RutinaDTO post(@PathParam(USUARIOID) Long idUsuario,RutinaDTO nuevo) throws BusinessLogicException{
         return new RutinaDTO(logic.create(idUsuario,nuevo.toEntity()));
     }
     /**
@@ -84,11 +83,10 @@ public class RutinaResource {
      * @param nuevo la rutina a actulizar
      * @return la rutina actulizada
      * @throws BusinessLogicException 
-     * @throws java.text.ParseException 
      */
     @PUT
     @Path("{"+RUTINAID+": \\d+}")
-    public RutinaDTO put(@PathParam(USUARIOID) Long idUsuario,@PathParam(RUTINAID)long id, RutinaDTO nuevo) throws Exception {
+    public RutinaDTO put(@PathParam(USUARIOID) Long idUsuario,@PathParam(RUTINAID)long id, RutinaDTO nuevo) throws BusinessLogicException {
         RutinaEntity entity=nuevo.toEntity();
         entity.setId(id);
         return new RutinaDTO(logic.update(idUsuario,entity));
