@@ -1,53 +1,52 @@
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-  <body>
-      
-    <h1>Medida</h1>
-           <h2>Agregar medida</h2>
-   <!--    <select ng-model="selectUsuraio" ng-options="x for x in usuarios"></select> <br>
-       
-        --> 
-        
-        <form ng-submit="creatMedida()" name = "medida">
-         <h5>Agregar medida</h5>
-          <h6> medida</h6>
-           <input type="number" ng-model="medida" required/>
-           <h6>Seleccione un Tipo de medida</h6>
-           <select ng-model="tipo" ng-options="tipo.descripcion for tipo in tipoRecords"></select>
-        
-           </br>
-           </br>
-            <input type="submit" value="Agregar" class="btn btn-info btn-sm"/>
-  </form> 
-           </br>
-           <button onclick="history.back()">Back</button>
-      
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <body>
+        <h1>Medidas de la rutina</h1>
+    <button type="button" class="btn btn-info col-md-12" data-toggle="collapse" data-target="#agregarR">Agregar rutina <span class="glyphicon glyphicon-chevron-down"></span></button>
+
+        <div id="agregarR" class="collapse">
+            <center>
+                
+                <form ng-submit="creatMedida()" name = "medida">
+                    <h5>Agregar medida</h5>
+                    <h6> medida</h6>
+                    <input type="number" ng-model="medida" required/>
+                    <h6>Seleccione un Tipo de medida</h6>
+                    <select ng-model="tipo" ng-options="tipo.descripcion for tipo in tipoRecords"></select>
+
+                    </br>
+                    </br>
+                    <input type="submit" value="Agregar" class="btn btn-info btn-sm"/>
+                </form> 
+                </br>
+                <button onclick="history.back()">Back</button>
+            </center>
+        </div>
+
         <div class="container-fluid">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Medida</th>
-                    <th>Descripcion</th>
-                     <th>Unidad</th>
-                   
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="medidas in medidaRecords">
-                 <td id="{{$index}}-ID">{{medidas.id}}</td>
-                <td id="{{$index}}-Medida">{{medidas.medida}}</td>
-                <td id="{{$index}}-Descripcion">{{medidas.descripcion}}</td>
-                <td id="{{$index}}-Unidad">{{medidas.unidad}}</td>
-                   
-                   
-            </tbody>
-        </table>
-    </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Medida</th>
+                        <th>Descripcion</th>
 
-         
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="medidas in medidaRecords">
+                        <td id="{{$index}}-ID">{{medidas.id}}</td>
+                        <td id="{{$index}}-Medida">{{medidas.medida}} {{medidas.unidad}}</td>
+                        <td id="{{$index}}-Descripcion">{{medidas.descripcion}}</td>
 
 
-  </body>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+    </body>
 </html>
