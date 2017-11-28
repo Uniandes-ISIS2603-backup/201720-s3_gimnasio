@@ -15,7 +15,7 @@
             var basePath = 'src/modules/rutinas/';
             
             // default
-            $urlRouterProvider.otherwise("/rutinasList");
+            $urlRouterProvider.otherwise("/rutinas");
             
             // estados
             $stateProvider.state('rutinas', {
@@ -34,16 +34,6 @@
                 views: {
                     'listView':{
                         templateUrl: basePath + 'rutina.create.html',
-                        controller: 'rutinasCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
-            }).state('rutinasList', {
-                url: '/list',
-                parent: 'rutinas',
-                views: {
-                    'listView': {
-                        templateUrl: basePath + 'rutinas.list.html',
                         controller: 'rutinasCtrl',
                         controllerAs: 'ctrl'
                     }
