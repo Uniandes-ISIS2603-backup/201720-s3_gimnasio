@@ -7,7 +7,7 @@
             $http.get(MedidaContext +$state.params.UsuariosId+"/estados/"+ $state.params.estadoID +"/medidas").then(function (response) {
                 $scope.medidaRecords = response.data;
                 $scope.devusuar = $state.params.UsuariosId;
-                
+                 $scope.val = $state.params.valid;
             },
              $http.get("api/tipoMedidas/").then(function (response) {
                 $scope.tipoRecords = response.data;

@@ -29,6 +29,7 @@
                 paretn:'usuarios',
                 param: {
                     UsId : null
+                
                
                 },
                 views: {

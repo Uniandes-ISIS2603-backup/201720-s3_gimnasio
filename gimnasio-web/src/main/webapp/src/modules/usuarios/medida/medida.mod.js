@@ -16,7 +16,8 @@
                 paretn:'estadoList',
                 params: {
                     UsuariosId : null ,
-                    estadoID: null
+                    estadoID: null,
+                    valid: true
                 },
                 views: {
                     'mainView': {

@@ -8,7 +8,7 @@
             console.info($state.params.UsuarioId);
             $http.get(EstadoContext + $state.params.UsuarioId + "/estados/").then(function (response) {
                 $scope.estadosRecords = response.data;
-
+             
                 $scope.uid = $state.params.UsuarioId;
             });
 

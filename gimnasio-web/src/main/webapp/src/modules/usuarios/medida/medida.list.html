@@ -5,11 +5,12 @@
     <center>
         <h1 class="col-md-12">Medidas de la rutina</h1>
     </center>
+      <element ng-show="val">
     <button type="button" class="btn btn-info col-md-12" data-toggle="collapse" data-target="#agregarR">Agregar Medida <span class="glyphicon glyphicon-chevron-down"></span></button>
-
+  
     <div id="agregarR" class="collapse">
         <center>
-
+          
             <form ng-submit="creatMedida()" name = "medida">
                 <h5>Agregar medida</h5>
                 <h6> medida</h6>
@@ -22,10 +23,11 @@
                 <input type="submit" value="Agregar" class="btn btn-info btn-sm"/>
             </form> 
             </br>
-            <button onclick="history.back()">Back</button>
+      
         </center>
     </div>
-
+       </element>
+    
     <div class="container-fluid">
         <table class="table table-striped">
             <thead>
@@ -44,11 +46,12 @@
 
 
             </tbody>
+          
+<button class="btn btn-danger" onclick="history.back()" ><span class="glyphicon glyphicon-arrow-left"></span> Regresar</button>
+
+
         </table>
     </div>
-
-
-
 
 </body>
 </html>
