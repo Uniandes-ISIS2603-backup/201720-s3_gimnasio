@@ -6,6 +6,7 @@
          <th>id</th>
         <th>fecha Inicio</th>
         <th>Fecha Fin</th>
+        <th>cumplimiento</th>
         <th><button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref ="createRutina"><span class="glyphicon glyphicon-plus"></span> agregar Rutina</button></th>
       </tr>
     </thead>
@@ -14,6 +15,7 @@
         <td>{{x.id}}</td>
         <td>{{x.fechaInicio|date:'yyyy-MM-dd'}}</td>
         <td>{{x.fechaFinal|date:'yyyy-MM-dd'}}</td>
+        <td>{{x.cumplimiento}}%</td>
         <td>
          <button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref="instanciasList({usuariosId:usuarioActual.id, rutinaId:x.id})"><span class="glyphicon glyphicon-check"></span> Ver detalles</button>
         </td>

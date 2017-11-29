@@ -4,9 +4,7 @@
             <thead>
                 <tr>
                     <th><div class="h4" style="text-transform: uppercase">EJERCICIO</div></th>    
-                    <th><div class="h4" style="text-transform: uppercase">SERIES</div></th>
-                    <th><div class="h4" style="text-transform: uppercase">DURACION</div></th>
-                    <th><div class="h4" style="text-transform: uppercase">FRECUENCIA</div></th>
+                    <th><div class="h4" style="text-transform: uppercase">CUMPLIMIENTO</div></th>
                     <th><a class="btn btn-info" ui-sref="instanciaCreate">
                             <span class="glyphicon glyphicon-plus-sign"></span>nuevo
                         </a></th>
@@ -16,9 +14,7 @@
             <tbody>
                 <tr ng-repeat="instancia in instanciasRecords">
                     <td id="{{$index}}-Descripcion"><a ui-sref="instanciaDetail({instanciaId: instancia.id})"><b>{{instancia.descricpion}}</b></a></td>
-                    <td id="{{$index}}-series">{{instancia.series}}</td> 
-                    <td id="{{$index}}-duracion">{{instancia.duracion}}</td>
-                    <td id="{{$index}}-frecuencia">{{instancia.repeticionesPorParticion}} veces cada {{instancia.tamanioParticiones}} dias</td>
+                    <td id="{{$index}}-cumplimiento">{{instancia.cumplimiento}} %</td> 
                     <td id="{{$index}}-actions">
                         <a class="btn btn-default btn-sm" ui-sref="instanciaUpdate({instanciaId: instancia.id})"><span class="glyphicon glyphicon-edit"></span></a>
                         <a class="btn btn-danger btn-sm" ui-sref="instanciaDelete({instanciaId: instancia.id})"><span class="glyphicon glyphicon-trash"></span></a>

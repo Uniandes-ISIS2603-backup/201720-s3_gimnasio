@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.baco.gimnasio.ejb;
 
+import co.edu.uniandes.baco.gimnasio.dtos.Graphic;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
@@ -17,6 +18,7 @@ import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import co.edu.uniandes.baco.gimnasio.persistence.RegresionPersistence;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -109,6 +111,45 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
         }
     }
 
+    public Graphic cumplimeto(long idRutina, long id) throws BusinessLogicException {
+        EjercicioInstanciaEntity e = find(idRutina, id);
+        List<Double> valores=new ArrayList<>();
+        List<Date> ejerx=new ArrayList<>();
+        Calendar ini = Calendar.getInstance();
+        Calendar fin = Calendar.getInstance();
+        Calendar aux = Calendar.getInstance();
+        RutinaEntity rutina = e.getRutina();
+        ini.setTime(rutina.getFechaInicio());
+        fin.setTime(rutina.getFechaFinal().before(new Date()) ? rutina.getFechaFinal() : new Date());
+        List<EjercicioHechoEntity> list = e.getEjerciciosHechos();
+        list.sort((a, b) -> (int) (a.getFecha().getTime() - b.getFecha().getTime()));
+        int part = 1; //cuanta las particiones
+        int i = 0; //recorre la lista
+        double cont = 0; //conteo para el promedio
+        ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
+        aux.setTime(list.get(i).getFecha());
+        while (ini.before(fin)) { //recorre las particiones
+            int series = 0; //series hechas en la particion
+            int veces = 0; // ejercicios hechos en una particion
+            while (!aux.after(ini) && i < list.size()) {
+                veces++;
+                series += list.get(i++).getSeriesReales();
+                if (i < list.size()) {
+                    aux.setTime(list.get(i).getFecha());
+                }
+            }
+            valores.add((double)((veces * e.getSeries()) + series) / (2 * e.getSeries() * e.getRepeticionesPorParticion()));
+            ejerx.add(ini.getTime());
+            ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
+            part++;
+        }
+        double cump = (cont / part) * 100;
+        int cant = rutina.getEjercicios().size();
+        rutina.setCumplimiento(rutina.getCumplimiento() - (e.getCumplimiento() / cant) + (cump / cant));
+        e.setCumplimiento(cump);
+        return new Graphic(valores, ejerx);
+    }
+
     public void calcularRegrecion2(EjercicioInstanciaEntity instancia, RegrecionEntity regrecionEntity) {
         TipoMedidaEntity tipo = regrecionEntity.getTipoMedida();
         Date ini = instancia.getRutina().getFechaInicio();
@@ -149,19 +190,19 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
             return 0;
         }
         double sx, sy;
-        sx=sy=0.0;
+        sx = sy = 0.0;
         for (int i = 0; i < n; i++) {
-            sx += (i+1);
+            sx += (i + 1);
             sy += y.get(i);
         }
         double xbar = sx / n;
         double ybar = sy / n;
         double xxbar = 0.0, xybar = 0.0;
         for (int i = 0; i < n; i++) {
-            xxbar += ((i+1) - xbar) * ((i+1) - xbar);
-            xybar += ((i+1) - xbar) * (y.get(i) - ybar);
+            xxbar += ((i + 1) - xbar) * ((i + 1) - xbar);
+            xybar += ((i + 1) - xbar) * (y.get(i) - ybar);
         }
-        return  xybar / xxbar;
+        return xybar / xxbar;
     }
 
     public void calcularCumplimiento(EjercicioInstanciaEntity e) {
