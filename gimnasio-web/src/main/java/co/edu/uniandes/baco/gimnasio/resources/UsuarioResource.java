@@ -60,12 +60,6 @@ public class UsuarioResource {
     public UsuarioDTO create(UsuarioDTO dto) throws BusinessLogicException {
         return new UsuarioDTO(logic.create(dto.toEntity()));
     }
-    
-    @POST
-    @Path("{" + USUARIOID + ": \\d+}/"+MEDICIONMAQUINA+"/{"+MAQUINAID+": \\d+}-{"+MEDICIONMAQUINAID+"}")
-    public MedicionMaquinaDTO maquina(MedicionMaquinaDTO medicion, PathParam){
-        
-    }
 
     /**
      * metodo para obtener el usuario de un entrenado
