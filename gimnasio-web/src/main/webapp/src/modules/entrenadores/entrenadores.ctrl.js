@@ -1,7 +1,8 @@
 //<!--Esta pagina ha sido desarrollada por Mateo Sicard 
 //   m.sicard10 201512474  -->
 
-
+var tip;
+var med;
 (function (ng) {
     var mod = ng.module("entrenadorModule");
     mod.constant("entrenadorContext", "api/entrenadores");
@@ -57,8 +58,12 @@
 
                 if (($state.params.Enid !== undefined) && ($state.params.Enid !== null))
                 {
+                    $http.get("api/tipoMedidas").then(function (response) {
+                        $scope.tipos = response.data;
+                    });
                     $http.get(entrenadorContext + '/' + $state.params.Enid + '/usuarios/' + $state.params.Uid).then(function (response)
                     {
+                        //console.info(tip);
                         $scope.usuarioActual = response.data;
                         if ($scope.usuarioActual.genero === true)
                         {
@@ -88,60 +93,36 @@
                                 title: {
                                     text: 'peso(KG)'
                                 }
-                            }, 
+                            },
                             series: [{
                                     name: 'Peso',
                                     data: getPesosNvo()
                                 }]
                         });
 
-
-
-                        function getDias()
-                        {
-                            return getPesos()[0];
-                        }
-                        function getPeso()
-                        {
-                            return getPesos()[1];
-                        }
-
                         function darMes(mes) {
                             var meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
                             return meses[mes];
                         }
-                        function getPesos() {
+                        function getDias() {
 
                             var arreglo = [];
                             var estados = $scope.usuarioActual.estados;
                             var fechas = [];
                             var pesos = [];
                             for (var i = 0; i < estados.length; i++) {
-
                                 var dia = new Date($scope.usuarioActual.estados[i].fecha);
-
-                                var medidas = estados[i].medidas;
                                 fechas.push(darMes(dia.getMonth()) + '/' + dia.getDate());//meter fecha
-                                var ver = false;
-                                for (var j = medidas.length - 1; j >= 0; j--)
-                                {
-                                    if (medidas[j].descripcion === 'PESO')
-                                    {
-                                        pesos.push(medidas[j].medida);
-                                        ver = true;
-                                    }
-                                }
-                                if (!ver)
-                                {
-                                    pesos.push(0);
-                                }
                             }
                             arreglo.push(fechas);
-                            arreglo.push(pesos);
-                            return arreglo;
+                            return arreglo[0];
                         }
-                        function getPesosNvo() {
 
+                        function getPesosNvo() {
+                            if (tip === undefined || tip === null)
+                            {
+                                tip = 'PESO';
+                            }
                             var arreglo = [];
                             var estados = $scope.usuarioActual.estados;
                             for (var i = 0; i < estados.length; i++) {
@@ -153,9 +134,10 @@
                                 var ver = false;
                                 for (var j = medidas.length - 1; j >= 0; j--)
                                 {
-                                    if (medidas[j].descripcion === 'PESO')
+                                    if (medidas[j].descripcion === tip.trim())
                                     {
                                         temp.push(medidas[j].medida);
+                                        med = medidas[j].unidad;
                                         ver = true;
                                     }
                                 }
@@ -165,7 +147,7 @@
                                 }
                                 arreglo.push(temp);
                             }
-
+                            
                             return arreglo;
                         }
                         Highcharts.theme = {
@@ -251,6 +233,37 @@
 
                         };
                         Highcharts.setOptions(Highcharts.theme);
+                        $scope.obtener = function ()
+                        {
+                            //console.info($scope.tipo);
+                            tip = $scope.tipo;
+                            var me = getPesosNvo();
+                            Highcharts.chart('container', {
+                            chart: {
+                                type: 'areaspline',
+                                zoomType: 'x'
+                            },
+                            title: {
+                                text: tip.toLocaleLowerCase()
+                            }, legend: {
+                                enabled: false
+                            },
+                            xAxis: {
+                                type: 'text',
+                                text: 'Tiempo',
+                                categories: getDias()
+                            },
+                            yAxis: {
+                                title: {
+                                    text: tip.toLocaleLowerCase() + ' (' + med + ')'
+                                }
+                            },
+                            series: [{
+                                    name: tip,
+                                    data: me
+                                }]
+                        });
+                        };
                     });
 
                 }
@@ -270,6 +283,8 @@
                 }
 
             });
+
+
 
 
             //borrar
