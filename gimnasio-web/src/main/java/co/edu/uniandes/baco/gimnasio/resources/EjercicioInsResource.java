@@ -8,6 +8,7 @@ package co.edu.uniandes.baco.gimnasio.resources;
 import co.edu.uniandes.baco.gimnasio.dtos.EjercicioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.EjercicioInstanciaDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.EjercicioInstanciaDetailDTO;
+import co.edu.uniandes.baco.gimnasio.dtos.Graphic;
 import co.edu.uniandes.baco.gimnasio.ejb.EjercicioInstanciaLogic;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
@@ -48,6 +49,12 @@ public class EjercicioInsResource{
     @Path("{"+EJERCICIOID+": \\d+}")
     public EjercicioInstanciaDetailDTO get(@PathParam(RUTINAID)Long idRutina,@PathParam(EJERCICIOID) long id) throws BusinessLogicException {
         return new EjercicioInstanciaDetailDTO(logic.find(idRutina,id));
+    }
+    
+    @GET
+    @Path("{"+EJERCICIOID+": \\d+}/graph")
+    public Graphic getGraph(@PathParam(RUTINAID)Long idRutina,@PathParam(EJERCICIOID) long id) throws BusinessLogicException {
+        return logic.cumplimeto(idRutina, id);
     }
     
     @GET

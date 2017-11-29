@@ -1,7 +1,6 @@
 package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.EntrenadorDetailDTO;
-import co.edu.uniandes.baco.gimnasio.dtos.MedicionMaquinaDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.UsuarioDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.UsuarioLogic;
