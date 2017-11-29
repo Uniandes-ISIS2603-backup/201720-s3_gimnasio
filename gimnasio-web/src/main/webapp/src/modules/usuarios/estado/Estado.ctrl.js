@@ -32,8 +32,9 @@
             $scope.createEstado = function ()
             {
                  var cdate = new Date();
+                 cdate.setHours(0,0,0,0);
                  var dd = $scope.fechaEstado;
-                 if(cdate<dd)
+                 if(cdate<=dd)
                  {
                       $http.post(EstadoContext + +$state.params.UsId + "/estados/", {
                     fecha: $scope.fechaEstado
