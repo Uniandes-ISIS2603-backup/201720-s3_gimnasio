@@ -31,17 +31,17 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
      * injecion de la logica de rutina
      */
     private EjercicioLogic ejercicioLogic;
-    private RegresionPersistence RegPersistence;
+    private RegresionPersistence regPersistence;
 
     public EjercicioInstanciaLogic() {
         super();
     }
 
     @Inject
-    public EjercicioInstanciaLogic(RutinaLogic rutinaLogic, EjercicioLogic ejercicioLogic, RegresionPersistence RegPersistence, BasePersistence<EjercicioInstanciaEntity> persistence) {
+    public EjercicioInstanciaLogic(RutinaLogic rutinaLogic, EjercicioLogic ejercicioLogic, RegresionPersistence regPersistence, BasePersistence<EjercicioInstanciaEntity> persistence) {
         super(persistence, rutinaLogic, RutinaEntity::getEjercicios, EjercicioInstanciaEntity::setRutina);
         this.ejercicioLogic = ejercicioLogic;
-        this.RegPersistence=RegPersistence;
+        this.regPersistence=regPersistence;
     }
 
     /**
@@ -62,7 +62,7 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
             nueva.setRegresion(0.0);
             nueva.setEjercicio(ans);
             nueva.setTipoMedida(x);
-            RegPersistence.create(nueva);
+            regPersistence.create(nueva);
         }
         RutinaEntity rut=ans.getRutina();
         int cant = rut.getEjercicios().size();

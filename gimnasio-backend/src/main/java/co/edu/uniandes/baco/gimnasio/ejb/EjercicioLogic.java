@@ -23,16 +23,16 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
     private Connection<EjercicioEntity, MaquinaEntity> connMaquina;
     private Connection<EjercicioEntity, TipoMedidaEntity> connTipoMedida;
     private Search<EjercicioEntity, EjercicioInstanciaEntity> connInstancias;
-     private RegresionPersistence RegPersistence;
+     private RegresionPersistence regPersistence;
 
     public EjercicioLogic() {
         super();
     }
 
     @Inject
-    public EjercicioLogic(RegresionPersistence RegPersistence,BasePersistence<EjercicioEntity> persistence) {
+    public EjercicioLogic(RegresionPersistence regPersistence,BasePersistence<EjercicioEntity> persistence) {
         super(persistence);
-        this.RegPersistence=RegPersistence;
+        this.regPersistence=regPersistence;
         this.connMaquina = new Connection<>(persistence, EjercicioEntity::getMaquinas, MaquinaEntity.class);
         this.connObjetivo = new Connection<>(persistence, EjercicioEntity::getObjetivosEjercicio, ObjetivoEntity.class);
         this.connTipoMedida = new Connection<>(persistence, EjercicioEntity::getTiposMedidas, TipoMedidaEntity.class);
@@ -174,7 +174,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
             nueva.setRegresion(0.0);
             nueva.setEjercicio(x);
             nueva.setTipoMedida(ans);
-            RegPersistence.create(nueva);
+            regPersistence.create(nueva);
         }
         return ans;
     }
@@ -190,7 +190,7 @@ public class EjercicioLogic extends BaseLogic<EjercicioEntity> {
     public void removeTipoMedida(Long idEjercicio, Long id) throws BusinessLogicException {
         connTipoMedida.remove(idEjercicio, id);
         for(EjercicioInstanciaEntity x:find(idEjercicio).getInstancias()){
-            RegPersistence.removeByTipo(x.getId(), id);
+            regPersistence.removeByTipo(x.getId(), id);
         }
     }
     //-----------------------------------
