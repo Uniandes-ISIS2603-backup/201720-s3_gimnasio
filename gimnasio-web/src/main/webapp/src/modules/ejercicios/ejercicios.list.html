@@ -2,7 +2,7 @@
     <nav class="col-md-3 hidden-xs-down bg-faded sidebar" style="background-image: url(resources/images/image2.png)">
         <ul class="nav nav-pills flex-column container-fluid" style="margin-top: 10px; margin-bottom: 10px">
             <li class="nav-item" style=" width: 45%">
-                <a class="btn btn-l" ui-sref="#" style=" color: #28c7ce">
+                <a class="btn btn-l" style=" color: #28c7ce"  data-toggle="collapse" data-target="#vid">
                     <span class="glyphicon glyphicon-plus-sign"></span> Filtrar
                 </a>
             </li>
@@ -11,8 +11,15 @@
                     <span class="glyphicon glyphicon-plus-sign"></span> Nuevo
                 </a>
             </li>
-            <div class="col-md-12">
-                
+            <div class="container-fluid col-md-12 collapse" id="vid">
+                <form ng-submit="filtrarObjetivo()" name="ejeobjetivo">
+                    <div class="container-fluid">
+                        <select class="col-md-10" id="ejeobjetivoId" required ng-model="ejeobjetivoId">
+                            <option ng-repeat="x in ejeobjetivosRecords" value="{{x.id}}">{{x.tipo}}</option>
+                        </select>
+                        <input class="col-md-2" ng-show="ejeobjetivo.$valid" type="submit" value=" " class="btn btn-success"/>
+                    </div>
+                </form>
             </div>
             <form class="navbar-form" ng-submit="buscarEjercicio()" name="ejercicio">
                 <input ng-model="Nombre" class="col-md-9" type="text" class="form-control" placeholder="Search...">

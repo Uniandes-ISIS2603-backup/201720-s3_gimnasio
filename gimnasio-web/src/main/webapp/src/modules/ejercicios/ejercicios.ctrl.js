@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("ejercicioModule");
     mod.constant("ejerciciosContext", "api/ejercicios");
-
+    mod.constant("tipoEjeobjetivoContext", "api/objetivos");
     mod.controller('ejercicioDetailCtrl', ['$scope', '$http', 'ejerciciosContext', '$state',
         function ($scope, $http, ejerciciosContext, $state) {
             if ($state.params.ejercicioId !== undefined && $state.params.ejercicioId !== null) {
@@ -16,13 +16,23 @@
         $sceDelegateProvider.resourceUrlWhitelist(['**']);
     });
 
-    mod.controller('ejercicioCtrl', ['$scope', '$http', 'ejerciciosContext',
-        function ($scope, $http, ejerciciosContext) {
+    mod.controller('ejercicioCtrl', ['$scope', '$http', 'ejerciciosContext', 'tipoEjeobjetivoContext',
+        function ($scope, $http, ejerciciosContext, tipoEjeobjetivoContext) {
             $http.get(ejerciciosContext).then(function (response) {
                 $scope.ejerciciosRecords = response.data.sort(function (a, b) {
                     return a.descricpion.localeCompare(b.descricpion);
                 });
             });
+
+            $http.get(tipoEjeobjetivoContext).then(function (response) {
+                $scope.ejeobjetivosRecords = response.data;
+            });
+
+            $scope.filtrarObjetivo = function () {
+                $http.get(tipoEjeobjetivoContext+'/'+$scope.ejeobjetivoId+"/ejercicios").then(function (response) {
+                    $scope.ejerciciosRecords = response.data;
+                });
+            };
 
             $scope.buscarEjercicio = function () {
                 var a = $scope.Nombre.toLowerCase();
