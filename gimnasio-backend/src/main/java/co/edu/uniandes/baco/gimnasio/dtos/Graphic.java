@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Graphic {
     private List<Double> valores;
-    private List<Date> ejerx;
+    private List<String> ejerx;
 
     public Graphic(){
         //otravez
     }
     
-    public Graphic(List<Double> valores, List<Date> ejerx) {
+    public Graphic(List<Double> valores, List<String> ejerx) {
         this.valores = valores;
         this.ejerx = ejerx;
     }
@@ -24,11 +24,11 @@ public class Graphic {
         this.valores = valores;
     }
 
-    public List<Date> getEjerx() {
+    public List<String> getEjerx() {
         return ejerx;
     }
 
-    public void setEjerx(List<Date> ejerx) {
+    public void setEjerx(List<String> ejerx) {
         this.ejerx = ejerx;
     }
 }

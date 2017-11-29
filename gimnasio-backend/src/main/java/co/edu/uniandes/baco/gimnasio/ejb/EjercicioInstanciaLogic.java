@@ -18,6 +18,7 @@ import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import co.edu.uniandes.baco.gimnasio.persistence.RegresionPersistence;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -115,8 +116,9 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
 
     public Graphic cumplimeto(long idRutina, long id) throws BusinessLogicException {
         EjercicioInstanciaEntity e = find(idRutina, id);
+        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
         List<Double> valores=new ArrayList<>();
-        List<Date> ejerx=new ArrayList<>();
+        List<String> ejerx=new ArrayList<>();
         Calendar ini = Calendar.getInstance();
         Calendar fin = Calendar.getInstance();
         Calendar aux = Calendar.getInstance();
@@ -139,7 +141,7 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
                 }
             }
             valores.add((double)series);
-            ejerx.add(ini.getTime());
+            ejerx.add(format.format(ini.getTime()));
             ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
             part++;
         }
