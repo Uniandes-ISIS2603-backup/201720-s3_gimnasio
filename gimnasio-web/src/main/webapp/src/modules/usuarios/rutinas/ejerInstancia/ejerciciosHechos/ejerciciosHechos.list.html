@@ -4,15 +4,15 @@
             <tr>
                 <th><div class="h4" style="text-transform: uppercase">Fecha de realizacion </div></th>    
                 <th><div class="h4" style="text-transform: uppercase">Series realizadas</div></th>
-                <th><a class="btn btn-info" ui-sref="ejercicioHechoCreate">
-                        <span class="glyphicon glyphicon-plus-sign"></span>nuevo
+                <th><a class="btn btn-info" ui-sref="ejercicioHechoCreate({instanciaId:currentInstancia.id})">
+                        <span class="glyphicon glyphicon-plus-sign"></span> Añadir ejercicio realizado.
                     </a></th>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="ejercicioHecho in ejerciciosHechosRecords">
-                <td id="{{$index}}-Fecha">{{ejercicioHecho.fecha}}</td> 
+                <td id="{{$index}}-Fecha">{{ejercicioHecho.fecha|date:'yyyy-MM-dd'}}</td> 
                 <td id="{{$index}}-Series">{{ejercicioHecho.series}}</td> 
                 
             </tr>

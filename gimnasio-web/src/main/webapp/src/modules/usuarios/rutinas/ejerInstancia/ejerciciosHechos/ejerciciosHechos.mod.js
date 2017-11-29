@@ -26,48 +26,32 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('ejerciciosHechosList', 
-            {
-                url: '/list',
-                parent: 'ejerciciosHechos',
-                views: 
-                {
-                    'listView': 
-                    {
-                        templateUrl: basePath + '/ejerciciosHechos.list.html'
-                    }
-                }            
-            }).state('ejerciciosHechosDetail', 
-            {
-                url: '/{ejerciciosHechosId:int}/detail',
-                parent: 'ejerciciosHechos',
-                param: 
-                {
-                    ejerciciosHechosId: null
-                },
-                views: 
-                {                    
-                    'detailView': 
-                    {
-                        templateUrl: basePath + 'ejerciciosHechos.detail.html',
-                        controller: 'ejerciciosHechosCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
             }).state('ejercicioHechoCreate', 
             {
-                url: '/create',
-                parent: 'ejerciciosHechos',
+                url: '/{instanciaId:int}/nuevoEjercicioRealizado',
+                parent: 'instancias',
+                param : {
+                    instanciaId: null
+                },
                 views: 
                 {
                     'detailView': 
                     {
-                        templateUrl: 'src/modules/usuarios/rutinas/ejerInstancia/ejerciciosHechos/ejerciciosHechos.new.html',
+                        templateUrl: basePath + 'ejerciciosHechos.new.html',
                         controller: 'ejercicioHechoNewCtrl'
                     }
                 }
+            }).state('ejerciciosHechosList', {
+                url: '/{instanciaId:int}/ejerciciosHechosList',
+                parent: 'instancias',  
+                param: {
+                    instanciaId: null
+                },
+                views: {
+                    'listView': {
+                            templateUrl: 'src/modules/usuarios/rutinas/ejerInstancia/ejerciciosHechos/ejerciciosHechos.list.html'
+                    }
+                }                 
             })
         }]);
 })(window.angular);
-
-
