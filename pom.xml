@@ -9,8 +9,8 @@
     <version>0.1.2</version>
 
     <modules>
-        <module>gimnasio-backend2</module>
-        <module>gimnasio-web2</module>
+        <module>gimnasio-backend</module>
+        <module>gimnasio-web</module>
     </modules>
 
 
