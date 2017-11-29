@@ -31,12 +31,27 @@
         function ($scope, $http, EstadoContext, $state) {
             $scope.createEstado = function ()
             {
-                $http.post(EstadoContext + +$state.params.UsId + "/estados/", {
+                 var cdate = new Date();
+                 var dd = $scope.fechaEstado;
+                 if(cdate<dd)
+                 {
+                      $http.post(EstadoContext + +$state.params.UsId + "/estados/", {
                     fecha: $scope.fechaEstado
+                  
+                    
                 }).then(function () {
                     $state.go(history.back());
-                });
+                });  
+                 }
+                 else
+                 {
+                     window.alert("Debe ingresar una fecha valida");
+                 }
+             
+   
             };
+         
+
         }
     ]);
 }
