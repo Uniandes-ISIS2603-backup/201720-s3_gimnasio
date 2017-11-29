@@ -19,7 +19,8 @@
         'ejeobjetivoModule',
         'ejemaquinaModule',
         'ejerciciosHechosModule',
-        'instanciaModule'
+        'instanciaModule',
+        'rutinaModule'
     ]);
 
     // Resuelve problemas de las promesas

@@ -1,7 +1,8 @@
 <!--Esta pagina ha sido desarrollada por Mateo Sicard 
     m.sicard10 201512474  -->
 <div>
-
+    <div class="col-md-12"><button class="btn btn-danger" style="float: left" onclick="history.back()" ><span class="glyphicon glyphicon-arrow-left"></span> Regresar</button></div>
+    
     <div class="col-md-4">
         <br>
         <br>
@@ -11,15 +12,15 @@
         <div > <label> Usuario:</label> {{usuarioActual.nombre}}</div>
         <div> <label> genero:</label> {{usuarioActual.genero2}}</div>
         <div> <label> fecha de nacimiento: </label> {{usuarioActual.fechaDeNacimiento|date: 'yyyy-MM-dd'}}</div>
-        <button class="btn btn-danger" onclick="history.back()" ><span class="glyphicon glyphicon-arrow-left"></span> Regresar</button>
+        
 
     </div>
-    <div class="col-md-8">
+    <div class="col-md-6">
         <div id="container" ></div>
     </div>
     <button type="button" class="btn btn-info col-md-12" data-toggle="collapse" data-target="#historial">Historial <span class="glyphicon glyphicon-chevron-down"></span></button>
     <div id="historial" class="collapse">
-        <div><h1>Historial:</h1></div>
+        
 
         <table class="table container-fluid">
             <thead>
@@ -47,7 +48,7 @@
     </div>
     <button type="button" class="btn btn-info col-md-12" data-toggle="collapse" data-target="#ob">Objetivos<span class="glyphicon glyphicon-chevron-down"></span></button>
     <div id="ob" class="collapse">
-        <div><h1>Objetivos:</h1></div>
+        
         <table class="table">
             <thead>
                 <tr>

@@ -1,12 +1,12 @@
  <button type="button" class="btn btn-info col-md-12" data-toggle="collapse" data-target="#rut">Rutinas  <span class="glyphicon glyphicon-chevron-down"></span></button>
  <div id="rut" class="collapse">
- <div><h1>Rutinas:</h1></div>
  <table class="table">
     <thead>
       <tr>
          <th>id</th>
         <th>fecha Inicio</th>
         <th>Fecha Fin</th>
+        <th><button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref ="createRutina"><span class="glyphicon glyphicon-plus"></span> agregar Rutina</button></th>
       </tr>
     </thead>
     <tbody ng-repeat="x in usuarioActual.rutinas">
@@ -18,7 +18,7 @@
          <button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref="instanciasList({usuariosId:usuarioActual.id, rutinaId:x.id})"><span class="glyphicon glyphicon-check"></span> Ver detalles</button>
         </td>
       </tr>
-               <button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref ="createRutina"><span class="glyphicon glyphicon-plus"></span> agregar Rutina</button>
+               
 
     </tbody>
   </table>
