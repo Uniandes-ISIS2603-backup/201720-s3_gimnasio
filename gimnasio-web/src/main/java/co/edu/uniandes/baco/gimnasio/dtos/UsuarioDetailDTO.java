@@ -7,6 +7,7 @@ package co.edu.uniandes.baco.gimnasio.dtos;
 
 import co.edu.uniandes.baco.gimnasio.entities.EntrenadorEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
@@ -23,7 +24,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     //--------------------------------------------
     private List<EntrenadorDTO> entrenadores;
     private List<RutinaDTO> rutinas;
-    private List<EstadoDTO> estados;
+    private List<EstadoDetailDTO> estados;
     private List<ObjetivoDTO>objetivos;
     
     //--------------------------------------------
@@ -44,7 +45,14 @@ public class UsuarioDetailDTO extends UsuarioDTO{
             estados = new ArrayList<>();
             for(EstadoEntity e2: u.getEstados())
             {
-                estados.add(new EstadoDTO(e2));
+                EstadoDetailDTO m =  new EstadoDetailDTO(e2);
+                List<MedidaDetailDTO> list = new ArrayList<>();
+                for(MedidaEntity x : e2.getMedidas())
+                {
+                    list.add(new MedidaDetailDTO(x));
+                }
+                m.setMedidas(list);
+                estados.add(m);
             }
             rutinas = new ArrayList<>();
             for(RutinaEntity e2: u.getRutinas())
@@ -71,11 +79,11 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     // GETS & SETS
     //--------------------------------------------
 
-    public List<EstadoDTO> getEstados() {
+    public List<EstadoDetailDTO> getEstados() {
         return estados;
     }
 
-    public void setEstados(List<EstadoDTO> estados) {
+    public void setEstados(List<EstadoDetailDTO> estados) {
         this.estados = estados;
     }
     

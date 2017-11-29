@@ -1,18 +1,18 @@
 <!--Esta pagina ha sido desarrollada por Mateo Sicard 
     m.sicard10 201512474  -->
 <div>
-    <div class="col-md-12">
-        <div class="col-md-4">
+    <div class="col-md-4">
+        <br>
+        <br>
+        <br>
+        <br>  
             <img width="50%" height="50%" src="{{usuarioActual.imagen}}"><br>
-        </div>
-        <div class="col-md-5 h2">
-            <br>
-            <br>
-            <br>
             <div cñ> <label> Usuario:</label> {{usuarioActual.nombre}}</div>
             <div> <label> genero:</label> {{usuarioActual.genero2}}</div>
             <div> <label> fecha de nacimiento: </label> {{usuarioActual.fechaDeNacimiento|date: 'yyyy-MM-dd'}}</div>
-        </div>
+    </div>
+    <div class="col-md-8">
+        <div id="container2"></div>
     </div>
     <button type="button" class="btn btn-info col-md-12" data-toggle="collapse" data-target="#historial">Historial <span class="glyphicon glyphicon-chevron-down"></span></button>
     <div id="historial" class="collapse">
