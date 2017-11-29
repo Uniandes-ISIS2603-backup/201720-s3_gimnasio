@@ -125,6 +125,8 @@ public class UsuarioResource {
     public List<EntrenadorDetailDTO> getEntrenador(@PathParam(USUARIOID) Long usuarioID) throws BusinessLogicException {
         return EntrenadorDetailDTO.listDetailDTO(logic.find(usuarioID).getEntrenadores());
     }
+    
+
 
     /**
      * metodo que regresa los servicio de una rutina
@@ -152,6 +154,8 @@ public class UsuarioResource {
         logic.find(usid);
         return EstadoResource.class;
     }
+    
+    
 
     /**
      * metodo que devuelve los servicio de objetivos
