@@ -12,29 +12,22 @@
     mod.config(['$stateProvider', '$urlRouterProvider',
         
         function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/rutinas/';
+        
+            var basePath = 'src/modules/usuarios/rutinas/';
             
             // default
             $urlRouterProvider.otherwise("/rutinas");
             
             // estados
-            $stateProvider.state('rutinas', {
-                url: '/rutinas',
-                abstract: true,
-                views: {
-                    'mainView': {
-                        templateUrl: basePath + 'rutinas.html',
-                        controller: 'rutinasCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
-            }).state('createRutina',{
+            $stateProvider.state('createRutina',{
                 url:'/crear',
-                parent:'rutinas',
+                params:{
+                    UsId : null
+                },
                 views: {
-                    'listView':{
+                    'mainView':{
                         templateUrl: basePath + 'rutina.create.html',
-                        controller: 'rutinasCtrl',
+                        controller: 'createRutinaCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

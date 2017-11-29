@@ -4,19 +4,20 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<div class = "container-fluid">
-            <h1>Crear una rutina</h1>
-            <form ng-submit="createRutina()" name = "rutina">
-                <div class="row">
+<div class = "container-fluid ">
+    <center>
+        <h1>Crear una rutina</h1>
+        <form ng-submit="createRutina()" name = "rutina">
+            <div class="row">
                 <label>Fecha de inicio:</label>  
-                <input type="date" placeholder="DD/MM/YYYY" ng-model="fechaInicio"/>
-                </div>
-                <label>Fecha de final:</label>  
-                <input type="date" placeholder="DD/MM/YYYY" ng-model="fechaFinal"/>
-                </div>
-                <input  type="submit" value="Save" class="btn btn-default btn-sm"/>
-                <a class="btn btn-default btn-sm" ui-sref="rutinasList">Cancel</a>
-            </form>
-            
-        </div>
+                <input type="date"  placeholder="YYYY/MM/DD" ng-model="fechaInicio"/>
+            </div>
+            <label>Fecha de final:</label>  
+            <input type="date"  placeholder="YYYY/MM/DD" ng-model="fechaFinal"/>
+            <br>
+            <input  type="submit" value="Save" class="btn btn-info btn-sm"/>
+            <a class="btn btn-danger btn-sm" onclick="history.back()">Cancel</a>
+        </form>
+    </center>
+</div>
 
