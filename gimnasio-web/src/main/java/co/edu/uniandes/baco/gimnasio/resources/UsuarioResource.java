@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.EntrenadorDetailDTO;
+import co.edu.uniandes.baco.gimnasio.dtos.MedicionMaquinaDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.UsuarioDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.baco.gimnasio.ejb.UsuarioLogic;
@@ -63,6 +59,12 @@ public class UsuarioResource {
     @POST
     public UsuarioDTO create(UsuarioDTO dto) throws BusinessLogicException {
         return new UsuarioDTO(logic.create(dto.toEntity()));
+    }
+    
+    @POST
+    @Path("{" + USUARIOID + ": \\d+}/"+MEDICIONMAQUINA+"/{"+MAQUINAID+": \\d+}-{"+MEDICIONMAQUINAID+"}")
+    public MedicionMaquinaDTO maquina(MedicionMaquinaDTO medicion, PathParam){
+        
     }
 
     /**
