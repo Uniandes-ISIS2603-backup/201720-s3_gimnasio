@@ -7,6 +7,10 @@ public class Graphic {
     private List<Double> valores;
     private List<Date> ejerx;
 
+    public Graphic(){
+        //otravez
+    }
+    
     public Graphic(List<Double> valores, List<Date> ejerx) {
         this.valores = valores;
         this.ejerx = ejerx;

@@ -5,25 +5,18 @@
  */
 package co.edu.uniandes.baco.gimnasio.ejb;
 
-import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
-import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.MaquinaEntity;
-import co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.UsuarioEntity;
-import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
-import co.edu.uniandes.baco.gimnasio.persistence.EjercicioHechoPersistence;
-import co.edu.uniandes.baco.gimnasio.persistence.MedicionMaquinaPersistence;
 import co.edu.uniandes.baco.gimnasio.persistence.RutinaPersistence;
-import java.util.Date;
-import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author jc.bojaca
  */
+@Stateless
 public class RutinaLogic extends SubResource<UsuarioEntity, RutinaEntity> {
 
     public RutinaLogic() {

@@ -4,11 +4,7 @@
     mod.constant("rutinaContext", "api/usuarios/");
     mod.controller('rutinasCtrl', ['$scope', '$http', 'EstadoContext', '$state',
         function ($scope, $http, EstadoContext, $state) {
-            $http.get(EstadoContext + $state.params.UsuarioId + "/rutinas").then(function (response) {
-                $scope.Rutinas = response.data;
-                console.info($scope.Rutinas);
-                $scope.UID = $state.params.UsuarioId;
-            });
+            console.info("entre");
 
         }]);
 
@@ -18,11 +14,19 @@
             {
                  var cdate = new Date();
                  cdate.setHours(0,0,0,0);
-                 var dd = $scope.fechaEstado;
-                 if(cdate<=dd)
+                 var dd = $scope.fechaInicio;
+                 
+                 var cdate2 = new Date();
+                 cdate2.setHours(0,0,0,0);
+                 var dd2 = $scope.fechaInicio;
+                 if(cdate<=dd && cdate2<=dd2)
                  {
-                      $http.post(EstadoContext + +$state.params.UsId + "/estados/", {
-                    fecha: $scope.fechaEstado
+                     var fechaI = cdate.getDate() + '/' + (cdate.getMonth() + 1) + '/' + cdate.getFullYear();
+                     var fechaF = cdate2.getDate() + '/' + (cdate2.getMonth() + 1) + '/' + cdate2.getFullYear();
+                      $http.post(EstadoContext +$state.params.UsId + "/rutinas", {
+                    fechaInicio: fechaI,
+                    
+                    fechaFinal: fechaF
                   
                     
                 }).then(function () {

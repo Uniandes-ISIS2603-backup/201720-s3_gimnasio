@@ -23,6 +23,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -121,7 +123,7 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
         RutinaEntity rutina = e.getRutina();
         ini.setTime(rutina.getFechaInicio());
         fin.setTime(rutina.getFechaFinal().before(new Date()) ? rutina.getFechaFinal() : new Date());
-        List<EjercicioHechoEntity> list = e.getEjerciciosHechos();
+        List<EjercicioHechoEntity> list = new ArrayList<>(e.getEjerciciosHechos());
         list.sort((a, b) -> (int) (a.getFecha().getTime() - b.getFecha().getTime()));
         int part = 1; //cuanta las particiones
         int i = 0; //recorre la lista
@@ -129,16 +131,14 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
         ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
         aux.setTime(list.get(i).getFecha());
         while (ini.before(fin)) { //recorre las particiones
-            int series = 0; //series hechas en la particion
-            int veces = 0; // ejercicios hechos en una particion
+            int series = 0; //series hechas en la particio
             while (!aux.after(ini) && i < list.size()) {
-                veces++;
                 series += list.get(i++).getSeriesReales();
                 if (i < list.size()) {
                     aux.setTime(list.get(i).getFecha());
                 }
             }
-            valores.add((double)((veces * e.getSeries()) + series) / (2 * e.getSeries() * e.getRepeticionesPorParticion()));
+            valores.add((double)series);
             ejerx.add(ini.getTime());
             ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
             part++;
@@ -212,7 +212,7 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
         RutinaEntity rutina = e.getRutina();
         ini.setTime(rutina.getFechaInicio());
         fin.setTime(rutina.getFechaFinal().before(new Date()) ? rutina.getFechaFinal() : new Date());
-        List<EjercicioHechoEntity> list = e.getEjerciciosHechos();
+        List<EjercicioHechoEntity> list =  new ArrayList<>(e.getEjerciciosHechos());
         list.sort((a, b) -> (int) (a.getFecha().getTime() - b.getFecha().getTime()));
         int part = 1; //cuanta las particiones
         int i = 0; //recorre la lista
