@@ -19,33 +19,7 @@
                 });
             }
         }
-    ]);
-    
-    mod.controller('ejercicioHechoNewCtrl', ['$scope', '$http', 'UsuariosEjerciciosHechosContext', '$state', '$rootScope',
-        
-        function ($scope, $http, UsuariosEjerciciosHechosContext , $state, $rootScope) 
-        {
-            var ejercicioHechoContext = UsuariosEjerciciosHechosContext+ '/' + $state.params.usuariosId+ "/rutinas/"+ 
-                    $state.params.rutinaId+ "/ejercicios/"  + $state.params.instanciaId + "/ejerciciosHechos";            
-            
-            $http.get(ejercicioHechoContext).then(function (response) {
-                $scope.ejerciciosHechosRecords = response.data;
-            });
-            
-            $rootScope.edit = false;
-            $scope.createEjercicioHecho = function () 
-            {
-                $http.post(ejercicioHechoContext + '/' + $scope.ejercicioHecho, 
-                {
-                    fecha: $scope.ejercicioHechoFecha,
-                    series: $scope.ejercicioHechoSeries                
-                }).then(function (response) 
-                {
-                    $state.go('ejerciciosHechosList', {ejerciciosHechosId: response.data.id}, {reload: true});
-                });
-            };
-        }
-    ]);
+    ]);  
     
 }
 )(window.angular);

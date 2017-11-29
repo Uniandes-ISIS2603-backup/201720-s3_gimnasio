@@ -3,26 +3,27 @@
         Añadir un ejercicio hecho.
     </h1>
     
-    <form ng-submit="createEjercicioHecho()" name = "usuario">
+    <form ng-submit="createEjercicioHecho()" name = "ejercicioHecho">
         <div class="row">
             <label>Series:</label>  
             <input ng-model="ejercicioHechoSeries"/>
         </div>      
         
         <div class="row">
-            <label>Fecha actual:</label>  
-            <!--Verificar si funciona. -->
-            <p id="fecha"></p>            
+           <label>Fecha de realizacion:</label>  
+           <!-- <p id="ejercicioHechoFecha"></p>            
             <script>
                n =  new Date();
                y = n.getFullYear();
                m = n.getMonth() + 1;
                d = n.getDate();
-               document.getElementById("fecha").innerHTML = m + "/" + d + "/" + y;
+              document.getElementById("ejercicioHechoFecha").innerHTML = d + "/" + m + "/" + y;-->
             </script>
+           
+           <input type="date" placeholder="DD/MM/YYYY" ng-model="ejercicioHechoFecha"/>
         
         </div>
-            <input  type="submit" value="Save" class="btn btn-default btn-sm"/>
-            <a class="btn btn-default btn-sm" ui-sref="ejerciciosHechosList">Cancel</a>
+            <input  type="submit" value="Añadir" class="btn btn-info"/>
+            <a class="btn btn-danger" id="{{$index}}-detalles" ui-sref="ejerciciosHechosList({instanciaId:currentInstancia.id})"> Cancelar</a>
     </form>            
 </div>

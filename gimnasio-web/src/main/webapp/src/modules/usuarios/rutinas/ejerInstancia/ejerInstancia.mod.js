@@ -32,18 +32,7 @@
                     'listView': {
                         templateUrl: basePath + 'ejerInstancia.list.html'
                     }
-                }   
-            }).state('ejercicosHechosList', {
-                url: '/{instanciaId:int}/ejerciciosHechosList',
-                parent: 'instancias',  
-                param: {
-                    instanciaId: null
-                },
-                views: {
-                    'listView': {
-                            templateUrl: 'src/modules/usuarios/rutinas/ejerInstancia/ejerciciosHechos/ejerciciosHechos.list.html'
-                    }
-                }   
+                }          
             }).state('instanciaDetail', {
                 url: '/{instanciaId:int}/detail',
                 parent: 'instancias',
