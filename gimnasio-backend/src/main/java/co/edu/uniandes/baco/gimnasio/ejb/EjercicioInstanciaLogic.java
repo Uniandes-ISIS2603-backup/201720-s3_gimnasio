@@ -8,6 +8,9 @@ package co.edu.uniandes.baco.gimnasio.ejb;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioHechoEntity;
 import co.edu.uniandes.baco.gimnasio.entities.EjercicioInstanciaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.EstadoEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MedicionMaquinaEntity;
+import co.edu.uniandes.baco.gimnasio.entities.MedidaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RegrecionEntity;
 import co.edu.uniandes.baco.gimnasio.entities.RutinaEntity;
 import co.edu.uniandes.baco.gimnasio.entities.TipoMedidaEntity;
@@ -16,6 +19,7 @@ import co.edu.uniandes.baco.gimnasio.persistence.BasePersistence;
 import co.edu.uniandes.baco.gimnasio.persistence.RegresionPersistence;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -41,7 +45,7 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
     public EjercicioInstanciaLogic(RutinaLogic rutinaLogic, EjercicioLogic ejercicioLogic, RegresionPersistence regPersistence, BasePersistence<EjercicioInstanciaEntity> persistence) {
         super(persistence, rutinaLogic, RutinaEntity::getEjercicios, EjercicioInstanciaEntity::setRutina);
         this.ejercicioLogic = ejercicioLogic;
-        this.regPersistence=regPersistence;
+        this.regPersistence = regPersistence;
     }
 
     /**
@@ -55,18 +59,18 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
      */
     public EjercicioInstanciaEntity create(long idRutina, EjercicioInstanciaEntity entity, long idEjercicio) throws BusinessLogicException {
         EjercicioInstanciaEntity ans = create(idRutina, entity);
-        EjercicioEntity ejercicio=ejercicioLogic.find(idEjercicio);
+        EjercicioEntity ejercicio = ejercicioLogic.find(idEjercicio);
         ans.setEjercicio(ejercicio);
-        for(TipoMedidaEntity x:ejercicio.getTiposMedidas()){
-            RegrecionEntity nueva=new RegrecionEntity();
+        for (TipoMedidaEntity x : ejercicio.getTiposMedidas()) {
+            RegrecionEntity nueva = new RegrecionEntity();
             nueva.setRegresion(0.0);
             nueva.setEjercicio(ans);
             nueva.setTipoMedida(x);
             regPersistence.create(nueva);
         }
-        RutinaEntity rut=ans.getRutina();
+        RutinaEntity rut = ans.getRutina();
         int cant = rut.getEjercicios().size();
-        rut.setCumplimiento(rut.getCumplimiento()*((cant-1)/cant));
+        rut.setCumplimiento(rut.getCumplimiento() * ((cant - 1) / cant));
         return ans;
     }
 
@@ -79,10 +83,10 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
 
     @Override
     public void remove(long idUsuario, long id) throws BusinessLogicException {
-        EjercicioInstanciaEntity ans=find(idUsuario, id);
-        RutinaEntity rut=ans.getRutina();
+        EjercicioInstanciaEntity ans = find(idUsuario, id);
+        RutinaEntity rut = ans.getRutina();
         int cant = rut.getEjercicios().size();
-        rut.setCumplimiento((rut.getCumplimiento()-(ans.getCumplimiento()/cant))*(cant/(cant-1)));
+        rut.setCumplimiento((rut.getCumplimiento() - (ans.getCumplimiento() / cant)) * (cant / (cant - 1)));
         super.remove(idUsuario, id);
     }
 
@@ -95,7 +99,69 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
             if (!e.getEjerciciosHechos().isEmpty()) {
                 calcularCumplimiento(e);
             }
+            for (RegrecionEntity r : e.getRegreciones()) {
+                if (r.getTipoMedida().isAutomatico()) {
+                    calcularRegrecion(e, r);
+                } else {
+                    calcularRegrecion2(e, r);
+                }
+            }
         }
+    }
+
+    public void calcularRegrecion2(EjercicioInstanciaEntity instancia, RegrecionEntity regrecionEntity) {
+        TipoMedidaEntity tipo = regrecionEntity.getTipoMedida();
+        Date ini = instancia.getRutina().getFechaInicio();
+        Date fin = instancia.getRutina().getFechaFinal();
+        List<Double> values = new LinkedList<>();
+        for (EstadoEntity x : instancia.getRutina().getUsuario().getEstados()) {
+            if (!x.getFecha().before(ini) && !x.getFecha().after(fin)) {
+                for (MedidaEntity y : x.getMedidas()) {
+                    if (y.getParte().equals(tipo)) {
+                        values.add(y.getMedida());
+                    }
+                }
+            }
+        }
+        regrecionEntity.setRegresion(lineal(values));
+    }
+
+    public void calcularRegrecion(EjercicioInstanciaEntity instancia, RegrecionEntity regrecionEntity) {
+        TipoMedidaEntity tipo = regrecionEntity.getTipoMedida();
+        Date ini = instancia.getRutina().getFechaInicio();
+        Date fin = instancia.getRutina().getFechaFinal();
+        List<Double> values = new LinkedList<>();
+        for (EjercicioHechoEntity x : instancia.getEjerciciosHechos()) {
+            if (!x.getFecha().before(ini) && !x.getFecha().after(fin)) {
+                for (MedicionMaquinaEntity y : x.getMedicionMaquinaEnt()) {
+                    if (y.getTipoMedida().equals(tipo)) {
+                        values.add(y.getMedicionManquina());
+                    }
+                }
+            }
+        }
+        regrecionEntity.setRegresion(lineal(values));
+    }
+
+    public double lineal(List<Double> y) {
+        int n = y.size();
+        if (n <= 1) {
+            return 0;
+        }
+        double sx, sy;
+        sx=sy=0.0;
+        for (int i = 0; i < n; i++) {
+            sx += (i+1);
+            sy += y.get(i);
+        }
+        double xbar = sx / n;
+        double ybar = sy / n;
+        double xxbar = 0.0, xybar = 0.0;
+        for (int i = 0; i < n; i++) {
+            xxbar += ((i+1) - xbar) * ((i+1) - xbar);
+            xybar += ((i+1) - xbar) * (y.get(i) - ybar);
+        }
+        return  xybar / xxbar;
     }
 
     public void calcularCumplimiento(EjercicioInstanciaEntity e) {
