@@ -11,7 +11,15 @@
         
         <div class="row">
            <label>Fecha de realizacion:</label>           
-           <input type="date" placeholder="DD/MM/YYYY" ng-model="fecha"/>
+           
+            <p id="fechaRealizacion"></p>            
+            <script>
+               n =  new Date();
+               y = n.getFullYear();
+               m = n.getMonth() + 1;
+               d = n.getDate();
+              document.getElementById("fechaRealizacion").innerHTML = d + "/" + m + "/" + y;
+            </script>
         
         </div>
             <input  type="submit" value="Añadir" class="btn btn-info"/>

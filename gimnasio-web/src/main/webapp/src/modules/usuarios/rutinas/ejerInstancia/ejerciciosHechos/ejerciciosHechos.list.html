@@ -10,10 +10,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="ejercicioHecho in ejerciciosHechosRecords">
-                <td id="{{$index}}-ejercicioHechoFecha">{{ejercicioHecho.fecha|date:'yyyy-MM-dd hh:mm:ss'}}</td> 
-                <td id="{{$index}}-ejercicioHechoSeries">{{ejercicioHecho.seriesReales}}</td>                                 
-            </tr>        
+            <tr ng-repeat="x in ejerciciosHechosRecords">
+                <td id="{{$index}}-fecha">{{x.fecha|date:'yyyy-MM-dd hh:mm:ss'}}</td> 
+                <td id="{{$index}}-series">{{x.seriesReales}}</td>       
         </tbody>
     </table>
 </div>
