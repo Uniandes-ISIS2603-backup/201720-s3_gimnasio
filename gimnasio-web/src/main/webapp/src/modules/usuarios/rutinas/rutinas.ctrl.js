@@ -2,11 +2,6 @@
 
     var mod = ng.module("rutinaModule");
     mod.constant("rutinaContext", "api/usuarios/");
-    mod.controller('rutinasCtrl', ['$scope', '$http', 'EstadoContext', '$state',
-        function ($scope, $http, EstadoContext, $state) {
-            console.info("entre");
-
-        }]);
 
     mod.controller('createRutinaCtrl', ['$scope', '$http', 'EstadoContext', '$state',
         function ($scope, $http, EstadoContext, $state) {

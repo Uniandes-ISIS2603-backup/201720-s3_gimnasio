@@ -1,6 +1,7 @@
 (function (ng) {
     var mod = ng.module("ejercicioModule");
     mod.constant("ejerciciosContext", "api/ejercicios");
+    mod.constant("adminContext", "api/ADMIN");
     mod.constant("tipoEjeobjetivoContext", "api/objetivos");
     mod.controller('ejercicioDetailCtrl', ['$scope', '$http', 'ejerciciosContext', '$state',
         function ($scope, $http, ejerciciosContext, $state) {
@@ -16,8 +17,8 @@
         $sceDelegateProvider.resourceUrlWhitelist(['**']);
     });
 
-    mod.controller('ejercicioCtrl', ['$scope', '$http', 'ejerciciosContext', 'tipoEjeobjetivoContext',
-        function ($scope, $http, ejerciciosContext, tipoEjeobjetivoContext) {
+    mod.controller('ejercicioCtrl', ['$scope', '$http', 'ejerciciosContext', 'tipoEjeobjetivoContext','adminContext',
+        function ($scope, $http, ejerciciosContext, tipoEjeobjetivoContext,adminContext) {
             $http.get(ejerciciosContext).then(function (response) {
                 $scope.ejerciciosRecords = response.data.sort(function (a, b) {
                     return a.descricpion.localeCompare(b.descricpion);
@@ -27,6 +28,10 @@
             $http.get(tipoEjeobjetivoContext).then(function (response) {
                 $scope.ejeobjetivosRecords = response.data;
             });
+            
+            $scope.admin = function () {
+                $http.get(adminContext);
+            };
 
             $scope.filtrarObjetivo = function () {
                 $http.get(tipoEjeobjetivoContext+'/'+$scope.ejeobjetivoId+"/ejercicios").then(function (response) {
