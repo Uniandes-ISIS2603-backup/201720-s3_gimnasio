@@ -15,6 +15,7 @@
 
             if (($state.params.ejerciciosHechosId !== undefined) && ($state.params.ejerciciosHechosId !== null)) {
                 $http.get(ejercicioHechoContext + '/' + $state.params.ejerciciosHechosId).then(function (response) {
+                    $scope.ejerciciosHechosRecords = response.data.records;
                     $scope.ejercicioHechoActual = response.data;
                 });
             }

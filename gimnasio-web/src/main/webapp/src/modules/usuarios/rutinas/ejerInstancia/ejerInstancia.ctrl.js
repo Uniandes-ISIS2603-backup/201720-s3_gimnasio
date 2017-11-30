@@ -135,7 +135,7 @@
                         {
                             fecha: fechaI,
                             seriesReales: $scope.ejercicioHechoSeries
-                        }).then(function (response)
+                        }).then(function (/*response*/)
                 {
                     $state.go(/*'ejerciciosHechosList',{ejerciciosHechosId: response.data.id}, {reload: true}*/ history.back());
                 });
