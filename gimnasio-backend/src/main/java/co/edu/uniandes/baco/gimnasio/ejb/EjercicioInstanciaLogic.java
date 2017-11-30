@@ -126,21 +126,23 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
         ini.setTime(rutina.getFechaInicio());
         fin.setTime(rutina.getFechaFinal().before(new Date()) ? rutina.getFechaFinal() : new Date());
         List<EjercicioHechoEntity> list = new ArrayList<>(e.getEjerciciosHechos());
-        list.sort((a, b) -> (int) (a.getFecha().getTime() - b.getFecha().getTime()));
-        int i = 0; //recorre la lista
-        ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
-        aux.setTime(list.get(i).getFecha());
-        while (ini.before(fin)) { //recorre las particiones
-            int series = 0; //series hechas en la particio
-            while (!aux.after(ini) && i < list.size()) {
-                series += list.get(i++).getSeriesReales();
-                if (i < list.size()) {
-                    aux.setTime(list.get(i).getFecha());
-                }
-            }
-            valores.add((double) series);
-            ejerx.add(format.format(ini.getTime()));
+        if (!list.isEmpty()) {
+            list.sort((a, b) -> (int) (a.getFecha().getTime() - b.getFecha().getTime()));
+            int i = 0; //recorre la lista
             ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
+            aux.setTime(list.get(i).getFecha());
+            while (ini.before(fin)) { //recorre las particiones
+                int series = 0; //series hechas en la particio
+                while (!aux.after(ini) && i < list.size()) {
+                    series += list.get(i++).getSeriesReales();
+                    if (i < list.size()) {
+                        aux.setTime(list.get(i).getFecha());
+                    }
+                }
+                valores.add((double) series);
+                ejerx.add(format.format(ini.getTime()));
+                ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
+            }
         }
         return new Graphic(valores, ejerx);
     }
@@ -217,35 +219,37 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
         ini.setTime(rutina.getFechaInicio());
         fin.setTime(rutina.getFechaFinal().before(new Date()) ? rutina.getFechaFinal() : new Date());
         List<EjercicioHechoEntity> list = new ArrayList<>(e.getEjerciciosHechos());
-        list.sort((a, b) -> (int) (a.getFecha().getTime() - b.getFecha().getTime()));
-        int part = 1; //cuanta las particiones
-        int i = 0; //recorre la lista
-        double cont = 0; //conteo para el promedio
-        ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
-        aux.setTime(list.get(i).getFecha());
-        while (ini.before(fin)) { //recorre las particiones
-            int series = 0; //series hechas en la particion
-            int veces = 0; // ejercicios hechos en una particion
-            while (!aux.after(ini) && i < list.size()) {
-                veces++;
-                series += list.get(i++).getSeriesReales();
-                if (i < list.size()) {
-                    aux.setTime(list.get(i).getFecha());
-                }
-            }
-            cont += (double) ((veces * e.getSeries()) + series) / (2 * e.getSeries() * e.getRepeticionesPorParticion());
+        if (!list.isEmpty()) {
+            list.sort((a, b) -> (int) (a.getFecha().getTime() - b.getFecha().getTime()));
+            int part = 1; //cuanta las particiones
+            int i = 0; //recorre la lista
+            double cont = 0; //conteo para el promedio
             ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
-            part++;
+            aux.setTime(list.get(i).getFecha());
+            while (ini.before(fin)) { //recorre las particiones
+                int series = 0; //series hechas en la particion
+                int veces = 0; // ejercicios hechos en una particion
+                while (!aux.after(ini) && i < list.size()) {
+                    veces++;
+                    series += list.get(i++).getSeriesReales();
+                    if (i < list.size()) {
+                        aux.setTime(list.get(i).getFecha());
+                    }
+                }
+                cont += (double) ((veces * e.getSeries()) + series) / (2 * e.getSeries() * e.getRepeticionesPorParticion());
+                ini.add(Calendar.DAY_OF_MONTH, e.getTamanioParticiones());
+                part++;
+            }
+            double cump = (cont / part) * 100;
+            int cant = rutina.getEjercicios().size();
+            rutina.setCumplimiento(rutina.getCumplimiento() - (e.getCumplimiento() / cant) + (cump / cant));
+            e.setCumplimiento(cump);
         }
-        double cump = (cont / part) * 100;
-        int cant = rutina.getEjercicios().size();
-        rutina.setCumplimiento(rutina.getCumplimiento() - (e.getCumplimiento() / cant) + (cump / cant));
-        e.setCumplimiento(cump);
     }
 
-    //-----------------------------------
-    // EJERCICIO
-    //-----------------------------------
+//-----------------------------------
+// EJERCICIO
+//-----------------------------------
     public EjercicioEntity findEjercicio(long idRutina, long id) throws BusinessLogicException {
         return find(idRutina, id).getEjercicio();
     }
