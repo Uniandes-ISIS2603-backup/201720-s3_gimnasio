@@ -1,6 +1,5 @@
 package co.edu.uniandes.baco.gimnasio.dtos;
 
-import java.util.Date;
 import java.util.List;
 
 public class Graphic {

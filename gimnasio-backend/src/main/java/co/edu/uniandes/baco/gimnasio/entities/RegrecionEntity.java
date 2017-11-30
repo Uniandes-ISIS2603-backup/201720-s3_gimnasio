@@ -30,11 +30,11 @@ public class RegrecionEntity extends BaseEntity {
     //--------------------------------------------
     // GETS & SETS
     //--------------------------------------------
-    public double getRegresion() {
+    public Double getRegresion() {
         return regresion;
     }
 
-    public void setRegresion(double regresion) {
+    public void setRegresion(Double regresion) {
         this.regresion = regresion;
     }
 

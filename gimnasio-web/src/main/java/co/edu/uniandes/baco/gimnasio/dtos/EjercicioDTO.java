@@ -80,8 +80,6 @@ public class EjercicioDTO {
     public void setPasos(List<String> pasos) {
         this.pasos = pasos;
     }
-    
-    
 
     public String getDescricpion() {
         return descricpion;

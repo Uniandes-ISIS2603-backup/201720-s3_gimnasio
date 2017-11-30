@@ -138,7 +138,7 @@ public class EjercicioEntity extends BaseEntity implements Serializable {
     public void setPasos(List<String> pasos) {
         this.pasos = pasos;
     }
-    
+
     public String getVideo() {
         return video;
     }

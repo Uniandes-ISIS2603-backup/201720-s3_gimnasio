@@ -6,6 +6,7 @@
 package co.edu.uniandes.baco.gimnasio.resources;
 
 import co.edu.uniandes.baco.gimnasio.dtos.EjercicioDetailDTO;
+import co.edu.uniandes.baco.gimnasio.dtos.EjercicioEfectivo;
 import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.ObjetivoDetailDTO;
 import co.edu.uniandes.baco.gimnasio.dtos.UsuarioDetailDTO;
@@ -14,6 +15,8 @@ import co.edu.uniandes.baco.gimnasio.entities.ObjetivoEntity;
 import co.edu.uniandes.baco.gimnasio.exceptions.BusinessLogicException;
 import static co.edu.uniandes.baco.gimnasio.resources.URLS.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -83,6 +86,16 @@ public class ObjetivoResource{
     @Path("{"+OBJETIVOID+": \\d+}/"+EJERCICIO)
     public List<EjercicioDetailDTO> findEjercicios(@PathParam(OBJETIVOID) long id) throws BusinessLogicException{
         return EjercicioDetailDTO.listDetailDTO(logic.findAllEjercicio(id));
+    }
+    
+    @GET
+    @Path("{"+OBJETIVOID+": \\d+}/"+EJERCICIO+"/reg")
+    public List<EjercicioEfectivo> findEjerciciosreg(@PathParam(OBJETIVOID) long id) throws BusinessLogicException{
+        Logger log=Logger.getLogger(ObjetivoResource.class.getName());
+        for(EjercicioEfectivo x:logic.findAllEjercicioReg(id)){
+            log.log(Level.INFO, x.getDescricpion()+"-"+x.getExplicacion()+x.getEfectividad());
+        }
+        return logic.findAllEjercicioReg(id);
     }
     
     @Path("{"+OBJETIVOID+": \\d+}/"+ATRIBUTODECALIDAD)
