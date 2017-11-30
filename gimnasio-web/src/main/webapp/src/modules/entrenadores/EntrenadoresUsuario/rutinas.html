@@ -7,7 +7,7 @@
         <th>fecha Inicio</th>
         <th>Fecha Fin</th>
         <th>cumplimiento</th>
-        <th><button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref ="createRutina"><span class="glyphicon glyphicon-plus"></span> agregar Rutina</button></th>
+        <th><button id="{{$index}}-detalles" class="btn btn-default btn-sm" ui-sref ="createRutina({UsId: usuarioActual.id })"><span class="glyphicon glyphicon-plus"></span> agregar Rutina</button></th>
       </tr>
     </thead>
     <tbody ng-repeat="x in usuarioActual.rutinas">

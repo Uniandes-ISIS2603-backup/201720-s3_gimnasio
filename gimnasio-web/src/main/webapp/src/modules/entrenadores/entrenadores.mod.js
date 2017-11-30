@@ -105,7 +105,7 @@
                 views: {
                      'mainView': {
                         templateUrl: basePath + 'entrenador.edit.html',
-                        controller: 'entrenadoresUpdateCtrl',
+                        controller: 'entrenadoresCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

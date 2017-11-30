@@ -17,17 +17,18 @@
     </div>
    
     <div class="col-md-6">
-        <br>
-        <br>
-        <br>
-        <div id="container2"></div>
+        <div id="container2" ></div>
+        <form ng-submit="obtener()" name="ejemaquina">
+        <select id="ejemaquinaId" ng-model="tipoo" style="width: 60%;">
+            <option ng-repeat="x in tipos"  value="{{x.descripcion}} ">{{x.descripcion}}</option>
+        </select>
+        <input  type="submit" value="Generar grafica" class="btn btn-xs" style="background-color:  #337ab7 ; color: white "/>
+        </form>
     </div>
      </div>
     <button type="button" class="btn btn-info col-md-12" data-toggle="collapse" data-target="#historial">Historial <span class="glyphicon glyphicon-chevron-down"></span></button>
     <div id="historial" class="collapse">
         
-        
-
         <table class="table">
             <thead>
                 <tr>
