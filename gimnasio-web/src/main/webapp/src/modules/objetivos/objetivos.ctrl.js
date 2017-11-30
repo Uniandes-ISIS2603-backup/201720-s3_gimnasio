@@ -13,6 +13,9 @@
                     $scope.atributosDeCalidadRecords = response.data.calidad.sort(function(a, b){return a.descripcion.localeCompare(b.descripcion);});
                     $scope.ejerciciosRecords = response.data.ejercicios;
                     $scope.usuariosRecosrds = response.data.usuarios;
+                    $http.get(objetivosContext + '/' + $state.params.objetivoId+"/ejercicios/reg").then(function (response) {
+                        $scope.ejerciciosRecords = response.data;
+                    });
                 });
             }
         }
