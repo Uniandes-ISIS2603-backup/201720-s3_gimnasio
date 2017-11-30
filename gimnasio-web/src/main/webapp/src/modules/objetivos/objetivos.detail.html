@@ -9,23 +9,7 @@
     </div>
     <br>
     <div class="panel-group col-md-7">
-        <div class="panel panel-primary" style="background-image: url(resources/images/image.png); border-color: #212021; height: 170px">
-            <div class="panel-heading" style="background-color: #212021; height: 20%"><label>El objetivo es usado por:</label></div>
-            <div class="panel-body">
-                <div class="col-sm-1" style="text-align: center; width: 50%">
-                    <h5 style="text-align: left"><b>Ejercicios:</b></h5>
-                    <ul class="list-group-item-text"  style="text-align: left;height: 70px; overflow-y: scroll; background: #545354">
-                        <li ng-repeat="ejercicio in ejerciciosRecords">{{ejercicio.descricpion}}({{ejercicio.efectividad}})</li>
-                    </ul>
-                </div>
-                <div class="col-sm-1" style="text-align: right;width: 50%">
-                    <h5 style="text-align: left"><b>Usuarios:</b></h5>
-                    <ul class="list-group-item-text"  style="text-align: left; height: 70px; overflow-y: scroll; background: #545354">
-                        <li ng-repeat="usuario in usuariosRecosrds">{{usuario.nombre}}</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <div id="container" style="height: 300px"></div>
     </div>
 </div>
 <p style="text-align: left"><b>Estos son los atributos que se aspiran mejorar:</b></p>

@@ -4,17 +4,53 @@
     mod.controller('objetivoCtrl', ['$scope', '$http', 'objetivosContext', '$state',
         function ($scope, $http, objetivosContext, $state) {
             $http.get(objetivosContext).then(function (response) {
-                $scope.objetivosRecords = response.data.sort(function(a, b){return a.tipo.localeCompare(b.tipo);});
+                $scope.objetivosRecords = response.data.sort(function (a, b) {
+                    return a.tipo.localeCompare(b.tipo);
+                });
             });
 
             if ($state.params.objetivoId !== undefined && $state.params.objetivoId !== null) {
                 $http.get(objetivosContext + '/' + $state.params.objetivoId).then(function (response) {
                     $scope.currentObjetivo = response.data;
-                    $scope.atributosDeCalidadRecords = response.data.calidad.sort(function(a, b){return a.descripcion.localeCompare(b.descripcion);});
+                    $scope.atributosDeCalidadRecords = response.data.calidad.sort(function (a, b) {
+                        return a.descripcion.localeCompare(b.descripcion);
+                    });
                     $scope.ejerciciosRecords = response.data.ejercicios;
                     $scope.usuariosRecosrds = response.data.usuarios;
-                    $http.get(objetivosContext + '/' + $state.params.objetivoId+"/ejercicios/reg").then(function (response) {
+                    $http.get(objetivosContext + '/' + $state.params.objetivoId + "/ejercicios/reg").then(function (response) {
                         $scope.ejerciciosRecords = response.data;
+                        var valx = [];
+                        var valy = [];
+                        response.data.forEach(function (element) {
+                            valx.push(element.descricpion);
+                            valy.push(element.efectividad);
+                        });
+
+                        $(function () {
+                            $('#container').highcharts({
+                                chart: {
+                                    type: 'column',
+                                    zoomType: 'x'
+                                },
+                                title: {
+                                    text: 'GRAFICA EJERCICIOS'
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                xAxis: {
+                                    categories: valx
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: 'efectividad'
+                                    }
+                                },
+                                series: [{
+                                        data: valy
+                                    }]
+                            });
+                        });
                     });
                 });
             }
@@ -37,7 +73,6 @@
 
     mod.controller('objetivoDeleteCtrl', ['$scope', '$http', 'objetivosContext', '$state',
         function ($scope, $http, objetivosContext, $state) {
-            console.info("a eliminar");
             var idObjetivo = $state.params.objetivoId;
             $scope.deleteObjetivo = function () {
                 $http.delete(objetivosContext + '/' + idObjetivo, {}).then(function (response) {
