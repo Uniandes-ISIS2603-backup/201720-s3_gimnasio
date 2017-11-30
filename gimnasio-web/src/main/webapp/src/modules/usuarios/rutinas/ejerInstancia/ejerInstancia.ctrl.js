@@ -127,13 +127,17 @@
             $rootScope.edit = false;
             $scope.createEjercicioHecho = function ()
             {
+                var cdate = new Date();
+                cdate.setHours(0,0,0,0);
+                var fechaI = cdate.getDate() + '/' + (cdate.getMonth() + 1) + '/' + cdate.getFullYear();
+
                 $http.post(ejercicioHechoContext,
                         {
-                            fecha: $scope.ejercicioHechoFecha,
-                            series: $scope.ejercicioHechoSeries
+                            fecha: fechaI,
+                            seriesReales: $scope.ejercicioHechoSeries
                         }).then(function (response)
                 {
-                    $state.go('ejerciciosHechosList', {ejerciciosHechosId: response.data.id}, {reload: true});
+                    $state.go(/*'ejerciciosHechosList',{ejerciciosHechosId: response.data.id}, {reload: true}*/ history.back());
                 });
             };
         }

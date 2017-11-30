@@ -14,7 +14,7 @@
             });
 
             if (($state.params.ejerciciosHechosId !== undefined) && ($state.params.ejerciciosHechosId !== null)) {
-                $http.get(UsuariosEjerciciosHechosContext + '/' + $state.params.ejerciciosHechosId).then(function (response) {
+                $http.get(ejercicioHechoContext + '/' + $state.params.ejerciciosHechosId).then(function (response) {
                     $scope.ejercicioHechoActual = response.data;
                 });
             }
