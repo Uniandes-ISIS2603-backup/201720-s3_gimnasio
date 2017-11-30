@@ -100,8 +100,6 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
             e.setCumplimiento(0.0);
             e.getRutina().setCumplimiento(0.0);
         }
-        
-        Logger log=Logger.getLogger(EjercicioInstanciaLogic.class.getName());
         for (EjercicioInstanciaEntity e : findAll()) {
             if (!e.getEjerciciosHechos().isEmpty()) {
                 calcularCumplimiento(e);
@@ -109,10 +107,8 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
             for (RegrecionEntity r : e.getRegreciones()) {
                 if (r.getTipoMedida().isAutomatico()) {
                     calcularRegrecion(e, r);
-                    log.log(Level.INFO,"caso1" + r.getTipoMedida().getTipoMedida());
                 } else {
                     calcularRegrecion2(e, r);
-                    log.log(Level.INFO,"caso2" + r.getTipoMedida().getTipoMedida());
                 }
             }
         }
@@ -154,7 +150,6 @@ public class EjercicioInstanciaLogic extends SubResource<RutinaEntity, Ejercicio
         Date ini = instancia.getRutina().getFechaInicio();
         Date fin = instancia.getRutina().getFechaFinal();
         List<Double> values = new LinkedList<>();
-        Logger log=Logger.getLogger(EjercicioInstanciaLogic.class.getName());
         for (EstadoEntity x : instancia.getRutina().getUsuario().getEstados()) {
             if (!x.getFecha().before(ini) && !x.getFecha().after(fin)) {
                 auxcalcularRegrecion2(x, tipo, values);
